@@ -1,0 +1,15 @@
+[init]
+	defaultBranch = master
+[user]
+	name = Yifei Sun
+	email = yifei@email.com
+	signingkey = C119BABBCCCCA4D3
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+    required = true
