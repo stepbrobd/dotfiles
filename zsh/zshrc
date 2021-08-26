@@ -1,0 +1,10 @@
+# Defalut Prompt.
+PS1="%F{green}%/ %F{white}> "
+
+# Aliases
+alias vi="nvim"
+alias vim="nvim"
+
+# Z-Shell Plugins
+source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
