@@ -1,4 +1,4 @@
-# Defalut Prompt.
+# Default Prompt.
 PS1="%F{green}%/ %F{white}> "
 
 # Aliases
