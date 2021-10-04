@@ -14,7 +14,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/Yifei-S/D
 
 - ~/.dotfiles/zsh/[zshrc](/zsh/zshrc) -> ~/.zshrc
 
-- ~/.dotfiles/vim/[vimrc](/vim/vimrc) -> ~/.nvimrc
+- ~/.dotfiles/vim/[vimrc](/vim/vimrc) -> ~/.vimrc
 
 - ~/.dotfiles/git/[gitconfig](/git/gitconfig) -> ~/.gitconfig
 
