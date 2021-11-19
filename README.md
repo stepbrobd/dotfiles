@@ -7,7 +7,7 @@ The content of this repository should stay in ~/.dotfiles directory.
 ## Setup
 
 ```shell
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/Yifei-S/Dotfiles/master/setup.sh | zsh
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/StepBroBD/Dotfiles/master/setup.sh | zsh
 ```
 
 ## Symlinks
