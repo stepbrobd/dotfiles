@@ -1,15 +1,17 @@
 [init]
 	defaultBranch = master
 [user]
-	name = Yifei Sun
-	email = yifei@email.com
-	signingkey = C119BABBCCCCA4D3
+	name          = StepBroBD
+	email         = Hi@StepBroBD.com
+	signingkey    = F742B72C89261A51
 [commit]
-	gpgsign = true
+	gpgsign       = true
 [gpg]
-	program = gpg
+	program       = gpg
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-    required = true
+	clean         = git-lfs clean -- %f
+	smudge        = git-lfs smudge -- %f
+	process       = git-lfs filter-process
+    required      = true
+[core]
+	autocrlf      = input

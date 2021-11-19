@@ -1,10 +1,18 @@
-# Default Prompt.
-PS1="%F{green}%/ %F{white}> "
-
 # Aliases
 # alias vi="nvim"
 # alias vim="nvim"
 
+# Z-Shell History
+HISTSIZE=5000
+SAVEHIST=5000
+HISTFILE="$HOME/.zsh_history"
+setopt   appendhistory
+setopt   sharehistory
+setopt   incappendhistory
+
 # Z-Shell Plugins
 source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Default Prompt.
+prompt="%F{green}%/%F{white} > "
