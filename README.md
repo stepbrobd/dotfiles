@@ -23,4 +23,4 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/StepBroBD
 
 ## License
 
-This repository content excluding all submodules is licensed under the [WTFPL License](LICENSE), submodules are subject to their original license.
+This repository content excluding all submodules is licensed under the [WTFPL License](LICENSE.md), submodules are subject to their original license.
