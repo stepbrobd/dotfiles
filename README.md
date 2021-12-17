@@ -18,9 +18,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/StepBroBD
 
 - ~/.dotfiles/git/[gitconfig](/git/gitconfig) -> ~/.gitconfig
 
-- ~/.dotfiles/hyper/[hyper.js](hyper/hyper.js) -> ~/.hyperjs
-
-
 ## License
 
 This repository content excluding all submodules is licensed under the [WTFPL License](LICENSE.md), submodules are subject to their original license.
