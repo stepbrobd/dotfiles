@@ -7,4 +7,3 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.dotfiles/z
 ln -fsv ~/.dotfiles/zsh/zshrc      ~/.zshrc
 ln -fsv ~/.dotfiles/vim/vimrc      ~/.vimrc
 ln -fsv ~/.dotfiles/git/gitconfig  ~/.gitconfig
-ln -fsv ~/.dotfiles/hyper/hyper.js ~/.hyper.js
