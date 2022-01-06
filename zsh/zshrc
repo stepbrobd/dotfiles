@@ -1,6 +1,6 @@
 # Aliases
-# alias vi="nvim"
-# alias vim="nvim"
+alias vi="nvim"
+alias vim="nvim"
 
 # Z-Shell History
 HISTSIZE=5000
