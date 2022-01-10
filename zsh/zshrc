@@ -13,5 +13,8 @@ setopt   incappendhistory
 source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# The Fuck
+eval $(thefuck --alias)
+
 # Default Prompt.
 prompt="%F{green}%/%F{white} > "
