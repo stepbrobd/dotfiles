@@ -16,5 +16,10 @@ source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # The Fuck
 eval $(thefuck --alias)
 
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # nvm loader
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # nvm bash_completion
+
 # Default Prompt.
 prompt="%F{green}%/%F{white} > "
