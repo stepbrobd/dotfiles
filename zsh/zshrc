@@ -9,12 +9,15 @@ HISTFILE="$HOME/.zsh_history"
 setopt   appendhistory
 setopt   incappendhistory
 
+# GPG
+export GPG_TTY=$(tty)
+
 # Z-Shell Plugins
 source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# The Fuck
-eval $(thefuck --alias)
+# pyenv
+eval "$(pyenv init --path)" > /dev/null 2>&1
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
@@ -22,4 +25,5 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # nvm bash_completion
 
 # Default Prompt.
-prompt="%F{green}%/%F{white} > "
+prompt="%F{green}%/%F{white}
+> "
