@@ -26,4 +26,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # Default Prompt.
 prompt="%F{green}%/%F{white}
-> "
+%F{165}=> "
+
