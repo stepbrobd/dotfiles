@@ -3,11 +3,11 @@
 [user]
 	name          = StepBroBD
 	email         = Hi@StepBroBD.com
-	signingkey    = F742B72C89261A51
+	signingkey    = 5D8BFA8B286AC2EF6EE48598F742B72C89261A51
 [commit]
 	gpgsign       = true
 [gpg]
-	program = /usr/local/bin/gpg
+	program = gpg
 [filter "lfs"]
 	clean         = git-lfs clean -- %f
 	smudge        = git-lfs smudge -- %f
