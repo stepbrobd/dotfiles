@@ -20,5 +20,4 @@ chown -R "$(whoami)" ~/.gnupg/
 chmod 600 ~/.gnupg/*
 chmod 700 ~/.gnupg
 
-/bin/zsh
-sourec ~/.zshrc
+sudo chsh -s /bin/zsh
