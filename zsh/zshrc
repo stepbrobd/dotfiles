@@ -23,13 +23,13 @@ elif [[ `uname` == "Linux" ]]; then
 fi
 
 # init gpg if installed
-if [[ `gpg -k` > /dev/null ]]; then
+if [[ `command -v gpg` > /dev/null ]]; then
   export GPG_TTY=$(tty)
   killall gpg-agent
 fi
 
 # init pyenv if installed
-if [[ `pyenv version` > /dev/null ]]; then
+if [[ `command -v pyenv` > /dev/null ]]; then
     eval "$(pyenv init --path)" > /dev/null 2>&1
 fi
 
