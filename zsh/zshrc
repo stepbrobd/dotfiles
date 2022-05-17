@@ -1,29 +1,44 @@
-# Aliases
-alias vi="nvim"
-alias vim="nvim"
-
-# Z-Shell History
+# zsh config
 HISTSIZE=5000
 SAVEHIST=5000
 HISTFILE="$HOME/.zsh_history"
 setopt   appendhistory
 setopt   incappendhistory
 
-# GPG
-export GPG_TTY=$(tty)
-
-# Z-Shell Plugins
+# zsh plugins
 source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# pyenv
-eval "$(pyenv init --path)" > /dev/null 2>&1
+# aliases
+alias vi="nvim"
+alias vim="nvim"
 
-# Node Version Manager
-export NVM_DIR="$HOME/.nvm"
+# conditional aliases
+if [[ `uname` == "Darwin" ]]; then
+  # tailscale
+  alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+elif [[ `uname` == "Linux" ]]; then
+  # tailscale
+  alias tailscale="tailscale"
+fi
+
+# init gpg if installed
+if [[ `gpg -k` > /dev/null ]]; then
+  export GPG_TTY=$(tty)
+fi
+
+# init pyenv if installed
+if [[ `pyenv version` > /dev/null ]]; then
+    eval "$(pyenv init --path)" > /dev/null 2>&1
+fi
+
+# init nvm if installed
+if [[ -f ~/.nvm/nvm.sh ]]; then
+  export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # nvm loader
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # nvm bash_completion
+fi
 
-# Default Prompt.
+# prompt
 prompt="%F{green}%/
 %F{165}=>%F{white} "
