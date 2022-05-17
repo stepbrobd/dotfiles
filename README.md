@@ -7,7 +7,7 @@ The content of this repository should stay in ~/.dotfiles directory.
 ## Setup
 
 ```shell
-curl --proto '=https' --tlsv1.3 -sSf https://raw.githubusercontent.com/StepBroBD/Dotfiles/master/setup.sh | sh
+curl --proto '=https' --tlsv1.3 -sSf https://raw.githubusercontent.com/StepBroBD/Dotfiles/master/setup.sh | bash
 ```
 
 ## Symlinks
@@ -17,6 +17,8 @@ curl --proto '=https' --tlsv1.3 -sSf https://raw.githubusercontent.com/StepBroBD
 - ~/.dotfiles/[nvim](/nvim) -> ~/.config/nvim
 
 - ~/.dotfiles/git/[gitconfig](/git/gitconfig) -> ~/.gitconfig
+
+- ~/.dotfiles/gpg/[gpg.conf](/gpg/gpg.conf) -> ~/.gnupg/gpg.conf
 
 ## License
 
