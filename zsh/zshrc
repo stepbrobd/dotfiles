@@ -18,8 +18,10 @@ if [[ `uname` == "Darwin" ]]; then
   # tailscale
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 elif [[ `uname` == "Linux" ]]; then
-  # tailscale
-  alias tailscale="tailscale"
+  # update
+  alias update="sudo apt-get update && sudo apt update"
+  # upgrade
+  alias upgrade="sudo apt-get upgrade -y && sudo apt upgrade -y"
 fi
 
 # init gpg if installed
