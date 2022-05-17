@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/bin/bash
+
+if [[ -f ~/.dotfiles/ ]]; then
+  rm -rf ~/.dotfiles/
+fi
 
 git clone https://github.com/StepBroBD/Dotfiles.git ~/.dotfiles/
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.dotfiles/zsh/zsh-autosuggestions/
