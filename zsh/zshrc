@@ -25,6 +25,7 @@ fi
 # init gpg if installed
 if [[ `gpg -k` > /dev/null ]]; then
   export GPG_TTY=$(tty)
+  killall gpg-agent
 fi
 
 # init pyenv if installed
