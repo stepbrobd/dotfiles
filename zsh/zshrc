@@ -1,6 +1,6 @@
 # zsh config
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=9999
+SAVEHIST=9999
 HISTFILE="$HOME/.zsh_history"
 setopt   appendhistory
 setopt   incappendhistory
@@ -12,6 +12,9 @@ source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # aliases
 alias vi="nvim"
 alias vim="nvim"
+alias ls="exa -lah"
+alias tree="exa --tree"
+alias cat="bat"
 
 # conditional aliases
 if [[ `uname` == "Darwin" ]]; then
