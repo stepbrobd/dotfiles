@@ -1,9 +1,12 @@
 # zsh config
-HISTSIZE=9999
-SAVEHIST=9999
+HISTSIZE=99999
+SAVEHIST=99999
 HISTFILE="$HOME/.zsh_history"
 setopt   appendhistory
 setopt   incappendhistory
+
+# color scheme
+export TERM=xterm-256color
 
 # zsh plugins
 source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
