@@ -12,6 +12,7 @@ mkdir ~/.config
 mkdir ~/.gnupg
 
 ln -fsv ~/.dotfiles/zsh/zshrc ~/.zshrc
+ln -fsv ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -fsv ~/.dotfiles/gpg/gpg.conf ~/.gnupg/gpg.conf
 ln -fsv ~/.dotfiles/git/gitconfig ~/.gitconfig
 ln -fsv ~/.dotfiles/nvim ~/.config
