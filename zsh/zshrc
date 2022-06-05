@@ -20,6 +20,7 @@ alias tree="exa --tree"
 alias cat="bat"
 alias top="btop"
 alias htop="btop"
+alias dotfiles="echo 'Updating dotfiles...' && cd ~/.dotfiles && git pull && cd"
 
 # conditional aliases
 if [[ `uname` == "Darwin" ]]; then
