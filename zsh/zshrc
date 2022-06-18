@@ -49,8 +49,15 @@ if [[ `command -v gpg` > /dev/null ]]; then
 fi
 
 # init pyenv if installed
-if [[ `command -v pyenv` > /dev/null ]]; then
+if [[ -f ~/.pyenv/bin/pyenv ]]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
     eval "$(pyenv init --path)" > /dev/null 2>&1
+    eval "$(pyenv virtualenv-init -)" > /dev/null 2>&1
+fi
+
+# init rvm if installed
+if [[ `command -v rvm` > /dev/null ]]; then
+    export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
 # init nvm if installed
@@ -63,3 +70,4 @@ fi
 # prompt
 prompt="%F{green}%/
 %F{165}=>%F{white} "
+
