@@ -15,3 +15,5 @@
     required      = true
 [core]
 	autocrlf      = input
+[submodule]
+	recurse = true
