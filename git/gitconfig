@@ -1,19 +1,28 @@
 [init]
 	defaultBranch = master
+
 [user]
-	name          = StepBroBD
-	email         = Hi@StepBroBD.com
-	signingkey    = 5D8BFA8B286AC2EF6EE48598F742B72C89261A51
-[commit]
-	gpgsign       = true
-[gpg]
-	program = gpg
-[filter "lfs"]
-	clean         = git-lfs clean -- %f
-	smudge        = git-lfs smudge -- %f
-	process       = git-lfs filter-process
-    required      = true
+	name            = StepBroBD
+	email           = Hi@StepBroBD.com
+	signingkey      = 5D8BFA8B286AC2EF6EE48598F742B72C89261A51
+
 [core]
-	autocrlf      = input
+	autocrlf        = input
+
 [submodule]
-	recurse = true
+	recurse         = true
+
+[push]
+	autoSetupRemote = true
+
+[filter "lfs"]
+	clean           = git-lfs clean -- %f
+	smudge          = git-lfs smudge -- %f
+	process         = git-lfs filter-process
+    required        = true
+
+[commit]
+	gpgsign         = true
+
+[gpg]
+	program         = gpg
