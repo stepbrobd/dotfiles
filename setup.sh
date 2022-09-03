@@ -7,6 +7,7 @@ fi
 git clone https://github.com/StepBroBD/Dotfiles.git                ~/.config/dotfiles/
 git clone https://github.com/zsh-users/zsh-autosuggestions.git     ~/.config/dotfiles/zsh/zsh-autosuggestions/
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/dotfiles/zsh/zsh-syntax-highlighting/
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 mkdir ~/.config
 mkdir ~/.gnupg
