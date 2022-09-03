@@ -5,33 +5,9 @@ HISTFILE="$HOME/.zsh_history"
 setopt   appendhistory
 setopt   incappendhistory
 
-# color scheme
+# exports
 export TERM=xterm-256color
-
-# zsh plugins
-source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# aliases
-alias vi="nvim"
-alias vim="nvim"
-alias ls="exa -lah"
-alias tree="exa --tree"
-alias cat="bat"
-alias top="btop"
-alias htop="btop"
-alias dotfiles="echo 'Updating dotfiles...' && cd ~/.dotfiles && git pull && cd"
-
-# conditional aliases
-if [[ `uname` == "Darwin" ]]; then
-  # tailscale
-  alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-elif [[ `uname` == "Linux" ]]; then
-  # update
-  alias update="sudo apt-get update && sudo apt update"
-  # upgrade
-  alias upgrade="sudo apt-get upgrade -y && sudo apt upgrade -y"
-fi
+export GOPATH=$HOME/.go
 
 # homebrew
 if [[ `command -v brew` > /dev/null ]]; then
@@ -67,7 +43,44 @@ if [[ -f ~/.nvm/nvm.sh ]]; then
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # nvm bash_completion
 fi
 
+# aliases
+alias dotfiles="echo 'Updating \e[4m~/.dotfiles\e[0m...' && cd ~/.dotfiles && git pull && cd"
+alias reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
+
+# conditional aliases
+if [[ `uname` == "Darwin" ]]; then
+  # tailscale
+  alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+  # update
+  alias update="brew update"
+  # upgrade
+  alias upgrade="brew upgrade --greedy"
+elif [[ `uname` == "Linux" ]]; then
+  # update
+  alias update="sudo apt-get update && sudo apt update"
+  # upgrade
+  alias upgrade="sudo apt-get upgrade -y && sudo apt upgrade -y"
+fi
+if [[ `command -v nvim` > /dev/null ]]; then
+  alias vi="nvim"
+  alias vim="nvim"
+fi
+if [[ `command -v exa` > /dev/null ]]; then
+  alias ls="exa"
+  alias tree="exa --tree"
+fi
+if [[ `command -v bat` > /dev/null ]]; then
+  alias cat="bat"
+fi
+if [[ `command -v btop` > /dev/null ]]; then
+  alias top="btop"
+  alias htop="btop"
+fi
+
+# zsh plugins
+source ~/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # prompt
 prompt="%F{green}%/
 %F{165}=>%F{white} "
-
