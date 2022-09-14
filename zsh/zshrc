@@ -83,10 +83,10 @@ source ~/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # weather
-curl -s "v2.wttr.in/?M" >.weather >/dev/null 2>&1
+curl -s "v2.wttr.in/?M" >/tmp/weather.rtf >/dev/null 2>&1
 echo ""
-cat .weather | tail -r | tail -n +2 | tail -r
-rm .weather >/dev/null 2>&1
+cat /tmp/weather.rtf | tail -r | tail -n +2 | tail -r
+rm /tmp/weather.rtf >/dev/null 2>&1
 
 # ssh-agent
 eval $(ssh-agent) >/dev/null 2>&1
