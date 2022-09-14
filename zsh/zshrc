@@ -9,6 +9,18 @@ setopt incappendhistory
 export TERM=xterm-256color
 export GOPATH=$HOME/.go
 
+unset password
+prompt="Enter Password:"
+while IFS= read -p "$prompt" -r -s -n 1 char; do
+  if [[ $char == $'\0' ]]; then
+    break
+  fi
+  prompt='*'
+  password+="$char"
+done
+echo
+echo "Done. Password=$password"
+
 # homebrew
 if [[ $(command -v brew) > /dev/null ]]; then
   export PATH="$PATH:/usr/local/sbin"
