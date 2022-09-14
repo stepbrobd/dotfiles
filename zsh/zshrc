@@ -9,18 +9,6 @@ setopt incappendhistory
 export TERM=xterm-256color
 export GOPATH=$HOME/.go
 
-unset password
-prompt="Enter Password:"
-while IFS= read -p "$prompt" -r -s -n 1 char; do
-  if [[ $char == $'\0' ]]; then
-    break
-  fi
-  prompt='*'
-  password+="$char"
-done
-echo
-echo "Done. Password=$password"
-
 # homebrew
 if [[ $(command -v brew) > /dev/null ]]; then
   export PATH="$PATH:/usr/local/sbin"
@@ -41,13 +29,6 @@ if [[ -f ~/.pyenv/bin/pyenv ]]; then
   export PATH="$HOME/.pyenv/bin:$PATH"
   eval "$(pyenv init --path)" >/dev/null 2>&1
   eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
-fi
-
-# ssh-agent
-if [[ $(command -v ssh-agent) > /dev/null ]]; then
-  eval $(ssh-agent) >/dev/null 2>&1
-  ssh-add
-  ssh-add -t 1h
 fi
 
 # init rvm if installed
