@@ -85,7 +85,12 @@ source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # weather
 curl -s "v2.wttr.in/?M" >/tmp/weather.rtf >/dev/null 2>&1
 echo ""
-cat /tmp/weather.rtf | tail -r | tail -n +2 | tail -r
+if [[ $(uname) == "Darwin" ]]; then
+  cat /tmp/weather.rtf | tail -r | tail -n +2 | tail -r
+fi
+if [[ $(uname) == "Linux" ]]; then
+  head -n -1 /tmp/weather.rtf
+fi
 rm /tmp/weather.rtf >/dev/null 2>&1
 
 # ssh-agent
