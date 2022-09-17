@@ -46,7 +46,6 @@ fi
 # aliases
 alias dotfiles="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
 alias reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
-alias repos="ssh Git.StepBroBD.com -t"
 
 # conditional aliases
 if [[ $(uname) == "Darwin" ]]; then
