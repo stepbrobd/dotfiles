@@ -1,3 +1,7 @@
+# prompt
+prompt="%F{green}%/
+%F{165}=>%F{white} "
+
 # zsh config
 HISTSIZE=99999
 SAVEHIST=99999
@@ -82,7 +86,7 @@ source ~/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # weather
-curl -s "v2.wttr.in/?M" >/tmp/weather.rtf >/dev/null 2>&1
+timeout 0.5s curl -s "v2.wttr.in/?M" >/tmp/weather.rtf >/dev/null 2>&1
 echo ""
 if [[ $(uname) == "Darwin" ]]; then
   cat /tmp/weather.rtf | tail -r | tail -n +2 | tail -r
@@ -95,7 +99,3 @@ rm /tmp/weather.rtf >/dev/null 2>&1
 # ssh-agent
 eval $(ssh-agent) >/dev/null 2>&1
 ssh-add -t 1h >/dev/null 2>&1
-
-# prompt
-prompt="%F{green}%/
-%F{165}=>%F{white} "
