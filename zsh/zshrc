@@ -30,8 +30,9 @@ fi
 
 # init pyenv if installed
 if [[ -f ~/.pyenv/bin/pyenv ]]; then
-  export PATH="$HOME/.pyenv/bin:$PATH"
-  eval "$(pyenv init --path)" >/dev/null 2>&1
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
 fi
 
@@ -43,8 +44,8 @@ fi
 # init nvm if installed
 if [[ -f ~/.nvm/nvm.sh ]]; then
   export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"                                       # nvm loader
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # nvm bash_completion
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 fi
 
 # aliases
@@ -80,22 +81,10 @@ if [[ $(command -v btop) > /dev/null ]]; then
   alias top="btop"
   alias htop="btop"
 fi
+if [[ $(command -v terraform) > /dev/null ]]; then
+  alias tf="terraform"
+fi
 
 # zsh plugins
 source ~/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# weather
-timeout 0.5s curl -s "v2.wttr.in/?M" >/tmp/weather.rtf >/dev/null 2>&1
-echo ""
-if [[ $(uname) == "Darwin" ]]; then
-  cat /tmp/weather.rtf | tail -r | tail -n +2 | tail -r
-fi
-if [[ $(uname) == "Linux" ]]; then
-  head -n -1 /tmp/weather.rtf
-fi
-rm /tmp/weather.rtf >/dev/null 2>&1
-
-# ssh-agent
-eval $(ssh-agent) >/dev/null 2>&1
-ssh-add -t 1h >/dev/null 2>&1
