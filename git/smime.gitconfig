@@ -1,0 +1,26 @@
+### Basics
+[init]
+defaultBranch = master
+[core]
+autocrlf = input
+[push]
+autoSetupRemote = true
+[submodule]
+recurse = true
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+
+### S/MIME Sign
+[user]
+name = StepBroBD
+email = Hi@StepBroBD.com
+signingkey = 43e0998a5284a544b6a6b17607c8a95920c7a37b
+[commit]
+gpgsign = true
+[gpg]
+format = x509
+[gpg "x509"]
+program = smimesign
