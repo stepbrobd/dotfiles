@@ -1,28 +1,39 @@
 [init]
-	defaultBranch = master
-
-[user]
-	name            = StepBroBD
-	email           = Hi@StepBroBD.com
-	signingkey      = 5D8BFA8B286AC2EF6EE48598F742B72C89261A51
+defaultBranch = master
 
 [core]
-	autocrlf        = input
+autocrlf = input
 
 [submodule]
-	recurse         = true
+recurse = true
 
 [push]
-	autoSetupRemote = true
+autoSetupRemote = true
 
 [filter "lfs"]
-	clean           = git-lfs clean -- %f
-	smudge          = git-lfs smudge -- %f
-	process         = git-lfs filter-process
-    required        = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
 
+### S/MIME Sign
+[user]
+name = StepBroBD
+email = Hi@StepBroBD.com
+signingkey = 43e0998a5284a544b6a6b17607c8a95920c7a37b
 [commit]
-	gpgsign         = true
-
+gpgsign = true
 [gpg]
-	program         = gpg
+format = x509
+[gpg "x509"]
+program = smimesign
+
+### GPG Sign
+# [user]
+# name = StepBroBD
+# email = Hi@StepBroBD.com
+# signingkey = 5D8BFA8B286AC2EF6EE48598F742B72C89261A51
+# [commit]
+# gpgsign = true
+# [gpg]
+# program = gpg
