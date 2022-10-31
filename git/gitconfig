@@ -1,15 +1,12 @@
+### Basics
 [init]
 defaultBranch = master
-
 [core]
 autocrlf = input
-
-[submodule]
-recurse = true
-
 [push]
 autoSetupRemote = true
-
+[submodule]
+recurse = true
 [filter "lfs"]
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
