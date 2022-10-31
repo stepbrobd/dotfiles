@@ -16,8 +16,13 @@ ln -fsv ~/.config/dotfiles/zsh/zshrc          ~/.zshrc
 ln -fsv ~/.config/dotfiles/tmux/tmux.conf     ~/.tmux.conf
 ln -fsv ~/.config/dotfiles/gpg/gpg.conf       ~/.gnupg/gpg.conf
 ln -fsv ~/.config/dotfiles/gpg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
-ln -fsv ~/.config/dotfiles/git/gitconfig      ~/.gitconfig
 ln -fsv ~/.config/dotfiles/nvim               ~/.config
+
+if [[ $(command -v smimesign) > /dev/null ]]; then
+  ln -fsv ~/.config/dotfiles/git/smime.gitconfig ~/.gitconfig
+else
+  ln -fsv ~/.config/dotfiles/git/gpg.gitconfig   ~/.gitconfig
+fi
 
 chown -R "$(whoami)" ~/.gnupg/
 chmod 600            ~/.gnupg/*
