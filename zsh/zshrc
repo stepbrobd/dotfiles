@@ -48,6 +48,11 @@ if [[ -f ~/.nvm/nvm.sh ]]; then
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 fi
 
+# init mcfly if installed
+if [[ $(command -v mcfly) > /dev/null ]]; then
+  eval "$(mcfly init zsh)"
+fi
+
 # aliases
 alias dotfiles="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
 alias reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
@@ -80,9 +85,6 @@ fi
 if [[ $(command -v btop) > /dev/null ]]; then
   alias top="btop"
   alias htop="btop"
-fi
-if [[ $(command -v mcfly) > /dev/null ]]; then
-  eval "$(mcfly init zsh)"
 fi
 if [[ $(command -v terraform) > /dev/null ]]; then
   alias tf="terraform"
