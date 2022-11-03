@@ -81,6 +81,9 @@ if [[ $(command -v btop) > /dev/null ]]; then
   alias top="btop"
   alias htop="btop"
 fi
+if [[ $(command -v mcfly) > /dev/null ]]; then
+  eval "$(mcfly init zsh)"
+fi
 if [[ $(command -v terraform) > /dev/null ]]; then
   alias tf="terraform"
 fi
