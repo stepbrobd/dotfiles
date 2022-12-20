@@ -50,7 +50,8 @@ require('packer').startup(function(use)
     'projekt0n/github-nvim-theme',
     config = function()
       require('github-theme').setup({
-        theme_style = "dark",
+        theme_style = "dark_default",
+        sidebars = {"qf", "vista_kind", "terminal", "packer"},
       })
     end
   })
@@ -129,7 +130,6 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme github_dark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
@@ -165,7 +165,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'onedark',
+    theme = 'github_dark_default',
     component_separators = '|',
     section_separators = '',
   },
