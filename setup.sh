@@ -7,6 +7,7 @@ fi
 git clone https://github.com/StepBroBD/Dotfiles.git                ~/.config/dotfiles/
 git clone https://github.com/zsh-users/zsh-autosuggestions.git     ~/.config/dotfiles/zsh/zsh-autosuggestions/
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.config/dotfiles/zsh/zsh-syntax-highlighting/
+git clone https://github.com/tmux-plugins/tpm                      ~/.config/dotfiles/tmux/plugin/tpm
 
 mkdir ~/.config
 mkdir ~/.gnupg
