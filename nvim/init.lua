@@ -138,10 +138,7 @@ require('packer').startup(function(use)
     -- Status
     use {
         'nvim-lualine/lualine.nvim',
-        requires = {
-            'nvim-tree/nvim-web-devicons',
-            opt = true
-        }
+        requires = {'nvim-tree/nvim-web-devicons'}
     }
 
     -- Sidebar
@@ -219,8 +216,7 @@ require("github-theme").setup({
     end
 })
 
--- Set lualine as statusline
--- See `:help lualine.txt`
+-- Enable lualine.nvim
 require('lualine').setup {
     options = {
         icons_enabled = true,
@@ -232,23 +228,15 @@ require('lualine').setup {
         section_separators = {
             left = '',
             right = ''
-        },
-        sections = {
-            lualine_a = {'mode'},
-            lualine_b = {'branch', 'diff', 'diagnostics'},
-            lualine_c = {},
-            lualine_x = {'encoding', 'filename'},
-            lualine_y = {'progress'},
-            lualine_z = {'location'}
-        },
-        inactive_sections = {
-            lualine_a = {},
-            lualine_b = {},
-            lualine_c = {'filename'},
-            lualine_x = {'location'},
-            lualine_y = {},
-            lualine_z = {}
         }
+    },
+    sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {'filename', 'filetype', 'encoding'},
+        lualine_z = {'location'}
     }
 }
 
@@ -261,8 +249,7 @@ require("nvim-tree").setup()
 -- Enable Comment.nvim
 require('Comment').setup()
 
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
+-- Enable indent-blankline.nvim
 require('indent_blankline').setup {
     char = '┊',
     show_trailing_blankline_indent = false
