@@ -18,6 +18,7 @@ ln -fsv ~/.tmux/plugins/                      ~/.config/dotfiles/tmux/plugins
 ln -fsv ~/.config/dotfiles/gpg/gpg.conf       ~/.gnupg/gpg.conf
 ln -fsv ~/.config/dotfiles/gpg/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 ln -fsv ~/.config/dotfiles/nvim               ~/.config
+ln -fsv ~/.config/dotfiles/nix                ~/.config
 
 if [[ $(command -v smimesign) > /dev/null ]]; then
   ln -fsv ~/.config/dotfiles/git/smime.gitconfig ~/.gitconfig
