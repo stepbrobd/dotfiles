@@ -40,7 +40,7 @@ vim.g.maplocalleader = ' '
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', {
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', {
     silent = true
 })
 
@@ -79,7 +79,7 @@ local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nv
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     is_bootstrap = true
-    vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
 end
 
@@ -89,18 +89,26 @@ require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Theme
-    use 'projekt0n/github-nvim-theme'
+    use {
+        'projekt0n/github-nvim-theme',
+        config = function()
+            require("github-theme").setup({
+                theme_style = "dark_default",
+                sidebars = {"qf", "vista_kind", "terminal", "packer"},
+            })
+        end
+    }
 
     -- LSP
     use {
         'neovim/nvim-lspconfig',
-        requires = {'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', 'j-hui/fidget.nvim'}
+        requires = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim', 'j-hui/fidget.nvim' }
     }
 
     -- Autocomplete
     use {
         'hrsh7th/nvim-cmp',
-        requires = {'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'}
+        requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' }
     }
 
     -- Treesitter
@@ -121,7 +129,7 @@ require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
-        requires = {'nvim-lua/plenary.nvim'}
+        requires = { 'nvim-lua/plenary.nvim' }
     }
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -132,14 +140,46 @@ require('packer').startup(function(use)
     -- File Explorer
     use {
         'nvim-tree/nvim-tree.lua',
-        requires = {'nvim-tree/nvim-web-devicons'}
+        requires = { 'nvim-tree/nvim-web-devicons' }
     }
 
     -- Status
     use {
         'nvim-lualine/lualine.nvim',
-        requires = {'nvim-tree/nvim-web-devicons'}
+        after = "github-nvim-theme",
+        requires = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup {
+                options = {
+                    icons_enabled = true,
+                    theme = 'auto',
+                    component_separators = {
+                        left = '',
+                        right = ''
+                    },
+                    section_separators = {
+                        left = '',
+                        right = ''
+                    }
+                },
+                sections = {
+                    lualine_a = { 'mode' },
+                    lualine_b = { 'branch', 'diff', 'diagnostics' },
+                    lualine_c = {},
+                    lualine_x = {},
+                    lualine_y = { 'filetype', 'encoding' },
+                    lualine_z = { 'location' }
+                }
+            }
+        end
     }
+
+    -- Buffer Line
+    use {
+        'akinsho/bufferline.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons' }
+    }
+
 
     -- Sidebar
     use 'sidebar-nvim/sidebar.nvim'
@@ -191,54 +231,8 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 -- [[ Setup Plugins ]]
--- Theme
-require("github-theme").setup({
-    theme_style = "dark_default",
-    function_style = "italic",
-    sidebars = {"qf", "vista_kind", "terminal", "packer"},
-    colors = {
-        hint = "orange",
-        error = "#ff0000"
-    },
-    overrides = function(config)
-        return {
-            htmlTag = {
-                fg = config.red,
-                bg = "#282c34",
-                sp = config.hint,
-                style = "underline"
-            },
-            DiagnosticHint = {
-                link = "LspDiagnosticsDefaultHint"
-            },
-            TSField = {}
-        }
-    end
-})
-
--- Enable lualine.nvim
-require('lualine').setup {
-    options = {
-        icons_enabled = true,
-        theme = 'auto',
-        component_separators = {
-            left = '',
-            right = ''
-        },
-        section_separators = {
-            left = '',
-            right = ''
-        }
-    },
-    sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {'filename', 'filetype', 'encoding'},
-        lualine_z = {'location'}
-    }
-}
+-- Enable Buffer Line
+require("bufferline").setup {}
 
 -- Enable sidebar.nvim
 require("sidebar-nvim").setup()
@@ -330,7 +324,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, {
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = {'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help'},
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
 
     highlight = {
         enable = true
@@ -452,7 +446,7 @@ require('mason').setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = {'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls'}
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
 
 -- Ensure the servers above are installed
 require('mason-lspconfig').setup {
@@ -492,7 +486,7 @@ require('lspconfig').sumneko_lua.setup {
                 path = runtime_path
             },
             diagnostics = {
-                globals = {'vim'}
+                globals = { 'vim' }
             },
             workspace = {
                 library = vim.api.nvim_get_runtime_file('', true),
@@ -532,7 +526,7 @@ cmp.setup {
             else
                 fallback()
             end
-        end, {'i', 's'}),
+        end, { 'i', 's' }),
         ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
@@ -541,11 +535,11 @@ cmp.setup {
             else
                 fallback()
             end
-        end, {'i', 's'})
+        end, { 'i', 's' })
     },
-    sources = {{
+    sources = { {
         name = 'nvim_lsp'
     }, {
         name = 'luasnip'
-    }}
+    } }
 }
