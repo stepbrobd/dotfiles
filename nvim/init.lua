@@ -32,36 +32,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- Format on write
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
--- [[ Keymaps ]]
--- Leader key: <space>
--- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', {
-    silent = true
-})
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", {
-    expr = true,
-    silent = true
-})
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", {
-    expr = true,
-    silent = true
-})
-
--- Diagnostic Keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
--- [[ Highlight on Yank ]]
--- See `:help vim.highlight.on_yank()`
+-- Highlight on Yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', {
     clear = true
 })
@@ -94,7 +65,7 @@ require('packer').startup(function(use)
         config = function()
             require("github-theme").setup({
                 theme_style = "dark_default",
-                sidebars = {"qf", "vista_kind", "terminal", "packer"},
+                sidebars = { "qf", "vista_kind", "terminal", "packer" }
             })
         end
     }
@@ -180,12 +151,16 @@ require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons' }
     }
 
-
     -- Sidebar
     use 'sidebar-nvim/sidebar.nvim'
 
     -- Comment
-    use 'numToStr/Comment.nvim'
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 
     -- Indentation
     use 'lukas-reineke/indent-blankline.nvim'
@@ -194,7 +169,33 @@ require('packer').startup(function(use)
     -- Git
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
-    use 'lewis6991/gitsigns.nvim'
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup {
+                signs = {
+                    add = {
+                        text = '+'
+                    },
+                    change = {
+                        text = '~'
+                    },
+                    delete = {
+                        text = '_'
+                    },
+                    topdelete = {
+                        text = '‾'
+                    },
+                    changedelete = {
+                        text = '~'
+                    }
+                }
+            }
+        end
+    }
+
+    -- TeX
+    use 'lervag/vimtex'
 
     -- GitHub Copilot
     use 'github/copilot.vim'
@@ -230,7 +231,6 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     pattern = vim.fn.expand '$MYVIMRC'
 })
 
--- [[ Setup Plugins ]]
 -- Enable Buffer Line
 require("bufferline").setup {}
 
@@ -240,39 +240,13 @@ require("sidebar-nvim").setup()
 -- Enable nvim-tree
 require("nvim-tree").setup()
 
--- Enable Comment.nvim
-require('Comment').setup()
-
 -- Enable indent-blankline.nvim
 require('indent_blankline').setup {
     char = '┊',
     show_trailing_blankline_indent = false
 }
 
--- Gitsigns
--- See `:help gitsigns.txt`
-require('gitsigns').setup {
-    signs = {
-        add = {
-            text = '+'
-        },
-        change = {
-            text = '~'
-        },
-        delete = {
-            text = '_'
-        },
-        topdelete = {
-            text = '‾'
-        },
-        changedelete = {
-            text = '~'
-        }
-    }
-}
-
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
+-- Enable Telescope
 require('telescope').setup {
     defaults = {
         mappings = {
@@ -283,9 +257,35 @@ require('telescope').setup {
         }
     }
 }
-
--- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+-- [[ Keymaps ]]
+-- Leader key: <space>
+-- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', {
+    silent = true
+})
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", {
+    expr = true,
+    silent = true
+})
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", {
+    expr = true,
+    silent = true
+})
+
+-- Diagnostic Keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, {
