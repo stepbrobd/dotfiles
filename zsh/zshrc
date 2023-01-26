@@ -68,6 +68,7 @@ fi
 if [[ $(command -v nvim) > /dev/null ]]; then
   alias vi="nvim"
   alias vim="nvim"
+  alias vimdiff="nvim -d"
 fi
 if [[ $(command -v exa) > /dev/null ]]; then
   alias ls="exa"
