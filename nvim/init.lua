@@ -181,6 +181,14 @@ require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     use 'tpope/vim-sleuth'
 
+    -- Auto close brackets
+    use {
+        "windwp/nvim-autopairs",
+        config = function()
+            require("nvim-autopairs").setup {}
+        end
+    }
+
     -- Git
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
