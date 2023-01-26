@@ -165,6 +165,7 @@ require('packer').startup(function(use)
             vim.g.minimap_auto_start_win_enter = 1
             vim.g.minimap_highlight_search = 1
             vim.g.minimap_git_colors = 1
+            vim.g.minimap_width = 35
         end
     }
 
@@ -209,7 +210,13 @@ require('packer').startup(function(use)
     }
 
     -- TeX
-    use 'lervag/vimtex'
+    use {
+        'lervag/vimtex',
+        config = function()
+            vim.g.vimtex_view_method = 'zathura'
+            vim.g.vimtex_quickfix_mode = 0
+        end
+    }
 
     -- GitHub Copilot
     use 'github/copilot.vim'
