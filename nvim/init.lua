@@ -150,6 +150,17 @@ require('packer').startup(function(use)
         'sidebar-nvim/sidebar.nvim',
         requires = { 'nvim-tree/nvim-web-devicons' }
     }
+
+    -- Minimap
+    use {
+        'wfxr/minimap.vim',
+        config = function()
+            vim.g.minimap_auto_start = 1
+            vim.g.minimap_auto_start_win_enter = 1
+            vim.g.minimap_width = 10
+        end
+    }
+
     -- Comment
     use {
         'numToStr/Comment.nvim',
