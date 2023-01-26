@@ -63,9 +63,9 @@ require('packer').startup(function(use)
     use {
         'projekt0n/github-nvim-theme',
         config = function()
-            require("github-theme").setup({
-                theme_style = "dark_default",
-                sidebars = { "qf", "vista_kind", "terminal", "packer" }
+            require('github-theme').setup({
+                theme_style = 'dark_default',
+                sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' }
             })
         end
     }
@@ -108,16 +108,10 @@ require('packer').startup(function(use)
         cond = vim.fn.executable 'make' == 1
     }
 
-    -- File Explorer
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = { 'nvim-tree/nvim-web-devicons' }
-    }
-
     -- Status
     use {
         'nvim-lualine/lualine.nvim',
-        after = "github-nvim-theme",
+        after = 'github-nvim-theme',
         requires = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             require('lualine').setup {
@@ -152,8 +146,10 @@ require('packer').startup(function(use)
     }
 
     -- Sidebar
-    use 'sidebar-nvim/sidebar.nvim'
-
+    use {
+        'sidebar-nvim/sidebar.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons' }
+    }
     -- Comment
     use {
         'numToStr/Comment.nvim',
@@ -232,13 +228,27 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 })
 
 -- Enable Buffer Line
-require("bufferline").setup {}
+require('bufferline').setup {
+    options = {
+        offsets = { {
+            filetype = 'SidebarNvim',
+            text = 'Explorer'
+        } },
+        indicator = {
+            style = 'none'
+        }
+    }
+}
 
 -- Enable sidebar.nvim
-require("sidebar-nvim").setup()
-
--- Enable nvim-tree
-require("nvim-tree").setup()
+require('sidebar-nvim').setup({
+    open = true,
+    side = "left",
+    initial_width = 35,
+    sections = { 'files', 'git', 'symbols', 'diagnostics' },
+    section_separator = '',
+    section_title_separator = ''
+})
 
 -- Enable indent-blankline.nvim
 require('indent_blankline').setup {
