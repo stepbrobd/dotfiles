@@ -1,40 +1,38 @@
-# prompt
+# Prompt
 prompt="%F{39}%/
 %F{201}=>%F{255} "
 
-# zsh config
+# Z-Shell Config
 HISTSIZE=99999
 SAVEHIST=99999
 HISTFILE="$HOME/.zsh_history"
 setopt appendhistory
 setopt incappendhistory
 
-# exports
+# Exports
 export TERM=xterm-256color
 export GOPATH=$HOME/.go
 
-# nix
- if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
-    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
- fi
+# Aliases
+alias dotfiles="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
+alias reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
+alias vi="nvim"
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias ls="exa"
+alias tree="exa --tree"
+alias cat="bat"
+alias top="btop"
+alias htop="btop"
+alias tf="terraform"
 
-# homebrew
-if [[ $(command -v brew) > /dev/null ]]; then
-  export PATH="$PATH:/usr/local/sbin"
-fi
-
-# snap
-if [[ $(command -v snap) > /dev/null ]]; then
-  export PATH="$PATH:/snap/bin"
-fi
-
-# init gpg if installed
+# Init gpg if installed
 if [[ $(command -v gpg) > /dev/null ]]; then
   export GPG_TTY=$(tty)
   killall gpg-agent >/dev/null 2>&1
 fi
 
-# init pyenv if installed
+# Init pyenv if installed
 if [[ -f ~/.pyenv/bin/pyenv ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -42,50 +40,23 @@ if [[ -f ~/.pyenv/bin/pyenv ]]; then
   eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
 fi
 
-# init mcfly if installed
+# Init mcfly if installed
 if [[ $(command -v mcfly) > /dev/null ]]; then
   eval "$(mcfly init zsh)"
 fi
 
-# aliases
-alias dotfiles="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
-alias reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
-
-# conditional aliases
+# Darwin tailscale init
 if [[ $(uname) == "Darwin" ]]; then
   # tailscale
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-  # update
-  alias update="brew update"
-  # upgrade
-  alias upgrade="brew upgrade --greedy"
-elif [[ $(uname) == "Linux" ]]; then
-  # update
-  alias update="sudo apt-get update && sudo apt update"
-  # upgrade
-  alias upgrade="sudo apt-get upgrade -y && sudo apt upgrade -y"
-fi
-if [[ $(command -v nvim) > /dev/null ]]; then
-  alias vi="nvim"
-  alias vim="nvim"
-  alias vimdiff="nvim -d"
-fi
-if [[ $(command -v exa) > /dev/null ]]; then
-  alias ls="exa"
-  alias tree="exa --tree"
-fi
-if [[ $(command -v bat) > /dev/null ]]; then
-  alias cat="bat"
-fi
-if [[ $(command -v btop) > /dev/null ]]; then
-  alias top="btop"
-  alias htop="btop"
-fi
-if [[ $(command -v terraform) > /dev/null ]]; then
-  alias tf="terraform"
 fi
 
-# zsh plugins
+# Darwin nix init
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
+# Z-Shell Plugins
 source ~/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
