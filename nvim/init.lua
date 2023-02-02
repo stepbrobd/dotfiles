@@ -70,7 +70,7 @@ require('packer').startup(function(use)
         'projekt0n/github-nvim-theme',
         config = function()
             require('github-theme').setup({
-                theme_style = 'dark_default',
+                theme_style = 'dimmed',
                 sidebars = { 'qf', 'vista_kind', 'terminal', 'packer' }
             })
         end
@@ -161,8 +161,8 @@ require('packer').startup(function(use)
     use {
         'wfxr/minimap.vim',
         config = function()
-            vim.g.minimap_auto_start = 1
-            vim.g.minimap_auto_start_win_enter = 1
+            -- vim.g.minimap_auto_start = 1
+            -- vim.g.minimap_auto_start_win_enter = 1
             vim.g.minimap_highlight_search = 1
             vim.g.minimap_git_colors = 1
             vim.g.minimap_width = 35
