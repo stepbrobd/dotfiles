@@ -1,15 +1,8 @@
 { config, pkgs, lib, ... }:
 
-let
-  inherit (pkgs) stdenv;
-in
 {
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
-
-  home.username = "StepBroBD";
-  home.homeDirectory = if stdenv.isDarwin then "/Users/StepBroBD" else "/home/StepBroBD";
-
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
