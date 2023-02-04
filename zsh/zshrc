@@ -17,6 +17,7 @@ export LC_CTYPE="en_US.UTF-8"
 export PAGER="less -R"
 export NIX_PATH="${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels"
 export GOPATH="$HOME/.go"
+export EXA_COLORS="da=1;32"
 
 # Aliases
 alias dotfiles="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
@@ -24,12 +25,14 @@ alias reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias ls="exa"
-alias tree="exa --tree"
+alias ls="exa --icons"
+alias tree="exa --icons --tree"
 alias cat="bat"
-alias top="btop"
 alias htop="btop"
 alias tf="terraform"
+
+# iTerm2
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Init gpg if installed
 if [[ $(command -v gpg) > /dev/null ]]; then
@@ -54,6 +57,8 @@ fi
 if [[ $(uname) == "Darwin" ]]; then
   # tailscale
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+  # batcat
+  alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
 fi
 
 # Darwin nix init
@@ -65,4 +70,3 @@ fi
 source ~/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
