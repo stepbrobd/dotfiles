@@ -28,6 +28,7 @@ alias vimdiff="nvim -d"
 alias ls="exa --icons"
 alias tree="exa --icons --tree"
 alias cat="bat"
+alias tmux="TERM=screen-256color-bce tmux"
 alias htop="btop"
 alias tf="terraform"
 
