@@ -32,42 +32,36 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias htop="btop"
 alias tf="terraform"
 
-# iTerm2
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Init gpg if installed
-if [[ $(command -v gpg) > /dev/null ]]; then
-  export GPG_TTY=$(tty)
-  killall gpg-agent >/dev/null 2>&1
+# Init mcfly
+if [[ $(command -v mcfly) > /dev/null ]]; then
+  eval "$(mcfly init zsh)"
 fi
 
-# Init pyenv if installed
-if [[ -f ~/.pyenv/bin/pyenv ]]; then
+# Init pyenv
+if [[ -f "${HOME}/.pyenv/bin/pyenv" ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
 fi
 
-# Init mcfly if installed
-if [[ $(command -v mcfly) > /dev/null ]]; then
-  eval "$(mcfly init zsh)"
-fi
-
-# Darwin tailscale init
+# Darwin only
 if [[ $(uname) == "Darwin" ]]; then
+  # nix daemon
+  if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
+    source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+  fi
+
+  # iTerm2
+  if [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
+    source "${HOME}/.iterm2_shell_integration.zsh"
+  fi
+
   # tailscale
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-  # batcat
-  alias cat="bat --theme=\$(defaults read -globalDomain AppleInterfaceStyle &> /dev/null && echo default || echo GitHub)"
-fi
-
-# Darwin nix init
-if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
-  source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
 # Z-Shell Plugins
-source ~/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
