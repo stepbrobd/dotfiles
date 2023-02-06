@@ -52,6 +52,9 @@ if [[ $(uname) == "Darwin" ]]; then
     source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
   fi
 
+  # nix-darwin
+  alias rebuild="${HOME}/.config/dotfiles/nix/darwin-rebuild.sh"
+
   # iTerm2
   if [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
     source "${HOME}/.iterm2_shell_integration.zsh"
@@ -64,4 +67,3 @@ fi
 # Z-Shell Plugins
 source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
