@@ -17,7 +17,7 @@ export LC_CTYPE="en_US.UTF-8"
 export PAGER="less -R"
 export NIX_PATH="${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels"
 export GOPATH="$HOME/.go"
-export EXA_COLORS="da=1;32"
+export EXA_COLORS="da=1;31"
 
 # Aliases
 alias dotfiles="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
