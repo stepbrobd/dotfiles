@@ -1,6 +1,11 @@
 # Prompt
-prompt="%F{39}%/
+if [[ $IN_NIX_SHELL ]]; then
+  prompt="%F{201}%/
+%F{39}=>%F{255} "
+else
+  prompt="%F{39}%/
 %F{201}=>%F{255} "
+fi
 
 # Z-Shell Config
 HISTSIZE=99999
@@ -11,10 +16,11 @@ setopt incappendhistory
 
 # Exports
 export TERM="xterm-256color"
-export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export PAGER="less -R"
+export SHELL="zsh"
+export EDITOR="nvim"
 export NIX_PATH="${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels"
 export GOPATH="$HOME/.go"
 export EXA_COLORS="da=1;31"
@@ -67,3 +73,5 @@ fi
 # Z-Shell Plugins
 source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
+
