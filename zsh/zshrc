@@ -1,16 +1,12 @@
-# Prompt
-if [[ $IN_NIX_SHELL ]]; then
-  prompt="%F{201}%/
-%F{39}=>%F{255} "
-else
-  prompt="%F{39}%/
-%F{201}=>%F{255} "
+# Powerlevel10k instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # Z-Shell Config
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=99999
 SAVEHIST=99999
-HISTFILE="$HOME/.zsh_history"
 setopt appendhistory
 setopt incappendhistory
 
@@ -71,7 +67,11 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 # Z-Shell Plugins
+source "${HOME}/.config/dotfiles/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
+
+# Powerlevel10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
