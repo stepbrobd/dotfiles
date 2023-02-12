@@ -3,12 +3,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Z-Shell Config
+# Z-Shell config
+setopt vi
+setopt correct
 HISTFILE="$HOME/.zsh_history"
-HISTSIZE=99999
-SAVEHIST=99999
+HISTSIZE=65536
+SAVEHIST=65536
+setopt extendedhistory
+setopt sharehistory
 setopt appendhistory
 setopt incappendhistory
+setopt histignoredups
+setopt histignorealldups
+setopt histignorespace
+setopt histreduceblanks
 
 # Exports
 export TERM="xterm-256color"
@@ -22,8 +30,8 @@ export GOPATH="$HOME/.go"
 export EXA_COLORS="da=1;31"
 
 # Aliases
-alias dotfiles="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
-alias reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
+alias dotfiles-update="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
+alias dotfiles-reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
