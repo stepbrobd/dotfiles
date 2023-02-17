@@ -35,5 +35,3 @@ chmod 700 "${HOME}/.gnupg"
 chmod +x "${HOME}/.config/dotfiles/nix/darwin-rebuild.sh"
 chmod +x "${HOME}/.config/dotfiles/nix/nixos-rebuild.sh"
 
-chsh -s /bin/zsh
-
