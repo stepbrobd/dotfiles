@@ -189,6 +189,9 @@ require('packer').startup(function(use)
         end
     }
 
+    -- Nix
+    use 'LnL7/vim-nix'
+
     -- Git
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
