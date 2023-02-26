@@ -31,6 +31,7 @@ export EXA_COLORS="da=1;31"
 export MCFLY_KEY_SCHEME="vim"
 export MCFLY_FUZZY="5"
 export MCFLY_RESULTS="100"
+export GPG_TTY=$(tty)
 
 # Aliases
 alias dotfiles-update="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
