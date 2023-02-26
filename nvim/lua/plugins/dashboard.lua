@@ -19,12 +19,12 @@ return {
 
 		dashboard.section.header.val = vim.split(logo, "\n")
 		dashboard.section.buttons.val = {
-			dashboard.button("s", "勒" .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
+			dashboard.button("c", " " .. " Config", ":Lazy<CR>"),
 			dashboard.button("r", " " .. " Recent Files", ":Telescope oldfiles <CR>"),
 			dashboard.button("n", " " .. " New File", ":ene <BAR> startinsert <CR>"),
 			dashboard.button("f", " " .. " Find File", ":Telescope find_files <CR>"),
-			dashboard.button("g", " " .. " Find Text", ":Telescope live_grep <CR>"),
-			dashboard.button("c", " " .. " Config", ":Lazy<CR>"),
+			dashboard.button("g", " " .. " Live Grep", ":Telescope live_grep <CR>"),
+			dashboard.button("s", "勒" .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
 			dashboard.button("q", " " .. " Quit", ":qa<CR>"),
 		}
 		for _, button in ipairs(dashboard.section.buttons.val) do
