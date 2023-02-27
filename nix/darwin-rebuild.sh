@@ -11,12 +11,9 @@ if [[ $(uname) == "Darwin" ]]; then
   fi
 
   (yes "" | sh <(curl -L https://mynixos.com/install-loader) flake/aarch64-darwin) >/dev/null 2>&1
-
-  (nix flake lock ./flake-aarch-64-darwin-loader) >/dev/null 2>&1
-
   sudo -i nix-channel --update
-
-  darwin-rebuild switch --flake ./flake-aarch-64-darwin-loader\#aarch64
+  (nix flake lock ./flake-aarch-64-darwin-loader) >/dev/null 2>&1
+  darwin-rebuild switch --flake ./flake-aarch-64-darwin-loader\#aarch64 --show-trace
 
   popd >/dev/null
 fi
