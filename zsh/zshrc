@@ -1,4 +1,4 @@
-# Powerlevel10k instant prompt
+# P10K instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -85,6 +85,5 @@ source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highligh
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
 
-# Powerlevel10k
+# P10K
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
