@@ -5,12 +5,12 @@ function clone() {
   dst=$2
   mkdir -p $dst
   pushd $dst >/dev/null
-  /usr/bin/git init
-  if ! /usr/bin/git config remote.origin.url &>/dev/null; then
-    /usr/bin/git remote add origin $url
+  git init
+  if ! git config remote.origin.url &>/dev/null; then
+    git remote add origin $url
   fi
-  /usr/bin/git fetch origin master
-  /usr/bin/git reset origin/master
+  git fetch origin master
+  git reset origin/master
   popd >/dev/null
 }
 
