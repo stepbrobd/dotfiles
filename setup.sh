@@ -1,18 +1,28 @@
-#!/bin/bash
+#!/bin/zsh
 
-if [[ -f "${HOME}/.config/dotfiles/" ]]; then
-  rm -rf "${HOME}/.config/dotfiles/"
-fi
+function clone() {
+  url=$1
+  dst=$2
+  mkdir -p $dest
+  pushd $dest >/dev/null
+  git init
+  if ! git config remote.origin.url &>/dev/null; then
+    git remote add origin $url
+  fi
+  git fetch origin master
+  git reset origin/master
+  popd >/dev/null
+}
 
-git clone https://github.com/StepBroBD/Dotfiles.git "${HOME}/.config/dotfiles/"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/dotfiles/zsh/powerlevel10k/"
-git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/"
-git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/"
-git clone --depth=1 https://github.com/chisui/zsh-nix-shell.git "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/"
-git clone --depth=1 https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+clone git@github.com:StepBroBD/Dotfiles.git "${HOME}/.config/dotfiles/"
+clone https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/dotfiles/zsh/powerlevel10k/"
+clone https://github.com/zsh-users/zsh-autosuggestions.git "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/"
+clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/"
+clone https://github.com/chisui/zsh-nix-shell.git "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/"
+clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
 
-mkdir "${HOME}/.config"
-mkdir "${HOME}/.gnupg"
+mkdir -p "${HOME}/.config"
+mkdir -p "${HOME}/.gnupg"
 
 ln -fsv "${HOME}/.config/dotfiles/zsh/zshrc" "${HOME}/.zshrc"
 ln -fsv "${HOME}/.config/dotfiles/zsh/p10k" "${HOME}/.p10k.zsh"
@@ -33,5 +43,4 @@ chmod 600 "${HOME}/.gnupg/*"
 chmod 700 "${HOME}/.gnupg"
 
 chmod +x "${HOME}/.config/dotfiles/nix/darwin-rebuild.sh"
-chmod +x "${HOME}/.config/dotfiles/nix/nixos-rebuild.sh"
 
