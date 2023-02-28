@@ -7,7 +7,7 @@ The content of this repository should stay in ~/.config/dotfiles directory.
 ## Setup
 
 ```shell
-curl --proto '=https' --tlsv1.3 -sSf https://raw.githubusercontent.com/StepBroBD/Dotfiles/master/setup.sh | bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/StepBroBD/Dotfiles/master/setup.sh | zsh
 ```
 
 ## License
