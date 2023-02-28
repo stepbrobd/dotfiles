@@ -3,8 +3,8 @@
 function clone() {
   url=$1
   dst=$2
-  mkdir -p $dest
-  pushd $dest >/dev/null
+a mkdir -p $dst
+  pushd $dst >/dev/null
   git init
   if ! git config remote.origin.url &>/dev/null; then
     git remote add origin $url
