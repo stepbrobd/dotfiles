@@ -44,3 +44,5 @@ chmod 600 "${HOME}/.gnupg/gpg-agent.conf"
 chmod 700 "${HOME}/.gnupg"
 
 chmod +x "${HOME}/.config/dotfiles/nix/darwin-rebuild.sh"
+
+source "${HOME}/.zshrc"
