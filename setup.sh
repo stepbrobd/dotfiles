@@ -3,7 +3,7 @@
 function clone() {
   url=$1
   dst=$2
-a mkdir -p $dst
+  mkdir -p $dst
   pushd $dst >/dev/null
   git init
   if ! git config remote.origin.url &>/dev/null; then
