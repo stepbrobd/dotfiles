@@ -14,7 +14,7 @@ function clone() {
   popd >/dev/null
 }
 
-clone git@github.com:StepBroBD/Dotfiles.git "${HOME}/.config/dotfiles/"
+clone https://github.com/stepbrobd/dotfiles.git "${HOME}/.config/dotfiles/"
 clone https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/dotfiles/zsh/powerlevel10k/"
 clone https://github.com/zsh-users/zsh-autosuggestions.git "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/"
 clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/"
@@ -39,8 +39,8 @@ else
 fi
 
 chown -R "$(whoami)" "${HOME}/.gnupg/"
-chmod 600 "${HOME}/.gnupg/*"
+chmod 600 "${HOME}/.gnupg/gpg.conf"
+chmod 600 "${HOME}/.gnupg/gpg-agent.conf"
 chmod 700 "${HOME}/.gnupg"
 
 chmod +x "${HOME}/.config/dotfiles/nix/darwin-rebuild.sh"
-
