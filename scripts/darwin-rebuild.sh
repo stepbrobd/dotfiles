@@ -5,15 +5,17 @@ if [[ $(uname) == "Darwin" ]]; then
   sudo echo -n
 
   pushd $TMPDIR >/dev/null
-
-  if [ -e ./flake-aarch-64-darwin-loader/flake.nix ]; then
-    rm -rf ./flake-aarch-64-darwin-loader
+  if [ -e ./stepbrobd-dotfiles-loader/flake.nix ]; then
+    rm -rf ./stepbrobd-dotfiles-loader
   fi
 
-  (yes "" | sh <(curl -L https://mynixos.com/install-loader) flake/aarch64-darwin) >/dev/null 2>&1
   sudo -i nix-channel --update
-  (nix flake lock ./flake-aarch-64-darwin-loader) >/dev/null 2>&1
-  darwin-rebuild switch --flake ./flake-aarch-64-darwin-loader\#aarch64 --show-trace
+  (yes "" | sh <(curl -L https://mynixos.com/install-loader) stepbrobd/dotfiles) >/dev/null 2>&1
+  (nix flake lock ./stepbrobd-dotfiles-loader) >/dev/null 2>&1
+  darwin-rebuild switch --flake ./stepbrobd-dotfiles-loader\#aarch64 --show-trace
 
+  if [ -e ./stepbrobd-dotfiles-loader/flake.nix ]; then
+    rm -rf ./stepbrobd-dotfiles-loader
+  fi
   popd >/dev/null
 fi
