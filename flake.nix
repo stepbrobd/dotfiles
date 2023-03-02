@@ -1,14 +1,46 @@
 {
+  description = "StepBroBD";
   inputs = {
-    dotfiles.url = "https://api.mynixos.com/stepbrobd/dotfiles/archive/main.tar.gz";
+    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
+
+    nix-darwin = {
+      url = "flake:nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "flake:home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    neovim-nightly-overlay = {
+      type = "github";
+      owner = "nix-community";
+      repo = "neovim-nightly-overlay";
+    };
   };
 
-  outputs = inputs@{ self, dotfiles, ... }:
+  outputs = inputs:
     let
-      filterAttrs = pred: set: builtins.listToAttrs (builtins.concatMap
-        (name: let v = set.${name}; in if pred name v then [ ((name: value: { inherit name value; }) name v) ] else [ ])
-        (builtins.attrNames set));
-      forwardFlakeOutputs = input: filterAttrs (n: v: !(builtins.elem n [ "inputs" "outputs" "narHash" "outPath" "sourceInfo" ])) input;
+      flakeContext = {
+        inherit inputs;
+      };
     in
-    forwardFlakeOutputs dotfiles;
+    {
+      darwinConfigurations = {
+        aarch64 = import ./nix/darwinConfigurations/aarch64.nix flakeContext;
+      };
+      darwinModules = {
+        default = import ./nix/darwinModules/default.nix flakeContext;
+        overlays = import ./nix/darwinModules/overlays.nix flakeContext;
+      };
+      homeConfigurations = {
+        StepBroBD = import ./nix/homeConfigurations/StepBroBD.nix flakeContext;
+      };
+      homeModules = {
+        activation = import ./nix/homeModules/activation.nix flakeContext;
+        default = import ./nix/homeModules/default.nix flakeContext;
+        packages = import ./nix/homeModules/packages.nix flakeContext;
+      };
+    };
 }
