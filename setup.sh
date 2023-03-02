@@ -14,7 +14,7 @@ function clone() {
   popd >/dev/null
 }
 
-clone https://github.com/stepbrobd/dotfiles.git "${HOME}/.config/dotfiles/"
+clone git@github.com:stepbrobd/dotfiles.git "${HOME}/.config/dotfiles/"
 clone https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/dotfiles/zsh/powerlevel10k/"
 clone https://github.com/zsh-users/zsh-autosuggestions.git "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/"
 clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/"
