@@ -69,7 +69,7 @@ if [[ $(uname) == "Darwin" ]]; then
   fi
 
   # nix-darwin
-  alias rebuild="${HOME}/.config/dotfiles/nix/darwin-rebuild.sh"
+  alias rebuild="${HOME}/.config/dotfiles/scripts/darwin-rebuild.sh"
 
   # iTerm2
   if [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
