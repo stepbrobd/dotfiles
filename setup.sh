@@ -45,4 +45,6 @@ chmod 700 "${HOME}/.gnupg"
 
 chmod +x "${HOME}/.config/dotfiles/scripts/darwin-rebuild.sh"
 
+touch "${HOME}/.hushlogin"
+
 source "${HOME}/.zshrc"
