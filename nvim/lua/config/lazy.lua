@@ -24,7 +24,6 @@ require("lazy").setup({
 	-- Lazy Load
 	defaults = {
 		lazy = true,
-		version = "*",
 	},
 
 	-- Auto Install
