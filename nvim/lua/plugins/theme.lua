@@ -9,7 +9,6 @@ return {
 			})
 		end,
 	},
-
 	{
 		"LazyVim/LazyVim",
 		opts = { colorscheme = "github_dimmed" },
