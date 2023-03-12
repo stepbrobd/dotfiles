@@ -1,53 +1,16 @@
-# P10K instant prompt
+# P10K Instant Prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Z-Shell config
-setopt vi
-setopt correct
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=65536
-SAVEHIST=65536
-setopt extendedhistory
-setopt sharehistory
-setopt appendhistory
-setopt incappendhistory
-setopt histignoredups
-setopt histignorealldups
-setopt histignorespace
-setopt histreduceblanks
+# P10K
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Exports
-export TERM="xterm-256color"
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export PAGER="less -RF"
-export BAT_PAGER="less -RF"
-export SHELL="zsh"
-export EDITOR="nvim"
-export PATH="$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin"
-export NIX_PATH="${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels"
-export GOPATH="$HOME/.go"
-export EXA_COLORS="da=1;31"
-export MCFLY_KEY_SCHEME="vim"
-export MCFLY_FUZZY="5"
-export MCFLY_RESULTS="100"
-export GPG_TTY=$(tty)
-
-# Aliases
-alias dotfiles-update="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
-alias dotfiles-reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
-alias vi="nvim"
-alias vim="nvim"
-alias vimdiff="nvim -d"
-alias ls="exa --icons"
-alias tree="exa --icons --tree"
-alias cat="bat"
-alias tmux="TERM=screen-256color-bce tmux"
-alias htop="btop"
-alias tf="terraform"
+# Z-Shell Plugins
+source "${HOME}/.config/dotfiles/zsh/powerlevel10k/powerlevel10k.zsh-theme"
+source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
 
 # Init mcfly
 if [[ $(command -v mcfly) > /dev/null ]]; then
@@ -62,7 +25,7 @@ if [[ -f "${HOME}/.pyenv/bin/pyenv" ]]; then
   eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
 fi
 
-# Darwin only
+# Darwin Only
 if [[ $(uname) == "Darwin" ]]; then
   # nix daemon
   if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
@@ -81,11 +44,49 @@ if [[ $(uname) == "Darwin" ]]; then
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 fi
 
-# Z-Shell Plugins
-source "${HOME}/.config/dotfiles/zsh/powerlevel10k/powerlevel10k.zsh-theme"
-source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
+# Z-Shell Config
+setopt vi
+setopt correct
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=65536
+SAVEHIST=65536
+setopt extendedhistory
+setopt sharehistory
+setopt appendhistory
+setopt incappendhistory
+setopt histignoredups
+setopt histignorealldups
+setopt histignorespace
+setopt histreduceblanks
 
-# P10K
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Aliases
+alias dotfiles-update="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
+alias dotfiles-reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
+alias vi="nvim"
+alias vim="nvim"
+alias vimdiff="nvim -d"
+alias ls="exa --icons"
+alias tree="exa --icons --tree"
+alias cat="bat"
+alias tmux="TERM=screen-256color-bce tmux"
+alias htop="btop"
+alias tf="terraform"
+
+# Exports
+export SHELL="zsh"
+export EDITOR="nvim"
+export TERM="xterm-256color"
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export PAGER="less -RF"
+export BAT_PAGER="less -RF"
+export GPG_TTY=$(tty)
+export EXA_COLORS="da=1;31"
+export MCFLY_KEY_SCHEME="vim"
+export MCFLY_FUZZY="5"
+export MCFLY_RESULTS="100"
+export GOPATH="$HOME/.go"
+export NIX_PATH="${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels"
+export PATH="$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+
