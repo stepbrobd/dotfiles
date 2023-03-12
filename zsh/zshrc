@@ -31,18 +31,26 @@ if [[ $(uname) == "Darwin" ]]; then
   if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
     source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
   fi
-
-  # nix-darwin
-  alias rebuild="${HOME}/.config/dotfiles/scripts/darwin-rebuild.sh"
-
   # iTerm2
   if [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
     source "${HOME}/.iterm2_shell_integration.zsh"
   fi
-
   # tailscale
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 fi
+
+ # Rebuild
+if [[ $(command -v nix) > /dev/null ]]; then
+    # NixOS
+    if [[ $(command -v nixos-rebuild) > /dev/null ]]; then
+        alias rebuild="${HOME}/.config/dotfiles/scripts/nixos-rebuild.sh"
+    fi
+    # Darwin
+    if [[ $(command -v darwin-rebuild) > /dev/null ]]; then
+        alias rebuild="${HOME}/.config/dotfiles/scripts/darwin-rebuild.sh"
+    fi
+fi
+
 
 # Z-Shell Config
 setopt vi
@@ -89,4 +97,3 @@ export MCFLY_RESULTS="100"
 export GOPATH="$HOME/.go"
 export NIX_PATH="${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels"
 export PATH="$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
-
