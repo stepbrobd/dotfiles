@@ -51,7 +51,6 @@ if [[ $(command -v nix) > /dev/null ]]; then
     fi
 fi
 
-
 # Z-Shell Config
 setopt vi
 setopt correct
