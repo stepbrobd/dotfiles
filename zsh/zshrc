@@ -12,11 +12,6 @@ source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highligh
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
 
-# Init mcfly
-if [[ $(command -v mcfly) > /dev/null ]]; then
-  eval "$(mcfly init zsh)"
-fi
-
 # Init pyenv
 if [[ -f "${HOME}/.pyenv/bin/pyenv" ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
@@ -96,3 +91,8 @@ export MCFLY_RESULTS="100"
 export GOPATH="$HOME/.go"
 export NIX_PATH="${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels"
 export PATH="$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+
+# Init mcfly
+if [[ $(command -v mcfly) > /dev/null ]]; then
+  eval "$(mcfly init zsh)"
+fi
