@@ -1,4 +1,7 @@
-#!/bin/zsh
+#!/usr/bin/env nix-shell
+#!nix-shell -i zsh -p curl git perl smimesign
+
+set -eo pipefail
 
 # Disable prompt
 touch "${HOME}/.hushlogin"
