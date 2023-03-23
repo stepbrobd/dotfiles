@@ -3,6 +3,8 @@
 
 set -eo pipefail
 
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+
 # Disable prompt
 touch "${HOME}/.hushlogin"
 
