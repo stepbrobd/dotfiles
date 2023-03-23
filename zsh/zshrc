@@ -11,8 +11,6 @@ source "${HOME}/.config/dotfiles/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
-
-# Init pyenv
 if [[ -f "${HOME}/.pyenv/bin/pyenv" ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -20,14 +18,9 @@ if [[ -f "${HOME}/.pyenv/bin/pyenv" ]]; then
   eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
 fi
 
-# VSCode
-if [[ $(command -v code-insiders) >/dev/null ]]; then
-  alias code="code-insiders"
-fi
-
 # Darwin Only
 if [[ $(uname) == "Darwin" ]]; then
-  # nix daemon
+  # Nix Daemon
   if [ -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]; then
     source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
   fi
@@ -35,23 +28,11 @@ if [[ $(uname) == "Darwin" ]]; then
   if [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
     source "${HOME}/.iterm2_shell_integration.zsh"
   fi
-  # tailscale
+  # Tailscale
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 fi
 
- # Rebuild
-if [[ $(command -v nix) >/dev/null ]]; then
-    # NixOS
-    if [[ $(command -v nixos-rebuild) >/dev/null ]]; then
-        alias rebuild="${HOME}/.config/dotfiles/scripts/nixos-rebuild.sh"
-    fi
-    # Darwin
-    if [[ $(command -v darwin-rebuild) >/dev/null ]]; then
-        alias rebuild="${HOME}/.config/dotfiles/scripts/darwin-rebuild.sh"
-    fi
-fi
-
-# Z-Shell Config
+# Z-Shell
 setopt vi
 setopt correct
 HISTFILE="$HOME/.zsh_history"
@@ -67,8 +48,8 @@ setopt histignorespace
 setopt histreduceblanks
 
 # Aliases
-alias dotfiles-update="echo 'Updating \e[4m~/.config/dotfiles\e[0m...' && cd ~/.config/dotfiles && git pull && cd"
-alias dotfiles-reload="echo 'Reloading \e[4m~/.zshrc\e[0m...' && source ~/.zshrc"
+alias dotfiles="${HOME}/.config/dotfiles/scripts/dotfiles.sh"
+alias rebuild="${HOME}/.config/dotfiles/scripts/rebuild.sh"
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
@@ -78,6 +59,9 @@ alias cat="bat"
 alias tmux="TERM=screen-256color-bce tmux"
 alias htop="btop"
 alias tf="terraform"
+if [[ $(command -v code-insiders) >/dev/null ]]; then
+  alias code="code-insiders"
+fi
 
 # Exports
 export SHELL="zsh"
