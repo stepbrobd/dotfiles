@@ -9,7 +9,7 @@ Managed by [Home Manager](https://github.com/nix-community/home-manager)'s [`hom
   dotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
     #!/bin/zsh
     export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/StepBroBD/Dotfiles/master/setup.sh | zsh >/dev/null 2>&1
+    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/stepbrobd/dotfiles/master/scripts/setup.sh | zsh >/dev/null 2>&1
   '';
 }
 ```
@@ -17,7 +17,7 @@ Managed by [Home Manager](https://github.com/nix-community/home-manager)'s [`hom
 Standalone installation:
 
 ```shell
-curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/StepBroBD/Dotfiles/master/setup.sh | zsh
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/stepbrobd/dotfiles/master/scripts/setup.sh | zsh
 ```
 
 ## License
