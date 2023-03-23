@@ -9,9 +9,10 @@ Dotfiles with pseudo-idempotent setup script, repository should be in `~/.config
 ```nix
 {
   dotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    #!/bin/zsh
-    export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/stepbrobd/dotfiles/master/scripts/setup.sh | zsh >/dev/null 2>&1
+    #!/usr/bin/env nix-shell
+    #!nix-shell -i zsh -p curl git perl smimesign
+    set -eo pipefail
+    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/stepbrobd/dotfiles/master/scripts/setup.sh | zsh
   '';
 }
 ```
