@@ -19,7 +19,7 @@ fi
 printf "\e[36;1mThis operation requires \`sudo\`\e[0m\n"
 sudo echo -n
 
-printf "\e[36;1mRebuilding system with \e[4m$rebuild\e[0m\e[36;1m with output attribute of \e[4m$attr\e[0m\e[36;1m\e[0m\n"
+printf "\e[36;1mRebuilding system with \e[4m$rebuild\e[0m\e[36;1m using output attribute \e[4m$attr\e[0m\e[36;1m\e[0m\n"
 
 pushd $TMPDIR >/dev/null
 
