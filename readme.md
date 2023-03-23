@@ -1,8 +1,10 @@
 # Dotfiles
 
-Dotfiles with setup script (pseudo-idempotent), repository should be in `~/.config/dotfiles` directory.
+Dotfiles with pseudo-idempotent setup script, repository should be in `~/.config/dotfiles` directory.
 
-Managed by [Home Manager](https://github.com/nix-community/home-manager)'s [`home.activation`](https://rycee.gitlab.io/home-manager/options.html#opt-home.activation):
+## Setup
+
+1. [Home Manager](https://github.com/nix-community/home-manager): [`home.activation`](https://rycee.gitlab.io/home-manager/options.html#opt-home.activation):
 
 ```nix
 {
@@ -14,7 +16,7 @@ Managed by [Home Manager](https://github.com/nix-community/home-manager)'s [`hom
 }
 ```
 
-Standalone installation:
+2. Standalone:
 
 ```shell
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/stepbrobd/dotfiles/master/scripts/setup.sh | zsh
