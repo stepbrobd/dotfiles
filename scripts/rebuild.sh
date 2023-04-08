@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+set -eo pipefail
+
 if [[ $(command -v nix) ]]; then
 	attr=$(nix --extra-experimental-features nix-command eval --impure --raw --expr 'builtins.currentSystem')
 else
