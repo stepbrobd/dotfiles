@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i zsh -p curl git perl smimesign
+#!/bin/zsh
 
 set -eo pipefail
 
@@ -9,17 +8,17 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" && PATH="$(perl
 touch "${HOME}/.hushlogin"
 
 function clone() {
-  url=$1
-  dst=$2
-  mkdir -p $dst
-  pushd $dst >/dev/null
-  git init
-  if ! git config remote.origin.url &>/dev/null; then
-    git remote add origin $url
-  fi
-  git fetch origin master
-  git reset origin/master
-  popd >/dev/null
+	url=$1
+	dst=$2
+	mkdir -p $dst
+	pushd $dst >/dev/null
+	git init
+	if ! git config remote.origin.url &>/dev/null; then
+		git remote add origin $url
+	fi
+	git fetch origin master
+	git reset origin/master
+	popd >/dev/null
 }
 
 # Setup
@@ -36,9 +35,9 @@ ln -fsv "${HOME}/.config/dotfiles/zsh/p10k" "${HOME}/.p10k.zsh"
 
 # Git
 if [[ $(command -v smimesign) > /dev/null ]]; then
-  ln -fsv "${HOME}/.config/dotfiles/git/smime.gitconfig" "${HOME}/.gitconfig"
+	ln -fsv "${HOME}/.config/dotfiles/git/smime.gitconfig" "${HOME}/.gitconfig"
 else
-  ln -fsv "${HOME}/.config/dotfiles/git/gpg.gitconfig" "${HOME}/.gitconfig"
+	ln -fsv "${HOME}/.config/dotfiles/git/gpg.gitconfig" "${HOME}/.gitconfig"
 fi
 
 # GPG
