@@ -4,9 +4,8 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("github-theme").setup({
-				theme_style = "dimmed",
-			})
+			require("github-theme").setup({})
+			vim.cmd("colorscheme github_dimmed")
 		end,
 	},
 	{
