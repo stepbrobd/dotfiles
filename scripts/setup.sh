@@ -17,7 +17,7 @@ function clone() {
 		git remote add origin $url
 	fi
 	git fetch origin master
-	git reset origin/master
+	git reset --hard origin/master
 	popd >/dev/null
 }
 
