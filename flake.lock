@@ -10,7 +10,7 @@
         "vscode-overlay": "vscode-overlay"
       },
       "locked": {
-        "narHash": "sha256-KRp9y84+UGGsTYVtDlX5zC9fyrhwByvg0D/vFvx0UDw=",
+        "narHash": "sha256-u8qII9OQnDBF309gt2FErJSSXyNMxSrmIOVdgYpLNIU=",
         "type": "tarball",
         "url": "https://api.mynixos.com/stepbrobd/dotfiles/archive/main.tar.gz"
       },
@@ -480,11 +480,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1683015087,
-        "narHash": "sha256-IpXdjEMF7JSis6QcSaWjml0x2PBVDc1nF2MhIcgkBkU=",
+        "lastModified": 1683074407,
+        "narHash": "sha256-aA2dTgxlAprQAcCgKtSOpCj0ID2GaglIvED+oSgldsw=",
         "owner": "stepbrobd",
         "repo": "raycast-overlay",
-        "rev": "9017ecbfbea1995e8029daddf78b35499e11d5bd",
+        "rev": "8c1d7407256a35ee7abe83335f9715b9e3a0431b",
         "type": "github"
       },
       "original": {
