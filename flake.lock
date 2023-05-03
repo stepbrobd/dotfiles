@@ -10,7 +10,7 @@
         "vscode-overlay": "vscode-overlay"
       },
       "locked": {
-        "narHash": "sha256-s1+vtmlKIbIkhz63mYn4X7QvR+MvtWSMTH+ENx98dW8=",
+        "narHash": "sha256-phuAq9z3OEvzPIIPvlCV6L3QboYZWEA+EJR1NTRnyiw=",
         "type": "tarball",
         "url": "https://api.mynixos.com/stepbrobd/dotfiles/archive/main.tar.gz"
       },
