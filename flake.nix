@@ -32,28 +32,28 @@
 
   outputs = inputs:
     let
-      flakeContext = {
+      context = {
         inherit inputs;
       };
     in
     {
       darwinConfigurations = {
-        aarch64-darwin = import ./modules/darwinConfigurations/aarch64-darwin.nix flakeContext;
-        x86_64-darwin = import ./modules/darwinConfigurations/x86_64-darwin.nix flakeContext;
+        aarch64-darwin = import ./modules/darwinConfigurations/aarch64-darwin.nix context;
+        x86_64-darwin = import ./modules/darwinConfigurations/x86_64-darwin.nix context;
       };
       darwinModules = {
-        default = import ./modules/darwinModules/default.nix flakeContext;
-        overlay = import ./modules/darwinModules/overlay.nix flakeContext;
+        default = import ./modules/darwinModules/default.nix context;
+        overlay = import ./modules/darwinModules/overlay.nix context;
       };
       homeConfigurations = {
-        StepBroBD = import ./modules/homeConfigurations/StepBroBD.nix flakeContext;
+        StepBroBD = import ./modules/homeConfigurations/StepBroBD.nix context;
       };
       homeModules = {
-        activation = import ./modules/homeModules/activation.nix flakeContext;
-        default = import ./modules/homeModules/default.nix flakeContext;
-        package-darwin = import ./modules/homeModules/package-darwin.nix flakeContext;
-        package-linux = import ./modules/homeModules/package-linux.nix flakeContext;
-        package-minimum = import ./modules/homeModules/package-minimum.nix flakeContext;
+        activation = import ./modules/homeModules/activation.nix context;
+        default = import ./modules/homeModules/default.nix context;
+        package-darwin = import ./modules/homeModules/package-darwin.nix context;
+        package-linux = import ./modules/homeModules/package-linux.nix context;
+        package-minimum = import ./modules/homeModules/package-minimum.nix context;
       };
     };
 }

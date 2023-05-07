@@ -1,4 +1,4 @@
-{ inputs, ... }@flakeContext:
+{ inputs, ... }@context:
 let
   darwinModule = { config, lib, pkgs, ... }: {
     imports = [
