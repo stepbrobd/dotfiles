@@ -46,7 +46,7 @@
         overlay = import ./modules/darwinModules/overlay.nix context;
       };
       homeConfigurations = {
-        StepBroBD = import ./modules/homeConfigurations/StepBroBD.nix context;
+        StepBroBD = import ./modules/home/StepBroBD.nix context;
       };
       homeModules = {
         activation = import ./modules/homeModules/activation.nix context;
