@@ -1,6 +1,6 @@
 { inputs, ... }@context:
 { config, lib, pkgs, ... }: {
-  config.home.packages = with pkgs; with pkgs.nodePackages_latest; [
+  config.home.packages = with pkgs.nodePackages_latest;  with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
 
     cacert
