@@ -58,7 +58,6 @@
       };
       # FIX: shouldn't be here, import directory in homeConfigurations
       homeModules = {
-        configurations = import ./modules/home/modules/configurations.nix context;
         packages = import ./modules/home/modules/packages.nix context;
         activation = import ./modules/home/modules/activation.nix context;
       };

@@ -2,8 +2,18 @@
 let
   homeModule = { config, lib, pkgs, ... }: {
     config.home.stateVersion = "23.05";
+
+    config.programs = {
+      home-manager = {
+        enable = true;
+      };
+      nix-index = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+    };
+
     imports = [
-      inputs.self.homeModules.configurations
       inputs.self.homeModules.packages
       inputs.self.homeModules.activation
     ];
