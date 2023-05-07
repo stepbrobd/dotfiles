@@ -53,13 +53,13 @@
 
       # FIX: shouldn't be here, import directory in darwinConfigurations
       darwinModules = {
-        default = import ./modules/darwin/modules/default.nix context;
+        configurations = import ./modules/darwin/modules/configurations.nix context;
         overlay = import ./modules/darwin/modules/overlay.nix context;
       };
       # FIX: shouldn't be here, import directory in homeConfigurations
       homeModules = {
-        default = import ./modules/home/modules/default.nix context;
-        pkgs = import ./modules/home/modules/pkgs.nix context;
+        configurations = import ./modules/home/modules/configurations.nix context;
+        packages = import ./modules/home/modules/packages.nix context;
         activation = import ./modules/home/modules/activation.nix context;
       };
     };

@@ -3,7 +3,7 @@ let
   darwinModule = { config, lib, pkgs, ... }: {
     imports = [
       inputs.home-manager.darwinModules.home-manager
-      inputs.self.darwinModules.default
+      inputs.self.darwinModules.configurations
       inputs.self.darwinModules.overlay
       inputs.self.homeConfigurations.StepBroBD.nixosModule
       {
