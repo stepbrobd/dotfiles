@@ -37,21 +37,22 @@
       };
     in
     {
+      homeConfigurations = {
+        StepBroBD = import ./modules/home/StepBroBD.nix context;
+      };
       darwinConfigurations = {
         aarch64-darwin = import ./modules/darwin/aarch64-darwin.nix context;
         x86_64-darwin = import ./modules/darwin/x86_64-darwin.nix context;
       };
+
       darwinModules = {
-        default = import ./modules/darwinModules/default.nix context;
-        overlay = import ./modules/darwinModules/overlay.nix context;
-      };
-      homeConfigurations = {
-        StepBroBD = import ./modules/home/StepBroBD.nix context;
+        default = import ./modules/darwin/modules/default.nix context;
+        overlay = import ./modules/darwin/modules/overlay.nix context;
       };
       homeModules = {
-        default = import ./modules/homeModules/default.nix context;
-        pkgs = import ./modules/homeModules/pkgs.nix context;
-        activation = import ./modules/homeModules/activation.nix context;
+        default = import ./modules/home/modules/default.nix context;
+        pkgs = import ./modules/home/modules/pkgs.nix context;
+        activation = import ./modules/home/modules/activation.nix context;
       };
     };
 }
