@@ -51,9 +51,7 @@
         x86_64-linux = import ./modules/nixos/x86_64-linux.nix context;
       };
 
-      # FIX: shouldn't be here, import directory in darwinConfigurations
       darwinModules = {
-        configurations = import ./modules/darwin/modules/configurations.nix context;
         overlays = import ./modules/darwin/modules/overlays.nix context;
       };
     };

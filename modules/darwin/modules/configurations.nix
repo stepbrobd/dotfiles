@@ -1,4 +1,3 @@
-{ inputs, ... }@context:
 { config, lib, pkgs, ... }: {
   config = {
     nix = {
