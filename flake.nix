@@ -44,6 +44,10 @@
         aarch64-darwin = import ./modules/darwin/aarch64-darwin.nix context;
         x86_64-darwin = import ./modules/darwin/x86_64-darwin.nix context;
       };
+      nixosConfigurations = {
+        aarch64-linux = import ./modules/nixos/aarch64-linux.nix context;
+        x86_64-linux = import ./modules/nixos/x86_64-linux.nix context;
+      };
 
       # FIX: shouldn't be here, import directory in darwinConfigurations
       darwinModules = {
