@@ -17,7 +17,7 @@
     nodejs
     pnpm
     vercel
-    "@githubnext/github-copilot-cli"
+    github-copilot-cli
     tmux
     bat
     exa
