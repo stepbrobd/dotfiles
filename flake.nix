@@ -54,7 +54,7 @@
       # FIX: shouldn't be here, import directory in darwinConfigurations
       darwinModules = {
         configurations = import ./modules/darwin/modules/configurations.nix context;
-        overlay = import ./modules/darwin/modules/overlay.nix context;
+        overlays = import ./modules/darwin/modules/overlays.nix context;
       };
       # FIX: shouldn't be here, import directory in homeConfigurations
       homeModules = {

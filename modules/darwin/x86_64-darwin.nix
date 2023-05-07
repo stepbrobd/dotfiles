@@ -5,7 +5,7 @@ let
     imports = [
       inputs.home-manager.darwinModules.home-manager
       inputs.self.darwinModules.configurations
-      inputs.self.darwinModules.overlay
+      inputs.self.darwinModules.overlays
       inputs.self.homeConfigurations.StepBroBD.nixosModule
       {
         home-manager.useGlobalPkgs = true;
