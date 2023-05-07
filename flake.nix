@@ -50,9 +50,5 @@
         aarch64-linux = import ./modules/nixos/aarch64-linux.nix context;
         x86_64-linux = import ./modules/nixos/x86_64-linux.nix context;
       };
-
-      darwinModules = {
-        overlays = import ./modules/darwin/modules/overlays.nix context;
-      };
     };
 }
