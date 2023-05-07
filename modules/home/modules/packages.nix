@@ -5,9 +5,11 @@
 
     cacert
     nix
+    nix-index
     nixpkgs-fmt
     cachix
     direnv
+    home-manager
     coreutils
     llvm
     rustup
