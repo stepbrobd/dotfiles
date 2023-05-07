@@ -27,6 +27,7 @@
         ];
       };
     };
+
     nixpkgs = {
       config = {
         allowUnfree = true;
@@ -34,21 +35,19 @@
         allowUnsupportedSystem = false;
       };
     };
+
     programs = {
-      zsh = {
-        enable = true;
-      };
+      zsh.enable = true;
     };
+
     security = {
-      pam = {
-        enableSudoTouchIdAuth = true;
-      };
+      pam.enableSudoTouchIdAuth = true;
     };
+
     services = {
-      nix-daemon = {
-        enable = true;
-      };
+      nix-daemon.enable = true;
     };
+
     system = {
       defaults = {
         NSGlobalDomain = {
