@@ -14,8 +14,8 @@ let
     };
 
     imports = [
-      inputs.self.homeModules.packages
-      inputs.self.homeModules.activation
+      ./modules/packages.nix
+      ./modules/activation.nix
     ];
   };
   homeModule = { ... }: {
