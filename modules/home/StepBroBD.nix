@@ -1,6 +1,6 @@
 { inputs, ... }@context:
 let
-  homeModule = { config, lib, pkgs, ... }: {
+  configurations = { config, lib, pkgs, ... }: {
     config.home.stateVersion = "23.05";
 
     config.programs = {
@@ -18,8 +18,8 @@ let
       inputs.self.homeModules.activation
     ];
   };
-  nixosModule = { ... }: {
-    home-manager.users.StepBroBD = homeModule;
+  homeModule = { ... }: {
+    home-manager.users.StepBroBD = configurations;
   };
 in
 (
@@ -32,9 +32,9 @@ in
     (system:
       inputs.home-manager.lib.homeManagerConfiguration {
         modules = [
-          homeModule
+          configurations
         ];
         pkgs = inputs.nixpkgs.legacyPackages.${system};
       }
-    ) // { inherit nixosModule; }
+    ) // { inherit homeModule; }
 )
