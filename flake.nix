@@ -16,6 +16,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neovim-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     vscode-overlay = {
       url = "github:stepbrobd/vscode-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
