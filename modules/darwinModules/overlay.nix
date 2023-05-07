@@ -1,4 +1,4 @@
-{ inputs, ... }@flakeContext:
+{ inputs, ... }@context:
 { config, lib, pkgs, ... }: {
   config.nixpkgs.overlays = [
     (self: super: {
