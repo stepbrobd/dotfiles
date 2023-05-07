@@ -1,27 +1,57 @@
 # Dotfiles
 
+MacOS only!
+
 Dotfiles with pseudo-idempotent setup script, repository should be in `~/.config/dotfiles` directory.
 
-## Setup
-
-1. [Home Manager](https://github.com/nix-community/home-manager): [`home.activation`](https://rycee.gitlab.io/home-manager/options.html#opt-home.activation):
-
-```nix
-{
-  dotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    #!/usr/bin/env nix-shell
-    #!nix-shell -i zsh -p curl git perl smimesign
-    set -eo pipefail
-    export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
-    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/stepbrobd/dotfiles/master/scripts/setup.sh | zsh
-  '';
-}
-```
-
-2. Standalone:
+## Standalone Setup
 
 ```shell
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/stepbrobd/dotfiles/master/scripts/setup.sh | zsh
+```
+
+## Nix Setup
+
+1. Install Nix with:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
+```
+
+2. After installing Nix, download [Nix-Darwin](https://github.com/LnL7/nix-darwin/) and install with default config, sourcing bashrc and zshrc:
+
+```bash
+export EDITOR=vim && sudo rm /etc/nix/nix.conf && nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer && ./result/bin/darwin-installer
+```
+
+3. Change `~/.nixpkgs/darwin-configuration.nix` to follow:
+
+```nix
+{ config, pkgs, ... }:
+
+{
+  services.nix-daemon.enable = true;
+}
+```
+
+4. Add `/run/current-system/sw/bin` to `$PATH`:
+
+```bash
+export PATH="/run/current-system/sw/bin:$PATH"
+```
+
+5. Add required channels:
+
+```bash
+sudo -i nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+sudo -i nix-channel --add https://github.com/LnL7/nix-darwin/archive/master.tar.gz darwin
+sudo -i nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+```
+
+6. Rebuild:
+
+```bash
+darwin-rebuild switch --flake .#$(nix --extra-experimental-features nix-command eval --impure --raw --expr "builtins.currentSystem")
 ```
 
 ## License
