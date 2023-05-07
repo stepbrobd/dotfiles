@@ -9,6 +9,10 @@ let
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
+        users.users.StepBroBD = {
+          name = "StepBroBD";
+          home = "/Users/StepBroBD";
+        };
       }
     ];
     config = {
