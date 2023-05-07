@@ -2,10 +2,12 @@
   description = "StepBroBD";
   inputs = {
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
+
     nix-darwin = {
       url = "flake:nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     home-manager = {
       url = "flake:home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,10 +17,12 @@
       url = "github:stepbrobd/vscode-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     raycast-overlay = {
       url = "github:stepbrobd/raycast-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     neovim-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
