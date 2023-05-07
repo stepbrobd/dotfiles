@@ -1,14 +1,20 @@
 { inputs, ... }@context:
 let
+  context = {
+    inherit inputs;
+  };
+
+  configurations = import ./modules/configurations.nix;
+  overlays = import ./modules/overlays.nix context;
+
   darwinModule = { config, lib, pkgs, ... }: {
     config.system.stateVersion = 4;
 
     imports = [
+      configurations
+      overlays
       inputs.home-manager.darwinModules.home-manager
       inputs.self.homeConfigurations.StepBroBD.homeModule
-
-      ./modules/configurations.nix
-      inputs.self.darwinModules.overlays
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
