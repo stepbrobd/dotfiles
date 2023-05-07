@@ -1,8 +1,10 @@
 # Dotfiles
 
-MacOS only!
+Inspired by [caarlos0/dotfiles.nix](https://github.com/caarlos0/dotfiles.nix).
 
 Dotfiles with pseudo-idempotent setup script, repository should be in `~/.config/dotfiles` directory.
+
+Setup instructions below are for MacOS only!
 
 ## Standalone Setup
 
