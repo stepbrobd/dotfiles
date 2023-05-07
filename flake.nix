@@ -38,8 +38,8 @@
     in
     {
       darwinConfigurations = {
-        aarch64-darwin = import ./modules/darwinConfigurations/aarch64-darwin.nix context;
-        x86_64-darwin = import ./modules/darwinConfigurations/x86_64-darwin.nix context;
+        aarch64-darwin = import ./modules/darwin/aarch64-darwin.nix context;
+        x86_64-darwin = import ./modules/darwin/x86_64-darwin.nix context;
       };
       darwinModules = {
         default = import ./modules/darwinModules/default.nix context;
