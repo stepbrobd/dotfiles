@@ -2,10 +2,9 @@
 let
   homeModule = { config, lib, pkgs, ... }: {
     imports = [
-      inputs.self.homeModules.activation
       inputs.self.homeModules.default
-      inputs.self.homeModules.package-darwin
-      inputs.self.homeModules.package-minimum
+      inputs.self.homeModules.pkgs
+      inputs.self.homeModules.activation
     ];
     config = {
       home = {
