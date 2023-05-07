@@ -22,6 +22,7 @@ in
       modules = [
         homeModule
       ];
+      # FIX: should be different in different host platforms, either put this in darwinConfigurations or make it function like `builtins.currentSystem`
       pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
     }
   ) // { inherit nixosModule; }

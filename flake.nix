@@ -45,10 +45,12 @@
         x86_64-darwin = import ./modules/darwin/x86_64-darwin.nix context;
       };
 
+      # FIX: shouldn't be here, import directory in darwinConfigurations
       darwinModules = {
         default = import ./modules/darwin/modules/default.nix context;
         overlay = import ./modules/darwin/modules/overlay.nix context;
       };
+      # FIX: shouldn't be here, import directory in homeConfigurations
       homeModules = {
         default = import ./modules/home/modules/default.nix context;
         pkgs = import ./modules/home/modules/pkgs.nix context;
