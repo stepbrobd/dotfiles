@@ -37,11 +37,8 @@
     };
 
     programs = {
+      nix-index.enable = true;
       zsh.enable = true;
-      nix-index = {
-        enable = true;
-        enableZshIntegration = true;
-      };
     };
 
     security = {
