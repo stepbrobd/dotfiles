@@ -1,5 +1,6 @@
 {
   description = "StepBroBD";
+
   inputs = {
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
 
@@ -28,6 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = inputs:
     let
       flakeContext = {
