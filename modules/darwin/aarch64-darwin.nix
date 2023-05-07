@@ -5,9 +5,10 @@ let
 
     imports = [
       inputs.home-manager.darwinModules.home-manager
-      inputs.self.darwinModules.configurations
-      inputs.self.darwinModules.overlays
       inputs.self.homeConfigurations.StepBroBD.homeModule
+
+      ./modules/configurations.nix
+      inputs.self.darwinModules.overlays
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
