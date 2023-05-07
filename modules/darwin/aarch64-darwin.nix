@@ -1,6 +1,7 @@
 { inputs, ... }@context:
 let
   darwinModule = { config, lib, pkgs, ... }: {
+    config.system.stateVersion = 4;
     imports = [
       inputs.home-manager.darwinModules.home-manager
       inputs.self.darwinModules.configurations
@@ -15,11 +16,6 @@ let
         };
       }
     ];
-    config = {
-      system = {
-        stateVersion = 4;
-      };
-    };
   };
 in
 inputs.darwin.lib.darwinSystem {

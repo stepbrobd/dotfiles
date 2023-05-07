@@ -1,16 +1,12 @@
 { inputs, ... }@context:
 let
   homeModule = { config, lib, pkgs, ... }: {
+    config.home.stateVersion = "23.05";
     imports = [
       inputs.self.homeModules.configurations
       inputs.self.homeModules.packages
       inputs.self.homeModules.activation
     ];
-    config = {
-      home = {
-        stateVersion = "23.05";
-      };
-    };
   };
   nixosModule = { ... }: {
     home-manager.users.StepBroBD = homeModule;
