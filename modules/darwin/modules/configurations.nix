@@ -38,7 +38,6 @@
 
     programs = {
       zsh.enable = true;
-      home-manager.enable = true;
       nix-index = {
         enable = true;
         enableZshIntegration = true;
