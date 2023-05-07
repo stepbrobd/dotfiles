@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
 
+    utils.url = "flake:flake-utils";
+
     darwin = {
       url = "flake:nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
