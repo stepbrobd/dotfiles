@@ -18,7 +18,7 @@ let
     };
   };
 in
-inputs.nix-darwin.lib.darwinSystem {
+inputs.darwin.lib.darwinSystem {
   modules = [
     darwinModule
   ];
