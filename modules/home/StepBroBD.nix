@@ -2,8 +2,8 @@
 let
   homeModule = { config, lib, pkgs, ... }: {
     imports = [
-      inputs.self.homeModules.default
-      inputs.self.homeModules.pkgs
+      inputs.self.homeModules.configurations
+      inputs.self.homeModules.packages
       inputs.self.homeModules.activation
     ];
     config = {
