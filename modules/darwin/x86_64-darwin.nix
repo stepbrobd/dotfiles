@@ -5,7 +5,7 @@ let
       inputs.home-manager.darwinModules.home-manager
       inputs.self.darwinModules.default
       inputs.self.darwinModules.overlay
-      inputs.self.home.StepBroBD.nixosModule
+      inputs.self.homeConfigurations.StepBroBD.nixosModule
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
