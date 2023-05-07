@@ -1,15 +1,53 @@
 {
+  description = "StepBroBD";
   inputs = {
-    dotfiles.url = "https://api.mynixos.com/stepbrobd/dotfiles/archive/main.tar.gz";
-  };
+    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
+    nix-darwin = {
+      url = "flake:nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "flake:home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-  outputs = inputs@{ self, dotfiles, ... }:
+    vscode-overlay = {
+      url = "github:stepbrobd/vscode-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    raycast-overlay = {
+      url = "github:stepbrobd/raycast-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    neovim-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+  outputs = inputs:
     let
-      filterAttrs = pred: set: builtins.listToAttrs (builtins.concatMap
-        (name: let v = set.${name}; in if pred name v then [ ((name: value: { inherit name value; }) name v) ] else [ ])
-        (builtins.attrNames set)
-      );
-      forwardFlakeOutputs = input: filterAttrs (n: v: !(builtins.elem n [ "inputs" "outputs" "narHash" "outPath" "sourceInfo" ])) input;
+      flakeContext = {
+        inherit inputs;
+      };
     in
-    forwardFlakeOutputs dotfiles;
+    {
+      darwinConfigurations = {
+        aarch64-darwin = import ./modules/darwinConfigurations/aarch64-darwin.nix flakeContext;
+        x86_64-darwin = import ./modules/darwinConfigurations/x86_64-darwin.nix flakeContext;
+      };
+      darwinModules = {
+        default = import ./modules/darwinModules/default.nix flakeContext;
+        overlay = import ./modules/darwinModules/overlay.nix flakeContext;
+      };
+      homeConfigurations = {
+        StepBroBD = import ./modules/homeConfigurations/StepBroBD.nix flakeContext;
+      };
+      homeModules = {
+        activation = import ./modules/homeModules/activation.nix flakeContext;
+        default = import ./modules/homeModules/default.nix flakeContext;
+        package-darwin = import ./modules/homeModules/package-darwin.nix flakeContext;
+        package-linux = import ./modules/homeModules/package-linux.nix flakeContext;
+        package-minimum = import ./modules/homeModules/package-minimum.nix flakeContext;
+      };
+    };
 }
