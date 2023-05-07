@@ -45,7 +45,7 @@ export PATH="/run/current-system/sw/bin:$PATH"
 5. Add required channels:
 
 ```bash
-sudo -i nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+sudo -i nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs
 sudo -i nix-channel --add https://github.com/LnL7/nix-darwin/archive/master.tar.gz darwin
 sudo -i nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 ```
