@@ -17,13 +17,18 @@ let
   };
 in
 (
-  (
-    inputs.home-manager.lib.homeManagerConfiguration {
-      modules = [
-        homeModule
-      ];
-      # FIX: should be different in different host platforms, either put this in darwinConfigurations or make it function like `builtins.currentSystem`
-      pkgs = inputs.nixpkgs.legacyPackages.aarch64-darwin;
-    }
-  ) // { inherit nixosModule; }
+  inputs.utils.lib.eachDefaultSystem [
+    "aarch64-darwin"
+    "x86_64-darwin"
+    "aarch64-linux"
+    "x86_64-linux"
+  ]
+    (system:
+      inputs.home-manager.lib.homeManagerConfiguration {
+        modules = [
+          homeModule
+        ];
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+      }
+    ) // { inherit nixosModule; }
 )
