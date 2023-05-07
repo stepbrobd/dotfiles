@@ -49,11 +49,9 @@
         StepBroBD = import ./modules/home/StepBroBD.nix context;
       };
       homeModules = {
-        activation = import ./modules/homeModules/activation.nix context;
         default = import ./modules/homeModules/default.nix context;
-        package-darwin = import ./modules/homeModules/package-darwin.nix context;
-        package-linux = import ./modules/homeModules/package-linux.nix context;
-        package-minimum = import ./modules/homeModules/package-minimum.nix context;
+        pkgs = import ./modules/homeModules/pkgs.nix context;
+        activation = import ./modules/homeModules/activation.nix context;
       };
     };
 }
