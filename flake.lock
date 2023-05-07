@@ -1,24 +1,5 @@
 {
   "nodes": {
-    "dotfiles": {
-      "inputs": {
-        "home-manager": "home-manager",
-        "neovim-overlay": "neovim-overlay",
-        "nix-darwin": "nix-darwin_2",
-        "nixpkgs": "nixpkgs_2",
-        "raycast-overlay": "raycast-overlay",
-        "vscode-overlay": "vscode-overlay"
-      },
-      "locked": {
-        "narHash": "sha256-cgCeHM4348FCNgrgolkSafhe2kvjV+mWs/jIJBTK5zg=",
-        "type": "tarball",
-        "url": "https://api.mynixos.com/stepbrobd/dotfiles/archive/main.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://api.mynixos.com/stepbrobd/dotfiles/archive/main.tar.gz"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -54,7 +35,6 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "dotfiles",
           "neovim-overlay",
           "nixpkgs"
         ]
@@ -93,7 +73,6 @@
     "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": [
-          "dotfiles",
           "neovim-overlay",
           "hercules-ci-effects",
           "hercules-ci-agent",
@@ -181,7 +160,6 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "dotfiles",
           "neovim-overlay",
           "hercules-ci-effects",
           "hercules-ci-agent",
@@ -245,7 +223,6 @@
         "flake-parts": "flake-parts_2",
         "hercules-ci-agent": "hercules-ci-agent",
         "nixpkgs": [
-          "dotfiles",
           "neovim-overlay",
           "nixpkgs"
         ]
@@ -267,7 +244,6 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
-          "dotfiles",
           "nixpkgs"
         ]
       },
@@ -288,7 +264,6 @@
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nixpkgs": [
-          "dotfiles",
           "neovim-overlay",
           "nixpkgs"
         ]
@@ -316,7 +291,6 @@
         "hercules-ci-effects": "hercules-ci-effects",
         "neovim-flake": "neovim-flake",
         "nixpkgs": [
-          "dotfiles",
           "nixpkgs"
         ]
       },
@@ -337,7 +311,6 @@
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
-          "dotfiles",
           "neovim-overlay",
           "hercules-ci-effects",
           "hercules-ci-agent",
@@ -361,7 +334,6 @@
     "nix-darwin_2": {
       "inputs": {
         "nixpkgs": [
-          "dotfiles",
           "nixpkgs"
         ]
       },
@@ -430,11 +402,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1683353485,
-        "narHash": "sha256-Skp5El3egmoXPiINWjnoW0ktVfB7PR/xc4F4bhD+BJY=",
+        "lastModified": 1683392273,
+        "narHash": "sha256-pZTuxvcuDeBG+vvE1zczNyEUzlPbzXVh8Ed45Fzo+tQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "caf436a52b25164b71e0d48b671127ac2e2a5b75",
+        "rev": "16b3b0c53b1ee8936739f8c588544e7fcec3fc60",
         "type": "github"
       },
       "original": {
@@ -449,7 +421,6 @@
         "flake-utils": "flake-utils",
         "gitignore": "gitignore",
         "nixpkgs": [
-          "dotfiles",
           "neovim-overlay",
           "hercules-ci-effects",
           "hercules-ci-agent",
@@ -475,7 +446,6 @@
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nixpkgs": [
-          "dotfiles",
           "nixpkgs"
         ]
       },
@@ -495,7 +465,12 @@
     },
     "root": {
       "inputs": {
-        "dotfiles": "dotfiles"
+        "home-manager": "home-manager",
+        "neovim-overlay": "neovim-overlay",
+        "nix-darwin": "nix-darwin_2",
+        "nixpkgs": "nixpkgs_2",
+        "raycast-overlay": "raycast-overlay",
+        "vscode-overlay": "vscode-overlay"
       }
     },
     "systems": {
@@ -532,7 +507,6 @@
       "inputs": {
         "flake-utils": "flake-utils_4",
         "nixpkgs": [
-          "dotfiles",
           "nixpkgs"
         ]
       },
