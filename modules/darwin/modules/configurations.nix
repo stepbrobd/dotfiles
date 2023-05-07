@@ -36,19 +36,6 @@
       };
     };
 
-    programs = {
-      nix-index.enable = true;
-      zsh.enable = true;
-    };
-
-    security = {
-      pam.enableSudoTouchIdAuth = true;
-    };
-
-    services = {
-      nix-daemon.enable = true;
-    };
-
     system = {
       defaults = {
         NSGlobalDomain = {
@@ -62,6 +49,19 @@
           "com.apple.mouse.tapBehavior" = 1;
         };
       };
+    };
+
+    security = {
+      pam.enableSudoTouchIdAuth = true;
+    };
+
+    services = {
+      nix-daemon.enable = true;
+    };
+
+    programs = {
+      nix-index.enable = true;
+      zsh.enable = true;
     };
   };
 }
