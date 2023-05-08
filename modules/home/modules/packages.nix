@@ -8,6 +8,7 @@
     nixpkgs-fmt
     cachix
     direnv
+    nix-direnv
     home-manager
     coreutils
     llvm
