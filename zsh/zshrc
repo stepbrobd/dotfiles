@@ -11,11 +11,22 @@ source "${HOME}/.config/dotfiles/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
+
+eval "$(direnv hook zsh)"
+
 if [[ -f "${HOME}/.pyenv/bin/pyenv" ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
+fi
+
+if [[ $(command -v github-copilot-cli) >/dev/null ]]; then
+  eval "$(github-copilot-cli alias -- "$0")"
+fi
+
+if [[ $(command -v mcfly) >/dev/null ]]; then
+  eval "$(mcfly init zsh)"
 fi
 
 # Darwin Only
@@ -80,13 +91,3 @@ export MCFLY_FUZZY="5"
 export MCFLY_RESULTS="100"
 export GOPATH="$HOME/.go"
 export PATH="$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
-
-# init GitHub Copilot CLI
-if [[ $(command -v github-copilot-cli) >/dev/null ]]; then
-  eval "$(github-copilot-cli alias -- "$0")"
-fi
-
-# Init mcfly
-if [[ $(command -v mcfly) >/dev/null ]]; then
-  eval "$(mcfly init zsh)"
-fi
