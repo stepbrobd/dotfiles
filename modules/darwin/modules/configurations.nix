@@ -1,15 +1,11 @@
 { config, lib, pkgs, ... }: {
   config = {
     nix = {
-      extraOptions = ''
-        experimental-features = ca-derivations flakes impure-derivations nix-command
-        auto-optimise-store = true
-        keep-derivations = true
-        keep-outputs = true
-        keep-failed = false
-        keep-going = true
-      '';
       settings = {
+        trusted-users = [
+          "root"
+          "StepBroBD"
+        ];
         substituters = [
           "https://stepbrobd.cachix.org"
           "https://nix-community.cachix.org"
@@ -20,11 +16,15 @@
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
         ];
-        trusted-users = [
-          "root"
-          "StepBroBD"
-        ];
       };
+      extraOptions = ''
+        experimental-features = ca-derivations flakes impure-derivations nix-command
+        auto-optimise-store = true
+        keep-derivations = true
+        keep-outputs = true
+        keep-failed = false
+        keep-going = true
+      '';
     };
 
     nixpkgs = {
@@ -59,8 +59,8 @@
     };
 
     programs = {
-      nix-index.enable = true;
       zsh.enable = true;
+      nix-index.enable = true;
     };
   };
 }
