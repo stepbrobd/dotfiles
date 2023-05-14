@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
-
     utils.url = "flake:flake-utils";
 
     darwin = {
@@ -16,8 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
+    osu-overlay = {
+      url = "github:stepbrobd/osu-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
