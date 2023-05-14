@@ -95,11 +95,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1684103442,
-        "narHash": "sha256-yZh5SP2fFaRKDnjOkUMkIbjK/oiC9Msyw5elbNjWOEE=",
+        "lastModified": 1684103774,
+        "narHash": "sha256-G7SiMX2Oixz8gr2UEPKBdniyQtvdlarRuVOtEpBunH8=",
         "owner": "stepbrobd",
         "repo": "osu-overlay",
-        "rev": "ae6731d00fc97b07ab01e952dbd97361c09c4f44",
+        "rev": "e7d0d4153c8a49a8437107314b3981f9d8d97498",
         "type": "github"
       },
       "original": {
