@@ -2,8 +2,7 @@
 { config, lib, pkgs, ... }: {
   config.nixpkgs.overlays = [
     (self: super: {
-      # neovim = inputs.neovim-overlay.packages.${super.system}.neovim;
-      nix-direnv = super.nix-direnv.override { enableFlakes = true; };
+      osu-lazer-bin = inputs.osu-overlay.packages.${super.system}.osu-lazer-bin;
       vscode = inputs.vscode-overlay.packages.${super.system}.vscodeInsiders;
       raycast = inputs.raycast-overlay.packages.${super.system}.raycast;
     })
