@@ -57,4 +57,7 @@ clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
 ln -fsv "${HOME}/.config/dotfiles/tmux/tmux.conf" "${HOME}/.tmux.conf"
 ln -fsv "${HOME}/.tmux/plugins/" "${HOME}/.config/dotfiles/tmux/plugins"
 
+# Discord
+ln -fsv "${HOME}/.config/dotfiles/discord" "${HOME}/.config"
+
 source "${HOME}/.zshrc"

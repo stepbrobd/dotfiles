@@ -57,6 +57,7 @@
     iterm2
     raycast
     iina
+    discord
     osu-lazer-bin
   ]) ++ (lib.optionals pkgs.stdenv.isLinux [
     mpv
