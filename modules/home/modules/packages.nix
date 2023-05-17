@@ -20,6 +20,7 @@
     pnpm
     vercel
     github-copilot-cli
+    mods
     tmux
     bat
     exa
