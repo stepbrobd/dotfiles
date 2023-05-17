@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1684148371,
-        "narHash": "sha256-CEVaArsziqantqU418XXruNDjPZN/HC3x1rqr2D4g+o=",
+        "lastModified": 1684343812,
+        "narHash": "sha256-ZTEjiC8PDKeP8JRchuwcFXUNlMcyQ4U+DpyVZ3pB6Q4=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "0dbf1c2fb1a5a0372a324eff1ba44f9da66febd2",
+        "rev": "dfbdabbb3e797334172094d4f6c0ffca8c791281",
         "type": "github"
       },
       "original": {
@@ -60,11 +60,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1684189380,
-        "narHash": "sha256-GUp9OkZynocyppLur1VX8oAjtXGue0oKRHbsksOMUm0=",
+        "lastModified": 1684321175,
+        "narHash": "sha256-V4EbM+jK7pvjKBaj0dgAiW9ultzDE27Nz5fRyu/ceMk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b7d814c5744dca7e70b3dc2638f06568dce96ca6",
+        "rev": "59659243cd4ababda605e79b4a9c2e6d83e24c86",
         "type": "github"
       },
       "original": {
@@ -95,11 +95,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1684224562,
-        "narHash": "sha256-6bC2nQnhhtGAyoBAdQwMzGKHF51YtMO3An23jNT3tOA=",
+        "lastModified": 1684310940,
+        "narHash": "sha256-81qzGu/attkwySgvhfSsjYam9gZD7KVQYJM0PizKU64=",
         "owner": "stepbrobd",
         "repo": "osu-overlay",
-        "rev": "ed5250adc3f9b73aaa08df4fd48a4e5271a4c365",
+        "rev": "ce3cf528b610f6d8e27021decaaacefaa01ab910",
         "type": "github"
       },
       "original": {
@@ -116,11 +116,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1684224696,
-        "narHash": "sha256-ntdYALLW+xa82BRgCW8h8jC0Xi7TnaBMfaRU8Dg9VsQ=",
+        "lastModified": 1684311108,
+        "narHash": "sha256-w/UsAUfAK4+dNMtEyEB5JbW95XXiZ3hqoZhp7tYFTKE=",
         "owner": "stepbrobd",
         "repo": "raycast-overlay",
-        "rev": "fd49a153d9d25096a5a3ea0e4846b0bd9e3b33a0",
+        "rev": "4ed08dc65a06c758a63ae3846e3c277f6eeffa20",
         "type": "github"
       },
       "original": {
@@ -242,11 +242,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1684224878,
-        "narHash": "sha256-PRusOCYzOO52rPOLzjc1Qn+o81SFgjJLI5y99U3Srf0=",
+        "lastModified": 1684311291,
+        "narHash": "sha256-3EW1/6mlR3uRPL50XLmkhwvnfYKFNKjtNZdrGfV5eUo=",
         "owner": "stepbrobd",
         "repo": "vscode-overlay",
-        "rev": "e5551d1869b659888494bac0d82f79f3018d50bd",
+        "rev": "3ce7d30af880662427b1796dabcfc1555945f687",
         "type": "github"
       },
       "original": {
