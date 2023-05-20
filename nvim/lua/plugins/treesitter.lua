@@ -1,9 +1,11 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+
 		version = false,
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
+
 		dependencies = {
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",
@@ -27,10 +29,15 @@ return {
 			{ "nvim-treesitter/playground" },
 			{ "nvim-treesitter/nvim-treesitter-refactor" },
 		},
+
+		enable = true,
+		lazy = false,
+
 		keys = {
 			{ "<c-space>", desc = "Increment selection" },
 			{ "<bs>", desc = "Decrement selection", mode = "x" },
 		},
+
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true, disable = { "python" } },
@@ -84,6 +91,7 @@ return {
 				},
 			},
 		},
+
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
 		end,

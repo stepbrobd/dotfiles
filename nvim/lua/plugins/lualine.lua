@@ -1,6 +1,11 @@
 return {
 	"nvim-lualine/lualine.nvim",
+
 	dependencies = { "nvim-tree/nvim-web-devicons", "github-nvim-theme" },
+
+	enabled = true,
+	lazy = false,
+
 	opts = {
 		options = {
 			icons_enabled = true,
