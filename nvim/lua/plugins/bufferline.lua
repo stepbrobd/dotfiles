@@ -5,9 +5,6 @@ return {
 
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 
-	enable = true,
-	lazy = false,
-
 	opts = {
 		offsets = {
 			{
