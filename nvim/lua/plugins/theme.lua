@@ -8,8 +8,4 @@ return {
 			vim.cmd("colorscheme github_dark_dimmed")
 		end,
 	},
-	{
-		"LazyVim/LazyVim",
-		opts = { colorscheme = "github_dark_dimmed" },
-	},
 }
