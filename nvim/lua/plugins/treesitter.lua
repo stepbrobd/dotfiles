@@ -30,9 +30,6 @@ return {
 			{ "nvim-treesitter/nvim-treesitter-refactor" },
 		},
 
-		enable = true,
-		lazy = false,
-
 		keys = {
 			{ "<c-space>", desc = "Increment selection" },
 			{ "<bs>", desc = "Decrement selection", mode = "x" },
