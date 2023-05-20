@@ -1,6 +1,6 @@
 return {
-	"zbirenbaum/copilot.lua",
-	lazy = false,
-	config = true,
+	"github/copilot.vim",
+
 	enabled = true,
+	lazy = false,
 }
