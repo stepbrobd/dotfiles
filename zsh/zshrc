@@ -77,16 +77,13 @@ if [[ $(command -v code-insiders) >/dev/null ]]; then
 fi
 
 # Exports
+export TERM="xterm-256color"
 export SHELL="zsh"
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERM="xterm-256color"
-export LANG="en_US.UTF-8"
-export LC_ALL="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
 export PAGER="less -RF"
 export BAT_PAGER="less -RF"
-export GPG_TTY=$TTY
+export GPG_TTY="$TTY"
 export EXA_COLORS="da=1;31"
 export MCFLY_KEY_SCHEME="vim"
 export MCFLY_FUZZY="5"
