@@ -19,7 +19,7 @@ jobs:
         ln -fsv "./nvim" "${HOME}/.config"
         git config user.name "StepBroBD"
         git config user.email "Hi@StepBroBD.com"
-        nix run nixpkgs#neovim -- --headless "+Lazy! update" +qa
+        nix run nixpkgs#neovim -- --headless "+Lazy! sync" +qa
         nix flake update
         git commit -am "{flake.lock,lazy-lock.json}: update"
         git push
