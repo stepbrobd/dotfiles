@@ -16,9 +16,10 @@ jobs:
     - uses: cachix/install-nix-action@v20
     - name : "Update"
       run: |
-        ./scripts/setup.sh
+        ln -fsv "./nvim" "${HOME}/.config"
         git config user.name "StepBroBD"
         git config user.email "Hi@StepBroBD.com"
-        nix run nixpkgs#neovim -- --headless "+Lazy! update" +qa && git add nvim/lazy-lock.json && git commit -m "lazy-lock.json: Update"
-        nix flake update --commit-lock-file
+        nix run nixpkgs#neovim -- --headless "+Lazy! update" +qa
+        nix flake update
+        git commit -am "{flake.lock,lazy-lock.json}: update"
         git push
