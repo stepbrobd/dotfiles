@@ -41,13 +41,16 @@ if [[ $(uname) == "Darwin" ]]; then
   if [ -e "${HOME}/.iterm2_shell_integration.zsh" ]; then
     source "${HOME}/.iterm2_shell_integration.zsh"
   fi
+  # VSCode
+  if [[ $(command -v code-insiders) >/dev/null ]]; then
+    alias code="code-insiders"
+  fi
   # Tailscale
   alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 fi
 
 # Z-Shell
 setopt vi
-setopt correct
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=65536
 SAVEHIST=65536
@@ -72,9 +75,6 @@ alias cat="bat"
 alias tmux="TERM=screen-256color-bce tmux"
 alias htop="btop"
 alias tf="terraform"
-if [[ $(command -v code-insiders) >/dev/null ]]; then
-  alias code="code-insiders"
-fi
 
 # Exports
 export TERM="xterm-256color"
