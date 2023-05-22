@@ -1,0 +1,24 @@
+name: Update
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  Update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3.5.2
+      name: "Checkout"
+      with:
+        fetch-depth: 0
+    - uses: cachix/install-nix-action@v20
+    - name : "Update"
+      run: |
+        ./scripts/setup.sh
+        git config user.name "StepBroBD"
+        git config user.email "Hi@StepBroBD.com"
+        nix run nixpkgs#neovim -- --headless "+Lazy! update" +qa && git add nvim/lazy-lock.json && git commit -m "lazy-lock.json: Update"
+        nix flake update --commit-lock-file
+        git push
