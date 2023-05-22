@@ -67,6 +67,8 @@ fi
 # Atuin
 if [[ $(command -v atuin) >/dev/null ]]; then
   eval "$(atuin init zsh --disable-up-arrow)"
+  atuin import zsh >/dev/null
+  atuin sync >/dev/null
 fi
 
 # GitHub Copilot CLI
