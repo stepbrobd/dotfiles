@@ -31,7 +31,7 @@
     git
     gh
     jq
-    mcfly
+    atuin
     gnupg
     neovim
     lazygit

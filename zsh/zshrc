@@ -27,8 +27,8 @@ if [[ $(command -v github-copilot-cli) >/dev/null ]]; then
   eval "$(github-copilot-cli alias -- "$0")"
 fi
 
-if [[ $(command -v mcfly) >/dev/null ]]; then
-  eval "$(mcfly init zsh)"
+if [[ $(command -v atuin) >/dev/null ]]; then
+  eval "$(atuin init zsh)"
 fi
 
 # Darwin Only
@@ -85,8 +85,5 @@ export PAGER="less -RF"
 export BAT_PAGER="less -RF"
 export GPG_TTY="$TTY"
 export EXA_COLORS="da=1;31"
-export MCFLY_KEY_SCHEME="vim"
-export MCFLY_FUZZY="5"
-export MCFLY_RESULTS="100"
 export GOPATH="$HOME/.go"
 export PATH="$PATH:/run/current-system/sw/bin:/etc/profiles/per-user/$USER/bin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
