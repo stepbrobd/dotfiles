@@ -4,7 +4,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"git",
 		"clone",
 		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
+		"https://github.com/folke/lazy.nvim",
 		"--branch=stable",
 		lazypath,
 	})
@@ -40,8 +40,8 @@ require("lazy").setup({
 
 	-- Auto Update
 	checker = {
-		enabled = true,
-		notify = true,
+		enabled = false,
+		notify = false,
 	},
 
 	-- Performance
