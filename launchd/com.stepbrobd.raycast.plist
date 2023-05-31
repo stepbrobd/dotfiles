@@ -9,6 +9,10 @@
       <string>/usr/bin/open</string>
       <string>/Users/StepBroBD/Applications/Home\ Manager\ Apps/Raycast.app</string>
     </array>
+    <key>ProcessType</key>
+    <string>Interactive</string>
+    <key>KeepAlive</key>
+    <true/>
     <key>RunAtLoad</key>
     <true/>
   </dict>
