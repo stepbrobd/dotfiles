@@ -14,7 +14,16 @@ if [[ ! -d "${HOME}/Library/LaunchAgents" ]]; then
 fi
 
 for agent in "${HOME}/.config/dotfiles/launchd/"*.plist; do
-    ln -sf "${agent}" "${HOME}/Library/LaunchAgents/"
+    if [[ ! -d "${HOME}/Library/LaunchAgents" ]]; then
+        mkdir -p "${HOME}/Library/LaunchAgents"
+    fi
+
+    if [[ -f "${HOME}/Library/LaunchAgents/$(basename "${agent}")" ]]; then
+        launchctl unload -w "${HOME}/Library/LaunchAgents/$(basename "${agent}")" >/dev/null 2>&1
+        rm -f "${HOME}/Library/LaunchAgents/$(basename "${agent}")"
+    fi
+
+    cp "${agent}" "${HOME}/Library/LaunchAgents/$(basename "${agent}")"
 
     launchctl load -w "${HOME}/Library/LaunchAgents/$(basename "${agent}")" >/dev/null 2>&1
     launchctl enable gui/"$(id -u)"/"$(basename "${agent}" .plist)"
