@@ -8,7 +8,7 @@
     <array>
       <string>/usr/bin/open</string>
       <string>-a</string>
-      <string>/Users/StepBroBD/Applications/Home\ Manager\ Apps/Raycast.app</string>
+      <string>"/Users/StepBroBD/Applications/Home Manager Apps/Raycast.app"</string>
     </array>
     <key>StandardOutPath</key>
     <string>/Users/StepBroBD/.cache/raycast/stdout.log</string>
