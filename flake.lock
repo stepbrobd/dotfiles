@@ -242,11 +242,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1685693035,
-        "narHash": "sha256-Xbg/UGHDNN91QNLXTWX7cD4MnQwc7i1/Lyb425jCPS4=",
+        "lastModified": 1685751892,
+        "narHash": "sha256-NNTQ//jkdj+px01sglR1HYpIWjZFuZNlA5UVKEBUqq0=",
         "owner": "stepbrobd",
         "repo": "vscode-overlay",
-        "rev": "dc2b0b13b6077f06fe3ba24728b9a4bca1b91286",
+        "rev": "fe6552f15e835e25b48f9625afff9ad6a23ccb01",
         "type": "github"
       },
       "original": {
