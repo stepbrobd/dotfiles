@@ -30,6 +30,7 @@
     ripgrep
     git
     gh
+    fq
     jq
     atuin
     gnupg
