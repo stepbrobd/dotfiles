@@ -30,8 +30,8 @@
     nixpkgs = {
       config = {
         allowUnfree = true;
-        allowBroken = false;
-        allowUnsupportedSystem = false;
+        allowBroken = true;
+        allowUnsupportedSystem = true;
       };
     };
 
