@@ -48,6 +48,7 @@
     flyctl
     ffmpeg
     yt-dlp
+    qmk
     zathura
     vscode
     zoom-us
