@@ -31,11 +31,18 @@
     };
   };
 
-  outputs = inputs:
+  outputs = { nixpkgs, utils, ... }@inputs:
     let
       context = {
         inherit inputs;
       };
+
+      eachSystem = utils.lib.eachSystem [
+        "aarch64-darwin"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
     in
     {
       homeConfigurations = {
