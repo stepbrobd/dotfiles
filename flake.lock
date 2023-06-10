@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "comma": {
+    "comma-overlay": {
       "inputs": {
         "flake-compat": "flake-compat",
         "naersk": "naersk",
@@ -82,7 +82,7 @@
     "naersk": {
       "inputs": {
         "nixpkgs": [
-          "comma",
+          "comma-overlay",
           "nixpkgs"
         ]
       },
@@ -149,11 +149,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1686366980,
-        "narHash": "sha256-NK87lojxpsGByv0j3lSprJic3DemoJG/rtfeOwZQfGQ=",
+        "lastModified": 1686367245,
+        "narHash": "sha256-wp3OZxUWrO+Tz8h9r8fI9aK2zq+QF3HbVzG5LeHMdNM=",
         "owner": "stepbrobd",
         "repo": "raycast-overlay",
-        "rev": "6236b53ef480566575f83bdd78b5191103dff375",
+        "rev": "6679703894e21a4e8dce53e3bd324c048192c213",
         "type": "github"
       },
       "original": {
@@ -164,7 +164,7 @@
     },
     "root": {
       "inputs": {
-        "comma": "comma",
+        "comma-overlay": "comma-overlay",
         "darwin": "darwin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
