@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
+
     utils.url = "flake:flake-utils";
 
     darwin = {
@@ -15,23 +16,37 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    comma-overlay = {
+      url = "github:nix-community/comma";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "utils";
+    };
+
     osu-overlay = {
       url = "github:stepbrobd/osu-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "utils";
     };
 
     vscode-overlay = {
       url = "github:stepbrobd/vscode-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "utils";
     };
 
     raycast-overlay = {
       url = "github:stepbrobd/raycast-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "utils";
     };
   };
 
-  outputs = { nixpkgs, utils, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , utils
+    , ...
+    } @ inputs:
     let
       context = {
         inherit inputs;
