@@ -35,7 +35,6 @@
     jq
     atuin
     gnupg
-    memray
     neovim
     lazygit
     fzf
