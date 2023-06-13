@@ -22,20 +22,25 @@
       inputs.utils.follows = "utils";
     };
 
+    devenv-overlay = {
+      url = "github:cachix/devenv/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     osu-overlay = {
       url = "github:stepbrobd/osu-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "utils";
     };
 
-    vscode-overlay = {
-      url = "github:stepbrobd/vscode-overlay";
+    raycast-overlay = {
+      url = "github:stepbrobd/raycast-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "utils";
     };
 
-    raycast-overlay = {
-      url = "github:stepbrobd/raycast-overlay";
+    vscode-overlay = {
+      url = "github:stepbrobd/vscode-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.utils.follows = "utils";
     };
