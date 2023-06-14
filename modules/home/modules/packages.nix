@@ -36,6 +36,7 @@
     jq
     atuin
     gnupg
+    hyperfine
     neovim
     lazygit
     fzf
