@@ -10,7 +10,6 @@
     comma
     direnv
     nix-direnv
-    devenv
     home-manager
     coreutils
     llvm
