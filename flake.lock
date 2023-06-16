@@ -44,6 +44,21 @@
         "type": "indirect"
       }
     },
+    "darwin-stable": {
+      "locked": {
+        "lastModified": 1686912178,
+        "narHash": "sha256-4W6M4ZIJwwvr6nqtmqYPLHSb+gnryVuDoDEqu7Ecy/M=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2decc88392ad88868aba2be221491facd3da6d1f",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixpkgs-23.05-darwin",
+        "type": "indirect"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -81,11 +96,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1686924782,
-        "narHash": "sha256-ykVVw0QcsmCI0Qzfnyhxpfy/iyFcBGWsqD3uu9Gzdps=",
+        "lastModified": 1686945339,
+        "narHash": "sha256-N6zWIolqhRDM+o3NYv2QdoWGFfwrDsojNt51APTGQIY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "98682da098b63b340ca037694ea2624b1e5f582e",
+        "rev": "4d536eea207ea36d30cb6e7f241a439a59ce4013",
         "type": "github"
       },
       "original": {
@@ -114,6 +129,21 @@
         "ref": "master",
         "repo": "naersk",
         "type": "github"
+      }
+    },
+    "nixos-stable": {
+      "locked": {
+        "lastModified": 1686830505,
+        "narHash": "sha256-ISQoV4ZLNbXOaYztLJCBVIShaQBn9e63gap/ACYm0zQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "453bb832f715dd6e51004c72dbd59b1556d554e1",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-23.05",
+        "type": "indirect"
       }
     },
     "osu-overlay": {
@@ -166,32 +196,18 @@
       "inputs": {
         "comma-overlay": "comma-overlay",
         "darwin": "darwin",
+        "darwin-stable": "darwin-stable",
         "home-manager": "home-manager",
         "master": "master",
+        "nixos-stable": "nixos-stable",
         "nixpkgs": [
           "master"
         ],
         "osu-overlay": "osu-overlay",
         "raycast-overlay": "raycast-overlay",
-        "stable": "stable",
         "unstable": "unstable",
         "utils": "utils",
         "vscode-overlay": "vscode-overlay"
-      }
-    },
-    "stable": {
-      "locked": {
-        "lastModified": 1686731662,
-        "narHash": "sha256-obapE7ZHvurJVaQ6TVFYByxi9UoxeMJ4uuS0l6Ut2cM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c56d659ebcfc4a0e7a9938adcf379a06930dc8b4",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixpkgs-23.05-darwin",
-        "type": "indirect"
       }
     },
     "systems": {
@@ -211,11 +227,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1686828063,
-        "narHash": "sha256-Cv0Sx1N5+3xBDF5OnmFU3Qoh9OqZmXDBKg1fgXlXTWs=",
+        "lastModified": 1686858960,
+        "narHash": "sha256-YO8CVbKQPOUZcpbNHVF2WWKrs+AByCbdggUYc6qAvzs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "683f2f5ba2ea54abb633d0b17bc9f7f6dede5799",
+        "rev": "95c729c030b3011c5c89107ac9fa30f7249135fe",
         "type": "github"
       },
       "original": {
