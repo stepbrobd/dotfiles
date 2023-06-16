@@ -2,7 +2,10 @@
   description = "@StepBroBD: Yet another dotfiles repo with Nix";
 
   inputs = {
-    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
+    stable.url = "flake:nixpkgs/nixpkgs-23.05-darwin";
+    unstable.url = "flake:nixpkgs/nixpkgs-unstable";
+    master.url = "flake:nixpkgs/master";
+    nixpkgs.follows = "master";
 
     utils.url = "flake:flake-utils";
 
