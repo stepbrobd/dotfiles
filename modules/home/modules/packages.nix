@@ -58,6 +58,7 @@
     cocoapods
     lima
     colima
+    karabiner-elements
     iterm2
     raycast
     iina
