@@ -17,6 +17,7 @@
     go
     python311
     python311Packages.pip
+    python311Packages.virtualenv
     typst
     texlive.combined.scheme-full
     nodejs
