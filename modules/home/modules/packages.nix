@@ -15,6 +15,8 @@
     llvm
     rustup
     go
+    python311
+    python311Packages.pip
     typst
     texlive.combined.scheme-full
     nodejs

@@ -51,14 +51,6 @@ source "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highligh
 source "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/nix-shell.plugin.zsh"
 
-# PyEnv
-if [[ -f "${HOME}/.pyenv/bin/pyenv" ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)" >/dev/null 2>&1
-fi
-
 # DirEnv
 if [[ $(command -v direnv) >/dev/null ]]; then
   eval "$(direnv hook zsh)"
