@@ -61,6 +61,8 @@
     cocoapods
     lima
     colima
+    step-ca
+    step-cli
     karabiner-elements
     iterm2
     utm
