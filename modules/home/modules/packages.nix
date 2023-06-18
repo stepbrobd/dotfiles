@@ -63,6 +63,7 @@
     colima
     karabiner-elements
     iterm2
+    utm
     raycast
     iina
     discord
