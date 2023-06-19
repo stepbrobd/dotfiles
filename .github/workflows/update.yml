@@ -13,7 +13,7 @@ jobs:
       name: "Checkout"
       with:
         fetch-depth: 0
-    - uses: cachix/install-nix-action@v21
+    - uses: cachix/install-nix-action@v22
     - name : "Update"
       run: |
         git config --global user.name "GitHub Action"
