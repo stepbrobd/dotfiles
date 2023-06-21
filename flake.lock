@@ -201,7 +201,7 @@
         "master": "master",
         "nixos-stable": "nixos-stable",
         "nixpkgs": [
-          "unstable"
+          "master"
         ],
         "osu-overlay": "osu-overlay",
         "raycast-overlay": "raycast-overlay",
