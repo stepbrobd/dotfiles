@@ -6,7 +6,7 @@
     unstable.url = "flake:nixpkgs/nixpkgs-unstable";
     nixos-stable.url = "flake:nixpkgs/nixos-23.05";
     darwin-stable.url = "flake:nixpkgs/nixpkgs-23.05-darwin";
-    nixpkgs.follows = "master";
+    nixpkgs.follows = "unstable";
 
     utils.url = "flake:flake-utils";
 
