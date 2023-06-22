@@ -26,7 +26,6 @@ printf "\e[36;1mRebuilding system with \e[4m$rebuild\e[0m\e[36;1m using output a
 pushd "$HOME/.config/dotfiles" >/dev/null
 
 sudo -i nix-channel --update
-nix --extra-experimental-features nix-command --extra-experimental-features flakes flake update --commit-lock-file
 
 $rebuild switch --flake .#$attr "$@"
 
