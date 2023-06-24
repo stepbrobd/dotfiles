@@ -20,6 +20,7 @@
     python311Packages.virtualenv
     typst
     texlive.combined.scheme-full
+    deno
     nodejs
     pnpm
     vercel
