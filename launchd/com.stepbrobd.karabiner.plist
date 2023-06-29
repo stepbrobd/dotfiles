@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
+    <key>Disabled</key>
+    <true/>
     <key>Label</key>
     <string>com.stepbrobd.karabiner</string>
     <key>ProgramArguments</key>
@@ -21,8 +23,6 @@
     <key>RunAtLoad</key>
     <true/>
     <key>LaunchOnlyOnce</key>
-    <true/>
-    <key>Disabled</key>
     <true/>
   </dict>
 </plist>
