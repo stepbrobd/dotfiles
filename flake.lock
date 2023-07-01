@@ -44,21 +44,6 @@
         "type": "indirect"
       }
     },
-    "darwin-stable": {
-      "locked": {
-        "lastModified": 1687861235,
-        "narHash": "sha256-svC9lDtEft6hPopvs85z6AN1RDSI+UAZAISXHuRNvqg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4fec046839e4c2f58a930d358d0e9f893ece59f5",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixpkgs-23.05-darwin",
-        "type": "indirect"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -131,21 +116,6 @@
         "type": "github"
       }
     },
-    "nixos-stable": {
-      "locked": {
-        "lastModified": 1688109178,
-        "narHash": "sha256-BSdeYp331G4b1yc7GIRgAnfUyaktW2nl7k0C577Tttk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b72aa95f7f096382bff3aea5f8fde645bca07422",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-23.05",
-        "type": "indirect"
-      }
-    },
     "osu-overlay": {
       "inputs": {
         "nixpkgs": [
@@ -196,10 +166,8 @@
       "inputs": {
         "comma-overlay": "comma-overlay",
         "darwin": "darwin",
-        "darwin-stable": "darwin-stable",
         "home-manager": "home-manager",
         "master": "master",
-        "nixos-stable": "nixos-stable",
         "nixpkgs": [
           "master"
         ],
