@@ -1,7 +1,7 @@
 { inputs, ... }@context:
 let
   configurations = { config, lib, pkgs, ... }: {
-    config.home.stateVersion = "23.05";
+    config.home.stateVersion = "23.11";
 
     config.programs = {
       home-manager = {
