@@ -3,19 +3,19 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.stepbrobd.raycast</string>
+    <string>com.stepbrobd.coconutbattery</string>
     <key>ProgramArguments</key>
     <array>
       <string>/usr/bin/open</string>
       <string>-a</string>
-      <string>/Users/StepBroBD/Applications/Home Manager Apps/Raycast.app</string>
+      <string>/Users/StepBroBD/Applications/Home Manager Apps/coconutBattery.app</string>
       <string>--hide</string>
       <string>--background</string>
     </array>
     <key>StandardOutPath</key>
-    <string>/Users/StepBroBD/.cache/raycast/stdout.log</string>
+    <string>/Users/StepBroBD/.cache/coconutbattery/stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/StepBroBD/.cache/raycast/stderr.log</string>
+    <string>/Users/StepBroBD/.cache/coconutbattery/stderr.log</string>
     <key>ProcessType</key>
     <string>Interactive</string>
     <key>KeepAlive</key>

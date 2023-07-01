@@ -66,6 +66,9 @@
     step-cli
     iterm2
     utm
+    airbuddy
+    bartender
+    coconutbattery
     raycast
     iina
     discord
