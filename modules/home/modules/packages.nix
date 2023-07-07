@@ -69,6 +69,7 @@
     airbuddy
     bartender
     coconutbattery
+    aldente
     raycast
     iina
     discord
