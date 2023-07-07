@@ -4,9 +4,6 @@ set -eo pipefail
 
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" && PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
 
-# Disable prompt
-touch "${HOME}/.hushlogin"
-
 function clone() {
 	url=$1
 	dst=$2
@@ -21,43 +18,52 @@ function clone() {
 	popd >/dev/null
 }
 
+CONFIG_ROOT="${HOME}/.config/dotfiles"
+
+# Disable prompt
+touch "${HOME}/.hushlogin"
+
 # Setup
-mkdir -p "${HOME}/.config"
-clone git@github.com:stepbrobd/dotfiles.git "${HOME}/.config/dotfiles/"
+mkdir -p "${CONFIG_ROOT}"
+clone git@github.com:stepbrobd/dotfiles.git "${CONFIG_ROOT}"
+
+# Nix
+ln -fsv "${CONFIG_ROOT}/nix" "${HOME}/.config"
+ln -fsv "${CONFIG_ROOT}/nixpkgs" "${HOME}/.config"
 
 # Z-Shell
-clone https://github.com/romkatv/powerlevel10k.git "${HOME}/.config/dotfiles/zsh/powerlevel10k/"
-clone https://github.com/zsh-users/zsh-autosuggestions.git "${HOME}/.config/dotfiles/zsh/zsh-autosuggestions/"
-clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${HOME}/.config/dotfiles/zsh/zsh-syntax-highlighting/"
-clone https://github.com/chisui/zsh-nix-shell.git "${HOME}/.config/dotfiles/zsh/zsh-nix-shell/"
-ln -fsv "${HOME}/.config/dotfiles/zsh/zshrc" "${HOME}/.zshrc"
-ln -fsv "${HOME}/.config/dotfiles/zsh/p10k" "${HOME}/.p10k.zsh"
+clone https://github.com/romkatv/powerlevel10k.git "${CONFIG_ROOT}/zsh/powerlevel10k/"
+clone https://github.com/zsh-users/zsh-autosuggestions.git "${CONFIG_ROOT}/zsh/zsh-autosuggestions/"
+clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${CONFIG_ROOT}/zsh/zsh-syntax-highlighting/"
+clone https://github.com/chisui/zsh-nix-shell.git "${CONFIG_ROOT}/zsh/zsh-nix-shell/"
+ln -fsv "${CONFIG_ROOT}/zsh/zshrc" "${HOME}/.zshrc"
+ln -fsv "${CONFIG_ROOT}/zsh/p10k" "${HOME}/.p10k.zsh"
 
 # Git
 if [[ $(command -v smimesign) > /dev/null ]]; then
-	ln -fsv "${HOME}/.config/dotfiles/git/smime.gitconfig" "${HOME}/.gitconfig"
+	ln -fsv "${CONFIG_ROOT}/git/smime.gitconfig" "${HOME}/.gitconfig"
 else
-	ln -fsv "${HOME}/.config/dotfiles/git/gpg.gitconfig" "${HOME}/.gitconfig"
+	ln -fsv "${CONFIG_ROOT}/git/gpg.gitconfig" "${HOME}/.gitconfig"
 fi
 
 # GPG
 mkdir -p "${HOME}/.gnupg"
-ln -fsv "${HOME}/.config/dotfiles/gpg/gpg.conf" "${HOME}/.gnupg/gpg.conf"
-ln -fsv "${HOME}/.config/dotfiles/gpg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
+ln -fsv "${CONFIG_ROOT}/gpg/gpg.conf" "${HOME}/.gnupg/gpg.conf"
+ln -fsv "${CONFIG_ROOT}/gpg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
 chown -R "$(whoami)" "${HOME}/.gnupg/"
 chmod 600 "${HOME}/.gnupg/gpg.conf"
 chmod 600 "${HOME}/.gnupg/gpg-agent.conf"
 chmod 700 "${HOME}/.gnupg"
 
 # Neovim
-ln -fsv "${HOME}/.config/dotfiles/nvim" "${HOME}/.config"
+ln -fsv "${CONFIG_ROOT}/nvim" "${HOME}/.config"
 
 # Tmux
 clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-ln -fsv "${HOME}/.config/dotfiles/tmux/tmux.conf" "${HOME}/.tmux.conf"
-ln -fsv "${HOME}/.tmux/plugins/" "${HOME}/.config/dotfiles/tmux/plugins"
+ln -fsv "${CONFIG_ROOT}/tmux/tmux.conf" "${HOME}/.tmux.conf"
+ln -fsv "${HOME}/.tmux/plugins/" "${CONFIG_ROOT}/tmux/plugins"
 
 # Discord
-ln -fsv "${HOME}/.config/dotfiles/discord" "${HOME}/.config"
+ln -fsv "${CONFIG_ROOT}/discord" "${HOME}/.config"
 
 source "${HOME}/.zshrc"

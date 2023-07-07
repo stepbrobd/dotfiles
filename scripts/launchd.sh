@@ -14,10 +14,6 @@ if [[ ! -d "${HOME}/Library/LaunchAgents" ]]; then
 fi
 
 for agent in "${HOME}/.config/dotfiles/launchd/"*.plist; do
-    if [[ ! -d "${HOME}/Library/LaunchAgents" ]]; then
-        mkdir -p "${HOME}/Library/LaunchAgents"
-    fi
-
     if [[ -f "${HOME}/Library/LaunchAgents/$(basename "${agent}")" ]]; then
         launchctl unload -w "${HOME}/Library/LaunchAgents/$(basename "${agent}")" >/dev/null 2>&1
         rm -f "${HOME}/Library/LaunchAgents/$(basename "${agent}")"
