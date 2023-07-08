@@ -40,6 +40,7 @@
     atuin
     gnupg
     hyperfine
+    rmlint
     neovim
     lazygit
     fzf
