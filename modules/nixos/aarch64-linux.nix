@@ -5,6 +5,7 @@ in
 inputs.nixpkgs.lib.nixosSystem {
   modules = [
     nixosModule
+    inputs.agenix.nixosModules.default
   ];
   system = "aarch64-linux";
 }
