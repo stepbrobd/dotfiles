@@ -29,6 +29,7 @@ in
 inputs.darwin.lib.darwinSystem {
   modules = [
     darwinModule
+    inputs.agenix.darwinModules.default
   ];
   system = "x86_64-darwin";
 }
