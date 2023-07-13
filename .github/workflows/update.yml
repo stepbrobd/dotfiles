@@ -6,18 +6,32 @@ on:
   workflow_dispatch:
 
 jobs:
+  Webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.5.3
+        name: "Checkout"
+        with:
+          fetch-depth: 0
+      - name: "Webhook"
+        run: |
+          ./scripts/webhook.sh
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: ${{ secrets.WEBHOOK }}
+
   Update:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.5.3
-      name: "Checkout"
-      with:
-        fetch-depth: 0
-    - uses: cachix/install-nix-action@v22
-    - name : "Update"
-      run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        nix flake update
-        git commit -am "flake.lock: update"
-        git push
+      - uses: actions/checkout@v3.5.3
+        name: "Checkout"
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v22
+      - name: "Update"
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          nix flake update
+          git commit -am "flake.lock: update"
+          git push
