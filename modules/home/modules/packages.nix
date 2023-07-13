@@ -36,6 +36,8 @@
     wget
     ripgrep
     git
+    git-lfs
+    git-filter-repo
     gh
     fq
     jq
