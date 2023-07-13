@@ -2,8 +2,8 @@
 
 set -eo pipefail
 
-GITHUB_TOKEN=$GH_TOKEN
-WEBHOOK=$URL
+TOKEN=$TOKEN
+WEBHOOK=$WEBHOOK
 
 repos=$(gh repo list stepbrobd --limit 1000 --json nameWithOwner)
 
@@ -27,7 +27,7 @@ for repo in $(echo $repos | jq -r '.[] | .nameWithOwner'); do
       -X POST \
       -H 'Accept: application/vnd.github+json' \
       -H 'X-GitHub-Api-Version: 2022-11-28' \
-      -H "Authorization: Bearer $GITHUB_TOKEN" \
+      -H "Authorization: Bearer $TOKEN" \
       https://api.github.com/repos/$repo/hooks \
       -d "{\"name\":\"web\",\"active\":true,\"events\":[\"*\"],\"config\":{\"url\":\"$WEBHOOK\",\"content_type\":\"json\",\"insecure_ssl\":\"0\"}}"
   fi
