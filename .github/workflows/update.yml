@@ -15,8 +15,9 @@ jobs:
           fetch-depth: 0
       - name: "Webhook"
         run: |
-          ./scripts/webhook.sh
+          bash ./scripts/webhook.sh
         env:
+          GH_TOKEN: ${{ github.token }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: ${{ secrets.WEBHOOK }}
 
