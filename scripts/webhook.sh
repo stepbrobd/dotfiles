@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-GITHUB_TOKEN=$TOKEN
+GITHUB_TOKEN=$GH_TOKEN
 WEBHOOK=$URL
 
 repos=$(gh repo list stepbrobd --limit 1000 --json nameWithOwner)
