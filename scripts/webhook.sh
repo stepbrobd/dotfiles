@@ -23,13 +23,13 @@ for repo in $(echo $repos | jq -r '.[] | .nameWithOwner'); do
   done
 
   if [[ $present == false ]]; then
-    curl -L \
+    curl -s -L \
       -X POST \
       -H 'Accept: application/vnd.github+json' \
       -H 'X-GitHub-Api-Version: 2022-11-28' \
       -H "Authorization: Bearer $TOKEN" \
       https://api.github.com/repos/$repo/hooks \
-      -d "{\"name\":\"web\",\"active\":true,\"events\":[\"*\"],\"config\":{\"url\":\"$WEBHOOK\",\"content_type\":\"json\",\"insecure_ssl\":\"0\"}}"
+      -d "{\"name\":\"web\",\"active\":true,\"events\":[\"*\"],\"config\":{\"url\":\"$WEBHOOK\",\"content_type\":\"json\",\"insecure_ssl\":\"0\"}}" > /dev/null
   fi
 
   # DEBUG: /repos/$repo/hooks --jq '.[] | {url: .config.url, events: .events.[], created_at: .created_at, status: .last_response.status}'
