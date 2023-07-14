@@ -38,6 +38,7 @@
     git
     git-lfs
     git-filter-repo
+    gitleaks
     gh
     fq
     jq
