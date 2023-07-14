@@ -17,7 +17,7 @@ jobs:
         run: |
           bash ./scripts/webhook.sh
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.TOKEN }}
           TOKEN: ${{ secrets.TOKEN }}
           WEBHOOK: ${{ secrets.WEBHOOK }}
 
