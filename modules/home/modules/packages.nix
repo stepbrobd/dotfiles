@@ -25,7 +25,6 @@
     deno
     nodejs
     pnpm
-    turbo
     vercel
     github-copilot-cli
     mods
@@ -46,7 +45,6 @@
     atuin
     gnupg
     hyperfine
-    rmlint
     neovim
     lazygit
     fzf
