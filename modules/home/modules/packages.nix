@@ -25,6 +25,7 @@
     deno
     nodejs
     pnpm
+    turbo
     vercel
     github-copilot-cli
     mods
