@@ -21,6 +21,7 @@ setopt histignorespace
 setopt histreduceblanks
 
 # Aliases
+alias repos="${HOME}/.config/dotfiles/scripts/repos.py"
 alias dotfiles="${HOME}/.config/dotfiles/scripts/dotfiles.sh"
 alias rebuild="${HOME}/.config/dotfiles/scripts/rebuild.sh"
 alias vi="nvim"

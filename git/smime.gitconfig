@@ -5,6 +5,7 @@ defaultBranch = master
 autocrlf = input
 [pull]
 rebase = false
+autoSetupRemote = true
 [push]
 autoSetupRemote = true
 [submodule]
