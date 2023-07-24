@@ -27,6 +27,9 @@ touch "${HOME}/.hushlogin"
 mkdir -p "${CONFIG_ROOT}"
 clone git@github.com:stepbrobd/dotfiles.git "${CONFIG_ROOT}"
 
+# Repos
+ln -fsv "${CONFIG_ROOT}/repos" "${HOME}/.config"
+
 # Nix
 ln -fsv "${CONFIG_ROOT}/nix" "${HOME}/.config"
 ln -fsv "${CONFIG_ROOT}/nixpkgs" "${HOME}/.config"

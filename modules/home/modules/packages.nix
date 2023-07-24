@@ -20,6 +20,7 @@
     python311
     python311Packages.pip
     python311Packages.virtualenv
+    ruff
     typst
     texlive.combined.scheme-full
     deno

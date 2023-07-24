@@ -1,0 +1,52 @@
+# General
+[general]
+home = "~/Workspace"
+
+# GitHub
+[platform.github]
+origin = true
+public = "https://github.com/stepbrobd"
+private = "git@github.com:stepbrobd"
+
+# SourceHut
+[platform.sourcehut]
+origin = false
+public = "https://git.sr.ht/~stepbrobd"
+private = "git@git.sr.ht:~stepbrobd"
+
+# Dotfiles
+[repo."dotfiles"]
+
+# Nix
+[repo."nix"]
+[repo."nixpkgs"]
+[repo."nur"]
+[repo."osu-overlay"]
+[repo."raycast-overlay"]
+[repo."vscode-overlay"]
+
+# Personal
+[repo."betaenrollmentdata.plist"]
+[repo."cv"]
+[repo."srd"]
+[repo."stepbrobd"]
+[repo."tailscale-acls"]
+
+# Sites
+[repo."git.stepbrobd.com"]
+[repo."sentik.xyz"]
+[repo."stepbrobd.com"]
+[repo."viral.vision"]
+[repo."xdg.sh"]
+[repo."ysun.co"]
+
+# Forks
+[repo."crunchycli"]
+[repo."hopper"]
+[repo."metaprocessor"]
+[repo."soft-serve"]
+[repo."tailscale"]
+[repo."tailscale-on-fly.io"]
+[repo."tailscale-on-openwrt"]
+[repo."turbo"]
+[repo."tmux-power"]

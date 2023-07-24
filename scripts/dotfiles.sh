@@ -3,7 +3,7 @@
 set -eo pipefail
 
 if [[ $1 == "help" ]] || [[ $# != 1 ]]; then
-    echo 'Usage: dotfiles [reload|update]'
+    echo 'Usage: dotfiles [help|reload|update]'
 fi
 
 if [[ $1 == "reload" ]]; then
