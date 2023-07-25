@@ -69,8 +69,6 @@ def init(
 
     def init_once(name: str) -> None:
         directory = pathlib.Path(config["general"]["home"]).expanduser()/name
-        if pathlib.Path(directory/".git").exists():
-            raise SystemExit(f"{directory} is already a git repository")
         print(f"Initializing {directory}")
         if not directory.exists():
             directory.mkdir(parents=True)
