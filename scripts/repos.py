@@ -48,6 +48,7 @@ def check(func: Callable[..., None]) -> Callable[..., None]:
 
     return wrapper
 
+
 def init(
         config: dict,
         name: str = None,
@@ -153,6 +154,7 @@ def pull(
 
     with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
        executor.map(pull_once, task)
+
 
 @check
 def push(
