@@ -2,6 +2,12 @@
 [general]
 home = "~/Workspace"
 
+# StepBroBD
+[platform.stepbrobd]
+origin = false
+public = "https://git.stepbrobd.com"
+private = "git@git.stepbrobd.com:stepbrobd"
+
 # GitHub
 [platform.github]
 origin = true
