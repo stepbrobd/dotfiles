@@ -109,7 +109,7 @@ def init(
     else:
         task = [ pathlib.Path.cwd().name ]
 
-    with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
          executor.map(init_once, task)
 
 
@@ -150,7 +150,7 @@ def pull(
     else:
         task = [ pathlib.Path.cwd() ]
 
-    with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
        executor.map(pull_once, task)
 
 
@@ -191,7 +191,7 @@ def push(
     else:
         task = [ pathlib.Path.cwd() ]
 
-    with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
        executor.map(push_once, task)
 
 
