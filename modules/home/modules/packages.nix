@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }: {
-  config.home.packages = with pkgs.nodePackages_latest;  with pkgs; [
+  config.home.packages = with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-
     age
     agenix
     cacert
@@ -23,12 +22,11 @@
     ruff
     typst
     texlive.combined.scheme-full
+    turbo
     deno
     nodejs
-    pnpm
-    turbo
-    vercel
-    github-copilot-cli
+    nodePackages_latest.pnpm
+    nodePackages_latest.vercel
     mods
     tmux
     bat
@@ -42,6 +40,7 @@
     git-filter-repo
     gitleaks
     gh
+    github-copilot-cli
     fq
     jq
     atuin
