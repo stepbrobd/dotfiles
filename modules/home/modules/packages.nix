@@ -13,6 +13,9 @@
     nix-direnv
     home-manager
     coreutils
+    ghc
+    haskellPackages.stack
+    haskellPackages.cabal-install
     llvm
     rustup
     go
