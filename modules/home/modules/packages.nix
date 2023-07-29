@@ -16,7 +16,6 @@
     ghc
     haskellPackages.stack
     haskellPackages.cabal-install
-    haskellPackages.hlint
     llvm
     rustup
     go
