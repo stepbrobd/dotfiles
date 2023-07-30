@@ -14,8 +14,8 @@
     home-manager
     coreutils
     ghc
-    haskellPackages.stack
-    haskellPackages.cabal-install
+    ghcid
+    cabal-install
     llvm
     rustup
     go
