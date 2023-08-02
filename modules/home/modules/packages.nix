@@ -44,6 +44,7 @@
     gitleaks
     gh
     github-copilot-cli
+    act
     fq
     jq
     atuin
