@@ -49,6 +49,7 @@ private = "git@git.sr.ht:~stepbrobd"
 
 # Forks
 [repo."crunchycli"]
+[repo."go"]
 [repo."hopper"]
 [repo."metaprocessor"]
 [repo."soft-serve"]
