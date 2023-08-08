@@ -196,7 +196,7 @@
         "home-manager": "home-manager",
         "master": "master",
         "nixpkgs": [
-          "master"
+          "unstable"
         ],
         "osu-overlay": "osu-overlay",
         "raycast-overlay": "raycast-overlay",
