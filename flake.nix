@@ -4,7 +4,7 @@
   inputs = {
     master.url = "flake:nixpkgs/master";
     unstable.url = "flake:nixpkgs/nixpkgs-unstable";
-    nixpkgs.follows = "master";
+    nixpkgs.follows = "unstable";
 
     utils.url = "flake:flake-utils";
 
