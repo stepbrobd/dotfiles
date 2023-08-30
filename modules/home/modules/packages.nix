@@ -81,6 +81,7 @@
     coconutbattery
     aldente
     raycast
+    obsidian
     iina
     discord
     osu-lazer-bin
