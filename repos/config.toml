@@ -42,7 +42,6 @@ private = "git@git.sr.ht:~stepbrobd"
 [repo."tailscale-acls"]
 
 # Sites
-[repo."git.stepbrobd.com"]
 [repo."sentik.xyz"]
 [repo."stepbrobd.com"]
 [repo."viral.vision"]
