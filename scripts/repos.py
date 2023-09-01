@@ -173,6 +173,12 @@ def init(
             cwd=tgt,
             env=ctx[tgt].env,
         )
+        # git submodule update --recursive --init
+        subprocess.run(
+            ["git", "submodule", "update", "--recursive", "--init"],
+            cwd=tgt,
+            env=ctx[tgt].env,
+        )
 
         # 4.
         # git reset --hard origin/{branch}
@@ -212,6 +218,12 @@ def pull(
         # git pull origin {branch}
         subprocess.run(
             ["git", "pull", "origin", ctx[tgt].branch],
+            cwd=tgt,
+            env=ctx[tgt].env,
+        )
+        # git submodule update --recursive --remote
+        subprocess.run(
+            ["git", "submodule", "update", "--recursive", "--remote"],
             cwd=tgt,
             env=ctx[tgt].env,
         )
