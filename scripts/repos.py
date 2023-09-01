@@ -1,198 +1,246 @@
 #!/usr/bin/env python3
 
 import argparse
-from concurrent.futures import ThreadPoolExecutor
 import os
 import pathlib
 import subprocess
 import sys
 import tomllib
-from typing import Callable
+
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import dataclass
 
 
-def get_config() -> dict:
+@dataclass
+class GeneralConfiguration():
+    home: pathlib.Path # required: managed repo root
+    concurrency: int # optional: max number of concurrent tasks
+    env: dict[str, str] # optional: environment variables to pass to subprocesses
+
+
+@dataclass
+class PlatformConfiguration():
+    name: str # required: platform name
+    origin: bool # required: pull target
+    domain: str # required: platform domain
+    user: str # optional: platform username
+
+
+@dataclass
+class RepoConfiguration():
+    name: str # required: repository name
+    description: str # optional: repository description
+    branch: str # optional: repository branch
+
+
+@dataclass
+class Configuration():
+    general: GeneralConfiguration
+    platform: list[PlatformConfiguration]
+    repo: list[RepoConfiguration]
+
+
+def mkcfg() -> Configuration:
     with open(
         pathlib.Path(os.environ["XDG_CONFIG_HOME"])
         if "XDG_CONFIG_HOME" in os.environ
         else pathlib.Path.home()/".config"
         /"repos"/"config.toml", "rb"
-        ) as f:
-        return tomllib.load(f)
+    ) as f:
+        c = tomllib.load(f)
+
+    return Configuration(
+        general=GeneralConfiguration(
+            home=pathlib.Path(
+                c.get("general", None).get("home", None)
+            ).expanduser(),
+            concurrency=c.get("general", 1).get("concurrency", 1),
+            env=c.get("general", None).get("env", None),
+        ),
+        platform=[
+            PlatformConfiguration(
+                name=k,
+                origin=v.get("origin", None),
+                domain=v.get("domain", None),
+                user=v.get("user", None),
+            )
+            for k, v in c["platform"].items()
+        ],
+        repo=[
+            RepoConfiguration(
+                name=k,
+                description=v.get("description", None),
+                branch=v.get("branch", "master"),
+            )
+            for k, v in c["repo"].items()
+        ],
+    )
 
 
-def check(func: Callable[..., None]) -> Callable[..., None]:
-    def wrapper(*args, **kwargs):
-        cwd = pathlib.Path.cwd()
-        root = pathlib.Path(args[0]["general"]["home"]).expanduser()
-        repos = args[0]["repo"].keys()
+@dataclass
+class Context():
+    env: dict[str, str] # environment variables to pass to subprocesses
+    branch: str # default branch
+    remote: dict[str, list[tuple[str, str]]] # {fetch/push: [(name, uri)]
 
-        if kwargs["all"]:
-            pass
-        else:
-            if not pathlib.Path(cwd/".git").exists():
-                raise SystemExit(
-                    "Current working directory is not a git repository"
-                )
 
-            if not cwd.as_posix().startswith(root.as_posix()):
-                raise SystemExit(
-                    "Current working directory is not in managed repo root"
-                )
-
-            if cwd.as_posix().replace(root.as_posix(), "")[1:] not in repos:
-                raise SystemExit(
-                    "Current working directory is not in managed repo list"
-                )
-
-        return func(*args, **kwargs)
-
-    return wrapper
-
+def mkctx(cfg: Configuration) -> dict[pathlib.Path, Context]:
+    return {
+        cfg.general.home/r.name: Context(
+            env=cfg.general.env,
+            branch=r.branch,
+            remote={
+                "fetch": [
+                    (
+                        p.name,
+                        f"git@{p.domain}:{p.user + '/' + r.name if p.user else r.name}"
+                    )
+                    for p in cfg.platform if p.origin
+                ],
+                "push": [
+                    (
+                        p.name,
+                        f"git@{p.domain}:{p.user + '/' + r.name if p.user else r.name}"
+                    )
+                    for p in cfg.platform
+                ],
+            },
+        )
+        for r in cfg.repo
+    }
+    
 
 def init(
-        config: dict,
-        name: str = None,
-        all: bool = False,
-        *args,
-        **kwargs, 
+        tgt: list[pathlib.Path],
+        ctx: dict[pathlib.Path, Context],
+        cfg: Configuration,
 ) -> None:
-    origin = []
-    remotes = {}
-    for key, value in config["platform"].items():
-        remotes[key] = value["private"]
-        if value["origin"]:
-            origin.append(key)
+    """
+    1. check .git, if not found, git init, if found, remove all remotes
+    2. add remotes, if origin is set, change the platform name to origin
+    3. fetch remote
+    4. hard reset and checkout
+    """
+    def once(tgt: pathlib.Path) -> None:
+        # 1.
+        if not (tgt/".git").exists():
+            # mkdir -p {tgt}
+            tgt.mkdir(parents=True, exist_ok=True)
 
-    if len(origin) != 1:
-        raise SystemExit("There must be exactly one origin platform")
-    origin = origin[0]
+            # git init --initial-branch={branch}
+            subprocess.run(
+                ["git", "init", f"--initial-branch={ctx[tgt].branch}"],
+                cwd=tgt,
+                env=ctx[tgt].env,
+            )
+        else:
+            # git remote | xargs -L1 -n1 git remote remove
+            git_remote = subprocess.Popen(
+                ["git", "remote"],
+                cwd=tgt,
+                env=ctx[tgt].env,
+                stdout=subprocess.PIPE,
+            )
+            subprocess.run(
+                ["xargs", "-L1", "-n1", "git", "remote", "remove"],
+                cwd=tgt,
+                env=ctx[tgt].env,
+                stdin=git_remote.stdout,
+            )
 
-    def init_once(name: str) -> None:
-        directory = pathlib.Path(config["general"]["home"]).expanduser()/name
-        print(f"Initializing {directory}")
-        if not directory.exists():
-            directory.mkdir(parents=True)
-        subprocess.run(
-            ["git", "init"],
-            cwd=directory
-        )
-        subprocess.run(
-            ["git", "remote", "add", "origin", f"{remotes[origin]}/{name}"],
-            cwd=directory
-        )
+        # 2.
+        for name, uri in ctx[tgt].remote["fetch"]:
+            # git remote add origin {uri}
+            subprocess.run(
+                ["git", "remote", "add", "origin", uri],
+                cwd=tgt,
+                env=ctx[tgt].env,
+            )
+        for name, uri in ctx[tgt].remote["push"]:
+            # git remote add {name} {uri}
+            subprocess.run(
+                ["git", "remote", "add", name, uri],
+                cwd=tgt,
+                env=ctx[tgt].env,
+            )
+
+        # 3.
+        # git fetch --all
         subprocess.run(
             ["git", "fetch", "--all"],
-            cwd=directory
+            cwd=tgt,
+            env=ctx[tgt].env,
         )
-        branch = subprocess.check_output(
-            ["git", "ls-remote", "--symref", "origin", "HEAD"],
-            cwd=directory
-        ).decode("utf-8").strip().split("\t")[0].split("/")[-1]
+
+        # 4.
+        # git reset --hard origin/{branch}
         subprocess.run(
-            ["git", "reset", "--hard", f"origin/{branch}"],
-            cwd=directory
+            ["git", "reset", "--hard", f"origin/{ctx[tgt].branch}"],
+            cwd=tgt,
+            env=ctx[tgt].env,
         )
+        # git checkout {branch}
         subprocess.run(
-            ["git", "branch", "-u", f"origin/{branch}", branch],
-            cwd=directory
+            ["git", "checkout", ctx[tgt].branch],
+            cwd=tgt,
+            env=ctx[tgt].env,
         )
-        for key, value in remotes.items():
-            subprocess.run(
-                ["git", "remote", "add", key, f"{value}/{name}"],
-                cwd=directory
-            )
-
-    if name:
-        task = [name]
-    elif all:
-        task = config["repo"].keys()
-    else:
-        task = [ pathlib.Path.cwd().name ]
-
-    with ThreadPoolExecutor(max_workers=1) as executor:
-         executor.map(init_once, task)
+    
+    with ThreadPoolExecutor(max_workers=cfg.general.concurrency) as executor:
+        executor.map(once, tgt)
 
 
-@check
 def pull(
-        config: dict,
-        all: bool = False,
-        force: bool = False,
-        *args,
-        **kwargs,
+        tgt: list[pathlib.Path],
+        ctx: dict[pathlib.Path, Context],
+        cfg: Configuration,
 ) -> None:
-    def pull_once(directory: pathlib.Path) -> None:
-        print(f"Pulling {directory}")
-        branch = subprocess.check_output(
-            ["git", "symbolic-ref", "--short", "HEAD"],
-            cwd=directory
-        ).decode("utf-8").strip()
-        if force:
-            subprocess.run(
-                ["git", "fetch", "--all"],
-                cwd=directory
-            )
-            subprocess.run(
-                ["git", "reset", "--hard", f"origin/{branch}"],
-                cwd=directory
-            )
-        else:
-            subprocess.run(
-                ["git", "pull", "origin", branch],
-                cwd=directory
-            )
+    """
+    1. check .git, if not found, print error, if found, continue
+    2. pull origin
+    """
+    def once(tgt: pathlib.Path) -> None:
+        # 1.
+        if not (tgt/".git").exists():
+            raise SystemExit(f"fatal: {tgt} was not found")
+        
+        # 2.
+        # git pull origin {branch}
+        subprocess.run(
+            ["git", "pull", "origin", ctx[tgt].branch],
+            cwd=tgt,
+            env=ctx[tgt].env,
+        )
 
-    if all:
-        task = [ 
-            pathlib.Path(config["general"]["home"]).expanduser()/name
-            for name in config["repo"].keys() 
-        ]
-    else:
-        task = [ pathlib.Path.cwd() ]
-
-    with ThreadPoolExecutor(max_workers=1) as executor:
-       executor.map(pull_once, task)
+    with ThreadPoolExecutor(max_workers=cfg.general.concurrency) as executor:
+        executor.map(once, tgt)
 
 
-@check
 def push(
-        config: dict,
-        all: bool = False,
-        force: bool = False,
-        *args,
-        **kwargs,
+        tgt: list[pathlib.Path],
+        ctx: dict[pathlib.Path, Context],
+        cfg: Configuration,
 ) -> None:
-    remotes = config["platform"].keys()
+    """
+    1. check .git, if not found, print error, if found, continue
+    2. push to all push remotes
+    """
+    def once(tgt: pathlib.Path) -> None:
+        # 1.
+        if not (tgt/".git").exists():
+            raise SystemExit(f"fatal: {tgt} was not found")
+        
+        # 2.
+        for name, uri in ctx[tgt].remote["push"]:
+            # git push {name} {branch}
+            subprocess.run(
+                ["git", "push", name, ctx[tgt].branch],
+                cwd=tgt,
+                env=ctx[tgt].env,
+            )
 
-    def push_once(directory: pathlib.Path) -> None:
-        print(f"Pushing {directory}")
-        branch = subprocess.check_output(
-            ["git", "symbolic-ref", "--short", "HEAD"],
-            cwd=directory
-        ).decode("utf-8").strip()
-        if force:
-            for remote in remotes:
-                subprocess.run(
-                    ["git", "push", "--force", remote, branch],
-                    cwd=directory
-                )
-        else:
-            for remote in remotes:
-                subprocess.run(
-                    ["git", "push", remote, branch],
-                    cwd=directory
-                )
-
-    if all:
-        task = [ 
-            pathlib.Path(config["general"]["home"]).expanduser()/name
-            for name in config["repo"].keys() 
-        ]
-    else:
-        task = [ pathlib.Path.cwd() ]
-
-    with ThreadPoolExecutor(max_workers=1) as executor:
-       executor.map(push_once, task)
+    with ThreadPoolExecutor(max_workers=cfg.general.concurrency) as executor:
+        executor.map(once, tgt)
 
 
 def main() -> None:
@@ -201,62 +249,61 @@ def main() -> None:
         description="StepBroBD repository manager",
         add_help=False,
     )
-    parser.add_argument("-h", "--help",
-                        action="help", 
-                        help="Show this help message and exit"
-                    )
-    parser.add_argument("-v", "--version",
-                        action="version", 
-                        version="%(prog)s {}".format(
-                            subprocess.check_output(["git",
-                                 "-C", str(pathlib.Path.home()/".config"/"dotfiles"),
-                                 "rev-parse", "--short", "HEAD"]
-                        )
-        .decode("utf-8")
-        .strip()
-    ))
+    parser.add_argument(
+        "-h", "--help",
+        action="help", 
+        help="show this help message and exit",
+    )
+    parser.add_argument(
+        "-v", "--version",
+        action="version", 
+        version="%(prog)s {}".format(
+            subprocess.check_output(["git",
+                "-C", str(
+                    pathlib.Path.home()/".config"/"dotfiles"),
+                    "rev-parse", "--short", "HEAD"]
+            ).decode("utf-8").strip()),
+    )
 
     subparsers = parser.add_subparsers(dest="command")
+    commands = ["init", "pull", "push"]
+    locals().update({
+        f"subparser_{c}": subparsers.add_parser(c)
+        for c in commands
+    })
+    for c in commands:
+        p = locals()[f"subparser_{c}"]
+        g = p.add_mutually_exclusive_group()
+        g.add_argument(
+            "-n", "--name",
+            type=str,
+            help="specify repository to perform action on",
+        )
+        g.add_argument(
+            "-a", "--all",
+            action="store_true",
+            help="perform action on all repositories",
+        )
 
-    init_parser = subparsers.add_parser("init")
-    init_parser.add_argument("-n", "--name",
-                             type=str,
-                             help="Repository name"
-                             )
-    init_parser.add_argument("-a", "--all",
-                             action="store_true",
-                             help="Init all managed repositories"
-                             )
-
-    pull_parser = subparsers.add_parser("pull")
-    pull_parser.add_argument("-a", "--all",
-                             action="store_true",
-                             help="Pull all managed repositories"
-                             )
-    pull_parser.add_argument("-f", "--force",
-                             action="store_true",
-                             help="Force action without confirmation"
-                             )
-
-    push_parser = subparsers.add_parser("push")
-    push_parser.add_argument("-a", "--all",
-                             action="store_true",
-                             help="Push all managed repositories"
-                             )
-    push_parser.add_argument("-f", "--force",
-                             action="store_true",
-                             help="Force action without confirmation"
-                             )
-    
     args = parser.parse_args(args=None if sys.argv[1:] else ["--help"])
+    cwd = pathlib.Path.cwd()
+    cfg = mkcfg()
+    ctx = mkctx(cfg)
+    tgt = []
+    if args.name:
+        tgt = [cfg.general.home/args.name]
+    elif args.all:
+        tgt = [cfg.general.home/r.name for r in cfg.repo]
+    else:
+        for dir in ctx.keys():
+            if cwd.is_relative_to(dir):
+                tgt = [dir]
+                break
+    if not tgt:
+        raise SystemExit("fatal: not a managed repository")
 
-    match args.command:
-        case "init":
-            init(get_config(), **args.__dict__)
-        case "pull":
-            pull(get_config(), **args.__dict__)
-        case "push":
-            push(get_config(), **args.__dict__)
+    if callable(globals()[args.command]):
+        globals()[args.command](tgt, ctx, cfg)
 
 
 if __name__ == "__main__":
