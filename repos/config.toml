@@ -1,79 +1,168 @@
-# General
+##
+# GENERAL
+## General Settings
 [general]
 home = "~/Workspace"
 concurrency = 1
 
+## Environment Variables
 [general.env]
 "GIT_SSH_COMMAND" = "ssh -o TcpKeepAlive=no -o ServerAliveInterval=10"
 
-# GitHub
+
+##
+# PLATFORM
+## GitHub
 [platform.github]
 origin = true
 domain = "github.com"
 user = "stepbrobd"
 
-# SourceHut
+## SourceHut
 [platform.sourcehut]
 origin = false
 domain = "git.sr.ht"
 user = "~stepbrobd"
 
-# StepBroBD
+## StepBroBD
 [platform.stepbrobd]
 origin = false
 domain = "git.stepbrobd.com"
 
-# Dotfiles
+
+##
+# REPOSITORY
+## Dotfiles
 [repo."dotfiles"]
+description = "yet another dotfiles repo with nix"
 
-# Nix
+## Nix
 [repo."nix"]
+description = "forked from nixos/nix"
+
 [repo."nixpkgs"]
+description = "forked from nixos/nixpkgs"
+
 [repo."nur"]
+description = "github:stepbrobd/nur"
+
 [repo."osu-overlay"]
+description = "keeping osu! up-to-date"
+
 [repo."raycast-overlay"]
+description = "keeping raycast up-to-date"
+
 [repo."vscode-overlay"]
+description = "keeping vscode insiders up-to-date"
 
-# Personal
+## Personal
 [repo.".soft-serve"]
+description = "ssh://git.stepbrobd.com"
+
 [repo."betaenrollmentdata.plist"]
+description = "what is `/users/shared/.betaenrollmentdata.plist`?"
+
 [repo."cv"]
+description = "cv in typst with auto build and release"
+
 [repo."metaprocessor"]
+description = "metaprocessor, all-in-one data pipeline for mbientlab metawear series sensors!"
+
 [repo."repos"]
+description = "declarative repository management"
+
 [repo."srd"]
+description = "srd: (go) static race detector"
+
 [repo."stepbrobd"]
+description = "just another profile readme"
+
 [repo."tailscale-acls"]
+description = "tailscale access controls"
 
-# Sites
+## Sites
 [repo."sentik.xyz"]
+description = "https://sentik.xyz"
+
 [repo."stepbrobd.com"]
+description = "https://stepbrobd.com"
+
 [repo."viral.vision"]
+description = "https://viral.vision"
+
 [repo."xdg.sh"]
+description = "https://xdg.sh"
+
 [repo."ysun.co"]
+description = "https://ysun.co"
 
-# Forks
+## Forks
 [repo."crunchycli"]
-[repo."go"]
-[repo."hopper"]
-[repo."soft-serve"]
-[repo."tailscale"]
-[repo."tailscale-on-fly.io"]
-[repo."tailscale-on-openwrt"]
-[repo."turbo"]
-[repo."tmux-power"]
+description = "forked from crunchy-labs/crunchy-cli"
 
-# University of Utah
+[repo."go"]
+description = "forked from golang/go"
+
+[repo."hopper"]
+description = "forked from cybergenik/hopper"
+
+[repo."soft-serve"]
+description = "forked from charmbracelet/soft-serve"
+
+[repo."tailscale"]
+description = "forked from tailscale/tailscale"
+
+[repo."tailscale-on-fly.io"]
+description = "run a vpn service with global exit nodes with fly.io and tailscale"
+
+[repo."tailscale-on-openwrt"]
+description = "brings tailscale to low powered openwrt devices"
+
+[repo."tmux-power"]
+description = "forked from wfxr/tmux-power"
+
+[repo."turbo"]
+description = "forked from vercel/turbo"
+
+## University of Utah
 [repo."uutah-cs-1410"]
+description = "cs 1410 spring 2020 @ university of utah"
+
 [repo."uutah-cs-2420"]
+description = "cs 2420 fall 2020 @ university of utah"
+
 [repo."uutah-cs-3011"]
+description = "cs 3011 spring 2023 @ university of utah"
+
 [repo."uutah-cs-3500"]
+description = "cs 3500 spring 2021 @ university of utah"
+
 [repo."uutah-cs-3505"]
+description = "cs 3505 fall 2021 @ university of utah"
+
 [repo."uutah-cs-4150"]
+description = "cs 4150 spring 2022 @ university of utah"
+
 [repo."uutah-cs-4400"]
+description = "cs 4400 fall 2021 @ university of utah"
+
 [repo."uutah-cs-4440"]
+description = "cs 4440 spring 2022 @ university of utah"
+
 [repo."uutah-cs-4480"]
+description = "cs 4480 spring 2022 @ university of utah"
+
 [repo."uutah-cs-4790"]
+description = "cs 4790 spring 2023 @ university of utah"
+
 [repo."uutah-cs-6110"]
+description = "cs 6110 spring 2023 @ university of utah"
+
 [repo."uutah-cs-6340"]
+description = "cs 6340 fall 2022 @ university of utah"
+
 [repo."uutah-cs-6450"]
+description = "cs 6450 fall 2022 @ university of utah"
+
 [repo."uutah-cs-6490"]
+description = "cs 6490 spring 2023 @ university of utah"
