@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env nix-shell
+#!nix-shell -i python3 -p python311
 
 import argparse
 import os
@@ -249,7 +250,7 @@ def push(
             raise SystemExit(f"fatal: {tgt} was not found")
         
         # 2.
-        for name, uri in ctx[tgt].remote["push"]:
+        for name, _ in ctx[tgt].remote["push"] + [("origin", None)]:
             # git push {name} {branch}
             subprocess.run(
                 ["git", "push", name, ctx[tgt].branch],
