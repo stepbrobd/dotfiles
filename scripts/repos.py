@@ -122,6 +122,8 @@ def init(
     4. hard reset and checkout
     """
     def once(tgt: pathlib.Path) -> None:
+        print(f"repos -> init -> {tgt.as_posix()}:")
+
         # 1.
         if not (tgt/".git").exists():
             # mkdir -p {tgt}
@@ -200,6 +202,8 @@ def pull(
     2. pull origin
     """
     def once(tgt: pathlib.Path) -> None:
+        print(f"repos -> pull -> {tgt.as_posix()}:")
+
         # 1.
         if not (tgt/".git").exists():
             raise SystemExit(f"fatal: {tgt} was not found")
@@ -226,6 +230,8 @@ def push(
     2. push to all push remotes
     """
     def once(tgt: pathlib.Path) -> None:
+        print(f"repos -> push -> {tgt.as_posix()}:")
+
         # 1.
         if not (tgt/".git").exists():
             raise SystemExit(f"fatal: {tgt} was not found")
