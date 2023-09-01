@@ -1,0 +1,20 @@
+[submodule "powerlevel10k"]
+  path = "zsh/powerlevel10k"
+  url = "https://github.com/romkatv/powerlevel10k"
+
+[submodule "zsh-autosuggestions"]
+  path = "zsh/zsh-autosuggestions"
+  url = "https://github.com/zsh-users/zsh-autosuggestions"
+
+[submodule "zsh-nix-shell"]
+  path = "zsh/zsh-nix-shell"
+  url = "https://github.com/chisui/zsh-nix-shell"
+
+[submodule "zsh-syntax-highlighting"]
+  path = "zsh/zsh-syntax-highlighting"
+  url = "https://github.com/zsh-users/zsh-syntax-highlighting"
+
+[submodule "tpm"]
+  path = "tmux/plugins/tpm"
+  url = "https://github.com/tmux-plugins/tpm"
+

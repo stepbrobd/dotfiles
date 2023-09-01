@@ -25,7 +25,7 @@ touch "${HOME}/.hushlogin"
 
 # Setup
 mkdir -p "${CONFIG_ROOT}"
-clone git@github.com:stepbrobd/dotfiles.git "${CONFIG_ROOT}"
+clone git@github.com:stepbrobd/dotfiles "${CONFIG_ROOT}"
 
 # Repos
 ln -fsv "${CONFIG_ROOT}/repos" "${HOME}/.config"
@@ -35,10 +35,10 @@ ln -fsv "${CONFIG_ROOT}/nix" "${HOME}/.config"
 ln -fsv "${CONFIG_ROOT}/nixpkgs" "${HOME}/.config"
 
 # Z-Shell
-clone https://github.com/romkatv/powerlevel10k.git "${CONFIG_ROOT}/zsh/powerlevel10k/"
-clone https://github.com/zsh-users/zsh-autosuggestions.git "${CONFIG_ROOT}/zsh/zsh-autosuggestions/"
-clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${CONFIG_ROOT}/zsh/zsh-syntax-highlighting/"
-clone https://github.com/chisui/zsh-nix-shell.git "${CONFIG_ROOT}/zsh/zsh-nix-shell/"
+clone https://github.com/romkatv/powerlevel10k "${CONFIG_ROOT}/zsh/powerlevel10k/"
+clone https://github.com/zsh-users/zsh-autosuggestions "${CONFIG_ROOT}/zsh/zsh-autosuggestions/"
+clone https://github.com/zsh-users/zsh-syntax-highlighting "${CONFIG_ROOT}/zsh/zsh-syntax-highlighting/"
+clone https://github.com/chisui/zsh-nix-shell "${CONFIG_ROOT}/zsh/zsh-nix-shell/"
 ln -fsv "${CONFIG_ROOT}/zsh/zshrc" "${HOME}/.zshrc"
 ln -fsv "${CONFIG_ROOT}/zsh/p10k" "${HOME}/.p10k.zsh"
 
