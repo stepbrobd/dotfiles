@@ -122,7 +122,7 @@ def init(
     4. hard reset and checkout
     """
     def once(tgt: pathlib.Path) -> None:
-        print(f"repos -> init -> {tgt.as_posix()}:")
+        print(f"StepBroBD :: Repo :: Init :: {tgt.as_posix()}:")
 
         # 1.
         if not (tgt/".git").exists():
@@ -202,7 +202,7 @@ def pull(
     2. pull origin
     """
     def once(tgt: pathlib.Path) -> None:
-        print(f"repos -> pull -> {tgt.as_posix()}:")
+        print(f"StepBroBD :: Repo :: Pull :: {tgt.as_posix()}:")
 
         # 1.
         if not (tgt/".git").exists():
@@ -230,7 +230,7 @@ def push(
     2. push to all push remotes
     """
     def once(tgt: pathlib.Path) -> None:
-        print(f"repos -> push -> {tgt.as_posix()}:")
+        print(f"StepBroBD :: Repo :: Push :: {tgt.as_posix()}:")
 
         # 1.
         if not (tgt/".git").exists():
