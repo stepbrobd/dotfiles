@@ -1,24 +1,27 @@
 # General
 [general]
 home = "~/Workspace"
+concurrency = 1
 
-# StepBroBD
-[platform.stepbrobd]
-origin = false
-public = "https://git.stepbrobd.com"
-private = "git@git.stepbrobd.com"
+[general.env]
+"GIT_SSH_COMMAND" = "ssh -o TcpKeepAlive=no -o ServerAliveInterval=10"
 
 # GitHub
 [platform.github]
 origin = true
-public = "https://github.com/stepbrobd"
-private = "git@github.com:stepbrobd"
+domain = "github.com"
+user = "stepbrobd"
 
 # SourceHut
 [platform.sourcehut]
 origin = false
-public = "https://git.sr.ht/~stepbrobd"
-private = "git@git.sr.ht:~stepbrobd"
+domain = "git.sr.ht"
+user = "~stepbrobd"
+
+# StepBroBD
+[platform.stepbrobd]
+origin = false
+domain = "git.stepbrobd.com"
 
 # Dotfiles
 [repo."dotfiles"]
@@ -74,4 +77,3 @@ private = "git@git.sr.ht:~stepbrobd"
 [repo."uutah-cs-6340"]
 [repo."uutah-cs-6450"]
 [repo."uutah-cs-6490"]
-
