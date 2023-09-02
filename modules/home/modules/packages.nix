@@ -12,6 +12,7 @@
     direnv
     nix-direnv
     home-manager
+    fh
     coreutils
     ghc
     ghcid
