@@ -77,8 +77,19 @@ description = "srd: (go) static race detector"
 [repo."stepbrobd"]
 description = "just another profile readme"
 
+## Tailscale
+
+[repo."tailscale"]
+description = "forked from tailscale/tailscale"
+
 [repo."tailscale-acls"]
 description = "tailscale access controls"
+
+[repo."tailscale-on-fly.io"]
+description = "run a vpn service with global exit nodes with fly.io and tailscale"
+
+[repo."tailscale-on-openwrt"]
+description = "brings tailscale to low powered openwrt devices"
 
 ## Sites
 [repo."sentik.xyz"]
@@ -108,15 +119,6 @@ description = "forked from cybergenik/hopper"
 
 [repo."soft-serve"]
 description = "forked from charmbracelet/soft-serve"
-
-[repo."tailscale"]
-description = "forked from tailscale/tailscale"
-
-[repo."tailscale-on-fly.io"]
-description = "run a vpn service with global exit nodes with fly.io and tailscale"
-
-[repo."tailscale-on-openwrt"]
-description = "brings tailscale to low powered openwrt devices"
 
 [repo."tmux-power"]
 description = "forked from wfxr/tmux-power"
