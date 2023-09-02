@@ -31,6 +31,11 @@
       inputs.utils.follows = "utils";
     };
 
+    fh-overlay = {
+      url = "github:determinatesystems/fh";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     osu-overlay = {
       url = "github:stepbrobd/osu-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
