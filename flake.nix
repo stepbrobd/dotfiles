@@ -1,5 +1,5 @@
 {
-  description = "@StepBroBD: Yet another dotfiles repo with Nix";
+  description = "@stepbrobd: yet another dotfiles repo with nix";
 
   inputs = {
     # master.url = "flake:nixpkgs/master";
