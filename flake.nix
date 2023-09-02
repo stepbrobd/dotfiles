@@ -2,7 +2,7 @@
   description = "@StepBroBD: Yet another dotfiles repo with Nix";
 
   inputs = {
-    master.url = "flake:nixpkgs/master";
+    # master.url = "flake:nixpkgs/master";
     unstable.url = "flake:nixpkgs/nixpkgs-unstable";
     nixpkgs.follows = "unstable";
 
@@ -82,5 +82,20 @@
         aarch64-darwin = import ./modules/darwin/aarch64-darwin.nix context;
         x86_64-darwin = import ./modules/darwin/x86_64-darwin.nix context;
       };
-    };
+    } // eachSystem (system:
+    let
+      pkgs = import nixpkgs { inherit system; };
+      lib = pkgs.lib;
+      stdenv = if pkgs.stdenv.isLinux then pkgs.stdenv else pkgs.clangStdenv;
+    in
+    {
+      devShells.default = pkgs.mkShell {
+        packages = with pkgs; [
+          direnv
+          nix-direnv
+        ];
+      };
+
+      formatter = pkgs.nixpkgs-fmt;
+    });
 }
