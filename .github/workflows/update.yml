@@ -1,4 +1,4 @@
-name: Update
+name: "Update"
 
 on:
   schedule:
@@ -7,9 +7,9 @@ on:
 
 jobs:
   Webhook:
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v3.6.0
+      - uses: "actions/checkout@v3"
         name: "Checkout"
         with:
           fetch-depth: 0
@@ -22,16 +22,16 @@ jobs:
           WEBHOOK: ${{ secrets.WEBHOOK }}
 
   Update:
-    runs-on: ubuntu-latest
+    runs-on: "ubuntu-latest"
     steps:
-      - uses: actions/checkout@v3.6.0
+      - uses: "actions/checkout@v3"
         name: "Checkout"
         with:
           fetch-depth: 0
-      - name: Install Nix
-        uses: cachix/install-nix-action@v22
-      - name: Magic Cache
-        uses: determinatesystems/magic-nix-cache-action@v2
+      - name: "Install Nix"
+        uses: "cachix/install-nix-action@v22"
+      - name: "Magic Cache"
+        uses: "determinatesystems/magic-nix-cache-action@v2"
       - name: "Update"
         run: |
           git config --global user.name "GitHub Action"
