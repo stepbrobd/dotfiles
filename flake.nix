@@ -2,12 +2,9 @@
   description = "@stepbrobd: yet another dotfiles repo with nix";
 
   inputs = {
-    # master.url = "flake:nixpkgs/master";
-    unstable.url = "flake:nixpkgs/nixpkgs-unstable";
-    nixpkgs.follows = "unstable";
-
-    utils.url = "flake:flake-utils";
-    # schemas.url = "github:determinatesystems/flake-schemas";
+    nixpkgs.url = "flake:nixpkgs/master";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-schemas.url = "github:determinatesystems/flake-schemas";
 
     darwin = {
       url = "flake:nix-darwin";
@@ -26,40 +23,30 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    comma-overlay = {
-      url = "github:nix-community/comma";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "utils";
-    };
-
-    fh-overlay = {
-      url = "github:determinatesystems/fh";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    osu-overlay = {
+    osu-lazer-bin = {
       url = "github:stepbrobd/osu-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "utils";
+      inputs.utils.follows = "flake-utils";
     };
 
-    raycast-overlay = {
+    raycast = {
       url = "github:stepbrobd/raycast-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "utils";
+      inputs.utils.follows = "flake-utils";
     };
 
-    vscode-overlay = {
+    vscode = {
       url = "github:stepbrobd/vscode-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "utils";
+      inputs.utils.follows = "flake-utils";
     };
   };
 
   outputs =
     { self
     , nixpkgs
-    , utils
+    , flake-utils
+    , flake-schemas
     , ...
     } @ inputs:
     let
@@ -67,7 +54,7 @@
         inherit inputs;
       };
 
-      eachSystem = utils.lib.eachSystem [
+      eachSystem = flake-utils.lib.eachSystem [
         "aarch64-darwin"
         "x86_64-darwin"
         "aarch64-linux"

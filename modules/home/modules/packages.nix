@@ -8,11 +8,9 @@
     nix-index
     nixpkgs-fmt
     cachix
-    comma
     direnv
     nix-direnv
     home-manager
-    fh
     coreutils
     ghc
     ghcid
