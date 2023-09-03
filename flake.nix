@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "flake:nixpkgs/master";
-    flake-utils.url = "github:numtide/flake-utils";
-    flake-schemas.url = "github:determinatesystems/flake-schemas";
+    utils.url = "github:numtide/flake-utils";
+    schemas.url = "github:determinatesystems/flake-schemas";
 
     darwin = {
       url = "flake:nix-darwin";
@@ -26,27 +26,27 @@
     osu-lazer-bin = {
       url = "github:stepbrobd/osu-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
+      inputs.utils.follows = "utils";
     };
 
     raycast = {
       url = "github:stepbrobd/raycast-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
+      inputs.utils.follows = "utils";
     };
 
     vscode = {
       url = "github:stepbrobd/vscode-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
+      inputs.utils.follows = "utils";
     };
   };
 
   outputs =
     { self
     , nixpkgs
-    , flake-utils
-    , flake-schemas
+    , utils
+    , schemas
     , ...
     } @ inputs:
     let
@@ -54,7 +54,7 @@
         inherit inputs;
       };
 
-      eachSystem = flake-utils.lib.eachSystem [
+      eachSystem = utils.lib.eachSystem [
         "aarch64-darwin"
         "x86_64-darwin"
         "aarch64-linux"
