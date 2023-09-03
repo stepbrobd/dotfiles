@@ -126,6 +126,13 @@ description = "forked from wfxr/tmux-power"
 [repo."turbo"]
 description = "forked from vercel/turbo"
 
+## Northeastern University
+[repo."neu-cs-5010"]
+description = "cs 5010 fall 2023 @ northeastern university"
+
+[repo."neu-cs-5800"]
+description = "cs 5800 fall 2023 @ northeastern university"
+
 ## University of Utah
 [repo."uutah-cs-1410"]
 description = "cs 1410 spring 2020 @ university of utah"
