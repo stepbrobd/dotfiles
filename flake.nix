@@ -7,6 +7,7 @@
     nixpkgs.follows = "unstable";
 
     utils.url = "flake:flake-utils";
+    # schemas.url = "github:determinatesystems/flake-schemas";
 
     darwin = {
       url = "flake:nix-darwin";
