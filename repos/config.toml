@@ -18,6 +18,12 @@ origin = true
 domain = "github.com"
 user = "stepbrobd"
 
+## GitLab
+[platform.gitlab]
+origin = false
+domain = "gitlab.com"
+user = "stepbrobd"
+
 ## SourceHut
 [platform.sourcehut]
 origin = false
