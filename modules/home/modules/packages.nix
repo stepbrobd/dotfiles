@@ -32,7 +32,7 @@
     mods
     tmux
     bat
-    exa
+    eza
     btop
     curl
     wget
