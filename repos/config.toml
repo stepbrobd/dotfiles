@@ -71,6 +71,9 @@ description = "what is `/users/shared/.betaenrollmentdata.plist`?"
 [repo."cv"]
 description = "cv in typst with auto build and release"
 
+[repo."finch"]
+description = "hackzurich 2023"
+
 [repo."metaprocessor"]
 description = "metaprocessor, all-in-one data pipeline for mbientlab metawear series sensors!"
 
@@ -82,9 +85,6 @@ description = "srd: (go) static race detector"
 
 [repo."stepbrobd"]
 description = "just another profile readme"
-
-[repo."zur"]
-description = "hackzurich 2023"
 
 ## Tailscale
 
