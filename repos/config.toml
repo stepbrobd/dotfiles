@@ -83,6 +83,9 @@ description = "srd: (go) static race detector"
 [repo."stepbrobd"]
 description = "just another profile readme"
 
+[repo."zur"]
+description = "hackzurich 2023"
+
 ## Tailscale
 
 [repo."tailscale"]
