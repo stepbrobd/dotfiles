@@ -72,7 +72,7 @@ description = "what is `/users/shared/.betaenrollmentdata.plist`?"
 description = "cv in typst with auto build and release"
 
 [repo."finch"]
-description = "hackzurich 2023"
+description = "hackzurich 2023: finch - a simple neural net framework and visualizer that uses genetic networks to train"
 
 [repo."metaprocessor"]
 description = "metaprocessor, all-in-one data pipeline for mbientlab metawear series sensors!"
