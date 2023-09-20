@@ -71,8 +71,6 @@
     cocoapods
     lima
     colima
-    step-ca
-    step-cli
     iterm2
     utm
     airbuddy
