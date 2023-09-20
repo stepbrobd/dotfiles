@@ -59,6 +59,7 @@
     qemu
     docker
     terraform
+    google-cloud-sdk
     awscli2
     flyctl
     ffmpeg
