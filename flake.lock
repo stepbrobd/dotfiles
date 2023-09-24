@@ -52,11 +52,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1695224363,
-        "narHash": "sha256-+hfjJLUMck5G92RVFDZA7LWkR3kOxs5zQ7RPW9t3eM8=",
+        "lastModified": 1695509808,
+        "narHash": "sha256-rW6kfjLLYDB9xGJwoFkSNzcmLJCcN7VcD+YnDPbEM2c=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "408ba13188ff9ce309fa2bdd2f81287d79773b00",
+        "rev": "2d27bdcd640759a5fb1b48125fee7280adad95f7",
         "type": "github"
       },
       "original": {
@@ -66,11 +66,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1695448543,
-        "narHash": "sha256-08Z/SjMbAgthS86OamE9veZfh5DC76+2Sk0MZn9K4ms=",
+        "lastModified": 1695519829,
+        "narHash": "sha256-OLvvbjUtijW/P+sN9qBe0KB9bDRpOxucpe/7cgpV9GA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0b0169e4f12a5c27d4835da8644265535a91c878",
+        "rev": "da703a6c869fbd9f66a110a675eb9d78af92c14b",
         "type": "github"
       },
       "original": {
@@ -89,11 +89,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1695369708,
-        "narHash": "sha256-wwWhFWVoLNCOdcQEGfqOzBPp6FaenbVDrbl9PftGy0U=",
+        "lastModified": 1695456099,
+        "narHash": "sha256-6GRL0/pGpmKT07BJcKwqQ7l7wfrkAIrZubF91AsscyM=",
         "owner": "stepbrobd",
         "repo": "osu-overlay",
-        "rev": "1a1ed00f75138866cdc979dba4733cd7dba965f3",
+        "rev": "a5dea4da8351a6ffeb2f91984b6e1824eba8cbcb",
         "type": "github"
       },
       "original": {
@@ -112,11 +112,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1695369761,
-        "narHash": "sha256-OhanUA9QtRwKYO1ltUeK8L5oz8Pyjf4nDYezEPHjTdY=",
+        "lastModified": 1695456164,
+        "narHash": "sha256-DoizqrPb0GYJIY54evGiawFnUL6ljtf+Jy5N8xTV3kM=",
         "owner": "stepbrobd",
         "repo": "raycast-overlay",
-        "rev": "48b52e17ff02e0d77e546a795f381055d00cc201",
+        "rev": "581753f791cd0b2ac72aaf761c24febffb1b8f4b",
         "type": "github"
       },
       "original": {
@@ -196,11 +196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1695428442,
-        "narHash": "sha256-I9xtesobVjltPpfodKR0hBbXAoYGpVMsjotaoiUEHE0=",
+        "lastModified": 1695456236,
+        "narHash": "sha256-9IscUHTJQXFsNQtmAtXkgSaCjPPdy+diuK15dtTLHkI=",
         "owner": "stepbrobd",
         "repo": "vscode-overlay",
-        "rev": "d4ec8860d367ac722c4cdf222af82598656327af",
+        "rev": "71512fe68245b98a42bbdda8e6d6ddb047c4e3fe",
         "type": "github"
       },
       "original": {
