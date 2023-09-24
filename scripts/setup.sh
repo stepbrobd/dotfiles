@@ -43,11 +43,7 @@ ln -fsv "${CONFIG_ROOT}/zsh/zshrc" "${HOME}/.zshrc"
 ln -fsv "${CONFIG_ROOT}/zsh/p10k" "${HOME}/.p10k.zsh"
 
 # Git
-if [[ $(command -v smimesign) > /dev/null ]]; then
-	ln -fsv "${CONFIG_ROOT}/git/smime.gitconfig" "${HOME}/.gitconfig"
-else
-	ln -fsv "${CONFIG_ROOT}/git/gpg.gitconfig" "${HOME}/.gitconfig"
-fi
+ln -fsv "${CONFIG_ROOT}/git/config" "${HOME}/.gitconfig"
 
 # GPG
 mkdir -p "${HOME}/.gnupg"
