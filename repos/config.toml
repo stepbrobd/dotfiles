@@ -101,9 +101,6 @@ description = "run a vpn service with global exit nodes with fly.io and tailscal
 description = "brings tailscale to low powered openwrt devices"
 
 ## Sites
-[repo."life.ysun.co"]
-description = "forked from sambecker/exif-photo-blog"
-
 [repo."sentik.xyz"]
 description = "https://sentik.xyz"
 
@@ -118,6 +115,9 @@ description = "https://xdg.sh"
 
 [repo."ysun.co"]
 description = "https://ysun.co"
+
+[repo."ysun.life"]
+description = "forked from sambecker/exif-photo-blog"
 
 ## Forks
 [repo."crunchycli"]
