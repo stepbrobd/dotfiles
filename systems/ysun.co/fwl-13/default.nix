@@ -5,15 +5,7 @@
 }:
 
 {
-  imports = [
-    ./hardware.nix
-
-    ../../../modules/direnv
-    ../../../modules/git
-    ../../../modules/neovim
-    ../../../modules/nix
-    ../../../modules/nixpkgs
-  ];
+  imports = [ ./hardware.nix ];
 
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "America/New_York";
@@ -36,6 +28,10 @@
     pciutils
     binutils
 
+    direnv
+    nix-direnv
+    vim
+    git
     curl
     wget
   ];
