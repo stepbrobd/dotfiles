@@ -10,6 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     lanzaboote = {
@@ -42,6 +47,7 @@
     , flake-utils
     , flake-schemas
     , nix-index-database
+    , disko
     , nixos-hardware
     , lanzaboote
     , nix-darwin
@@ -61,6 +67,9 @@
           specialArgs = { inherit inputs outputs; };
 
           modules = [
+            ./modules/nix
+            ./modules/nixpkgs
+
             systemConfig
 
             (./. + "/users/${userName}")
@@ -87,6 +96,7 @@
         fwl-13 = mkSystem "nixos" ./systems/ysun.co/fwl-13 "23.11"
           "ysun"
           [
+            disko.nixosModules.disko
             nixos-hardware.nixosModules.framework
             lanzaboote.nixosModules.lanzaboote
           ]
