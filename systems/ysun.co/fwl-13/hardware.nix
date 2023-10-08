@@ -5,8 +5,6 @@
 }:
 
 {
-  imports = [ ./disko.nix ];
-
   hardware.enableAllFirmware = lib.mkDefault true;
   services.fwupd.enable = true;
 
@@ -17,6 +15,15 @@
 
   boot.initrd.kernelModules = [ ];
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+
+  imports = [ ./disko.nix ];
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.extraPools = [ "zpool_zroot" ];
+  boot.zfs.requestEncryptionCredentials = true;
+
+  services.zfs.trim.enable = true;
+  services.zfs.autoScrub.enable = true;
+  services.zfs.autoSnapshot.enable = true;
 
   # setup required:
   # https://github.com/nix-community/lanzaboote

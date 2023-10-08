@@ -3,7 +3,9 @@
 Flake attribute: `fwl-13`
 
 CPU: Intel Core i7-1360P
+
 RAM: 64GB
+
 Storage: 1TB
 
 ## Installation
@@ -47,3 +49,7 @@ sbctl verify
 It is expected that the files ending with `*-bzImage.efi` are not signed.
 
 Restart the system, `F2` to go to boot menu.
+
+- Administer Secure Boot > Enforce Secure Boot > Enabled
+
+- Administer Secure Boot > Erase all Secure Boot Settings > Enabled
