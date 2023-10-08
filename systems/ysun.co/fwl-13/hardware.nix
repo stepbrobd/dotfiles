@@ -71,19 +71,6 @@
     };
   };
 
-  # fileSystems = {
-  #   "/boot" = {
-  #     device = "/dev/disk/by-label/Boot";
-  #     fsType = "vfat";
-  #   };
-  #   "/" = {
-  #     device = "/dev/disk/by-label/NixOS";
-  #     fsType = "ext4";
-  #   };
-  # };
-
-  # swapDevices = [{ device = "/dev/disk/by-label/Swap"; }];
-
   # power
   services.thermald.enable = true;
   powerManagement = {
