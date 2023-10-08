@@ -8,8 +8,6 @@
   hardware.enableAllFirmware = lib.mkDefault true;
   services.fwupd.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
@@ -21,7 +19,7 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "zpool_zroot" ];
   boot.zfs.requestEncryptionCredentials = true;
-  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
