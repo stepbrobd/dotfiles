@@ -7,29 +7,29 @@
         type = "gpt";
         partitions = {
           ESP = {
-            start = "0";
-            end = "512MiB";
+            type = "ef00";
+            size = "512M";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
           };
-          ROOT = {
-            start = "512MiB";
-            end = "-64G";
-            content = {
-              type = "zfs";
-              pool = "zroot";
-            };
-          };
           SWAP = {
-            start = "-64G";
-            end = "100%";
+            type = "8200";
+            size = "64G";
             content = {
               type = "swap";
               randomEncryption = true;
               resumeDevice = true;
+            };
+          };
+          ROOT = {
+            type = "8300";
+            size = "100%";
+            content = {
+              type = "zfs";
+              pool = "zroot";
             };
           };
         };
