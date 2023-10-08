@@ -72,6 +72,9 @@
 
             systemConfig
 
+            { programs.command-not-found.enable = false; }
+            nix-index-database."${systemType}Modules".nix-index
+
             (./. + "/users/${userName}")
             home-manager."${systemType}Modules".home-manager
             {
@@ -80,7 +83,6 @@
               home-manager.users."${userName}" = {
                 imports = [
                   (./. + "/users/${userName}/home.nix")
-                  nix-index-database.hmModules.nix-index
                 ] ++ extraHMModules;
               };
             }
@@ -123,21 +125,22 @@
           [ ]
           [ ];
       };
-    } // flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs { inherit system; };
-    in
-    {
-      formatter = pkgs.nixpkgs-fmt;
+    } // flake-utils.lib.eachDefaultSystem
+      (system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        formatter = pkgs.nixpkgs-fmt;
 
-      devShells.default = pkgs.mkShell {
-        packages = with pkgs; [
-          direnv
-          nix-direnv
-          git
-        ];
-      };
-    });
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            direnv
+            nix-direnv
+            git
+          ];
+        };
+      });
 
   nixConfig = {
     extra-substituters = [
