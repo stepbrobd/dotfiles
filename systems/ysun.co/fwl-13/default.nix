@@ -18,18 +18,6 @@
     firewall.enable = true;
   };
 
-  environment.persistence."/persist" = {
-    directories = [
-      "/etc/NetworkManager"
-      "/etc/secureboot"
-      "/var/lib"
-      "/var/log"
-    ];
-    files = [
-      "/etc/machine-id"
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
     cacert
     sbctl

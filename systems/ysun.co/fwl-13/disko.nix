@@ -6,8 +6,8 @@
       type = "gpt";
       partitions = {
         ESP = {
-          type = "EF00";
-          size = "512M";
+          start = "0";
+          end = "512MiB";
           content = {
             type = "filesystem";
             format = "vfat";
@@ -15,7 +15,8 @@
           };
         };
         NixOS = {
-          end = "-64G";
+          start = "512MiB";
+          end = "-64GiB";
           content = {
             type = "filesystem";
             format = "ext4";
@@ -23,7 +24,8 @@
           };
         };
         Swap = {
-          size = "100%";
+          start = "-64GiB";
+          end = "100%";
           content = {
             type = "swap";
             randomEncryption = true;
