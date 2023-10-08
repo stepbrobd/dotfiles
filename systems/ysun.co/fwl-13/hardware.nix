@@ -17,7 +17,6 @@
   imports = [ ./disko.nix ];
   boot.zfs.enableUnstable = true;
   boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.extraPools = [ "zpool_zroot" ];
   boot.zfs.requestEncryptionCredentials = true;
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
