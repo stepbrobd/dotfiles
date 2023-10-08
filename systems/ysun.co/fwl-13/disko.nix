@@ -14,7 +14,7 @@
             mountpoint = "/boot";
           };
         };
-        NixOS = {
+        root = {
           start = "512MiB";
           end = "-64GiB";
           content = {
@@ -23,7 +23,7 @@
             mountpoint = "/";
           };
         };
-        Swap = {
+        swap = {
           start = "-64GiB";
           end = "100%";
           content = {
