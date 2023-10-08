@@ -44,7 +44,6 @@
       partitions = {
         ESP = {
           type = "EF00";
-          device = "/dev/disk/by-label/Boot";
           size = "512M";
           content = {
             type = "filesystem";
@@ -53,7 +52,6 @@
           };
         };
         NixOS = {
-          device = "/dev/disk/by-label/NixOS";
           end = "-64G";
           content = {
             type = "filesystem";
@@ -62,7 +60,6 @@
           };
         };
         Swap = {
-          device = "/dev/disk/by-label/Swap";
           size = "100%";
           content = {
             type = "swap";
