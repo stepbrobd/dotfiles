@@ -7,24 +7,24 @@
       partitions = {
         ESP = {
           start = "0";
-          end = "512MiB";
+          end = "512M";
           content = {
             type = "filesystem";
             format = "vfat";
             mountpoint = "/boot";
           };
         };
-        root = {
-          start = "512MiB";
-          end = "-64GiB";
+        ROOT = {
+          start = "512M";
+          end = "-64G";
           content = {
             type = "filesystem";
             format = "ext4";
             mountpoint = "/";
           };
         };
-        swap = {
-          start = "-64GiB";
+        SWAP = {
+          start = "-64G";
           end = "100%";
           content = {
             type = "swap";
