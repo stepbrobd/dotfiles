@@ -36,5 +36,4 @@
   ];
 
   users.mutableUsers = false;
-  users.users.root.hashedPassword = "$y$j9T$WPetJSfV508KikxE9Orr8/$p54aa75AlRZOSrGNqBXYZLx/SthVzutyYSBEyn6.0n7";
 }
