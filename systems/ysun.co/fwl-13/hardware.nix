@@ -8,6 +8,8 @@
   hardware.enableAllFirmware = lib.mkDefault true;
   services.fwupd.enable = true;
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
@@ -19,20 +21,12 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "zpool_zroot" ];
   boot.zfs.requestEncryptionCredentials = true;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
   services.zfs.autoSnapshot.enable = true;
 
-  # setup required:
-  # https://github.com/nix-community/lanzaboote
-  # 1. check for secure boot support: bootctl status
-  # 2. turn off secure boot on host BIOS settings
-  # 3. create keys (/etc/secureboot): sudo sbctl create-keys
-  # 4. check status (*bzImage.efi are not signed): sudo sbctl verify
-  # 5. turn on secure boot and put it in setup mode
-  # 6. enroll keys: sudo sbctl enroll-keys --microsoft
   boot.bootspec.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = lib.mkForce false;
