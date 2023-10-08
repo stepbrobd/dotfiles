@@ -135,9 +135,10 @@
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
+            agenix
+            git
             direnv
             nix-direnv
-            git
           ];
         };
       });
