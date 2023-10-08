@@ -35,4 +35,6 @@
     curl
     wget
   ];
+
+  users.mutableUsers = false;
 }
