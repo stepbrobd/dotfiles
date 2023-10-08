@@ -135,7 +135,7 @@
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            agenix
+            agenix.packages.${system}.agenix
             git
             direnv
             nix-direnv
