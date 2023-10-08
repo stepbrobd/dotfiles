@@ -28,19 +28,23 @@ nixos-install --flake github:stepbrobd/dotfiles#fwl-13
 
 It's expected to have errors related to [Lanzaboote](https://github.com/nix-community/lanzaboote) since secure boot PKI bundle is not setup.
 
-## Secure Boot
+After `nixos-install`, DO NOT reboot.
 
-Most steps are copied from [Lanzaboote Quick Start Guide](https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md).
-
-After `nixos-install`, reboot the system and remove installation USB drive.
-
-Switch to root user, and run:
+Create secure boot keys and copy them to new system:
 
 ```shell
-sbctl create-keys && nixos-rebuild switch --flake github:stepbrobd/dotfiles#fwl-13
+sbctl create-keys && mv /etc/secureboot /mnt/etc
 ```
 
-After rebuild, verify with:
+Run installation again:
+
+```shell
+nixos-install --flake github:stepbrobd/dotfiles#fwl-13
+```
+
+Lanzaboote should not complain this time.
+
+Reboot into NixOS, verify secure boot with:
 
 ```shell
 sbctl verify
