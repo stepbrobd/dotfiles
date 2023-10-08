@@ -11,6 +11,8 @@
   time.timeZone = "America/New_York";
 
   networking = {
+    # head -c4 /dev/urandom | od -A none -t x4
+    hostId = "169b9f98";
     hostName = "fwl-13";
     domain = "ysun.co";
     useDHCP = lib.mkDefault true;

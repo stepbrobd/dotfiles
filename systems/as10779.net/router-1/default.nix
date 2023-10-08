@@ -11,6 +11,8 @@
   time.timeZone = "America/Los_Angeles";
 
   networking = {
+    # head -c4 /dev/urandom | od -A none -t x4
+    hostId = "5d7847f2";
     hostName = "router";
     domain = "as10779.net";
     useDHCP = lib.mkDefault true;
