@@ -58,6 +58,22 @@ Restart the system, `F2` to go to boot menu.
 
 - Administer Secure Boot > Erase all Secure Boot Settings > Enabled
 
+`F10` to save and reboot.
+
+After logging into NixOS, enroll keys:
+
+```shell
+sbctl enroll-keys --microsoft
+```
+
+Reboot to check secure boot status:
+
+```shell
+bootctl status
+```
+
+That's it!
+
 ## Standalone Disko Setup
 
 Usually not used, managed directly by this flake.
