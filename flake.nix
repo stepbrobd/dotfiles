@@ -23,6 +23,8 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
+    impermanence.url = "github:nix-community/impermanence";
+
     nix-darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +52,7 @@
     , disko
     , nixos-hardware
     , lanzaboote
+    , impermanence
     , nix-darwin
     , home-manager
     , agenix
@@ -62,7 +65,7 @@
       mkSystem = systemType: systemConfig: stateVersion:
         userName:
         extraModules:
-        extraHomeModules:
+        extraHMModules:
         lib."${systemType}System" {
           specialArgs = { inherit inputs outputs; };
 
@@ -81,7 +84,7 @@
                 imports = [
                   (./. + "/users/${userName}/home.nix")
                   nix-index-database.hmModules.nix-index
-                ] ++ extraHomeModules;
+                ] ++ extraHMModules;
               };
             }
 
@@ -98,7 +101,9 @@
           [
             disko.nixosModules.disko
             nixos-hardware.nixosModules.framework
+            nixos-hardware.nixosModules.common-hidpi
             lanzaboote.nixosModules.lanzaboote
+            impermanence.nixosModules.impermanence
           ]
           [ ];
 
