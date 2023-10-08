@@ -8,8 +8,6 @@
   hardware.enableAllFirmware = lib.mkDefault true;
   services.fwupd.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
@@ -17,9 +15,11 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
 
   imports = [ ./disko.nix ];
+  boot.zfs.enableUnstable = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "zpool_zroot" ];
   boot.zfs.requestEncryptionCredentials = true;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
