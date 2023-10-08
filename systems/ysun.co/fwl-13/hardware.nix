@@ -36,18 +36,56 @@
     tctiEnvironment.enable = true;
   };
 
-  fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-label/Boot";
-      fsType = "vfat";
-    };
-    "/" = {
-      device = "/dev/disk/by-label/NixOS";
-      fsType = "ext4";
+  disko.devices.disk.nvme0n1 = {
+    type = "disk";
+    device = "/dev/nvme0n1";
+    content = {
+      type = "gpt";
+      partitions = {
+        ESP = {
+          type = "EF00";
+          device = "/dev/disk/by-label/Boot";
+          size = "512M";
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
+          };
+        };
+        NixOS = {
+          device = "/dev/disk/by-label/NixOS";
+          end = "-64G";
+          content = {
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
+          };
+        };
+        Swap = {
+          device = "/dev/disk/by-label/Swap";
+          size = "100%";
+          content = {
+            type = "swap";
+            randomEncryption = true;
+            resumeDevice = true;
+          };
+        };
+      };
     };
   };
 
-  swapDevices = [{ device = "/dev/disk/by-label/Swap"; }];
+  # fileSystems = {
+  #   "/boot" = {
+  #     device = "/dev/disk/by-label/Boot";
+  #     fsType = "vfat";
+  #   };
+  #   "/" = {
+  #     device = "/dev/disk/by-label/NixOS";
+  #     fsType = "ext4";
+  #   };
+  # };
+
+  # swapDevices = [{ device = "/dev/disk/by-label/Swap"; }];
 
   # power
   services.thermald.enable = true;
