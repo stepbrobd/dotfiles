@@ -57,3 +57,13 @@ Restart the system, `F2` to go to boot menu.
 - Administer Secure Boot > Enforce Secure Boot > Enabled
 
 - Administer Secure Boot > Erase all Secure Boot Settings > Enabled
+
+## Standalone Disko Setup
+
+Usually not used, managed directly by this flake.
+
+```shell
+nix run github:nix-community/disko -- --mode disko ./disko.nix
+```
+
+See [Disko Quick Start Guide](https://github.com/nix-community/disko/blob/master/docs/quickstart.md) for details.
