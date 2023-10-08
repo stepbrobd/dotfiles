@@ -7,8 +7,7 @@
       partitions = {
         ESP = {
           start = "0";
-          # end = "512M";
-          size = "512M";
+          end = "512M";
           content = {
             type = "filesystem";
             format = "vfat";
@@ -17,7 +16,6 @@
         };
         ROOT = {
           start = "512M";
-          # end = "-64G";
           end = "-64G";
           content = {
             type = "filesystem";
@@ -28,7 +26,6 @@
         SWAP = {
           start = "-64G";
           end = "100%";
-          # size = "100%";
           content = {
             type = "swap";
             randomEncryption = true;
