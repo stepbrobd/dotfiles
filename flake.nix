@@ -84,6 +84,7 @@
               home-manager.users."${userName}" = {
                 imports = [
                   (./. + "/users/${userName}/home.nix")
+                  nix-index-database.hmModules.nix-index
                   agenix.homeManagerModules.age
                 ] ++ extraHMModules;
               };
