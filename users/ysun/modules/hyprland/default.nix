@@ -1,4 +1,4 @@
-# home-manager options
+# home-manager options (from [hyprland](https://github.com/hyprwm/Hyprland/blob/main/nix/hm-module.nix))
 
 { config
 , lib
@@ -14,12 +14,19 @@
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-
-    settings = {
-      "$mod" = "SUPER";
-    };
+    recommendedEnvironment = true;
 
     extraConfig = ''
+      # XWayland HiDPI
+      monitor=,highres,auto,2
+      env = GDK_SCALE,2
+      env = XCURSOR_SIZE,32
+      xwayland {
+        force_zero_scaling = true
+      }
+
+      $mod = SUPER
+
       bind = $mod, Q, exec, alacritty
       bind = $mod, M, exit,
 
