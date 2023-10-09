@@ -115,6 +115,7 @@
             hyprland.nixosModules.default
           ]
           [
+            ./users/ysun/modules/alacritty
             ./users/ysun/modules/atuin
             ./users/ysun/modules/bat
             ./users/ysun/modules/direnv
@@ -123,6 +124,7 @@
             ./users/ysun/modules/lsd
             ./users/ysun/modules/neovim
             ./users/ysun/modules/pyenv
+            ./users/ysun/modules/waybar
             ./users/ysun/modules/zsh
           ];
 
