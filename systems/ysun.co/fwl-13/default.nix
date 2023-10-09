@@ -1,6 +1,8 @@
 { config
 , lib
 , pkgs
+, inputs
+, outputs
 , ...
 }:
 
@@ -18,6 +20,12 @@
     useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall.enable = true;
+  };
+
+  programs.hyprland = {
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    enable = true;
+    xwayland.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
