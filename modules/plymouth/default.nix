@@ -12,7 +12,8 @@
 
     plymouth = {
       enable = true;
-      theme = "breeze";
+      theme = "rings";
+      themePackages = [ pkgs.adi1090x-plymouth-themes ];
     };
 
     initrd = {
