@@ -108,11 +108,14 @@
         fwl-13 = mkSystem "nixos" ./systems/ysun.co/fwl-13 "23.11"
           "ysun"
           [
+            # desktop environment
+            ./modules/hyprland
+            # silent boot
+            ./modules/plymouth
             disko.nixosModules.disko
             nixos-hardware.nixosModules.framework
             nixos-hardware.nixosModules.common-hidpi
             lanzaboote.nixosModules.lanzaboote
-            hyprland.nixosModules.default
           ]
           [
             ./users/ysun/modules/alacritty
