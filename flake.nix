@@ -74,6 +74,7 @@
 
             { programs.command-not-found.enable = false; }
             nix-index-database."${systemType}Modules".nix-index
+            agenix."${systemType}Modules".age
 
             (./. + "/users/${userName}")
             home-manager."${systemType}Modules".home-manager
@@ -83,6 +84,7 @@
               home-manager.users."${userName}" = {
                 imports = [
                   (./. + "/users/${userName}/home.nix")
+                  agenix.homeManagerModules.age
                 ] ++ extraHMModules;
               };
             }
