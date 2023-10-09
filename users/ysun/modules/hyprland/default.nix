@@ -1,15 +1,20 @@
-# home-manager options
+# home-manager options (from [hyprland](https://github.com/hyprwm/Hyprland/blob/main/nix/hm-module.nix))
 
 { config
 , lib
 , pkgs
+, inputs
+, outputs
 , ...
 }:
 
 {
+  imports = [ inputs.hyprland.homeManagerModules.default ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
+    recommendedEnvironment = true;
 
     extraConfig = ''
       # XWayland HiDPI

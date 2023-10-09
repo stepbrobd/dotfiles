@@ -39,6 +39,11 @@
       inputs.darwin.follows = "nix-darwin";
       inputs.home-manager.follows = "home-manager";
     };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -53,6 +58,7 @@
     , nix-darwin
     , home-manager
     , agenix
+    , hyprland
     , ...
     } @ inputs:
     let
@@ -106,6 +112,7 @@
             nixos-hardware.nixosModules.framework
             nixos-hardware.nixosModules.common-hidpi
             lanzaboote.nixosModules.lanzaboote
+            hyprland.nixosModules.default
           ]
           [
             ./users/ysun/modules/alacritty
