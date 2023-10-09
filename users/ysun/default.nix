@@ -6,6 +6,8 @@
 
 {
   users.users.ysun = {
+    shell = pkgs.zsh;
+
     description = "Yifei Sun";
 
     openssh.authorizedKeys.keys = [
