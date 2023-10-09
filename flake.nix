@@ -110,12 +110,14 @@
           [
             # desktop environment
             ./modules/hyprland
+            # input
+            ./modules/i18n
             # silent boot
             ./modules/plymouth
             disko.nixosModules.disko
-            nixos-hardware.nixosModules.framework
-            nixos-hardware.nixosModules.common-hidpi
             lanzaboote.nixosModules.lanzaboote
+            nixos-hardware.nixosModules.common-hidpi
+            nixos-hardware.nixosModules.framework
           ]
           [
             ./users/ysun/modules/alacritty
