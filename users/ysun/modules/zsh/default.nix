@@ -14,6 +14,9 @@
       cat = "bat --plain";
       ls = "lsd";
       tree = "lsd --tree";
+      vi = "nvim";
+      vim = "nvim";
+      vimdiff = "nvim -d";
     };
 
     zplug = {

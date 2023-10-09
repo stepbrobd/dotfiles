@@ -5,9 +5,10 @@
 }:
 
 {
-  users.users.ysun = {
-    shell = pkgs.zsh;
+  programs.zsh.enable = true;
+  users.users.ysun.shell = pkgs.zsh;
 
+  users.users.ysun = {
     description = "Yifei Sun";
 
     openssh.authorizedKeys.keys = [
