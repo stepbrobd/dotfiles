@@ -39,6 +39,11 @@
       inputs.darwin.follows = "nix-darwin";
       inputs.home-manager.follows = "home-manager";
     };
+
+    hyprland = {
+      url = "github:hyprwm/hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -53,6 +58,7 @@
     , nix-darwin
     , home-manager
     , agenix
+    , hyprland
     , ...
     } @ inputs:
     let
@@ -65,20 +71,21 @@
         extraHMModules:
         lib."${systemType}System" {
           specialArgs = { inherit inputs outputs; };
-
           modules = [
+            # nix + nixpkgs
             ./modules/nix
             ./modules/nixpkgs
-
+            # system
             systemConfig
-
+            # common modules
             { programs.command-not-found.enable = false; }
             nix-index-database."${systemType}Modules".nix-index
             agenix."${systemType}Modules".age
-
+            # home + home-manager
             (./. + "/users/${userName}")
             home-manager."${systemType}Modules".home-manager
             {
+              home-manager.extraSpecialArgs = { inherit inputs outputs; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users."${userName}" = {
@@ -89,7 +96,7 @@
                 ] ++ extraHMModules;
               };
             }
-
+            # state version
             { system.stateVersion = stateVersion; }
             { home-manager.users."${userName}".home.stateVersion = stateVersion; }
           ] ++ extraModules;
@@ -106,7 +113,17 @@
             nixos-hardware.nixosModules.common-hidpi
             lanzaboote.nixosModules.lanzaboote
           ]
-          [ ];
+          [
+            ./users/ysun/modules/atuin
+            ./users/ysun/modules/bat
+            ./users/ysun/modules/direnv
+            ./users/ysun/modules/git
+            ./users/ysun/modules/hyprland
+            ./users/ysun/modules/lsd
+            ./users/ysun/modules/neovim
+            ./users/ysun/modules/pyenv
+            ./users/ysun/modules/zsh
+          ];
 
         # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
         router-1 = mkSystem "nixos" ./systems/as10779.net/router-1 "23.11"

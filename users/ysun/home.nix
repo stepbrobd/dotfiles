@@ -15,17 +15,6 @@
       else abort "Unsupported OS";
   };
 
-  imports = [
-    ./modules/atuin
-    ./modules/bat
-    ./modules/direnv
-    ./modules/git
-    ./modules/lsd
-    ./modules/neovim
-    ./modules/pyenv
-    ./modules/zsh
-  ];
-
   home.packages = with pkgs; [
     cachix
     nix-output-monitor
