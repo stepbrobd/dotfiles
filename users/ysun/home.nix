@@ -5,6 +5,8 @@
 }:
 
 {
+  imports = [ ./activation.nix ];
+
   home = {
     username = "ysun";
     homeDirectory =
