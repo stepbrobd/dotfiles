@@ -1,4 +1,4 @@
-# nixpkgs module, import directly to system settings
+# nixpkgs options
 
 { config
 , lib
