@@ -21,7 +21,7 @@
 
     zplug = {
       enable = true;
-      zplugHome = "${config.home.homeDirectory}/.config/zplug";
+      zplugHome = "${config.xdg.dataHome}/zplug";
       plugins = [
         {
           name = "romkatv/powerlevel10k";
@@ -45,7 +45,7 @@
       source ${./p10k.zsh}
     '';
 
-    initExtraFirst = ''
+    initExtraBeforeCompInit = ''
       P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
       [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
     '';
