@@ -30,7 +30,7 @@
       bind = $mod, Q, exec, alacritty
       bind = $mod, M, exit,
 
-      # switch workspace: $mod + [0-9]
+      # Switch Workspace: $mod + [0-9]
       bind = $mod, 1, workspace, 1
       bind = $mod, 2, workspace, 2
       bind = $mod, 3, workspace, 3
@@ -41,6 +41,18 @@
       bind = $mod, 8, workspace, 8
       bind = $mod, 9, workspace, 9
       bind = $mod, 0, workspace, 10
+
+      # Move to Workspace: $mod SHIFT + [0-9]
+      bind = $mod SHIFT, 1, movetoworkspace, 1
+      bind = $mod SHIFT, 2, movetoworkspace, 2
+      bind = $mod SHIFT, 3, movetoworkspace, 3
+      bind = $mod SHIFT, 4, movetoworkspace, 4
+      bind = $mod SHIFT, 5, movetoworkspace, 5
+      bind = $mod SHIFT, 6, movetoworkspace, 6
+      bind = $mod SHIFT, 7, movetoworkspace, 7
+      bind = $mod SHIFT, 8, movetoworkspace, 8
+      bind = $mod SHIFT, 9, movetoworkspace, 9
+      bind = $mod SHIFT, 0, movetoworkspace, 0
     '';
   };
 }
