@@ -41,11 +41,12 @@
         }
       ];
     };
+
     initExtra = ''
       source ${./p10k.zsh}
     '';
 
-    initExtraBeforeCompInit = ''
+    initExtraFirst = ''
       local P10K_INSTANT_PROMPT="${config.xdg.cacheHome}/p10k-instant-prompt-''${(%):-%n}.zsh"
       [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
     '';
