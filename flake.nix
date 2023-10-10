@@ -129,6 +129,7 @@
             ./users/ysun/modules/alacritty
             ./users/ysun/modules/atuin
             ./users/ysun/modules/bat
+            ./users/ysun/modules/chromium
             ./users/ysun/modules/direnv
             ./users/ysun/modules/git
             ./users/ysun/modules/gpg
