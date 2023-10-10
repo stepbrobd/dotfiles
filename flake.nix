@@ -127,6 +127,7 @@
             ./users/ysun/modules/bat
             ./users/ysun/modules/direnv
             ./users/ysun/modules/git
+            ./users/ysun/modules/gpg
             ./users/ysun/modules/hyprland
             ./users/ysun/modules/lsd
             ./users/ysun/modules/neovim
