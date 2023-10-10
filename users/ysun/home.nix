@@ -22,6 +22,7 @@
     nix-output-monitor
     gitleaks
     github-copilot-cli
+    pinentry
   ]
   # linux only
   ++ (lib.optionals pkgs.stdenv.isLinux [
