@@ -28,6 +28,9 @@
       # Waybar
       exec-once = waybar
 
+      # Natural Scroll
+      input { touchpad { natural_scroll = true } }
+
       $mod = SUPER
 
       bind = $mod, M, exit,
