@@ -110,6 +110,8 @@
           [
             # fonts
             ./modules/fonts
+            # gnupg
+            ./modules/gnupg
             # desktop environment
             ./modules/hyprland
             # input
