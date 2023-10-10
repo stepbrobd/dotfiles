@@ -131,6 +131,7 @@
             ./users/ysun/modules/bat
             ./users/ysun/modules/chromium
             ./users/ysun/modules/direnv
+            ./users/ysun/modules/dunst
             ./users/ysun/modules/git
             ./users/ysun/modules/gpg
             ./users/ysun/modules/hyprland

@@ -19,24 +19,23 @@
     extraConfig = ''
             # Setup
       	    env = HYPRLAND_LOG_WLR,1
-
       	    env = XDG_SESSION_TYPE,"wayland"
       	    env = XDG_SESSION_DESKTOP,"Hyprland"
       	    env = XDG_CURRENT_DESKTOP,"Hyprland"
-
-      	    env = GDK_BACKEND,"wayland"
       	    env = QT_QPA_PLATFORM,"wayland;xcb"
       	    env = QT_QPA_PLATFORMTHEME,"qt5ct"
       	    env = WLR_DRM_NO_MODIFIERS,1
-
             env = GDK_SCALE,2
             env = XCURSOR_SIZE,32
+
             monitor = , preferred, auto, 1
+
             xwayland {
               force_zero_scaling = true
             }
       
-            exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP 
+            exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+            exec-once = dunst
             exec-once = waybar
 
             # Input
