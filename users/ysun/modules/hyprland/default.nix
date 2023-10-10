@@ -26,7 +26,7 @@
       	    env = QT_QPA_PLATFORMTHEME,"qt5ct"
       	    env = WLR_DRM_NO_MODIFIERS,1
             env = GDK_SCALE,2
-            env = XCURSOR_SIZE,32
+            env = XCURSOR_SIZE,40
 
             monitor = , preferred, auto, 1.25
 
