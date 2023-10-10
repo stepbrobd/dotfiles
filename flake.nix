@@ -108,6 +108,8 @@
         fwl-13 = mkSystem "nixos" ./systems/ysun.co/fwl-13 "23.11"
           "ysun"
           [
+            # fonts
+            ./modules/fonts
             # desktop environment
             ./modules/hyprland
             # input
