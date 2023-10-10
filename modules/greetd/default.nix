@@ -12,7 +12,7 @@
     settings.default_session = {
       vt = "next";
       user = "greeter";
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${config.programs.hyprland.package}/bin/Hyprland";
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${config.programs.hyprland.package}/bin/Hyprland --time --remember --remember-session --remember-user-session --asterisks --power-shutdown shutdown now --power-reboot reboot";
     };
   };
 }
