@@ -1,4 +1,4 @@
-# nixpkgs options
+# nixpkgs + nix-darwin options
 
 { config
 , lib
