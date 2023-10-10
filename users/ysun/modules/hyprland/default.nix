@@ -28,7 +28,7 @@
             env = GDK_SCALE,2
             env = XCURSOR_SIZE,32
 
-            monitor = , preferred, auto, 1
+            monitor = , preferred, auto, 1.25
 
             xwayland {
               force_zero_scaling = true
