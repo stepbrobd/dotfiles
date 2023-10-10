@@ -17,6 +17,12 @@
       else abort "Unsupported OS";
   };
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    BROWSER = "chromium --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    TERMINAL = "alacritty";
+  };
+
   home.packages = with pkgs; [
     cachix
     nix-output-monitor

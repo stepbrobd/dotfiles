@@ -30,9 +30,11 @@
 
       $mod = SUPER
 
-      # 
-      bind = $mod, Q, exec, alacritty
       bind = $mod, M, exit,
+
+      # Application: $mod + [a-z]
+      bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
+      bind = $mod, T, exec, ${config.home.sessionVariables.TERMINAL}
 
       # Switch Workspace: $mod + [0-9]
       bind = $mod, 1, workspace, 1
