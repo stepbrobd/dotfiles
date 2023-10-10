@@ -112,6 +112,8 @@
             ./modules/fonts
             # gnupg
             ./modules/gnupg
+            # greeter
+            ./modules/greetd
             # desktop environment
             ./modules/hyprland
             # input
