@@ -25,8 +25,12 @@
         force_zero_scaling = true
       }
 
+      # Waybar
+      exec-once = waybar
+
       $mod = SUPER
 
+      # 
       bind = $mod, Q, exec, alacritty
       bind = $mod, M, exit,
 
