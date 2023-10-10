@@ -28,8 +28,12 @@
       # Waybar
       exec-once = waybar
 
-      # Natural Scroll
-      input { touchpad { natural_scroll = true } }
+      # Input
+      input {
+        touchpad {
+	  natural_scroll = true
+	}
+      }
 
       $mod = SUPER
 
