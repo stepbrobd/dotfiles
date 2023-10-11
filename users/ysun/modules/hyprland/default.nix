@@ -162,4 +162,14 @@
             bind = $mod CTRL, 0, movetoworkspace, 0
     '';
   };
+
+  programs.wpaperd = {
+    enable = true;
+    settings.default = {
+      duration = "24h";
+      apply-shadow = true;
+      sorting = "random";
+      path = "${config.xdg.userDirs.pictures}/Wallpapers";
+    };
+  };
 }
