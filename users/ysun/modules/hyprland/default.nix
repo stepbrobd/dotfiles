@@ -17,8 +17,9 @@
     recommendedEnvironment = true;
 
     extraConfig = ''
-      monitor = , preferred, auto, 1
-      
+      monitor = eDP-1, highres, 0x0, 1.25
+      monitor = , preferred, auto, auto
+
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = dunst
       exec-once = waybar
