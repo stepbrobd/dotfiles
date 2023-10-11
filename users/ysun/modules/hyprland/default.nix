@@ -36,6 +36,7 @@
             exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
             exec-once = dunst
             exec-once = waybar
+            exec-once = wpaperd
 
             general {
               gaps_in = 6
