@@ -111,33 +111,20 @@
 
             $mod = SUPER
 
-            bindm = $mod, mouse:272, movewindow
-            bindm = $mod, mouse:273, resizewindow
+            bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
+            bind = $mod, T, exec, ${config.home.sessionVariables.TERMINAL}
+
+            bind = $mod, M, exit,
+            bind = $mod, Q, killactive,
+            bind = $mod, F, fullscreen,
+            bind = $mod, A, pseudo,
+            bind = $mod, X, togglesplit,
+            bind = $mod, Z, togglefloating,
 
             bind = $mod, H, movefocus, l
             bind = $mod, L, movefocus, r
             bind = $mod, K, movefocus, u
             bind = $mod, J, movefocus, d
-
-            bind = $mod CTRL, H, movewindow, l
-            bind = $mod CTRL, L, movewindow, r
-            bind = $mod CTRL, K, movewindow, u
-            bind = $mod CTRL, J, movewindow, d
-
-            bind = $mod CTRL, left, resizeactive, -20 0
-            bind = $mod CTRL, right, resizeactive, 20 0
-            bind = $mod CTRL, up, resizeactive, 0 -20
-            bind = $mod CTRL, down, resizeactive, 0 20
-
-            bind = $mod CTRL SHIFT, M, exit,
-            bind = $mod CTRL SHIFT, Q, killactive,
-            bind = $mod CTRL SHIFT, F, fullscreen,
-            bind = $mod CTRL SHIFT, A, pseudo,
-            bind = $mod CTRL SHIFT, S, togglesplit,
-            bind = $mod CTRL SHIFT, Space, togglefloating,
-
-            bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
-            bind = $mod, T, exec, ${config.home.sessionVariables.TERMINAL}
 
             bind = $mod, 1, workspace, 1
             bind = $mod, 2, workspace, 2
@@ -150,16 +137,29 @@
             bind = $mod, 9, workspace, 9
             bind = $mod, 0, workspace, 10
 
-            bind = $mod SHIFT, 1, movetoworkspace, 1
-            bind = $mod SHIFT, 2, movetoworkspace, 2
-            bind = $mod SHIFT, 3, movetoworkspace, 3
-            bind = $mod SHIFT, 4, movetoworkspace, 4
-            bind = $mod SHIFT, 5, movetoworkspace, 5
-            bind = $mod SHIFT, 6, movetoworkspace, 6
-            bind = $mod SHIFT, 7, movetoworkspace, 7
-            bind = $mod SHIFT, 8, movetoworkspace, 8
-            bind = $mod SHIFT, 9, movetoworkspace, 9
-            bind = $mod SHIFT, 0, movetoworkspace, 0
+            bindm = $mod CTRL, mouse:272, movewindow
+            bindm = $mod CTRL, mouse:273, resizewindow
+
+            bind = $mod CTRL, H, movewindow, l
+            bind = $mod CTRL, L, movewindow, r
+            bind = $mod CTRL, K, movewindow, u
+            bind = $mod CTRL, J, movewindow, d
+
+            bind = $mod CTRL, left, resizeactive, -20 0
+            bind = $mod CTRL, right, resizeactive, 20 0
+            bind = $mod CTRL, up, resizeactive, 0 -20
+            bind = $mod CTRL, down, resizeactive, 0 20
+
+            bind = $mod CTRL, 1, movetoworkspace, 1
+            bind = $mod CTRL, 2, movetoworkspace, 2
+            bind = $mod CTRL, 3, movetoworkspace, 3
+            bind = $mod CTRL, 4, movetoworkspace, 4
+            bind = $mod CTRL, 5, movetoworkspace, 5
+            bind = $mod CTRL, 6, movetoworkspace, 6
+            bind = $mod CTRL, 7, movetoworkspace, 7
+            bind = $mod CTRL, 8, movetoworkspace, 8
+            bind = $mod CTRL, 9, movetoworkspace, 9
+            bind = $mod CTRL, 0, movetoworkspace, 0
     '';
   };
 }
