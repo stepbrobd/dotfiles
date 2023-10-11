@@ -111,7 +111,12 @@
 
             $mod = SUPER
 
-            bind = $mod, M, exit,
+            bind = $mod CTRL SHIFT, M, exit,
+            bind = $mod CTRL SHIFT, Q, killactive,
+            bind = $mod CTRL SHIFT, F, fullscreen,
+            bind = $mod CTRL SHIFT, P, pseudo,
+            bind = $mod CTRL SHIFT, J, togglesplit,
+            bind = $mod CTRL SHIFT, Space, togglefloating,
 
             bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
             bind = $mod, T, exec, ${config.home.sessionVariables.TERMINAL}
