@@ -90,6 +90,7 @@
               home-manager.useUserPackages = true;
               home-manager.users."${userName}" = {
                 imports = [
+                  { xdg = { enable = true; userDirs.createDirectories = true; }; }
                   (./. + "/users/${userName}/home.nix")
                   nix-index-database.hmModules.nix-index
                   agenix.homeManagerModules.age
