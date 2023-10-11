@@ -111,11 +111,29 @@
 
             $mod = SUPER
 
+            bindm = $mod, mouse:272, movewindow
+            bindm = $mod, mouse:273, resizewindow
+
+            bind = $mod, H, movefocus, l
+            bind = $mod, L, movefocus, r
+            bind = $mod, K, movefocus, u
+            bind = $mod, J, movefocus, d
+
+            bind = $mod CTRL, H, movewindow, l
+            bind = $mod CTRL, L, movewindow, r
+            bind = $mod CTRL, K, movewindow, u
+            bind = $mod CTRL, J, movewindow, d
+
+            bind = $mod CTRL, left, resizeactive, -20 0
+            bind = $mod CTRL, right, resizeactive, 20 0
+            bind = $mod CTRL, up, resizeactive, 0 -20
+            bind = $mod CTRL, down, resizeactive, 0 20
+
             bind = $mod CTRL SHIFT, M, exit,
             bind = $mod CTRL SHIFT, Q, killactive,
             bind = $mod CTRL SHIFT, F, fullscreen,
-            bind = $mod CTRL SHIFT, P, pseudo,
-            bind = $mod CTRL SHIFT, J, togglesplit,
+            bind = $mod CTRL SHIFT, A, pseudo,
+            bind = $mod CTRL SHIFT, S, togglesplit,
             bind = $mod CTRL SHIFT, Space, togglefloating,
 
             bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
