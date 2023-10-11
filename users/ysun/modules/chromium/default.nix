@@ -12,6 +12,8 @@
     extensions = [
       # AdGuard
       { id = "bgnkhhnnamicmpeenaelnjfhikgbkllg"; }
+      # Hide Scrollbar
+      { id = "mljepckcnbghmcdmaebjhejiplcngbkm"; }
       # Kagi
       { id = "cdglnehniifkbagbbombnjghhcihifij"; }
       # iCloud
