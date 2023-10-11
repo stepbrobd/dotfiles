@@ -78,6 +78,7 @@
             # system
             systemConfig
             # common modules
+            { services.tailscale.enable = true; }
             { programs.command-not-found.enable = false; }
             nix-index-database."${systemType}Modules".nix-index
             agenix."${systemType}Modules".age
