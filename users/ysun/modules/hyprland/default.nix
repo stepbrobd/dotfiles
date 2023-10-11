@@ -115,8 +115,6 @@
             }
 
             dwindle {
-              col.group_border_active=0xff89b4fa
-              col.group_border=0xff585b70
               no_gaps_when_only = true
               pseudotile = true
               preserve_split = true
