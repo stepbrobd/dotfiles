@@ -97,6 +97,9 @@
         preserve_split = true
       }
 
+      bind = ,XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +5%
+      bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
+
       $mod = SUPER
 
       bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
