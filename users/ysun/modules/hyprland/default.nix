@@ -71,25 +71,14 @@
               disable_hyprland_logo = true
               disable_splash_rendering = true
               mouse_move_enables_dpms = true
-              no_vfr = false
               enable_swallow = true
               swallow_regex = ^(${config.home.sessionVariables.TERMINAL})$
             }
 
             decoration {
               rounding = 8
-              multisample_edges = true
-
               active_opacity = 1.0
               inactive_opacity = 1.0
-
-              # Blur
-              blur = true
-              blur_size = 10
-              blur_passes = 4
-              blur_new_optimizations = true
-
-              # Shadow
               drop_shadow = true
               shadow_ignore_window = true
               shadow_offset = 2 2
