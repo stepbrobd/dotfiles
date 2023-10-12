@@ -37,6 +37,7 @@
   };
 
   # power
+  services.tlp.enable = false;
   services.thermald.enable = true;
   powerManagement = {
     enable = true;
