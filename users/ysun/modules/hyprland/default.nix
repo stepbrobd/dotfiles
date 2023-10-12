@@ -60,7 +60,7 @@
         disable_splash_rendering = true
         mouse_move_enables_dpms = true
         enable_swallow = true
-        swallow_regex = ^(${config.home.sessionVariables.TERMINAL})$
+        swallow_regex = ^(${config.home.sessionVariables.TERM})$
       }
 
       decoration {
@@ -103,7 +103,7 @@
       $mod = SUPER
 
       bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
-      bind = $mod, T, exec, ${config.home.sessionVariables.TERMINAL}
+      bind = $mod, T, exec, ${config.home.sessionVariables.TERM}
 
       bind = $mod, M, exit,
       bind = $mod, Q, killactive,
