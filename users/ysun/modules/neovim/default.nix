@@ -11,8 +11,9 @@
     enable = true;
 
     plugins = with pkgs.vimPlugins; [
-      nord-nvim
       lualine-nvim
+      nord-nvim
+      nvim-web-devicons
     ];
 
     extraConfig = ''
