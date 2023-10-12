@@ -15,8 +15,8 @@
         decorations = "none";
         startup_mode = "Windowed";
         padding = {
-          x = 12;
-          y = 0;
+          x = 10;
+          y = 10;
         };
       };
 
