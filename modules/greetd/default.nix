@@ -18,7 +18,12 @@
   programs.regreet = {
     enable = true;
     settings = {
-      GTK.application_prefer_dark_theme = true;
+      GTK = {
+        theme_name = "Nordic";
+        icon_theme_name = "Nordzy-dark";
+        font_name = "Noto Sans Regular 12";
+        application_prefer_dark_theme = true;
+      };
       background = {
         path = ./wallpaper.jpg;
         fit = "Cover";
