@@ -20,6 +20,12 @@
       modules-center = [ "hyprland/window" ];
       modules-right = [ "clock" ];
 
+      "clock" = {
+        interval = 1;
+        tooltip = false;
+        format = "{:%a %b %d %H:%M:%S}";
+      };
+
       "hyprland/workspaces" = {
         format = "{icon}";
         on-click = "activate";
@@ -63,6 +69,8 @@
         border: 2px solid #4c566a;
       	background-color: rgba(46, 52, 64, 0.75);
       }
+
+      #clock { all: inherit; }
     '';
   };
 }
