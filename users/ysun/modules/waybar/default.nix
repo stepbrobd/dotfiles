@@ -1,5 +1,4 @@
 # home-manager options
-
 { config
 , lib
 , pkgs
@@ -55,10 +54,10 @@
           critical = 10;
         };
         format = "{icon} {capacity}%";
-        format-charging = "";
-        format-plugged = "";
         format-alt = "{icon} {capacity}%";
-        format-icons = [ "" "" "" "" "" "" "" "" "" "" "" "" ];
+        format-charging = "󰂄";
+        format-plugged = "󰂄";
+        format-icons = [ "󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" "󱈏" ];
       };
     };
 
