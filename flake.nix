@@ -91,7 +91,7 @@
               home-manager.useUserPackages = true;
               home-manager.users."${userName}" = {
                 imports = [
-                  { xdg = { enable = true; userDirs.createDirectories = true; }; }
+                  { xdg = { enable = true; userDirs.enable = true; userDirs.createDirectories = true; }; }
                   (./. + "/users/${userName}/home.nix")
                   nix-index-database.hmModules.nix-index
                   agenix.homeManagerModules.age
@@ -139,6 +139,7 @@
             ./users/ysun/modules/gpg
             ./users/ysun/modules/hyprland
             ./users/ysun/modules/lsd
+            ./users/ysun/modules/mpd
             ./users/ysun/modules/neovim
             ./users/ysun/modules/pyenv
             ./users/ysun/modules/waybar
