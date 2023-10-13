@@ -59,7 +59,7 @@
       .modules-center,
       .modules-right {
         margin-top: 4px;
-        padding: 0 8px;
+        padding: 0 4px;
         border: 2px solid #4c566a;
       	background-color: rgba(46, 52, 64, 0.75);
       }
