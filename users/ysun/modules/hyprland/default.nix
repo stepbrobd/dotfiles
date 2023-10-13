@@ -29,8 +29,8 @@
         gaps_in = 6
         gaps_out = 12
         border_size = 2
-        col.active_border=0xffcba6f7
-        col.inactive_border=0xff313244
+        col.active_border=0xff4c566a
+        col.inactive_border=0xff2e3440
         no_border_on_floating = true
         layout = dwindle
       }
