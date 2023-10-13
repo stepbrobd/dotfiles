@@ -8,12 +8,9 @@
 
 {
   boot = {
-    consoleLogLevel = 0;
+    plymouth.enable = true;
 
-    plymouth = {
-      enable = true;
-      theme = "breeze";
-    };
+    consoleLogLevel = 0;
 
     initrd = {
       verbose = false;
