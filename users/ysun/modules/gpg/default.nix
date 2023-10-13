@@ -19,7 +19,7 @@
 
   services.gpg-agent = {
     enable = true;
-    enableSSHSupport = true;
+    enableSshSupport = true;
     pinentryFlavor = "tty";
   };
 }
