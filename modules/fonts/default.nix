@@ -16,6 +16,7 @@
       noto-fonts-cjk
       noto-fonts-emoji
       jetbrains-mono
+      font-awesome
     ];
   } // lib.optionals pkgs.stdenv.isLinux {
     enableDefaultPackages = false;

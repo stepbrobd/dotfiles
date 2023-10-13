@@ -14,7 +14,7 @@
       layer = "top";
       position = "top";
 
-      height = 30;
+      height = 36;
 
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
       modules-center = [ "clock" ];
@@ -27,9 +27,12 @@
       };
 
       "hyprland/workspaces" = {
-        format = "{icon}";
-        on-click = "activate";
-        active-only = false;
+        format = "{name}: {icon}";
+        format-icons = {
+          default = "";
+          active = "";
+          urgent = "";
+        };
       };
 
       "hyprland/window" = {
@@ -37,7 +40,6 @@
       };
     };
 
-    # Nord theme
     style = ''
       * {
           min-height: 0;
@@ -45,8 +47,7 @@
           border: none;
           border-radius: 8px;
           font-size: 12px;
-          font-weight: bold;
-          font-family: "Noto Sans";
+          font-family: "Noto Sans", "Font Awesome 6 Free";
       }
 
       window#waybar {
@@ -69,7 +70,7 @@
       .modules-center,
       .modules-right {
         margin-top: 4px;
-        padding: 0 4px;
+        padding: 0 8px;
         border: 2px solid #4c566a;
       	background-color: rgba(46, 52, 64, 0.75);
       }
