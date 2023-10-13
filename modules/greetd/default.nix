@@ -21,7 +21,7 @@
         "--power-no-setsid"
         "--power-shutdown shutdown now"
         "--power-reboot reboot"
-        "--cmd ${config.programs.hyprland.package}/bin/Hyprland"
+        "--cmd Hyprland"
       ];
     };
   };
