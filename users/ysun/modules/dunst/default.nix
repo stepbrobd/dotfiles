@@ -20,7 +20,7 @@
         origin = "top-center";
         font = "Noto Sans 10";
 
-        frame_width = 1;
+        frame_width = 2;
         corner_radius = 4;
         icon_corner_radius = 4;
         progress_bar_corner_radius = 4;
