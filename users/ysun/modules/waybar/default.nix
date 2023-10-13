@@ -18,15 +18,10 @@
 
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
       modules-center = [ "clock" ];
-      modules-right = [ ];
-
-      "clock" = {
-        interval = 1;
-        tooltip = false;
-        format = "{:%a %b %d %H:%M:%S}";
-      };
+      modules-right = [ "battery" ];
 
       "hyprland/workspaces" = {
+        tooltip = false;
         format = "{icon}";
         format-icons = {
           "1" = "󰼏";
@@ -43,7 +38,27 @@
       };
 
       "hyprland/window" = {
+        tooltip = false;
         format = "{title}";
+      };
+
+      "clock" = {
+        tooltip = false;
+        interval = 1;
+        format = "{:%a %b %d %H:%M:%S}";
+      };
+
+      "battery" = {
+        tooltip = false;
+        states = {
+          warning = 20;
+          critical = 10;
+        };
+        format = "{icon} {capacity}%";
+        format-charging = "";
+        format-plugged = "";
+        format-alt = "{icon} {capacity}%";
+        format-icons = [ "" "" "" "" "" "" "" "" "" "" "" "" ];
       };
     };
 
