@@ -17,7 +17,7 @@
 
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
       modules-center = [ "clock" ];
-      modules-right = [ "battery" ];
+      modules-right = [ "network" "battery" ];
 
       "hyprland/workspaces" = {
         tooltip = false;
@@ -47,14 +47,23 @@
         format = "{:%a %b %d %H:%M:%S}";
       };
 
+      "network" = {
+        tooltip = false;
+        format = "{ipaddr}   {icon}";
+        format-wifi = "󰤨";
+        format-ethernet = "󰈀";
+        format-disconnected = "󰌙";
+        format-linked = "󰿨";
+        on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+      };
+
       "battery" = {
         tooltip = false;
         states = {
           warning = 20;
           critical = 10;
         };
-        format = "{icon} {capacity}%";
-        format-alt = "{icon} {capacity}%";
+        format = "{icon}   {capacity}%";
         format-charging = "󰂄";
         format-plugged = "󰂄";
         format-icons = [ "󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" "󱈏" ];
