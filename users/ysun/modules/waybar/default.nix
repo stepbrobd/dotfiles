@@ -16,9 +16,9 @@
 
       height = 30;
 
-      modules-left = [ "clock" ];
-      modules-center = [ "hyprland/window" ];
-      modules-right = [ "clock" ];
+      modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+      modules-center = [ "clock" ];
+      modules-right = [ ];
 
       "clock" = {
         interval = 1;
@@ -31,6 +31,10 @@
         on-click = "activate";
         active-only = false;
       };
+
+      "hyprland/window" = {
+        format = "{title}";
+      };
     };
 
     # Nord theme
@@ -42,7 +46,7 @@
           border-radius: 8px;
           font-size: 12px;
           font-weight: bold;
-          font-family: "Noto Sans", "Noto Color Emoji";
+          font-family: "Noto Sans";
       }
 
       window#waybar {
@@ -69,8 +73,6 @@
         border: 2px solid #4c566a;
       	background-color: rgba(46, 52, 64, 0.75);
       }
-
-      #clock { all: inherit; }
     '';
   };
 }
