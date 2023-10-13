@@ -27,11 +27,18 @@
       };
 
       "hyprland/workspaces" = {
-        format = "{name}: {icon}";
+        format = "{icon}";
         format-icons = {
-          default = "";
-          active = "";
-          urgent = "";
+          "1" = "󰬺";
+          "2" = "󰎧";
+          "3" = "󰲤";
+          "4" = "󰎮";
+          "5" = "󰼓";
+          "6" = "󰎴";
+          "7" = "󰼕";
+          "8" = "";
+          "9" = "";
+          "10" = "";
         };
       };
 
