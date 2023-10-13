@@ -16,4 +16,10 @@
       { source = ./pgp.asc; trust = "ultimate"; }
     ];
   };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "tty";
+  };
 }
