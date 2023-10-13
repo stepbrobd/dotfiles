@@ -10,9 +10,23 @@
   services.greetd = {
     enable = true;
     settings.default_session = {
-      vt = "next";
       user = "greeter";
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd ${config.programs.hyprland.package}/bin/Hyprland --time --remember --asterisks --power-shutdown shutdown now --power-reboot reboot";
+      command = "${pkgs.cage}/bin/cage -s -- ${pkgs.regreet}/bin/regreet";
+    };
+  };
+
+  programs.regreet = {
+    enable = true;
+    settings = {
+      GTK.application_prefer_dark_theme = true;
+      background = {
+        path = ./wallpaper.jpg;
+        fit = "Cover";
+      };
+      commands = {
+        reboot = "systemctl reboot";
+        shutdown = "systemctl poweroff";
+      };
     };
   };
 }
