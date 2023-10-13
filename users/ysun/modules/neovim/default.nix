@@ -21,6 +21,9 @@
 
       set number
       set relativenumber
+
+      set cmdheight=0
+      set laststatus=2
     '';
 
     extraLuaConfig = ''
