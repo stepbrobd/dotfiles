@@ -20,13 +20,13 @@
         origin = "top-center";
         font = "Noto Sans 10";
 
+        separator_height = 4;
         frame_width = 2;
+        padding = 8;
+        horizontal_padding = 8;
         corner_radius = 4;
         icon_corner_radius = 4;
         progress_bar_corner_radius = 4;
-        padding = 8;
-        horizontal_padding = 8;
-        separator_height = 2;
 
         background = "#2e3440";
         foreground = "#d8dee9";
