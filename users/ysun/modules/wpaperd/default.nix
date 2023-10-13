@@ -10,7 +10,7 @@
   programs.wpaperd = {
     enable = true;
     settings.default = {
-      apply-shadow = true;
+      apply-shadow = false;
       path = ./wallpaper.jpg;
     };
   };

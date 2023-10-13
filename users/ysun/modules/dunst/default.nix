@@ -24,9 +24,9 @@
         frame_width = 2;
         padding = 8;
         horizontal_padding = 8;
-        corner_radius = 4;
-        icon_corner_radius = 4;
-        progress_bar_corner_radius = 4;
+        corner_radius = 8;
+        icon_corner_radius = 8;
+        progress_bar_corner_radius = 8;
 
         background = "#2e3440";
         foreground = "#d8dee9";
