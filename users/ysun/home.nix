@@ -29,6 +29,7 @@
     gitleaks
     github-copilot-cli
     pinentry
+    pinentry-curses
   ]
   # linux only
   ++ (lib.optionals pkgs.stdenv.isLinux [

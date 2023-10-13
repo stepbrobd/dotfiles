@@ -113,7 +113,7 @@
             # fonts
             ./modules/fonts
             # gnupg
-            ./modules/gnupg
+            # ./modules/gnupg
             # greeter
             ./modules/greetd
             # desktop environment
