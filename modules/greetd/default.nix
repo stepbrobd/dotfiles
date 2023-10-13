@@ -14,7 +14,9 @@
       user = "greeter";
       command = lib.strings.concatStringsSep " " [
         "${pkgs.greetd.tuigreet}/bin/tuigreet"
+        "--issue"
         "--time"
+        "--time-format %A - %B %-d, %Y - %-H:%M:%S"
         "--remember"
         "--user-menu"
         "--asterisks"
