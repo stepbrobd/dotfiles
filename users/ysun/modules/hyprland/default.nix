@@ -102,7 +102,7 @@
 
       $mod = SUPER
 
-      bind = $mod, SPACE. exec, ${pkgs.rofi-wayland}/bin/rofi -show-icons -combi-modi window,drun,run,ssh -show combi
+      bind = $mod, SPACE, exec, ${pkgs.rofi-wayland}/bin/rofi -show-icons -combi-modi window,drun,run,ssh -show combi
 
       bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
       bind = $mod, T, exec, ${config.home.sessionVariables.TERM}
