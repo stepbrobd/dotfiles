@@ -50,7 +50,7 @@
         "window" = {
           location = mkLiteral "center";
           anchor = mkLiteral "center";
-          transparency = mkLiteral "screenshot";
+          transparency = "screenshot";
           padding = 10;
           border = 0;
           border-radius = 6;
@@ -95,7 +95,7 @@
         };
         "element" = {
           padding = mkLiteral "3px";
-          vertical-align = 0.5;
+          vertical-align = mkLiteral "0.5";
           border-radius = 4;
           background-color = mkLiteral "transparent";
           color = mkLiteral "var(foreground)";
@@ -112,7 +112,7 @@
         "button" = {
           padding = mkLiteral "6px";
           color = mkLiteral "var(foreground)";
-          horizontal-align = 0.5;
+          horizontal-align = mkLiteral "0.5";
           border = mkLiteral "2px 0px 2px 2px";
           border-radius = mkLiteral "4px 0px 0px 4px";
           border-color = mkLiteral "var(foreground)";
