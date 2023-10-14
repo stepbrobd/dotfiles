@@ -17,10 +17,11 @@
     recommendedEnvironment = true;
 
     extraConfig = ''
-      monitor = , highres, auto, 1.25
+      monitor = eDP-1, highres, 0x0, 1.25
+      monitor = , preferred, auto, auto
 
-      env = GDK_SCALE,2
-      env = XCURSOR_SIZE,32
+      env = GDK_SCALE,1
+      env = XCURSOR_SIZE,24
 
       xwayland {
         force_zero_scaling = true
