@@ -17,8 +17,7 @@
     recommendedEnvironment = true;
 
     extraConfig = ''
-      monitor = eDP-1, highres, auto, 1.25
-      monitor = , preferred, auto, auto
+      monitor = , highres, auto, 1.25
 
       env = GDK_SCALE,2
       env = XCURSOR_SIZE,32
