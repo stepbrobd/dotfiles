@@ -14,6 +14,7 @@
       position = "top";
 
       height = 36;
+      spacing = 24;
 
       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
       modules-center = [ "clock" ];
@@ -49,11 +50,10 @@
 
       "network" = {
         tooltip = false;
-        format = "{ipaddr}   {icon}";
-        format-wifi = "󰤨";
-        format-ethernet = "󰈀";
-        format-disconnected = "󰌙";
-        format-linked = "󰿨";
+        format-wifi = "󰤨   {essid}";
+        format-ethernet = "󰈀   {ipaddr}";
+        format-disconnected = "󰌙   {ifname}";
+        format-linked = "󰿨   {ifname}";
         on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
       };
 
