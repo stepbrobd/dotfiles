@@ -102,15 +102,12 @@
         preserve_split = true
       }
 
-      bind = ,XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +5%
-      bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
-
       $mod = SUPER
 
       bind = $mod, SPACE, exec, ${pkgs.rofi-wayland}/bin/rofi -show-icons -combi-modi window,drun,run,ssh -show combi
 
-      bind = $mod, B, exec, ${config.home.sessionVariables.BROWSER}
-      bind = $mod, T, exec, ${config.home.sessionVariables.TERM}
+      bind = ,XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +5%
+      bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
 
       bind = $mod, M, exit,
       bind = $mod, Q, killactive,
