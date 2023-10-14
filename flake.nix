@@ -140,6 +140,7 @@
             ./users/ysun/modules/mpd
             ./users/ysun/modules/neovim
             ./users/ysun/modules/pyenv
+            ./users/ysun/modules/rofi
             ./users/ysun/modules/waybar
             ./users/ysun/modules/wpaperd
             ./users/ysun/modules/zsh
