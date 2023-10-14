@@ -26,31 +26,31 @@
   home.packages = with pkgs; [
     cachix
     nix-output-monitor
+
     gitleaks
     github-copilot-cli
+
     pinentry
     pinentry-curses
+
+    obsidian
+
+    discord
+    osu-lazer-bin
   ]
   # linux only
   ++ (lib.optionals pkgs.stdenv.isLinux [
+    deadnix
   ])
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
-    # virtualization
     lima
     colima
-    # battery
+
     aldente
     coconutbattery
-    # status bar
     bartender
-    # bluetooth device manager
     airbuddy
-    # productivity
     raycast
-    obsidian
-    # entertainment
-    discord
-    osu-lazer-bin
   ]);
 }
