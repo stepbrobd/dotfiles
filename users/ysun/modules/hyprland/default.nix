@@ -17,8 +17,15 @@
     recommendedEnvironment = true;
 
     extraConfig = ''
-      monitor = eDP-1, highres, 0x0, 1.25
+      monitor = eDP-1, highres, auto, 1.25
       monitor = , preferred, auto, auto
+
+      env = GDK_SCALE,2
+      env = XCURSOR_SIZE,32
+
+      xwayland {
+        force_zero_scaling = true
+      }
 
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = dunst
