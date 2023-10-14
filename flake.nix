@@ -143,6 +143,7 @@
             ./users/ysun/modules/rofi
             ./users/ysun/modules/waybar
             ./users/ysun/modules/wpaperd
+            ./users/ysun/modules/zathura
             ./users/ysun/modules/zsh
           ];
 
