@@ -110,8 +110,8 @@
       bind = , XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous
       bind = , XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause
       bind = , XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next
-      bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+
-      bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
+      bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+ && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
+      bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%- && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
 
       $mod = SUPER
 
