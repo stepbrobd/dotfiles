@@ -10,9 +10,10 @@ Storage: 1TB
 
 ## Installation
 
-Boot into minimal NixOS installer.
+> [!Important]
+> Disable Secure Boot before getting started.
 
-Switch to root user.
+Boot into minimal NixOS installer and switch to root user.
 
 Format disks:
 
