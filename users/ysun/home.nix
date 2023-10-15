@@ -7,6 +7,8 @@
 {
   imports = [ ./activation.nix ];
 
+  xdg.userDirs.extraConfig.XDG_WORKSPACE_DIR = "${config.home.homeDirectory}/Workspace";
+
   home = {
     username = "ysun";
     homeDirectory =
