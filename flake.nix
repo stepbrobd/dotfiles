@@ -110,15 +110,10 @@
         fwl-13 = mkSystem "nixos" ./systems/ysun.co/fwl-13 "23.11"
           "ysun"
           [
-            # fonts
             ./modules/fonts
-            # greeter
             ./modules/greetd
-            # desktop environment
             ./modules/hyprland
-            # input
             ./modules/i18n
-            # silent boot
             ./modules/plymouth
             disko.nixosModules.disko
             lanzaboote.nixosModules.lanzaboote
