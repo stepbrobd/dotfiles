@@ -29,13 +29,13 @@
             size = "100%";
             content = {
               type = "zfs";
-              pool = "local";
+              pool = "zroot";
             };
           };
         };
       };
     };
-    zpool.local = {
+    zpool.zroot = {
       type = "zpool";
       options = {
         ashift = "13";
@@ -55,8 +55,8 @@
         "com.sun:auto-snapshot" = "false";
       };
       postCreateHook = ''
-        zfs snapshot -r local@blank
-        zfs set keylocation="prompt" "local";
+        zfs snapshot -r zroot@blank
+        zfs set keylocation="prompt" "zroot";
       '';
       datasets = {
         root = {
