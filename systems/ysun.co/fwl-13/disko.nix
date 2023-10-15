@@ -7,6 +7,7 @@
         type = "gpt";
         partitions = {
           ESP = {
+            label = "ESP";
             type = "ef00";
             size = "1G";
             content = {
@@ -16,6 +17,7 @@
             };
           };
           SWAP = {
+            label = "SWAP";
             type = "8200";
             size = "96G";
             content = {
@@ -25,6 +27,7 @@
             };
           };
           ROOT = {
+            label = "ROOT";
             type = "8300";
             size = "100%";
             content = {
