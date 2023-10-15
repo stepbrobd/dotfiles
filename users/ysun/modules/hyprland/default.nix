@@ -104,12 +104,12 @@
         preserve_split = true
       }
 
-      bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-      bind = , XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-      bind = , XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-      bind = , XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous
-      bind = , XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause
-      bind = , XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next
+      bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Volume: Mute"
+      bind = , XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+      bind = , XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+      bind = , XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Media: Previous"
+      bind = , XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Media: Play/Pause"
+      bind = , XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Media: Next"
       bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+ && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
       bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%- && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
 
