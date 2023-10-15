@@ -40,6 +40,7 @@
       "hyprland/window" = {
         tooltip = false;
         format = "{title}";
+        separate-outputs = true;
       };
 
       "clock" = {
