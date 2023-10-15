@@ -8,6 +8,19 @@ RAM: 64GB
 
 Storage: 1TB
 
+## Preparation
+
+> [!Important]
+> Comment out `boot.zfs.forceImportRoot = false;` and `boot.zfs.allowHibernation = true;` if this is the system's first boot.
+
+From [NixOS options](https://mynixos.com/nixpkgs/option/boot.zfs.forceImportRoot):
+
+This is enabled by default for backwards compatibility purposes, but it is highly recommended to disable this option, as it bypasses some of the safeguards ZFS uses to protect your ZFS pools.
+
+If you set this option to false and NixOS subsequently fails to boot because it cannot import the root pool, you should boot with the zfs_force=1 option as a kernel parameter (e.g. by manually editing the kernel params in grub during boot). You should only need to do this once.
+
+Then uncomment after the system's first boot.
+
 ## Installation
 
 > [!Important]

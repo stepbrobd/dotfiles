@@ -114,7 +114,7 @@
             ./modules/greetd
             ./modules/hyprland
             ./modules/i18n
-            # ./modules/plymouth
+            ./modules/plymouth
             disko.nixosModules.disko
             lanzaboote.nixosModules.lanzaboote
             nixos-hardware.nixosModules.common-hidpi
