@@ -43,6 +43,8 @@
   # linux only
   ++ (lib.optionals pkgs.stdenv.isLinux [
     deadnix
+
+    smplayer
   ])
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
