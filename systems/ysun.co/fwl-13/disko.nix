@@ -8,7 +8,7 @@
         partitions = {
           ESP = {
             type = "ef00";
-            size = "512M";
+            size = "1G";
             content = {
               type = "filesystem";
               format = "vfat";
@@ -17,7 +17,7 @@
           };
           SWAP = {
             type = "8200";
-            size = "64G";
+            size = "96G";
             content = {
               type = "swap";
               randomEncryption = true;
@@ -29,13 +29,13 @@
             size = "100%";
             content = {
               type = "zfs";
-              pool = "zroot";
+              pool = "local";
             };
           };
         };
       };
     };
-    zpool.zroot = {
+    zpool.local = {
       type = "zpool";
       options = {
         ashift = "13";
@@ -55,8 +55,8 @@
         "com.sun:auto-snapshot" = "false";
       };
       postCreateHook = ''
-        zfs snapshot -r zroot@blank
-        zfs set keylocation="prompt" "zroot";
+        zfs snapshot -r local@blank
+        zfs set keylocation="prompt" "local";
       '';
       datasets = {
         root = {
