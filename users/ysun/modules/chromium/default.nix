@@ -20,6 +20,8 @@
       { id = "pejdijmoenmkgeppbflobdenhhabjlaj"; }
       # MyMind
       { id = "nmgcefdhjpjefhgcpocffdlibknajbmj"; }
+      # Nord
+      { id = "honjmojpikfebagfakclmgbcchedenbo"; }
     ];
   };
 }
