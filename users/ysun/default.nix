@@ -5,9 +5,6 @@
 }:
 
 {
-  programs.zsh.enable = true;
-  users.users.ysun.shell = pkgs.zsh;
-
   users.users.ysun = {
     description = "Yifei Sun";
 
@@ -17,14 +14,12 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICVktHp6yjTknysVbU24K014tFKCIIM3/rWqZV591NRn ysun@mbp-16"
     ];
 
-    isNormalUser =
-      lib.optionals pkgs.stdenv.isLinux
-        true;
-    extraGroups =
-      lib.optionals pkgs.stdenv.isLinux
-        [ "wheel" "networkmanager" "input" "audio" "video" ];
-    hashedPassword =
-      lib.optionals pkgs.stdenv.isLinux
-        "$y$j9T$.4YGom.yj/t0BqlWv3ysg.$f.LzZrxQpB.vpmKd7mu4yxYWiERgEtTAxJHIGti2vg2";
+    shell = pkgs.zsh;
+  } // lib.optionals pkgs.stdenv.isLinux {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" "input" "audio" "video" ];
+    hashedPassword = "$y$j9T$.4YGom.yj/t0BqlWv3ysg.$f.LzZrxQpB.vpmKd7mu4yxYWiERgEtTAxJHIGti2vg2";
   };
+
+  programs.zsh.enable = true;
 }
