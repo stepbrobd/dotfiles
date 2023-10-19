@@ -16,16 +16,16 @@
               mountpoint = "/boot";
             };
           };
-          SWAP = {
-            label = "SWAP";
-            type = "8200";
-            size = "96G";
-            content = {
-              type = "swap";
-              randomEncryption = true;
-              resumeDevice = true;
-            };
-          };
+          # SWAP = {
+          #   label = "SWAP";
+          #   type = "8200";
+          #   size = "64G";
+          #   content = {
+          #     type = "swap";
+          #     randomEncryption = true;
+          #     resumeDevice = true;
+          #   };
+          # };
           ROOT = {
             label = "ROOT";
             type = "8300";

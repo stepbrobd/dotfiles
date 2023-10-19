@@ -15,9 +15,9 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
 
   imports = [ ./disko.nix ];
-  boot.zfs.enableUnstable = true;
-  boot.zfs.forceImportRoot = false;
-  boot.zfs.allowHibernation = true;
+  # boot.zfs.enableUnstable = true;
+  # boot.zfs.forceImportRoot = false;
+  # boot.zfs.allowHibernation = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = true;
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
