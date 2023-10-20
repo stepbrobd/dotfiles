@@ -13,7 +13,6 @@
     userName = "Yifei Sun";
     userEmail = "ysun@hey.com";
     signing = {
-      gpgPath = "${pkgs.gnupg}/bin/gpg --pinentry-mode loopback";
       signByDefault = true;
       key = null;
     };
