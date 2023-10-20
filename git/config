@@ -19,7 +19,7 @@ required = true
 ### GPG Sign
 [user]
 name = Yifei Sun
-email = ysun+git@stepbrobd.com
+email = ysun@hey.com
 signingkey = D973170F9B86DB70
 [commit]
 gpgsign = true
