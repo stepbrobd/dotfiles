@@ -27,7 +27,12 @@
 
   home.packages = with pkgs; [
     cachix
+    deadnix
     nix-output-monitor
+
+    awscli2
+    flyctl
+    google-cloud-sdk
 
     gitleaks
     github-copilot-cli
@@ -36,15 +41,15 @@
     pinentry-curses
 
     obsidian
-
+    zoom
     discord
+    yt-dlp
     osu-lazer-bin
   ]
   # linux only
   ++ (lib.optionals pkgs.stdenv.isLinux [
-    deadnix
-
     smplayer
+    spotify
   ])
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
