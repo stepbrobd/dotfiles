@@ -115,6 +115,7 @@
             ./modules/hyprland
             ./modules/i18n
             ./modules/plymouth
+            ./modules/swaylock
             disko.nixosModules.disko
             lanzaboote.nixosModules.lanzaboote
             nixos-hardware.nixosModules.common-hidpi
@@ -136,6 +137,7 @@
             ./users/ysun/modules/neovim
             ./users/ysun/modules/pyenv
             ./users/ysun/modules/rofi
+            ./users/ysun/modules/swaylock
             ./users/ysun/modules/tmux
             ./users/ysun/modules/waybar
             ./users/ysun/modules/wpaperd
