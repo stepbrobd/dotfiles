@@ -126,6 +126,7 @@
             ./users/ysun/modules/alacritty
             ./users/ysun/modules/atuin
             ./users/ysun/modules/bat
+            ./users/ysun/modules/btop
             ./users/ysun/modules/chromium
             ./users/ysun/modules/direnv
             ./users/ysun/modules/dunst
