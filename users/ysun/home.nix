@@ -41,7 +41,7 @@
     pinentry-curses
 
     obsidian
-    zoom
+    zoom-us
     discord
     yt-dlp
     osu-lazer-bin
