@@ -26,7 +26,13 @@
       monitor = , preferred, auto, auto
 
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      exec-once = ${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1 &
+      exec-once = ${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1 &
+
+      exec-once = ${pkgs.xwaylandvideobridge}/bin/xwaylandvideobridge &
+      windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
+      windowrulev2 = noanim,class:^(xwaylandvideobridge)$
+      windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
+      windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
 
       exec-once = dunst &
       exec-once = waybar &
@@ -162,7 +168,7 @@
       bind = $mod CTRL, 7, movetoworkspace, 7
       bind = $mod CTRL, 8, movetoworkspace, 8
       bind = $mod CTRL, 9, movetoworkspace, 9
-      bind = $mod CTRL, 0, movetoworkspace, 0
+      bind = $mod CTRL, 0, movetoworkspace, 10
     '';
   };
 }
