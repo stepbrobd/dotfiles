@@ -38,6 +38,11 @@
       exec-once = waybar &
       exec-once = wpaperd &
 
+      exec-once = hyprctl dispatch exec "[workspace 1 silent] ${config.home.sessionVariables.TERM}"
+      exec-once = hyprctl dispatch exec "[workspace 2 silent] ${config.home.sessionVariables.BROWSER}"
+      exec-once = hyprctl dispatch exec "[workspace 3 silent] spotify"
+      exec-once = hyprctl dispatch exec "[workspace 4 silent] discord"
+
       general {
         gaps_in = 4
         gaps_out = 4
