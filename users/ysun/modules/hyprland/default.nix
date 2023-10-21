@@ -124,6 +124,9 @@
       bind = , XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Media: Next"
       bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+ && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
       bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%- && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
+      bind = SUPER SHIFT, 3, exec, ${pkgs.grimblast}/bin/grimblast save screen
+      bind = SUPER SHIFT, 4, exec, ${pkgs.grimblast}/bin/grimblast save active
+      bind = SUPER SHIFT, 5, exec, ${pkgs.grimblast}/bin/grimblast save area
 
       $mod = SUPER
 
