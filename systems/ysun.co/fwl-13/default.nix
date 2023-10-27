@@ -15,7 +15,6 @@
     hostId = "169b9f98";
     hostName = "fwl-13";
     domain = "ysun.co";
-    useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall.enable = true;
   };

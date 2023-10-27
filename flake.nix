@@ -16,6 +16,10 @@
     };
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    srvos = {
+      url = "github:numtide/srvos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";
@@ -54,6 +58,7 @@
     , nix-index-database
     , disko
     , nixos-hardware
+    , srvos
     , lanzaboote
     , nix-darwin
     , home-manager
@@ -121,6 +126,7 @@
             nixos-hardware.nixosModules.common-hidpi
             nixos-hardware.nixosModules.framework
             nixos-hardware.nixosModules.framework-13th-gen-intel
+            srvos.nixosModules.common
           ]
           [
             ./users/ysun/modules/alacritty

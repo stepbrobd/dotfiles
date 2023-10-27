@@ -15,7 +15,6 @@
     hostId = "5d7847f2";
     hostName = "router";
     domain = "as10779.net";
-    useDHCP = lib.mkDefault true;
     networkmanager.enable = true;
     firewall.enable = true;
   };

@@ -399,7 +399,8 @@
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "srvos": "srvos"
       }
     },
     "rust-overlay": {
@@ -424,6 +425,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "srvos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1698410235,
+        "narHash": "sha256-8p4voSLJcbWnlLeAFza5uUCwegpGyekztg5UHKlFq7c=",
+        "owner": "numtide",
+        "repo": "srvos",
+        "rev": "493492e1cbdb3a229926d112b756d08b9eb49d21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "srvos",
         "type": "github"
       }
     },
