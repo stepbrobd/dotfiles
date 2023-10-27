@@ -126,7 +126,8 @@
             nixos-hardware.nixosModules.common-hidpi
             nixos-hardware.nixosModules.framework
             nixos-hardware.nixosModules.framework-13th-gen-intel
-            srvos.nixosModules.common
+            srvos.nixosModules.common-networking
+            srvos.nixosModules.common-upgrade-diff
           ]
           [
             ./users/ysun/modules/alacritty
