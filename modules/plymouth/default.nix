@@ -7,7 +7,7 @@
 }:
 
 {
-  boot = lib.mkForce {
+  boot = {
     plymouth.enable = true;
 
     consoleLogLevel = 0;
