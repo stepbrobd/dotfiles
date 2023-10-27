@@ -115,10 +115,12 @@
         fwl-13 = mkSystem "nixos" ./systems/ysun.co/fwl-13 "23.11"
           "ysun"
           [
+            ./modules/activation
             ./modules/fonts
             ./modules/greetd
             ./modules/hyprland
             ./modules/i18n
+            ./modules/networking
             ./modules/plymouth
             ./modules/swaylock
             disko.nixosModules.disko
@@ -126,8 +128,6 @@
             nixos-hardware.nixosModules.common-hidpi
             nixos-hardware.nixosModules.framework
             nixos-hardware.nixosModules.framework-13th-gen-intel
-            srvos.nixosModules.common-networking
-            srvos.nixosModules.common-upgrade-diff
           ]
           [
             ./users/ysun/modules/alacritty
