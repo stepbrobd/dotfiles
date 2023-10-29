@@ -139,6 +139,7 @@
             ./users/ysun/modules/dunst
             ./users/ysun/modules/git
             ./users/ysun/modules/gpg
+            ./users/ysun/modules/gtk
             ./users/ysun/modules/hyprland
             ./users/ysun/modules/lsd
             ./users/ysun/modules/mpd
