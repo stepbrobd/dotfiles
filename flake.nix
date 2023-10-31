@@ -83,7 +83,6 @@
             # system
             systemConfig
             # common modules
-            { services.tailscale.enable = true; }
             { programs.command-not-found.enable = false; }
             nix-index-database."${systemType}Modules".nix-index
             agenix."${systemType}Modules".age
@@ -123,6 +122,7 @@
             ./modules/networking
             ./modules/plymouth
             ./modules/swaylock
+            ./modules/tailscale
             disko.nixosModules.disko
             lanzaboote.nixosModules.lanzaboote
             nixos-hardware.nixosModules.common-hidpi
