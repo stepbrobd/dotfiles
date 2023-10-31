@@ -120,6 +120,7 @@
             ./modules/hyprland
             ./modules/i18n
             ./modules/networking
+            ./modules/nextdns
             ./modules/plymouth
             ./modules/swaylock
             ./modules/tailscale
