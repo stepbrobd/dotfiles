@@ -16,8 +16,6 @@
     };
 
     cursorTheme = {
-      package = pkgs.nordzy-cursor-theme;
-      name = "Nordzy-cursors";
       size = 24;
     };
   };
