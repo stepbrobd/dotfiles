@@ -17,13 +17,17 @@
     recommendedEnvironment = true;
 
     extraConfig = ''
-      monitor = eDP-1, highres, 0x0, 1.25
-      env = GDK_SCALE,1.25
       xwayland {
         force_zero_scaling = true
       }
 
+      monitor = eDP-1, highres, 0x0, 1.25
       monitor = , preferred, auto, auto
+
+      env = GDK_SCALE,1
+      env = ELM_SCALE,1
+      env = QT_SCALE_FACTOR,1
+      env = XCURSOR_SIZE,24
 
       exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
       exec-once = ${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1 &
