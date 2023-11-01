@@ -14,9 +14,5 @@
       package = pkgs.nordic;
       name = "Nordic";
     };
-
-    cursorTheme = {
-      size = 24;
-    };
   };
 }
