@@ -24,7 +24,7 @@
     ruff
     typst
     texlive.combined.scheme-full
-    turbo
+    # turbo
     deno
     nodejs
     nodePackages_latest.pnpm
