@@ -9,6 +9,7 @@
 {
   programs.chromium = {
     enable = true;
+
     extensions = [
       # AdGuard
       { id = "bgnkhhnnamicmpeenaelnjfhikgbkllg"; }
@@ -18,6 +19,8 @@
       { id = "cdglnehniifkbagbbombnjghhcihifij"; }
       # iCloud
       { id = "pejdijmoenmkgeppbflobdenhhabjlaj"; }
+      # Mimi
+      { id = "ingkkggaggkbgnejpbblmbpodgmiojbo"; }
       # MyMind
       { id = "nmgcefdhjpjefhgcpocffdlibknajbmj"; }
       # Nord
