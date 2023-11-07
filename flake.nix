@@ -136,6 +136,7 @@
             ./users/ysun/modules/bat
             ./users/ysun/modules/btop
             ./users/ysun/modules/chromium
+            ./users/ysun/modules/cursor
             ./users/ysun/modules/direnv
             ./users/ysun/modules/dunst
             ./users/ysun/modules/git
