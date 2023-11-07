@@ -148,6 +148,9 @@
       bind = $mod, K, movefocus, u
       bind = $mod, J, movefocus, d
 
+      bind = $mod, left, movecurrentworkspacetomonitor, l
+      bind = $mod, right, movecurrentworkspacetomonitor, r
+
       bind = $mod, 1, workspace, 1
       bind = $mod, 2, workspace, 2
       bind = $mod, 3, workspace, 3
