@@ -22,7 +22,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERM = "alacritty";
-    BROWSER = "chromium-browser --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    BROWSER = "chromium-browser";
   };
 
   home.packages = with pkgs; [
