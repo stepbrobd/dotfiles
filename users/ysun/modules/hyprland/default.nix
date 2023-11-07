@@ -21,7 +21,6 @@
         force_zero_scaling = true
       }
 
-      monitor = eDP-1, highres, 0x0, 1.25
       monitor = , preferred, auto, auto
 
       env = GDK_SCALE,1
