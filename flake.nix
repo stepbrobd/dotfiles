@@ -158,6 +158,7 @@
             ./users/ysun/modules/rofi
             ./users/ysun/modules/swaylock
             ./users/ysun/modules/tmux
+            ./users/ysun/modules/vscode
             ./users/ysun/modules/waybar
             ./users/ysun/modules/wpaperd
             ./users/ysun/modules/zathura
