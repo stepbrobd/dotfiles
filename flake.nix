@@ -3,6 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-utils.url = "github:numtide/flake-utils";
     flake-schemas.url = "github:determinatesystems/flake-schemas";
     nix-index-database = {
@@ -53,6 +59,7 @@
   outputs =
     { self
     , nixpkgs
+    , nixos-generators
     , flake-utils
     , flake-schemas
     , nix-index-database
