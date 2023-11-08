@@ -38,6 +38,8 @@
       windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
       windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
 
+      exec-once = ${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
+
       exec-once = dunst &
       exec-once = waybar &
       exec-once = wpaperd &
