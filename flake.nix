@@ -146,6 +146,7 @@
             ./users/ysun/modules/lsd
             ./users/ysun/modules/mpd
             ./users/ysun/modules/neovim
+            ./users/ysun/modules/nushell
             ./users/ysun/modules/pyenv
             ./users/ysun/modules/rofi
             ./users/ysun/modules/swaylock
