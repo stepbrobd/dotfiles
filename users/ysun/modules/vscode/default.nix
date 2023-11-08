@@ -68,6 +68,14 @@
       yzhang.markdown-all-in-one
     ];
 
-    userSettings = { };
+    userSettings = {
+      "update.mode" = "none";
+      "extensions.autoCheckUpdates" = false;
+      "window.titleBarStyle" = "custom";
+      "workbench.startupEditor" = "none";
+      "workbench.colorTheme" = "Nord";
+      "workbench.iconTheme" = "vscode-icons";
+      "vsicons.dontShowNewVersionMessage" = true;
+    };
   };
 }
