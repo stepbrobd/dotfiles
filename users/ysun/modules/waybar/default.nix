@@ -51,6 +51,7 @@
 
       "network" = {
         tooltip = false;
+        interval = 1;
         format-wifi = "󰤨   {essid}";
         format-ethernet = "󰈀   {ipaddr}";
         format-disconnected = "󰌙   {ifname}";
@@ -60,6 +61,7 @@
 
       "battery" = {
         tooltip = false;
+        interval = 1;
         states = {
           warning = 20;
           critical = 10;
