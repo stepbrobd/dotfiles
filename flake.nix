@@ -77,11 +77,11 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // nix-darwin.lib // home-manager.lib;
 
-      mkSystem = systemType: systemConfig: stateVersion:
+      mkSystem = systemType: hostPlatform: stateVersion:
+        systemConfig:
         userName:
         extraModules:
-        extraHMModules:
-        lib."${systemType}System" {
+        extraHMModules: {
           specialArgs = { inherit inputs outputs; };
           modules = [
             # nix + nixpkgs
@@ -109,6 +109,8 @@
                 ] ++ extraHMModules;
               };
             }
+            # platform
+            { nixpkgs.hostPlatform = lib.mkDefault hostPlatform; }
             # state version
             { system.stateVersion = stateVersion; }
             { home-manager.users."${userName}".home.stateVersion = stateVersion; }
@@ -118,7 +120,8 @@
     {
       nixosConfigurations = {
         # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-        fwl-13 = mkSystem "nixos" ./systems/ysun.co/fwl-13 "23.11"
+        fwl-13 = lib.nixosSystem (mkSystem "nixos" "x86_64-linux" "23.11"
+          ./systems/ysun.co/fwl-13
           "ysun"
           [
             ./modules/activation
@@ -163,27 +166,34 @@
             ./users/ysun/modules/wpaperd
             ./users/ysun/modules/zathura
             ./users/ysun/modules/zsh
-          ];
+          ]
+        );
 
         # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
-        router-1 = mkSystem "nixos" ./systems/as10779.net/router-1 "23.11"
+        router-1 = lib.nixosSystem (mkSystem "nixos" "x86_64-linux" "23.11"
+          ./systems/as10779.net/router-1
           "ysun"
           [ ]
-          [ ];
+          [ ]
+        );
       };
 
       darwinConfigurations = {
         # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
-        mbp-14 = mkSystem "darwin" ./systems/ysun.co/mbp-14 "23.11"
+        mbp-14 = lib.darwinSystem (mkSystem "darwin" "aarch64-darwin" "23.11"
+          ./systems/ysun.co/mbp-14
           "ysun"
           [ ]
-          [ ];
+          [ ]
+        );
 
         # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-        mbp-16 = mkSystem "darwin" ./systems/ysun.co/mbp-16 "23.11"
+        mbp-16 = lib.darwinSystem (mkSystem "darwin" "x86_64-darwin" "23.11"
+          ./systems/ysun.co/mbp-16
           "ysun"
           [ ]
-          [ ];
+          [ ]
+        );
       };
     } // flake-utils.lib.eachDefaultSystem
       (system:
