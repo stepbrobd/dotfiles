@@ -116,85 +116,86 @@
             { home-manager.users."${userName}".home.stateVersion = stateVersion; }
           ] ++ extraModules;
         };
+
+      # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
+      fwl-13 = mkSystem "nixos" "x86_64-linux" "23.11"
+        ./systems/ysun.co/fwl-13
+        "ysun"
+        [
+          ./modules/activation
+          ./modules/fonts
+          ./modules/greetd
+          ./modules/hyprland
+          ./modules/i18n
+          ./modules/networking
+          ./modules/nextdns
+          ./modules/plymouth
+          ./modules/swaylock
+          ./modules/tailscale
+          nixos-generators.nixosModules.all-formats
+          disko.nixosModules.disko
+          lanzaboote.nixosModules.lanzaboote
+          nixos-hardware.nixosModules.common-hidpi
+          nixos-hardware.nixosModules.framework
+          nixos-hardware.nixosModules.framework-13th-gen-intel
+        ]
+        [
+          ./users/ysun/modules/alacritty
+          ./users/ysun/modules/atuin
+          ./users/ysun/modules/bat
+          ./users/ysun/modules/btop
+          ./users/ysun/modules/chromium
+          ./users/ysun/modules/cursor
+          ./users/ysun/modules/direnv
+          ./users/ysun/modules/dunst
+          ./users/ysun/modules/git
+          ./users/ysun/modules/gpg
+          ./users/ysun/modules/gtk
+          ./users/ysun/modules/hyprland
+          ./users/ysun/modules/lsd
+          ./users/ysun/modules/mpd
+          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nushell
+          ./users/ysun/modules/pyenv
+          ./users/ysun/modules/rofi
+          ./users/ysun/modules/swaylock
+          ./users/ysun/modules/tmux
+          ./users/ysun/modules/vscode
+          ./users/ysun/modules/waybar
+          ./users/ysun/modules/wpaperd
+          ./users/ysun/modules/zathura
+          ./users/ysun/modules/zsh
+        ];
+
+      # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
+      router-1 = mkSystem "nixos" "x86_64-linux" "23.11"
+        ./systems/as10779.net/router-1
+        "ysun"
+        [ ]
+        [ ];
+
+      # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
+      mbp-14 = mkSystem "darwin" "aarch64-darwin" "23.11"
+        ./systems/ysun.co/mbp-14
+        "ysun"
+        [ ]
+        [ ];
+
+      # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
+      mbp-16 = mkSystem "darwin" "x86_64-darwin" "23.11"
+        ./systems/ysun.co/mbp-16
+        "ysun"
+        [ ]
+        [ ];
     in
     {
-      nixosConfigurations = {
-        # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-        fwl-13 = lib.nixosSystem (mkSystem "nixos" "x86_64-linux" "23.11"
-          ./systems/ysun.co/fwl-13
-          "ysun"
-          [
-            ./modules/activation
-            ./modules/fonts
-            ./modules/greetd
-            ./modules/hyprland
-            ./modules/i18n
-            ./modules/networking
-            ./modules/nextdns
-            ./modules/plymouth
-            ./modules/swaylock
-            ./modules/tailscale
-            disko.nixosModules.disko
-            lanzaboote.nixosModules.lanzaboote
-            nixos-hardware.nixosModules.common-hidpi
-            nixos-hardware.nixosModules.framework
-            nixos-hardware.nixosModules.framework-13th-gen-intel
-          ]
-          [
-            ./users/ysun/modules/alacritty
-            ./users/ysun/modules/atuin
-            ./users/ysun/modules/bat
-            ./users/ysun/modules/btop
-            ./users/ysun/modules/chromium
-            ./users/ysun/modules/cursor
-            ./users/ysun/modules/direnv
-            ./users/ysun/modules/dunst
-            ./users/ysun/modules/git
-            ./users/ysun/modules/gpg
-            ./users/ysun/modules/gtk
-            ./users/ysun/modules/hyprland
-            ./users/ysun/modules/lsd
-            ./users/ysun/modules/mpd
-            ./users/ysun/modules/neovim
-            ./users/ysun/modules/nushell
-            ./users/ysun/modules/pyenv
-            ./users/ysun/modules/rofi
-            ./users/ysun/modules/swaylock
-            ./users/ysun/modules/tmux
-            ./users/ysun/modules/vscode
-            ./users/ysun/modules/waybar
-            ./users/ysun/modules/wpaperd
-            ./users/ysun/modules/zathura
-            ./users/ysun/modules/zsh
-          ]
-        );
+      nixosConfigurations.fwl-13 = lib.nixosSystem fwl-13;
 
-        # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
-        router-1 = lib.nixosSystem (mkSystem "nixos" "x86_64-linux" "23.11"
-          ./systems/as10779.net/router-1
-          "ysun"
-          [ ]
-          [ ]
-        );
-      };
+      nixosConfigurations.router-1 = lib.nixosSystem router-1;
 
-      darwinConfigurations = {
-        # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
-        mbp-14 = lib.darwinSystem (mkSystem "darwin" "aarch64-darwin" "23.11"
-          ./systems/ysun.co/mbp-14
-          "ysun"
-          [ ]
-          [ ]
-        );
+      darwinConfigurations.mbp-14 = lib.darwinSystem mbp-14;
 
-        # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-        mbp-16 = lib.darwinSystem (mkSystem "darwin" "x86_64-darwin" "23.11"
-          ./systems/ysun.co/mbp-16
-          "ysun"
-          [ ]
-          [ ]
-        );
-      };
+      darwinConfigurations.mbp-16 = lib.darwinSystem mbp-16;
     } // flake-utils.lib.eachDefaultSystem
       (system:
       let
