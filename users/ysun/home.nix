@@ -40,10 +40,13 @@
     pinentry
     pinentry-curses
 
-    obsidian
-    zoom-us
-    discord
     yt-dlp
+
+    obsidian
+    slack
+    zoom-us
+
+    discord
     osu-lazer-bin
   ]
   # linux only
