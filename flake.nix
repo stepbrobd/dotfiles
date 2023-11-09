@@ -178,15 +178,55 @@
       mbp-14 = mkSystem "darwin" "aarch64-darwin" "23.11"
         ./systems/ysun.co/mbp-14
         "ysun"
-        [ ]
-        [ ];
+        [
+          ./modules/fonts
+          ./modules/nextdns
+          ./modules/tailscale
+        ]
+        [
+          ./users/ysun/modules/alacritty
+          ./users/ysun/modules/atuin
+          ./users/ysun/modules/bat
+          ./users/ysun/modules/btop
+          ./users/ysun/modules/direnv
+          ./users/ysun/modules/git
+          ./users/ysun/modules/gpg
+          ./users/ysun/modules/lsd
+          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nushell
+          ./users/ysun/modules/pyenv
+          ./users/ysun/modules/tmux
+          ./users/ysun/modules/vscode
+          ./users/ysun/modules/zathura
+          ./users/ysun/modules/zsh
+        ];
 
       # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
       mbp-16 = mkSystem "darwin" "x86_64-darwin" "23.11"
         ./systems/ysun.co/mbp-16
         "ysun"
-        [ ]
-        [ ];
+        [
+          ./modules/fonts
+          ./modules/nextdns
+          ./modules/tailscale
+        ]
+        [
+          ./users/ysun/modules/alacritty
+          ./users/ysun/modules/atuin
+          ./users/ysun/modules/bat
+          ./users/ysun/modules/btop
+          ./users/ysun/modules/direnv
+          ./users/ysun/modules/git
+          ./users/ysun/modules/gpg
+          ./users/ysun/modules/lsd
+          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nushell
+          ./users/ysun/modules/pyenv
+          ./users/ysun/modules/tmux
+          ./users/ysun/modules/vscode
+          ./users/ysun/modules/zathura
+          ./users/ysun/modules/zsh
+        ];
     in
     {
       nixosConfigurations.fwl-13 = lib.nixosSystem fwl-13;
