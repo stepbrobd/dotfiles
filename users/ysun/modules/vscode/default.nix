@@ -69,6 +69,7 @@
     ];
 
     userSettings = {
+      "telemetry.telemetryLevel" = "off";
       "update.mode" = "none";
       "extensions.autoCheckUpdates" = false;
       "window.titleBarStyle" = "custom";
@@ -76,6 +77,11 @@
       "workbench.colorTheme" = "Nord";
       "workbench.iconTheme" = "vscode-icons";
       "vsicons.dontShowNewVersionMessage" = true;
+      "editor.fontSize" = 12;
+      "editor.fontLigatures" = true;
+      "editor.fontFamily" = "JetBrains Mono Nerd Font";
+      "terminal.integrated.fontFamily" = "JetBrains Mono Nerd Font";
+      "terminal.integrated.confirmOnExit" = "hasChildProcesses";
     };
   };
 }
