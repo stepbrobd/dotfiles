@@ -276,8 +276,9 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             agenix.packages.${system}.agenix
-            git
             direnv
+            git
+            google-cloud-sdk
             nix-direnv
           ];
         };
