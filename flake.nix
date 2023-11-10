@@ -172,7 +172,10 @@
         ./systems/ysun.co/vault
         "ysun"
         [
+          ./modules/nextdns
+          ./modules/tailscale
           nixos-generators.nixosModules.all-formats
+          srvos.nixosModules.server
         ]
         [
           ./users/ysun/modules/neovim
@@ -185,7 +188,10 @@
         ./systems/as10779.net/router
         "ysun"
         [
+          ./modules/nextdns
+          ./modules/tailscale
           nixos-generators.nixosModules.all-formats
+          srvos.nixosModules.server
         ]
         [
           ./users/ysun/modules/neovim
