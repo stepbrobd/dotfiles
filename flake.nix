@@ -254,14 +254,13 @@
         ];
     in
     {
-      nixosConfigurations.fwl-13 = lib.nixosSystem fwl-13;
-
+      # servers
       nixosConfigurations.vault = lib.nixosSystem vault;
-
       nixosConfigurations.router = lib.nixosSystem router;
 
+      # workstations + laptops
+      nixosConfigurations.fwl-13 = lib.nixosSystem fwl-13;
       darwinConfigurations.mbp-14 = lib.darwinSystem mbp-14;
-
       darwinConfigurations.mbp-16 = lib.darwinSystem mbp-16;
     } // flake-utils.lib.eachDefaultSystem
       (system:
