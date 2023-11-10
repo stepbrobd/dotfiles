@@ -167,9 +167,16 @@
           ./users/ysun/modules/zsh
         ];
 
+      # GCE
+      vault = mkSystem "nixos" "x86_64-linux" "23.11"
+        ./systems/ysun.co/vault
+        "ysun"
+        [ ]
+        [ ];
+
       # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
-      router-1 = mkSystem "nixos" "x86_64-linux" "23.11"
-        ./systems/as10779.net/router-1
+      router = mkSystem "nixos" "x86_64-linux" "23.11"
+        ./systems/as10779.net/router
         "ysun"
         [ ]
         [ ];
@@ -231,7 +238,9 @@
     {
       nixosConfigurations.fwl-13 = lib.nixosSystem fwl-13;
 
-      nixosConfigurations.router-1 = lib.nixosSystem router-1;
+      nixosConfigurations.vault = lib.nixosSystem vault;
+
+      nixosConfigurations.router = lib.nixosSystem router;
 
       darwinConfigurations.mbp-14 = lib.darwinSystem mbp-14;
 

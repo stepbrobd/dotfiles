@@ -8,7 +8,7 @@
   imports = [ ./hardware.nix ];
 
   i18n.defaultLocale = "en_US.UTF-8";
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = "EtC/UTC";
 
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
