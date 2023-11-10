@@ -171,15 +171,27 @@
       vault = mkSystem "nixos" "x86_64-linux" "23.11"
         ./systems/ysun.co/vault
         "ysun"
-        [ ]
-        [ ];
+        [
+          nixos-generators.nixosModules.all-formats
+        ]
+        [
+          ./users/ysun/modules/neovim
+          ./users/ysun/modules/tmux
+          ./users/ysun/modules/zsh
+        ];
 
       # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
       router = mkSystem "nixos" "x86_64-linux" "23.11"
         ./systems/as10779.net/router
         "ysun"
-        [ ]
-        [ ];
+        [
+          nixos-generators.nixosModules.all-formats
+        ]
+        [
+          ./users/ysun/modules/neovim
+          ./users/ysun/modules/tmux
+          ./users/ysun/modules/zsh
+        ];
 
       # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
       mbp-14 = mkSystem "darwin" "aarch64-darwin" "23.11"
