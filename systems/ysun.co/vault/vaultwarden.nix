@@ -13,7 +13,7 @@
     enable = true;
 
     config = {
-      DOMAIN = config.networking.fqdn;
+      DOMAIN = "https://${config.networking.fqdn}";
       ROCKET_ADDRESS = "::1";
       ROCKET_PORT = 6969;
       SIGNUPS_ALLOWED = false;
