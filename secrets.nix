@@ -5,9 +5,10 @@ let
 in
 {
   "secrets/pgp.age".publicKeys = [ fwl-13 mbp-14 mbp-16 ];
-  "secrets/vaultwarden.age".publicKeys = [ fwl-13 mbp-14 mbp-16 ];
 
   "secrets/fwl-13.age".publicKeys = [ fwl-13 ];
   "secrets/mbp-14.age".publicKeys = [ mbp-14 ];
   "secrets/mbp-16.age".publicKeys = [ mbp-16 ];
+
+  "secrets/vaultwarden.age".publicKeys = [ fwl-13 mbp-14 mbp-16 ];
 }
