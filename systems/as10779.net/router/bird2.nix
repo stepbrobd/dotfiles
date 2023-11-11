@@ -1,6 +1,8 @@
+# nixpkgs options, host specifig
+
 { config
-, pkgs
 , lib
+, pkgs
 , ...
 }:
 
