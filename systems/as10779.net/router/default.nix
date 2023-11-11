@@ -5,7 +5,10 @@
 }:
 
 {
-  imports = [ ./hardware.nix ];
+  imports = [
+    ./hardware.nix
+    ./bird2.nix
+  ];
 
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "EtC/UTC";
