@@ -7,6 +7,8 @@
 }:
 
 {
+  age.secrets.vaultwarden.file = ../../../secrets/vaultwarden.age;
+
   services.vaultwarden = {
     enable = true;
 
@@ -16,15 +18,58 @@
       ROCKET_PORT = 6969;
       SIGNUPS_ALLOWED = false;
     };
+
+    environmentFile = config.age.secrets.vaultwarden.path;
+  };
+
+  services.fail2ban = {
+    enable = true;
+
+    jails = {
+      vaultwarden = ''
+        enabled = true
+        filter = vaultwarden
+        port = 80,443,8000
+        maxretry = 5
+      '';
+
+      vaultwarden-admin = ''
+        enabled = true
+        port = 80,443
+        filter = vaultwarden-admin
+        maxretry = 3
+        bantime = 14400
+        findtime = 14400
+      '';
+    };
+  };
+
+  environment.etc = {
+    "fail2ban/filter.d/vaultwarden.conf".text = ''
+      [INCLUDES]
+      before = common.conf
+
+      [Definition]
+      failregex = ^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username:.*$
+      ignoreregex =
+      journalmatch = _SYSTEMD_UNIT=vaultwarden.service
+    '';
+
+    "fail2ban/filter.d/vaultwarden-admin.conf".text = ''
+      [INCLUDES]
+      before = common.conf
+
+      [Definition]
+      failregex = ^.*Invalid admin token\. IP: <ADDR>.*$
+      ignoreregex =
+      journalmatch = _SYSTEMD_UNIT=vaultwarden.service
+    '';
   };
 
   services.caddy = {
     enable = true;
 
     virtualHosts.${config.networking.fqdn}.extraConfig = ''
-      header {
-      }
-
       reverse_proxy ${config.services.vaultwarden.config.ROCKET_ADDRESS}:${config.services.vaultwarden.config.ROCKET_PORT} {
         header_up Host {host}
         header_up X-Real-IP {remote}
