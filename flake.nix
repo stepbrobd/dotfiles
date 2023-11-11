@@ -181,6 +181,8 @@
           srvos.nixosModules.server
         ]
         [
+          ./users/ysun/modules/bat
+          ./users/ysun/modules/lsd
           ./users/ysun/modules/neovim
           ./users/ysun/modules/tmux
           ./users/ysun/modules/zsh
@@ -197,6 +199,8 @@
           srvos.nixosModules.server
         ]
         [
+          ./users/ysun/modules/bat
+          ./users/ysun/modules/lsd
           ./users/ysun/modules/neovim
           ./users/ysun/modules/tmux
           ./users/ysun/modules/zsh
