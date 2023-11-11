@@ -14,7 +14,7 @@
 
     config = {
       DOMAIN = "https://${config.networking.fqdn}";
-      ROCKET_ADDRESS = "::1";
+      ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = 10069;
       SIGNUPS_ALLOWED = false;
     };
