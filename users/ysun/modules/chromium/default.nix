@@ -13,6 +13,8 @@
     extensions = [
       # AdGuard
       { id = "bgnkhhnnamicmpeenaelnjfhikgbkllg"; }
+      # Bitwarden
+      { id = "nngceckbapebfimnlniiiahkandclblb"; }
       # Hide Scrollbar
       { id = "mljepckcnbghmcdmaebjhejiplcngbkm"; }
       # Kagi
