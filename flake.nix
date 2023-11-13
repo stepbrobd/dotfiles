@@ -150,7 +150,7 @@
         "ysun"
         [
           ./modules/activation
-          # ./modules/fonts
+          ./modules/fonts
           ./modules/nextdns
           ./modules/tailscale
         ]
@@ -178,7 +178,7 @@
         "ysun"
         [
           ./modules/activation
-          # ./modules/fonts
+          ./modules/fonts
           ./modules/nextdns
           ./modules/tailscale
         ]

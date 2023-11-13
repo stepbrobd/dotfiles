@@ -6,11 +6,19 @@
 , ...
 }:
 
+let
+  # remove after nix-darwin #752 closes
+  fontPkgs =
+    if pkgs.stdenv.isLinux
+    then "packages"
+    else if pkgs.stdenv.isDarwin
+    then "fonts"
+    else abort "Unsupported OS";
+in
 {
   fonts = {
     fontDir.enable = true;
-    packages = with pkgs; [
-      corefonts
+    ${fontPkgs} = with pkgs; [
       nerdfonts
       noto-fonts
       noto-fonts-cjk
@@ -18,7 +26,7 @@
       jetbrains-mono
       font-awesome
     ];
-  } // lib.optionals pkgs.stdenv.isLinux {
+  } // lib.optionalAttrs pkgs.stdenv.isLinux {
     enableDefaultPackages = false;
     fontconfig = {
       enable = true;

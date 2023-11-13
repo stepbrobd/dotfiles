@@ -60,7 +60,6 @@
       tamasfe.even-better-toml
       tomoki1207.pdf
       unifiedjs.vscode-mdx
-      vadimcn.vscode-lldb
       vscode-icons-team.vscode-icons
       vscodevim.vim
       yzhang.markdown-all-in-one
