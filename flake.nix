@@ -80,7 +80,7 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // nix-darwin.lib // home-manager.lib;
 
-      mkSystem = systemType: hostPlatform: stateVersion:
+      mkSystem = systemType: hostPlatform: sysStateVersion: hmStateVersion:
         systemConfig:
         userName:
         extraModules:
@@ -92,11 +92,9 @@
             ./modules/nixpkgs
             # system
             systemConfig
-            # common modules
-            { programs.command-not-found.enable = false; }
-            nix-index-database."${systemType}Modules".nix-index
+            # agenix
             agenix."${systemType}Modules".age
-            # home + home-manager
+            # home-manager
             (./. + "/users/${userName}")
             home-manager."${systemType}Modules".home-manager
             {
@@ -105,23 +103,21 @@
               home-manager.useUserPackages = true;
               home-manager.users."${userName}" = {
                 imports = [
-                  { xdg = { enable = true; userDirs = { enable = true; createDirectories = true; }; }; }
                   (./. + "/users/${userName}/home.nix")
                   nix-index-database.hmModules.nix-index
-                  agenix.homeManagerModules.age
                 ] ++ extraHMModules;
               };
             }
             # platform
             { nixpkgs.hostPlatform = lib.mkDefault hostPlatform; }
             # state version
-            { system.stateVersion = stateVersion; }
-            { home-manager.users."${userName}".home.stateVersion = stateVersion; }
+            { system.stateVersion = sysStateVersion; }
+            { home-manager.users."${userName}".home.stateVersion = hmStateVersion; }
           ] ++ extraModules;
         };
 
       # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-      fwl-13 = mkSystem "nixos" "x86_64-linux" "23.11"
+      fwl-13 = mkSystem "nixos" "x86_64-linux" "23.11" "23.11"
         ./systems/ysun.co/fwl-13
         "ysun"
         [
@@ -171,7 +167,7 @@
         ];
 
       # GCE
-      vault = mkSystem "nixos" "x86_64-linux" "23.11"
+      vault = mkSystem "nixos" "x86_64-linux" "23.11" "23.11"
         ./systems/ysun.co/vault
         "ysun"
         [
@@ -189,7 +185,7 @@
         ];
 
       # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
-      router = mkSystem "nixos" "x86_64-linux" "23.11"
+      router = mkSystem "nixos" "x86_64-linux" "23.11" "23.11"
         ./systems/as10779.net/router
         "ysun"
         [
@@ -207,11 +203,12 @@
         ];
 
       # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
-      mbp-14 = mkSystem "darwin" "aarch64-darwin" "23.11"
+      mbp-14 = mkSystem "darwin" "aarch64-darwin" 4 "23.11"
         ./systems/ysun.co/mbp-14
         "ysun"
         [
-          ./modules/fonts
+          ./modules/activation
+          # ./modules/fonts
           ./modules/nextdns
           ./modules/tailscale
         ]
@@ -234,11 +231,12 @@
         ];
 
       # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-      mbp-16 = mkSystem "darwin" "x86_64-darwin" "23.11"
+      mbp-16 = mkSystem "darwin" "x86_64-darwin" 4 "23.11"
         ./systems/ysun.co/mbp-16
         "ysun"
         [
-          ./modules/fonts
+          ./modules/activation
+          # ./modules/fonts
           ./modules/nextdns
           ./modules/tailscale
         ]

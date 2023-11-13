@@ -52,8 +52,6 @@
       ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
       ms-vscode.cmake-tools
-      ms-vscode.cpptools
-      ms-vsliveshare.vsliveshare
       nvarner.typst-lsp
       redhat.vscode-yaml
       rust-lang.rust-analyzer

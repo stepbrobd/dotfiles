@@ -7,15 +7,23 @@
 {
   imports = [ ./activation.nix ];
 
-  xdg.userDirs.extraConfig.XDG_WORKSPACE_DIR = "${config.home.homeDirectory}/Workspace";
+  xdg = {
+    enable = true;
+  } // lib.optionalAttrs pkgs.stdenv.isLinux {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      extraConfig.XDG_WORKSPACE_DIR = "${config.home.homeDirectory}/Workspace";
+    };
+  };
 
   home = {
     username = "ysun";
     homeDirectory =
       if pkgs.stdenv.isLinux
-      then "/home/ysun"
+      then lib.mkDefault "/home/ysun"
       else if pkgs.stdenv.isDarwin
-      then "/Users/ysun"
+      then lib.mkDefault "/Users/ysun"
       else abort "Unsupported OS";
   };
 
