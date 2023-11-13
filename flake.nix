@@ -151,6 +151,7 @@
         [
           ./modules/activation
           ./modules/fonts
+          ./modules/homebrew
           ./modules/nextdns
           ./modules/tailscale
         ]
@@ -179,6 +180,7 @@
         [
           ./modules/activation
           ./modules/fonts
+          ./modules/homebrew
           ./modules/nextdns
           ./modules/tailscale
         ]
