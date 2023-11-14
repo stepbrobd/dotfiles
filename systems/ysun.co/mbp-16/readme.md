@@ -40,7 +40,7 @@ Start a new terminal to activate `nix`.
 Activate the system:
 
 ```shell
-sudo nix --extra-experimental-features "nix-command flakes" run github:lnl7/nix-darwin -- switch --flake github:stepbrobd/dotfiles#mbp-16
+nix --extra-experimental-features "nix-command flakes" run github:lnl7/nix-darwin -- switch --flake github:stepbrobd/dotfiles#mbp-16
 ```
 
 That's it!
