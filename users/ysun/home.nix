@@ -49,28 +49,21 @@
     pinentry-curses
 
     yt-dlp
-
-    obsidian
-    slack
-    zoom-us
-
-    discord
-    osu-lazer-bin
   ]
-  # linux only
-  ++ (lib.optionals pkgs.stdenv.isLinux [
+  # linux only and when hyprland is enabled
+  ++ (lib.optionals (pkgs.stdenv.isLinux && config.wayland.windowManager.hyprland.enable) [
+    discord
+    obsidian
+    osu-lazer-bin
+    slack
     smplayer
     spotify
+    zoom-us
   ])
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
-    lima
+    cocoapods
     colima
-
-    aldente
-    coconutbattery
-    bartender
-    airbuddy
-    raycast
+    lima
   ]);
 }
