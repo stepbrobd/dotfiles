@@ -54,6 +54,7 @@
             { nixpkgs.hostPlatform = lib.mkDefault hostPlatform; }
             # state version
             { system.stateVersion = sysStateVersion; }
+            { system.configurationRevision = self.rev or self.dirtyRev or null; }
             { home-manager.users."${userName}".home.stateVersion = hmStateVersion; }
           ] ++ extraModules;
         };
