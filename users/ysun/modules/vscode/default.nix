@@ -76,8 +76,8 @@
       "vsicons.dontShowNewVersionMessage" = true;
       "editor.fontSize" = 12;
       "editor.fontLigatures" = true;
-      "editor.fontFamily" = "JetBrains Mono Nerd Font";
-      "terminal.integrated.fontFamily" = "JetBrains Mono Nerd Font";
+      "editor.fontFamily" = "JetBrainsMono Nerd Font";
+      "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font";
       "terminal.integrated.confirmOnExit" = "hasChildProcesses";
     };
   };

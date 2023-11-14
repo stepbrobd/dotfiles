@@ -40,7 +40,7 @@ in
         emoji = [ "Noto Color Emoji" ];
         serif = [ "Noto Serif" "Noto Color Emoji" ];
         sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-        monospace = [ "JetBrains Mono Nerd Font" "Noto Color Emoji" ];
+        monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
       };
     };
   };
