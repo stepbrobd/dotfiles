@@ -78,5 +78,10 @@
   hardware.bluetooth.enable = true;
 
   # fingerprint
-  services.fprintd.enable = true;
+  services.fprintd = {
+    enable = true;
+    # https://knowledgebase.frame.work/en_us/updating-fingerprint-reader-firmware-on-linux-for-13th-gen-and-amd-ryzen-7040-series-laptops-HJrvxv_za
+    # tod.enable = true;
+    # tod.driver = pkgs.libfprint-2-tod1-goodix;
+  };
 }
