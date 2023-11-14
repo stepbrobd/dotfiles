@@ -42,6 +42,8 @@
       "obsidian"
       "osu"
       "raycast"
+      "slack"
+      "zoom"
     ];
 
     masApps = {
