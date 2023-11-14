@@ -77,7 +77,6 @@
           disko.nixosModules.disko
           lanzaboote.nixosModules.lanzaboote
           nixos-hardware.nixosModules.common-hidpi
-          nixos-hardware.nixosModules.framework
           nixos-hardware.nixosModules.framework-13th-gen-intel
         ]
         [
