@@ -10,9 +10,9 @@ in
 {
   "secrets/pgp.age".publicKeys = ysun;
 
-  "secrets/fwl-13.age".publicKeys = [ fwl-13 ];
-  "secrets/mbp-14.age".publicKeys = [ mbp-14 ];
-  "secrets/mbp-16.age".publicKeys = [ mbp-16 ];
+  "secrets/fwl-13.age".publicKeys = ysun;
+  "secrets/mbp-14.age".publicKeys = ysun;
+  "secrets/mbp-16.age".publicKeys = ysun;
 
   "secrets/vaultwarden.age".publicKeys = ysun ++ [ vault ];
 }
