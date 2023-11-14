@@ -10,7 +10,7 @@
   networking = {
     hostName = "mbp-14";
     localHostName = "Yifeis-MacBook-Pro-14";
-    computerName = "Yifei\'s MacBook Pro 14-inch";
+    # computerName = "Yifei\'s MacBook Pro 14\"";
     knownNetworkServices = [
       "Tailscale Tunnel"
       "Wi-Fi"

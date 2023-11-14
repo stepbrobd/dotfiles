@@ -20,7 +20,7 @@
 
       trusted-users = [
         "root"
-        "@wheel"
+        "ysun"
       ];
 
       substituters = [
