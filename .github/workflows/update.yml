@@ -1,0 +1,25 @@
+name: "Update"
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  Update:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+        name: "Checkout"
+        with:
+          fetch-depth: 0
+      - name: "Install Nix"
+        uses: "cachix/install-nix-action@v23"
+      - name: "Magic Cache"
+        uses: "determinatesystems/magic-nix-cache-action@v2"
+      - name: "Update"
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          nix flake update --commit-lock-file
+          git push
