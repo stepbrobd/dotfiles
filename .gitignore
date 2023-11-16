@@ -1,9 +1,0 @@
-# Nix
-**/.direnv/
-**/result/
-
-# Ruff
-**/.ruff_cache/
-
-# Editor
-**/.vscode/
