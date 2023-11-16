@@ -1,3 +1,23 @@
 # Nix
 **/.direnv/
 **/result/
+
+# Editor
+**/.idea/
+**/.vscode/
+
+## macOS
+**/.DS_Store
+**/.Spotlight-V100
+**/.Trashes
+**/.fseventsd
+**/.DocumentRevisions-V100
+**/.TemporaryItems
+**/.VolumeIcon.icns
+**/.com.apple.timemachine.donotpresent
+
+## Windows
+**/Thumbs.db
+**/ehthumbs.db
+**/Desktop.ini
+**/$RECYCLE.BIN/
