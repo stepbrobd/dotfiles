@@ -39,6 +39,7 @@
       "bartender"
       "coconutbattery"
       "discord"
+      "hey"
       "obsidian"
       "osu"
       "raycast"
