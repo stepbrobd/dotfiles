@@ -29,6 +29,10 @@ Sign-in to App Store (required for `nix-darwin.options.homebrew.masApps`).
 
 Install `nix` with [Determinate Systems Nix Installer](https://github.com/determinatesystems/nix-installer).
 
+```shell
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
+```
+
 Remove generated `nix` configuration:
 
 ```shell
