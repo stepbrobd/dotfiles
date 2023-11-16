@@ -37,6 +37,7 @@
       "aldente"
       "arc"
       "bartender"
+      "cleanmymac"
       "coconutbattery"
       "discord"
       "hey"
@@ -61,6 +62,7 @@
       "Tailscale" = 1475387142;
       "Things" = 904280696;
       "The Unarchiver" = 425424353;
+      "Xcode" = 497799835;
       # safari
       "AdGuard" = 1440147259;
       "Kagi" = 1622835804;
