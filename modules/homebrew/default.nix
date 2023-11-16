@@ -59,7 +59,6 @@
       "Pixelmator Pro" = 1289583905;
       "Remote Desktop" = 409907375;
       "Tailscale" = 1475387142;
-      "TestFlight" = 899247664;
       "Things" = 904280696;
       "The Unarchiver" = 425424353;
       # safari
