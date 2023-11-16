@@ -39,7 +39,6 @@
       "bartender"
       "coconutbattery"
       "discord"
-      "fantastical"
       "hey"
       "obsidian"
       "osu"
