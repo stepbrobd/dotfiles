@@ -27,7 +27,8 @@ in
       font-awesome
     ];
   } // lib.optionalAttrs pkgs.stdenv.isLinux {
-    enableDefaultPackages = false;
+    enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
     fontconfig = {
       enable = true;
       allowBitmaps = true;
