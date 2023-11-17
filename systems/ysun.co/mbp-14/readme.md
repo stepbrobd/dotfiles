@@ -11,7 +11,8 @@ Storage: 1TB
 ## Preparation
 
 > [!Important]
-> Enable [Firmware Password](https://support.apple.com/en-us/HT204455) before getting started.
+> Ensure the Security Policy for the boot partition is set to "Full Security"
+> in the [recovery menu](https://support.apple.com/guide/security/startup-disk-security-policy-control-sec7d92dc49f/web).
 
 Follow macOS built-in setup tool.
 
