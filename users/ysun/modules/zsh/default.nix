@@ -54,7 +54,7 @@
 
     profileExtra = lib.optionalString
       (pkgs.stdenv.isDarwin && osConfig.homebrew.enable) ''
-      eval $(/opt/homebrew/bin/brew shellenv)
+      eval $(${osConfig.homebrew.brewPrefix}/brew shellenv)
     '';
   };
 }
