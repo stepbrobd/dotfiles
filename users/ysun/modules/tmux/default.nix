@@ -22,7 +22,8 @@
     ];
 
     extraConfig = ''
-      set-default colorset-option -ga terminal-overrides ",xterm-256color:Tc"
+      set -g default-terminal "alacritty"
+      set-option -ga terminal-overrides ",alacritty:Tc"
 
       set -g mouse on
       set -g status on
