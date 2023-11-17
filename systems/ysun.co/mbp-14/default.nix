@@ -20,7 +20,6 @@
       "Belkin USB-C LAN"
       "USB 10/100/1000 LAN"
       "Thunderbolt Bridge"
-      "Thunderbolt Ethernet"
       "Thunderbolt Ethernet Slot 1"
       "Thunderbolt Ethernet Slot 2"
       "Thunderbolt Ethernet Slot 3"
