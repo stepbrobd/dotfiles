@@ -22,8 +22,8 @@
     ];
 
     extraConfig = ''
-      set -g default-terminal "xterm-256color"
-      set -ag terminal-overrides ",xterm-256color:RGB"
+      set-default colorset-option -ga terminal-overrides ",xterm-256color:Tc"
+
       set -g mouse on
       set -g status on
       set -g status-position top
