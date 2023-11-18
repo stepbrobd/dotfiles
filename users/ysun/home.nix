@@ -65,5 +65,6 @@
     cocoapods
     colima
     lima
+    reattach-to-user-namespace
   ]);
 }
