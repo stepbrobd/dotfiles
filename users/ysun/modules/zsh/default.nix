@@ -1,7 +1,6 @@
 # home-manager options
 
 { config
-, osConfig
 , lib
 , pkgs
 , ...
@@ -52,9 +51,12 @@
       [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
     '';
 
-    profileExtra = lib.optionalString
-      (pkgs.stdenv.isDarwin && osConfig.homebrew.enable) ''
-      eval $(${osConfig.homebrew.brewPrefix}/brew shellenv)
+    profileExtra = lib.optionalString pkgs.stdenv.isDarwin ''
+      eval $(${if pkgs.stdenv.hostPlatform.isx86_64
+      then "/usr/local/bin"
+      else if pkgs.stdenv.hostPlatform.isAarch64
+      then "/opt/homebrew/bin"
+      else abort "Unsupported platform"}/brew shellenv)
     '';
   };
 }
