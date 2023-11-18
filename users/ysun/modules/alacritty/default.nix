@@ -12,13 +12,15 @@
 
     settings = {
       window = {
-        decorations = "none";
+        decorations = "Buttonless";
         startup_mode = "Windowed";
         padding = {
           x = 4;
           y = 4;
         };
       };
+
+      cursor_style = "Underline";
 
       font = {
         normal = {
