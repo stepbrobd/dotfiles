@@ -9,6 +9,7 @@
 {
   programs.zsh = {
     enable = true;
+    autocd = true;
 
     shellAliases = {
       cat = "bat --plain";
@@ -42,7 +43,11 @@
       ];
     };
 
+    # seems broken
+    # defaultKeymap = "vicmd";
+
     initExtra = ''
+      bindkey -v
       source ${./p10k.zsh}
     '';
 
