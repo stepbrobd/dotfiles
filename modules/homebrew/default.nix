@@ -23,13 +23,24 @@
     };
 
     taps = [
+      "nextfire/tap"
       "homebrew/core"
       "homebrew/cask"
       "homebrew/services"
     ];
 
-    # use home-manager to install cli tools
-    brews = [ ];
+    brews = [
+      # apple music discord rich presence
+      # requires deno readline sqlite
+      {
+        name = "apple-music-discord-rpc";
+        start_service = true;
+        restart_service = "changed";
+      }
+      "deno"
+      "readline"
+      "sqlite"
+    ];
 
     casks = [
       "airbuddy"
