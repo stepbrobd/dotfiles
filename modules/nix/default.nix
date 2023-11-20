@@ -10,9 +10,15 @@
 
 {
   nix = {
-    package = pkgs.nix;
+    package = pkgs.nixVersions.unstable;
+
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 365d";
+    };
 
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
