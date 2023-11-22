@@ -79,6 +79,7 @@
       "editor.fontFamily" = "JetBrainsMono Nerd Font";
       "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font";
       "terminal.integrated.confirmOnExit" = "hasChildProcesses";
+      "explorer.excludeGitIgnore" = true;
     };
   };
 }
