@@ -38,7 +38,7 @@
     deadnix
     nix-output-monitor
 
-    awscli2
+    # awscli2
     flyctl
     google-cloud-sdk
 
