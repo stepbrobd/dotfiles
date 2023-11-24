@@ -31,6 +31,8 @@
     EDITOR = "nvim";
     TERM = "alacritty";
     BROWSER = "chromium-browser";
+    GOROOT = "${config.xdg.dataHome}/go";
+    GOPATH = "${config.xdg.dataHome}/go/path";
   };
 
   home.packages = with pkgs; [
