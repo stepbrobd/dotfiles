@@ -1,0 +1,17 @@
+# Nix
+**/.direnv/
+**/result/
+
+# Editor
+**/.idea/
+**/.vscode/
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work

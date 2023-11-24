@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+requires-python = ">=3"
+name = "<NAME>"
+version = "0.0.0"
+description = "<DESCRIPTION>"
+readme = "readme.md"
+license = { file = "license.txt" }
+authors = [{ name = "Yifei Sun", email = "ysun@hey.com" }]
+classifiers = ["Programming Language :: Python"]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/stepbrobd/<NAME>"
+Repository = "https://github.com/stepbrobd/<NAME>"
+Issues = "https://github.com/stepbrobd/<NAME>/issues"
+
+[project.scripts]
+<NAME> = "<NAME>.main:main"
+
+[tool.ruff]
+select = [
+    "E",   # pycodestyle error
+    "F",   # pyflakes
+    "I",   # isort
+    "W",   # pycodestyle warning
+    "UP",  # pyupgrade
+    "S",   # flake8-bandit
+    "B",   # flake8-bugbear
+    "ANN", # flake8-annotations
+]
+ignore = [
+    "E501",   # line too long
+    "S101",   # use of `assert` detected"
+    "S113",   # probable use of requests call without timeout
+    "B008",   # do not perform function call in argument defaults
+    "ANN001", # missing type annotation for function argument
+    "ANN002", # missing type annotation for `*args`
+    "ANN003", # missing type annotation for `**kwargs`
+    "ANN101", # missing type annotation for self in method
+    "ANN102", # missing type annotation for cls in classmethod
+    "ANN401", # dynamically typed expressions are disallowed
+]
+
+[tool.ruff.isort]
+known-first-party = ["<NAME>"]

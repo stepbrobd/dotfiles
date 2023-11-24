@@ -211,6 +211,14 @@
       nixosConfigurations.fwl-13 = lib.nixosSystem fwl-13;
       darwinConfigurations.mbp-14 = lib.darwinSystem mbp-14;
       darwinConfigurations.mbp-16 = lib.darwinSystem mbp-16;
+
+      # templates
+      templates = lib.attrsets.genAttrs
+        (builtins.attrNames (builtins.readDir ./templates))
+        (path: {
+          description = "template for ${path}";
+          path = ./templates/${path};
+        });
     } // flake-utils.lib.eachDefaultSystem
       (system:
       let
