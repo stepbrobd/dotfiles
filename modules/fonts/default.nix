@@ -20,11 +20,13 @@ in
     fontDir.enable = true;
     ${fontPkgs} = with pkgs; [
       nerdfonts
+      jetbrains-mono
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ] ++ lib.optionals pkgs.stdenv.isLinux [
+      font-awesome
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      jetbrains-mono
-      font-awesome
     ];
   } // lib.optionalAttrs pkgs.stdenv.isLinux {
     enableDefaultPackages = true;
