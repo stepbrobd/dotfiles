@@ -9,6 +9,7 @@ let
 in
 {
   "secrets/pgp.age".publicKeys = ysun;
+  "secrets/smtp.age".publicKeys = ysun;
 
   "secrets/fwl-13.age".publicKeys = ysun;
   "secrets/mbp-14.age".publicKeys = ysun;
