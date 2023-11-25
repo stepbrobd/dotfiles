@@ -11,9 +11,24 @@
     enable = true;
 
     plugins = with pkgs.vimPlugins; [
+      cmp-cmdline
+      cmp-nvim-lsp
+      cmp-path
+      cmp_luasnip
+      editorconfig-vim
+      flash-nvim
+      indent-blankline-nvim
       lualine-nvim
+      luasnip
       nord-nvim
+      nvim-cmp
+      nvim-lspconfig
+      nvim-treesitter-context
+      nvim-treesitter.withAllGrammars
       nvim-web-devicons
+      presence-nvim
+      telescope-nvim
+      vim-css-color
     ];
 
     extraConfig = ''
