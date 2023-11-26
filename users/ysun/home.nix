@@ -36,36 +36,34 @@
   };
 
   home.packages = with pkgs; [
-    cachix
-    deadnix
     nix-output-monitor
-
-    flyctl
-    google-cloud-sdk
-
-    gitleaks
-    github-copilot-cli
-
     pinentry
     pinentry-curses
-
-    yt-dlp
   ]
   # linux only and when hyprland is enabled
   ++ (lib.optionals (pkgs.stdenv.isLinux && config.wayland.windowManager.hyprland.enable) [
+    cider
     discord
+    flyctl
+    gitleaks
+    google-cloud-sdk
     obsidian
     osu-lazer-bin
     slack
     smplayer
     spotify
+    yt-dlp
     zoom-us
   ])
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
     cocoapods
     colima
+    flyctl
+    gitleaks
+    google-cloud-sdk
     lima
     reattach-to-user-namespace
+    yt-dlp
   ]);
 }
