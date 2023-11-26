@@ -46,9 +46,7 @@
 
       exec-once = hyprctl dispatch exec "[workspace 1 silent] ${config.home.sessionVariables.TERM}"
       exec-once = hyprctl dispatch exec "[workspace 2 silent] ${config.home.sessionVariables.BROWSER}"
-      exec-once = hyprctl dispatch exec "[workspace 3 silent] slack --ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
       exec-once = hyprctl dispatch exec "[workspace 3 silent] discord --ozone-platform=wayland --enable-features=UseOzonePlatform"
-      exec-once = hyprctl dispatch exec "[workspace 3 silent] spotify --ozone-platform=wayland --enable-features=UseOzonePlatform"
 
       general {
         gaps_in = 4
