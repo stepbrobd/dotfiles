@@ -97,7 +97,7 @@
           ./users/ysun/modules/hyprland
           ./users/ysun/modules/lsd
           ./users/ysun/modules/mpd
-          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nixvim
           ./users/ysun/modules/nushell
           ./users/ysun/modules/pyenv
           ./users/ysun/modules/rofi
@@ -123,7 +123,7 @@
         [
           ./users/ysun/modules/bat
           ./users/ysun/modules/lsd
-          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nixvim
           ./users/ysun/modules/tmux
           ./users/ysun/modules/zsh
         ];
@@ -141,7 +141,7 @@
         [
           ./users/ysun/modules/bat
           ./users/ysun/modules/lsd
-          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nixvim
           ./users/ysun/modules/tmux
           ./users/ysun/modules/zsh
         ];
@@ -166,7 +166,7 @@
           ./users/ysun/modules/git
           ./users/ysun/modules/gpg
           ./users/ysun/modules/lsd
-          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nixvim
           ./users/ysun/modules/nushell
           ./users/ysun/modules/pyenv
           ./users/ysun/modules/tmux
@@ -195,7 +195,7 @@
           ./users/ysun/modules/git
           ./users/ysun/modules/gpg
           ./users/ysun/modules/lsd
-          ./users/ysun/modules/neovim
+          ./users/ysun/modules/nixvim
           ./users/ysun/modules/nushell
           ./users/ysun/modules/pyenv
           ./users/ysun/modules/tmux
