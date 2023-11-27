@@ -16,6 +16,7 @@
     , home-manager
     , agenix
     , hyprland
+    , nixvim
     , ...
     } @ inputs:
     let
@@ -47,6 +48,7 @@
                 imports = [
                   (./. + "/users/${userName}/home.nix")
                   nix-index-database.hmModules.nix-index
+                  nixvim.homeManagerModules.nixvim
                 ] ++ extraHMModules;
               };
             }
@@ -293,6 +295,12 @@
     hyprland = {
       url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
