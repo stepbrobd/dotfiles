@@ -56,6 +56,7 @@
       "osu"
       "raycast"
       "slack"
+      "soundsource"
       "zoom"
     ];
 
