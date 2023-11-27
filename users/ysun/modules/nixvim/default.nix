@@ -14,14 +14,91 @@
   programs.nixvim = {
     enable = true;
 
-    colorschemes.nord.enable = true;
-
     options = {
       number = true;
       relativenumber = true;
     };
 
+    colorschemes.nord.enable = true;
+
     plugins = {
+      alpha = {
+        enable = true;
+        layout = [
+          {
+            type = "padding";
+            val = 10;
+          }
+          {
+            opts = {
+              hl = "Keyword";
+              position = "center";
+            };
+            type = "text";
+            val = "not";
+          }
+          {
+            type = "padding";
+            val = 1;
+          }
+          {
+            opts = {
+              hl = "Type";
+              position = "center";
+            };
+            type = "text";
+            val = [
+              "███████╗███╗   ███╗ █████╗  ██████╗███████╗"
+              "██╔════╝████╗ ████║██╔══██╗██╔════╝██╔════╝"
+              "█████╗  ██╔████╔██║███████║██║     ███████╗"
+              "██╔══╝  ██║╚██╔╝██║██╔══██║██║     ╚════██║"
+              "███████╗██║ ╚═╝ ██║██║  ██║╚██████╗███████║"
+              "╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝"
+            ];
+          }
+          {
+            type = "padding";
+            val = 5;
+          }
+          {
+            type = "group";
+            val = [
+              {
+                command = ":ene <BAR> startinsert <CR>";
+                desc = "  New File";
+                shortcut = "n";
+              }
+              {
+                command = ":Telescope find_files <CR>";
+                desc = "  Find File";
+                shortcut = "f";
+              }
+              {
+                command = ":Telescope live_grep <CR>";
+                desc = "  Live Grep";
+                shortcut = "g";
+              }
+              {
+                command = ":qa<CR>";
+                desc = "  Quit";
+                shortcut = "q";
+              }
+            ];
+          }
+          {
+            type = "padding";
+            val = 5;
+          }
+          {
+            opts = {
+              hl = "Keyword";
+              position = "center";
+            };
+            type = "text";
+            val = "its neovim";
+          }
+        ];
+      };
       bufferline = {
         enable = true;
         alwaysShowBufferline = false;
@@ -42,11 +119,6 @@
         enable = true;
         filetypes."*" = true;
       };
-      dashboard = {
-        enable = true;
-        hideStatusline = true;
-        hideTabline = true;
-      };
       diffview.enable = true;
       gitblame.enable = true;
       gitsigns.enable = true;
@@ -57,7 +129,6 @@
       };
       lualine = {
         enable = true;
-        globalstatus = true;
         iconsEnabled = true;
         theme = "nord";
         sections = {
