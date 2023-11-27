@@ -48,7 +48,6 @@
                 imports = [
                   (./. + "/users/${userName}/home.nix")
                   nix-index-database.hmModules.nix-index
-                  nixvim.homeManagerModules.nixvim
                 ] ++ extraHMModules;
               };
             }
