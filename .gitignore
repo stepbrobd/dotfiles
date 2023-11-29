@@ -1,6 +1,11 @@
 # Nix
 **/.direnv/
 **/result/
+**/result-*/
+
+# Terraform
+.terraform
+.terraform.*
 
 # Editor
 **/.idea/

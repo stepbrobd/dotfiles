@@ -223,20 +223,31 @@
     } // flake-utils.lib.eachDefaultSystem
       (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          config = { allowUnfree = true; allowUnfreePredicate = (_: true); };
+        };
       in
       {
         formatter = pkgs.nixpkgs-fmt;
 
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            agenix.packages.${system}.agenix
-            direnv
-            git
-            google-cloud-sdk
-            nix-direnv
-          ];
-        };
+        devShells.default =
+          let
+            terraform = pkgs.terraform.withPlugins (p: with p; [
+              age
+              cloudflare
+            ]);
+          in
+          pkgs.mkShell {
+            packages = with pkgs; [
+              agenix.packages.${system}.agenix
+              direnv
+              git
+              google-cloud-sdk
+              nix-direnv
+              terraform
+            ];
+          };
       });
 
   inputs = {
