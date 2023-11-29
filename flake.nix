@@ -234,8 +234,8 @@
         devShells.default =
           let
             terraform = pkgs.terraform.withPlugins (p: with p; [
-              age
               cloudflare
+              sops
             ]);
           in
           pkgs.mkShell {
