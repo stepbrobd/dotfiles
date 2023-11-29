@@ -11,13 +11,20 @@
     enable = true;
     autocd = true;
 
-    shellAliases = {
+    shellAliases = { } // lib.optionalAttrs config.programs.bat.enable {
       cat = "bat --plain";
+    } // lib.optionalAttrs config.programs.lsd.enable {
       ls = "lsd";
       tree = "lsd --tree";
+    } // {
+      # must use neovim
+      emacs = "nvim";
+      nano = "nvim";
       vi = "nvim";
       vim = "nvim";
       vimdiff = "nvim -d";
+      # other aliases
+      tf = "terraform";
     };
 
     zplug = {
