@@ -1,6 +1,7 @@
 # Nix
 **/.direnv/
 **/result/
+**/result-*/
 
 # Editor
 **/.idea/
