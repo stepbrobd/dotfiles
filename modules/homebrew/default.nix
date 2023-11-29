@@ -44,7 +44,6 @@
 
     casks = [
       "airbuddy"
-      "alacritty"
       "aldente"
       "arc"
       "bartender"
