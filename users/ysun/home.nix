@@ -53,6 +53,7 @@
     slack
     smplayer
     spotify
+    terraform
     yt-dlp
     zoom-us
   ])
@@ -65,6 +66,7 @@
     google-cloud-sdk
     lima
     reattach-to-user-namespace
+    terraform
     yt-dlp
   ]);
 }
