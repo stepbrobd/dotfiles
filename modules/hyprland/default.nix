@@ -16,4 +16,12 @@
     enable = true;
     xwayland.enable = true;
   };
+
+  xdg.portal = {
+    enable = true;
+    lxqt.enable = true;
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
+    config.common.default = "*";
+  };
 }
