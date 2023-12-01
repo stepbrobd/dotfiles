@@ -110,14 +110,18 @@
       cmp-dictionary.enable = true;
       cmp_luasnip.enable = true;
       cmp-nvim-lsp.enable = true;
-      cmp-nvim-lsp-document-symbol.enable = true;
-      cmp-nvim-lsp-signature-help.enable = true;
       cmp-path.enable = true;
-      cmp-spell.enable = true;
       cmp-treesitter.enable = true;
-      copilot-vim = {
+      copilot-cmp = {
+        enable = true;
+        event = [ "InsertEnter" "LspAttach" ];
+        fixPairs = true;
+      };
+      copilot-lua = {
         enable = true;
         filetypes."*" = true;
+        panel.enabled = false;
+        suggestion.enabled = false;
       };
       diffview.enable = true;
       gitblame.enable = true;
@@ -127,6 +131,7 @@
         enable = true;
         lspServersToEnable = "all";
       };
+      lspkind.enable = true;
       lualine = {
         enable = true;
         iconsEnabled = true;
@@ -145,6 +150,28 @@
       nix-develop.enable = true;
       noice.enable = true;
       notify.enable = true;
+      nvim-cmp = {
+        enable = true;
+        sources = [
+          { name = "buffer"; }
+          { name = "cmdline"; }
+          { name = "dictionary"; }
+          { name = "path"; }
+          { name = "treesitter"; }
+          { name = "luasnip"; }
+          { name = "copilot"; }
+        ];
+        mapping = {
+          "<cr>" = "cmp.mapping.confirm({ select = true })";
+          "<tab>" = "cmp.mapping.select_next_item()";
+          "<s-tab>" = "cmp.mapping.select_prev_item()";
+        };
+        completion.autocomplete = [ "TextChanged" ];
+        completion.completeopt = "menu,menuone,noselect,preview";
+        completion.keywordLength = 1;
+        experimental = { ghost_text.hlgroup = "Comment"; };
+        snippet.expand = "luasnip";
+      };
       presence-nvim.enable = true;
       rainbow-delimiters.enable = true;
       spider.enable = true;
