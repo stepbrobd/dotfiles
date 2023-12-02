@@ -61,7 +61,7 @@
         };
 
       # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-      fwl-13 = mkSystem "nixos" "x86_64-linux" "23.11" "23.11"
+      fwl-13 = mkSystem "nixos" "x86_64-linux" "24.05" "24.05"
         ./systems/ysun.co/fwl-13
         "ysun"
         [
@@ -110,7 +110,7 @@
         ];
 
       # GCE
-      vault = mkSystem "nixos" "x86_64-linux" "23.11" "23.11"
+      vault = mkSystem "nixos" "x86_64-linux" "24.05" "24.05"
         ./systems/ysun.co/vault
         "ysun"
         [
@@ -128,7 +128,7 @@
         ];
 
       # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
-      router = mkSystem "nixos" "x86_64-linux" "23.11" "23.11"
+      router = mkSystem "nixos" "x86_64-linux" "24.05" "24.05"
         ./systems/as10779.net/router
         "ysun"
         [
@@ -146,7 +146,7 @@
         ];
 
       # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
-      mbp-14 = mkSystem "darwin" "aarch64-darwin" 4 "23.11"
+      mbp-14 = mkSystem "darwin" "aarch64-darwin" 4 "24.05"
         ./systems/ysun.co/mbp-14
         "ysun"
         [
@@ -175,7 +175,7 @@
         ];
 
       # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-      mbp-16 = mkSystem "darwin" "x86_64-darwin" 4 "23.11"
+      mbp-16 = mkSystem "darwin" "x86_64-darwin" 4 "24.05"
         ./systems/ysun.co/mbp-16
         "ysun"
         [
