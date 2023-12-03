@@ -26,7 +26,7 @@ Project templates available for:
 - [Python](/templates/python)
 
 ```shell
-nix flake init -t github:stepbrobd/dotfiles#{go,python}
+nix flake [init|new] -t github:stepbrobd/dotfiles#{go,python}
 ```
 
 ## License
