@@ -5,19 +5,11 @@
     { self
     , nixpkgs
     , haumea
-    , nix-index-database
     , flake-utils
     , flake-schemas
-    , nixos-hardware
-    , srvos
-    , nixos-generators
-    , disko
-    , lanzaboote
     , nix-darwin
     , home-manager
     , agenix
-    , hyprland
-    , nixvim
     , ...
     } @ inputs:
     let
@@ -30,179 +22,126 @@
         };
       };
 
-      # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-      fwl-13 = lib.mkSystem {
+      minimalModules = [
+        ./modules/nextdns
+        ./modules/tailscale
+      ];
+
+      minimalHMModules = [
+        ./users/ysun/modules/nixvim
+        ./users/ysun/modules/tmux
+        ./users/ysun/modules/zsh
+      ];
+
+      commonModules = [
+        ./modules/activation
+        ./modules/fonts
+      ];
+
+      commonHMModules = [
+        ./users/ysun/modules/alacritty
+        ./users/ysun/modules/atuin
+        ./users/ysun/modules/bat
+        ./users/ysun/modules/btop
+        ./users/ysun/modules/direnv
+        ./users/ysun/modules/git
+        ./users/ysun/modules/gpg
+        ./users/ysun/modules/lsd
+        ./users/ysun/modules/nushell
+        ./users/ysun/modules/pyenv
+        ./users/ysun/modules/vscode
+        ./users/ysun/modules/zathura
+      ];
+    in
+    {
+      # GCE, 2 vCPU, 1GB RAM, 15GB Storage
+      nixosConfigurations.vault = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
         systemStateVersion = "24.05";
-        hmStateVersion = "24.05";
+        hmStateVersion = systemStateVersion;
+        systemConfig = ./systems/ysun.co/vault;
+        username = "ysun";
+        extraModules = minimalModules ++ [
+          inputs.nixos-generators.nixosModules.all-formats
+          inputs.srvos.nixosModules.server
+        ];
+        extraHMModules = minimalHMModules;
+      };
+
+      # Vultr, 2 vCPU, 4GB RAM, 25GB Storage
+      nixosConfigurations.router = lib.mkSystem rec {
+        systemType = "nixos";
+        hostPlatform = "x86_64-linux";
+        systemStateVersion = "24.05";
+        hmStateVersion = systemStateVersion;
+        systemConfig = ./systems/as10779.net/router;
+        username = "ysun";
+        extraModules = minimalModules ++ [
+          inputs.nixos-generators.nixosModules.all-formats
+          inputs.srvos.nixosModules.server
+        ];
+        extraHMModules = minimalHMModules;
+      };
+
+      # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
+      nixosConfigurations.fwl-13 = lib.mkSystem rec {
+        systemType = "nixos";
+        hostPlatform = "x86_64-linux";
+        systemStateVersion = "24.05";
+        hmStateVersion = systemStateVersion;
         systemConfig = ./systems/ysun.co/fwl-13;
         username = "ysun";
-        extraModules = [
-          ./modules/activation
-          ./modules/fonts
+        extraModules = minimalModules ++ commonModules ++ [
           ./modules/greetd
           ./modules/hyprland
           ./modules/i18n
           ./modules/networking
-          ./modules/nextdns
           ./modules/plymouth
           ./modules/swaylock
-          ./modules/tailscale
-          nixos-generators.nixosModules.all-formats
-          disko.nixosModules.disko
-          lanzaboote.nixosModules.lanzaboote
-          nixos-hardware.nixosModules.common-hidpi
-          nixos-hardware.nixosModules.framework-13th-gen-intel
+          inputs.nixos-generators.nixosModules.all-formats
+          inputs.disko.nixosModules.disko
+          inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.nixos-hardware.nixosModules.common-hidpi
+          inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
         ];
-        extraHMModules = [
-          ./users/ysun/modules/alacritty
-          ./users/ysun/modules/atuin
-          ./users/ysun/modules/bat
-          ./users/ysun/modules/btop
+        extraHMModules = minimalHMModules ++ commonHMModules ++ [
           ./users/ysun/modules/chromium
           ./users/ysun/modules/cursor
-          ./users/ysun/modules/direnv
           ./users/ysun/modules/dunst
-          ./users/ysun/modules/git
-          ./users/ysun/modules/gpg
           ./users/ysun/modules/gtk
           ./users/ysun/modules/hyprland
-          ./users/ysun/modules/lsd
           ./users/ysun/modules/mpd
-          ./users/ysun/modules/nixvim
-          ./users/ysun/modules/nushell
-          ./users/ysun/modules/pyenv
           ./users/ysun/modules/rofi
           ./users/ysun/modules/swaylock
-          ./users/ysun/modules/tmux
-          ./users/ysun/modules/vscode
           ./users/ysun/modules/waybar
           ./users/ysun/modules/wpaperd
-          ./users/ysun/modules/zathura
-          ./users/ysun/modules/zsh
-        ];
-      };
-
-      # GCE
-      vault = lib.mkSystem {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = "24.05";
-        systemConfig = ./systems/ysun.co/vault;
-        username = "ysun";
-        extraModules = [
-          ./modules/nextdns
-          ./modules/tailscale
-          nixos-generators.nixosModules.all-formats
-          srvos.nixosModules.server
-        ];
-        extraHMModules = [
-          ./users/ysun/modules/nixvim
-          ./users/ysun/modules/tmux
-          ./users/ysun/modules/zsh
-        ];
-      };
-
-      # Vultr VPS, 1 vCPU, 1GB RAM, 25GB Storage
-      router = lib.mkSystem {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = "24.05";
-        systemConfig = ./systems/as10779.net/router;
-        username = "ysun";
-        extraModules = [
-          ./modules/nextdns
-          ./modules/tailscale
-          nixos-generators.nixosModules.all-formats
-          srvos.nixosModules.server
-        ];
-        extraHMModules = [
-          ./users/ysun/modules/nixvim
-          ./users/ysun/modules/tmux
-          ./users/ysun/modules/zsh
         ];
       };
 
       # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
-      mbp-14 = lib.mkSystem {
+      darwinConfigurations.mbp-14 = lib.mkSystem {
         systemType = "darwin";
         hostPlatform = "aarch64-darwin";
         systemStateVersion = 4;
         hmStateVersion = "24.05";
         systemConfig = ./systems/ysun.co/mbp-14;
         username = "ysun";
-        extraModules = [
-          ./modules/activation
-          ./modules/fonts
-          ./modules/homebrew
-          ./modules/nextdns
-          ./modules/tailscale
-        ];
-        extraHMModules = [
-          ./users/ysun/modules/alacritty
-          ./users/ysun/modules/atuin
-          ./users/ysun/modules/bat
-          ./users/ysun/modules/btop
-          ./users/ysun/modules/direnv
-          ./users/ysun/modules/git
-          ./users/ysun/modules/gpg
-          ./users/ysun/modules/lsd
-          ./users/ysun/modules/nixvim
-          ./users/ysun/modules/nushell
-          ./users/ysun/modules/pyenv
-          ./users/ysun/modules/tmux
-          ./users/ysun/modules/vscode
-          ./users/ysun/modules/zathura
-          ./users/ysun/modules/zsh
-        ];
+        extraModules = minimalModules ++ commonModules ++ [ ./modules/homebrew ];
+        extraHMModules = minimalHMModules ++ commonHMModules;
       };
 
       # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-      mbp-16 = lib.mkSystem {
+      darwinConfigurations.mbp-16 = lib.mkSystem {
         systemType = "darwin";
         hostPlatform = "x86_64-darwin";
         systemStateVersion = 4;
         hmStateVersion = "24.05";
         systemConfig = ./systems/ysun.co/mbp-16;
         username = "ysun";
-        extraModules = [
-          ./modules/activation
-          ./modules/fonts
-          ./modules/homebrew
-          ./modules/nextdns
-          ./modules/tailscale
-        ];
-        extraHMModules = [
-          ./users/ysun/modules/alacritty
-          ./users/ysun/modules/atuin
-          ./users/ysun/modules/bat
-          ./users/ysun/modules/btop
-          ./users/ysun/modules/direnv
-          ./users/ysun/modules/git
-          ./users/ysun/modules/gpg
-          ./users/ysun/modules/lsd
-          ./users/ysun/modules/nixvim
-          ./users/ysun/modules/nushell
-          ./users/ysun/modules/pyenv
-          ./users/ysun/modules/tmux
-          ./users/ysun/modules/vscode
-          ./users/ysun/modules/zathura
-          ./users/ysun/modules/zsh
-        ];
+        extraModules = minimalModules ++ commonModules ++ [ ./modules/homebrew ];
+        extraHMModules = minimalHMModules ++ commonHMModules;
       };
-    in
-    {
-      # servers
-      nixosConfigurations.vault = vault;
-      nixosConfigurations.router = router;
-
-      # workstations + laptops
-      nixosConfigurations.fwl-13 = fwl-13;
-      darwinConfigurations.mbp-14 = mbp-14;
-      darwinConfigurations.mbp-16 = mbp-16;
 
       # templates
       templates = lib.attrsets.genAttrs
