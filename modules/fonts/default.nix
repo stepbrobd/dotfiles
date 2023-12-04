@@ -22,7 +22,8 @@ in
       nerdfonts
       jetbrains-mono
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    ] ++ lib.optionals pkgs.stdenv.isLinux [
+      # nix-darwin debug
+      # ] ++ lib.optionals pkgs.stdenv.isLinux [
       font-awesome
       noto-fonts
       noto-fonts-cjk
