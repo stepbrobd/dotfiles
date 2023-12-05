@@ -43,6 +43,7 @@
   ]
   # linux only and when hyprland is enabled
   ++ (lib.optionals (pkgs.stdenv.isLinux && config.wayland.windowManager.hyprland.enable) [
+    beeper
     cider
     discord
     flyctl
