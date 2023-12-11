@@ -40,27 +40,35 @@
   };
 
   # power
-  services.tlp.enable = false;
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+    };
+  };
   services.thermald.enable = true;
   powerManagement = {
     enable = true;
     powertop.enable = true;
   };
-  services.auto-cpufreq = {
-    enable = true;
-    # governor: powersave, ondemand, performance
-    # turbo: never, always, auto
-    settings = {
-      battery = {
-        governor = "powersave";
-        turbo = "never";
-      };
-      charger = {
-        governor = "performance";
-        turbo = "auto";
-      };
-    };
-  };
+  # services.auto-cpufreq = {
+  #   enable = true;
+  #   # governor: powersave, ondemand, performance
+  #   # turbo: never, always, auto
+  #   settings = {
+  #     battery = {
+  #       governor = "powersave";
+  #       turbo = "never";
+  #     };
+  #     charger = {
+  #       governor = "performance";
+  #       turbo = "auto";
+  #     };
+  #   };
+  # };
 
   # audio
   security.rtkit.enable = true;
