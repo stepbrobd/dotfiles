@@ -16,7 +16,7 @@
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "5d7847f2";
-    hostName = "router";
+    hostName = "lax1";
     domain = "as10779.net";
     networkmanager.enable = true;
     firewall.enable = true;

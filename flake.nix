@@ -54,13 +54,13 @@
       ];
     in
     {
-      # GCE, 2 vCPU, 1GB RAM, 15GB Storage
-      nixosConfigurations.vault = lib.mkSystem rec {
+      # GCE E2-Medium, 2 vCPU, 4GB RAM, 25GB Storage
+      nixosConfigurations.zrh1 = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
         systemStateVersion = "24.05";
         hmStateVersion = systemStateVersion;
-        systemConfig = ./systems/ysun.co/vault;
+        systemConfig = ./systems/as10779.net/zrh1;
         username = "ysun";
         extraModules = minimalModules ++ [
           inputs.nixos-generators.nixosModules.all-formats
@@ -69,13 +69,13 @@
         extraHMModules = minimalHMModules;
       };
 
-      # Vultr, 2 vCPU, 4GB RAM, 25GB Storage
-      nixosConfigurations.router = lib.mkSystem rec {
+      # GCE E2-Medium, 2 vCPU, 4GB RAM, 25GB Storage
+      nixosConfigurations.lax1 = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
         systemStateVersion = "24.05";
         hmStateVersion = systemStateVersion;
-        systemConfig = ./systems/as10779.net/router;
+        systemConfig = ./systems/as10779.net/lax1;
         username = "ysun";
         extraModules = minimalModules ++ [
           inputs.nixos-generators.nixosModules.all-formats

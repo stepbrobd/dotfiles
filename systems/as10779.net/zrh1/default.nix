@@ -7,7 +7,6 @@
 {
   imports = [
     ./hardware.nix
-    ./vaultwarden.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -16,8 +15,8 @@
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "d9ee6f7a";
-    hostName = "vault";
-    domain = "ysun.co";
+    hostName = "zrh1";
+    domain = "as10779.net";
     networkmanager.enable = true;
     firewall.enable = true;
   };
