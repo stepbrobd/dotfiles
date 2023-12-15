@@ -14,7 +14,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    recommendedEnvironment = true;
 
     extraConfig = ''
       xwayland {

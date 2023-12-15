@@ -58,7 +58,7 @@
       nixosConfigurations.zrh1 = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
-        systemStateVersion = "23.11";
+        systemStateVersion = "24.05";
         hmStateVersion = systemStateVersion;
         systemConfig = ./systems/as10779.net/zrh1;
         username = "ysun";
@@ -73,7 +73,7 @@
       nixosConfigurations.lax1 = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
-        systemStateVersion = "23.11";
+        systemStateVersion = "24.05";
         hmStateVersion = systemStateVersion;
         systemConfig = ./systems/as10779.net/lax1;
         username = "ysun";
@@ -181,7 +181,7 @@
       });
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     haumea = {
       url = "github:nix-community/haumea/v0.2.2";

@@ -7,8 +7,6 @@
 
 {
   imports = [
-    "${modulesPath}/virtualisation/google-compute-config.nix"
+    "${modulesPath}/virtualisation/google-compute-image.nix"
   ];
-
-  boot.blacklistedKernelModules = [ "i2c_piix4" ];
 }
