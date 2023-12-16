@@ -56,6 +56,7 @@
       "osu"
       "raycast"
       "slack"
+      "spacedrive"
       "zoom"
     ];
 

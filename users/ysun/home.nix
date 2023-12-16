@@ -53,6 +53,7 @@
     osu-lazer-bin
     slack
     smplayer
+    spacedrive
     spotify
     terraform
     yt-dlp
