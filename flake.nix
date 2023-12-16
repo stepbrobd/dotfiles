@@ -63,6 +63,7 @@
         systemConfig = ./systems/as10779.net/zrh1;
         username = "ysun";
         extraModules = minimalModules ++ [
+          inputs.disko.nixosModules.disko
           inputs.nixos-generators.nixosModules.all-formats
           inputs.srvos.nixosModules.server
         ];
