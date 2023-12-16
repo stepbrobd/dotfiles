@@ -7,7 +7,6 @@
 
 {
   imports = [
-    ./disko.nix
     "${modulesPath}/virtualisation/google-compute-image.nix"
   ];
 }
