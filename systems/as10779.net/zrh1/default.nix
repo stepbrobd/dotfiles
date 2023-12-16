@@ -17,8 +17,6 @@
     hostId = "d9ee6f7a";
     hostName = "zrh1";
     domain = "as10779.net";
-    networkmanager.enable = true;
-    firewall.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
