@@ -55,33 +55,29 @@
     in
     {
       # GCE E2-Medium, 2 vCPU, 4GB RAM, 25GB Storage
-      nixosConfigurations.zrh1 = lib.mkSystem rec {
+      nixosConfigurations.lax1 = lib.mkServer {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = systemStateVersion;
-        systemConfig = ./systems/as10779.net/zrh1;
-        username = "ysun";
-        extraModules = minimalModules ++ [
-          inputs.nixos-generators.nixosModules.all-formats
-          inputs.srvos.nixosModules.server
-        ];
-        extraHMModules = minimalHMModules;
-      };
-
-      # GCE E2-Medium, 2 vCPU, 4GB RAM, 25GB Storage
-      nixosConfigurations.lax1 = lib.mkSystem rec {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = systemStateVersion;
+        stateVersion = "24.05";
         systemConfig = ./systems/as10779.net/lax1;
         username = "ysun";
         extraModules = minimalModules ++ [
           inputs.nixos-generators.nixosModules.all-formats
           inputs.srvos.nixosModules.server
         ];
-        extraHMModules = minimalHMModules;
+      };
+
+      # GCE E2-Medium, 2 vCPU, 4GB RAM, 25GB Storage
+      nixosConfigurations.zrh1 = lib.mkServer {
+        systemType = "nixos";
+        hostPlatform = "x86_64-linux";
+        stateVersion = "24.05";
+        systemConfig = ./systems/as10779.net/zrh1;
+        username = "ysun";
+        extraModules = minimalModules ++ [
+          inputs.nixos-generators.nixosModules.all-formats
+          inputs.srvos.nixosModules.server
+        ];
       };
 
       # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
@@ -99,9 +95,9 @@
           ./modules/networking
           ./modules/plymouth
           ./modules/swaylock
-          inputs.nixos-generators.nixosModules.all-formats
           inputs.disko.nixosModules.disko
           inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.nixos-generators.nixosModules.all-formats
           inputs.nixos-hardware.nixosModules.common-hidpi
           inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
         ];
