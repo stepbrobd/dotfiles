@@ -9,6 +9,9 @@
     ./hardware.nix
   ];
 
+  i18n.defaultLocale = "en_US.UTF-8";
+  time.timeZone = "Etc/UTC";
+
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "d9ee6f7a";
