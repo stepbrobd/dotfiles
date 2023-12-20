@@ -105,6 +105,7 @@
           ./users/ysun/modules/chromium
           ./users/ysun/modules/cursor
           ./users/ysun/modules/dunst
+          ./users/ysun/modules/firefox
           ./users/ysun/modules/gtk
           ./users/ysun/modules/hyprland
           ./users/ysun/modules/mpd
