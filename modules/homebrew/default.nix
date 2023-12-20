@@ -26,7 +26,7 @@
       "nextfire/tap"
       "homebrew/core"
       "homebrew/cask"
-      "homebrew/cask-versions"
+      # "homebrew/cask-versions"
       "homebrew/services"
     ];
 
@@ -52,7 +52,7 @@
       "cleanmymac"
       "coconutbattery"
       "discord"
-      "firefox-developer-edition"
+      # "firefox-developer-edition"
       "hey"
       "obsidian"
       "osu"
