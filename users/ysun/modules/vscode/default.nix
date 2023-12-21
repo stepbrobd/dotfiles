@@ -80,6 +80,7 @@
       "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font";
       "terminal.integrated.confirmOnExit" = "hasChildProcesses";
       "explorer.excludeGitIgnore" = true;
+      "github.copilot.enable"."markdown" = true;
     };
   };
 }
