@@ -46,11 +46,14 @@
       ];
 
       experimental-features = [
-        "nix-command"
-        "flakes"
-        "repl-flake"
-        "impure-derivations"
+        "auto-allocate-uids"
         "ca-derivations"
+        "cgroups"
+        "configurable-impure-env"
+        "flakes"
+        "impure-derivations"
+        "nix-command"
+        "repl-flake"
       ];
     };
 
