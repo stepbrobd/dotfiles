@@ -11,6 +11,7 @@
     # ./bird2.nix
     ./caddy.nix
     ./fail2ban.nix
+    ./plausible.nix
     ./vaultwarden.nix
   ];
 
