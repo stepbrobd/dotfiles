@@ -32,11 +32,6 @@
       }
     '';
 
-    virtualHosts."*.internal.center".extraConfig = ''
-      import common
-      redir https://internal.center{uri}
-    '';
-
     virtualHosts."stats.ysun.co".extraConfig = ''
       import common
       reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port}
