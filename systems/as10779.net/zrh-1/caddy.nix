@@ -13,7 +13,7 @@
     enable = true;
 
     extraConfig = ''
-      common {
+      (common) {
         encode gzip zstd
         header {
           Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
