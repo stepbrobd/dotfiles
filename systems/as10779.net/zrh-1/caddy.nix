@@ -16,9 +16,9 @@
       (common) {
         encode gzip zstd
         header {
+          Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; frame-ancestors https://ysun.co"
           Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
           X-Content-Type-Options "nosniff"
-          X-Frame-Options "SAMEORIGIN"
           X-XSS-Protection "1; mode=block"
         }
       }
