@@ -13,7 +13,7 @@
     enable = true;
 
     config = {
-      DOMAIN = "https://${config.networking.fqdn}";
+      DOMAIN = "https://internal.center";
       ROCKET_ADDRESS = "0.0.0.0";
       ROCKET_PORT = 10069;
       SIGNUPS_ALLOWED = false;
@@ -21,5 +21,4 @@
 
     environmentFile = config.age.secrets.vaultwarden.path;
   };
-
 }

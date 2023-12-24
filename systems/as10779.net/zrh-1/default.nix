@@ -9,9 +9,9 @@
     ./hardware.nix
 
     # ./bird2.nix
-    # ./caddy.nix
-    # ./fail2ban.nix
-    # ./vaultwarden.nix
+    ./caddy.nix
+    ./fail2ban.nix
+    ./vaultwarden.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";

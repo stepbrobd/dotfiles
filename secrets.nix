@@ -15,5 +15,5 @@ in
   "secrets/mbp-14.age".publicKeys = ysun;
   "secrets/mbp-16.age".publicKeys = ysun;
 
-  "secrets/vaultwarden.age".publicKeys = ysun ++ [ vault ];
+  "secrets/vaultwarden.age".publicKeys = ysun ++ [ zrh-1 ];
 }
