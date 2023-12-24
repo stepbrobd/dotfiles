@@ -7,6 +7,6 @@
 
 {
   imports = [
-    "${modulesPath}/virtualisation/google-compute-image.nix"
+    "${modulesPath}/virtualisation/amazon-image.nix"
   ];
 }

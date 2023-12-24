@@ -54,7 +54,7 @@
       ];
     in
     {
-      # GCE E2-Medium, 2 vCPU, 4GB RAM, 25GB Storage
+      # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
       nixosConfigurations.lax1 = lib.mkServer {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
@@ -62,12 +62,13 @@
         systemConfig = ./systems/as10779.net/lax1;
         username = "ysun";
         extraModules = minimalModules ++ [
-          inputs.nixos-generators.nixosModules.all-formats
+          inputs.nixos-generators.nixosModules.amazon
+          inputs.srvos.nixosModules.hardware-amazon
           inputs.srvos.nixosModules.server
         ];
       };
 
-      # GCE E2-Medium, 2 vCPU, 4GB RAM, 25GB Storage
+      # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
       nixosConfigurations.zrh1 = lib.mkServer {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
@@ -75,7 +76,8 @@
         systemConfig = ./systems/as10779.net/zrh1;
         username = "ysun";
         extraModules = minimalModules ++ [
-          inputs.nixos-generators.nixosModules.all-formats
+          inputs.nixos-generators.nixosModules.amazon
+          inputs.srvos.nixosModules.hardware-amazon
           inputs.srvos.nixosModules.server
         ];
       };
