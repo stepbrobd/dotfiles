@@ -22,7 +22,7 @@
     };
 
     mail = {
-      email = "noreply@ysun.co";
+      email = "noreply@stepbrobd.com";
       smtp = {
         enableSSL = true;
         hostAddr = "smtp-relay.gmail.com";
