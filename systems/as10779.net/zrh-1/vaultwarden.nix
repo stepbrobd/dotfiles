@@ -14,7 +14,7 @@
 
     config = {
       DOMAIN = "https://internal.center";
-      ROCKET_ADDRESS = "0.0.0.0";
+      ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 10069;
       SIGNUPS_ALLOWED = false;
     };
