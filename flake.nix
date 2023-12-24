@@ -55,25 +55,11 @@
     in
     {
       # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
-      nixosConfigurations.lax1 = lib.mkServer {
+      nixosConfigurations.zrh-1 = lib.mkServer {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
         stateVersion = "24.05";
-        systemConfig = ./systems/as10779.net/lax1;
-        username = "ysun";
-        extraModules = minimalModules ++ [
-          inputs.nixos-generators.nixosModules.amazon
-          inputs.srvos.nixosModules.hardware-amazon
-          inputs.srvos.nixosModules.server
-        ];
-      };
-
-      # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
-      nixosConfigurations.zrh1 = lib.mkServer {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        stateVersion = "24.05";
-        systemConfig = ./systems/as10779.net/zrh1;
+        systemConfig = ./systems/as10779.net/zrh-1;
         username = "ysun";
         extraModules = minimalModules ++ [
           inputs.nixos-generators.nixosModules.amazon
