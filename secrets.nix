@@ -17,6 +17,7 @@ in
 
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.mal.age".publicKeys = ysun ++ [ zrh-1 ];
+  "secrets/plausible.mmd.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.srv.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/vaultwarden.age".publicKeys = ysun ++ [ zrh-1 ];
 }
