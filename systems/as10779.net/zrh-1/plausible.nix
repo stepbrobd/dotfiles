@@ -38,7 +38,7 @@
       smtp = {
         enableSSL = true;
         hostAddr = "smtp-relay.gmail.com";
-        hostPort = 587;
+        hostPort = 465;
         passwordFile = config.age.secrets."plausible.mal".path;
         user = "ysun@stepbrobd.com";
       };

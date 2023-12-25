@@ -20,6 +20,9 @@
           Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
           X-Content-Type-Options "nosniff"
           X-XSS-Protection "1; mode=block"
+          -Last-Modified
+          -Server
+          -X-Powered-By
         }
       }
     '';
@@ -28,13 +31,17 @@
       import common
       header X-Robots-Tag "none"
       reverse_proxy ${toString config.services.vaultwarden.config.ROCKET_ADDRESS}:${toString config.services.vaultwarden.config.ROCKET_PORT} {
+        header_up Host {host}
         header_up X-Real-IP {remote_host}
       }
     '';
 
     virtualHosts."stats.ysun.co".extraConfig = ''
       import common
-      reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port}
+      reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+      }
     '';
   };
 }
