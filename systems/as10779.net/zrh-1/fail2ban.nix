@@ -14,7 +14,7 @@
       vaultwarden = ''
         enabled = true
         filter = vaultwarden
-        port = 80,443,8000
+        port = 80,443
         maxretry = 5
       '';
 
@@ -23,8 +23,8 @@
         port = 80,443
         filter = vaultwarden-admin
         maxretry = 3
-        bantime = 14400
-        findtime = 14400
+        bantime = 86400
+        findtime = 86400
       '';
     };
   };

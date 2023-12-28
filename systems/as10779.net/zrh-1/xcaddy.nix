@@ -1,4 +1,5 @@
 # https://mdleom.com/blog/2021/12/27/caddy-plugins-nixos
+# https://noah.masu.rs/posts/caddy-cloudflare-dns
 
 { stdenv
 , lib
