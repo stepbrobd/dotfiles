@@ -14,6 +14,7 @@
 
     extraConfig = ''
       (common) {
+        tls { dns cloudflare {env.CF_API_TOKEN} }
         encode gzip zstd
         header {
           Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; frame-ancestors https://ysun.co"
@@ -44,4 +45,9 @@
       }
     '';
   };
+
+  age.secrets.cloudflare.file = ../../../secrets/cloudflare.age;
+  systemd.services.caddy.serviceConfig.LoadCredential = [
+    "CF_API_TOKEN:${config.age.secrets.cloudflare.path}"
+  ];
 }

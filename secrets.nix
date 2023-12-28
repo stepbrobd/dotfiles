@@ -15,6 +15,7 @@ in
   "secrets/mbp-14.age".publicKeys = ysun;
   "secrets/mbp-16.age".publicKeys = ysun;
 
+  "secrets/cloudflare.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.mal.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.mmd.age".publicKeys = ysun ++ [ zrh-1 ];
