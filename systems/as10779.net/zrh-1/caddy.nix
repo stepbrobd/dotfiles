@@ -11,6 +11,9 @@
 
   services.caddy = {
     enable = true;
+    package = (pkgs.callPackage ./xcaddy.nix {
+      plugins = [ "github.com/caddy-dns/cloudflare" ];
+    });
 
     extraConfig = ''
       (common) {
