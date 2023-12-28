@@ -11,13 +11,14 @@
 
   services.caddy = {
     enable = true;
-    package = (pkgs.callPackage ./xcaddy.nix {
-      plugins = [ "github.com/caddy-dns/cloudflare" ];
-    });
+
+    # package = (pkgs.callPackage ./xcaddy.nix {
+    #   plugins = [ "github.com/caddy-dns/cloudflare" ];
+    # });
 
     extraConfig = ''
       (common) {
-        tls { dns cloudflare {env.CF_API_TOKEN} }
+        # tls { dns cloudflare {env.CF_API_TOKEN} }
         encode gzip zstd
         header {
           Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; frame-ancestors https://ysun.co"

@@ -8,7 +8,7 @@
 }:
 
 stdenv.mkDerivation {
-  pname = "caddy";
+  pname = "xcaddy";
   version = "latest";
   dontUnpack = true;
 
