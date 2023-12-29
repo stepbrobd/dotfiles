@@ -35,7 +35,6 @@
         tls { dns cloudflare {env.CF_API_TOKEN} }
         encode gzip zstd
         header {
-          Content-Security-Policy "default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; frame-ancestors https://ysun.co https://*.ysun.co"
           Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
           X-Content-Type-Options "nosniff"
           X-XSS-Protection "1; mode=block"
@@ -62,13 +61,22 @@
         header_up X-Real-IP {http.request.header.CF-Connecting-IP}
       }
     '';
+
+    virtualHosts."ysun.co".extraConfig = ''
+      import common
+      reverse_proxy localhost:8000
+    '';
   };
 
-  age.secrets.cloudflare.file = ../../../secrets/cloudflare.age;
+  age.secrets.cloudflare = {
+    file = ../../../secrets/cloudflare.age;
+    owner = "caddy";
+    group = "caddy";
+  };
   systemd.services.caddy.serviceConfig = {
     AmbientCapabilities = "CAP_NET_BIND_SERVICE";
-    LoadCredential = [
-      "CF_API_TOKEN:${config.age.secrets.cloudflare.path}"
+    EnvironmentFile = [
+      config.age.secrets.cloudflare.path
     ];
   };
 }
