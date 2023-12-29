@@ -598,7 +598,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
-        "srvos": "srvos"
+        "srvos": "srvos",
+        "ysun": "ysun"
       }
     },
     "rust-overlay": {
@@ -752,6 +753,29 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "ysun": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1703811788,
+        "narHash": "sha256-tzCSbmYasB16X7vXiX7P+GoIm5z8v9IccgR1RjrCiAI=",
+        "owner": "stepbrobd",
+        "repo": "ysun",
+        "rev": "af6136fb6e0a4c929dcd88a719d3f84a37d0eb30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stepbrobd",
+        "repo": "ysun",
         "type": "github"
       }
     }
