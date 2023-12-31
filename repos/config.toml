@@ -18,6 +18,11 @@ user = "~stepbrobd"
 origin = false
 domain = "git.stepbrobd.com"
 
+[platform.dn42]
+origin = false
+domain = "git.dn42.dev"
+user = "stepbrobd"
+
 ## Personal
 [repo.".soft-serve"]
 description = "soft serve configs"
@@ -79,6 +84,9 @@ description = "forked from nixos/nix"
 
 [repo."nixpkgs"]
 description = "forked from nixos/nixpkgs"
+
+[repo."registry"]
+description = "forked from dn42/registry"
 
 [repo."soft-serve"]
 description = "forked from charmbracelet/soft-serve"
