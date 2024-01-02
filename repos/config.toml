@@ -14,10 +14,6 @@ origin = false
 domain = "git.sr.ht"
 user = "~stepbrobd"
 
-[platform.stepbrobd]
-origin = false
-domain = "git.stepbrobd.com"
-
 [platform.dn42]
 origin = false
 domain = "git.dn42.dev"
