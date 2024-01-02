@@ -19,7 +19,7 @@
       log_format = "text";
       ssh = {
         listen_addr = "0.0.0.0:10069";
-        public_url = "ssh://git.ysun.co";
+        public_url = "ssh://git.ysun.co:10069";
         max_timeout = 3600;
         idle_timeout = 3600;
       };
@@ -36,8 +36,13 @@
         listen_addr = "0.0.0.0:10070";
         public_url = "https://git.ysun.co";
       };
-      initial_admin_keys = config.users.users.ysun.openssh.authorizedKeys.keys;
+      # resulting yaml has formatting issue
+      # initial_admin_keys = config.users.users.ysun.openssh.authorizedKeys.keys;
     };
+  };
+
+  systemd.services.soft-serve.environment = {
+    SOFT_SERVE_INITIAL_ADMIN_KEYS = lib.concatMapStringsSep "\n" (key: key) config.users.users.ysun.openssh.authorizedKeys.keys;
   };
 
   # proxy soft-serve to port 80 and 443
