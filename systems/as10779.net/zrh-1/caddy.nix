@@ -1,4 +1,4 @@
-# nixpkgs options, host specifig
+# nixpkgs options, host specific
 
 { config
 , lib

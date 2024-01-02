@@ -1,4 +1,4 @@
-# custom systemd service
+# nixpkgs options, host specific
 
 { config
 , lib
@@ -7,11 +7,8 @@
 }:
 
 {
-  systemd.services.soft-serve = {
+  services.soft-serve = {
     enable = true;
-    description = "Soft Serve";
-    documentation = [ "https://github.com/charmbracelet/soft-serve" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = { };
+    settings = { };
   };
 }
