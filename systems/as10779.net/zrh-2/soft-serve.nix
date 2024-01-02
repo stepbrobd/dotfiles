@@ -13,6 +13,9 @@
   # soft-serve takes port 22, rebind openssh to port 22222
   services.openssh.ports = [ 22222 ];
 
+  # allow soft-serve to bind port 22
+  systemd.services.soft-serve.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+
   # soft-serve
   services.soft-serve = {
     enable = true;
