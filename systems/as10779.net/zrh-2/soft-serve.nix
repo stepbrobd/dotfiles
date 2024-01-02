@@ -38,6 +38,7 @@
         listen_addr = "0.0.0.0:10069";
         public_url = "https://git.ysun.co";
       };
+      initial_admin_keys = config.users.users.ysun.openssh.authorizedKeys.keys;
     };
   };
 
