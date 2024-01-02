@@ -68,6 +68,20 @@
         ];
       };
 
+      # EC2 T3.Micro, 2 vCPU, 1GB RAM, 30GB Storage
+      nixosConfigurations.zrh-2 = lib.mkServer {
+        systemType = "nixos";
+        hostPlatform = "x86_64-linux";
+        stateVersion = "24.05";
+        systemConfig = ./systems/as10779.net/zrh-2;
+        username = "ysun";
+        extraModules = minimalModules ++ [
+          inputs.nixos-generators.nixosModules.amazon
+          inputs.srvos.nixosModules.hardware-amazon
+          inputs.srvos.nixosModules.server
+        ];
+      };
+
       # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
       nixosConfigurations.fwl-13 = lib.mkSystem rec {
         systemType = "nixos";
