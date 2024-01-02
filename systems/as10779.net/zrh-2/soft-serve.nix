@@ -8,22 +8,17 @@
 
 {
   # soft-serve git openssh
-  networking.firewall.allowedTCPPorts = [ 22 80 443 9418 22222 ];
-
-  # soft-serve takes port 22, rebind openssh to port 22222
-  services.openssh.ports = [ 22222 ];
-
-  # allow soft-serve to bind port 22
-  systemd.services.soft-serve.serviceConfig.AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+  networking.firewall.allowedTCPPorts = [ 22 80 443 9418 10069 ];
 
   # soft-serve
   services.soft-serve = {
     enable = true;
+
     settings = {
       name = "Yifei Sun";
       log_format = "text";
       ssh = {
-        listen_addr = "0.0.0.0:22";
+        listen_addr = "0.0.0.0:10069";
         public_url = "ssh://git.ysun.co";
         max_timeout = 3600;
         idle_timeout = 3600;
@@ -38,7 +33,7 @@
         ssh_enabled = true;
       };
       http = {
-        listen_addr = "0.0.0.0:10069";
+        listen_addr = "0.0.0.0:10070";
         public_url = "https://git.ysun.co";
       };
       initial_admin_keys = config.users.users.ysun.openssh.authorizedKeys.keys;
@@ -66,7 +61,7 @@
 
     virtualHosts."git.ysun.co".extraConfig = ''
       import common
-      reverse_proxy localhost:10069
+      reverse_proxy localhost:10070
     '';
   };
 }
