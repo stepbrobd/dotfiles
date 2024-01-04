@@ -79,7 +79,7 @@
       "Xcode" = 497799835;
       # safari
       "AdGuard" = 1440147259;
-      "Bitwarden" = 1352778147;
+      # "Bitwarden" = 1352778147;
       "Kagi" = 1622835804;
       "MyMind" = 1532801185;
       "Noir" = 1592917505;
