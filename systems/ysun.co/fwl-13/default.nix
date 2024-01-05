@@ -35,7 +35,6 @@
     git
     curl
     wget
-    xdg-utils
   ];
 
   users.mutableUsers = false;
