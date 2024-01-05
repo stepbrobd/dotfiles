@@ -104,7 +104,6 @@
           inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
         ];
         extraHMModules = minimalHMModules ++ commonHMModules ++ [
-          ./users/ysun/modules/chromium
           ./users/ysun/modules/cursor
           ./users/ysun/modules/dunst
           ./users/ysun/modules/firefox

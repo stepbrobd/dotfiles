@@ -8,7 +8,7 @@
 
 {
   programs.chromium = {
-    enable = true;
+    enable = false; # use firefox
 
     commandLineArgs = [
       "--ozone-platform=wayland"
