@@ -544,17 +544,23 @@
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
+        "home-manager": [
+          "home-manager"
+        ],
+        "nix-darwin": [
+          "nix-darwin"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1704495913,
-        "narHash": "sha256-5IITsUF5mTv0NspboMupJGVj3CUtbCA8+NLDubtcs6g=",
+        "lastModified": 1704572275,
+        "narHash": "sha256-IiScfVBiJz2F5FVG+ygBl7KWzxbEC0EabMzTceSaTaE=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "f16f767f465c0b247449063f773575ecdcfa8310",
+        "rev": "c795b2ee400106db70f1f3cd698234e77ffe2f82",
         "type": "github"
       },
       "original": {
