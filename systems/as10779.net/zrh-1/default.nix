@@ -28,6 +28,8 @@
     domain = "as10779.net";
   };
 
+  services.tailscale.useRoutingFeatures = "server";
+
   environment.systemPackages = with pkgs; [
     cacert
 
