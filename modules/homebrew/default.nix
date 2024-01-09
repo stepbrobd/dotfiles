@@ -59,6 +59,7 @@
       "raycast"
       "slack"
       "spacedrive"
+      "wireshark"
       "zoom"
     ];
 
