@@ -52,7 +52,7 @@
       ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
       ms-vscode.cmake-tools
-      # nvarner.typst-lsp
+      nvarner.typst-lsp
       redhat.vscode-yaml
       rust-lang.rust-analyzer
       shd101wyy.markdown-preview-enhanced
