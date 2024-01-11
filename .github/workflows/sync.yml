@@ -22,3 +22,5 @@ jobs:
       - name: "Sync"
         run: |
           ./scripts/mksync.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
