@@ -97,6 +97,7 @@
           ./modules/networking
           ./modules/plymouth
           ./modules/swaylock
+          ./modules/wireshark
           inputs.disko.nixosModules.disko
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-generators.nixosModules.all-formats
