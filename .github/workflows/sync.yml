@@ -1,0 +1,24 @@
+name: "Sync"
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  Sync:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+        name: "Checkout"
+        with:
+          fetch-depth: 0
+      - name: "Install Nix"
+        uses: "cachix/install-nix-action@v24"
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: "Magic Cache"
+        uses: "determinatesystems/magic-nix-cache-action@v2"
+      - name: "Sync"
+        run: |
+          ./scripts/mksync.sh
