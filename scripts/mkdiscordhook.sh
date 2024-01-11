@@ -6,7 +6,7 @@ set -euo pipefail
 TOKEN=$TOKEN
 WEBHOOK=$WEBHOOK
 
-repos=$(gh repo list stepbrobd --limit 1000 --json nameWithOwner)
+repos=$(gh repo list --limit 1000 --json nameWithOwner)
 
 for repo in $(echo $repos | jq -r '.[] | .nameWithOwner'); do
     echo $repo:
