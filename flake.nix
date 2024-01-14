@@ -50,7 +50,7 @@
         ./users/ysun/modules/nushell
         ./users/ysun/modules/pyenv
         ./users/ysun/modules/vscode
-        # ./users/ysun/modules/zathura
+        ./users/ysun/modules/zathura
       ];
     in
     {
