@@ -19,8 +19,6 @@
       relativenumber = true;
     };
 
-    colorschemes.nord.enable = true;
-
     plugins = {
       alpha = {
         enable = true;
@@ -149,6 +147,7 @@
       nix.enable = true;
       nix-develop.enable = true;
       noice.enable = true;
+      nord.enable = true;
       notify.enable = true;
       nvim-cmp = {
         enable = true;
