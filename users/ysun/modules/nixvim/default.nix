@@ -13,11 +13,14 @@
 
   programs.nixvim = {
     enable = true;
+    defaultEditor = true;
 
     options = {
       number = true;
       relativenumber = true;
     };
+
+    colorschemes.nord.enable = true;
 
     plugins = {
       alpha = {
@@ -147,7 +150,6 @@
       nix.enable = true;
       nix-develop.enable = true;
       noice.enable = true;
-      nord.enable = true;
       notify.enable = true;
       nvim-cmp = {
         enable = true;
