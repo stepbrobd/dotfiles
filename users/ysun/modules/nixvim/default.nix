@@ -105,7 +105,6 @@
         alwaysShowBufferline = false;
         diagnostics = "nvim_lsp";
       };
-      chadtree.enable = true;
       cmp-buffer.enable = true;
       cmp-cmdline.enable = true;
       cmp-dictionary.enable = true;
@@ -173,6 +172,7 @@
         experimental = { ghost_text.hlgroup = "Comment"; };
         snippet.expand = "luasnip";
       };
+      oil.enable = true;
       presence-nvim.enable = true;
       rainbow-delimiters.enable = true;
       spider.enable = true;
