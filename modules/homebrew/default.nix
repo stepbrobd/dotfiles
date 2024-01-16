@@ -55,6 +55,7 @@
       # "firefox-developer-edition"
       "hey"
       "obsidian"
+      "orbstack"
       "osu"
       "raycast"
       "slack"

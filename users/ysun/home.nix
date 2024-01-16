@@ -80,11 +80,9 @@
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
     cocoapods
-    colima
     flyctl
     gitleaks
     google-cloud-sdk
-    lima
     reattach-to-user-namespace
     terraform
     yt-dlp
