@@ -168,7 +168,7 @@
       });
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/master";
 
     haumea = {
       url = "github:nix-community/haumea/v0.2.2";
