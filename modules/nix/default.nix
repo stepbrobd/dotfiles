@@ -64,5 +64,7 @@
       keep-going = true
       keep-outputs = true
     '';
+  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    linux-builder.enable = true;
   };
 }
