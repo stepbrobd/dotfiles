@@ -190,5 +190,9 @@
         pdfViewer = "zathura";
       };
     };
+
+    extraPlugins = with pkgs.vimPlugins; [
+      Coqtail
+    ];
   };
 }

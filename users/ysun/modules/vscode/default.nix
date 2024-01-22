@@ -40,6 +40,7 @@
       justusadam.language-haskell
       llvm-vs-code-extensions.vscode-clangd
       marp-team.marp-vscode
+      maximedenes.vscoq
       mechatroner.rainbow-csv
       ms-azuretools.vscode-docker
       ms-python.isort
