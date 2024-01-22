@@ -123,6 +123,8 @@
         panel.enabled = false;
         suggestion.enabled = false;
       };
+      coq-nvim.enable = true;
+      coq-thirdparty.enable = true;
       diffview.enable = true;
       gitblame.enable = true;
       gitsigns.enable = true;
