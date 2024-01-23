@@ -244,6 +244,7 @@
   };
 
   nixConfig = {
+    sandbox = false;
     extra-substituters = [
       "https://cache.ngi0.nixos.org"
       "https://nix-community.cachix.org"
