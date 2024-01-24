@@ -50,4 +50,9 @@
       set recolor                     "true"
     '';
   };
+
+  xdg.mimeApps.defaultApplications = lib.optionalAttrs pkgs.stdenv.isLinux {
+    "application/pdf" = [ "zathura.desktop" ];
+    "application/x-pdf" = [ "zathura.desktop" ];
+  };
 }

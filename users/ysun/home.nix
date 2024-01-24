@@ -20,18 +20,7 @@
       associations.added = defaultApplications;
       defaultApplications = {
         "inode/directory" = [ "spacedrive.desktop" ];
-
-        "application/pdf" = [ "zathura.desktop" ];
-        "application/x-pdf" = [ "zathura.desktop" ];
-
-        "text/html" = [ "firefox.desktop" ];
-        "x-scheme-handler/http" = [ "firefox.desktop" ];
-        "x-scheme-handler/https" = [ "firefox.desktop" ];
-        "x-scheme-handler/about" = [ "firefox.desktop" ];
-        "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-
         "x-scheme-handler/discord" = [ "discord.desktop" ];
-
         "x-scheme-handler/slack" = [ "slack.desktop" ];
       };
     };
