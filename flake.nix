@@ -107,7 +107,7 @@
         extraHMModules = minimalHMModules ++ commonHMModules ++ [
           ./users/ysun/modules/cursor
           ./users/ysun/modules/dunst
-          ./users/ysun/modules/firefox
+          ./users/ysun/modules/floorp
           ./users/ysun/modules/gtk
           ./users/ysun/modules/hyprland
           ./users/ysun/modules/mpd
