@@ -1,0 +1,14 @@
+# Nix
+**/.direnv/
+**/result/
+**/result-*/
+
+# Editor
+**/.idea/
+**/.vscode/
+
+# Rust
+**/target/
+**/debug/
+**/*.rs.bk
+**/*.pdb
