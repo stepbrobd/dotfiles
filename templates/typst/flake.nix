@@ -13,13 +13,6 @@
       pkgs = import nixpkgs { inherit system; };
     in
     {
-      formatter = pkgs.writeShellScriptBin "formatter" ''
-        set -eoux pipefail
-        shopt -s globstar
-        ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt .
-        ${pkgs.typstfmt}/bin/typstfmt **/*.typ
-      '';
-
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
           direnv
@@ -29,5 +22,12 @@
           typst
         ];
       };
+
+      formatter = pkgs.writeShellScriptBin "formatter" ''
+        set -eoux pipefail
+        shopt -s globstar
+        ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt .
+        ${pkgs.typstfmt}/bin/typstfmt **/*.typ
+      '';
     });
 }
