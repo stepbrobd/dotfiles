@@ -9,6 +9,8 @@
 }:
 
 stdenv.mkDerivation {
+  __impure = true;
+
   pname = "xcaddy";
   version = "latest";
   dontUnpack = true;
