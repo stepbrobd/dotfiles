@@ -12,8 +12,9 @@
 , hmStateVersion
 , systemConfig
 , username
-, extraModules
-, extraHMModules
+, extraModules ? [ ]
+, extraHMModules ? [ ]
+, overlays ? [ ]
 }:
 
 lib."${systemType}System" {
@@ -46,5 +47,9 @@ lib."${systemType}System" {
     { system.stateVersion = systemStateVersion; }
     { system.configurationRevision = rev; }
     { home-manager.users."${username}".home.stateVersion = hmStateVersion; }
+    # overlays
+    { nixpkgs.overlays = overlays ++ [ outputs.overlays.default ]; }
+    # not needed since useGlobalPkgs is set
+    # { home-manager.users."${username}".nixpkgs.overlays = overlays ++ [ outputs.overlays.default ]; }
   ] ++ extraModules;
 }

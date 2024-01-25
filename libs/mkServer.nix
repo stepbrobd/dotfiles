@@ -11,7 +11,8 @@
 , stateVersion
 , systemConfig
 , username
-, extraModules
+, extraModules ? [ ]
+, overlays ? [ ]
 }:
 
 lib."${systemType}System" {
@@ -22,8 +23,12 @@ lib."${systemType}System" {
     systemConfig
     inputs.agenix."${systemType}Modules".age
     (../. + "/users/${username}")
+    # platform
     { nixpkgs.hostPlatform = lib.mkDefault hostPlatform; }
+    # state version
     { system.stateVersion = stateVersion; }
     { system.configurationRevision = rev; }
+    # overlays
+    { nixpkgs.overlays = overlays ++ [ outputs.overlays.default ]; }
   ] ++ extraModules;
 }
