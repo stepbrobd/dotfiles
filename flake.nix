@@ -142,30 +142,41 @@
         extraHMModules = minimalHMModules ++ commonHMModules;
       };
 
-      # templates
-      templates = lib.attrsets.genAttrs
-        (builtins.attrNames (builtins.readDir ./templates))
-        (path: {
-          description = "template for ${path}";
-          path = ./templates/${path};
-        });
-    } // flake-utils.lib.eachDefaultSystem
-      (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-      in
-      {
-        formatter = pkgs.nixpkgs-fmt;
+      # overlays
+      overlays.default = import ./overlays { inherit lib; };
 
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            agenix.packages.${system}.agenix
-            direnv
-            git
-            nix-direnv
-          ];
+      # templates
+      templates = lib.mkDynamicAttrs {
+        dir = ./templates;
+        fun = path: {
+          description = "template for ${path}";
+          path = ./templates/. + "/${path}";
         };
-      });
+      };
+    } // flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ self.overlays.default ];
+      };
+    in
+    {
+      packages = lib.mkDynamicAttrs {
+        dir = ./packages;
+        fun = name: pkgs.callPackage (./packages/. + "/${name}") { };
+      };
+
+      devShells.default = pkgs.mkShell {
+        packages = with pkgs; [
+          agenix.packages.${system}.agenix
+          direnv
+          git
+          nix-direnv
+        ];
+      };
+
+      formatter = pkgs.nixpkgs-fmt;
+    });
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/master";
