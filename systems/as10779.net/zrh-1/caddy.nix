@@ -11,14 +11,17 @@
 
   services.caddy = {
     enable = true;
-    package = (pkgs.callPackage ./xcaddy.nix {
+
+    # from overlay
+    package = pkgs.pcaddy.override {
       # cloudflare ipv4: https://www.cloudflare.com/ips-v4
       # cloudflare ipv6: https://www.cloudflare.com/ips-v6
       plugins = [
         "github.com/caddy-dns/cloudflare"
         "github.com/WeidiDeng/caddy-cloudflare-ip"
       ];
-    });
+    };
+
     email = "ysun@hey.com";
 
     globalConfig = ''
