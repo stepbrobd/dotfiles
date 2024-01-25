@@ -22,25 +22,17 @@
           gomod2nix.overlays.default
         ];
       };
-
-      drv = pkgs.buildGoApplication {
+    in
+    {
+      packages.default = pkgs.buildGoApplication {
         pname = "<NAME>";
         version = self.shortRev or self.dirtyShortRev;
         src = ./.;
         modules = ./gomod2nix.toml;
       };
-    in
-    {
-      formatter = pkgs.nixpkgs-fmt;
 
-      packages = rec {
-        <NAME> = drv;
-        default = <NAME>;
-      };
-
-      apps = rec {
-        <NAME> = flake-utils.lib.mkApp { drv = self.packages.${system}.<NAME>; };
-        default = <NAME>;
+      apps.default = flake-utils.lib.mkApp {
+        drv = self.packages.${system}.default;
       };
 
       devShells.default = pkgs.mkShell {
@@ -53,5 +45,11 @@
           gomod2nix.packages.${system}.default
         ];
       };
+
+      formatter = pkgs.writeShellScriptBin "formatter" ''
+        set -eoux pipefail
+        ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt .
+        ${pkgs.go}/bin/gofmt -s -w .
+      '';
     });
 }
