@@ -12,7 +12,7 @@ stdenv.mkDerivation {
   __impure = true;
 
   pname = "pcaddy";
-  version = "${pkgs.xcaddy.version}";
+  version = "${pkgs.caddy.version}";
   dontUnpack = true;
 
   nativeBuildInputs = with pkgs; [ git go xcaddy ];
@@ -23,7 +23,7 @@ stdenv.mkDerivation {
     in
     ''
       runHook preBuild
-      ${pkgs.xcaddy}/bin/xcaddy build latest ${pluginArgs}
+      ${pkgs.xcaddy}/bin/xcaddy build v${pkgs.caddy.version} ${pluginArgs}
       runHook postBuild
     '';
 
