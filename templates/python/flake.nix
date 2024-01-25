@@ -2,12 +2,17 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    pyproject = {
+      url = "github:nix-community/pyproject.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { self
     , nixpkgs
     , flake-utils
+    , pyproject
     }: flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs {
@@ -17,32 +22,15 @@
           allowUnfreePredicate = (_: true);
         };
       };
-      lib = pkgs.lib;
       python3 = pkgs.python311;
-
-      python3Env = (python3.withPackages (ps: with ps; [
-      ])).override (args: { ignoreCollisions = true; });
-
-      drv = python3.pkgs.buildPythonPackage {
-        pname = "<NAME>";
-        inherit ((lib.importTOML ./pyproject.toml).project) version;
-        pyproject = true;
-        enableParallelBuilding = true;
-        src = lib.cleanSource ./.;
-        propagatedBuildInputs = [ python3Env ];
-      };
     in
     {
-      formatter = pkgs.nixpkgs-fmt;
+      packages.default = python.pkgs.buildPythonPackage (
+        project.renderers.buildPythonPackage { inherit python; }
+      );
 
-      packages = rec {
-        <NAME> = drv;
-        default = <NAME>;
-      };
-
-      apps = rec {
-        <NAME> = flake-utils.lib.mkApp { drv = self.packages.${system}.<NAME>; };
-        default = <NAME>;
+      apps.default = flake-utils.lib.mkApp {
+        drv = self.packages.${system}.default;
       };
 
       devShells.default = pkgs.mkShell {
@@ -52,21 +40,21 @@
           nix-direnv
           ruff
         ];
-
-        buildInputs = [ python3Env ];
-
+        venvDir = "./.venv";
+        buildInputs = [ python ] ++ (with python.pkgs; [
+          venvShellHook
+          setuptools
+          wheel
+        ]);
         shellHook = ''
-          export "VENV=.venv"
-
-          if [ ! -d "$VENV" ]; then
-            virtualenv "$VENV"
-          fi
-
-          source "$VENV/bin/activate"
-          export "PYTHONPATH=$PWD/$VENV/${python3.sitePackages}/:$PYTHONPATH"
-          pip install --upgrade pip
-          pip install --editable .
+          pip --disable-pip-version-check install -e .
         '';
       };
+
+      formatter = pkgs.writeShellScriptBin "formatter" ''
+        set -eoux pipefail
+        ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt .
+        ${pkgs.ruff}/bin/ruff --fix --unsafe-fixes .
+      '';
     });
 }
