@@ -39,4 +39,6 @@ stdenv.mkDerivation {
     mv caddy $out/bin
     runHook postInstall
   '';
+
+  meta.mainProgram = "caddy";
 }
