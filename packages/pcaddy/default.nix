@@ -13,7 +13,13 @@ stdenv.mkDerivation {
 
   pname = "pcaddy";
   version = "${pkgs.caddy.version}";
+
   dontUnpack = true;
+
+  configurePhase = ''
+    export GOCACHE=$TMPDIR/go-cache
+    export GOPATH="$TMPDIR/go"
+  '';
 
   nativeBuildInputs = with pkgs; [ git go xcaddy ];
 
