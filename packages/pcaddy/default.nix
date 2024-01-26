@@ -9,7 +9,7 @@
 }:
 
 stdenv.mkDerivation {
-  __impure = true;
+  # __impure = true;
 
   pname = "pcaddy";
   version = "${pkgs.caddy.version}";
