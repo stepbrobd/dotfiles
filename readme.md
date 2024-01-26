@@ -24,10 +24,11 @@ Project templates available for:
 
 - [Go](/templates/go)
 - [Python](/templates/python)
+- [Rust](/templates/rust)
 - [Typst](/templates/typst)
 
 ```shell
-nix flake [init|new] -t github:stepbrobd/dotfiles#{go,python,typst}
+nix flake [init|new] -t github:stepbrobd/dotfiles#{go|python|rust|typst}
 ```
 
 ## License
