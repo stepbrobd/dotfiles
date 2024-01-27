@@ -10,6 +10,7 @@
   imports = [
     ./hardware.nix
 
+    ./caddy.nix
     # ./soft-serve.nix
   ];
 
