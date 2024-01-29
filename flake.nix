@@ -54,6 +54,18 @@
       ];
     in
     {
+      # SSDNodes Performance, 8 vCPU, 32GB RAM, 640GB Storage
+      nixosConfigurations.nrt-1 = lib.mkServer {
+        systemType = "nixos";
+        hostPlatform = "x86_64-linux";
+        stateVersion = "24.05";
+        systemConfig = ./systems/as10779.net/nrt-1;
+        username = "ysun";
+        extraModules = minimalModules ++ [
+          inputs.srvos.nixosModules.server
+        ];
+      };
+
       # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
       nixosConfigurations.zrh-1 = lib.mkServer {
         systemType = "nixos";
