@@ -269,6 +269,7 @@
   nixConfig = {
     sandbox = false;
     extra-substituters = [
+      "https://cache.nixolo.gy"
       "https://cache.ngi0.nixos.org"
       "https://nix-community.cachix.org"
       "https://nixpkgs-update.cachix.org"
@@ -277,6 +278,7 @@
       "https://stepbrobd.cachix.org"
     ];
     extra-trusted-public-keys = [
+      "cache.nixolo.gy:UDmjlw8J4sqDlBIPe5YnABPI1lkcJssN8niLozS2ltM="
       "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
