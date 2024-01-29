@@ -21,7 +21,7 @@
   };
 
   nix = {
-    useSandbox = false;
+    settings.sandbox = false;
 
     settings.allowed-uris = [
       "flake:"
