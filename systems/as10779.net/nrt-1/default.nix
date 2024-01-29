@@ -9,6 +9,10 @@
 {
   imports = [
     ./hardware.nix
+
+    ./caddy.nix
+    ./hydra.nix
+    ./nix-serve.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
