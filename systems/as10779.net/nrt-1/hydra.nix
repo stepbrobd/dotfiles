@@ -9,15 +9,24 @@
 {
   services.hydra = {
     enable = true;
+
     useSubstitutes = true;
     buildMachinesFiles = [ ];
-    listenHost = "127.0.0.1";
-    port = 10069;
-    hydraURL = "https://hydra.nixolo.gy";
+
     minimumDiskFree = 5;
     minimumDiskFreeEvaluator = 5;
+
+    hydraURL = "https://hydra.nixolo.gy";
+    listenHost = "127.0.0.1";
+    port = 10069;
+
     notificationSender = "hydra@localhost";
     smtpHost = "localhost";
+
+    logo = ./logo.png;
+    tracker = ''
+      <script defer data-domain="hydra.nixolo.gy" src="https://stats.nixolo.gy/js/script.js"></script>
+    '';
   };
 
   nix = {
