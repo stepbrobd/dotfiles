@@ -19,7 +19,7 @@ in
 
   "secrets/cache.pem.age".publicKeys = ysun ++ [ nrt-1 ];
 
-  "secrets/cloudflare.age".publicKeys = ysun ++ [ zrh-1 zrh-2 ];
+  "secrets/cloudflare.age".publicKeys = ysun ++ [ nrt-1 zrh-1 zrh-2 ];
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.mal.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.mmd.age".publicKeys = ysun ++ [ zrh-1 ];
