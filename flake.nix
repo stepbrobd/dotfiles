@@ -165,6 +165,11 @@
           path = ./templates/. + "/${path}";
         };
       };
+
+      hydraJobs = {
+        inherit (self)
+          packages devShells;
+      };
     } // flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs {
