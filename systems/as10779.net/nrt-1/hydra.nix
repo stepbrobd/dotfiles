@@ -24,9 +24,7 @@
     smtpHost = "localhost";
 
     logo = ./logo.png;
-    tracker = ''
-      <script defer data-domain="hydra.nixolo.gy" src="https://stats.nixolo.gy/js/script.js"></script>
-    '';
+    tracker = "<script defer data-domain=\"hydra.nixolo.gy\" src=\"https://stats.nixolo.gy/js/script.js\"></script>";
   };
 
   nix = {
