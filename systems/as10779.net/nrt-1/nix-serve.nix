@@ -15,6 +15,7 @@
 
   services.nix-serve = {
     enable = true;
+    package = pkgs.nix-serve-ng;
     bindAddress = "127.0.0.1";
     port = 10070;
     secretKeyFile = config.age.secrets.cache.path;
