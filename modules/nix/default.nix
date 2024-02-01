@@ -61,6 +61,7 @@
     };
 
     extraOptions = ''
+      allow-import-from-derivation = true
       keep-build-log = true
       keep-derivations = true
       keep-env-derivations = true
