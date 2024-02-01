@@ -31,6 +31,8 @@
     '';
   };
 
+  # possibly need to add msmtp?
+  # https://nixos.wiki/wiki/Msmtp
   age.secrets.hydra-notify.file = ../../../secrets/hydra-notify.age;
   systemd.services = lib.mapAttrs
     (name: _: {
