@@ -12,19 +12,25 @@
 
     useSubstitutes = true;
     buildMachinesFiles = [ ];
-
     minimumDiskFree = 5;
     minimumDiskFreeEvaluator = 5;
 
     hydraURL = "https://hydra.nixolo.gy";
     listenHost = "127.0.0.1";
     port = 10069;
-
-    notificationSender = "hydra@localhost";
+    notificationSender = "hydra@nixolo.gy";
     smtpHost = "localhost";
 
     logo = ./logo.png;
-    tracker = "<script defer data-domain=\"hydra.nixolo.gy\" src=\"https://stats.nixolo.gy/js/script.js\"></script>";
+    tracker = ''
+      <script type=\"text/javascript\" defer data-domain=\"hydra.nixolo.gy\" src=\"https://stats.nixolo.gy/js/script.js\"></script>
+    '';
+
+    extraConfig = ''
+      <dynamicruncommand>
+        enable = 1
+      </dynamicruncommand>
+    '';
   };
 
   nix = {

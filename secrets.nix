@@ -18,6 +18,7 @@ in
   "secrets/mbp-16.age".publicKeys = ysun;
 
   "secrets/cache.pem.age".publicKeys = ysun ++ [ nrt-1 ];
+  "secrets/hydra-notify.age".publicKeys = ysun ++ [ nrt-1 ];
 
   "secrets/cloudflare.age".publicKeys = ysun ++ [ nrt-1 zrh-1 zrh-2 ];
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ zrh-1 ];
