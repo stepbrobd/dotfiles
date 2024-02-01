@@ -298,11 +298,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1706473109,
-        "narHash": "sha256-iyuAvpKTsq2u23Cr07RcV5XlfKExrG8gRpF75hf1uVc=",
+        "lastModified": 1706798041,
+        "narHash": "sha256-BbvuF4CsVRBGRP8P+R+JUilojk0M60D7hzqE0bEvJBQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d634c3abafa454551f2083b054cd95c3f287be61",
+        "rev": "4d53427bce7bf3d17e699252fd84dc7468afc46e",
         "type": "github"
       },
       "original": {
@@ -322,11 +322,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1706722456,
-        "narHash": "sha256-oZkX+r/dA63f09vXLk1HrCprIKtdw0LXhqG2cAw6MjA=",
+        "lastModified": 1706816323,
+        "narHash": "sha256-kpGxZ+Q1ootRHXwg7bQXptKeobNMBd8b9Kx2DGPvSXc=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "4f804d5f962070c531dea5025e61be8a0da8129e",
+        "rev": "3656045ad88717fbc079c1ebb44c6f7d2ed85cf2",
         "type": "github"
       },
       "original": {
@@ -489,11 +489,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1706182238,
-        "narHash": "sha256-Ti7CerGydU7xyrP/ow85lHsOpf+XMx98kQnPoQCSi1g=",
+        "lastModified": 1706782449,
+        "narHash": "sha256-8hEkOJDqR+7gJvXzwIM/VhR9iQzZyrNeh68u+Et2TzA=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "f84eaffc35d1a655e84749228cde19922fcf55f1",
+        "rev": "cc65e27670abccced5997d4a93c4c930aef6fd0b",
         "type": "github"
       },
       "original": {
@@ -504,11 +504,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1706745745,
-        "narHash": "sha256-aJWUYiGiEPYSqW7TAv4QDDY/t4Ra2oQAc6dW9Nl9bcU=",
+        "lastModified": 1706816668,
+        "narHash": "sha256-dfnwa/h+vlNmpZKIYalL7k+++KcW9qLFUx4M1tMfTeo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e4f711a40e2124d11f84c3e67443d02fa413a634",
+        "rev": "eee08e0c12498f080299aff4f255db8c089a48a6",
         "type": "github"
       },
       "original": {
@@ -806,11 +806,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1706547018,
-        "narHash": "sha256-SSNDX18SQvDYIwUCvCgSHf87iRYHLKok+DsrEodWzJE=",
+        "lastModified": 1706816806,
+        "narHash": "sha256-lCwwWpiy2rdkNk4fIyF9xHwR7stbMvJ+a+YXbYnvfWw=",
         "owner": "stepbrobd",
         "repo": "ysun",
-        "rev": "11ff505eee9a63be96021c687ec8b1fc0d92e4fd",
+        "rev": "4d181fe14273e9da6998e9d23ba8b7aa29dee279",
         "type": "github"
       },
       "original": {
