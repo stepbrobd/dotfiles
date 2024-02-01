@@ -166,10 +166,15 @@
         };
       };
 
-      hydraJobs = {
-        inherit (self)
-          packages devShells;
-      };
+      hydraJobs =
+        let
+          configsFor = systemType: lib.mapAttrs (n: v: v.config.system.build.toplevel) self."${systemType}Configurations";
+        in
+        {
+          inherit (self) packages devShells;
+          nixosConfigurations = configsFor "nixos";
+          darwinConfigurations = configsFor "darwin";
+        };
     } // flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = import nixpkgs {
