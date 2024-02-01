@@ -62,16 +62,13 @@
       redir https://internal.center{uri}
     '';
 
-    virtualHosts."stats.ysun.co" = {
-      extraConfig = ''
-        import common
-        reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
-          header_up Host {host}
-          header_up X-Real-IP {http.request.header.CF-Connecting-IP}
-        }
-      '';
-      serverAliases = [ "stats.nixolo.gy" ];
-    };
+    virtualHosts."stats.ysun.co".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
+        header_up Host {host}
+        header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+      }
+    '';
 
     virtualHosts."ysun.co" = {
       extraConfig = ''
