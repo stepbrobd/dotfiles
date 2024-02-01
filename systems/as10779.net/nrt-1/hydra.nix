@@ -9,6 +9,7 @@
 {
   services.hydra = {
     enable = true;
+    logo = ./logo.png;
 
     useSubstitutes = true;
     buildMachinesFiles = [ ];
@@ -20,10 +21,6 @@
     port = 10069;
     notificationSender = "hydra@nixolo.gy";
 
-    logo = ./logo.png;
-    tracker = ''
-      <script type=\"text/javascript\" defer data-domain=\"hydra.nixolo.gy\" src=\"https://stats.nixolo.gy/js/script.js\"></script>
-    '';
 
     extraConfig = ''
       email_notification = 1
