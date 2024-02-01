@@ -19,7 +19,6 @@
     listenHost = "127.0.0.1";
     port = 10069;
     notificationSender = "hydra@nixolo.gy";
-    smtpHost = "localhost";
 
     logo = ./logo.png;
     tracker = ''
@@ -27,11 +26,29 @@
     '';
 
     extraConfig = ''
+      email_notification = 1
+
       <dynamicruncommand>
         enable = 1
       </dynamicruncommand>
     '';
   };
+
+  age.secrets.hydra-notify.file = ../../../secrets/hydra-notify.age;
+  systemd.services = lib.mapAttrs
+    (name: _: {
+      path = [ pkgs.msmtp ];
+      serviceConfig.EnvironmentFile = config.age.secrets.hydra-notify.path;
+    })
+    (lib.genAttrs [
+      "hydra-evaluator"
+      "hydra-notify"
+      "hydra-send-stats"
+      "hydra-queue-runner"
+      "hydra-server"
+    ]
+      { });
+
 
   nix = {
     settings.sandbox = false;
