@@ -56,11 +56,14 @@
       "flake:"
       "path:"
       "github:"
+      "git+https://github.com/"
+      "git+ssh://github.com/"
       "gitlab:"
+      "git+https://gitlab.com/"
+      "git+ssh://gitlab.com/"
       "sourcehut:"
-      "git+https:"
-      "git+ssh:"
-      "git+file:"
+      "git+https://git.sr.ht/"
+      "git+ssh://git.sr.ht/"
     ];
 
     buildMachines = [
