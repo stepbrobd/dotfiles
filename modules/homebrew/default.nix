@@ -54,7 +54,7 @@
       "coconutbattery"
       "discord"
       # "firefox-developer-edition"
-      "hey"
+      # "hey"
       "obsidian"
       "orbstack"
       "osu"
@@ -70,7 +70,7 @@
       "Apple Configurator" = 1037126344;
       "Authenticator" = 1538761576;
       "Dropover" = 1355679052;
-      "Fantastical" = 975937182;
+      # "Fantastical" = 975937182;
       "Flighty" = 1358823008;
       "iStat Menus" = 1319778037;
       "Parcel" = 639968404;
@@ -78,7 +78,7 @@
       "Remote Desktop" = 409907375;
       "ServerCat" = 1501532023;
       "Tailscale" = 1475387142;
-      "Things" = 904280696;
+      # "Things" = 904280696;
       "The Unarchiver" = 425424353;
       "Xcode" = 497799835;
       # safari
