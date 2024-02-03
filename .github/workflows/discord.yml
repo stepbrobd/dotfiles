@@ -18,7 +18,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: "Magic Cache"
-        uses: "determinatesystems/magic-nix-cache-action@v2"
+        uses: "determinatesystems/magic-nix-cache-action@v3"
       - name: "Discord"
         run: |
           ./scripts/mkdiscordhook.sh
