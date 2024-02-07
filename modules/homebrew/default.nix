@@ -24,8 +24,8 @@
 
     taps = [
       "nextfire/tap"
-      "homebrew/core"
-      "homebrew/cask"
+      # "homebrew/core"
+      # "homebrew/cask"
       # "homebrew/cask-versions"
       "homebrew/services"
     ];
