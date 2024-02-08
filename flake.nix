@@ -193,6 +193,7 @@
           agenix.packages.${system}.agenix
           direnv
           git
+          nixVersions.unstable
           nix-direnv
         ];
       };
