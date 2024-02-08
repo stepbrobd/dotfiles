@@ -1,5 +1,5 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i bash -p google-cloud-sdk jq nix-output-monitor
+#!/usr/bin/env nix
+#!nix shell nixpkgs#bash nixpkgs#google-cloud-sdk nixpkgs#jq nixpkgs#nix-output-monitor --command bash
 
 set -euo pipefail
 
