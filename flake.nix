@@ -54,6 +54,9 @@
       ];
     in
     {
+      # schemas
+      schemas = flake-schemas.schemas;
+
       # SSDNodes Performance, 8 vCPU, 32GB RAM, 640GB Storage
       nixosConfigurations.nrt-1 = lib.mkServer {
         systemType = "nixos";
