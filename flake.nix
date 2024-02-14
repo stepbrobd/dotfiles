@@ -44,6 +44,7 @@
         ./users/ysun/modules/bat
         ./users/ysun/modules/btop
         ./users/ysun/modules/direnv
+        ./users/ysun/modules/fzf
         ./users/ysun/modules/git
         ./users/ysun/modules/gpg
         ./users/ysun/modules/lsd
