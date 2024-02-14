@@ -277,6 +277,7 @@
       url = "github:stepbrobd/ysun";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-schemas.follows = "flake-schemas";
     };
   };
 
