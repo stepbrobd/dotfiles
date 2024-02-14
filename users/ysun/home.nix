@@ -73,6 +73,7 @@
     gitleaks
     google-cloud-sdk
     reattach-to-user-namespace
+    spotify
     terraform
     yt-dlp
   ]);
