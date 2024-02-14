@@ -60,6 +60,7 @@
       "osu"
       "raycast"
       "slack"
+      "spotify"
       "spacedrive"
       "wireshark"
       "yubico-yubikey-manager"
