@@ -18,8 +18,13 @@
     options = {
       number = true;
       relativenumber = true;
+      incsearch = true;
+      ignorecase = true;
+      smartcase = true;
+      expandtab = true;
     };
 
+    clipboard.register = "unnamedplus";
     colorschemes.nord.enable = true;
 
     plugins = {
