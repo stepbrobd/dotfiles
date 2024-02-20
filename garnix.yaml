@@ -1,0 +1,13 @@
+builds:
+ include:
+   - darwinConfigurations.*
+   - nixosConfigurations.*
+   - packages.*.*
+ exclude:
+   - devShells.*.*
+   # impure
+   - nixosConfigurations.nrt-1
+   - nixosConfigurations.zrh-1
+   - nixosConfigurations.zrh-2
+   # impure
+   - packages.*.pcaddy
