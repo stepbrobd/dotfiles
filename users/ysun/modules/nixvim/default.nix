@@ -192,7 +192,7 @@
       treesitter-textobjects.enable = true;
       typst-vim = {
         enable = true;
-        pdfViewer = "zathura";
+        settings.pdf_viewer = "zathura";
       };
     };
 
