@@ -38,8 +38,9 @@
 
   home.sessionVariables = {
     TERM = "alacritty";
-    GOROOT = "${config.xdg.dataHome}/go";
-    GOPATH = "${config.xdg.dataHome}/go/path";
+    GOROOT = "${pkgs.go}/share/go";
+    GOPATH = "${config.xdg.dataHome}/go";
+    GOMODCACHE = "${config.xdg.cacheHome}/go/pkg/mod";
   };
 
   home.packages = with pkgs; [
