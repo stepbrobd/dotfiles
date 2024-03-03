@@ -8,10 +8,9 @@
 
 {
   nixpkgs.config = {
+    # contentAddressedByDefault = true;
+
     allowUnfree = true;
     allowUnfreePredicate = (_: true);
-
-    # idk what package is depending on electron-25.9.0
-    permittedInsecurePackages = [ "electron-25.9.0" ];
   };
 }
