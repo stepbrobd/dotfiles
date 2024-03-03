@@ -42,6 +42,7 @@
       marp-team.marp-vscode
       maximedenes.vscoq
       mechatroner.rainbow-csv
+      mgt19937.typst-preview
       ms-azuretools.vscode-docker
       ms-python.isort
       ms-python.python
