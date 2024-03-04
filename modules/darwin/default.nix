@@ -26,4 +26,12 @@
 
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
   };
+
+  environment.etc."ssh/sshd_config".text = ''
+    Include                         /etc/ssh/sshd_config.d/*
+    AuthorizedKeysFile              .ssh/authorized_keys
+    UsePAM                          yes
+    PasswordAuthentication          no
+    ChallengeResponseAuthentication no
+  '';
 }
