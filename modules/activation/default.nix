@@ -16,5 +16,11 @@
         echo "---"
       fi
     '';
+  } // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    extraActivation.text = ''
+      if [[ "$(systemsetup -getremotelogin | sed 's/Remote Login: //')" == "Off" ]]; then
+        launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+      fi
+    '';
   };
 }
