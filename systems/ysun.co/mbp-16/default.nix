@@ -26,6 +26,4 @@
       "Thunderbolt Ethernet Slot 4"
     ];
   };
-
-  security.pam.enableSudoTouchIdAuth = true;
 }

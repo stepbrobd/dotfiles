@@ -34,4 +34,6 @@
     PasswordAuthentication          no
     ChallengeResponseAuthentication no
   '';
+
+  security.pam.enableSudoTouchIdAuth = true;
 }
