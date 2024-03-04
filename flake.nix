@@ -143,7 +143,7 @@
         hmStateVersion = "24.05";
         systemConfig = ./systems/ysun.co/mbp-14;
         username = "ysun";
-        extraModules = minimalModules ++ commonModules ++ [ ./modules/homebrew ];
+        extraModules = minimalModules ++ commonModules ++ [ ./modules/darwin ./modules/homebrew ];
         extraHMModules = minimalHMModules ++ commonHMModules;
       };
 
@@ -155,7 +155,7 @@
         hmStateVersion = "24.05";
         systemConfig = ./systems/ysun.co/mbp-16;
         username = "ysun";
-        extraModules = minimalModules ++ commonModules ++ [ ./modules/homebrew ];
+        extraModules = minimalModules ++ commonModules ++ [ ./modules/darwin ./modules/homebrew ];
         extraHMModules = minimalHMModules ++ commonHMModules;
       };
 
