@@ -10,6 +10,8 @@
   i18n.defaultLocale = "en_US.UTF-8";
   time.timeZone = "America/New_York";
 
+  services.openssh.enable = true;
+
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "169b9f98";
