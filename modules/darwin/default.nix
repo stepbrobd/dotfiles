@@ -8,12 +8,25 @@
 
 {
   system.defaults = {
+    alf = {
+      allowdownloadsignedenabled = 1;
+      allowsignedenabled = 1;
+      globalstate = 1;
+      loggingenabled = 0;
+      stealthenabled = 0;
+    };
+
     dock = {
       autohide = true;
-      tilesize = 48;
+      tilesize = 64;
       largesize = 64;
       minimize-to-application = true;
-      show-recents = false;
+      show-recents = true;
+      mru-spaces = false;
+      wvous-bl-corner = 1;
+      wvous-br-corner = 1;
+      wvous-tl-corner = 1;
+      wvous-tr-corner = 1;
     };
 
     finder = {
