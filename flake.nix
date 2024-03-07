@@ -112,6 +112,7 @@
           ./modules/hyprland
           ./modules/i18n
           ./modules/networking
+          ./modules/plasma
           ./modules/plymouth
           ./modules/swaylock
           ./modules/wireshark
