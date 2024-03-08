@@ -271,7 +271,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim/680889ac01df8c2bfcb7a6ac7c850153d13d7b8f";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nix-darwin.follows = "nix-darwin";
       inputs.home-manager.follows = "home-manager";
