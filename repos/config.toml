@@ -14,11 +14,6 @@ origin = false
 domain = "git.sr.ht"
 user = "~stepbrobd"
 
-[platform.dn42]
-origin = false
-domain = "git.dn42.dev"
-user = "stepbrobd"
-
 ## Personal
 [repo.".soft-serve"]
 description = "soft serve configs"
@@ -26,8 +21,14 @@ description = "soft serve configs"
 [repo."aoc"]
 description = "advent of code"
 
-[repo."consistency"]
-description = "consistency models"
+[repo."churn"]
+description = "churn, baby, churn!"
+
+[repo."consistency-coq"]
+description = "consistency semantics with coq"
+
+[repo."consistency-z3"]
+description = "consistency semantics with z3"
 
 [repo."cv"]
 description = "cv in typst with auto build and release"
@@ -40,6 +41,9 @@ description = "hackzurich 2023: finch - a simple neural net framework and visual
 
 [repo."metaprocessor"]
 description = "metaprocessor, all-in-one data pipeline for mbientlab metawear series sensors"
+
+[repo."nixology"]
+nixology = "all about nix"
 
 [repo."sentik"]
 description = "hackmit 2022: sentik - live tweet sentiment analysis for traders"
@@ -81,9 +85,6 @@ description = "forked from nixos/nix"
 [repo."nixpkgs"]
 description = "forked from nixos/nixpkgs"
 
-[repo."registry"]
-description = "forked from dn42/registry"
-
 [repo."soft-serve"]
 description = "forked from charmbracelet/soft-serve"
 
@@ -94,48 +95,68 @@ description = "forked from tailscale/tailscale"
 [repo."neu-cs-5010"]
 description = "cs 5010 fall 2023 @ northeastern university"
 
+[repo."neu-cs-5200"]
+description = "cs 5200 spring 2024 @ northeastern university"
+
 [repo."neu-cs-5800"]
 description = "cs 5800 fall 2023 @ northeastern university"
+
+[repo."neu-cy-6740"]
+description = "cy 6740 spring 2024 @ northeastern university"
 
 ## University of Utah
 [repo."uutah-cs-1410"]
 description = "cs 1410 spring 2020 @ university of utah"
+archived = true
 
 [repo."uutah-cs-2420"]
 description = "cs 2420 fall 2020 @ university of utah"
+archived = true
 
 [repo."uutah-cs-3011"]
 description = "cs 3011 spring 2023 @ university of utah"
+archived = true
 
 [repo."uutah-cs-3500"]
 description = "cs 3500 spring 2021 @ university of utah"
+archived = true
 
 [repo."uutah-cs-3505"]
 description = "cs 3505 fall 2021 @ university of utah"
+archived = true
 
 [repo."uutah-cs-4150"]
 description = "cs 4150 spring 2022 @ university of utah"
+archived = true
 
 [repo."uutah-cs-4400"]
 description = "cs 4400 fall 2021 @ university of utah"
+archived = true
 
 [repo."uutah-cs-4440"]
 description = "cs 4440 spring 2022 @ university of utah"
+archived = true
 
 [repo."uutah-cs-4480"]
 description = "cs 4480 spring 2022 @ university of utah"
+archived = true
 
 [repo."uutah-cs-4790"]
 description = "cs 4790 spring 2023 @ university of utah"
+archived = true
 
 [repo."uutah-cs-6110"]
 description = "cs 6110 spring 2023 @ university of utah"
+archived = true
 
 [repo."uutah-cs-6340"]
 description = "cs 6340 fall 2022 @ university of utah"
+archived = true
 
 [repo."uutah-cs-6450"]
 description = "cs 6450 fall 2022 @ university of utah"
+archived = true
 
 [repo."uutah-cs-6490"]
 description = "cs 6490 spring 2023 @ university of utah"
+archived = true
