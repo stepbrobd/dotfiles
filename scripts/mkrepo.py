@@ -116,6 +116,26 @@ def mkctx(cfg: Configuration) -> dict[pathlib.Path, Context]:
     }
 
 
+def exec(
+    tgt: list[pathlib.Path],
+    ctx: dict[pathlib.Path, Context],
+    cfg: Configuration,
+) -> None:
+    """
+    1. collect the last argument (must the the last argument, users must pass the command as a single string)
+    2. exec
+    """
+
+    def once(tgt: pathlib.Path) -> None:
+        print(f"StepBroBD :: Repo :: Exec :: {tgt.as_posix()}:")
+        cmd = sys.argv[-1]
+        print(f"$ {cmd}")
+        subprocess.Popen(cmd.split(), cwd=tgt, env=ctx[tgt].env).communicate()
+
+    with ThreadPoolExecutor(max_workers=cfg.general.concurrency) as executor:
+        executor.map(once, tgt)
+
+
 def init(
     tgt: list[pathlib.Path],
     ctx: dict[pathlib.Path, Context],
@@ -312,7 +332,7 @@ def main() -> None:
     )
 
     subparsers = parser.add_subparsers(dest="command")
-    commands = ["init", "pull", "push"]
+    commands = ["exec", "init", "pull", "push"]
     locals().update({f"subparser_{c}": subparsers.add_parser(c) for c in commands})
     for c in commands:
         p = locals()[f"subparser_{c}"]
@@ -330,7 +350,7 @@ def main() -> None:
             help="perform action on all repositories",
         )
 
-    args = parser.parse_args(args=None if sys.argv[1:] else ["--help"])
+    args, _ = parser.parse_known_args(args=None if sys.argv[1:] else ["--help"])
     cwd = pathlib.Path.cwd()
     cfg = mkcfg()
     ctx = mkctx(cfg)
