@@ -32,6 +32,7 @@ class RepoConfiguration:
     name: str  # required: repository name
     description: str  # optional: repository description
     branch: str  # optional: repository branch
+    archived: bool  # optional: repository archived
 
 
 @dataclass
@@ -41,13 +42,17 @@ class Configuration:
     repo: list[RepoConfiguration]
 
 
+def cfgpath() -> pathlib.Path:
+    if "REPO_CONFIG" in os.environ:
+        return pathlib.Path(os.environ["REPO_CONFIG"])
+    elif "XDG_CONFIG_HOME" in os.environ:
+        return pathlib.Path(os.environ["XDG_CONFIG_HOME"]) / "repos" / "config.toml"
+    else:
+        return pathlib.Path.home() / ".config" / "repos" / "config.toml"
+
+
 def mkcfg() -> Configuration:
-    with open(
-        pathlib.Path(os.environ["XDG_CONFIG_HOME"])
-        if "XDG_CONFIG_HOME" in os.environ
-        else pathlib.Path.home() / ".config" / "repos" / "config.toml",
-        "rb",
-    ) as f:
+    with open(cfgpath(), "rb") as f:
         c = tomllib.load(f)
 
     return Configuration(
@@ -70,6 +75,7 @@ def mkcfg() -> Configuration:
                 name=k,
                 description=v.get("description", None),
                 branch=v.get("branch", "master"),
+                archived=v.get("archived", False),
             )
             for k, v in c["repo"].items()
         ],
@@ -285,7 +291,7 @@ def main() -> None:
                 [
                     "git",
                     "-C",
-                    str(pathlib.Path.home() / ".config" / "dotfiles"),
+                    str(pathlib.Path.home() / "Workspace" / "dotfiles"),
                     "rev-parse",
                     "--short",
                     "HEAD",
@@ -323,7 +329,7 @@ def main() -> None:
     if args.name:
         tgt = [cfg.general.home / args.name]
     elif args.all:
-        tgt = [cfg.general.home / r.name for r in cfg.repo]
+        tgt = [cfg.general.home / r.name for r in cfg.repo if not r.archived]
     else:
         for dir in ctx.keys():
             if cwd.is_relative_to(dir):
