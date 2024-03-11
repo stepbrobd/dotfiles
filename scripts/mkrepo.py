@@ -126,6 +126,7 @@ def init(
     2. add remotes, if origin is set, change the platform name to origin
     3. fetch remote
     4. hard reset and checkout
+    5. set upstream
     """
 
     def once(tgt: pathlib.Path) -> None:
@@ -197,6 +198,14 @@ def init(
         # git checkout {branch}
         subprocess.run(
             ["git", "checkout", ctx[tgt].branch],
+            cwd=tgt,
+            env=ctx[tgt].env,
+        )
+
+        # 5.
+        # git branch --set-upstream-to=origin/{branch} {branch}
+        subprocess.run(
+            ["git", "branch", f"--set-upstream-to=origin/{ctx[tgt].branch}", ctx[tgt].branch],
             cwd=tgt,
             env=ctx[tgt].env,
         )
