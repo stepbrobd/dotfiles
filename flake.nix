@@ -108,14 +108,10 @@
         systemConfig = ./systems/ysun.co/fwl-13;
         username = "ysun";
         extraModules = minimalModules ++ commonModules ++ [
-          ./modules/greetd
           ./modules/hyprland
           ./modules/i18n
-          ./modules/networking
           ./modules/plasma
           ./modules/plymouth
-          ./modules/swaylock
-          ./modules/wireshark
           inputs.disko.nixosModules.disko
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-generators.nixosModules.all-formats

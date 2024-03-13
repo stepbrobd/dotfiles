@@ -9,7 +9,11 @@
 }:
 
 {
-  imports = [ inputs.hyprland.nixosModules.default ];
+  imports = [
+    ./greetd.nix
+    ./swaylock.nix
+    inputs.hyprland.nixosModules.default
+  ];
 
   programs.hyprland = {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
