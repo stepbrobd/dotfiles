@@ -94,12 +94,14 @@ description = "forked from tailscale/tailscale"
 ## Northeastern University
 [repo."neu-cs-5010"]
 description = "cs 5010 fall 2023 @ northeastern university"
+archived = true
 
 [repo."neu-cs-5200"]
 description = "cs 5200 spring 2024 @ northeastern university"
 
 [repo."neu-cs-5800"]
 description = "cs 5800 fall 2023 @ northeastern university"
+archived = true
 
 [repo."neu-cy-6740"]
 description = "cy 6740 spring 2024 @ northeastern university"
