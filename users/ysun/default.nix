@@ -26,7 +26,7 @@
     ];
   } // lib.optionalAttrs pkgs.stdenv.isLinux {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "input" "audio" "video" "wireshark" ];
+    extraGroups = [ "wheel" "networkmanager" "input" "audio" "video" ];
     hashedPassword = "$y$j9T$.4YGom.yj/t0BqlWv3ysg.$f.LzZrxQpB.vpmKd7mu4yxYWiERgEtTAxJHIGti2vg2";
   };
 }
