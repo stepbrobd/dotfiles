@@ -1,6 +1,7 @@
 { config
 , lib
 , pkgs
+, osConfig
 , ...
 }:
 
@@ -48,7 +49,7 @@
     ripgrep
   ]
   # linux only and when hyprland is enabled
-  ++ (lib.optionals (pkgs.stdenv.isLinux && config.wayland.windowManager.hyprland.enable) [
+  ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.plasma6.enable) [
     beeper
     cider
     discord
