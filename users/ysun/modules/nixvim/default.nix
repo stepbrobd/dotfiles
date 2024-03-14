@@ -110,6 +110,23 @@
         alwaysShowBufferline = false;
         diagnostics = "nvim_lsp";
       };
+      cmp = {
+        enable = true;
+        settings = {
+          completion = {
+            autocomplete = [ "TextChanged" ];
+            completeopt = "menu,menuone,noselect,preview";
+            keywordLength = 1;
+          };
+          experimental = { ghost_text.hlgroup = "Comment"; };
+          mapping = {
+            "<cr>" = "cmp.mapping.confirm({ select = true })";
+            "<tab>" = "cmp.mapping.select_next_item()";
+            "<s-tab>" = "cmp.mapping.select_prev_item()";
+          };
+          snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+        };
+      };
       cmp-buffer.enable = true;
       cmp-cmdline.enable = true;
       cmp-dictionary.enable = true;
@@ -157,28 +174,6 @@
       nix-develop.enable = true;
       noice.enable = true;
       notify.enable = true;
-      nvim-cmp = {
-        enable = true;
-        sources = [
-          { name = "buffer"; }
-          { name = "cmdline"; }
-          { name = "dictionary"; }
-          { name = "path"; }
-          { name = "treesitter"; }
-          { name = "luasnip"; }
-          { name = "copilot"; }
-        ];
-        mapping = {
-          "<cr>" = "cmp.mapping.confirm({ select = true })";
-          "<tab>" = "cmp.mapping.select_next_item()";
-          "<s-tab>" = "cmp.mapping.select_prev_item()";
-        };
-        completion.autocomplete = [ "TextChanged" ];
-        completion.completeopt = "menu,menuone,noselect,preview";
-        completion.keywordLength = 1;
-        experimental = { ghost_text.hlgroup = "Comment"; };
-        snippet.expand = "luasnip";
-      };
       oil.enable = true;
       presence-nvim.enable = true;
       rainbow-delimiters.enable = true;
