@@ -45,8 +45,6 @@
 
   home.packages = with pkgs; [
     nix-output-monitor
-    pinentry
-    pinentry-curses
     ripgrep
   ]
   # linux only and when hyprland is enabled
@@ -54,28 +52,24 @@
     beeper
     cider
     discord
-    flyctl
     gitleaks
-    google-cloud-sdk
     obsidian
     osu-lazer-bin
+    pinentry-all
     slack
     smplayer
     spacedrive
     spotify
-    terraform
     yt-dlp
     zoom-us
   ])
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
     cocoapods
-    flyctl
     gitleaks
-    google-cloud-sdk
+    pinentry_mac
     reattach-to-user-namespace
     spotify
-    terraform
     yt-dlp
   ]);
 }
