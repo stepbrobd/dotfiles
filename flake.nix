@@ -108,7 +108,6 @@
         systemConfig = ./systems/ysun.co/fwl-13;
         username = "ysun";
         extraModules = minimalModules ++ commonModules ++ [
-          # ./modules/hyprland
           ./modules/i18n
           ./modules/plasma
           ./modules/plymouth
@@ -120,16 +119,8 @@
           inputs.srvos.nixosModules.desktop
         ];
         extraHMModules = minimalHMModules ++ commonHMModules ++ [
-          # ./users/ysun/modules/cursor
-          # ./users/ysun/modules/dunst
           ./users/ysun/modules/floorp
-          # ./users/ysun/modules/gtk
-          # ./users/ysun/modules/hyprland
           ./users/ysun/modules/mpd
-          # ./users/ysun/modules/rofi
-          # ./users/ysun/modules/swaylock
-          # ./users/ysun/modules/waybar
-          # ./users/ysun/modules/wpaperd
         ];
       };
 
