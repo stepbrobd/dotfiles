@@ -9,7 +9,16 @@
 }:
 
 {
-  imports = [ inputs.hyprland.homeManagerModules.default ];
+  imports = [
+    ./cursor.nix
+    ./dunst.nix
+    ./gtk.nix
+    ./rofi.nix
+    ./swaylock.nix
+    ./waybar.nix
+    ./wpaperd.nix
+    inputs.hyprland.homeManagerModules.default
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
