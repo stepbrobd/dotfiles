@@ -17,6 +17,7 @@ user = "~stepbrobd"
 ## Personal
 [repo.".soft-serve"]
 description = "soft serve configs"
+archived = true
 
 [repo."aoc"]
 description = "advent of code"
@@ -47,6 +48,7 @@ nixology = "all about nix"
 
 [repo."sentik"]
 description = "hackmit 2022: sentik - live tweet sentiment analysis for traders"
+archived = true
 
 [repo."srd"]
 description = "srd: (go) static race detector"
