@@ -1,163 +1,20 @@
 {
   description = "@stepbrobd: yet another dotfiles repo with nix";
 
-  outputs =
-    { self
-    , nixpkgs
-    , haumea
-    , flake-utils
-    , flake-schemas
-    , nix-darwin
-    , home-manager
-    , agenix
-    , ...
-    } @ inputs:
+  outputs = { self, ... } @ inputs:
     let
       inherit (self) outputs;
       rev = self.rev or self.dirtyRev or null;
-      lib = nixpkgs.lib // nix-darwin.lib // home-manager.lib // haumea.lib.load {
+      lib = inputs.nixpkgs.lib // inputs.darwin.lib // inputs.hm.lib // inputs.haumea.lib.load {
         src = ./libs;
-        inputs = {
-          inherit lib rev inputs outputs;
-        };
+        inputs = { inherit lib rev inputs outputs; };
       };
-
-      minimalModules = [
-        ./modules/nextdns
-        ./modules/tailscale
-      ];
-
-      minimalHMModules = [
-        ./users/ysun/modules/nixvim
-        ./users/ysun/modules/tmux
-        ./users/ysun/modules/zsh
-      ];
-
-      commonModules = [
-        ./modules/activation
-        ./modules/fonts
-      ];
-
-      commonHMModules = [
-        ./users/ysun/modules/alacritty
-        ./users/ysun/modules/atuin
-        ./users/ysun/modules/bat
-        ./users/ysun/modules/btop
-        ./users/ysun/modules/direnv
-        ./users/ysun/modules/fzf
-        ./users/ysun/modules/git
-        ./users/ysun/modules/gpg
-        ./users/ysun/modules/lsd
-        ./users/ysun/modules/nushell
-        ./users/ysun/modules/pyenv
-        ./users/ysun/modules/vscode
-        ./users/ysun/modules/zathura
-        ./users/ysun/modules/zoxide
-      ];
     in
     {
-      # schemas
-      schemas = flake-schemas.schemas;
+      schemas = inputs.schemas.schemas;
 
-      # SSDNodes Performance, 8 vCPU, 32GB RAM, 640GB Storage
-      nixosConfigurations.nrt-1 = lib.mkSystem rec {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = systemStateVersion;
-        systemConfig = ./systems/as10779.net/nrt-1;
-        username = "ysun";
-        extraModules = minimalModules ++ [
-          inputs.srvos.nixosModules.server
-        ];
-        extraHMModules = minimalHMModules;
-      };
-
-      # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
-      nixosConfigurations.zrh-1 = lib.mkSystem rec {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = systemStateVersion;
-        systemConfig = ./systems/as10779.net/zrh-1;
-        username = "ysun";
-        extraModules = minimalModules ++ [
-          inputs.nixos-generators.nixosModules.amazon
-          inputs.srvos.nixosModules.hardware-amazon
-          inputs.srvos.nixosModules.server
-        ];
-        extraHMModules = minimalHMModules;
-      };
-
-      # EC2 T3.Micro, 2 vCPU, 1GB RAM, 30GB Storage
-      nixosConfigurations.zrh-2 = lib.mkSystem rec {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = systemStateVersion;
-        systemConfig = ./systems/as10779.net/zrh-2;
-        username = "ysun";
-        extraModules = minimalModules ++ [
-          inputs.nixos-generators.nixosModules.amazon
-          inputs.srvos.nixosModules.hardware-amazon
-          inputs.srvos.nixosModules.server
-        ];
-        extraHMModules = minimalHMModules;
-      };
-
-      # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-      nixosConfigurations.fwl-13 = lib.mkSystem rec {
-        systemType = "nixos";
-        hostPlatform = "x86_64-linux";
-        systemStateVersion = "24.05";
-        hmStateVersion = systemStateVersion;
-        systemConfig = ./systems/ysun.co/fwl-13;
-        username = "ysun";
-        extraModules = minimalModules ++ commonModules ++ [
-          ./modules/i18n
-          ./modules/plasma
-          ./modules/plymouth
-          inputs.disko.nixosModules.disko
-          inputs.lanzaboote.nixosModules.lanzaboote
-          inputs.nixos-generators.nixosModules.all-formats
-          inputs.nixos-hardware.nixosModules.common-hidpi
-          inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
-          inputs.srvos.nixosModules.desktop
-        ];
-        extraHMModules = minimalHMModules ++ commonHMModules ++ [
-          ./users/ysun/modules/floorp
-          ./users/ysun/modules/mpd
-        ];
-      };
-
-      # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
-      darwinConfigurations.mbp-14 = lib.mkSystem {
-        systemType = "darwin";
-        hostPlatform = "aarch64-darwin";
-        systemStateVersion = 4;
-        hmStateVersion = "24.05";
-        systemConfig = ./systems/ysun.co/mbp-14;
-        username = "ysun";
-        extraModules = minimalModules ++ commonModules ++ [ ./modules/darwin ./modules/homebrew ];
-        extraHMModules = minimalHMModules ++ commonHMModules;
-      };
-
-      # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-      darwinConfigurations.mbp-16 = lib.mkSystem {
-        systemType = "darwin";
-        hostPlatform = "x86_64-darwin";
-        systemStateVersion = 4;
-        hmStateVersion = "24.05";
-        systemConfig = ./systems/ysun.co/mbp-16;
-        username = "ysun";
-        extraModules = minimalModules ++ commonModules ++ [ ./modules/darwin ./modules/homebrew ];
-        extraHMModules = minimalHMModules ++ commonHMModules;
-      };
-
-      # overlays
       overlays.default = import ./overlays { inherit lib; };
 
-      # templates
       templates = lib.mkDynamicAttrs {
         dir = ./templates;
         fun = path: {
@@ -172,131 +29,127 @@
         in
         {
           inherit (self) packages devShells;
-          nixosConfigurations = configsFor "nixos";
-          darwinConfigurations = configsFor "darwin";
+          # nixosConfigurations = configsFor "nixos";
+          # darwinConfigurations = configsFor "darwin";
         };
-    } // flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ self.overlays.default ];
-      };
-    in
-    {
-      packages = lib.mkDynamicAttrs {
-        dir = ./packages;
-        fun = name: pkgs.callPackage (./packages/. + "/${name}") { };
-      };
+    }
+    // inputs.utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [ self.overlays.default ];
+        };
+      in
+      {
+        packages = lib.mkDynamicAttrs {
+          dir = ./packages;
+          fun = name: pkgs.callPackage (./packages/. + "/${name}") { };
+        };
 
-      devShells.default = pkgs.mkShell {
-        packages = with pkgs; [
-          agenix.packages.${system}.agenix
-          direnv
-          git
-          nixVersions.unstable
-          nix-direnv
-        ];
-      };
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            inputs.agenix.packages.${system}.agenix
+            direnv
+            git
+            nixVersions.unstable
+            nix-direnv
+          ];
+        };
 
-      formatter = pkgs.nixpkgs-fmt;
-    });
+        formatter = pkgs.nixpkgs-fmt;
+      }
+    );
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    haumea = {
-      url = "github:nix-community/haumea/v0.2.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-utils.url = "github:numtide/flake-utils";
-
-    flake-schemas.url = "github:determinatesystems/flake-schemas";
-
+    # a
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.darwin.follows = "darwin";
+    agenix.inputs.home-manager.follows = "hm";
+    agenix.inputs.systems.follows = "systems";
+    # c
+    compat.url = "github:edolstra/flake-compat";
+    compat.flake = false;
+    crane.url = "github:ipetkov/crane";
+    crane.inputs.nixpkgs.follows = "nixpkgs";
+    # d
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
+    devshell.inputs.flake-utils.follows = "utils";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+    # g
+    gitignore.url = "github:hercules-ci/gitignore.nix";
+    gitignore.inputs.nixpkgs.follows = "nixpkgs";
+    # h
+    haumea.url = "github:nix-community/haumea/v0.2.2";
+    haumea.inputs.nixpkgs.follows = "nixpkgs";
+    hm.url = "github:nix-community/home-manager";
+    hm.inputs.nixpkgs.follows = "nixpkgs";
+    # i
+    index.url = "github:nix-community/nix-index-database";
+    index.inputs.nixpkgs.follows = "nixpkgs";
+    # l
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.3.0";
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
+    lanzaboote.inputs.crane.follows = "crane";
+    lanzaboote.inputs.flake-compat.follows = "compat";
+    lanzaboote.inputs.flake-parts.follows = "parts";
+    lanzaboote.inputs.flake-utils.follows = "utils";
+    lanzaboote.inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
+    lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
+    # n
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-generators.inputs.nixlib.follows = "nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-
-    srvos = {
-      url = "github:numtide/srvos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "nix-darwin";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    hyprland = {
-      url = "github:hyprwm/hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix-darwin.follows = "nix-darwin";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    ysun = {
-      url = "github:stepbrobd/ysun";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.flake-schemas.follows = "flake-schemas";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.devshell.follows = "devshell";
+    nixvim.inputs.flake-compat.follows = "compat";
+    nixvim.inputs.flake-parts.follows = "parts";
+    nixvim.inputs.home-manager.follows = "hm";
+    nixvim.inputs.nix-darwin.follows = "darwin";
+    nixvim.inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+    # p
+    parts.url = "github:hercules-ci/flake-parts";
+    parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
+    pre-commit-hooks.inputs.flake-compat.follows = "compat";
+    pre-commit-hooks.inputs.flake-utils.follows = "utils";
+    pre-commit-hooks.inputs.gitignore.follows = "gitignore";
+    # r
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    rust-overlay.inputs.flake-utils.follows = "utils";
+    # s
+    schemas.url = "github:determinatesystems/flake-schemas";
+    srvos.url = "github:nix-community/srvos";
+    srvos.inputs.nixpkgs.follows = "nixpkgs";
+    systems.url = "github:nix-systems/default";
+    # u
+    utils.url = "github:numtide/flake-utils";
+    utils.inputs.systems.follows = "systems";
   };
 
   nixConfig = {
-    sandbox = false;
     extra-substituters = [
+      "https://cache.nixos.org"
       "https://cache.ngi0.nixos.org"
       "https://nix-community.cachix.org"
-      "https://nixpkgs-update.cachix.org"
       "https://cache.garnix.io"
-      "https://hyprland.cachix.org"
-      "https://stepbrobd.cachix.org"
-      "https://cache.nixolo.gy"
     ];
     extra-trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "cache.ngi0.nixos.org-1:KqH5CBLNSyX184S9BKZJo1LxrxJ9ltnY2uAs5c/f1MA="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "stepbrobd.cachix.org-1:Aa5jdkPVrCOvzaLTC0kVP5PYQ5BtNnLg1tG1Qa/QuE4="
-      "cache.nixolo.gy:UDmjlw8J4sqDlBIPe5YnABPI1lkcJssN8niLozS2ltM="
     ];
   };
 }
