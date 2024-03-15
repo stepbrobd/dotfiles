@@ -60,22 +60,25 @@
       schemas = flake-schemas.schemas;
 
       # SSDNodes Performance, 8 vCPU, 32GB RAM, 640GB Storage
-      nixosConfigurations.nrt-1 = lib.mkServer {
+      nixosConfigurations.nrt-1 = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
-        stateVersion = "24.05";
+        systemStateVersion = "24.05";
+        hmStateVersion = systemStateVersion;
         systemConfig = ./systems/as10779.net/nrt-1;
         username = "ysun";
         extraModules = minimalModules ++ [
           inputs.srvos.nixosModules.server
         ];
+        extraHMModules = minimalHMModules;
       };
 
       # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
-      nixosConfigurations.zrh-1 = lib.mkServer {
+      nixosConfigurations.zrh-1 = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
-        stateVersion = "24.05";
+        systemStateVersion = "24.05";
+        hmStateVersion = systemStateVersion;
         systemConfig = ./systems/as10779.net/zrh-1;
         username = "ysun";
         extraModules = minimalModules ++ [
@@ -83,13 +86,15 @@
           inputs.srvos.nixosModules.hardware-amazon
           inputs.srvos.nixosModules.server
         ];
+        extraHMModules = minimalHMModules;
       };
 
       # EC2 T3.Micro, 2 vCPU, 1GB RAM, 30GB Storage
-      nixosConfigurations.zrh-2 = lib.mkServer {
+      nixosConfigurations.zrh-2 = lib.mkSystem rec {
         systemType = "nixos";
         hostPlatform = "x86_64-linux";
-        stateVersion = "24.05";
+        systemStateVersion = "24.05";
+        hmStateVersion = systemStateVersion;
         systemConfig = ./systems/as10779.net/zrh-2;
         username = "ysun";
         extraModules = minimalModules ++ [
@@ -97,6 +102,7 @@
           inputs.srvos.nixosModules.hardware-amazon
           inputs.srvos.nixosModules.server
         ];
+        extraHMModules = minimalHMModules;
       };
 
       # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
