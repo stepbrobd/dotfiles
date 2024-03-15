@@ -7,7 +7,10 @@
 }:
 
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
   services.caddy = {
     enable = true;
@@ -48,13 +51,15 @@
       }
     '';
 
-    virtualHosts."nixolo.gy" = {
-      extraConfig = ''
-        import common
-        redir https://github.com/stepbrobd/nixology/tree/master{uri}
-      '';
-      serverAliases = [ "*.nixolo.gy" ];
-    };
+    virtualHosts."cache.nixolo.gy".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}
+    '';
+
+    virtualHosts."hydra.nixolo.gy".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
+    '';
   };
 
   age.secrets.cloudflare = {
@@ -64,8 +69,6 @@
   };
   systemd.services.caddy.serviceConfig = {
     AmbientCapabilities = "CAP_NET_BIND_SERVICE";
-    EnvironmentFile = [
-      config.age.secrets.cloudflare.path
-    ];
+    EnvironmentFile = [ config.age.secrets.cloudflare.path ];
   };
 }

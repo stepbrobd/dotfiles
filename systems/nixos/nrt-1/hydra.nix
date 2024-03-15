@@ -21,7 +21,6 @@
     port = 10069;
     notificationSender = "hydra@nixolo.gy";
 
-
     extraConfig = ''
       email_notification = 1
 
@@ -34,20 +33,22 @@
   # possibly need to add msmtp?
   # https://nixos.wiki/wiki/Msmtp
   age.secrets.hydra-notify.file = ../../../secrets/hydra-notify.age;
-  systemd.services = lib.mapAttrs
-    (name: _: {
-      path = [ pkgs.msmtp ];
-      serviceConfig.EnvironmentFile = config.age.secrets.hydra-notify.path;
-    })
-    (lib.genAttrs [
-      "hydra-evaluator"
-      "hydra-notify"
-      "hydra-send-stats"
-      "hydra-queue-runner"
-      "hydra-server"
-    ]
-      { });
-
+  systemd.services =
+    lib.mapAttrs
+      (name: _: {
+        path = [ pkgs.msmtp ];
+        serviceConfig.EnvironmentFile = config.age.secrets.hydra-notify.path;
+      })
+      (
+        lib.genAttrs [
+          "hydra-evaluator"
+          "hydra-notify"
+          "hydra-send-stats"
+          "hydra-queue-runner"
+          "hydra-server"
+        ]
+          { }
+      );
 
   nix = {
     settings.sandbox = false;
@@ -70,7 +71,12 @@
       {
         hostName = "localhost";
         system = config.nixpkgs.hostPlatform.system;
-        supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+        supportedFeatures = [
+          "kvm"
+          "nixos-test"
+          "big-parallel"
+          "benchmark"
+        ];
         maxJobs = 8;
       }
     ];

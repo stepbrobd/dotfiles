@@ -7,7 +7,10 @@
 }:
 
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
   services.caddy = {
     enable = true;
@@ -102,8 +105,6 @@
   };
   systemd.services.caddy.serviceConfig = {
     AmbientCapabilities = "CAP_NET_BIND_SERVICE";
-    EnvironmentFile = [
-      config.age.secrets.cloudflare.path
-    ];
+    EnvironmentFile = [ config.age.secrets.cloudflare.path ];
   };
 }

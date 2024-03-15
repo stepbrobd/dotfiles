@@ -8,7 +8,13 @@
 
 {
   # soft-serve git openssh
-  networking.firewall.allowedTCPPorts = [ 22 80 443 9418 10069 ];
+  networking.firewall.allowedTCPPorts = [
+    22
+    80
+    443
+    9418
+    10069
+  ];
 
   # soft-serve
   services.soft-serve = {
@@ -42,7 +48,11 @@
   };
 
   systemd.services.soft-serve.environment = {
-    SOFT_SERVE_INITIAL_ADMIN_KEYS = lib.concatMapStringsSep "\n" (key: key) config.users.users.ysun.openssh.authorizedKeys.keys;
+    SOFT_SERVE_INITIAL_ADMIN_KEYS = lib.concatMapStringsSep "\n"
+      (
+        key: key
+      )
+      config.users.users.ysun.openssh.authorizedKeys.keys;
   };
 
   # proxy soft-serve to port 80 and 443

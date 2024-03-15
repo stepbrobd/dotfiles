@@ -23,10 +23,18 @@
 
         announce = {
           ipv4 = [
-            { prefix = "<IPv4 Block to be Announced>"; msa = "<Most Specific Announcement>"; origin = "<Origin ASN>"; }
+            {
+              prefix = "<IPv4 Block to be Announced>";
+              msa = "<Most Specific Announcement>";
+              origin = "<Origin ASN>";
+            }
           ];
           ipv6 = [
-            { prefix = "<IPv6 Block to be Announced>"; msa = "<Most Specific Announcement>"; origin = "<Origin ASN>"; }
+            {
+              prefix = "<IPv6 Block to be Announced>";
+              msa = "<Most Specific Announcement>";
+              origin = "<Origin ASN>";
+            }
           ];
         };
 
@@ -43,11 +51,11 @@
       in
       ''
         router id ${own.ipv4};
- 
+
         protocol device {
           scan time 10;
         }
- 
+
         protocol kernel {
           scan time 10;
           learn;
@@ -61,7 +69,7 @@
             };
           };
         }
- 
+
         protocol kernel {
           scan time 10;
           learn;
@@ -75,7 +83,7 @@
             };
           };
         }
- 
+
         function is_as_bogon() {
           return bgp_path ~ [
             0,                      # RFC 7607
@@ -89,7 +97,7 @@
             4294967295              # RFC 7300 Last 32 bit ASN
           ];
         }
- 
+
         function is_net_bogon() {
           if net.type = NET_IP4 then return net ~ [
             0.0.0.0/8+,       # RFC 1122 'this' network
@@ -121,34 +129,42 @@
             ff00::/8+       # RFC 4291 multicast
           ];
         }
- 
+
         function is_net_announced() {
           if net.type = NET_IP4 then return net ~ [
-            ${lib.concatMapStringsSep "\n" (r: ''
-              ${r.prefix}+
-            '') announce.ipv4}
+            ${
+              lib.concatMapStringsSep "\n" (r: ''
+                ${r.prefix}+
+              '') announce.ipv4
+            }
           ];
           return net ~ [
-            ${lib.concatMapStringsSep "\n" (r: ''
-              ${r.prefix}+
-            '') announce.ipv6}
+            ${
+              lib.concatMapStringsSep "\n" (r: ''
+                ${r.prefix}+
+              '') announce.ipv6
+            }
           ];
         }
- 
+
         protocol static {
           ipv4;
-          ${lib.concatMapStringsSep "\n" (r: ''
-            route ${r.prefix} via ${own.ipv4};
-          '') announce.ipv4}
+          ${
+            lib.concatMapStringsSep "\n" (r: ''
+              route ${r.prefix} via ${own.ipv4};
+            '') announce.ipv4
+          }
         }
- 
+
         protocol static {
           ipv6;
-          ${lib.concatMapStringsSep "\n" (r: ''
-            route ${r.prefix} via ${own.ipv6};
-          '') announce.ipv6}
+          ${
+            lib.concatMapStringsSep "\n" (r: ''
+              route ${r.prefix} via ${own.ipv6};
+            '') announce.ipv6
+          }
         }
- 
+
         ${lib.concatMapStringsSep "\n" (p: ''
           protocol bgp ${p.name}4 {
             graceful restart on;
@@ -172,7 +188,7 @@
             };
           }
         '') peer}
- 
+
         ${lib.concatMapStringsSep "\n" (p: ''
           protocol bgp ${p.name}6 {
             graceful restart on;

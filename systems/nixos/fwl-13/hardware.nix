@@ -13,7 +13,13 @@
   boot.extraModulePackages = [ ];
 
   boot.initrd.kernelModules = [ ];
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "thunderbolt"
+    "nvme"
+    "usb_storage"
+    "sd_mod"
+  ];
 
   imports = [ ./disko.nix ];
   # boot.zfs.enableUnstable = true;
