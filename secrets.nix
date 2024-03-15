@@ -7,7 +7,11 @@ let
   zrh-1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATBSfq95xFwSazFiulDnNIZGqj0Aw7gEvw9LxF96PBv"; # host@zrh-1
   zrh-2 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDHLLHiyDq4GcetByxY0Gy2TeokjdXt2B2L20sFyZFlg"; # host@zrh-2
 
-  ysun = [ fwl-13 mbp-14 mbp-16 ];
+  ysun = [
+    fwl-13
+    mbp-14
+    mbp-16
+  ];
 in
 {
   "secrets/pgp.age".publicKeys = ysun;
@@ -20,7 +24,11 @@ in
   "secrets/cache.pem.age".publicKeys = ysun ++ [ nrt-1 ];
   "secrets/hydra-notify.age".publicKeys = ysun ++ [ nrt-1 ];
 
-  "secrets/cloudflare.age".publicKeys = ysun ++ [ nrt-1 zrh-1 zrh-2 ];
+  "secrets/cloudflare.age".publicKeys = ysun ++ [
+    nrt-1
+    zrh-1
+    zrh-2
+  ];
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.mal.age".publicKeys = ysun ++ [ zrh-1 ];
   "secrets/plausible.mmd.age".publicKeys = ysun ++ [ zrh-1 ];

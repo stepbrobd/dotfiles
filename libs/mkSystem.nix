@@ -3,6 +3,7 @@
 , rev
 , inputs
 , outputs
+,
 }:
 
 # mkSystem args
@@ -15,10 +16,13 @@
 , extraModules ? [ ]
 , extraHMModules ? [ ]
 , overlays ? [ ]
+,
 }:
 
 lib."${systemType}System" {
-  specialArgs = { inherit inputs outputs; };
+  specialArgs = {
+    inherit inputs outputs;
+  };
   modules = [
     # nix + nixpkgs
     ../modules/nix
@@ -31,7 +35,9 @@ lib."${systemType}System" {
     (../. + "/users/${username}")
     inputs.home-manager."${systemType}Modules".home-manager
     {
-      home-manager.extraSpecialArgs = { inherit inputs outputs; };
+      home-manager.extraSpecialArgs = {
+        inherit inputs outputs;
+      };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users."${username}" = {

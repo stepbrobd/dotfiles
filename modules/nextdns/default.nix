@@ -9,6 +9,9 @@
 {
   services.nextdns = {
     enable = true;
-    arguments = [ "-config" "d8664a" ];
+    arguments = [
+      "-config"
+      "d8664a"
+    ];
   };
 }

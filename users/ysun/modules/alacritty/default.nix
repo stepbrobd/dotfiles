@@ -18,11 +18,12 @@
           y = 4;
         };
         decorations =
-          if pkgs.stdenv.isLinux
-          then lib.mkDefault "None"
-          else if pkgs.stdenv.isDarwin
-          then lib.mkDefault "Buttonless"
-          else abort "Unsupported OS";
+          if pkgs.stdenv.isLinux then
+            lib.mkDefault "None"
+          else if pkgs.stdenv.isDarwin then
+            lib.mkDefault "Buttonless"
+          else
+            abort "Unsupported OS";
       };
 
       font = {

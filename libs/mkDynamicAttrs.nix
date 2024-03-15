@@ -3,11 +3,10 @@
 , rev
 , inputs
 , outputs
+,
 }:
 
 # mkDynamicAttrs args
-{ dir
-, fun
-}:
+{ dir, fun }:
 
 lib.genAttrs (builtins.attrNames (builtins.readDir dir)) (fun)

@@ -21,7 +21,11 @@ stdenv.mkDerivation {
     export GOPATH="$TMPDIR/go"
   '';
 
-  nativeBuildInputs = with pkgs; [ git go xcaddy ];
+  nativeBuildInputs = with pkgs; [
+    git
+    go
+    xcaddy
+  ];
 
   buildPhase =
     let

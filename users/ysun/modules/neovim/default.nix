@@ -8,9 +8,7 @@
 
 {
   programs.neovim = {
-    enable = lib.warn
-      "the use of `programs.neovim` is deprecated in favor of `programs.nixvim`"
-      true;
+    enable = lib.warn "the use of `programs.neovim` is deprecated in favor of `programs.nixvim`" true;
 
     plugins = with pkgs.vimPlugins; [
       cmp-cmdline

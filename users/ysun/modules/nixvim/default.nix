@@ -118,7 +118,9 @@
             completeopt = "menu,menuone,noselect,preview";
             keywordLength = 1;
           };
-          experimental = { ghost_text.hlgroup = "Comment"; };
+          experimental = {
+            ghost_text.hlgroup = "Comment";
+          };
           mapping = {
             "<cr>" = "cmp.mapping.confirm({ select = true })";
             "<tab>" = "cmp.mapping.select_next_item()";
@@ -136,7 +138,10 @@
       cmp-treesitter.enable = true;
       copilot-cmp = {
         enable = true;
-        event = [ "InsertEnter" "LspAttach" ];
+        event = [
+          "InsertEnter"
+          "LspAttach"
+        ];
         fixPairs = true;
       };
       copilot-lua = {
@@ -163,8 +168,14 @@
         sections = {
           lualine_a = [ "mode" ];
           lualine_b = [ "branch" ];
-          lualine_c = [ "diff" "diagnostics" ];
-          lualine_x = [ "filetype" "encoding" ];
+          lualine_c = [
+            "diff"
+            "diagnostics"
+          ];
+          lualine_x = [
+            "filetype"
+            "encoding"
+          ];
           lualine_y = [ "progress" ];
           lualine_z = [ "location" ];
         };
@@ -191,8 +202,6 @@
       };
     };
 
-    extraPlugins = with pkgs.vimPlugins; [
-      Coqtail
-    ];
+    extraPlugins = with pkgs.vimPlugins; [ Coqtail ];
   };
 }

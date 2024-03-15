@@ -41,7 +41,7 @@
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
-      
+
       bind r source-file ~/.tmux.conf \; display-message "tmux: config reloaded"
       bind s set-window-option synchronize-panes\; display-message "synchronize-panes: #{?pane_synchronized,on,off}"
     '';

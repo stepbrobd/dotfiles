@@ -16,9 +16,15 @@
       height = 36;
       spacing = 24;
 
-      modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+      modules-left = [
+        "hyprland/workspaces"
+        "hyprland/window"
+      ];
       modules-center = [ "clock" ];
-      modules-right = [ "network" "battery" ];
+      modules-right = [
+        "network"
+        "battery"
+      ];
 
       "hyprland/workspaces" = {
         tooltip = false;
@@ -69,7 +75,20 @@
         format = "{icon}   {capacity}%";
         format-charging = "󰂄";
         format-plugged = "󰂄";
-        format-icons = [ "󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" "󱈏" ];
+        format-icons = [
+          "󰂃"
+          "󰁺"
+          "󰁻"
+          "󰁼"
+          "󰁽"
+          "󰁾"
+          "󰁿"
+          "󰂀"
+          "󰂁"
+          "󰂂"
+          "󰁹"
+          "󱈏"
+        ];
       };
     };
 

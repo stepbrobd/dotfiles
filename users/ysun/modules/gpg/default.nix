@@ -13,7 +13,10 @@
     mutableKeys = true;
     mutableTrust = true;
     publicKeys = [
-      { source = ./pgp.asc; trust = "ultimate"; }
+      {
+        source = ./pgp.asc;
+        trust = "ultimate";
+      }
     ];
   };
 }
