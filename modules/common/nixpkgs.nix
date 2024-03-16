@@ -9,7 +9,6 @@
 {
   nixpkgs.config = {
     # contentAddressedByDefault = true;
-
     allowUnfree = true;
     allowUnfreePredicate = (_: true);
   };
