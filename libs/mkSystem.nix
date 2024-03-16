@@ -24,16 +24,13 @@ lib."${systemType}System" {
     inherit inputs outputs;
   };
   modules = [
-    # nix + nixpkgs
-    ../modules/nix
-    ../modules/nixpkgs
     # system
     systemConfig
     # agenix
     inputs.agenix."${systemType}Modules".age
     # home-manager
     (../. + "/users/${username}")
-    inputs.home-manager."${systemType}Modules".home-manager
+    inputs.hm."${systemType}Modules".home-manager
     {
       home-manager.extraSpecialArgs = {
         inherit inputs outputs;
@@ -43,7 +40,7 @@ lib."${systemType}System" {
       home-manager.users."${username}" = {
         imports = [
           (../. + "/users/${username}/home.nix")
-          inputs.nix-index-database.hmModules.nix-index
+          inputs.index.hmModules.nix-index
         ] ++ extraHMModules;
       };
     }
