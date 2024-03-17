@@ -9,10 +9,7 @@
 }:
 
 stdenv.mkDerivation {
-  # __impure = true;
-
-  pname = "pcaddy";
-  version = "${pkgs.caddy.version}";
+  name = "pcaddy";
 
   dontUnpack = true;
 
@@ -21,7 +18,11 @@ stdenv.mkDerivation {
     export GOPATH="$TMPDIR/go"
   '';
 
-  nativeBuildInputs = with pkgs; [ git go xcaddy ];
+  nativeBuildInputs = with pkgs; [
+    git
+    go
+    xcaddy
+  ];
 
   buildPhase =
     let

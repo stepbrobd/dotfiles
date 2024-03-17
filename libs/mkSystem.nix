@@ -3,6 +3,7 @@
 , rev
 , inputs
 , outputs
+,
 }:
 
 # mkSystem args
@@ -15,29 +16,31 @@
 , extraModules ? [ ]
 , extraHMModules ? [ ]
 , overlays ? [ ]
+,
 }:
 
 lib."${systemType}System" {
-  specialArgs = { inherit inputs outputs; };
+  specialArgs = {
+    inherit inputs outputs;
+  };
   modules = [
-    # nix + nixpkgs
-    ../modules/nix
-    ../modules/nixpkgs
     # system
     systemConfig
     # agenix
     inputs.agenix."${systemType}Modules".age
     # home-manager
     (../. + "/users/${username}")
-    inputs.home-manager."${systemType}Modules".home-manager
+    inputs.hm."${systemType}Modules".home-manager
     {
-      home-manager.extraSpecialArgs = { inherit inputs outputs; };
+      home-manager.extraSpecialArgs = {
+        inherit inputs outputs;
+      };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users."${username}" = {
         imports = [
           (../. + "/users/${username}/home.nix")
-          inputs.nix-index-database.hmModules.nix-index
+          inputs.index.hmModules.nix-index
         ] ++ extraHMModules;
       };
     }

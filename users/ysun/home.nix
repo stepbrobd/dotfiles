@@ -6,8 +6,6 @@
 }:
 
 {
-  imports = [ ./activation.nix ];
-
   xdg = {
     enable = true;
   } // lib.optionalAttrs pkgs.stdenv.isLinux {
@@ -20,7 +18,6 @@
       enable = true;
       associations.added = defaultApplications;
       defaultApplications = {
-        "inode/directory" = [ "spacedrive.desktop" ];
         "x-scheme-handler/discord" = [ "discord.desktop" ];
         "x-scheme-handler/slack" = [ "slack.desktop" ];
       };
@@ -30,11 +27,12 @@
   home = {
     username = "ysun";
     homeDirectory =
-      if pkgs.stdenv.isLinux
-      then lib.mkDefault "/home/ysun"
-      else if pkgs.stdenv.isDarwin
-      then lib.mkDefault "/Users/ysun"
-      else abort "Unsupported OS";
+      if pkgs.stdenv.isLinux then
+        lib.mkDefault "/home/ysun"
+      else if pkgs.stdenv.isDarwin then
+        lib.mkDefault "/Users/ysun"
+      else
+        abort "Unsupported OS";
   };
 
   home.sessionVariables = {
@@ -45,10 +43,11 @@
   };
 
   home.packages = with pkgs; [
+    nixvim
     nix-output-monitor
     ripgrep
   ]
-  # linux only and when hyprland is enabled
+  # linux only and when kde plasma is enabled
   ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.plasma6.enable) [
     beeper
     cider
@@ -73,4 +72,8 @@
     spotify
     yt-dlp
   ]);
+
+  home.activation.hushlogin = lib.hm.dag.entryAnywhere ''
+    $DRY_RUN_CMD touch ${config.home.homeDirectory}/.hushlogin
+  '';
 }
