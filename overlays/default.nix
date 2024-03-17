@@ -1,11 +1,14 @@
-{ lib }:
+{ lib, inputs, outputs }:
 
 final: prev:
 (
   lib.mkDynamicAttrs
     {
       dir = ../packages;
-      fun = name: final.callPackage (../packages/. + "/${name}") { };
+      fun = name: final.callPackage (../packages/. + "/${name}") {
+        inputs = inputs;
+        outputs = outputs;
+      };
     }
     // lib.optionalAttrs prev.stdenv.isDarwin {
     alacritty = prev.alacritty.overrideAttrs (oldAttrs: {
