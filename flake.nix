@@ -124,7 +124,7 @@
         extraHMModules = [ outputs.hmModules.ysun.darwin ];
       };
 
-      overlays.default = import ./overlays { inherit lib; };
+      overlays.default = import ./overlays { inherit lib inputs outputs; };
 
       templates = lib.mkDynamicAttrs {
         dir = ./templates;
