@@ -24,7 +24,6 @@
     # ./hyprland # linux only
     # ./lsd # imported in graphical
     # ./mpd # linux only
-    # ./neovim # imported in minimal
     # ./nushell # imported in graphical
     # ./pyenv # imported in graphical
     # ./tmux # imported in minimal

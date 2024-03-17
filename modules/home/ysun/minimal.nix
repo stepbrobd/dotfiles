@@ -8,7 +8,6 @@
 
 {
   imports = [
-    ./neovim
     ./tmux
     ./zsh
   ];
