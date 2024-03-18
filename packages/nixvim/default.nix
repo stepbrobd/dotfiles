@@ -1,12 +1,13 @@
 # https://github.com/nix-community/nixvim
 
 { stdenv
+, lib
 , pkgs
 , inputs
 , ...
 }:
 
-inputs.nixvim.legacyPackages."${stdenv.hostPlatform.system}".makeNixvim {
+lib.makeOverridable inputs.nixvim.legacyPackages."${stdenv.hostPlatform.system}".makeNixvim {
   colorschemes.nord.enable = true;
 
   options = {

@@ -8,7 +8,7 @@
 , ...
 }:
 
-stdenv.mkDerivation {
+lib.makeOverridable stdenv.mkDerivation {
   name = "pcaddy";
 
   dontUnpack = true;
