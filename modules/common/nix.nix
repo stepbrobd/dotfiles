@@ -22,6 +22,8 @@
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
+      builders-use-substitutes = true;
+      use-xdg-base-directories = true;
       warn-dirty = false;
 
       trusted-users = [ "root" "@admin" "@wheel" ];
