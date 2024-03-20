@@ -1,5 +1,8 @@
-{ lib, inputs, outputs }:
+{ inputs, outputs }:
 
+let
+  inherit (outputs) lib;
+in
 final: prev:
 (
   lib.mkDynamicAttrs

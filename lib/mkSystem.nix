@@ -1,10 +1,5 @@
 # haumea args
-{ lib
-, rev
-, inputs
-, outputs
-,
-}:
+{ inputs, outputs }:
 
 # mkSystem args
 { systemType
@@ -19,10 +14,14 @@
 ,
 }:
 
+let
+  inherit (outputs) lib;
+in
 lib."${systemType}System" {
   specialArgs = {
     inherit inputs outputs;
   };
+
   modules = [
     # system
     systemConfig
@@ -48,7 +47,6 @@ lib."${systemType}System" {
     { nixpkgs.hostPlatform = lib.mkDefault hostPlatform; }
     # state version
     { system.stateVersion = systemStateVersion; }
-    { system.configurationRevision = rev; }
     { home-manager.users."${username}".home.stateVersion = hmStateVersion; }
     # overlays
     { nixpkgs.overlays = overlays ++ [ outputs.overlays.default ]; }
