@@ -11,6 +11,7 @@
     ./schemas.nix
     ./templates.nix
 
+    ./config-darwin.nix
     ./config-nixos.nix
   ];
 }

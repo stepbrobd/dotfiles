@@ -30,31 +30,6 @@
             linux = import ./modules/home/ysun/linux.nix;
             minimal = import ./modules/home/ysun/minimal.nix;
           };
-
-
-          # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
-          darwinConfigurations.mbp-14 = lib.mkSystem {
-            systemType = "darwin";
-            hostPlatform = "aarch64-darwin";
-            systemStateVersion = 4;
-            hmStateVersion = "24.05";
-            systemConfig = ./systems/darwin/mbp-14;
-            username = "ysun";
-            extraModules = [ outputs.darwinModules.common outputs.darwinModules.default ];
-            extraHMModules = [ outputs.hmModules.ysun.darwin ];
-          };
-
-          # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-          darwinConfigurations.mbp-16 = lib.mkSystem {
-            systemType = "darwin";
-            hostPlatform = "x86_64-darwin";
-            systemStateVersion = 4;
-            hmStateVersion = "24.05";
-            systemConfig = ./systems/darwin/mbp-16;
-            username = "ysun";
-            extraModules = [ outputs.darwinModules.common outputs.darwinModules.default ];
-            extraHMModules = [ outputs.hmModules.ysun.darwin ];
-          };
         };
       };
 
