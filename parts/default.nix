@@ -10,5 +10,7 @@
     ./packages.nix
     ./schemas.nix
     ./templates.nix
+
+    ./config-nixos.nix
   ];
 }
