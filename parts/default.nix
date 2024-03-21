@@ -11,6 +11,10 @@
     ./schemas.nix
     ./templates.nix
 
+    ./module-darwin.nix
+    ./module-home.nix
+    ./module-nixos.nix
+
     ./config-darwin.nix
     ./config-nixos.nix
   ];

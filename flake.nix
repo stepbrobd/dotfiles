@@ -2,7 +2,8 @@
   description = "@stepbrobd: yet another dotfiles repo with nix";
 
   outputs = { self, ... } @ inputs:
-    let inherit (self) outputs; in inputs.parts.lib.mkFlake
+    let inherit (self) outputs; in
+    inputs.parts.lib.mkFlake
       {
         inherit inputs;
         specialArgs = { inherit outputs; };
@@ -11,26 +12,6 @@
         debug = true;
         systems = import inputs.systems;
         imports = [ ./parts ];
-
-        flake = let inherit (outputs) lib; in {
-          nixosModules = {
-            common = import ./modules/common;
-            graphical = import ./modules/nixos/graphical.nix;
-            minimal = import ./modules/nixos/minimal.nix;
-          };
-
-          darwinModules = {
-            common = import ./modules/common;
-            default = import ./modules/darwin;
-          };
-
-          hmModules.ysun = {
-            darwin = import ./modules/home/ysun/darwin.nix;
-            graphical = import ./modules/home/ysun/graphical.nix;
-            linux = import ./modules/home/ysun/linux.nix;
-            minimal = import ./modules/home/ysun/minimal.nix;
-          };
-        };
       };
 
   inputs = {
