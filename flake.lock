@@ -431,7 +431,8 @@
         "schemas": "schemas",
         "srvos": "srvos",
         "systems": "systems",
-        "utils": "utils"
+        "utils": "utils",
+        "ysun": "ysun"
       }
     },
     "rust-overlay": {
@@ -524,6 +525,29 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "ysun": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": [
+          "utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1711053454,
+        "narHash": "sha256-YDWt1iY0/Ts6ymdSLiAiQAIjeUKyi0N17QfKwFSLPbU=",
+        "owner": "stepbrobd",
+        "repo": "ysun",
+        "rev": "30b2c7b0ca614d8c2455067ec96424460c38614f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stepbrobd",
+        "repo": "ysun",
         "type": "github"
       }
     }

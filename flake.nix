@@ -90,6 +90,10 @@
     # u
     utils.url = "github:numtide/flake-utils";
     utils.inputs.systems.follows = "systems";
+    # y
+    ysun.url = "github:stepbrobd/ysun";
+    ysun.inputs.nixpkgs.follows = "nixpkgs";
+    ysun.inputs.utils.follows = "utils";
   };
 
   nixConfig = {
