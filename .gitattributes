@@ -69,4 +69,4 @@
 .gitkeep export-ignore
 
 # Generated p10k config
-users/ysun/modules/zsh/p10k.zsh linguist-generated
+modules/home/ysun/zsh/p10k.zsh linguist-generated
