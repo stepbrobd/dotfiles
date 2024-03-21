@@ -123,16 +123,6 @@
             extraModules = [ outputs.darwinModules.common outputs.darwinModules.default ];
             extraHMModules = [ outputs.hmModules.ysun.darwin ];
           };
-
-          hydraJobs =
-            let
-              configsFor = systemType: lib.mapAttrs (n: v: v.config.system.build.toplevel) outputs."${systemType}Configurations";
-            in
-            {
-              inherit (outputs) packages devShells;
-              # nixosConfigurations = configsFor "nixos";
-              # darwinConfigurations = configsFor "darwin";
-            };
         };
       };
 

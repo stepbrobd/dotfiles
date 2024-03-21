@@ -4,6 +4,7 @@
   imports = [
     ./devshells.nix
     ./formatter.nix
+    ./hydrajobs.nix
     ./lib.nix
     ./overlays.nix
     ./packages.nix
