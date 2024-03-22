@@ -43,6 +43,7 @@
   };
 
   home.packages = with pkgs; [
+    comma
     nixvim
     nix-output-monitor
     ripgrep
