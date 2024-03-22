@@ -55,6 +55,7 @@
       "discord"
       # "firefox-developer-edition"
       # "hey"
+      "ibkr"
       "obsidian"
       "orbstack"
       "osu"
