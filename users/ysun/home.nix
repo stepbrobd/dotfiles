@@ -36,6 +36,7 @@
   };
 
   home.sessionVariables = {
+    EDITOR = "nvim";
     TERM = "alacritty";
     GOROOT = "${pkgs.go}/share/go";
     GOPATH = "${config.xdg.dataHome}/go";
