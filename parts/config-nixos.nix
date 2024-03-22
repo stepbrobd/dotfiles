@@ -15,6 +15,7 @@ let
     username = "ysun";
     extraModules = [
       inputs.srvos.nixosModules.server
+      outputs.nixosModules.caddy
       outputs.nixosModules.common
       outputs.nixosModules.minimal
     ];
