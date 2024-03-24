@@ -10,7 +10,7 @@
   programs = {
     _1password.enable = true;
     _1password-gui.enable = true;
-    seahorse.enable = true;
+    # seahorse.enable = true;
   };
 
   security.pam.services.login.enableGnomeKeyring = true;
