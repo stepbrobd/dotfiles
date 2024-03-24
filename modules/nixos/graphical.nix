@@ -8,6 +8,7 @@
 
 {
   imports = [
+    ./1password.nix
     ./fonts.nix
     # ./hyprland.nix
     ./i18n.nix
