@@ -71,6 +71,7 @@
 
     masApps = {
       # utils
+      "1Password for Safari" = 1569813296;
       "Apple Configurator" = 1037126344;
       "Authenticator" = 1538761576;
       "Dropover" = 1355679052;
