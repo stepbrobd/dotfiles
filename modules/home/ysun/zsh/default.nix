@@ -7,6 +7,8 @@
 }:
 
 {
+  programs.carapace.enable = true;
+
   programs.zsh = {
     enable = true;
     autocd = true;
