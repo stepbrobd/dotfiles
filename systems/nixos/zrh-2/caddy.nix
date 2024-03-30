@@ -15,14 +15,6 @@
   services.caddy = {
     enable = true;
     email = "ysun@hey.com";
-
-    virtualHosts."nixolo.gy" = {
-      extraConfig = ''
-        import common
-        redir https://github.com/stepbrobd/nixology/tree/master{uri}
-      '';
-      serverAliases = [ "*.nixolo.gy" ];
-    };
   };
 
   age.secrets.cloudflare = {

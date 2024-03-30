@@ -10,7 +10,7 @@
   imports = [
     ./hardware.nix
 
-    ./caddy.nix
+    # ./caddy.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
