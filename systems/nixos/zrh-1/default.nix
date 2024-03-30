@@ -12,10 +12,9 @@
 
     # ./bird2.nix
     ./caddy.nix
-    ./fail2ban.nix
     ./plausible.nix
-    ./vaultwarden.nix
-    ./ysun.nix
+    # ./vaultwarden.nix
+    # ./ysun.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";

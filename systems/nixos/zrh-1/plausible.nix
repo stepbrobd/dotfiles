@@ -51,4 +51,12 @@
       secretKeybaseFile = config.age.secrets."plausible.srv".path;
     };
   };
+
+  services.caddy.virtualHosts."stats.ysun.co".extraConfig = ''
+    import common
+    reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
+      header_up Host {host}
+      header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+    }
+  '';
 }
