@@ -68,6 +68,7 @@
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
     cocoapods
+    flyctl
     gitleaks
     pinentry_mac
     reattach-to-user-namespace
