@@ -10,7 +10,7 @@
 lib.makeOverridable inputs.nixvim.legacyPackages."${stdenv.hostPlatform.system}".makeNixvim {
   colorschemes.nord.enable = true;
 
-  options = {
+  opts = {
     encoding = "utf-8";
     title = true;
     wrap = false;
