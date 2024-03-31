@@ -5,6 +5,7 @@ builds:
    - packages.*.*
  exclude:
    - devShells.*.*
+   - legacyPackages.*.*
    # impure
    - nixosConfigurations.nrt-1
    - nixosConfigurations.zrh-1
