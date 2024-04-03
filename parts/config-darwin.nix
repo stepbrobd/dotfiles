@@ -23,7 +23,5 @@ in
     }) [
     # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
     { host = "mbp-14"; platform = "aarch64-darwin"; }
-    # MacBook Pro 16-inch, Intel Core i9-9980HK, 32GB RAM, 2TB Storage
-    { host = "mbp-16"; platform = "x86_64-darwin"; }
   ]);
 }
