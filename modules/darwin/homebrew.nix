@@ -56,7 +56,7 @@
       "coconutbattery"
       "discord"
       # "firefox-developer-edition"
-      # "hey"
+      "hey"
       "ibkr"
       "obsidian"
       "orbstack"
@@ -71,7 +71,6 @@
 
     masApps = {
       # utils
-      "1Password for Safari" = 1569813296;
       "Apple Configurator" = 1037126344;
       "Authenticator" = 1538761576;
       "Dropover" = 1355679052;
@@ -87,8 +86,8 @@
       "The Unarchiver" = 425424353;
       "Xcode" = 497799835;
       # safari
+      "1Password for Safari" = 1569813296;
       "AdGuard" = 1440147259;
-      # "Bitwarden" = 1352778147;
       "Kagi" = 1622835804;
       "MyMind" = 1532801185;
       "Noir" = 1592917505;
