@@ -25,12 +25,12 @@ in
 {
   flake.nixosConfigurations = {
     # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-    fwl-13 = mkSystem {
+    framework = mkSystem {
       systemType = "nixos";
       hostPlatform = "x86_64-linux";
       systemStateVersion = stateVersion;
       hmStateVersion = stateVersion;
-      systemConfig = ../systems/nixos/fwl-13;
+      systemConfig = ../systems/nixos/framework;
       username = "ysun";
       extraModules = [
         inputs.disko.nixosModules.disko

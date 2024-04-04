@@ -1,6 +1,6 @@
 # Framework Laptop 13
 
-Flake attribute: `fwl-13`
+Flake attribute: `framework`
 
 CPU: Intel Core i7-1360P
 
@@ -31,13 +31,13 @@ Boot into minimal NixOS installer and switch to root user.
 Format disks:
 
 ```shell
-bash $(nix --extra-experimental-features "nix-command flakes" build --no-link --print-out-paths github:stepbrobd/dotfiles#nixosConfigurations.fwl-13.config.system.build.diskoScript)
+bash $(nix --extra-experimental-features "nix-command flakes" build --no-link --print-out-paths github:stepbrobd/dotfiles#nixosConfigurations.framework.config.system.build.diskoScript)
 ```
 
 Install:
 
 ```shell
-nixos-install --flake github:stepbrobd/dotfiles#fwl-13
+nixos-install --flake github:stepbrobd/dotfiles#framework
 ```
 
 It's expected to have errors related to [Lanzaboote](https://github.com/nix-community/lanzaboote) since secure boot PKI bundle is not setup.
@@ -53,7 +53,7 @@ sbctl create-keys && mv /etc/secureboot /mnt/etc
 Run installation again:
 
 ```shell
-nixos-install --flake github:stepbrobd/dotfiles#fwl-13
+nixos-install --flake github:stepbrobd/dotfiles#framework
 ```
 
 Lanzaboote should not complain this time.

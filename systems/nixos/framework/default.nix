@@ -15,7 +15,7 @@
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "169b9f98";
-    hostName = "fwl-13";
+    hostName = "framework";
     domain = "ysun.co";
     networkmanager.enable = true;
     firewall.enable = true;
