@@ -4,20 +4,6 @@
 
 A hacky `nix` based config that works on both NixOS and macOS.
 
-## Systems
-
-NixOS: [Framework Laptop 13](/systems/ysun.co/fwl-13)
-
-![Screenshot](/assets/fwl-13.png)
-
-Nix-Darwin: [MacBook Pro 14"](/systems/ysun.co/mbp-14)
-
-![Screenshot](/assets/mbp-14.png)
-
-Nix-Darwin: [MacBook Pro 16"](/systems/ysun.co/mbp-16)
-
-![Screenshot](/assets/mbp-16.png)
-
 ## Templates
 
 Project templates available for:
