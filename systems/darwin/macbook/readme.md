@@ -1,6 +1,6 @@
 # MacBook Pro 14-inch
 
-Flake attribute: `mbp-14`
+Flake attribute: `macbook`
 
 CPU: Apple M2 Max
 
@@ -45,7 +45,7 @@ Start a new terminal to activate `nix`.
 Activate the system:
 
 ```shell
-nix --extra-experimental-features "nix-command flakes" run github:lnl7/nix-darwin -- switch --flake github:stepbrobd/dotfiles#mbp-14
+nix --extra-experimental-features "nix-command flakes" run github:lnl7/nix-darwin -- switch --flake github:stepbrobd/dotfiles#macbook
 ```
 
 That's it!

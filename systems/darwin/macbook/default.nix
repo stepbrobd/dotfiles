@@ -8,9 +8,9 @@
   time.timeZone = "America/New_York";
 
   networking = {
-    hostName = "mbp-14";
-    localHostName = "Yifeis-MacBook-Pro-14";
-    # computerName = "Yifei\'s MacBook Pro 14\"";
+    hostName = "macbook";
+    localHostName = "Yifeis-MacBook-Pro";
+    computerName = "Yifei's MacBook Pro";
     knownNetworkServices = [
       "Tailscale Tunnel"
       "Wi-Fi"
