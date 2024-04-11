@@ -45,9 +45,9 @@ in
       extraHMModules = [ outputs.hmModules.ysun.linux ];
     };
   } // genAttrs [
-    "nrt-1" # SSDNodes Performance, 8 vCPU, 32GB RAM, 640GB Storage
-    "zrh-1" # EC2 T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
-    "zrh-2" # EC2 T3.Micro, 2 vCPU, 1GB RAM, 30GB Storage
+    "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage
+    "lagern" # AWS EC2 ZRH T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
+    "bachtel" # AWS EC2 ZRH T3.Micro, 2 vCPU, 1GB RAM, 30GB Storage
   ]
     (x: serverConfigFor x);
 }

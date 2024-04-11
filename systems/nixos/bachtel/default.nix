@@ -10,9 +10,7 @@
   imports = [
     ./hardware.nix
 
-    ./caddy.nix
-    ./hydra.nix
-    ./nix-serve.nix
+    # ./caddy.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -20,8 +18,8 @@
 
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
-    hostId = "cbef444f";
-    hostName = "nrt-1";
+    hostId = "bd4f630f";
+    hostName = "bachtel"; # https://en.wikipedia.org/wiki/Bachtel
     domain = "as10779.net";
   };
 

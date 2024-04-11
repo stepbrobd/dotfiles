@@ -10,7 +10,9 @@
   imports = [
     ./hardware.nix
 
-    # ./caddy.nix
+    ./caddy.nix
+    ./hydra.nix
+    ./nix-serve.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -18,8 +20,8 @@
 
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
-    hostId = "bd4f630f";
-    hostName = "zrh-2";
+    hostId = "cbef444f";
+    hostName = "odake"; # https://en.wikipedia.org/wiki/Mount_Odake_(Tokyo)
     domain = "as10779.net";
   };
 
