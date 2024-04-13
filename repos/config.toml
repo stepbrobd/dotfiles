@@ -14,11 +14,6 @@ origin = false
 domain = "git.sr.ht"
 user = "~stepbrobd"
 
-[platform.huggingface]
-origin = false
-domain = "hf.co"
-user = "stepbrobd"
-
 ## Personal
 [repo."aoc"]
 description = "advent of code"
