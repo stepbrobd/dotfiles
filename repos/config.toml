@@ -4,6 +4,11 @@ concurrency = 1
 [general.env]
 "GIT_SSH_COMMAND" = "ssh -o TcpKeepAlive=no -o ServerAliveInterval=10"
 
+[platform.codeberg]
+origin = false
+domain = "codeberg.org"
+user = "stepbrobd"
+
 [platform.github]
 origin = true
 domain = "github.com"
