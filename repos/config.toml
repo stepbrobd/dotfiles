@@ -90,7 +90,7 @@ description = "tailscale access controls"
 visibility = "public"
 archived = false
 
-[repo."tailscale-on-fly.io"]
+[repo."tailscale-on-fly"]
 description = "run a vpn service with global exit nodes with fly.io and tailscale"
 visibility = "public"
 archived = false
