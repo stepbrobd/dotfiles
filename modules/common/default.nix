@@ -6,6 +6,7 @@
   imports = [
     ./nextdns.nix
     ./nix.nix
+    ./nixbuild.nix
     ./nixpkgs.nix
     ./tailscale.nix
   ];
