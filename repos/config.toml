@@ -9,6 +9,11 @@ origin = true
 domain = "github.com"
 user = "stepbrobd"
 
+[platform.gitlab]
+origin = false
+domain = "gitlab.com"
+user = "stepbrobd"
+
 [platform.sourcehut]
 origin = false
 domain = "git.sr.ht"
