@@ -20,152 +20,220 @@ domain = "hf.co"
 user = "stepbrobd"
 
 ## Personal
-[repo.".soft-serve"]
-description = "soft serve configs"
-archived = true
-
 [repo."aoc"]
 description = "advent of code"
+visibility = "private"
+archived = false
 
 [repo."churn"]
 description = "churn, baby, churn!"
+visibility = "public"
+archived = false
 
 [repo."consistency-coq"]
 description = "consistency semantics with coq"
+visibility = "private"
+archived = false
 
 [repo."consistency-z3"]
 description = "consistency semantics with z3"
+visibility = "public"
+archived = false
 
 [repo."cv"]
 description = "cv in typst with auto build and release"
+visibility = "public"
+archived = false
 
 [repo."dotfiles"]
 description = "yet another dotfiles repo with nix"
+visibility = "public"
+archived = false
 
 [repo."finch"]
 description = "hackzurich 2023: finch - a simple neural net framework and visualizer that uses genetic networks to train"
+visibility = "public"
+archived = false
+
+[repo."icecream"]
+description = "soft serve configs"
+visibility = "public"
+archived = true
 
 [repo."metaprocessor"]
 description = "metaprocessor, all-in-one data pipeline for mbientlab metawear series sensors"
+visibility = "public"
+archived = false
 
 [repo."nixology"]
-nixology = "all about nix"
+description = "all about nix"
+visibility = "public"
+archived = false
 
 [repo."sentik"]
 description = "hackmit 2022: sentik - live tweet sentiment analysis for traders"
+visibility = "public"
 archived = true
 
 [repo."srd"]
 description = "srd: (go) static race detector"
+visibility = "public"
+archived = false
 
 [repo."stepbrobd"]
 description = "just another profile readme"
+visibility = "public"
+archived = false
 
 [repo."tailscale-acls"]
 description = "tailscale access controls"
+visibility = "public"
+archived = false
 
 [repo."tailscale-on-fly.io"]
 description = "run a vpn service with global exit nodes with fly.io and tailscale"
+visibility = "public"
+archived = false
 
 [repo."tailscale-on-openwrt"]
 description = "brings tailscale to low powered openwrt devices"
+visibility = "public"
+archived = false
 
 [repo."ysun"]
 description = "nix + deno + fresh"
+visibility = "public"
+archived = false
 
 ## Forks
 [repo."crunchycli"]
 description = "forked from crunchy-labs/crunchy-cli"
+visibility = "public"
+archived = false
 
 [repo."deno2nix"]
 description = "forked from sno2wman/deno2nix"
+visibility = "public"
+archived = false
 
 [repo."go"]
 description = "forked from golang/go"
+visibility = "public"
+archived = false
 
 [repo."hopper"]
 description = "forked from cybergenik/hopper"
+visibility = "public"
+archived = false
 
 [repo."nix"]
 description = "forked from nixos/nix"
+visibility = "public"
+archived = false
 
 [repo."nixpkgs"]
 description = "forked from nixos/nixpkgs"
+visibility = "public"
+archived = false
 
 [repo."soft-serve"]
 description = "forked from charmbracelet/soft-serve"
+visibility = "public"
+archived = false
 
 [repo."tailscale"]
 description = "forked from tailscale/tailscale"
+visibility = "public"
+archived = false
 
 ## Northeastern University
 [repo."neu-cs-5010"]
 description = "cs 5010 fall 2023 @ northeastern university"
+visibility = "private"
 archived = true
 
 [repo."neu-cs-5200"]
 description = "cs 5200 spring 2024 @ northeastern university"
+visibility = "private"
+archived = false
 
 [repo."neu-cs-5800"]
 description = "cs 5800 fall 2023 @ northeastern university"
+visibility = "private"
 archived = true
 
 [repo."neu-cy-6740"]
 description = "cy 6740 spring 2024 @ northeastern university"
+visibility = "private"
+archived = false
 
 ## University of Utah
 [repo."uutah-cs-1410"]
 description = "cs 1410 spring 2020 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-2420"]
 description = "cs 2420 fall 2020 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-3011"]
 description = "cs 3011 spring 2023 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-3500"]
 description = "cs 3500 spring 2021 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-3505"]
 description = "cs 3505 fall 2021 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-4150"]
 description = "cs 4150 spring 2022 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-4400"]
 description = "cs 4400 fall 2021 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-4440"]
 description = "cs 4440 spring 2022 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-4480"]
 description = "cs 4480 spring 2022 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-4790"]
 description = "cs 4790 spring 2023 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-6110"]
 description = "cs 6110 spring 2023 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-6340"]
 description = "cs 6340 fall 2022 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-6450"]
 description = "cs 6450 fall 2022 @ university of utah"
+visibility = "private"
 archived = true
 
 [repo."uutah-cs-6490"]
 description = "cs 6490 spring 2023 @ university of utah"
+visibility = "private"
 archived = true
