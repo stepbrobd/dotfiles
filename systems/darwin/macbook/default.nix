@@ -26,4 +26,9 @@
       "Thunderbolt Ethernet Slot 4"
     ];
   };
+
+  services.nixbuild = {
+    enable = true;
+    systems = [ "x86_64-linux" ];
+  };
 }
