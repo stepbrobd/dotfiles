@@ -131,6 +131,11 @@ description = "forked from cybergenik/hopper"
 visibility = "public"
 archived = false
 
+[repo."ngipkgs"]
+description = "forked from ngi-nix/ngipkgs"
+visibility = "public"
+archived = false
+
 [repo."nix"]
 description = "forked from nixos/nix"
 visibility = "public"
