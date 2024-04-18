@@ -5,7 +5,6 @@
 , lib
 , pkgs
 , plugins ? [ ]
-, ...
 }:
 
 lib.makeOverridable stdenv.mkDerivation {

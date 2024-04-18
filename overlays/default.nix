@@ -8,9 +8,10 @@ final: prev:
   lib.mkDynamicAttrs
     {
       dir = ../packages;
-      fun = name: final.callPackage (../packages/. + "/${name}") {
-        inputs = inputs;
-        outputs = outputs;
+      fun = name: lib.importPackagesWith {
+        pkgs = final;
+        file = (../packages/. + "/${name}");
+        args = { };
       };
     }
     // lib.optionalAttrs prev.stdenv.isDarwin {

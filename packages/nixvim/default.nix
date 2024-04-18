@@ -4,7 +4,6 @@
 , lib
 , pkgs
 , inputs
-, ...
 }:
 
 lib.makeOverridable inputs.nixvim.legacyPackages."${stdenv.hostPlatform.system}".makeNixvim {
