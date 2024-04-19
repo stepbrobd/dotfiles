@@ -8,11 +8,7 @@ final: prev:
   lib.mkDynamicAttrs
     {
       dir = ../packages;
-      fun = name: lib.importPackagesWith {
-        pkgs = final;
-        file = (../packages/. + "/${name}");
-        args = { };
-      };
+      fun = name: lib.importPackagesWith final (../packages/. + "/${name}") { };
     }
     // lib.optionalAttrs prev.stdenv.isDarwin {
     alacritty = prev.alacritty.overrideAttrs (oldAttrs: {

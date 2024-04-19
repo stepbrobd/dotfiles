@@ -2,10 +2,10 @@
 { inputs, outputs }:
 
 # importPackagesWith args
-{ pkgs, file, args }:
+pkgs: pkg: args:
 
 let
   inherit (pkgs.lib) callPackageWith;
   callPackage = callPackageWith (pkgs // { inherit inputs outputs; });
 in
-callPackage file args
+callPackage pkg args

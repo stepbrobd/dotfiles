@@ -9,11 +9,7 @@ in
     {
       packages = mkDynamicAttrs {
         dir = ../packages;
-        fun = name: importPackagesWith {
-          inherit pkgs;
-          file = (../packages/. + "/${name}");
-          args = { };
-        };
+        fun = name: importPackagesWith pkgs (../packages/. + "/${name}") { };
       };
     };
 
