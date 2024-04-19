@@ -12,7 +12,7 @@
     settings = {
       icons.when = "auto";
       sorting.dir-grouping = "first";
-      ignore-globs = [ ".git" ];
+      ignore-globs = [ ".DS_Store" ".git" ];
     };
   };
 }
