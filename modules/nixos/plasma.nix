@@ -7,14 +7,10 @@
 }:
 
 {
+  services.xserver.enable = true;
   services.desktopManager.plasma6.enable = true;
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      defaultSession = "plasma";
-      sddm.wayland.enable = true;
-    };
-  };
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.defaultSession = "plasma";
 
   i18n.inputMethod.fcitx5.plasma6Support = true;
 
