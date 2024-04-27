@@ -35,7 +35,6 @@
         "flakes"
         "impure-derivations"
         "nix-command"
-        "repl-flake"
       ];
 
       substituters = [
