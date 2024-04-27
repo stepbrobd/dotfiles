@@ -19,6 +19,7 @@
     # ./firefox # linux only
     # ./floorp # linux only
     ./fzf
+    ./gh
     ./git
     ./gpg
     # ./hyprland # linux only
