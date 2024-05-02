@@ -15,7 +15,7 @@
         User yifei
         ProxyCommand ssh -W %h:%p yifei@133.11.234.34
         HostName vpi
-    '' +
+    '' + "\n" +
     (if pkgs.stdenv.isLinux then ''
       Host *
           IdentityAgent "~/.1password/agent.sock"
