@@ -33,6 +33,9 @@ in
           maxJobs = 100;
           supportedFeatures = [ "benchmark" "big-parallel" ];
         });
+
+        settings.substituters = [ "ssh://eu.nixbuild.net" ];
+        settings.trusted-public-keys = [ "nixbuild.net/CQ9XPX-1:8WFF5qINzG2FrrvIePqdH+XraKME30g3+Es3aCWBw24=" ];
       };
 
       programs.ssh.knownHosts.nixbuild = {
