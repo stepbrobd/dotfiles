@@ -39,5 +39,14 @@ in
         hostNames = [ "eu.nixbuild.net" ];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
       };
+
+      # https://github.com/ngi-nix/ngipkgs/blob/main/maintainers/nixbuild.nix#L56C1-L62C5
+      environment.systemPackages = [
+        (pkgs.writeShellApplication {
+          name = "nixbuild";
+          runtimeInputs = with pkgs; [ rlwrap ];
+          text = "rlwrap ssh eu.nixbuild.net shell";
+        })
+      ];
     };
 }
