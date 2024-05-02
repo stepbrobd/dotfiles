@@ -86,7 +86,7 @@
         else if pkgs.stdenv.hostPlatform.isAarch64 then
           "/opt/homebrew/bin"
         else
-          abort "Unsupported platform"
+          abort "Unsupported OS"
       }/brew shellenv)
     '';
   };
