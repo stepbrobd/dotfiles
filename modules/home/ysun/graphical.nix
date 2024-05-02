@@ -27,6 +27,7 @@
     # ./mpd # linux only
     ./nushell
     ./pyenv
+    ./ssh
     # ./tmux # imported in minimal
     ./vscode
     ./zathura
