@@ -45,7 +45,7 @@
         "https://nixpkgs-update.cachix.org"
         "https://cache.garnix.io"
         "https://stepbrobd.cachix.org"
-        "https://cache.nixolo.gy"
+        # "https://cache.nixolo.gy"
       ];
 
       trusted-public-keys = [
@@ -56,7 +56,7 @@
         "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "stepbrobd.cachix.org-1:Aa5jdkPVrCOvzaLTC0kVP5PYQ5BtNnLg1tG1Qa/QuE4="
-        "cache.nixolo.gy:UDmjlw8J4sqDlBIPe5YnABPI1lkcJssN8niLozS2ltM="
+        # "cache.nixolo.gy:UDmjlw8J4sqDlBIPe5YnABPI1lkcJssN8niLozS2ltM="
       ];
     };
 
