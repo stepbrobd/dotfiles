@@ -1,5 +1,5 @@
 #!/usr/bin/env nix
-#!nix shell nixpkgs#python311 --command python
+#!nix shell nixpkgs#git nixpkgs#python311 --command python
 
 import argparse
 import os
