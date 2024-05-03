@@ -41,8 +41,8 @@
 
   users.mutableUsers = false;
 
-  services.nixbuild = {
-    enable = true;
-    systems = [ "x86_64-linux" ];
-  };
+  # services.nixbuild = {
+  #   enable = true;
+  #   systems = [ "x86_64-linux" ];
+  # };
 }
