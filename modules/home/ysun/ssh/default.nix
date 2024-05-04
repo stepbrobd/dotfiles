@@ -20,7 +20,7 @@
       Host *
           IdentityAgent "~/.1password/agent.sock"
     '' else if pkgs.stdenv.isDarwin then ''
-      Host
+      Host *
         IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     '' else abort "Unsupported OS");
   };
