@@ -3,13 +3,26 @@
 { config
 , lib
 , pkgs
+, options
 , ...
 }:
 
 let
-  inherit (lib) forEach mkEnableOption mkIf mkOption types;
+  inherit (lib) forEach mkEnableOption mkIf mkMerge mkOption optionalAttrs types;
 
   cfg = config.services.nixbuild;
+
+  nixbuildDomain = "eu.nixbuild.net";
+  nixbuildKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+  nixbuildPlatforms = [ "x86_64-linux" "aarch64-linux" ];
+  nixbuildFeatures = [ "big-parallel" "benchmark" "kvm" "nixos-test" ];
+  nixbuildSSH = ''
+    Host eu.nixbuild.net
+      PubkeyAcceptedKeyTypes ssh-ed25519
+      ServerAliveInterval 60
+      IPQoS throughput
+      IdentityFile /etc/ssh/ssh_host_ed25519_key
+  '';
 in
 {
   options.services.nixbuild = {
@@ -17,32 +30,44 @@ in
 
     systems = mkOption {
       type = with types; listOf str;
-      default = [ ];
-      example = [ "x86_64-linux" "aarch64-linux" "armv7l-linux" ];
+      default = nixbuildPlatforms;
+      example = nixbuildPlatforms;
       description = "https://docs.nixbuild.net/getting-started/index.html#quick-nixos-configuration";
     };
   };
 
-  config = mkIf cfg.enable
+  config = mkIf cfg.enable (mkMerge [
     {
       nix = {
         distributedBuilds = true;
         buildMachines = forEach cfg.systems (system: {
           inherit system;
-          hostName = "eu.nixbuild.net";
+          hostName = nixbuildDomain;
           maxJobs = 100;
-          supportedFeatures = [ "benchmark" "big-parallel" ];
+          supportedFeatures = nixbuildFeatures;
         });
 
         settings.substituters = [ "ssh://eu.nixbuild.net" ];
         settings.trusted-public-keys = [ "nixbuild.net/CQ9XPX-1:8WFF5qINzG2FrrvIePqdH+XraKME30g3+Es3aCWBw24=" ];
       };
+    }
 
+    {
       programs.ssh.knownHosts.nixbuild = {
-        hostNames = [ "eu.nixbuild.net" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+        hostNames = [ nixbuildDomain ];
+        publicKey = nixbuildKey;
       };
+    }
 
+    (mkIf pkgs.stdenv.isLinux (optionalAttrs (options?programs.ssh.extraConfig) {
+      programs.ssh.extraConfig = nixbuildSSH;
+    }))
+
+    (mkIf pkgs.stdenv.isDarwin {
+      environment.etc."ssh/ssh_config.d/nixbuild".text = nixbuildSSH;
+    })
+
+    {
       # https://github.com/ngi-nix/ngipkgs/blob/main/maintainers/nixbuild.nix#L56C1-L62C5
       environment.systemPackages = [
         (pkgs.writeShellApplication {
@@ -51,5 +76,6 @@ in
           text = "rlwrap ssh eu.nixbuild.net shell";
         })
       ];
-    };
+    }
+  ]);
 }
