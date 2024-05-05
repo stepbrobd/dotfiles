@@ -71,7 +71,7 @@
     flyctl
     gitleaks
     pinentry_mac
-    reattach-to-user-namespace
+    # reattach-to-user-namespace
     spotify
     yt-dlp
   ]);
