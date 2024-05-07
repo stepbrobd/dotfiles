@@ -4,6 +4,7 @@
 
 {
   imports = [
+    ./lix.nix
     ./nextdns.nix
     ./nix.nix
     ./nixbuild.nix
