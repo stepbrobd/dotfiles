@@ -35,6 +35,8 @@
     devshell.inputs.flake-utils.follows = "utils";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    # f
+    flakey-profile.url = "github:lf-/flakey-profile";
     # g
     gitignore.url = "github:hercules-ci/gitignore.nix";
     gitignore.inputs.nixpkgs.follows = "nixpkgs";
@@ -56,6 +58,13 @@
     lanzaboote.inputs.flake-utils.follows = "utils";
     lanzaboote.inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
+    lix.url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+    lix.flake = false;
+    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module";
+    lix-module.inputs.nixpkgs.follows = "nixpkgs";
+    lix-module.inputs.flake-utils.follows = "utils";
+    lix-module.inputs.flakey-profile.follows = "flakey-profile";
+    lix-module.inputs.lix.follows = "lix";
     # n
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
