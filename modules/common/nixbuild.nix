@@ -10,7 +10,7 @@
 let
   inherit (lib) forEach mkEnableOption mkIf mkMerge mkOption optionalAttrs types;
 
-  cfg = config.services.nixbuild;
+  cfg = config.nix.nixbuild;
 
   nixbuildDomain = "eu.nixbuild.net";
   nixbuildKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
@@ -25,7 +25,7 @@ let
   '';
 in
 {
-  options.services.nixbuild = {
+  options.nix.nixbuild = {
     enable = mkEnableOption "nixbuild";
 
     systems = mkOption {

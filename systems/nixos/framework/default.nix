@@ -41,5 +41,5 @@
 
   users.mutableUsers = false;
 
-  services.nixbuild.enable = true;
+  nix.nixbuild.enable = true;
 }
