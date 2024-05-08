@@ -27,6 +27,6 @@
     ];
   };
 
-  nix.lix.enable = true;
+  # nix.lix.enable = true;
   nix.nixbuild.enable = true;
 }
