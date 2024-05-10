@@ -55,6 +55,7 @@
     cider
     discord
     gitleaks
+    llvm-bolt
     obsidian
     osu-lazer-bin
     pinentry-all
@@ -70,6 +71,7 @@
     cocoapods
     flyctl
     gitleaks
+    llvm-bolt
     pinentry_mac
     # reattach-to-user-namespace
     spotify
