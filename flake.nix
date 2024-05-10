@@ -37,6 +37,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
+    flake-root.url = "github:srid/flake-root";
     # g
     gitignore.url = "github:hercules-ci/gitignore.nix";
     gitignore.inputs.nixpkgs.follows = "nixpkgs";
@@ -75,9 +76,11 @@
     nixvim.inputs.devshell.follows = "devshell";
     nixvim.inputs.flake-compat.follows = "compat";
     nixvim.inputs.flake-parts.follows = "parts";
+    nixvim.inputs.flake-root.follows = "flake-root";
     nixvim.inputs.home-manager.follows = "hm";
     nixvim.inputs.nix-darwin.follows = "darwin";
     nixvim.inputs.pre-commit-hooks.follows = "pre-commit-hooks";
+    nixvim.inputs.treefmt-nix.follows = "treefmt";
     # p
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -96,6 +99,9 @@
     srvos.url = "github:nix-community/srvos";
     srvos.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
+    # t
+    treefmt.url = "github:numtide/treefmt-nix";
+    treefmt.inputs.nixpkgs.follows = "nixpkgs";
     # u
     utils.url = "github:numtide/flake-utils";
     utils.inputs.systems.follows = "systems";
