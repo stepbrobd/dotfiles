@@ -88,7 +88,6 @@
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
     pre-commit-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
     pre-commit-hooks.inputs.flake-compat.follows = "compat";
-    pre-commit-hooks.inputs.flake-utils.follows = "utils";
     pre-commit-hooks.inputs.gitignore.follows = "gitignore";
     # r
     rust-overlay.url = "github:oxalica/rust-overlay";
