@@ -5,7 +5,7 @@
 }:
 
 {
-  time.timeZone = "America/New_York";
+  time.timeZone = "Asia/Tokyo";
 
   networking = {
     hostName = "macbook";
