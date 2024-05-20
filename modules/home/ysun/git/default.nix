@@ -17,6 +17,9 @@
       key = "D973170F9B86DB70";
     };
 
+    # colored diff tool
+    difftastic.enable = true;
+
     extraConfig = {
       branch.sort = "-committerdate";
       color.ui = true;
