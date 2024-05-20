@@ -8,7 +8,7 @@
 
 {
   programs.atuin = {
-    enable = true;
+    enable = false; # switched to fzf
     flags = [ "--disable-up-arrow" ];
     settings = {
       auto_sync = true;
