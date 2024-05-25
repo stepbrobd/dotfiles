@@ -75,6 +75,11 @@ description = "all about nix"
 visibility = "public"
 archived = false
 
+[repo."osu"]
+description = "forked from ppy/osu"
+visibility = "public"
+archived = false
+
 [repo."ruga"]
 description = "ruby meets genetic algorithm"
 visibility = "private"
