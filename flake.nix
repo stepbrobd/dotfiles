@@ -39,6 +39,11 @@
     flakey-profile.url = "github:lf-/flakey-profile";
     flake-root.url = "github:srid/flake-root";
     # g
+    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
+    git-hooks.inputs.flake-compat.follows = "compat";
+    git-hooks.inputs.gitignore.follows = "gitignore";
     gitignore.url = "github:hercules-ci/gitignore.nix";
     gitignore.inputs.nixpkgs.follows = "nixpkgs";
     # h
@@ -77,9 +82,9 @@
     nixvim.inputs.flake-compat.follows = "compat";
     nixvim.inputs.flake-parts.follows = "parts";
     nixvim.inputs.flake-root.follows = "flake-root";
+    nixvim.inputs.git-hooks.follows = "git-hooks";
     nixvim.inputs.home-manager.follows = "hm";
     nixvim.inputs.nix-darwin.follows = "darwin";
-    nixvim.inputs.pre-commit-hooks.follows = "pre-commit-hooks";
     nixvim.inputs.treefmt-nix.follows = "treefmt";
     # p
     parts.url = "github:hercules-ci/flake-parts";
