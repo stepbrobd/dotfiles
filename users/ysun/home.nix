@@ -45,10 +45,12 @@
 
   home.packages = with pkgs; [
     comma
+    curl
     jq
     nixvim
     nix-output-monitor
     ripgrep
+    wget
   ]
   # linux only and when kde plasma is enabled
   ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.plasma6.enable) [
