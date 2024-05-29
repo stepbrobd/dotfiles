@@ -45,6 +45,7 @@
 
   home.packages = with pkgs; [
     comma
+    jq
     nixvim
     nix-output-monitor
     ripgrep
