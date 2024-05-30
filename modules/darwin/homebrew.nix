@@ -65,7 +65,6 @@
       "raycast"
       "slack"
       "spacedrive"
-      "wireshark"
       "yubico-yubikey-manager"
       "zoom"
     ];
