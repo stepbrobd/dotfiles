@@ -12,6 +12,8 @@
 
   services.openssh.enable = true;
 
+  services.desktopManager.enabled = "plasma";
+
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "169b9f98";

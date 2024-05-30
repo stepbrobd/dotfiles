@@ -9,11 +9,9 @@
 {
   imports = [
     ./1password.nix
+    ./desktop.nix
     ./fonts.nix
-    # ./hyprland.nix
     ./i18n.nix
-    ./plasma.nix
-    ./plymouth.nix
     ./tailscale.nix
   ];
 }

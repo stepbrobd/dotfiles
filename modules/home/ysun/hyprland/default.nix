@@ -14,7 +14,6 @@
     ./dunst.nix
     ./gtk.nix
     ./rofi.nix
-    ./swaylock.nix
     ./waybar.nix
     ./wpaperd.nix
     inputs.hyprland.homeManagerModules.default
@@ -124,7 +123,8 @@
         preserve_split = true
       }
 
-      bind = CTRL SUPER, Q, exec, ${pkgs.swaylock-effects}/bin/swaylock --daemonize --screenshots --effect-blur 10x5 --font "Noto Sans" --font-size 50 --clock --datestr '%a, %b %d' --indicator --indicator-radius 150
+      # change to another locker
+      # bind = CTRL SUPER, Q, exec, ${pkgs.swaylock-effects}/bin/swaylock --daemonize --screenshots --effect-blur 10x5 --font "Noto Sans" --font-size 50 --clock --datestr '%a, %b %d' --indicator --indicator-radius 150
       bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Volume: Mute/Unmute"
       bind = , XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
       bind = , XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
