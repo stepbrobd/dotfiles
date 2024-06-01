@@ -21,7 +21,7 @@
     # ./fzf # imported in graphical
     # ./git # imported in graphical
     # ./gpg # imported in graphical
-    # ./hyprland # linux only
+    ./hyprland # linux only
     # ./lsd # imported in graphical
     ./mpd # linux only
     # ./nushell # imported in graphical

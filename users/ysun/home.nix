@@ -53,7 +53,7 @@
     wget
   ]
   # linux only and when kde plasma is enabled
-  ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.plasma6.enable) [
+  ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.enabled != null) [
     beeper
     cider
     discord

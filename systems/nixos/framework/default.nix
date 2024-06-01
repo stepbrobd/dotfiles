@@ -12,7 +12,7 @@
 
   services.openssh.enable = true;
 
-  services.desktopManager.enabled = "plasma";
+  services.desktopManager.enabled = "hyprland";
 
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4

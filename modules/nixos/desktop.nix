@@ -31,7 +31,6 @@ in
     # disable boot logs when using a desktop manager
     {
       boot = {
-        plymouth.enable = true;
         consoleLogLevel = 0;
         initrd = {
           verbose = false;
@@ -47,6 +46,9 @@ in
           "vt.global_cursor_default=0"
         ];
       };
+
+      # boot.loader.grub.theme = pkgs.nixos-grub2-theme;
+      boot.plymouth.enable = true;
     }
 
     # screen sharing
@@ -63,20 +65,55 @@ in
       };
     }
 
-    # login manager
-    {
-      services.xserver.enable = true;
-      services.displayManager = {
-        defaultSession = "${cfg.enabled}";
-        sddm.wayland.enable = true; # lightdm
-      };
-    }
+    # gpg
+    { programs.gnupg.agent.enable = true; }
 
     (mkIf (cfg.enabled == "hyprland") {
       programs.hyprland = {
         enable = true;
         xwayland.enable = true;
       };
+
+      # login manager: use gtkgreet, and use gtklock for locker
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session =
+            let
+              style = pkgs.writeText "gtk.css" ''
+                @import url("${pkgs.nordic}/share/themes/Nordic/gtk-3.0/gtk.css");
+                window {
+                  background-image: url("${../home/ysun/hyprland/wallpaper.jpg}");
+                  background-size: cover;
+                  background-position: center;
+                }
+              '';
+            in
+            {
+              user = "greeter";
+              command = lib.concatStringsSep " " [
+                "${pkgs.cage}/bin/cage"
+                "-s"
+                "--"
+                "${pkgs.greetd.gtkgreet}/bin/gtkgreet"
+                "-l"
+                "-s"
+                "${style}"
+              ];
+            };
+          initial_session = {
+            user = "ysun";
+            command = "Hyprland";
+          };
+        };
+      };
+
+      # locker
+      security.pam.services.gtklock = { };
+
+      # gnome polkit and keyring are used for hyprland sessions
+      services.gnome.gnome-keyring.enable = true;
+      security.pam.services.greetd.enableGnomeKeyring = true;
     })
 
     (mkIf (cfg.enabled == "plasma") {
@@ -85,6 +122,18 @@ in
         # can't use with plasma
         power-profiles-daemon.enable = false;
       };
+
+      # login manager
+      services.xserver.enable = true;
+      services.displayManager = {
+        defaultSession = "plasma";
+        sddm.enable = true;
+        sddm.wayland.enable = true;
+      };
+
+      # kwallet
+      security.pam.services.kdewallet.kwallet.enable = true;
+
       # IME
       i18n.inputMethod.fcitx5.plasma6Support = true;
     })
