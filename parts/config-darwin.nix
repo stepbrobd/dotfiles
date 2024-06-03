@@ -8,7 +8,7 @@ let
     systemType = "darwin";
     hostPlatform = "aarch64-darwin";
     systemStateVersion = 4;
-    hmStateVersion = "24.05";
+    hmStateVersion = "24.11";
     systemConfig = ../systems/darwin/. + "/${host}";
     username = "ysun";
     extraModules = [ outputs.darwinModules.common outputs.darwinModules.default ];

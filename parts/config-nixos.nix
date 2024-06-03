@@ -4,7 +4,7 @@ let
   inherit (args) inputs outputs;
   inherit (outputs.lib) genAttrs mkSystem;
 
-  stateVersion = "24.05";
+  stateVersion = "24.11";
 
   serverConfigFor = host: mkSystem {
     systemType = "nixos";
