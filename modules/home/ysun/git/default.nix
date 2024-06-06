@@ -32,6 +32,7 @@
       filter.lfs.clean = "git-lfs clean -- %f";
       filter.lfs.smudge = "git-lfs smudge -- %f";
       init.defaultBranch = "master";
+      merge.conflictstyle = "diff3";
       push.autoSetupRemote = true;
       push.default = "upstream";
       pull.ff = "only";
