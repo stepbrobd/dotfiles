@@ -37,7 +37,6 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
-    flake-root.url = "github:srid/flake-root";
     # g
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
@@ -81,7 +80,6 @@
     nixvim.inputs.devshell.follows = "devshell";
     nixvim.inputs.flake-compat.follows = "compat";
     nixvim.inputs.flake-parts.follows = "parts";
-    nixvim.inputs.flake-root.follows = "flake-root";
     nixvim.inputs.git-hooks.follows = "git-hooks";
     nixvim.inputs.home-manager.follows = "hm";
     nixvim.inputs.nix-darwin.follows = "darwin";
