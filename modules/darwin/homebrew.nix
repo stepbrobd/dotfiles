@@ -51,7 +51,6 @@
       "amie"
       "arc"
       "bartender"
-      "beeper"
       "cleanmymac"
       "coconutbattery"
       "discord"
