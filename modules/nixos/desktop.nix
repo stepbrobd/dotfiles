@@ -56,7 +56,7 @@ in
 
     # xdg
     {
-      xdg.portal = {
+      xdg.portal = lib.mkDefault {
         enable = true;
         lxqt.enable = true;
         wlr.enable = true;
