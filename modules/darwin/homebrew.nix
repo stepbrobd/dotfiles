@@ -48,14 +48,14 @@
       "1password-cli"
       "airbuddy"
       "aldente"
-      "amie"
+      # "amie"
       "arc"
       "bartender"
       "cleanmymac"
       "coconutbattery"
       "discord"
       # "firefox-developer-edition"
-      "hey"
+      # "hey"
       "ibkr"
       "notion"
       # "obsidian"
@@ -80,7 +80,7 @@
       "Pixelmator Pro" = 1289583905;
       "Remote Desktop" = 409907375;
       "ServerCat" = 1501532023;
-      "StopTheMadness" = 6471380298;
+      # "StopTheMadness" = 6471380298;
       "Tailscale" = 1475387142;
       # "Things" = 904280696;
       "The Unarchiver" = 425424353;
