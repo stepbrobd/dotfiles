@@ -17,6 +17,7 @@
       fcitx5-mozc
       # zh
       fcitx5-rime
+      rime-data
     ];
   };
 }
