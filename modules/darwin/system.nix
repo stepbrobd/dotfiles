@@ -7,6 +7,11 @@
 }:
 
 {
+  # tracking: nix-darwin#970
+  # macOS Sequoia replaces _nixbld{1,2,3,4} with system users
+  ids.uids.nixbld = lib.mkForce 30000;
+  nix.configureBuildUsers = true;
+
   system.defaults = {
     alf = {
       allowdownloadsignedenabled = 1;
