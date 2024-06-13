@@ -14,7 +14,7 @@
     ./atuin
     ./bat
     ./btop
-    # ./chromium # linux only
+    ./chromium # linux only
     ./direnv
     # ./firefox # linux only
     # ./floorp # linux only

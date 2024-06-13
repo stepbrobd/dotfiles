@@ -8,7 +8,7 @@
 
 {
   programs.chromium = {
-    enable = false; # use firefox
+    enable = true; # use firefox
 
     commandLineArgs = [
       "--ozone-platform=wayland"
@@ -21,14 +21,13 @@
     ];
 
     extensions = [
-      { id = "bgnkhhnnamicmpeenaelnjfhikgbkllg"; } # AdGuard
-      { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
-      { id = "mljepckcnbghmcdmaebjhejiplcngbkm"; } # Hide Scrollbar
-      { id = "cdglnehniifkbagbbombnjghhcihifij"; } # Kagi
-      { id = "pejdijmoenmkgeppbflobdenhhabjlaj"; } # iCloud
-      { id = "ingkkggaggkbgnejpbblmbpodgmiojbo"; } # Mimi
-      { id = "nmgcefdhjpjefhgcpocffdlibknajbmj"; } # MyMind
-      { id = "honjmojpikfebagfakclmgbcchedenbo"; } # Nord
+      # { id = "bgnkhhnnamicmpeenaelnjfhikgbkllg"; } # AdGuard
+      # { id = "mljepckcnbghmcdmaebjhejiplcngbkm"; } # Hide Scrollbar
+      # { id = "cdglnehniifkbagbbombnjghhcihifij"; } # Kagi
+      # { id = "pejdijmoenmkgeppbflobdenhhabjlaj"; } # iCloud
+      # { id = "ingkkggaggkbgnejpbblmbpodgmiojbo"; } # Mimi
+      # { id = "nmgcefdhjpjefhgcpocffdlibknajbmj"; } # MyMind
+      # { id = "honjmojpikfebagfakclmgbcchedenbo"; } # Nord
     ];
   };
 }
