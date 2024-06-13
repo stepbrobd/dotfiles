@@ -9,8 +9,11 @@
 {
   # tracking: nix-darwin#970
   # macOS Sequoia replaces _nixbld{1,2,3,4} with system users
-  ids.uids.nixbld = lib.mkForce 30000;
   nix.configureBuildUsers = true;
+  # use uids from 0 ~ 500?
+  # dscl . -list /Users UniqueID | sort -nr -k 2
+  # for i in {5..32}; do sudo dscl . -delete /Users/_nixbld$i; done
+  ids.uids.nixbld = lib.mkForce 400;
 
   system.defaults = {
     alf = {
