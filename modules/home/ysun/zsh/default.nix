@@ -13,23 +13,28 @@
     enable = true;
     autocd = true;
 
-    shellAliases =
-      { }
-      // lib.optionalAttrs config.programs.bat.enable { cat = "bat --plain"; }
-      // lib.optionalAttrs config.programs.lsd.enable {
+    shellAliases = lib.mkMerge [
+      # bat
+      (lib.mkIf config.programs.bat.enable { cat = "bat --plain"; })
+
+      # lsd
+      (lib.mkIf config.programs.lsd.enable {
         ls = "lsd";
         tree = "lsd --tree";
-      }
-      // {
-        # must use neovim
+      })
+
+      # must use neovim
+      {
         emacs = "nvim";
         nano = "nvim";
         vi = "nvim";
         vim = "nvim";
         vimdiff = "nvim -d";
-        # other aliases
-        tf = "terraform";
-      };
+      }
+
+      # other aliases
+      { tf = "terraform"; }
+    ];
 
     zplug = {
       enable = true;
@@ -88,6 +93,10 @@
         else
           abort "Unsupported OS"
       }/brew shellenv)
+    '' + ''
+      if [ -d "/Applications/Tailscale.app" ]; then
+        alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+      fi
     '';
   };
 }
