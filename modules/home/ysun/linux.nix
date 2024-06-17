@@ -14,7 +14,7 @@
     # ./atuin # imported in graphical
     # ./bat # imported in graphical
     # ./btop # imported in graphical
-    # ./chromium # linux only
+    ./chromium # linux only
     # ./direnv # imported in graphical
     # ./firefox # linux only
     ./floorp # linux only
