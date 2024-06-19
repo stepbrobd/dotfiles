@@ -7,14 +7,10 @@
 }:
 
 {
-  fonts = {
-    fontDir.enable = true;
-    # change to packages after nix-darwin #752 closes
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      nerdfonts
-      jetbrains-mono
-      font-awesome
-    ];
-  };
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerdfonts
+    jetbrains-mono
+    font-awesome
+  ];
 }
