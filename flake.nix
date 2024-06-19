@@ -95,7 +95,6 @@
     # r
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-    rust-overlay.inputs.flake-utils.follows = "utils";
     # s
     schemas.url = "github:determinatesystems/flake-schemas";
     srvos.url = "github:nix-community/srvos";
