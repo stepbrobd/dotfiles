@@ -56,12 +56,13 @@ in
 
     # xdg
     {
-      xdg.portal = lib.mkDefault {
-        enable = true;
-        lxqt.enable = true;
-        wlr.enable = true;
-        xdgOpenUsePortal = true;
-        config.common.default = "*";
+      xdg.portal = {
+        # a bit higher than mkDefault (1000)
+        enable = lib.mkOverride 999 true;
+        lxqt.enable = lib.mkOverride 999 true;
+        wlr.enable = lib.mkOverride 999 true;
+        xdgOpenUsePortal = lib.mkOverride 999 true;
+        config.common.default = lib.mkOverride 999 "*";
       };
     }
 
