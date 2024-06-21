@@ -38,7 +38,7 @@
             type = "button";
             val = "      New File";
             opts.shortcut = "n";
-            on_press.__raw = "function() vim.cmd[[ene]] end";
+            on_press.__raw = "function() vim.cmd[[ene | startinsert]] end";
           }
           {
             type = "button";
