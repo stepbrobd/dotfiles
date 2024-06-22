@@ -17,6 +17,7 @@ let
       inputs.srvos.nixosModules.server
       outputs.nixosModules.caddy
       outputs.nixosModules.common
+      outputs.nixosModules.desktop
       outputs.nixosModules.minimal
     ];
     extraHMModules = [ outputs.hmModules.ysun.minimal ];
