@@ -45,7 +45,7 @@
 
     server = {
       baseUrl = "https://stats.ysun.co";
-      disableRegistration = false;
+      disableRegistration = true;
       listenAddress = "127.0.0.1";
       port = 20069;
       secretKeybaseFile = config.age.secrets."plausible.srv".path;
@@ -62,6 +62,7 @@
 
   services.caddy.virtualHosts."toukei.ikaz.uk".extraConfig = ''
     import common
+    tls { dns cloudflare {env.CF_API_TOKEN_KICHINOSE} }
     reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
       header_up Host {host}
       header_up X-Real-IP {http.request.header.CF-Connecting-IP}

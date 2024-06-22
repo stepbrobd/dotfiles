@@ -29,10 +29,7 @@
 
     extraConfig = ''
       (common) {
-        tls {
-          dns cloudflare {env.CF_API_EMAIL_YSUN} {env.CF_API_TOKEN_YSUN}
-          dns cloudflare {env.CF_API_EMAIL_KICHINOSE} {env.CF_API_TOKEN_KICHINOSE}
-        }
+        tls { dns cloudflare {env.CF_API_TOKEN_YSUN} }
         encode gzip zstd
         header {
           Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
