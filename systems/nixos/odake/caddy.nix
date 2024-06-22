@@ -28,7 +28,7 @@
   };
 
   age.secrets.cloudflare = {
-    file = ../../../secrets/cloudflare.age;
+    file = ../../../secrets/cloudflare-ysun.age;
     owner = "caddy";
     group = "caddy";
   };
