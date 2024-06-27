@@ -82,7 +82,7 @@
       "ServerCat" = 1501532023;
       # "StopTheMadness" = 6471380298;
       "Tailscale" = 1475387142;
-      # "Things" = 904280696;
+      "Things" = 904280696;
       "The Unarchiver" = 425424353;
       "Xcode" = 497799835;
       # safari
