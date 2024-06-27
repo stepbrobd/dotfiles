@@ -49,7 +49,7 @@
       "airbuddy"
       "aldente"
       # "amie"
-      "arc"
+      # "arc"
       "bartender"
       "cleanmymac"
       "coconutbattery"
