@@ -121,6 +121,11 @@ visibility = "public"
 archived = false
 
 ## Forks
+[repo."coq"]
+description = "forked from coq/coq"
+visibility = "public"
+archived = false
+
 [repo."crunchycli"]
 description = "forked from crunchy-labs/crunchy-cli"
 visibility = "public"
