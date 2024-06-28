@@ -11,6 +11,11 @@
     enable = true;
 
     extraConfig = ''
+      Host ceylon
+        User yifei
+        ProxyCommand ssh -W %h:%p yifei@133.11.234.34
+        HostName 133.11.234.39 # ceylon
+
       Host uva
         User yifei
         ProxyCommand ssh -W %h:%p yifei@133.11.234.34
