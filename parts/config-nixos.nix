@@ -41,6 +41,7 @@ in
         inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
         inputs.srvos.nixosModules.desktop
         outputs.nixosModules.common
+        outputs.nixosModules.docker
         outputs.nixosModules.graphical
       ];
       extraHMModules = [ outputs.hmModules.ysun.linux ];
