@@ -64,7 +64,6 @@
     slack
     smplayer
     spacedrive
-    spotify
     yt-dlp
     zoom-us
   ])
@@ -76,7 +75,6 @@
     llvm-bolt
     pinentry_mac
     # reattach-to-user-namespace
-    spotify
     yt-dlp
   ]);
 
