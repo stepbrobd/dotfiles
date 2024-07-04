@@ -50,7 +50,7 @@
         exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-        exec-once = ${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
+        exec-once = ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
 
         exec-once = ${pkgs.xwaylandvideobridge}/bin/xwaylandvideobridge &
         windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
