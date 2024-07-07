@@ -60,6 +60,7 @@
       # "firefox-developer-edition"
       # "hey"
       "ibkr"
+      "notchnook"
       "notion"
       # "obsidian"
       "orbstack"
