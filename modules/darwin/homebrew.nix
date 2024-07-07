@@ -23,11 +23,14 @@
     };
 
     taps = [
-      "nextfire/tap"
-      # "homebrew/core"
+      # official taps
       # "homebrew/cask"
       # "homebrew/cask-versions"
+      # "homebrew/core"
       "homebrew/services"
+      # custom taps
+      "nextfire/tap"
+      "stepbrobd/tap"
     ];
 
     brews = [

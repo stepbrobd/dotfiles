@@ -60,6 +60,11 @@ description = "hackzurich 2023: finch - a simple neural net framework and visual
 visibility = "public"
 archived = false
 
+[repo."homebrew-tap"]
+description = "custom homebrew tap"
+visibility = "public"
+archived = false
+
 [repo."icecream"]
 description = "soft serve configs"
 visibility = "public"
