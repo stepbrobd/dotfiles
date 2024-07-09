@@ -14,6 +14,7 @@ lib.makeOverridable nixvim.makeNixvimWithModule {
       ./plugins/cmp.nix
       ./plugins/colorscheme.nix
       ./plugins/dashboard.nix
+      ./plugins/explorer.nix
       ./plugins/lsp.nix
       ./plugins/tree-sitter.nix
     ];

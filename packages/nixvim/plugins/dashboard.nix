@@ -9,7 +9,10 @@
       {
         type = "text";
         val = "not";
-        opts.position = "center";
+        opts = {
+          position = "center";
+          hl = "Type";
+        };
       }
       {
         type = "padding";
@@ -25,7 +28,10 @@
           "███████╗██║ ╚═╝ ██║██║  ██║╚██████╗███████║"
           "╚══════╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚══════╝"
         ];
-        opts.position = "center";
+        opts = {
+          position = "center";
+          hl = "Type";
+        };
       }
       {
         type = "padding";
@@ -67,7 +73,10 @@
       {
         type = "text";
         val = "its neovim";
-        opts.position = "center";
+        opts = {
+          position = "center";
+          hl = "Type";
+        };
       }
     ];
   };
