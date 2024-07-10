@@ -42,7 +42,6 @@
       marp-team.marp-vscode
       maximedenes.vscoq
       mechatroner.rainbow-csv
-      mgt19937.typst-preview
       ms-azuretools.vscode-docker
       ms-python.isort
       ms-python.python
@@ -54,6 +53,7 @@
       ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
       ms-vscode.cmake-tools
+      myriad-dreamin.tinymist
       nvarner.typst-lsp
       redhat.vscode-yaml
       rust-lang.rust-analyzer
