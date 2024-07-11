@@ -60,6 +60,7 @@
       header_up Host {host}
       header_up X-Real-IP {http.request.header.CF-Connecting-IP}
     }
+    replace re "<head>.*</head>" "<head>$1<script defer data-domain="stats.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script></head>"
   '';
 
   services.caddy.virtualHosts."toukei.ikaz.uk".extraConfig = ''
@@ -69,5 +70,6 @@
       header_up Host {host}
       header_up X-Real-IP {http.request.header.CF-Connecting-IP}
     }
+    replace re "<head>.*</head>" "<head>$1<script defer data-domain="stats.ysun.co" src="https://toukei.ikaz.uk/js/script.file-downloads.hash.outbound-links.js"></script></head>"
   '';
 }
