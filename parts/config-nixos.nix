@@ -20,7 +20,9 @@ let
       outputs.nixosModules.desktop
       outputs.nixosModules.minimal
     ];
-    extraHMModules = [ outputs.hmModules.ysun.minimal ];
+    extraHMModules = [
+      # outputs.hmModules.ysun.minimal
+    ];
   };
 in
 {
