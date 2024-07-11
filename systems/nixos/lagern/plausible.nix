@@ -60,7 +60,6 @@
       header_up Host {host}
       header_up X-Real-IP {http.request.header.CF-Connecting-IP}
     }
-    replace `<meta http-equiv="X-UA-Compatible" content="IE=edge">` `<meta http-equiv="X-UA-Compatible" content="IE=edge"><script defer data-domain="stats.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>`
   '';
 
   services.caddy.virtualHosts."toukei.ikaz.uk".extraConfig = ''
@@ -70,6 +69,5 @@
       header_up Host {host}
       header_up X-Real-IP {http.request.header.CF-Connecting-IP}
     }
-    replace `<meta http-equiv="X-UA-Compatible" content="IE=edge">` `<meta http-equiv="X-UA-Compatible" content="IE=edge"><script defer data-domain="stats.ysun.co" src="https://toukei.ikaz.uk/js/script.file-downloads.hash.outbound-links.js"></script>`
   '';
 }
