@@ -8,11 +8,13 @@
 
 {
   age.secrets."plausible.adm".file = ../../../secrets/plausible.adm.age;
+  age.secrets."plausible.goo".file = ../../../secrets/plausible.goo.age;
   age.secrets."plausible.mal".file = ../../../secrets/plausible.mal.age;
   age.secrets."plausible.mmd".file = ../../../secrets/plausible.mmd.age;
   age.secrets."plausible.srv".file = ../../../secrets/plausible.srv.age;
 
   systemd.services.plausible.serviceConfig.EnvironmentFile = [
+    config.age.secrets."plausible.goo".path
     config.age.secrets."plausible.mmd".path
   ];
 
