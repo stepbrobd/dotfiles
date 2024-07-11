@@ -13,8 +13,9 @@
       # cloudflare ipv4: https://www.cloudflare.com/ips-v4
       # cloudflare ipv6: https://www.cloudflare.com/ips-v6
       plugins = [
-        "github.com/caddy-dns/cloudflare"
         "github.com/WeidiDeng/caddy-cloudflare-ip"
+        "github.com/caddy-dns/cloudflare"
+        "github.com/caddyserver/replace-response"
       ];
     };
 
