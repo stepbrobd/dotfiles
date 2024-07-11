@@ -47,7 +47,7 @@
     comma
     curl
     jq
-    nixvim
+    vim
     nix-output-monitor
     ripgrep
     wget
@@ -57,7 +57,8 @@
     cider
     discord
     gitleaks
-    llvm-bolt
+    go
+    nixvim
     obsidian
     osu-lazer-bin
     pinentry-all
@@ -72,7 +73,8 @@
     cocoapods
     flyctl
     gitleaks
-    llvm-bolt
+    go
+    nixvim
     pinentry_mac
     # reattach-to-user-namespace
     yt-dlp
