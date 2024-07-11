@@ -20,10 +20,8 @@
     };
 
     globalConfig = ''
-      {
-        admin off
-        order replace after encode
-      }
+      admin off
+      order replace after encode
 
       servers {
         trusted_proxies cloudflare {
