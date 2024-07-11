@@ -20,6 +20,11 @@
     };
 
     globalConfig = ''
+      {
+        admin off
+        order replace after encode
+      }
+
       servers {
         trusted_proxies cloudflare {
           interval 24h
