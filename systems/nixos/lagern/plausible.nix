@@ -27,6 +27,16 @@
   services.plausible = {
     enable = true;
 
+    package = pkgs.plausible.overrideAttrs (_: {
+      prePatch = ''
+        # use the following for all versions after 2.0.0
+        # substituteInPlace lib/plausible_web/templates/layout/app.html.heex \
+
+        substituteInPlace lib/plausible_web/templates/layout/app.html.eex \
+          --replace-warn '</head>' '<script defer data-domain="stats.ysun.co" src="/js/script.file-downloads.hash.outbound-links.js"></script></head>'
+      '';
+    });
+
     adminUser = {
       activate = true;
       email = "ysun@hey.com";
