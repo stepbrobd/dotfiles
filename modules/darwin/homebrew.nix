@@ -59,7 +59,7 @@
       "discord"
       # "firefox-developer-edition"
       # "hey"
-      "ibkr"
+      # "ibkr"
       "notchnook"
       "notion"
       # "obsidian"
