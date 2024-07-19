@@ -30,6 +30,11 @@ description = "advent of code"
 visibility = "private"
 archived = false
 
+[repo."autopilot"]
+description = "flake parts with autoloading"
+visibility = "public"
+archived = false
+
 [repo."churn"]
 description = "churn, baby, churn!"
 visibility = "public"
