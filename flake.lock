@@ -29,6 +29,32 @@
         "type": "github"
       }
     },
+    "autopilot": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "parts": [
+          "parts"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1721437497,
+        "narHash": "sha256-cBfFzXCl4biQlzM1bHlTIyn3Wf5uUbXAkqfoPx0eJCQ=",
+        "owner": "stepbrobd",
+        "repo": "autopilot",
+        "rev": "a4ad4ef0f5c5bb4f0e6439ca91807b2aeb725f56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stepbrobd",
+        "repo": "autopilot",
+        "type": "github"
+      }
+    },
     "compat": {
       "flake": false,
       "locked": {
@@ -500,6 +526,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "autopilot": "autopilot",
         "compat": "compat",
         "crane": "crane",
         "darwin": "darwin",

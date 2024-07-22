@@ -22,6 +22,11 @@
     agenix.inputs.darwin.follows = "darwin";
     agenix.inputs.home-manager.follows = "hm";
     agenix.inputs.systems.follows = "systems";
+    autopilot.url = "github:stepbrobd/autopilot";
+    autopilot.inputs.nixpkgs.follows = "nixpkgs";
+    autopilot.inputs.parts.follows = "parts";
+    autopilot.inputs.systems.follows = "systems";
+
     # c
     compat.url = "github:edolstra/flake-compat";
     compat.flake = false;
