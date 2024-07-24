@@ -1,5 +1,4 @@
-# haumea args
-{ inputs }:
+{ lib }:
 
 # mkSystem args
 { systemType
@@ -11,12 +10,9 @@
 , extraModules ? [ ]
 , extraHMModules ? [ ]
 , overlays ? [ ]
-,
+, inputs
 }:
 
-let
-  inherit (inputs.self) lib;
-in
 lib."${systemType}System" {
   specialArgs = {
     inherit inputs;

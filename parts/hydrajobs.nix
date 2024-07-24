@@ -1,8 +1,8 @@
-{ ... } @ args:
+{ lib, ... } @ args:
 
 let
   inherit (args) inputs;
-  inherit (inputs.self.lib) mapAttrs;
+  inherit (lib) mapAttrs;
   configsFor = systemType: mapAttrs (n: v: v.config.system.build.toplevel) inputs.self."${systemType}Configurations";
 in
 {

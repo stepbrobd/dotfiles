@@ -1,7 +1,7 @@
-{ ... } @ args:
+{ lib, ... } @ args:
 
 let
-  inherit (args.inputs.self.lib) mkDynamicAttrs;
+  inherit (lib) mkDynamicAttrs;
 in
 {
   flake.templates = mkDynamicAttrs {

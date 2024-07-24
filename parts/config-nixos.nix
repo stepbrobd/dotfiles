@@ -1,12 +1,13 @@
-{ ... } @ args:
+{ lib, ... } @ args:
 
 let
   inherit (args) inputs;
-  inherit (inputs.self.lib) genAttrs mkSystem;
+  inherit (lib) genAttrs mkSystem;
 
   stateVersion = "24.11";
 
   serverConfigFor = host: mkSystem {
+    inherit inputs;
     systemType = "nixos";
     hostPlatform = "x86_64-linux";
     systemStateVersion = stateVersion;
@@ -29,6 +30,7 @@ in
   flake.nixosConfigurations = {
     # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
     framework = mkSystem {
+      inherit inputs;
       systemType = "nixos";
       hostPlatform = "x86_64-linux";
       systemStateVersion = stateVersion;

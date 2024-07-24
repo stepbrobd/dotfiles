@@ -1,5 +1,4 @@
-# haumea args
-{ inputs }:
+{ lib }:
 
 # importPackagesWith args
 pkgs: pkg: args:

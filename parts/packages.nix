@@ -1,8 +1,8 @@
-{ ... } @ args:
+{ lib, ... } @ args:
 
 let
   inherit (args) inputs;
-  inherit (inputs.self.lib) importPackagesWith mkDynamicAttrs;
+  inherit (lib) importPackagesWith mkDynamicAttrs;
 in
 {
   perSystem = { pkgs, ... }:

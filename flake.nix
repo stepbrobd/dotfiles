@@ -1,16 +1,28 @@
 {
   description = "@stepbrobd: yet another dotfiles repo with nix";
 
-  outputs = { self, ... } @ inputs:
-    inputs.parts.lib.mkFlake
-      {
-        inherit inputs;
-      }
-      {
-        debug = true;
-        systems = import inputs.systems;
-        imports = [ ./parts ];
+  outputs = { self, ... } @ inputs: inputs.autopilot.lib.mkFlake
+    {
+      inherit inputs;
+
+      autopilot = {
+        lib = {
+          path = ./lib;
+          excludes = [ ];
+          extender = inputs.nixpkgs.lib;
+          extensions = with inputs; [ autopilot.lib darwin.lib hm.lib parts.lib utils.lib ];
+        };
+
+        nixpkgs = {
+          config = { allowUnfree = true; };
+          overlays = [ inputs.self.overlays.default ];
+          instances = [{ name = "pkgs"; value = inputs.nixpkgs; }];
+        };
+
+        parts = { path = ./parts; excludes = [ ]; };
       };
+    }
+    { systems = import inputs.systems; };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";

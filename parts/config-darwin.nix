@@ -1,10 +1,11 @@
-{ ... } @ args:
+{ lib, ... } @ args:
 
 let
   inherit (args) inputs;
-  inherit (inputs.self.lib) genAttrs mkSystem;
+  inherit (lib) genAttrs mkSystem;
 
   darwinConfigFor = host: mkSystem {
+    inherit inputs;
     systemType = "darwin";
     hostPlatform = "aarch64-darwin";
     systemStateVersion = 4;
