@@ -5,7 +5,6 @@
 pkgs: pkg: args:
 
 let
-  inherit (pkgs.lib) callPackageWith;
-  callPackage = callPackageWith (pkgs // { inherit inputs; });
+  callPackage = pkgs.lib.callPackageWith pkgs;
 in
 callPackage pkg args
