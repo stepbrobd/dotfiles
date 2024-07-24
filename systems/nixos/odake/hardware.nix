@@ -33,34 +33,13 @@
     dhcpcd.enable = false;
     usePredictableInterfaceNames = lib.mkForce true;
     interfaces.enp3s0 = {
-      ipv4.addresses = [
-        {
-          address = "209.182.234.194";
-          prefixLength = 24;
-        }
-      ];
+      ipv4.addresses = [{ address = "209.182.234.194"; prefixLength = 24; }];
       ipv6.addresses = [
-        {
-          address = "2602:ff16:14:0:1:56:0:1";
-          prefixLength = 64;
-        }
-        {
-          address = "fe80::5054:25ff:fe46:aa1c";
-          prefixLength = 64;
-        }
+        { address = "2602:ff16:14:0:1:56:0:1"; prefixLength = 64; }
+        { address = "fe80::5054:25ff:fe46:aa1c"; prefixLength = 64; }
       ];
-      ipv4.routes = [
-        {
-          address = "209.182.234.1";
-          prefixLength = 32;
-        }
-      ];
-      ipv6.routes = [
-        {
-          address = "2602:ff16:14::1";
-          prefixLength = 128;
-        }
-      ];
+      ipv4.routes = [{ address = "209.182.234.1"; prefixLength = 32; }];
+      ipv6.routes = [{ address = "2602:ff16:14::1"; prefixLength = 128; }];
     };
   };
 
