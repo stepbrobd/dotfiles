@@ -1,8 +1,8 @@
 { ... } @ args:
 
 let
-  inherit (args) inputs outputs;
-  inherit (outputs.lib) importPackagesWith mkDynamicAttrs;
+  inherit (args) inputs;
+  inherit (inputs.self.lib) importPackagesWith mkDynamicAttrs;
 in
 {
   perSystem = { pkgs, ... }:
@@ -15,5 +15,5 @@ in
 
   # seems like `legacyPackages` is equivalent to `packages`?
   # https://nixos.wiki/wiki/Flakes#Output_schema
-  flake.legacyPackages = outputs.packages;
+  flake.legacyPackages = inputs.self.packages;
 }

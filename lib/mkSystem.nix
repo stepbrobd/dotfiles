@@ -1,5 +1,5 @@
 # haumea args
-{ inputs, outputs }:
+{ inputs }:
 
 # mkSystem args
 { systemType
@@ -15,11 +15,11 @@
 }:
 
 let
-  inherit (outputs) lib;
+  inherit (inputs.self) lib;
 in
 lib."${systemType}System" {
   specialArgs = {
-    inherit inputs outputs;
+    inherit inputs;
   };
 
   modules = [
@@ -32,7 +32,7 @@ lib."${systemType}System" {
     inputs.hm."${systemType}Modules".home-manager
     {
       home-manager.extraSpecialArgs = {
-        inherit inputs outputs;
+        inherit inputs;
       };
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
@@ -49,8 +49,6 @@ lib."${systemType}System" {
     { system.stateVersion = systemStateVersion; }
     { home-manager.users."${username}".home.stateVersion = hmStateVersion; }
     # overlays
-    { nixpkgs.overlays = overlays ++ [ outputs.overlays.default ]; }
-    # not needed since useGlobalPkgs is set
-    # { home-manager.users."${username}".nixpkgs.overlays = overlays ++ [ outputs.overlays.default ]; }
+    { nixpkgs.overlays = overlays ++ [ inputs.self.overlays.default ]; }
   ] ++ extraModules;
 }

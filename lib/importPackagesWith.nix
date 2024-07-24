@@ -1,11 +1,11 @@
 # haumea args
-{ inputs, outputs }:
+{ inputs }:
 
 # importPackagesWith args
 pkgs: pkg: args:
 
 let
   inherit (pkgs.lib) callPackageWith;
-  callPackage = callPackageWith (pkgs // { inherit inputs outputs; });
+  callPackage = callPackageWith (pkgs // { inherit inputs; });
 in
 callPackage pkg args

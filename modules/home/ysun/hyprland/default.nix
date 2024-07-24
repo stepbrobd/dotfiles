@@ -5,7 +5,6 @@
 , pkgs
 , osConfig
 , inputs
-, outputs
 , ...
 }:
 

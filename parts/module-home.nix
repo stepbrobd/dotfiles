@@ -10,5 +10,5 @@
     };
   };
 
-  flake.hmModules = args.outputs.homeManagerModules;
+  flake.hmModules = args.inputs.self.homeManagerModules;
 }

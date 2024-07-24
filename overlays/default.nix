@@ -1,7 +1,7 @@
-{ inputs, outputs }:
+{ inputs }:
 
 let
-  inherit (outputs) lib;
+  inherit (inputs.self) lib;
 in
 final: prev:
 (

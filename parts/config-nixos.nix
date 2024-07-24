@@ -1,8 +1,8 @@
 { ... } @ args:
 
 let
-  inherit (args) inputs outputs;
-  inherit (outputs.lib) genAttrs mkSystem;
+  inherit (args) inputs;
+  inherit (inputs.self.lib) genAttrs mkSystem;
 
   stateVersion = "24.11";
 
@@ -13,12 +13,12 @@ let
     hmStateVersion = stateVersion;
     systemConfig = ../systems/nixos/. + "/${host}";
     username = "ysun";
-    extraModules = [
-      inputs.srvos.nixosModules.server
-      outputs.nixosModules.caddy
-      outputs.nixosModules.common
-      outputs.nixosModules.desktop
-      outputs.nixosModules.minimal
+    extraModules = with inputs; [
+      srvos.nixosModules.server
+      self.nixosModules.caddy
+      self.nixosModules.common
+      self.nixosModules.desktop
+      self.nixosModules.minimal
     ];
     extraHMModules = [
       # outputs.hmModules.ysun.minimal
@@ -35,18 +35,18 @@ in
       hmStateVersion = stateVersion;
       systemConfig = ../systems/nixos/framework;
       username = "ysun";
-      extraModules = [
-        inputs.disko.nixosModules.disko
-        inputs.lanzaboote.nixosModules.lanzaboote
-        inputs.nixos-generators.nixosModules.all-formats
-        inputs.nixos-hardware.nixosModules.common-hidpi
-        inputs.nixos-hardware.nixosModules.framework-13th-gen-intel
-        inputs.srvos.nixosModules.desktop
-        outputs.nixosModules.common
-        outputs.nixosModules.docker
-        outputs.nixosModules.graphical
+      extraModules = with inputs; [
+        disko.nixosModules.disko
+        lanzaboote.nixosModules.lanzaboote
+        nixos-generators.nixosModules.all-formats
+        nixos-hardware.nixosModules.common-hidpi
+        nixos-hardware.nixosModules.framework-13th-gen-intel
+        srvos.nixosModules.desktop
+        self.nixosModules.common
+        self.nixosModules.docker
+        self.nixosModules.graphical
       ];
-      extraHMModules = [ outputs.hmModules.ysun.linux ];
+      extraHMModules = [ inputs.self.hmModules.ysun.linux ];
     };
   } // genAttrs [
     "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage

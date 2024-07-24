@@ -1,8 +1,8 @@
 { ... } @ args:
 
 let
-  inherit (args) inputs outputs;
-  inherit (outputs.lib) genAttrs mkSystem;
+  inherit (args) inputs;
+  inherit (inputs.self.lib) genAttrs mkSystem;
 
   darwinConfigFor = host: mkSystem {
     systemType = "darwin";
@@ -11,8 +11,8 @@ let
     hmStateVersion = "24.11";
     systemConfig = ../systems/darwin/. + "/${host}";
     username = "ysun";
-    extraModules = [ outputs.darwinModules.common outputs.darwinModules.default ];
-    extraHMModules = [ outputs.hmModules.ysun.darwin ];
+    extraModules = with inputs.self; [ darwinModules.common darwinModules.default ];
+    extraHMModules = with inputs.self; [ hmModules.ysun.darwin ];
   };
 in
 {

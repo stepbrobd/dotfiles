@@ -1,15 +1,15 @@
 { ... } @ args:
 
 let
-  inherit (args) inputs outputs;
+  inherit (args) inputs;
 in
 {
-  flake.overlays.default = import ../overlays { inherit (args) inputs outputs; };
+  flake.overlays.default = import ../overlays { inherit (args) inputs; };
 
   perSystem = { system, ... }: {
     _module.args.pkgs = import inputs.nixpkgs {
       inherit system;
-      overlays = [ outputs.overlays.default ];
+      overlays = [ inputs.self.overlays.default ];
     };
   };
 }

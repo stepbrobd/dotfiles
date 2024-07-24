@@ -1,5 +1,5 @@
 # haumea args
-{ inputs, outputs }:
+{ inputs }:
 
 # mkDynamicAttrs args
 { dir, fun }:

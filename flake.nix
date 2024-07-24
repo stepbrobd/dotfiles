@@ -2,11 +2,9 @@
   description = "@stepbrobd: yet another dotfiles repo with nix";
 
   outputs = { self, ... } @ inputs:
-    let inherit (self) outputs; in
     inputs.parts.lib.mkFlake
       {
         inherit inputs;
-        specialArgs = { inherit outputs; };
       }
       {
         debug = true;
