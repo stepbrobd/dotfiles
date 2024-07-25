@@ -10,7 +10,7 @@ let
     hostPlatform = "aarch64-darwin";
     systemStateVersion = 4;
     hmStateVersion = "24.11";
-    systemConfig = ../systems/darwin/. + "/${host}";
+    systemConfig = ../hosts/laptop/. + "/${host}";
     username = "ysun";
     extraModules = with inputs.self; [ darwinModules.common darwinModules.default ];
     extraHMModules = with inputs.self; [ hmModules.ysun.darwin ];

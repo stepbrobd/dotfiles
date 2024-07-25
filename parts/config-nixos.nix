@@ -12,7 +12,7 @@ let
     hostPlatform = "x86_64-linux";
     systemStateVersion = stateVersion;
     hmStateVersion = stateVersion;
-    systemConfig = ../systems/nixos/. + "/${host}";
+    systemConfig = ../hosts/server/. + "/${host}";
     username = "ysun";
     extraModules = with inputs; [
       srvos.nixosModules.server
@@ -35,7 +35,7 @@ in
       hostPlatform = "x86_64-linux";
       systemStateVersion = stateVersion;
       hmStateVersion = stateVersion;
-      systemConfig = ../systems/nixos/framework;
+      systemConfig = ../hosts/laptop/framework;
       username = "ysun";
       extraModules = with inputs; [
         disko.nixosModules.disko
