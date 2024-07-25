@@ -8,6 +8,9 @@
 {
   imports = [
     ./hardware.nix
+
+    ./caddy.nix
+    ./keycloak.nix
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
