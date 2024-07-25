@@ -1,4 +1,4 @@
-{ lib, inputs, ... } @ args:
+{ lib, inputs, ... }:
 
 let
   inherit (lib) genAttrs mkSystem;
@@ -11,7 +11,7 @@ let
     hostPlatform = "x86_64-linux";
     systemStateVersion = stateVersion;
     hmStateVersion = stateVersion;
-    systemConfig = ../hosts/server/. + "/${host}";
+    systemConfig = ../../hosts/server/. + "/${host}";
     username = "ysun";
     extraModules = with inputs; [
       srvos.nixosModules.server
@@ -34,7 +34,7 @@ in
       hostPlatform = "x86_64-linux";
       systemStateVersion = stateVersion;
       hmStateVersion = stateVersion;
-      systemConfig = ../hosts/laptop/framework;
+      systemConfig = ../../hosts/laptop/framework;
       username = "ysun";
       extraModules = with inputs; [
         disko.nixosModules.disko

@@ -1,4 +1,4 @@
-{ lib, inputs, ... } @ args:
+{ lib, inputs, ... }:
 
 let
   inherit (lib) genAttrs mkSystem;
@@ -9,7 +9,7 @@ let
     hostPlatform = "aarch64-darwin";
     systemStateVersion = 4;
     hmStateVersion = "24.11";
-    systemConfig = ../hosts/laptop/. + "/${host}";
+    systemConfig = ../../hosts/laptop/. + "/${host}";
     username = "ysun";
     extraModules = with inputs.self; [ darwinModules.common darwinModules.default ];
     extraHMModules = with inputs.self; [ hmModules.ysun.darwin ];
