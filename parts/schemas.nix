@@ -1,5 +1,5 @@
-{ ... } @ args:
+{ inputs, ... }:
 
 {
-  flake.schemas = args.inputs.schemas.schemas;
+  flake.schemas = inputs.schemas.schemas;
 }

@@ -1,4 +1,4 @@
-{ lib, ... } @ args:
+{ lib, ... }:
 
 let
   inherit (lib) mkDynamicAttrs;

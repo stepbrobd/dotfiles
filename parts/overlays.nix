@@ -1,8 +1,5 @@
-{ lib, ... } @ args:
+{ lib, inputs, ... }:
 
-let
-  inherit (args) inputs;
-in
 {
   flake.overlays.default = final: prev: lib.mkDynamicAttrs {
     dir = ../packages;

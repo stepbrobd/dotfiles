@@ -1,7 +1,6 @@
-{ lib, ... } @ args:
+{ lib, inputs, ... } @ args:
 
 let
-  inherit (args) inputs;
   inherit (lib) genAttrs mkSystem;
 
   stateVersion = "24.11";
