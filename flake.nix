@@ -15,7 +15,7 @@
 
         nixpkgs = {
           config = { allowUnfree = true; };
-          overlays = [ inputs.self.overlays.default ];
+          overlays = [ self.overlays.default ];
           instances = [{ name = "pkgs"; value = inputs.nixpkgs; }];
         };
 
