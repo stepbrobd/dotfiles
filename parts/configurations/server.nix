@@ -1,7 +1,7 @@
 { lib, inputs, stateVersion }:
 
 let
-  inherit (lib) genAttrs mkSystem;
+  inherit (lib) genAttrs mapAttrs mkSystem;
 
   serverConfigFor = host: mkSystem {
     inherit inputs;
@@ -22,13 +22,26 @@ let
       # outputs.hmModules.ysun.minimal
     ];
   };
-in
-{
-  flake.nixosConfigurations = genAttrs [
+
+  nixosConfigurations = genAttrs [
     "lagern" # AWS EC2 ZRH T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
     "bachtel" # AWS EC2 ZRH T3.Micro, 2 vCPU, 1GB RAM, 30GB Storage
     "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage
     "walberla" # Hetzner Cloud CX32, 4 vCPU, 8GB RAM, 80GB Storage
   ]
     (x: serverConfigFor x);
-}
+
+  # colmena #161
+  mkColmenaFromNixOSConfigurations = conf: {
+    meta = {
+      nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+
+      nodeNixpkgs = mapAttrs (_: value: value.pkgs) conf;
+
+      nodeSpecialArgs = mapAttrs (_: value: value._module.specialArgs) conf;
+    };
+  } // mapAttrs (_: value: { imports = value._module.args.modules; }) conf;
+
+  colmena = mkColmenaFromNixOSConfigurations nixosConfigurations;
+in
+{ flake = { inherit colmena nixosConfigurations; }; }
