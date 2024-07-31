@@ -8,7 +8,6 @@
       autopilot = {
         lib = {
           path = ./lib;
-          excludes = [ ];
           extender = inputs.nixpkgs.lib;
           extensions = with inputs; [ autopilot.lib darwin.lib hm.lib parts.lib utils.lib ];
         };
@@ -19,10 +18,7 @@
           instances = [{ name = "pkgs"; value = inputs.nixpkgs; }];
         };
 
-        parts = {
-          path = ./parts;
-          excludes = [ ];
-        };
+        parts.path = ./parts;
       };
     }
     { systems = import inputs.systems; };
@@ -39,8 +35,12 @@
     autopilot.inputs.nixpkgs.follows = "nixpkgs";
     autopilot.inputs.parts.follows = "parts";
     autopilot.inputs.systems.follows = "systems";
-
     # c
+    colmena.url = "github:zhaofengli/colmena";
+    colmena.inputs.nixpkgs.follows = "nixpkgs";
+    colmena.inputs.stable.follows = "nixpkgs";
+    colmena.inputs.flake-compat.follows = "compat";
+    colmena.inputs.flake-utils.follows = "utils";
     compat.url = "github:edolstra/flake-compat";
     compat.flake = false;
     crane.url = "github:ipetkov/crane";
