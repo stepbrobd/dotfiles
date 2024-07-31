@@ -19,7 +19,10 @@
           instances = [{ name = "pkgs"; value = inputs.nixpkgs; }];
         };
 
-        parts = { path = ./parts; excludes = [ ]; };
+        parts = {
+          path = ./parts;
+          excludes = [ ];
+        };
       };
     }
     { systems = import inputs.systems; };
