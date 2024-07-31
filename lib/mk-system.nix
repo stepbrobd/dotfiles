@@ -1,7 +1,8 @@
 { lib }:
 
 # mkSystem args
-{ systemType
+{ inputs
+, systemType
 , hostPlatform
 , systemStateVersion
 , hmStateVersion
@@ -10,13 +11,10 @@
 , extraModules ? [ ]
 , extraHMModules ? [ ]
 , overlays ? [ ]
-, inputs
 }:
 
 lib."${systemType}System" {
-  specialArgs = {
-    inherit inputs;
-  };
+  specialArgs = { inherit inputs; };
 
   modules = [
     # system
