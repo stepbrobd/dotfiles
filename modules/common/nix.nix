@@ -9,7 +9,7 @@
 
 {
   nix = {
-    package = pkgs.nixVersions.latest;
+    package = pkgs.nixVersions.stable;
 
     gc = {
       automatic = true;
