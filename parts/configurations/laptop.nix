@@ -7,29 +7,24 @@ in
   flake.darwinConfigurations = {
     # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
     macbook = mkSystem {
-      inherit inputs;
+      inherit inputs stateVersion;
       os = "darwin";
-      hostPlatform = "aarch64-darwin";
-      systemStateVersion = 4;
-      hmStateVersion = stateVersion;
-      systemConfig = ../../hosts/laptop/macbook;
-      username = "ysun";
-      extraModules = with inputs.self; [ darwinModules.common darwinModules.default ];
-      extraHMModules = with inputs.self; [ hmModules.ysun.darwin ];
+      platform = "aarch64-darwin";
+      entrypoint = ../../hosts/laptop/macbook;
+      users = { ysun = with inputs.self; [ hmModules.ysun.darwin ]; };
+      modules = with inputs.self; [ darwinModules.common darwinModules.default ];
     };
   };
 
   flake.nixosConfigurations = {
     # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
     framework = mkSystem {
-      inherit inputs;
+      inherit inputs stateVersion;
       os = "nixos";
-      hostPlatform = "x86_64-linux";
-      systemStateVersion = stateVersion;
-      hmStateVersion = stateVersion;
-      systemConfig = ../../hosts/laptop/framework;
-      username = "ysun";
-      extraModules = with inputs; [
+      platform = "x86_64-linux";
+      entrypoint = ../../hosts/laptop/framework;
+      users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
+      modules = with inputs; [
         disko.nixosModules.disko
         lanzaboote.nixosModules.lanzaboote
         nixos-generators.nixosModules.all-formats
@@ -40,7 +35,6 @@ in
         self.nixosModules.docker
         self.nixosModules.graphical
       ];
-      extraHMModules = [ inputs.self.hmModules.ysun.linux ];
     };
   };
 }
