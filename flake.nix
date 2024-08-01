@@ -9,7 +9,7 @@
         lib = {
           path = ./lib;
           extender = inputs.nixpkgs.lib;
-          extensions = with inputs; [ autopilot.lib darwin.lib hm.lib parts.lib utils.lib ];
+          extensions = with inputs; [ autopilot.lib colmena.lib darwin.lib hm.lib parts.lib utils.lib ];
         };
 
         nixpkgs = {
