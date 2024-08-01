@@ -8,7 +8,7 @@ in
     # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
     macbook = mkSystem {
       inherit inputs;
-      systemType = "darwin";
+      os = "darwin";
       hostPlatform = "aarch64-darwin";
       systemStateVersion = 4;
       hmStateVersion = stateVersion;
@@ -23,7 +23,7 @@ in
     # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
     framework = mkSystem {
       inherit inputs;
-      systemType = "nixos";
+      os = "nixos";
       hostPlatform = "x86_64-linux";
       systemStateVersion = stateVersion;
       hmStateVersion = stateVersion;

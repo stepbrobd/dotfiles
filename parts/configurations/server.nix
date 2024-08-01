@@ -11,7 +11,7 @@ let
   colmena = lib.mkColmena {
     inherit hosts inputs;
     overlays = [ inputs.self.overlays.default ];
-    systemType = "nixos";
+    os = "nixos";
     hostPlatform = "x86_64-linux";
     systemStateVersion = stateVersion;
     hmStateVersion = stateVersion;

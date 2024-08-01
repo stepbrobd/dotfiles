@@ -2,7 +2,7 @@
 
 { hosts
 , inputs
-, systemType
+, os
 , hostPlatform
 , systemStateVersion
 , hmStateVersion
@@ -23,10 +23,10 @@
     # system
     (inputs.self.outPath + "/hosts/server/${host}")
     # agenix
-    inputs.agenix."${systemType}Modules".age
+    inputs.agenix."${os}Modules".age
     # home-manager
     (inputs.self.outPath + "/users/${username}")
-    inputs.hm."${systemType}Modules".home-manager
+    inputs.hm."${os}Modules".home-manager
     {
       home-manager.extraSpecialArgs = {
         inherit inputs;

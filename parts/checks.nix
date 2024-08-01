@@ -7,7 +7,7 @@ let
     (n: v: nameValuePair (name + "." + n) v)
     checks;
 
-  configsFor = systemType: mapAttrs (n: v: v.config.system.build.toplevel) inputs.self."${systemType}Configurations";
+  configsFor = os: mapAttrs (n: v: v.config.system.build.toplevel) inputs.self."${os}Configurations";
 in
 {
   perSystem = { self', ... }: {

@@ -2,7 +2,7 @@
 
 # mkSystem args
 { inputs
-, systemType
+, os
 , hostPlatform
 , systemStateVersion
 , hmStateVersion
@@ -13,17 +13,17 @@
 , overlays ? [ ]
 }:
 
-lib."${systemType}System" {
+lib."${os}System" {
   specialArgs = { inherit inputs; };
 
   modules = [
     # system
     systemConfig
     # agenix
-    inputs.agenix."${systemType}Modules".age
+    inputs.agenix."${os}Modules".age
     # home-manager
     (../. + "/users/${username}")
-    inputs.hm."${systemType}Modules".home-manager
+    inputs.hm."${os}Modules".home-manager
     {
       home-manager.extraSpecialArgs = {
         inherit inputs;
