@@ -1,10 +1,6 @@
 # nixpkgs + nix-darwin options
 
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ inputs, ... }:
 
 {
   nixpkgs.config = {
@@ -12,4 +8,6 @@
     allowUnfree = true;
     allowUnfreePredicate = (_: true);
   };
+
+  nixpkgs.overlays = [ inputs.self.overlays.default ];
 }
