@@ -1,11 +1,11 @@
 { stdenv
 , pkgs
-, prevPkgs ? pkgs # `prevPkgs` only provided in overlays
+, pkgsPrev ? pkgs # `pkgsPrev` only provided in overlays
 }:
 
 if stdenv.isDarwin
 then
-  prevPkgs.alacritty.overrideAttrs
+  pkgsPrev.alacritty.overrideAttrs
     (oldAttrs: {
       postInstall = oldAttrs.postInstall
         + ''
@@ -13,4 +13,4 @@ then
         cp ${./alacritty.icns} $out/Applications/Alacritty.app/Contents/Resources/alacritty.icns
       '';
     })
-else prevPkgs.alacritty
+else pkgsPrev.alacritty
