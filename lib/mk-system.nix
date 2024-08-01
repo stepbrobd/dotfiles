@@ -1,48 +1,30 @@
 { lib }:
 
+let
+  inherit (lib) genUserModules hasSuffix mkDefault version versions;
+in
 # mkSystem args
 { inputs
 , os
-, hostPlatform
-, systemStateVersion
-, hmStateVersion
-, systemConfig
-, username
-, extraModules ? [ ]
-, extraHMModules ? [ ]
-, overlays ? [ ]
+, platform
+, stateVersion ? (versions.majorMinor version)
+, entrypoint # file path
+, users ? { } # { "username" -> [ module ] }
+, modules ? [ ] # nixos/darwin modules
 }:
 
+let
+  specialArgs = { inherit lib inputs; };
+in
 lib."${os}System" {
-  specialArgs = { inherit inputs; };
+  inherit specialArgs;
 
   modules = [
-    # system
-    systemConfig
-    # agenix
+    entrypoint
     inputs.agenix."${os}Modules".age
-    # home-manager
-    (../. + "/users/${username}")
-    inputs.hm."${os}Modules".home-manager
-    {
-      home-manager.extraSpecialArgs = {
-        inherit inputs;
-      };
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users."${username}" = {
-        imports = [
-          (../. + "/users/${username}/home.nix")
-          inputs.index.hmModules.nix-index
-        ] ++ extraHMModules;
-      };
-    }
-    # platform
-    { nixpkgs.hostPlatform = lib.mkDefault hostPlatform; }
-    # state version
-    { system.stateVersion = systemStateVersion; }
-    { home-manager.users."${username}".home.stateVersion = hmStateVersion; }
-    # overlays
-    { nixpkgs.overlays = overlays ++ [ inputs.self.overlays.default ]; }
-  ] ++ extraModules;
+    { nixpkgs.hostPlatform = mkDefault platform; }
+    { system.stateVersion = if hasSuffix "darwin" platform then 4 else stateVersion; }
+  ] ++ (genUserModules {
+    inherit inputs os stateVersion specialArgs users;
+  }) ++ modules;
 }
