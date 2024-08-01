@@ -9,22 +9,16 @@ let
   ];
 
   colmena = lib.mkColmena {
-    inherit hosts inputs;
-    overlays = [ inputs.self.overlays.default ];
+    inherit inputs hosts stateVersion;
     os = "nixos";
-    hostPlatform = "x86_64-linux";
-    systemStateVersion = stateVersion;
-    hmStateVersion = stateVersion;
-    username = "ysun";
-    extraModules = with inputs; [
+    platform = "x86_64-linux";
+    users = { ysun = with inputs.self; [ /* hmModules.ysun.minimal */ ]; };
+    modules = with inputs; [
       srvos.nixosModules.server
       self.nixosModules.caddy
       self.nixosModules.common
       self.nixosModules.desktop
       self.nixosModules.minimal
-    ];
-    extraHMModules = [
-      # outputs.hmModules.ysun.minimal
     ];
   };
 

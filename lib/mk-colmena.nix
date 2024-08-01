@@ -1,49 +1,31 @@
 { lib }:
 
-{ hosts
-, inputs
+let
+  inherit (lib) genHostModules version versions;
+in
+{ inputs
 , os
-, hostPlatform
-, systemStateVersion
-, hmStateVersion
-, username
-, extraModules ? [ ]
-, extraHMModules ? [ ]
-, config ? { }
-, overlays ? [ ]
+, platform
+, stateVersion ? (versions.majorMinor version)
+, hosts ? [ ] # [ "server1" "server2" ]
+, users ? { } # { "username" -> [ module ] }
+, modules ? [ ] # nixos/darwin modules
 }:
 
+let
+  specialArgs = { inherit lib inputs; };
+in
 {
   meta = {
-    nixpkgs = import inputs.nixpkgs { inherit config overlays; system = hostPlatform; };
-    specialArgs = { inherit inputs; };
+    inherit specialArgs;
+    nixpkgs = import inputs.nixpkgs { system = platform; };
   };
 } // lib.genAttrs hosts (host: {
-  imports = [
-    # system
-    (inputs.self.outPath + "/hosts/server/${host}")
-    # agenix
-    inputs.agenix."${os}Modules".age
-    # home-manager
-    (inputs.self.outPath + "/users/${username}")
-    inputs.hm."${os}Modules".home-manager
-    {
-      home-manager.extraSpecialArgs = {
-        inherit inputs;
-      };
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users."${username}" = {
-        imports = [
-          (../. + "/users/${username}/home.nix")
-          inputs.index.hmModules.nix-index
-        ] ++ extraHMModules;
-      };
-    }
-    # platform
-    { nixpkgs.hostPlatform = lib.mkDefault hostPlatform; }
-    # state version
-    { system.stateVersion = systemStateVersion; }
-    { home-manager.users."${username}".home.stateVersion = hmStateVersion; }
-  ] ++ extraModules;
+  imports =
+    let
+      entrypoint = "${inputs.self}/hosts/server/${host}";
+    in
+    genHostModules {
+      inherit inputs os platform stateVersion entrypoint users modules specialArgs;
+    };
 })
