@@ -50,7 +50,6 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs";
-    devshell.inputs.flake-utils.follows = "utils";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # f
@@ -99,6 +98,7 @@
     nixvim.inputs.git-hooks.follows = "git-hooks";
     nixvim.inputs.home-manager.follows = "hm";
     nixvim.inputs.nix-darwin.follows = "darwin";
+    nixvim.inputs.nuschtosSearch.follows = "";
     nixvim.inputs.treefmt-nix.follows = "treefmt";
     # p
     parts.url = "github:hercules-ci/flake-parts";
