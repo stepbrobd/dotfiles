@@ -28,11 +28,9 @@ let
     ];
   };
 
-  nixosConfigurations = (import (inputs.colmena.outPath + "/src/nix/hive/eval.nix") {
-    hermetic = true;
+  # blocked on colmena #161
+  nixosConfigurations = (import ("${inputs.colmena}/src/nix/hive/eval.nix") {
     rawFlake = inputs.self;
-    colmenaOptions = import (inputs.colmena.outPath + "/src/nix/hive/options.nix");
-    colmenaModules = import (inputs.colmena.outPath + "/src/nix/hive/modules.nix");
   }).nodes;
 in
 { flake = { inherit colmena nixosConfigurations; }; }
