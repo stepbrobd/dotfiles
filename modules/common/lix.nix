@@ -1,26 +1,26 @@
-# nixpkgs + nix-darwin options
+{ lib, inputs, ... }:
 
-{ config
-, lib
-, pkgs
-, options
-, inputs
-, ...
-}:
+{ config, pkgs, options, ... }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkOption mkIf optional types;
 
   cfg = config.nix.lix;
 in
 {
-  imports = [ inputs.lix-module.nixosModules.default ];
-
   options.nix.lix = {
-    enable = mkEnableOption "lix";
+    enable = mkOption {
+      default = false;
+      description = "Whether to replace Nix with Lix";
+      example = true;
+      type = types.bool;
+    };
   };
 
   config = mkIf cfg.enable {
+    # FIXME: optional import will not work
+    # _module.args.modules = [ inputs.lix-module.nixosModules.default ];
+
     nix.settings = {
       extra-substituters = [ "https://cache.lix.systems" ];
       trusted-public-keys = [ "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o=" ];

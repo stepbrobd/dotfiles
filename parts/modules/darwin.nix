@@ -1,6 +1,9 @@
+{ lib, inputs, ... }:
+
 {
   flake.darwinModules = {
-    common = import ../../modules/common;
+    common = lib.importApplyWithArgs ../../modules/common { inherit lib inputs; };
+    lix = lib.importApplyWithArgs ../../modules/common/lix.nix { inherit lib inputs; };
     default = import ../../modules/darwin;
   };
 }
