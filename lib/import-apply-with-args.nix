@@ -8,15 +8,16 @@ let
 
   f = import modulePath;
 
-  # names of the arguments passed to `importApplyWithArgs`
+  # names of arguments passed to `importApplyWithArgs`
   staticArgNames = attrNames staticArgs;
 
-  # names of the arguments used in the module
+  # names of arguments used in the importing module
   # the module might not use arguments from `importApplyWithArgs`
-  # i.e. either a set of a function that returns a set
-  # if `importApplyWithArgs` is used
-  # the module will be a function of set of function of function of a set
-  # and the first attrset styled argument will match one of the names in `staticArg`
+  # the module is
+  # 1. either a set or a function that returns a set
+  # 2. if `importApplyWithArgs` is used, the module will either be a function that returns a set
+  #   or a function of a function that returns a set
+  #   and one or more names of the first attrset styled argument will match one of the names in `staticArg`
   moduleArgNames = if isFunction f then attrNames (__functionArgs f) else [ ];
 
   argUsed = length (intersectLists staticArgNames moduleArgNames) > 0;
