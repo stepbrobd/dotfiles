@@ -47,24 +47,20 @@
     ];
 
     casks = [
+      # custom
+      "stepbrobd/tap/orion"
+
       "1password"
       "1password-cli"
       "airbuddy"
       "aldente"
-      # "amie"
-      # "arc"
       "bartender"
       "cleanmymac"
       "coconutbattery"
       "discord"
-      # "firefox-developer-edition"
-      # "hey"
-      # "ibkr"
       "notchnook"
       "notion"
-      # "obsidian"
       "orbstack"
-      "orion"
       "osu"
       "raycast"
       "slack"
