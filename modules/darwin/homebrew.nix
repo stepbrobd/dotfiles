@@ -64,6 +64,7 @@
       "notion"
       # "obsidian"
       "orbstack"
+      "orion"
       "osu"
       "raycast"
       "slack"
