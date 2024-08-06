@@ -1,11 +1,5 @@
 # nix-darwin options
 
-{ config
-, lib
-, pkgs
-, ...
-}:
-
 {
   homebrew = {
     enable = true;
@@ -23,14 +17,17 @@
     };
 
     taps = [
+      # my own taps
+      # "stepbrobd/tap"
+
       # official taps
       # "homebrew/cask"
       # "homebrew/cask-versions"
       # "homebrew/core"
       "homebrew/services"
-      # custom taps
+
+      # third-party taps
       "nextfire/tap"
-      "stepbrobd/tap"
     ];
 
     brews = [
@@ -47,9 +44,6 @@
     ];
 
     casks = [
-      # custom
-      "stepbrobd/tap/orion"
-
       "1password"
       "1password-cli"
       "airbuddy"
@@ -61,6 +55,7 @@
       "notchnook"
       "notion"
       "orbstack"
+      "orion"
       "osu"
       "raycast"
       "slack"
