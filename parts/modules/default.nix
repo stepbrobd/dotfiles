@@ -8,7 +8,7 @@ let
   # not `modulesPath`
   modulePath = ../../modules;
 
-  moduleFor = name: loadAll {
+  modulesFor = name: loadAll {
     dir = "${modulePath}/${name}";
     importer = importApplyWithArgs;
     transformer = kebabToCamel;
@@ -18,9 +18,9 @@ let
 
   # common for `darwinModules` and `nixosModules`
   # DO NOT use this in home-manager
-  common = moduleFor "common";
+  common = modulesFor "common";
 in
 deepMergeAttrsList (map
-  (x: import x { inherit common moduleFor; })
+  (x: import x { inherit common modulesFor; })
   (filesList ./. [ "default.nix" ])
 )

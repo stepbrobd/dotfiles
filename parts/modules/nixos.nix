@@ -1,4 +1,4 @@
-{ common, moduleFor }:
+{ common, modulesFor }:
 
 {
   flake.nixosModules = common // {

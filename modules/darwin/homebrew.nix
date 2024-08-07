@@ -1,5 +1,3 @@
-# nix-darwin options
-
 {
   homebrew = {
     enable = true;

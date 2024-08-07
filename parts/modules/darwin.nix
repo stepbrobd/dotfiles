@@ -1,7 +1,3 @@
-{ common, moduleFor }:
+{ common, modulesFor }:
 
-{
-  flake.darwinModules = common // {
-    default = import ../../modules/darwin;
-  };
-}
+{ flake.darwinModules = common // modulesFor "darwin"; }

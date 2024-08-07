@@ -12,7 +12,16 @@ in
       platform = "aarch64-darwin";
       entrypoint = ../../hosts/laptop/macbook;
       users = { ysun = with inputs.self; [ hmModules.ysun.darwin ]; };
-      modules = with inputs.self; [ darwinModules.common darwinModules.default ];
+      modules = with inputs.self.darwinModules; [
+        common
+        lix
+        nixbuild
+        fonts
+        homebrew
+        sshd
+        system
+        tailscale
+      ];
     };
   };
 

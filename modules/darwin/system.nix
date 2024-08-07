@@ -1,11 +1,8 @@
-# nix-darwin options
+{ lib, ... }: # this is `importApplyWithArgs` args
 
-{ config
-, lib
-, pkgs
-, ...
-}:
-
+let
+  inherit (lib) mkForce;
+in
 {
   # tracking: nix-darwin#970
   # macOS Sequoia replaces _nixbld{1,2,3,4} with system users
@@ -13,7 +10,7 @@
   # use uids from 0 ~ 500?
   # dscl . -list /Users UniqueID | sort -nr -k 2
   # for i in {5..32}; do sudo dscl . -delete /Users/_nixbld$i; done
-  ids.uids.nixbld = lib.mkForce 400;
+  ids.uids.nixbld = mkForce 400;
 
   system.defaults = {
     alf = {

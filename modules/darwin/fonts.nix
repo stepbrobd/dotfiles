@@ -1,15 +1,8 @@
-# nix-darwin options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    nerdfonts
     jetbrains-mono
     font-awesome
   ];

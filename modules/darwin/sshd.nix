@@ -1,12 +1,10 @@
-# nix-darwin options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
-
 {
+  system.activationScripts.extraActivation.text = ''
+    if [[ "$(systemsetup -getremotelogin | sed 's/Remote Login: //')" == "Off" ]]; then
+      launchctl load -w /System/Library/LaunchDaemons/ssh.plist
+    fi
+  '';
+
   environment.etc."ssh/sshd_config".text = ''
     Include            /etc/ssh/sshd_config.d/*
     AuthorizedKeysFile .ssh/authorized_keys
