@@ -1,18 +1,18 @@
-# nix-darwin options
+{ lib, ... }:
 
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ config, ... }:
 
+let
+  inherit (lib) attrValues elem mkForce mkIf mkMerge;
+in
 {
-
-  config = lib.mkMerge [
+  config = mkMerge [
     { services.tailscale.overrideLocalDns = true; }
 
-    (lib.mkIf (lib.elem "Tailscale" (lib.attrNames config.homebrew.masApps)) {
-      services.tailscale.enable = lib.mkForce false;
+    (mkIf (elem 1475387142 (attrValues config.homebrew.masApps)) {
+      # Tailscale: `mas search 1475387142`
+      services.tailscale.enable = mkForce false; # use tailscale from App Store
+      environment.shellAliases.tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
     })
   ];
 }
