@@ -1,9 +1,9 @@
-{ lib, inputs, ... }:
+{ inputs, lib, ... }:
 
-{ config, pkgs, options, ... }:
+{ config, options, ... }:
 
 let
-  inherit (lib) mkOption mkIf optional types;
+  inherit (lib) mkOption mkIf types;
 
   cfg = config.nix.lix;
 in

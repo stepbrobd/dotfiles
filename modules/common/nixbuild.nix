@@ -1,14 +1,9 @@
-# nixpkgs + nix-darwin options
+{ lib, ... }:
 
-{ config
-, lib
-, pkgs
-, options
-, ...
-}:
+{ config, options, pkgs, ... }:
 
 let
-  inherit (lib) forEach mkEnableOption mkIf mkMerge mkOption optionalAttrs types;
+  inherit (lib) forEach mkIf mkMerge mkOption optionalAttrs types;
 
   cfg = config.nix.nixbuild;
 
@@ -26,7 +21,12 @@ let
 in
 {
   options.nix.nixbuild = {
-    enable = mkEnableOption "nixbuild";
+    enable = mkOption {
+      default = false;
+      description = "Whether to use nixbuild.net for distributed builds";
+      example = true;
+      type = types.bool;
+    };
 
     systems = mkOption {
       type = with types; listOf str;
