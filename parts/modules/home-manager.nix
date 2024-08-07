@@ -1,4 +1,4 @@
-{ common, modulesFor }:
+{ modulesFor, ... }:
 
 {
   flake = rec {
