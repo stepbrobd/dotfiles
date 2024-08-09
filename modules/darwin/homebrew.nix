@@ -42,6 +42,9 @@
     ];
 
     casks = [
+      # my own casks
+      # "stepbrobd/tap/research"
+
       "1password"
       "1password-cli"
       "airbuddy"
