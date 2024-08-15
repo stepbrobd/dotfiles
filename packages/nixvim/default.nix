@@ -40,8 +40,10 @@ lib.makeOverridable nixvim.makeNixvimWithModule {
       plugins = {
         bufferline = {
           enable = true;
-          alwaysShowBufferline = false;
-          diagnostics = "nvim_lsp";
+          settings.options = {
+            always_show_bufferline = false;
+            diagnostics = "nvim_lsp";
+          };
         };
         diffview.enable = true;
         gitblame.enable = true;
