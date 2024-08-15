@@ -78,7 +78,7 @@
     lanzaboote.inputs.flake-utils.follows = "utils";
     lanzaboote.inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
-    lix.url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+    lix.url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.91.0";
     lix.flake = false;
     lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
