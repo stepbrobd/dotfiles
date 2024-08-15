@@ -43,6 +43,5 @@
 
   users.mutableUsers = false;
 
-  # nix.lix.enable = true;
   # nix.nixbuild.enable = true;
 }

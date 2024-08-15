@@ -43,6 +43,7 @@ in
         self.nixosModules.common
         self.nixosModules.docker
         self.nixosModules.graphical
+        self.nixosModules.lix
       ];
     };
   };
