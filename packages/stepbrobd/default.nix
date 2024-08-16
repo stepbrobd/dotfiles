@@ -33,14 +33,17 @@ let
       shift
       exec bash ${libexec}/libexec/sync.sh "$@"
     else
-      echo "Usage: $0 {discord|repo|sync}"
+      echo "Usage: ${pname} {discord|repo|sync}"
       exit 1
     fi
   '';
 in
-symlinkJoin {
-  name = "${pname}-${version}";
-  paths = [ libexec stepbrobd ] ++ [ bash curl gh git jq python311 ];
-  buildInputs = [ makeWrapper ];
-  postBuild = "wrapProgram $out/bin/${pname} --prefix PATH : $out/bin";
-}
+lib.recursiveUpdate
+  (symlinkJoin
+  {
+    name = "${pname}-${version}";
+    paths = [ libexec stepbrobd ] ++ [ bash curl gh git jq python311 ];
+    buildInputs = [ makeWrapper ];
+    postBuild = "wrapProgram $out/bin/${pname} --prefix PATH : $out/bin";
+  })
+{ inherit meta; }
