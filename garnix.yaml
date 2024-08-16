@@ -3,5 +3,11 @@ builds:
    - darwinConfigurations.*
    - nixosConfigurations.*
    - packages.*.*
- exclude:
    - devShells.*.*
+ exclude:
+   - darwinConfigurations.macbook # sandbox
+   - nixosConfigurations.lagern   # impure
+   - nixosConfigurations.odake    # impure
+   - nixosConfigurations.walberla # impure
+   - packages.*.pcaddy            # impure
+   - packages.*.spotify           # unfree
