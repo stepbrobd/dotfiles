@@ -20,7 +20,7 @@ jobs:
       - name: "Magic Cache"
         uses: "determinatesystems/magic-nix-cache-action@v7"
       - name: "Discord"
-        run: ./scripts/mkdiscordhook.sh
+        run: nix run .#stepbrobd -- discord
         env:
           GH_TOKEN: ${{ secrets.TOKEN }}
           TOKEN: ${{ secrets.TOKEN }}
