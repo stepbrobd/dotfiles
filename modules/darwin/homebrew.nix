@@ -45,7 +45,6 @@
       # my own casks
       # "stepbrobd/tap/research"
 
-      "altserver"
       "1password"
       "1password-cli"
       "airbuddy"
