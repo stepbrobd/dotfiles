@@ -8,16 +8,17 @@ let
   cfg = config.services.desktopManager;
 in
 {
-  imports = [ ];
+  imports = [ inputs.cosmic.nixosModules.default ];
 
   options.services.desktopManager = {
     enabled = mkOption {
-      type = with types; nullOr (enum [ "hyprland" "plasma" ]);
+      type = with types; nullOr (enum [ "cosmic" "hyprland" "plasma" ]);
       default = null;
       example = "hyprland";
       description = ''
         Choose:
         - null (or nothing) -> no desktop manager
+        - cosmic
         - hyprland
         - plasma -> plasma6
       '';
@@ -65,6 +66,12 @@ in
 
     # gpg
     { programs.gnupg.agent.enable = true; }
+
+    (mkIf (cfg.enabled == "cosmic") {
+      services.desktopManager.cosmic.enable = true;
+      services.displayManager.cosmic-greeter.enable = true;
+      services.tlp.enable = lib.mkForce false;
+    })
 
     (mkIf (cfg.enabled == "hyprland") {
       programs.hyprland = {
