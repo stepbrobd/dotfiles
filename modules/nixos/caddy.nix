@@ -1,10 +1,4 @@
-# custom options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   services.caddy = {

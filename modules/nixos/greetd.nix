@@ -1,10 +1,6 @@
-# nixpkgs options
+{ lib, ... }:
 
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   services.greetd = {

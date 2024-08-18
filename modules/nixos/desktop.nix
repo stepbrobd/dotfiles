@@ -1,11 +1,6 @@
-# nixpkgs options
+{ inputs, lib, ... }:
 
-{ config
-, lib
-, pkgs
-, options
-, ...
-}:
+{ config, pkgs, ... }:
 
 let
   inherit (lib) mkIf mkMerge mkOption types;
@@ -13,6 +8,8 @@ let
   cfg = config.services.desktopManager;
 in
 {
+  imports = [ ];
+
   options.services.desktopManager = {
     enabled = mkOption {
       type = with types; nullOr (enum [ "hyprland" "plasma" ]);

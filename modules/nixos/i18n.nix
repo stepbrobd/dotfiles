@@ -1,10 +1,4 @@
-# nixpkgs options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   i18n.inputMethod = {

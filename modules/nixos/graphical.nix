@@ -1,17 +1,12 @@
-# nixpkgs options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+importApplyArgs: _:
 
 {
   imports = [
     ./1password.nix
-    ./desktop.nix
     ./fonts.nix
     ./i18n.nix
     ./tailscale.nix
+
+    (import ./desktop.nix importApplyArgs)
   ];
 }
