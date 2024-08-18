@@ -20,7 +20,11 @@ let
   #   and one or more names of the first attrset styled argument will match one of the names in `staticArg`
   moduleArgNames = if isFunction f then attrNames (functionArgs f) else [ ];
 
-  argUsed = length (intersectLists staticArgNames moduleArgNames) > 0;
+  argUsed =
+    if !(isFunction f) then false # short circuit
+    else if length (intersectLists staticArgNames moduleArgNames) > 0 then true # matching args
+    else if isFunction (f (functionArgs f)) then true # or its a function of function
+    else false;
 in
 setDefaultModuleLocation modulePath (
   if argUsed
