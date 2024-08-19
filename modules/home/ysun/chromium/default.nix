@@ -1,11 +1,3 @@
-# home-manager options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
-
 {
   programs.chromium = {
     enable = true; # use firefox

@@ -1,11 +1,3 @@
-# home-manager options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
-
 {
   programs.atuin = {
     enable = false; # switched to fzf

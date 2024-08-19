@@ -1,13 +1,1 @@
-# home-manager options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
-
-{
-  programs.nushell = {
-    enable = true;
-  };
-}
+{ programs.nushell.enable = true; }

@@ -1,10 +1,8 @@
-# home-manager options
+{ inputs, lib, ... }:
 
 { config
-, lib
 , pkgs
-, osConfig
-, inputs
+, osConfig ? { services.desktopManager.enabled = null; }
 , ...
 }:
 

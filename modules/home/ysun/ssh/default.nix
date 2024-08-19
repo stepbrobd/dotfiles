@@ -1,10 +1,4 @@
-# home-manager options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ pkgs, ... }:
 
 {
   programs.ssh = {

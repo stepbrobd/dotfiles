@@ -1,10 +1,4 @@
-# home-manager options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ config, lib, ... }:
 
 {
   config = lib.mkIf config.wayland.windowManager.hyprland.enable {

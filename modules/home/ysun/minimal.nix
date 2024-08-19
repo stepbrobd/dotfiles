@@ -1,14 +1,8 @@
-# home-manager options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ inputs, ... }:
 
 {
-  imports = [
-    ./tmux
-    ./zsh
+  imports = with inputs.self.homeManagerModules.ysun; [
+    tmux
+    zsh
   ];
 }

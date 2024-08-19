@@ -1,11 +1,3 @@
-# home-manager options
-
-{ config
-, lib
-, pkgs
-, ...
-}:
-
 {
   services.mpd = {
     enable = true;

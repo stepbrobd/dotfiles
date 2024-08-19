@@ -1,10 +1,6 @@
-# home-manager options
+{ lib, ... }:
 
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ config, pkgs, ... }:
 
 {
   config = lib.mkMerge [
