@@ -1,12 +1,11 @@
-importApplyArgs: _:
+{ inputs, ... }:
 
 {
-  imports = [
+  imports = with inputs.self.nixosModules; [
     ./1password.nix
-    ./fonts.nix
-    ./i18n.nix
-    ./tailscale.nix
-
-    (import ./desktop.nix importApplyArgs)
+    desktop
+    fonts
+    i18n
+    tailscale
   ];
 }
