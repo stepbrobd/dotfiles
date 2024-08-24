@@ -10,7 +10,7 @@ in
 , entrypoint # file path
 , users ? { } # { "username" -> [ module ] }
 , modules ? [ ] # nixos/darwin modules
-, specialArgs ? { inherit lib inputs; }
+, specialArgs ? { }
 }:
 
 [

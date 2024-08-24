@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ inputs, lib, getSystem, ... }:
 
 let
   stateVersion = "24.11";
@@ -6,6 +6,6 @@ let
   inherit (lib) deepMergeAttrsList filesList map;
 in
 deepMergeAttrsList (map
-  (x: import x { inherit lib inputs stateVersion; })
+  (x: import x { inherit getSystem inputs lib stateVersion; })
   (filesList ./. [ "default.nix" ])
 )

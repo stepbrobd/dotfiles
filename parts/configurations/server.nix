@@ -1,6 +1,7 @@
-{ lib, inputs, stateVersion }:
+{ getSystem, inputs, lib, stateVersion }:
 
 let
+  inherit (lib) mkColmena;
   hosts = [
     "lagern" # AWS EC2 ZRH T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
     "bachtel" # AWS EC2 ZRH T3.Micro, 2 vCPU, 1GB RAM, 30GB Storage
@@ -8,7 +9,7 @@ let
     "walberla" # Hetzner Cloud CX32, 4 vCPU, 8GB RAM, 80GB Storage
   ];
 
-  colmena = lib.mkColmena {
+  colmena = mkColmena rec {
     inherit inputs hosts stateVersion;
     os = "nixos";
     platform = "x86_64-linux";
@@ -20,6 +21,8 @@ let
       self.nixosModules.desktop
       self.nixosModules.minimal
     ];
+    nixpkgs = (getSystem platform).allModuleArgs.pkgs;
+    specialArgs = { inherit inputs lib; };
   };
 
   # blocked on colmena #161

@@ -10,15 +10,13 @@ in
 , hosts ? [ ] # [ "server1" "server2" ]
 , users ? { } # { "username" -> [ module ] }
 , modules ? [ ] # nixos/darwin modules
+, nixpkgs ? { }
+, specialArgs ? { }
 }:
 
-let
-  specialArgs = { inherit lib inputs; };
-in
 {
   meta = {
-    inherit specialArgs;
-    nixpkgs = import inputs.nixpkgs { system = platform; };
+    inherit nixpkgs specialArgs;
   };
 } // lib.genAttrs hosts (host: {
   imports =

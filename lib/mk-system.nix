@@ -10,13 +10,14 @@ in
 , entrypoint # file path
 , users ? { } # { "username" -> [ module ] }
 , modules ? [ ] # nixos/darwin modules
+, specialArgs ? { inherit lib inputs; }
 }:
 
 let
-  specialArgs = { inherit lib inputs; };
+  system = platform;
 in
 lib."${os}System" {
-  inherit specialArgs;
+  inherit specialArgs system;
 
   modules = genHostModules {
     inherit inputs os platform stateVersion entrypoint users modules specialArgs;

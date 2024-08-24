@@ -85,12 +85,6 @@ in
     '';
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-
-    overlays = [ inputs.self.overlays.default ];
-  };
-
   # alacritty terminfo
   environment.systemPackages = with pkgs; [ alacritty.terminfo ];
 }
