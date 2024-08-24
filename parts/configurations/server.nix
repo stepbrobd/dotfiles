@@ -19,6 +19,7 @@ let
       self.nixosModules.caddy
       self.nixosModules.common
       self.nixosModules.desktop
+      self.nixosModules.lix
       self.nixosModules.minimal
     ];
     nixpkgs = (getSystem platform).allModuleArgs.pkgs;
