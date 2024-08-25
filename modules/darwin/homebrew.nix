@@ -55,6 +55,7 @@
       "discord"
       "notchnook"
       "notion"
+      "openvpn-connect"
       "orbstack"
       "orion"
       "osu"
