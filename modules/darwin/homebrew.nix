@@ -55,7 +55,6 @@
       "discord"
       "notchnook"
       "notion"
-      "openvpn-connect"
       "orbstack"
       "orion"
       "osu"
@@ -75,6 +74,7 @@
       "Flighty" = 1358823008;
       "iStat Menus" = 1319778037;
       "Parcel" = 639968404;
+      "Passepartout" = 1433648537;
       "Pixelmator Pro" = 1289583905;
       "Remote Desktop" = 409907375;
       "ServerCat" = 1501532023;
