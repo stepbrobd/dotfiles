@@ -44,7 +44,6 @@
     compat.url = "github:edolstra/flake-compat";
     compat.flake = false;
     crane.url = "github:ipetkov/crane";
-    crane.inputs.nixpkgs.follows = "nixpkgs";
     cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     cosmic.inputs.nixpkgs.follows = "nixpkgs";
     cosmic.inputs.nixpkgs-stable.follows = "nixpkgs";
