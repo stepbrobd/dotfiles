@@ -8,7 +8,7 @@
   imports = [ ./hardware.nix ];
 
   i18n.defaultLocale = "en_US.UTF-8";
-  time.timeZone = "Asia/Tokyo";
+  time.timeZone = "America/New_York";
 
   services.openssh.enable = true;
 
