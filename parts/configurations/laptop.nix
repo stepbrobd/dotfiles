@@ -20,6 +20,7 @@ in
       users = { ysun = with inputs.self; [ hmModules.ysun.darwin ]; };
       modules = with inputs.self.darwinModules; [
         common
+        linux-builder
         lix
         nixbuild
         fonts
