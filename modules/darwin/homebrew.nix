@@ -70,6 +70,7 @@
       "Apple Configurator" = 1037126344;
       "Authenticator" = 1538761576;
       "Dropover" = 1355679052;
+      "iMazing Profile Editor" = 1487860882;
       # "Fantastical" = 975937182;
       "Flighty" = 1358823008;
       "iStat Menus" = 1319778037;
