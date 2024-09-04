@@ -11,7 +11,7 @@ let
   modulesFor = name: loadAll {
     dir = "${modulePath}/${name}";
     importer = importApplyWithArgs;
-    transformer = kebabToCamel;
+    transformer = x: x;
     excludes = [ ];
     args = moduleArgs;
   };
