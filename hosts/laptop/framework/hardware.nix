@@ -1,9 +1,4 @@
-{ config
-, lib
-, pkgs
-, modulesPath
-, ...
-}:
+{ config, lib, ... }:
 
 {
   hardware.enableAllFirmware = lib.mkDefault true;

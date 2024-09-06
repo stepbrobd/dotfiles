@@ -1,10 +1,4 @@
-# nixpkgs options, host specific
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ config, lib, pkgs, ... }:
 
 {
   services.hydra = {
@@ -35,7 +29,7 @@
   age.secrets.hydra-notify.file = ../../../secrets/hydra-notify.age;
   systemd.services =
     lib.mapAttrs
-      (name: _: {
+      (_name: _: {
         path = [ pkgs.msmtp ];
         serviceConfig.EnvironmentFile = config.age.secrets.hydra-notify.path;
       })

@@ -1,4 +1,4 @@
-{ lib, inputs, ... } @ args:
+{ lib, inputs, ... }:
 
 let
   inherit (lib) importPackagesWith mkDynamicAttrs;

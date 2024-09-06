@@ -1,10 +1,4 @@
-# nixpkgs options, host specific
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ config, pkgs, ... }:
 
 {
   age.secrets."plausible.adm".file = ../../../secrets/plausible.adm.age;

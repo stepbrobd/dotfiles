@@ -8,7 +8,7 @@
 }:
 
 let
-  inherit (lib) attrNames genAttrs map optionals;
+  inherit (lib) attrNames genAttrs map;
 
   usernames = attrNames users;
 in

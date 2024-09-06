@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    utils.url = "github:numtide/flake-utils";
     gomod2nix = {
       url = "github:nix-community/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,11 +12,10 @@
   outputs =
     { self
     , nixpkgs
-    , flake-utils
+    , utils
     , gomod2nix
-    ,
     }:
-    flake-utils.lib.eachDefaultSystem (
+    utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs {
@@ -32,7 +31,7 @@
           modules = ./gomod2nix.toml;
         };
 
-        apps.default = flake-utils.lib.mkApp { drv = self.packages.${system}.default; };
+        apps.default = utils.lib.mkApp { drv = self.packages.${system}.default; };
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [

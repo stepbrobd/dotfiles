@@ -1,10 +1,4 @@
-# nixpkgs options, host specific
-
-{ config
-, lib
-, pkgs
-, ...
-}:
+{ config, ... }:
 
 {
   networking.firewall.allowedTCPPorts = [

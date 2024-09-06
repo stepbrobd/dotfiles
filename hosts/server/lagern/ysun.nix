@@ -1,11 +1,4 @@
-# custom systemd service
-
-{ config
-, lib
-, pkgs
-, inputs
-, ...
-}:
+{ config, inputs, ... }:
 
 {
   # disabled, add ysun to input before re-enabling

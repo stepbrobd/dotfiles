@@ -1,7 +1,7 @@
 { inputs, lib, ... }:
 
 let
-  inherit (lib) deepMergeAttrsList filesList importApplyWithArgs kebabToCamel loadAll map;
+  inherit (lib) deepMergeAttrsList filesList importApplyWithArgs loadAll map;
 
   # args passed to `importApplyWithArgs`
   moduleArgs = { inherit inputs lib; };

@@ -1,9 +1,4 @@
-# nixpkgs options, host specific
-
-{ config
-, pkgs
-, ...
-}:
+{ config, ... }:
 
 {
   age.secrets.cache = {

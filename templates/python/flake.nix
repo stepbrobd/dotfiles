@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    utils.url = "github:numtide/flake-utils";
     pyproject = {
       url = "github:nix-community/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,11 +11,10 @@
   outputs =
     { self
     , nixpkgs
-    , flake-utils
+    , utils
     , pyproject
-    ,
     }:
-    flake-utils.lib.eachDefaultSystem (
+    utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs {
@@ -25,14 +24,14 @@
             allowUnfreePredicate = (_: true);
           };
         };
-        python3 = pkgs.python311;
+        python = pkgs.python312;
       in
       {
         packages.default = python.pkgs.buildPythonPackage (
-          project.renderers.buildPythonPackage { inherit python; }
+          pyproject.renderers.buildPythonPackage { inherit python; }
         );
 
-        apps.default = flake-utils.lib.mkApp { drv = self.packages.${system}.default; };
+        apps.default = utils.lib.mkApp { drv = self.packages.${system}.default; };
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
@@ -57,7 +56,7 @@
         formatter = pkgs.writeShellScriptBin "formatter" ''
           set -eoux pipefail
           ${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt .
-          ${pkgs.ruff}/bin/ruff --fix --unsafe-fixes .
+          ${pkgs.ruff}/bin/ruff check --fix --unsafe-fixes .
         '';
       }
     );

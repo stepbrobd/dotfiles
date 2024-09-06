@@ -2,7 +2,7 @@
 
 # https://stackoverflow.com/a/54505212/17129151
 let
-  inherit (lib) all concatLists head isAttrs isList last recursiveUpdate tail unique zipAttrsWith;
+  inherit (lib) all concatLists head isAttrs isList last tail unique zipAttrsWith;
 in
 attrList:
 let
