@@ -16,7 +16,7 @@
 
     taps = [
       # my own taps
-      # "stepbrobd/tap"
+      "stepbrobd/tap"
 
       # official taps
       # "homebrew/cask"
@@ -43,7 +43,7 @@
 
     casks = [
       # my own casks
-      # "stepbrobd/tap/research"
+      "stepbrobd/tap/research"
 
       "1password"
       "1password-cli"
