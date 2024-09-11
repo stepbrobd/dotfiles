@@ -24,6 +24,7 @@ in
         lix
         nixbuild
         fonts
+        hammerspoon
         homebrew
         sshd
         system
