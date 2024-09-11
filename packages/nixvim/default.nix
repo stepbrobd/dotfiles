@@ -50,15 +50,19 @@ lib.makeOverridable nixvim.makeNixvimWithModule {
         gitsigns.enable = true;
         lualine = {
           enable = true;
-          iconsEnabled = true;
-          theme = "nord";
-          sections = {
-            lualine_a = [ "mode" ];
-            lualine_b = [ "branch" ];
-            lualine_c = [ "diff" "diagnostics" ];
-            lualine_x = [ "filetype" "encoding" ];
-            lualine_y = [ "progress" ];
-            lualine_z = [ "location" ];
+          settings = {
+            options = {
+              theme = "nord";
+              icons_enabled = true;
+            };
+            sections = {
+              lualine_a = [ "mode" ];
+              lualine_b = [ "branch" ];
+              lualine_c = [ "diff" "diagnostics" ];
+              lualine_x = [ "filetype" "encoding" ];
+              lualine_y = [ "progress" ];
+              lualine_z = [ "location" ];
+            };
           };
         };
         luasnip.enable = true;
