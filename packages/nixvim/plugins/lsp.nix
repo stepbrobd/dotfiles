@@ -26,7 +26,7 @@
   plugins.lsp.servers.cssls.enable = true; # CSS
   plugins.lsp.servers.html.enable = true; # HTML
   plugins.lsp.servers.tailwindcss.enable = true; # TailwindCSS
-  plugins.lsp.servers.tsserver.enable = true; # TS/JS
+  plugins.lsp.servers.ts-ls.enable = true; # TS/JS
 
   # JSON
   plugins.lsp.servers.jsonls.enable = true;
