@@ -50,6 +50,7 @@
       "airbuddy"
       "aldente"
       "bartender"
+      "betterdisplay"
       "cleanmymac"
       "coconutbattery"
       "discord"
