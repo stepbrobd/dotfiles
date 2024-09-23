@@ -45,8 +45,6 @@
       # my own casks
       "stepbrobd/tap/research"
 
-      "1password"
-      "1password-cli"
       "airbuddy"
       "aldente"
       "bartender"
@@ -86,7 +84,6 @@
       "The Unarchiver" = 425424353;
       "Xcode" = 497799835;
       # safari
-      "1Password for Safari" = 1569813296;
       "AdGuard" = 1440147259;
       "Kagi" = 1622835804;
       "MyMind" = 1532801185;
