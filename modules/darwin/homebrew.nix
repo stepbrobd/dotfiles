@@ -52,6 +52,7 @@
       "cleanmymac"
       "coconutbattery"
       "discord"
+      "jabref"
       "notchnook"
       "notion"
       "orbstack"
