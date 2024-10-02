@@ -409,6 +409,32 @@
         "url": "https://git.lix.systems/lix-project/nixos-module"
       }
     },
+    "nix-serve-ng": {
+      "inputs": {
+        "flake-compat": [
+          "compat"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": [
+          "utils"
+        ]
+      },
+      "locked": {
+        "lastModified": 1727789884,
+        "narHash": "sha256-2LPx4iRJonX4gtd3r73DBM/ZhN/hKu1lb/MHOav8c5s=",
+        "owner": "aristanetworks",
+        "repo": "nix-serve-ng",
+        "rev": "578ad85b3096d99b25cae0a73c03df4e82f587c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aristanetworks",
+        "repo": "nix-serve-ng",
+        "type": "github"
+      }
+    },
     "nixos-generators": {
       "inputs": {
         "nixlib": [
@@ -574,6 +600,7 @@
         "lanzaboote": "lanzaboote",
         "lix": "lix",
         "lix-module": "lix-module",
+        "nix-serve-ng": "nix-serve-ng",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

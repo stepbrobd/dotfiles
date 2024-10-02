@@ -15,12 +15,13 @@ let
     platform = "x86_64-linux";
     users = { ysun = with inputs.self; [ /* hmModules.ysun.minimal */ ]; };
     modules = with inputs; [
-      srvos.nixosModules.server
+      nix-serve-ng.nixosModules.default
       self.nixosModules.caddy
       self.nixosModules.common
       self.nixosModules.desktop
       self.nixosModules.lix
       self.nixosModules.minimal
+      srvos.nixosModules.server
     ];
     nixpkgs = (getSystem platform).allModuleArgs.pkgs;
     specialArgs = { inherit inputs lib; };

@@ -90,6 +90,10 @@
     lix-module.inputs.flakey-profile.follows = "flakey-profile";
     lix-module.inputs.lix.follows = "lix";
     # n
+    nix-serve-ng.url = "github:aristanetworks/nix-serve-ng";
+    nix-serve-ng.inputs.nixpkgs.follows = "nixpkgs";
+    nix-serve-ng.inputs.flake-compat.follows = "compat";
+    nix-serve-ng.inputs.utils.follows = "utils";
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
     nixos-generators.inputs.nixlib.follows = "nixpkgs";
