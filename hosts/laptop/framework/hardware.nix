@@ -22,7 +22,6 @@
   # boot.zfs.allowHibernation = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = true;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   services.zfs.trim.enable = true;
   services.zfs.autoScrub.enable = true;
