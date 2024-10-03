@@ -212,6 +212,11 @@ description = "cy 6740 spring 2024 @ northeastern university"
 visibility = "private"
 archived = true
 
+[repo."neu-cs-7400"]
+description = "cs 7400 fall 2024 @ northeastern university"
+visibility = "private"
+archived = false
+
 ## University of Utah
 [repo."uutah-cs-1410"]
 description = "cs 1410 spring 2020 @ university of utah"
