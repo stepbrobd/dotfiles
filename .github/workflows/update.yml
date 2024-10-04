@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: "Install Nix"
-        uses: "cachix/install-nix-action@V27"
+        uses: "cachix/install-nix-action@v30"
       - name: "Magic Cache"
         uses: "determinatesystems/magic-nix-cache-action@v8"
       - name: "Update"
