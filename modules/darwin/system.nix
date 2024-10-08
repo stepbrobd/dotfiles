@@ -42,6 +42,16 @@ in
       ShowStatusBar = true;
     };
 
+    loginwindow = {
+      # https://mynixos.com/nix-darwin/options/system.defaults.loginwindow
+      GuestEnabled = false;
+    };
+
+    NSGlobalDomain = {
+      AppleICUForce24HourTime = true;
+      AppleInterfaceStyle = "Dark";
+    };
+
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
   };
 
