@@ -166,6 +166,11 @@ description = "forked from cybergenik/hopper"
 visibility = "public"
 archived = false
 
+[repo."lean4"]
+description = "forked from leanprover/lean4"
+visibility = "public"
+archived = false
+
 [repo."ngipkgs"]
 description = "forked from ngi-nix/ngipkgs"
 visibility = "public"
