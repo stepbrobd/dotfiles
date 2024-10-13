@@ -66,6 +66,14 @@
     }
   '';
 
+  services.caddy.virtualHosts."stats.nixolo.gy".extraConfig = ''
+    import common
+    reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
+      header_up Host {host}
+      header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+    }
+  '';
+
   services.caddy.virtualHosts."toukei.ikaz.uk".extraConfig = ''
     import common
     tls { dns cloudflare {env.CF_API_TOKEN_KICHINOSE} }

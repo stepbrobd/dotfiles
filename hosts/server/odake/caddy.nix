@@ -19,6 +19,16 @@
       import common
       reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
     '';
+
+    virtualHosts."cache.ysun.co".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}
+    '';
+
+    virtualHosts."hydra.ysun.co".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
+    '';
   };
 
   age.secrets.cloudflare = {

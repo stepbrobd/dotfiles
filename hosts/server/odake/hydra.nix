@@ -15,8 +15,10 @@
     port = 10069;
     notificationSender = "hydra@nixolo.gy";
 
+    tracker = ''<script defer data-domain=\"hydra.ysun.co\" src=\"https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js\"></script>'';
+
     extraConfig = ''
-      email_notification = 1
+      email_notification = 0
 
       <dynamicruncommand>
         enable = 1
