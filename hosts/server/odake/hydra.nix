@@ -49,16 +49,13 @@
 
     settings.allowed-uris = [
       "flake:"
-      "path:"
+      "git+https:"
+      "git+ssh:"
       "github:"
-      "git+https://github.com/"
-      "git+ssh://github.com/"
       "gitlab:"
-      "git+https://gitlab.com/"
-      "git+ssh://gitlab.com/"
+      "https:"
+      "path:"
       "sourcehut:"
-      "git+https://git.sr.ht/"
-      "git+ssh://git.sr.ht/"
     ];
 
     buildMachines = [
