@@ -5,13 +5,14 @@
     enable = true;
 
     settings = {
-      user = {
-        name = config.programs.git.userName;
-        email = config.programs.git.userEmail;
+      user = with config.programs.git; {
+        name = userName;
+        email = userEmail;
       };
-      signing = {
-        sign-all = config.programs.git.signing.signByDefault;
-        key = config.programs.git.signing.key;
+
+      signing = with config.programs.git.signing; {
+        sign-all = signByDefault;
+        key = key;
         backend = "gpg"; # track git settings
       };
     };
