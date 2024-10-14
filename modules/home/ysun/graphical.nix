@@ -17,6 +17,7 @@
     git
     gpg
     # hyprland # linux only
+    jujutsu
     lsd
     # mpd # linux only
     nushell
