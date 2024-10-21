@@ -19,6 +19,7 @@ in
 
   "secrets/cloudflare-kichinose.age".publicKeys = kichinose ++ [ lagern ];
   "secrets/cloudflare-ysun.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
+  "secrets/cloudflare-acme.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
 
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.goo.age".publicKeys = ysun ++ [ lagern ];
