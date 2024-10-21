@@ -12,7 +12,7 @@
 
     virtualHosts.${config.services.kanidm.serverSettings.domain}.extraConfig = ''
       import common
-      reverse_proxy ${toString config.services.kanidm.serverSettings.bindaddress}
+      reverse_proxy https://${toString config.services.kanidm.serverSettings.bindaddress}
     '';
   };
 

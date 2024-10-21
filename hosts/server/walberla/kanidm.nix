@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  # allow port 636 for LDAP
+  networking.firewall.allowedTCPPorts = [ 636 ];
+
   services.kanidm = {
     enableServer = true;
 
@@ -9,7 +12,7 @@
         inherit (config.security.acme.certs."auth.ysun.co") directory;
       in
       {
-        domain = "auth.ysun.co";
+        domain = "ysun.co";
         origin = "https://auth.ysun.co";
         ldapbindaddress = "0.0.0.0:636";
         bindaddress = "0.0.0.0:8080";
