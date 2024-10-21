@@ -5,7 +5,8 @@
     ./hardware.nix
 
     ./caddy.nix
-    ./keycloak.nix
+    ./kanidm.nix
+    # ./keycloak.nix
     # ./portunus.nix
   ];
 

@@ -1,8 +1,10 @@
 { pkgs, ... }:
 
+# archived, see kanidm
 {
   services.keycloak = {
-    enable = true;
+    enable = false;
+
     settings = {
       http-enabled = true;
       http-host = "127.0.0.1";

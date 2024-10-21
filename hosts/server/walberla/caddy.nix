@@ -10,9 +10,9 @@
     enable = true;
     email = "ysun@hey.com";
 
-    virtualHosts.${config.services.keycloak.settings.hostname}.extraConfig = ''
+    virtualHosts.${config.services.kanidm.serverSettings.domain}.extraConfig = ''
       import common
-      reverse_proxy ${toString config.services.keycloak.settings.http-host}:${toString config.services.keycloak.settings.http-port}
+      reverse_proxy ${toString config.services.kanidm.serverSettings.bindaddress}
     '';
   };
 
