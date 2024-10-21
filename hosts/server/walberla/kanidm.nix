@@ -2,7 +2,7 @@
 
 {
   # allow port 636 for LDAP
-  networking.firewall.allowedTCPPorts = [ 636 ];
+  networking.firewall.allowedTCPPorts = [ 443 636 ];
 
   services.kanidm = {
     enableServer = true;
@@ -15,7 +15,7 @@
         domain = "ysun.co";
         origin = "https://auth.ysun.co";
         ldapbindaddress = "0.0.0.0:636";
-        bindaddress = "0.0.0.0:8080";
+        bindaddress = "0.0.0.0:443";
         trust_x_forward_for = true;
         tls_key = "${directory}/key.pem";
         tls_chain = "${directory}/fullchain.pem";

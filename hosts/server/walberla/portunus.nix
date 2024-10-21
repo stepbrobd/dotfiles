@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
+# archived, see kanidm
 {
   services.portunus = {
-    enable = true;
+    enable = false;
     domain = "ldap.ysun.co";
     port = 18080;
     dex.enable = false; # use keycloak instead
