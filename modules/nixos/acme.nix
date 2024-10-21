@@ -10,6 +10,7 @@
     defaults = {
       email = "ysun@hey.com";
       dnsProvider = "cloudflare";
+      extraLegoFlags = [ "--dns.resolvers=1.1.1.1:53" ];
       environmentFile = config.age.secrets.acme.path;
     };
   };
