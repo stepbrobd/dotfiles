@@ -1,7 +1,9 @@
+{ inputs, ... }:
+
 { config, ... }:
 
 {
-  age.secrets.acme.file = ../../secrets/cloudflare-acme.age;
+  age.secrets.acme.file = "${inputs.self}/secrets/cloudflare-acme.age";
 
   security.acme.defaults = {
     email = "ysun@hey.com";
