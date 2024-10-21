@@ -14,7 +14,7 @@
         ldapbindaddress = "0.0.0.0:636";
         bindaddress = "0.0.0.0:8080";
         trust_x_forward_for = true;
-        tls_key = "${directory}/privkey.pem";
+        tls_key = "${directory}/key.pem";
         tls_chain = "${directory}/fullchain.pem";
       };
   };
