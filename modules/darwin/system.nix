@@ -58,4 +58,14 @@ in
   };
 
   security.pam.enableSudoTouchIdAuth = true;
+
+  environment.etc = {
+    "sudoers.d/10-nix-commands".text = ''
+      %admin ALL=(ALL:ALL) NOPASSWD: /bin/launchctl, \
+                                     /nix/store/*/activate, \
+                                     /run/current-system/sw/bin/darwin-rebuild, \
+                                     /run/current-system/sw/bin/ln, \
+                                     /run/current-system/sw/bin/nix*
+    '';
+  };
 }
