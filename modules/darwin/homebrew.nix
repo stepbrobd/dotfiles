@@ -16,7 +16,7 @@
 
     taps = [
       # my own taps
-      "stepbrobd/tap"
+      # "stepbrobd/tap"
 
       # official taps
       # "homebrew/cask"
@@ -43,7 +43,7 @@
 
     casks = [
       # my own casks
-      "stepbrobd/tap/research"
+      # "stepbrobd/tap/research"
 
       "airbuddy"
       "aldente"
@@ -62,6 +62,7 @@
       "spacedrive"
       "yubico-yubikey-manager"
       "zoom"
+      "zotero"
     ];
 
     masApps = {
