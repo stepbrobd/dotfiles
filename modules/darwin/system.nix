@@ -12,6 +12,8 @@ in
   # for i in {5..32}; do sudo dscl . -delete /Users/_nixbld$i; done
   ids.uids.nixbld = mkForce 400;
 
+  services.nix-daemon.enable = true;
+
   system.defaults = {
     alf = {
       allowdownloadsignedenabled = 1;
