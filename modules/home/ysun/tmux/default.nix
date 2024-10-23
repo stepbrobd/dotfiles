@@ -9,19 +9,22 @@
     clock24 = true;
     terminal = "screen-256color";
 
-    plugins = with pkgs.tmuxPlugins; [
-      nord
-      sensible
-      resurrect
-    ];
+    plugins = with pkgs.tmuxPlugins; [ nord resurrect ];
+    sensibleOnTop = false;
 
     extraConfig = ''
-      set -g default-shell "$SHELL"
+      # tmux-sensible
+      set -s escape-time 0
+      set -g history-limit 99999
+      set -g display-time 2500
+      set -g status-interval 5
+      set -g status-keys emacs
+      set -g focus-events on
+      setw -g aggressive-resize on
+      bind C-p previous-window
+      bind C-n next-window
+      set -g default-command "$SHELL"
 
-      # set -g default-terminal "alacritty"
-      # set-option -ga terminal-overrides ",alacritty:Tc"
-
-      set -g mouse on
       set -g status on
       set -g status-position top
 
