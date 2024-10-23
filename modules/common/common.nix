@@ -3,7 +3,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (lib) mapAttrs mapAttrsToList mkForce optional;
+  inherit (lib) mapAttrs mapAttrsToList mkForce optional optionals;
 in
 {
   # enable nextdns and tailscale on all hosts
@@ -35,6 +35,16 @@ in
       builders-use-substitutes = true;
       use-xdg-base-directories = true;
       warn-dirty = false;
+
+      sandbox = true;
+      extra-sandbox-paths = [ ] ++ optionals pkgs.stdenv.isDarwin [
+        "/System/Library/Frameworks"
+        "/System/Library/PrivateFrameworks"
+        "/private/tmp"
+        "/private/var/tmp"
+        "/usr/bin/env"
+        "/usr/lib"
+      ];
 
       trusted-users = [ "root" ]
         ++ (optional pkgs.stdenv.isLinux "@wheel")
