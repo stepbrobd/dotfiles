@@ -16,8 +16,10 @@
     ];
 
     extraConfig = ''
-      set -g default-terminal "alacritty"
-      set-option -ga terminal-overrides ",alacritty:Tc"
+      set -g default-shell "$SHELL"
+
+      # set -g default-terminal "alacritty"
+      # set-option -ga terminal-overrides ",alacritty:Tc"
 
       set -g mouse on
       set -g status on
