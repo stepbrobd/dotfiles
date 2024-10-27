@@ -54,6 +54,7 @@
       "discord"
       "notchnook"
       "notion"
+      "obs"
       "orbstack"
       "orion"
       "osu"
