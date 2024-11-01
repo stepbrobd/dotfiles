@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.tmux = {
@@ -42,6 +42,9 @@
 
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux: config reloaded"
       bind s set-window-option synchronize-panes\; display-message "synchronize-panes: #{?pane_synchronized,on,off}"
+    '' + pkgs.lib.optionalString config.programs.alacritty.enable ''
+      set -g default-terminal "alacritty"
+      set-option -ga terminal-overrides ",alacritty:Tc"
     '';
   };
 }
