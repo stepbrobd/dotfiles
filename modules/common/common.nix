@@ -36,7 +36,7 @@ in
       use-xdg-base-directories = true;
       warn-dirty = false;
 
-      sandbox = true;
+      sandbox = lib.mkDefault true;
       extra-sandbox-paths = [ ] ++ optionals pkgs.stdenv.isDarwin [
         "/System/Library/Frameworks"
         "/System/Library/PrivateFrameworks"
