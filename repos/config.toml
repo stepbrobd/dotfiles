@@ -134,7 +134,7 @@ archived = false
 [repo."crunchycli"]
 description = "forked from crunchy-labs/crunchy-cli"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."deno2nix"]
 description = "forked from sno2wman/deno2nix"
