@@ -52,6 +52,7 @@
       "cleanmymac"
       "coconutbattery"
       "discord"
+      "hey"
       "notchnook"
       "notion"
       "obs"
