@@ -42,6 +42,7 @@
     colmena.inputs.stable.follows = "nixpkgs";
     colmena.inputs.flake-compat.follows = "compat";
     colmena.inputs.flake-utils.follows = "utils";
+    colmena.inputs.nix-github-actions.follows = "";
     compat.url = "github:edolstra/flake-compat";
     compat.flake = false;
     crane.url = "github:ipetkov/crane";
