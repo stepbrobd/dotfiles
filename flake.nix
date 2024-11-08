@@ -60,6 +60,8 @@
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
     # g
+    gallery.url = "github:sambecker/exif-photo-blog";
+    gallery.flake = false;
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
     git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";

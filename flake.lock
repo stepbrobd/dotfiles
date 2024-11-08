@@ -219,6 +219,22 @@
         "type": "github"
       }
     },
+    "gallery": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727370321,
+        "narHash": "sha256-FJsJJMJ1oIFPxfjbiwEhJJiuDTNqwXML1wGmVZnSAXw=",
+        "owner": "sambecker",
+        "repo": "exif-photo-blog",
+        "rev": "0c69efaab4922574632177131e51bb6fc3b91c44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sambecker",
+        "repo": "exif-photo-blog",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": [
@@ -566,6 +582,7 @@
         "devshell": "devshell",
         "disko": "disko",
         "flakey-profile": "flakey-profile",
+        "gallery": "gallery",
         "git-hooks": "git-hooks",
         "gitignore": "gitignore",
         "hm": "hm",
