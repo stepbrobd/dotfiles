@@ -17,13 +17,7 @@
   };
 
   plugins = {
-    bufferline = {
-      enable = true;
-      settings.options = {
-        always_show_bufferline = false;
-        diagnostics = "nvim_lsp";
-      };
-    };
+
     diffview.enable = true;
     gitblame.enable = true;
     gitsigns.enable = true;
