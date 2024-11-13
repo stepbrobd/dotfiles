@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  viAlias = true;
-  vimAlias = true;
+  viAlias = false;
+  vimAlias = false;
   wrapRc = true;
   withRuby = true;
   withNodeJs = true;
