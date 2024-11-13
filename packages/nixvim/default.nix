@@ -7,78 +7,8 @@
 
 let
   nixvim = inputs.nixvim.legacyPackages."${stdenv.system}";
+  inherit (lib) attrNames map readDir;
 in
 lib.makeOverridable nixvim.makeNixvimWithModule {
-  module = {
-    imports = [
-      ./plugins/cmp.nix
-      ./plugins/colorscheme.nix
-      ./plugins/dashboard.nix
-      ./plugins/explorer.nix
-      ./plugins/lsp.nix
-      ./plugins/tree-sitter.nix
-    ];
-
-    config = {
-      opts = {
-        encoding = "utf-8";
-        title = true;
-        wrap = false;
-        number = true;
-        relativenumber = true;
-        clipboard = "unnamedplus";
-        incsearch = true;
-        ignorecase = true;
-        smartcase = true;
-        expandtab = true;
-        undofile = true;
-        autoindent = true;
-        smartindent = true;
-        smarttab = true;
-      };
-
-      plugins = {
-        bufferline = {
-          enable = true;
-          settings.options = {
-            always_show_bufferline = false;
-            diagnostics = "nvim_lsp";
-          };
-        };
-        diffview.enable = true;
-        gitblame.enable = true;
-        gitsigns.enable = true;
-        lualine = {
-          enable = true;
-          settings = {
-            options = {
-              theme = "nord";
-              icons_enabled = true;
-            };
-            sections = {
-              lualine_a = [ "mode" ];
-              lualine_b = [ "branch" ];
-              lualine_c = [ "diff" "diagnostics" ];
-              lualine_x = [ "filetype" "encoding" ];
-              lualine_y = [ "progress" ];
-              lualine_z = [ "location" ];
-            };
-          };
-        };
-        luasnip.enable = true;
-        nix.enable = true;
-        nix-develop.enable = true;
-        noice.enable = true;
-        notify.enable = true;
-        oil.enable = true;
-        presence-nvim.enable = true;
-        rainbow-delimiters.enable = true;
-        spider.enable = true;
-        telescope.enable = true;
-        toggleterm.enable = true;
-        vim-surround.enable = true;
-        web-devicons.enable = true;
-      };
-    };
-  };
+  module.imports = map (x: ./plugins/. + "/${x}") (attrNames (readDir ./plugins));
 }
