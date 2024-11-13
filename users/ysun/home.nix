@@ -1,10 +1,14 @@
 { config
+, inputs
 , lib
-, pkgs
 , osConfig
+, pkgs
 , ...
 }:
 
+let
+  nixvim = inputs.self.packages.${pkgs.stdenv.system}.nixvim;
+in
 {
   xdg = {
     enable = true;
