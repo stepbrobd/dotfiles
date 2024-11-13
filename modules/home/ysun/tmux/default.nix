@@ -40,8 +40,18 @@
       bind k select-pane -U
       bind l select-pane -R
 
+      # fast reload
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "tmux: config reloaded"
       bind s set-window-option synchronize-panes\; display-message "synchronize-panes: #{?pane_synchronized,on,off}"
+
+      # start session index from 1
+      set-option -g @first-run 1
+      set-hook -g session-created {
+        if-shell -F '#{?@first-run,1,0}' {
+          set-option -g @first-run 0
+          if-shell -F '#{==:#{session_name},0}' { rename-session 1 }
+        }
+      }
     '' + pkgs.lib.optionalString config.programs.alacritty.enable ''
       set -g default-terminal "alacritty"
       set-option -ga terminal-overrides ",alacritty:Tc"
