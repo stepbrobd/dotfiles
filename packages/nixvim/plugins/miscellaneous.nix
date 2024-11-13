@@ -17,6 +17,7 @@
   };
 
   plugins = {
+    autoclose.enable = true;
     diffview.enable = true;
     gitblame.enable = true;
     gitsigns.enable = true;
@@ -28,8 +29,6 @@
     presence-nvim.enable = true;
     rainbow-delimiters.enable = true;
     spider.enable = true;
-    telescope.enable = true;
-    toggleterm.enable = true;
     vim-surround.enable = true;
     web-devicons.enable = true;
   };

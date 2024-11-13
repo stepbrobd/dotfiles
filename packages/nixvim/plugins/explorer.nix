@@ -21,7 +21,7 @@
     action = "<cmd>:NvimTreeToggle<cr>";
     options = {
       silent = true;
-      desc = "Nvim-tree: Toggle";
+      desc = "Toggle file manager";
     };
   }];
 }
