@@ -1,6 +1,7 @@
 # https://github.com/MikaelFangel/nixvim-config/blob/92924c1938e48fd3b77166e616ae6e6bd4a5587b/config/cmp.nix
 
 {
+  plugins.web-devicons.enable = true;
   plugins = {
     luasnip.enable = true;
     copilot-lua = {

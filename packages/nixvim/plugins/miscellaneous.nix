@@ -22,14 +22,12 @@
     gitblame.enable = true;
     gitsigns.enable = true;
     luasnip.enable = true;
-    nix.enable = true;
-    nix-develop.enable = true;
     noice.enable = true;
     notify.enable = true;
     presence-nvim.enable = true;
     rainbow-delimiters.enable = true;
     spider.enable = true;
+    todo-comments.enable = true;
     vim-surround.enable = true;
-    web-devicons.enable = true;
   };
 }

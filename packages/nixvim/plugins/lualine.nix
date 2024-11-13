@@ -2,10 +2,6 @@
   plugins.lualine = {
     enable = true;
     settings = {
-      extensions = [
-        "toggleterm"
-      ];
-
       options = {
         theme = "nord";
         icons_enabled = true;

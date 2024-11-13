@@ -1,4 +1,5 @@
 {
+  plugins.web-devicons.enable = true;
   plugins.bufferline = {
     enable = true;
     settings.options = {

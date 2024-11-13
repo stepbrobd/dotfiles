@@ -37,6 +37,10 @@
   # Nix
   plugins.lsp.servers.nil_ls.enable = true;
   plugins.nix.enable = true;
+  plugins.nix-develop.enable = true;
+
+  # OCaml
+  plugins.lsp.servers.ocamllsp.enable = true;
 
   # Python
   plugins.lsp.servers.ruff.enable = true;
