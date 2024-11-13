@@ -8,7 +8,7 @@ in
     {
       packages = mkDynamicAttrs {
         dir = ../packages;
-        fun = name: importPackagesWith (pkgs // { inherit inputs; }) (../packages/. + "/${name}") { };
+        fun = name: importPackagesWith (pkgs // { inherit inputs lib; }) (../packages/. + "/${name}") { };
       };
     };
 
