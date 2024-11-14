@@ -41,6 +41,7 @@
 
   # OCaml
   plugins.lsp.servers.ocamllsp.enable = true;
+  plugins.lsp.servers.ocamllsp.package = pkgs.ocamlPackages.ocaml-lsp;
 
   # Python
   plugins.lsp.servers.ruff.enable = true;
