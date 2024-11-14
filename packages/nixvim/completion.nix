@@ -35,13 +35,10 @@
           { name = "dap"; }
           { name = "dictionary"; }
           { name = "emoji"; }
-          { name = "fuzzy_buffer"; }
-          { name = "fuzzy_path"; }
           { name = "git"; }
           { name = "greek"; }
           { name = "latex_symbols"; }
           { name = "look"; }
-          { name = "luasnip"; }
           { name = "luasnip"; }
           { name = "nvim_lsp"; }
           { name = "nvim_lsp_document_symbol"; }

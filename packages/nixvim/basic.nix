@@ -14,5 +14,6 @@
     autoindent = true;
     smartindent = true;
     smarttab = true;
+    pumheight = 10;
   };
 }
