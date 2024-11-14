@@ -58,8 +58,18 @@
         ];
 
         window = {
-          completion.border = "rounded";
-          documentation.border = "rounded";
+          completion = {
+            winhighlight =
+              "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+            scrollbar = false;
+            sidePadding = 0;
+            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
+          };
+          settings.documentation = {
+            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
+            winhighlight =
+              "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+          };
         };
 
         mapping = {
