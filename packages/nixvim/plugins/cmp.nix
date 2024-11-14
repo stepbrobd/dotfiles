@@ -1,60 +1,65 @@
 # https://github.com/MikaelFangel/nixvim-config/blob/92924c1938e48fd3b77166e616ae6e6bd4a5587b/config/cmp.nix
 
 {
-  plugins.web-devicons.enable = true;
   plugins = {
-    luasnip.enable = true;
     copilot-lua = {
       enable = true;
       suggestion.enabled = false;
       panel.enabled = false;
     };
 
-    cmp-buffer.enable = true;
-    cmp-cmdline.enable = true;
-    cmp-dictionary.enable = true;
-    cmp_luasnip.enable = true;
-    cmp-nvim-lsp.enable = true;
-    cmp-path.enable = true;
-    cmp-treesitter.enable = true;
-    cmp-emoji.enable = true;
+    coq-nvim.enable = true;
+    coq-thirdparty.enable = true;
 
     cmp = {
       enable = true;
 
       settings = {
-        experimental = { ghost_text = true; };
+        completion.completeopt = "menu,menuone,noinsert";
+        experimental.ghost_text = true;
+
         snippet.expand = ''
           function(args)
             require('luasnip').lsp_expand(args.body)
           end
         '';
+
+        autoEnableSources = true;
         sources = [
-          { name = "nvim_lsp"; }
-          { name = "luasnip"; }
           {
             name = "buffer";
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
           }
+          { name = "cmdline"; }
+          { name = "copilot"; }
+          { name = "dap"; }
+          { name = "dictionary"; }
+          { name = "emoji"; }
+          { name = "fuzzy_buffer"; }
+          { name = "fuzzy_path"; }
+          { name = "git"; }
+          { name = "greek"; }
+          { name = "latex_symbols"; }
+          { name = "look"; }
+          { name = "luasnip"; }
+          { name = "luasnip"; }
+          { name = "nvim_lsp"; }
+          { name = "nvim_lsp_document_symbol"; }
+          { name = "nvim_lsp_signature_help"; }
           { name = "nvim_lua"; }
           { name = "path"; }
-          { name = "copilot"; }
+          { name = "rg"; }
+          { name = "spell"; }
+          { name = "treesitter"; }
+          { name = "ultisnips"; }
+          { name = "vsnip"; }
+          { name = "yanky"; }
+          { name = "zsh"; }
         ];
 
         window = {
-          completion = {
-            winhighlight =
-              "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
-            scrollbar = false;
-            sidePadding = 0;
-            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
-          };
-
-          settings.documentation = {
-            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
-            winhighlight =
-              "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
-          };
+          completion.border = "rounded";
+          documentation.border = "rounded";
         };
 
         mapping = {

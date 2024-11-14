@@ -8,11 +8,18 @@
     lspServersToEnable = "all";
   };
 
+  plugins.none-ls = {
+    enable = true;
+    enableLspFormat = true;
+  };
+
   # C/C++
   plugins.lsp.servers.cmake.enable = true;
   plugins.lsp.servers.clangd.enable = true;
 
   # Coq
+  plugins.lsp.servers.coq_lsp.enable = true;
+  plugins.lsp.servers.coq_lsp.package = pkgs.coqPackages.coq-lsp;
   extraPlugins = with pkgs.vimPlugins; [ Coqtail ];
 
   # Docker
@@ -36,6 +43,7 @@
 
   # Nix
   plugins.lsp.servers.nil_ls.enable = true;
+  plugins.lsp.servers.nixd.enable = true;
   plugins.nix.enable = true;
   plugins.nix-develop.enable = true;
 
@@ -44,6 +52,9 @@
   plugins.lsp.servers.ocamllsp.package = pkgs.ocamlPackages.ocaml-lsp;
 
   # Python
+  plugins.lsp.servers.jedi_language_server.enable = true;
+  plugins.lsp.servers.pyright.enable = true;
+  plugins.lsp.servers.pylsp.enable = true;
   plugins.lsp.servers.ruff.enable = true;
   plugins.lsp.servers.ruff_lsp.enable = true;
 
