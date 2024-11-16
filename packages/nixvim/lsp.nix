@@ -38,6 +38,9 @@
   # JSON
   plugins.lsp.servers.jsonls.enable = true;
 
+  # Lean
+  plugins.lean.enable = true;
+
   # Markdown
   plugins.lsp.servers.marksman.enable = true;
 
