@@ -13,4 +13,6 @@
       dap-virtual-text.enable = true;
     };
   };
+
+  plugins.lualine.settings.extensions = [ "nvim-dap-ui" ];
 }
