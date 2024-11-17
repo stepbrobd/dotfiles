@@ -6,12 +6,15 @@
     openOnSetupFile = true;
     syncRootWithCwd = true;
 
-    disableNetrw = true;
-    hijackNetrw = true;
-
     diagnostics.enable = true;
     modified.enable = true;
   };
+
+  # use nvim-tree as file explorer
+  extraConfigLuaPre = ''
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+  '';
 
   plugins.lualine.settings.extensions = [ "nvim-tree" ];
 
