@@ -97,4 +97,7 @@ in
 
   # alacritty terminfo
   environment.systemPackages = with pkgs; [ alacritty.terminfo ];
+
+  # pager
+  environment.variables.PAGER = "less -FRX";
 }

@@ -11,8 +11,8 @@
       };
 
       signing = with config.programs.git.signing; {
+        inherit key;
         sign-all = signByDefault;
-        key = key;
         backend = "gpg"; # track git settings
       };
     };
