@@ -10,13 +10,9 @@
     modified.enable = true;
   };
 
-  # use nvim-tree as file explorer
-  extraConfigLuaPre = ''
-    vim.g.loaded_netrw = 1
-    vim.g.loaded_netrwPlugin = 1
-  '';
+  plugins.oil.enable = true;
 
-  plugins.lualine.settings.extensions = [ "nvim-tree" ];
+  plugins.lualine.settings.extensions = [ "nvim-tree" "oil" ];
 
   keymaps = [{
     mode = "n";
