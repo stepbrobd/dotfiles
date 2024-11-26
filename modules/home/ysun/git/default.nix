@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.git = {
@@ -6,15 +6,17 @@
     package = pkgs.gitFull;
     userName = "Yifei Sun";
     userEmail = "ysun@hey.com";
-    signing = {
-      signByDefault = true;
-      key = "D973170F9B86DB70";
-    };
 
     # colored diff tool
     difftastic.enable = true;
 
     extraConfig = {
+      # signing
+      gpg.format = "ssh";
+      commit.gpgsign = "true";
+      user.signingkey = "${config.home.homeDirectory}/.ssh/id_ed25519";
+
+      # misc
       branch.sort = "-committerdate";
       color.ui = true;
       column.ui = "auto";

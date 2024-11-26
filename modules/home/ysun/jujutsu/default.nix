@@ -10,10 +10,10 @@
         email = userEmail;
       };
 
-      signing = with config.programs.git.signing; {
-        inherit key;
-        sign-all = signByDefault;
-        backend = "gpg"; # track git settings
+      signing = {
+        sign-all = true;
+        backend = "ssh";
+        key = "${config.home.homeDirectory}/.ssh/id_ed25519";
       };
     };
   };
