@@ -4,10 +4,7 @@
   imports = [
     ./hardware.nix
 
-    # ./caddy.nix
     ./kanidm.nix
-    # ./keycloak.nix
-    # ./portunus.nix
   ];
 
   networking = {

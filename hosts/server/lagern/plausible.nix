@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  services.caddy.enable = true;
+
   age.secrets."plausible.adm".file = ../../../secrets/plausible.adm.age;
   age.secrets."plausible.goo".file = ../../../secrets/plausible.goo.age;
   age.secrets."plausible.mal".file = ../../../secrets/plausible.mal.age;
@@ -76,15 +78,6 @@
 
   services.caddy.virtualHosts."stats.rkt.lol".extraConfig = ''
     import common
-    reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
-      header_up Host {host}
-      header_up X-Real-IP {http.request.header.CF-Connecting-IP}
-    }
-  '';
-
-  services.caddy.virtualHosts."toukei.ikaz.uk".extraConfig = ''
-    import common
-    tls { dns cloudflare {env.CF_API_TOKEN_KICHINOSE} }
     reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
       header_up Host {host}
       header_up X-Real-IP {http.request.header.CF-Connecting-IP}

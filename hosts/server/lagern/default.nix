@@ -4,11 +4,7 @@
   imports = [
     ./hardware.nix
 
-    # ./bird2.nix
-    ./caddy.nix
     ./plausible.nix
-    # ./vaultwarden.nix
-    # ./ysun.nix
   ];
 
   networking = {

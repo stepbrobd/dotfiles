@@ -8,7 +8,6 @@ let
   walberla = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkF4fUm58NR9Y16p6x24pOv06BXVKEAD6ONZidaLeFN";
 
   ysun = [ framework macbook ];
-  kichinose = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC8LagJKcgCTZMrfGHTUE4y8B6g/5wgq+ufKHblSH81n" ];
 in
 {
   "secrets/pgp.age".publicKeys = ysun;
@@ -18,9 +17,8 @@ in
   "secrets/cache.pem.age".publicKeys = ysun ++ [ odake ];
   "secrets/hydra-notify.age".publicKeys = ysun ++ [ odake ];
 
-  "secrets/cloudflare-kichinose.age".publicKeys = kichinose ++ [ lagern ];
-  "secrets/cloudflare-ysun.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
   "secrets/cloudflare-acme.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
+  "secrets/cloudflare-caddy.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
 
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.goo.age".publicKeys = ysun ++ [ lagern ];

@@ -1,8 +1,6 @@
 {
   imports = [
     ./hardware.nix
-
-    # ./caddy.nix
   ];
 
   networking = {
