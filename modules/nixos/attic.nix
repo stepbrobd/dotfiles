@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 { config, ... }:
 
@@ -19,7 +19,7 @@ in
 
   config = {
     age.secrets.attic = {
-      file = ../../secrets/attic.age;
+      file = "${inputs.self.outPath}/secrets/attic.age";
       owner = config.services.atticd.user;
       group = config.services.atticd.group;
     };
