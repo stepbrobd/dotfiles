@@ -22,7 +22,7 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
       imports = [
         inputs.index.hmModules.nix-index
         { home = { inherit stateVersion; }; }
-        ("${inputs.self}/users/${u}/home.nix")
+        "${inputs.self}/users/${u}/home.nix"
       ] ++ (users.${u});
     });
   }
