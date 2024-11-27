@@ -1,7 +1,9 @@
+{ inputs, lib, ... }:
+
 { config, pkgs, ... }:
 
 {
-  config = pkgs.lib.mkIf (config.services.caddy.enable) {
+  config = lib.mkIf (config.services.caddy.enable) {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.caddy = {
