@@ -3,7 +3,7 @@
 { config, ... }:
 
 let
-  inherit (lib) mkOption types;
+  inherit (lib) mkIf mkOption types;
 
   cfg = config.services.attic;
 in
@@ -17,7 +17,7 @@ in
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     age.secrets.attic = {
       file = "${inputs.self.outPath}/secrets/attic.age";
       owner = config.services.atticd.user;
