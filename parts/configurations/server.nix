@@ -15,6 +15,7 @@ let
     platform = "x86_64-linux";
     users = { ysun = with inputs.self; [ /* hmModules.ysun.minimal */ ]; };
     modules = with inputs; [
+      self.nixosModules.attic
       self.nixosModules.acme
       self.nixosModules.caddy
       self.nixosModules.common
