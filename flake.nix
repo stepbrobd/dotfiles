@@ -88,7 +88,7 @@
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
     lix.url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.91.1";
     lix.flake = false;
-    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module?ref=refs/tags/2.91.1-1";
+    lix-module.url = "git+https://git.lix.systems/lix-project/nixos-module?ref=refs/tags/2.91.1-2";
     lix-module.inputs.nixpkgs.follows = "nixpkgs";
     lix-module.inputs.flake-utils.follows = "utils";
     lix-module.inputs.flakey-profile.follows = "flakey-profile";
