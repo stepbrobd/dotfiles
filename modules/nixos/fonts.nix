@@ -7,8 +7,7 @@
     enableGhostscriptFonts = true;
 
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      # nerdfonts
+      nerd-fonts.jetbrains-mono
       jetbrains-mono
       font-awesome
       noto-fonts
