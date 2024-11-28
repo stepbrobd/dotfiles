@@ -10,7 +10,7 @@ in
 {
   options.nix.lix = {
     enable = mkOption {
-      default = true;
+      default = false;
       description = "Whether to replace Nix with Lix";
       example = true;
       type = types.bool;
