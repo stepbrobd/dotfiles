@@ -60,14 +60,15 @@ in
       ];
 
       extra-substituters = [
-        "https://cache.nixos.org"
-        "https://cache.garnix.io"
-        "https://nix-community.cachix.org"
-        "https://nixpkgs-update.cachix.org"
-        "https://colmena.cachix.org"
-        "https://cosmic.cachix.org"
-        "https://ngi.cachix.org"
-        "https://stepbrobd.cachix.org"
+        "https://cache.nixos.org?priority=10"
+        "https://cache.garnix.io?priority=20"
+        "https://nix-community.cachix.org?priority=20"
+        "https://nixpkgs-update.cachix.org?priority=20"
+        "https://colmena.cachix.org?priority=20"
+        "https://cosmic.cachix.org?priority=20"
+        "https://ngi.cachix.org?priority=20"
+        "https://stepbrobd.cachix.org?priority=20"
+        "https://cache.ysun.co/public?priority=30"
       ];
 
       trusted-public-keys = [
@@ -79,6 +80,7 @@ in
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "ngi.cachix.org-1:n+CAL72ROC3qQuLxIHpV+Tw5t42WhXmMhprAGkRSrOw="
         "stepbrobd.cachix.org-1:Aa5jdkPVrCOvzaLTC0kVP5PYQ5BtNnLg1tG1Qa/QuE4="
+        "public:Y9EARSt+KLUY1JrY4X8XWmzs6uD+Zh2hRqN9eCUg55U="
       ];
     };
 
