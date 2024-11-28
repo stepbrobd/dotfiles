@@ -11,6 +11,7 @@ let
 in
 {
   "secrets/attic.age".publicKeys = ysun ++ [ odake ];
+  "secrets/attic-client.toml.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
 
   "secrets/cloudflare-acme.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
   "secrets/cloudflare-caddy.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];

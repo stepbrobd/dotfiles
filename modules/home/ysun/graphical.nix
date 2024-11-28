@@ -5,6 +5,7 @@
     minimal
 
     alacritty
+    attic
     atuin
     bat
     btop
