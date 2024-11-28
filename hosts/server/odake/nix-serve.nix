@@ -1,6 +1,20 @@
 { config, pkgs, ... }:
 
 {
+  services.caddy = {
+    enable = true;
+
+    virtualHosts."cache.nixolo.gy".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}
+    '';
+
+    virtualHosts."cache.ysun.co".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}
+    '';
+  };
+
   age.secrets.cache = {
     file = ../../../secrets/cache.pem.age;
     owner = "nix-serve";

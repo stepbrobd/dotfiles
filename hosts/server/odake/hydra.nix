@@ -1,6 +1,20 @@
 { config, lib, pkgs, ... }:
 
 {
+  services.caddy = {
+    enable = true;
+
+    virtualHosts."hydra.nixolo.gy".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
+    '';
+
+    virtualHosts."hydra.ysun.co".extraConfig = ''
+      import common
+      reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
+    '';
+  };
+
   services.hydra = {
     enable = true;
     logo = ./logo.png;
