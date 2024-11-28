@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 
-{ config, options, ... }:
+{ config, options, pkgs, ... }:
 
 let
   inherit (lib) mkIf mkOption types;
@@ -54,5 +54,7 @@ in
         };
       };
     };
+
+    environment.systemPackages = with pkgs; [ attic-client attic-server ];
   };
 }
