@@ -1,6 +1,8 @@
 {
   imports = [
     ./hardware.nix
+
+    ./uptime.nix
   ];
 
   networking = {

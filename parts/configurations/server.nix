@@ -23,6 +23,7 @@ let
       self.nixosModules.lix
       self.nixosModules.minimal
       self.nixosModules.server
+      self.nixosModules.uptime
       srvos.nixosModules.server
     ];
     nixpkgs = (getSystem platform).allModuleArgs.pkgs;
