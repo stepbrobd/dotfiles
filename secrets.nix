@@ -10,9 +10,6 @@ let
   ysun = [ framework macbook ];
 in
 {
-  "secrets/pgp.age".publicKeys = ysun;
-  "secrets/smtp.age".publicKeys = ysun;
-
   "secrets/attic.age".publicKeys = ysun ++ [ odake ];
   "secrets/cache.pem.age".publicKeys = ysun ++ [ odake ];
   "secrets/hydra-notify.age".publicKeys = ysun ++ [ odake ];
