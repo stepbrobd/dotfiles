@@ -4,7 +4,6 @@
   imports = [
     ./hardware.nix
 
-    ./caddy.nix
     ./hydra.nix
     ./nix-serve.nix
   ];
