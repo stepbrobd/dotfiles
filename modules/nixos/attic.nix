@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 
-{ config, ... }:
+{ config, options, ... }:
 
 let
   inherit (lib) mkIf mkOption types;
@@ -9,6 +9,8 @@ let
 in
 {
   options.services.attic = {
+    inherit (options.services.atticd) settings;
+
     enable = mkOption {
       default = false;
       description = "Whether to enable attic service";

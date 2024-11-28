@@ -11,8 +11,6 @@ let
 in
 {
   "secrets/attic.age".publicKeys = ysun ++ [ odake ];
-  "secrets/cache.pem.age".publicKeys = ysun ++ [ odake ];
-  "secrets/hydra-notify.age".publicKeys = ysun ++ [ odake ];
 
   "secrets/cloudflare-acme.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
   "secrets/cloudflare-caddy.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];

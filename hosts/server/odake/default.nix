@@ -4,8 +4,8 @@
   imports = [
     ./hardware.nix
 
+    ./attic.nix
     ./hydra.nix
-    ./nix-serve.nix
   ];
 
   networking = {

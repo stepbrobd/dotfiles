@@ -68,7 +68,6 @@ in
         "https://cosmic.cachix.org"
         "https://ngi.cachix.org"
         "https://stepbrobd.cachix.org"
-        "https://cache.nixolo.gy"
       ];
 
       trusted-public-keys = [
@@ -80,7 +79,6 @@ in
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "ngi.cachix.org-1:n+CAL72ROC3qQuLxIHpV+Tw5t42WhXmMhprAGkRSrOw="
         "stepbrobd.cachix.org-1:Aa5jdkPVrCOvzaLTC0kVP5PYQ5BtNnLg1tG1Qa/QuE4="
-        "cache.nixolo.gy:UDmjlw8J4sqDlBIPe5YnABPI1lkcJssN8niLozS2ltM="
       ];
     };
 

@@ -20,15 +20,13 @@
     logo = ./logo.png;
 
     useSubstitutes = true;
-    buildMachinesFiles = [ ];
     minimumDiskFree = 5;
     minimumDiskFreeEvaluator = 5;
 
     hydraURL = "https://hydra.nixolo.gy";
     listenHost = "127.0.0.1";
     port = 10069;
-    notificationSender = "hydra@nixolo.gy";
-
+    notificationSender = "hydra@localhost";
 
     extraConfig = ''
       tracker = <script defer data-domain="hydra.ysun.co" src="https://stats.nixolo.gy/js/script.file-downloads.hash.outbound-links.js"></script>
@@ -40,26 +38,6 @@
       </dynamicruncommand>
     '';
   };
-
-  # possibly need to add msmtp?
-  # https://nixos.wiki/wiki/Msmtp
-  age.secrets.hydra-notify.file = ../../../secrets/hydra-notify.age;
-  systemd.services =
-    lib.mapAttrs
-      (_name: _: {
-        path = [ pkgs.msmtp ];
-        serviceConfig.EnvironmentFile = config.age.secrets.hydra-notify.path;
-      })
-      (
-        lib.genAttrs [
-          "hydra-evaluator"
-          "hydra-notify"
-          "hydra-send-stats"
-          "hydra-queue-runner"
-          "hydra-server"
-        ]
-          { }
-      );
 
   nix = {
     settings.sandbox = false;
