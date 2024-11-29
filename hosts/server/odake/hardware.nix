@@ -2,6 +2,7 @@
 
 {
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
+  services.qemuGuest.enable = true;
 
   boot.loader.grub.device = "/dev/sda";
   boot.initrd.availableKernelModules = [
