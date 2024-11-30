@@ -54,7 +54,6 @@
       "discord"
       "hey"
       "notchnook"
-      "notion"
       "obs"
       "orbstack"
       "orion"
@@ -71,10 +70,10 @@
       # utils
       "Apple Configurator" = 1037126344;
       "Authenticator" = 1538761576;
+      "Craft" = 1487937127;
       "Dropover" = 1355679052;
       "iMazing Profile Editor" = 1487860882;
       "Reeder" = 1529448980;
-      # "Fantastical" = 975937182;
       "Flighty" = 1358823008;
       "iStat Menus" = 1319778037;
       "Parcel" = 639968404;
@@ -82,11 +81,9 @@
       "Pixelmator Pro" = 1289583905;
       "Remote Desktop" = 409907375;
       "ServerCat" = 1501532023;
-      # "StopTheMadness" = 6471380298;
       "Tailscale" = 1475387142;
-      # "Things" = 904280696;
       "The Unarchiver" = 425424353;
-      # "Xcode" = 497799835;
+      "Xcode" = 497799835;
       # safari
       "AdGuard" = 1440147259;
       "Kagi" = 1622835804;
