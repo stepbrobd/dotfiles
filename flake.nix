@@ -70,6 +70,9 @@
     git-hooks.inputs.gitignore.follows = "gitignore";
     gitignore.url = "github:hercules-ci/gitignore.nix";
     gitignore.inputs.nixpkgs.follows = "nixpkgs";
+    golink.url = "github:tailscale/golink";
+    golink.inputs.nixpkgs.follows = "nixpkgs";
+    golink.inputs.flake-utils.follows = "utils";
     # h
     hm.url = "github:nix-community/home-manager";
     hm.inputs.nixpkgs.follows = "nixpkgs";
