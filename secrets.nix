@@ -16,6 +16,8 @@ in
   "secrets/cloudflare-acme.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
   "secrets/cloudflare-caddy.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
 
+  "secrets/tailscale.age".publicKeys = ysun ++ [ walberla ];
+
   "secrets/plausible.adm.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.goo.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.mal.age".publicKeys = ysun ++ [ lagern ];

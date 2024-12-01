@@ -20,6 +20,7 @@ let
       self.nixosModules.caddy
       self.nixosModules.common
       self.nixosModules.desktop
+      self.nixosModules.golink
       self.nixosModules.lix
       self.nixosModules.minimal
       self.nixosModules.server

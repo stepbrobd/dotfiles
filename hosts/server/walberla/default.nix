@@ -4,6 +4,7 @@
   imports = [
     ./hardware.nix
 
+    ./golink.nix
     ./kanidm.nix
   ];
 
