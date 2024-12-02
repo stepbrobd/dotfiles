@@ -13,12 +13,6 @@
     config.age.secrets."plausible.mmd".path
   ];
 
-  # enabled by default: https://plausible.io/docs/self-hosting-configuration#ip-geolocation
-  # systemd.services.plausible.environment.GEONAMES_SOURCE_FILE = builtins.fetchurl {
-  #   url = "https://raw.githubusercontent.com/plausible/location/main/priv/geonames.lite.csv";
-  #   sha256 = "sha256-vZuFZYYt7yThPj5dwfScz/5LKESa4zOHw37xQA4pU24=";
-  # };
-
   services.plausible = {
     enable = true;
 
@@ -30,13 +24,13 @@
     });
 
     mail = {
-      email = "noreply@stepbrobd.com";
+      email = "noc@stepbrobd.com";
       smtp = {
         enableSSL = true;
-        hostAddr = "smtp-relay.gmail.com";
+        hostAddr = "smtp.purelymail.com";
         hostPort = 465;
         passwordFile = config.age.secrets."plausible.mal".path;
-        user = "ysun@stepbrobd.com";
+        user = "ysun@purelymail.com";
       };
     };
 
