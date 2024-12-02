@@ -24,8 +24,9 @@
     { systems = import inputs.systems; };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    # nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/e8c9fa5bc83aeaa2c6382a95bb56a94598cf2354";
     # a
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
