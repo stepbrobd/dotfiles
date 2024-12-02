@@ -3,7 +3,6 @@
 {
   services.caddy.enable = true;
 
-  age.secrets."plausible.adm".file = ../../../secrets/plausible.adm.age;
   age.secrets."plausible.goo".file = ../../../secrets/plausible.goo.age;
   age.secrets."plausible.mal".file = ../../../secrets/plausible.mal.age;
   age.secrets."plausible.mmd".file = ../../../secrets/plausible.mmd.age;
@@ -25,20 +24,10 @@
 
     package = pkgs.plausible.overrideAttrs (_: {
       prePatch = ''
-        # use the following for all versions after 2.0.0
-        # substituteInPlace lib/plausible_web/templates/layout/app.html.heex \
-
-        substituteInPlace lib/plausible_web/templates/layout/app.html.eex \
+        substituteInPlace lib/plausible_web/templates/layout/app.html.heex \
           --replace-warn '</head>' '<script defer data-domain="stats.ysun.co" src="/js/script.file-downloads.hash.outbound-links.js"></script></head>'
       '';
     });
-
-    adminUser = {
-      activate = true;
-      email = "ysun@hey.com";
-      name = "Yifei Sun";
-      passwordFile = config.age.secrets."plausible.adm".path;
-    };
 
     mail = {
       email = "noreply@stepbrobd.com";

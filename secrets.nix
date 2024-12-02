@@ -18,7 +18,6 @@ in
 
   "secrets/tailscale.age".publicKeys = ysun ++ [ walberla ];
 
-  "secrets/plausible.adm.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.goo.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.mal.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.mmd.age".publicKeys = ysun ++ [ lagern ];
