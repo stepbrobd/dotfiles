@@ -9,7 +9,21 @@
         lib = {
           path = ./lib;
           extender = inputs.nixpkgs.lib;
-          extensions = with inputs; [ builtins autopilot.lib colmena.lib darwin.lib hm.lib parts.lib utils.lib ];
+          extensions = with inputs; [
+            (
+              # builtins but not exactly builtins
+              let inherit (inputs.nixpkgs) lib; in
+              (lib.removeAttrs builtins (
+                lib.intersectLists (lib.attrNames lib) (lib.attrNames builtins)
+              ))
+            )
+            autopilot.lib
+            colmena.lib
+            darwin.lib
+            hm.lib
+            parts.lib
+            utils.lib
+          ];
         };
 
         nixpkgs = {
