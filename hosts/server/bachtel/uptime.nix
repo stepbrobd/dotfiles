@@ -1,6 +1,9 @@
 {
   services.uptime-kuma = {
     enable = true;
-    domains = [ "status.ysun.co" ];
+    domains = [
+      "status.stepbrobd.com"
+      "status.ysun.co"
+    ];
   };
 }
