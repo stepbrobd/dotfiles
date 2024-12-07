@@ -5,6 +5,7 @@
     minimal
 
     alacritty
+    ani
     attic
     atuin
     bat
