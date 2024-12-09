@@ -75,7 +75,7 @@
   plugins.lsp.servers.ltex.enable = true;
 
   # Typst
-  plugins.lsp.servers.typst_lsp.enable = true;
+  plugins.lsp.servers.tinymist.enable = true;
   plugins.typst-vim = {
     enable = true;
     settings.pdf_viewer = "zathura";
