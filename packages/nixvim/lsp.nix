@@ -46,7 +46,11 @@
 
   # Nix
   plugins.lsp.servers.nil_ls.enable = true;
-  plugins.lsp.servers.nixd.enable = true;
+  plugins.lsp.servers.nixd = {
+    enable = true;
+    extraOptions.offset_encoding = "utf-8"; # nixvim #2390
+    settings.expr = "import <nixpkgs> { }";
+  };
   plugins.nix.enable = true;
   plugins.nix-develop.enable = true;
 
