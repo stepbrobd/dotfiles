@@ -7,6 +7,8 @@
     enable = true;
 
     extraConfig = ''
+      set database sqlite
+
       set notification-error-bg       "#2E3440"
       set notification-error-fg       "#BF616A"
       set notification-warning-bg     "#2E3440"
