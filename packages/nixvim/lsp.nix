@@ -59,7 +59,6 @@
   plugins.lsp.servers.pyright.enable = true;
   plugins.lsp.servers.pylsp.enable = true;
   plugins.lsp.servers.ruff.enable = true;
-  plugins.lsp.servers.ruff_lsp.enable = true;
 
   # Shell
   plugins.lsp.servers.bashls.enable = true;
