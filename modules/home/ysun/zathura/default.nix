@@ -7,7 +7,9 @@
     enable = true;
 
     extraConfig = ''
-      set database sqlite
+      set database            sqlite
+      set guioptions          none
+      set selection-clipboard clipboard
 
       set notification-error-bg       "#2E3440"
       set notification-error-fg       "#BF616A"
