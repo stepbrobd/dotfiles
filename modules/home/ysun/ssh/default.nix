@@ -19,6 +19,11 @@
         User yifei
         ProxyCommand ssh -W %h:%p yifei@133.11.234.34
         HostName vpi
+
+      Host plask
+        User plask
+        ProxyCommand ssh -W %h:%p yifei@133.11.234.34
+        HostName 133.11.234.43 # macbook
     ''/* + "\n" +
       (if pkgs.stdenv.isLinux then ''
       Host *
