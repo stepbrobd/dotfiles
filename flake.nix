@@ -10,13 +10,6 @@
           path = ./lib;
           extender = inputs.nixpkgs.lib;
           extensions = with inputs; [
-            (
-              # builtins but not exactly builtins
-              let inherit (inputs.nixpkgs) lib; in
-              (lib.removeAttrs builtins (
-                lib.intersectLists (lib.attrNames lib) (lib.attrNames builtins)
-              ))
-            )
             autopilot.lib
             colmena.lib
             darwin.lib
@@ -29,7 +22,7 @@
         nixpkgs = {
           config = { allowUnfree = true; };
           overlays = [ self.overlays.default ];
-          instances = [{ name = "pkgs"; value = inputs.nixpkgs; }];
+          instances = { pkgs = inputs.nixpkgs; };
         };
 
         parts.path = ./parts;
