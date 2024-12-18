@@ -4,7 +4,11 @@
     settings = {
       icons.when = "auto";
       sorting.dir-grouping = "first";
-      ignore-globs = [ ".DS_Store" ".git" ];
+      ignore-globs = [
+        ".DS_Store"
+        ".git"
+        ".spacedrive"
+      ];
     };
   };
 }
