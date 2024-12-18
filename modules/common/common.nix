@@ -65,8 +65,6 @@ in
         "https://nix-community.cachix.org?priority=20"
         "https://nixpkgs-update.cachix.org?priority=20"
         "https://colmena.cachix.org?priority=20"
-        "https://cosmic.cachix.org?priority=20"
-        "https://ngi.cachix.org?priority=20"
         "https://stepbrobd.cachix.org?priority=20"
         "https://cache.ysun.co/public?priority=30"
       ];
@@ -77,8 +75,6 @@ in
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
         "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
-        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-        "ngi.cachix.org-1:n+CAL72ROC3qQuLxIHpV+Tw5t42WhXmMhprAGkRSrOw="
         "stepbrobd.cachix.org-1:Aa5jdkPVrCOvzaLTC0kVP5PYQ5BtNnLg1tG1Qa/QuE4="
         "public:Y9EARSt+KLUY1JrY4X8XWmzs6uD+Zh2hRqN9eCUg55U="
       ];

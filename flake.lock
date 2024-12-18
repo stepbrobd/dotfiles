@@ -101,35 +101,6 @@
         "type": "github"
       }
     },
-    "cosmic": {
-      "inputs": {
-        "flake-compat": [
-          "compat"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nixpkgs-stable": [
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "rust-overlay"
-        ]
-      },
-      "locked": {
-        "lastModified": 1734142491,
-        "narHash": "sha256-FkcW2uOOZePE9ZaBusIziBAiNkEUup/7FVi78E2G+7c=",
-        "owner": "lilyinstarlight",
-        "repo": "nixos-cosmic",
-        "rev": "01a253ee83b7394626aeac9e89dcba0e085412eb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lilyinstarlight",
-        "repo": "nixos-cosmic",
-        "type": "github"
-      }
-    },
     "crane": {
       "locked": {
         "lastModified": 1733688869,
@@ -600,7 +571,6 @@
         "autopilot": "autopilot",
         "colmena": "colmena",
         "compat": "compat",
-        "cosmic": "cosmic",
         "crane": "crane",
         "darwin": "darwin",
         "devshell": "devshell",
