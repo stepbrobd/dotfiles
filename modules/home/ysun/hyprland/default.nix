@@ -43,7 +43,6 @@
         env = QT_SCALE_FACTOR,1
         env = XCURSOR_SIZE,24
 
-
         exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
@@ -101,12 +100,14 @@
           rounding = 8
           active_opacity = 1.0
           inactive_opacity = 1.0
-          drop_shadow = true
-          shadow_ignore_window = true
-          shadow_offset = 2 2
-          shadow_range = 4
-          shadow_render_power = 2
-          col.shadow = 0x66000000
+          shadow {
+            enabled = true
+            ignore_window = true
+            offset = 2 2
+            range = 4
+            render_power = 2
+            color = 0x66000000
+          }
         }
 
         animations {
@@ -126,10 +127,16 @@
         }
 
         dwindle {
-          no_gaps_when_only = false
           pseudotile = true
           preserve_split = true
         }
+
+        workspace = w[tv1], gapsout:0, gapsin:0
+        workspace = f[1], gapsout:0, gapsin:0
+        windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
+        windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
+        windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
+        windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
 
         # change to another locker
         bind = CTRL SUPER, Q, exec, ${pkgs.gtklock}/bin/gtklock --daemonize --style "${style}"
