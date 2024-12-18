@@ -131,13 +131,6 @@
           preserve_split = true
         }
 
-        workspace = w[tv1], gapsout:0, gapsin:0
-        workspace = f[1], gapsout:0, gapsin:0
-        windowrulev2 = bordersize 0, floating:0, onworkspace:w[tv1]
-        windowrulev2 = rounding 0, floating:0, onworkspace:w[tv1]
-        windowrulev2 = bordersize 0, floating:0, onworkspace:f[1]
-        windowrulev2 = rounding 0, floating:0, onworkspace:f[1]
-
         # change to another locker
         bind = CTRL SUPER, Q, exec, ${pkgs.gtklock}/bin/gtklock --daemonize --style "${style}"
         bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Volume: Mute/Unmute"
