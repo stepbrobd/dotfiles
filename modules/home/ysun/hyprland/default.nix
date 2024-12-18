@@ -35,12 +35,12 @@
           force_zero_scaling = true
         }
 
-        monitor = eDP-1, highres, 0x0, 1
+        monitor = eDP-1, highres, 0x0, 1.5
         monitor = , preferred, auto, auto
 
-        env = GDK_SCALE,1
-        env = ELM_SCALE,1
-        env = QT_SCALE_FACTOR,1
+        env = GDK_SCALE,1.5
+        env = ELM_SCALE,1.5
+        env = QT_SCALE_FACTOR,1.5
         env = XCURSOR_SIZE,24
 
         exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
