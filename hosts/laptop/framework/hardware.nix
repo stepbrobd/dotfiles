@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
 {
   hardware.enableAllFirmware = lib.mkDefault true;
@@ -17,15 +17,6 @@
   ];
 
   imports = [ ./disko.nix ];
-  # boot.zfs.enableUnstable = true;
-  # boot.zfs.forceImportRoot = false;
-  # boot.zfs.allowHibernation = true;
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.requestEncryptionCredentials = true;
-
-  services.zfs.trim.enable = true;
-  services.zfs.autoScrub.enable = true;
-  services.zfs.autoSnapshot.enable = true;
 
   boot.bootspec.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

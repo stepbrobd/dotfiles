@@ -1,70 +1,49 @@
 {
-  disko.devices = {
-    disk.nvme0n1 = {
-      type = "disk";
-      device = "/dev/nvme0n1";
+  disko.devices.disk.nvme0n1 = {
+    type = "disk";
+    device = "/dev/nvme0n1";
+    content.type = "gpt";
+
+    content.partitions.ESP = {
+      type = "ef00";
+      size = "1G";
       content = {
-        type = "gpt";
-        partitions = {
-          ESP = {
-            label = "ESP";
-            type = "ef00";
-            size = "1G";
-            content = {
-              type = "filesystem";
-              format = "vfat";
-              mountpoint = "/boot";
-            };
-          };
-          # SWAP = {
-          #   label = "SWAP";
-          #   type = "8200";
-          #   size = "64G";
-          #   content = {
-          #     type = "swap";
-          #     randomEncryption = true;
-          #     resumeDevice = true;
-          #   };
-          # };
-          ROOT = {
-            label = "ROOT";
-            type = "8300";
-            size = "100%";
-            content = {
-              type = "zfs";
-              pool = "local";
-            };
-          };
-        };
+        type = "filesystem";
+        format = "vfat";
+        mountpoint = "/boot";
       };
     };
-    zpool.local = {
-      type = "zpool";
-      options = {
-        ashift = "13";
-        autotrim = "on";
-      };
-      rootFsOptions = {
-        atime = "off";
-        compression = "lz4";
-        xattr = "sa";
-        mountpoint = "none";
-        canmount = "off";
-        acltype = "posixacl";
-        encryption = "aes-256-gcm";
-        keyformat = "passphrase";
-        keylocation = "prompt";
-        normalization = "formD";
-        "com.sun:auto-snapshot" = "false";
-      };
-      postCreateHook = ''
-        zfs snapshot -r local@blank
-        zfs set keylocation="prompt" "local";
-      '';
-      datasets = {
-        root = {
-          type = "zfs_fs";
-          mountpoint = "/";
+
+    content.partitions.ROOT = {
+      type = "8300";
+      size = "100%";
+      content = {
+        type = "luks";
+        name = "crypted";
+        settings.allowDiscards = true;
+        extraFormatArgs = [ "--type luks2" "--pbkdf argon2id" "--use-random" ];
+        content = {
+          type = "btrfs";
+          extraArgs = [ "-f" ];
+          subvolumes = {
+            "@/nix" = {
+              mountpoint = "/nix";
+              mountOptions = [ "nofail" "noatime" "usebackuproot" "compress=lzo" ];
+            };
+            "@/root" = {
+              mountpoint = "/";
+              mountOptions = [ "nofail" "noatime" "usebackuproot" "compress=lzo" ];
+            };
+            "@/home" = {
+              mountpoint = "/home";
+              mountOptions = [ "nofail" "usebackuproot" "compress=lzo" ];
+            };
+            "@/swap" = {
+              mountpoint = "/swap";
+              mountOptions = [ "nofail" "noatime" "usebackuproot" ];
+              swap.swapfile.size = "64G";
+            };
+          };
         };
       };
     };
