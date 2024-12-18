@@ -8,19 +8,6 @@ RAM: 64GB
 
 Storage: 1TB
 
-## Preparation
-
-> [!Important]
-> Comment out `boot.zfs.forceImportRoot = false;` and `boot.zfs.allowHibernation = true;` if this is the system's first boot.
-
-From [NixOS options](https://mynixos.com/nixpkgs/option/boot.zfs.forceImportRoot):
-
-This is enabled by default for backwards compatibility purposes, but it is highly recommended to disable this option, as it bypasses some of the safeguards ZFS uses to protect your ZFS pools.
-
-If you set this option to false and NixOS subsequently fails to boot because it cannot import the root pool, you should boot with the zfs_force=1 option as a kernel parameter (e.g. by manually editing the kernel params in grub during boot). You should only need to do this once.
-
-Then uncomment after the system's first boot.
-
 ## Installation
 
 > [!Important]
@@ -31,13 +18,13 @@ Boot into minimal NixOS installer and switch to root user.
 Format disks:
 
 ```shell
-bash $(nix --extra-experimental-features "nix-command flakes" build --no-link --print-out-paths github:stepbrobd/dotfiles#nixosConfigurations.framework.config.system.build.diskoScript)
+bash $(nix --extra-experimental-features "nix-command flakes" --accept-flake-config build --no-link --print-out-paths github:stepbrobd/dotfiles#nixosConfigurations.framework.config.system.build.diskoScript)
 ```
 
 Install:
 
 ```shell
-nixos-install --flake github:stepbrobd/dotfiles#framework
+nixos-install --no-root-password --flake github:stepbrobd/dotfiles#framework --option extra-substituters https://cache.garnix.io
 ```
 
 It's expected to have errors related to [Lanzaboote](https://github.com/nix-community/lanzaboote) since secure boot PKI bundle is not setup.
@@ -53,7 +40,7 @@ sbctl create-keys && mv /etc/secureboot /mnt/etc
 Run installation again:
 
 ```shell
-nixos-install --flake github:stepbrobd/dotfiles#framework
+nixos-install --no-root-password --flake github:stepbrobd/dotfiles#framework --option extra-substituters https://cache.garnix.io
 ```
 
 Lanzaboote should not complain this time.
