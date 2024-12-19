@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+# { inputs, lib, ... }:
 
 { config
 , pkgs
@@ -146,6 +146,7 @@
 
         $mod = SUPER
 
+        bind = $mod, T, exec, ${pkgs.alacritty}/bin/alacritty
         bind = $mod, SPACE, exec, ${pkgs.rofi-wayland}/bin/rofi -show-icons -combi-modi window,drun,run,ssh -show combi
 
         bind = $mod, M, exit,
