@@ -31,17 +31,16 @@
       xwayland.enable = true;
 
       extraConfig = ''
-        xwayland {
-          force_zero_scaling = true
-        }
-
         monitor = eDP-1, highres, 0x0, 1.5
         monitor = , preferred, auto, auto
 
-        env = GDK_SCALE,1.5
-        env = ELM_SCALE,1.5
-        env = QT_SCALE_FACTOR,1.5
+        env = GDK_SCALE,1
+        env = ELM_SCALE,1
+        env = QT_SCALE_FACTOR,1
         env = XCURSOR_SIZE,24
+        xwayland {
+          force_zero_scaling = true
+        }
 
         exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
