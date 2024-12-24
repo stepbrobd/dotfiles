@@ -70,6 +70,8 @@ in
         xwayland.enable = true;
       };
 
+      environment.systemPackages = [ pkgs.hyprland-qtutils ];
+
       environment.variables = {
         GDK_BACKEND = "wayland";
         MOZ_ENABLE_WAYLAND = 1;
