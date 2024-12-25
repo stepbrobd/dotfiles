@@ -125,6 +125,11 @@ description = "brings tailscale to low powered openwrt devices"
 visibility = "public"
 archived = false
 
+[repo."tbot"]
+description = "teeebot..."
+visibility = "private"
+archived = false
+
 [repo."ysun"]
 description = "nix + deno + lume"
 visibility = "public"
