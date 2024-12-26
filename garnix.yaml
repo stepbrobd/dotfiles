@@ -6,8 +6,7 @@ builds:
    - devShells.*.*
  exclude:
    - darwinConfigurations.macbook # sandbox
-   - nixosConfigurations.lagern   # impure
-   - nixosConfigurations.odake    # impure
-   - nixosConfigurations.walberla # impure
-   - packages.*.pcaddy            # impure
+   - packages.*.hey-mail          # unfree
    - packages.*.spotify           # unfree
+   - packages.*.gallery           # broken
+   - packages.*.reminders         # broken
