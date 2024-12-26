@@ -23,6 +23,7 @@ let
       self.nixosModules.golink
       self.nixosModules.lix
       self.nixosModules.minimal
+      self.nixosModules.passwordless
       self.nixosModules.server
       self.nixosModules.uptime
       srvos.nixosModules.server

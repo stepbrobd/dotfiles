@@ -20,5 +20,4 @@
   ];
 
   users.mutableUsers = false;
-  security.sudo.execWheelOnly = pkgs.lib.mkForce false;
 }

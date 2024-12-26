@@ -20,12 +20,13 @@ in
       users = { ysun = with inputs.self; [ hmModules.ysun.darwin ]; };
       modules = with inputs.self.darwinModules; [
         common
-        linux-builder
-        lix
-        nixbuild
         fonts
         # hammerspoon
         homebrew
+        linux-builder
+        lix
+        nixbuild
+        passwordless
         sshd
         system
         tailscale
@@ -48,11 +49,12 @@ in
         nixos-generators.nixosModules.all-formats
         nixos-hardware.nixosModules.common-hidpi
         nixos-hardware.nixosModules.framework-13th-gen-intel
-        srvos.nixosModules.desktop
         self.nixosModules.common
         self.nixosModules.docker
         self.nixosModules.graphical
         self.nixosModules.lix
+        self.nixosModules.passwordless
+        srvos.nixosModules.desktop
       ];
     };
   };

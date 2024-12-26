@@ -58,10 +58,4 @@ in
   };
 
   security.pam.enableSudoTouchIdAuth = true;
-
-  environment.etc = {
-    "sudoers.d/10-passwordless".text = ''
-      %admin ALL=(ALL:ALL) NOPASSWD: ALL
-    '';
-  };
 }
