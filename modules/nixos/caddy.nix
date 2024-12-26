@@ -7,22 +7,12 @@
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.caddy = {
-      # blocked on nixpkgs #358586
-      # package = pkgs.caddy.withPlugins {
-      #   hash = "sha256-h8mPpbuhs/n3oOdXzDWMr5x8wlP2a1W4PHOIwKItyJo=";
-      #   plugins = [
-      #     "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
-      #     "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
-      #     "github.com/caddyserver/replace-response@v0.0.0-20240710174758-f92bc7d0c29d"
-      #   ];
-      # };
-      package = pkgs.pcaddy.override {
-        # cloudflare ipv4: https://www.cloudflare.com/ips-v4
-        # cloudflare ipv6: https://www.cloudflare.com/ips-v6
+      package = pkgs.caddy.withPlugins {
+        hash = "sha256-TvWpdYArCBcnlxN6YAWQH8fzldFxJhxaXHv2KAKq5ls=";
         plugins = [
-          "github.com/WeidiDeng/caddy-cloudflare-ip"
-          "github.com/caddy-dns/cloudflare"
-          "github.com/caddyserver/replace-response"
+          "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
+          "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
+          "github.com/caddyserver/replace-response@v0.0.0-20240710174758-f92bc7d0c29d"
         ];
       };
 
