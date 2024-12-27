@@ -3,7 +3,6 @@
 {
   programs.git = {
     enable = true;
-    package = pkgs.gitFull;
     userName = "Yifei Sun";
     userEmail = "ysun@hey.com";
 
