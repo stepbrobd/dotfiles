@@ -1,28 +1,39 @@
 { config, pkgs, ... }:
 
+let
+  inherit (config.security.acme.certs."sso.ysun.co") directory;
+in
 {
-  networking.firewall.allowedTCPPorts = [ 443 636 ];
+  networking.firewall.allowedTCPPorts = [ 636 ];
 
   environment.systemPackages = with pkgs; [ kanidm ];
+
+  services.caddy = {
+    enable = true;
+    virtualHosts."sso.ysun.co".extraConfig = ''
+      import common
+      reverse_proxy ${config.services.kanidm.serverSettings.bindaddress} {
+        tls "${directory}/fullchain.pem" "${directory}/key.pem"
+        header_up Host {host}
+        header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+      }
+    '';
+  };
 
   services.kanidm = {
     enableClient = true;
     clientSettings.uri = config.services.kanidm.serverSettings.origin;
 
     enableServer = true;
-    serverSettings =
-      let
-        inherit (config.security.acme.certs."sso.ysun.co") directory;
-      in
-      {
-        domain = "ysun.co";
-        origin = "https://sso.ysun.co";
-        ldapbindaddress = "0.0.0.0:636";
-        bindaddress = "0.0.0.0:443";
-        trust_x_forward_for = true;
-        tls_key = "${directory}/key.pem";
-        tls_chain = "${directory}/fullchain.pem";
-      };
+    serverSettings = {
+      domain = "ysun.co";
+      origin = "https://sso.ysun.co";
+      ldapbindaddress = "0.0.0.0:636";
+      bindaddress = "0.0.0.0:40069";
+      trust_x_forward_for = true;
+      tls_key = "${directory}/key.pem";
+      tls_chain = "${directory}/fullchain.pem";
+    };
 
     provision = {
       enable = true;
