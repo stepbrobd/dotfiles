@@ -1,9 +1,8 @@
-{ pkgs, ... }:
-
 {
   imports = [
     ./hardware.nix
 
+    ./glance.nix
     ./golink.nix
     ./kanidm.nix
   ];
