@@ -87,7 +87,6 @@
       # safari
       "AdGuard" = 1440147259;
       "Kagi" = 1622835804;
-      "MyMind" = 1532801185;
       "Noir" = 1592917505;
       "Vimari" = 1480933944;
       # microsoft
