@@ -51,14 +51,6 @@
     }
   '';
 
-  services.caddy.virtualHosts."stats.nixolo.gy".extraConfig = ''
-    import common
-    reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {
-      header_up Host {host}
-      header_up X-Real-IP {http.request.header.CF-Connecting-IP}
-    }
-  '';
-
   services.caddy.virtualHosts."stats.rkt.lol".extraConfig = ''
     import common
     reverse_proxy ${toString config.services.plausible.server.listenAddress}:${toString config.services.plausible.server.port} {

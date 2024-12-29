@@ -9,11 +9,6 @@
   services.caddy = {
     enable = true;
 
-    virtualHosts."cache.nixolo.gy".extraConfig = ''
-      import common
-      reverse_proxy ${config.services.attic.settings.listen}
-    '';
-
     virtualHosts."cache.ysun.co".extraConfig = ''
       import common
       reverse_proxy ${config.services.attic.settings.listen}

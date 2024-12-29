@@ -4,11 +4,6 @@
   services.caddy = {
     enable = true;
 
-    virtualHosts."hydra.nixolo.gy".extraConfig = ''
-      import common
-      reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
-    '';
-
     virtualHosts."hydra.ysun.co".extraConfig = ''
       import common
       reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
@@ -23,13 +18,13 @@
     minimumDiskFree = 5;
     minimumDiskFreeEvaluator = 5;
 
-    hydraURL = "https://hydra.nixolo.gy";
+    hydraURL = "https://hydra.ysun.co";
     listenHost = "127.0.0.1";
     port = 10069;
     notificationSender = "hydra@localhost";
 
     extraConfig = ''
-      tracker = <script defer data-domain="hydra.ysun.co" src="https://stats.nixolo.gy/js/script.file-downloads.hash.outbound-links.js"></script>
+      tracker = <script defer data-domain="hydra.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>
 
       email_notification = 0
 
