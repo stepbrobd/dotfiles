@@ -161,6 +161,11 @@ description = "forked from golang/go"
 visibility = "public"
 archived = false
 
+[repo."golink"]
+description = "forked from tailscale/golink"
+visibility = "public"
+archived = false
+
 [repo."homebrew-cask"]
 description = "forked from homebrew/homebrew-cask"
 visibility = "public"
