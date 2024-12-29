@@ -52,25 +52,12 @@ in
           width = "slim";
           columns = [
             {
-              size = "small";
+              size = "full";
               widgets = [
                 {
                   type = "weather";
                   location = "Boston, Massachusetts, United States";
                 }
-                {
-                  type = "lobsters";
-                  limit = 10;
-                }
-                {
-                  type = "hacker-news";
-                  limit = 10;
-                }
-              ];
-            }
-            {
-              size = "full";
-              widgets = [
                 {
                   type = "search";
                   autofocus = true;
@@ -101,7 +88,14 @@ in
                     }
                   ];
                 }
-
+                {
+                  type = "lobsters";
+                  limit = 10;
+                }
+                {
+                  type = "hacker-news";
+                  limit = 10;
+                }
               ];
             }
           ];
