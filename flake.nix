@@ -21,7 +21,7 @@
 
         nixpkgs = {
           config = { allowUnfree = true; };
-          overlays = [ self.overlays.default ];
+          overlays = with inputs; [ self.overlays.default golink.overlays.default ];
           instances = { pkgs = inputs.nixpkgs; };
         };
 
@@ -73,9 +73,10 @@
     git-hooks.inputs.gitignore.follows = "gitignore";
     gitignore.url = "github:hercules-ci/gitignore.nix";
     gitignore.inputs.nixpkgs.follows = "nixpkgs";
-    golink.url = "github:tailscale/golink";
+    golink.url = "github:stepbrobd/golink";
     golink.inputs.nixpkgs.follows = "nixpkgs";
-    golink.inputs.flake-utils.follows = "utils";
+    golink.inputs.parts.follows = "parts";
+    golink.inputs.systems.follows = "systems";
     # h
     hm.url = "github:nix-community/home-manager";
     hm.inputs.nixpkgs.follows = "nixpkgs";

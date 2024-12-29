@@ -258,23 +258,26 @@
     },
     "golink": {
       "inputs": {
-        "flake-utils": [
-          "utils"
-        ],
         "nixpkgs": [
           "nixpkgs"
+        ],
+        "parts": [
+          "parts"
+        ],
+        "systems": [
+          "systems"
         ]
       },
       "locked": {
-        "lastModified": 1733941744,
-        "narHash": "sha256-cIml0ewF5j2cQySLHkMmV1rl7cVH8wuoPFeFDCARi1A=",
-        "owner": "tailscale",
+        "lastModified": 1735520400,
+        "narHash": "sha256-4vUeXw8y4asKpetJeLDRabvjyee+kfX5e/Rojc6b5GQ=",
+        "owner": "stepbrobd",
         "repo": "golink",
-        "rev": "d55b2a3302777d7f9943863644d4c84ecacb31b7",
+        "rev": "b692e31b7584e9493735986b2467b5fd5abb37c6",
         "type": "github"
       },
       "original": {
-        "owner": "tailscale",
+        "owner": "stepbrobd",
         "repo": "golink",
         "type": "github"
       }
