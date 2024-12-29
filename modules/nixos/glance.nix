@@ -42,8 +42,9 @@ in
       pages = [
         {
           name = "Home";
-          hideDesktopNavigation = true;
           centerVertically = true;
+          hideDesktopNavigation = true;
+          width = "slim";
           columns = [
             {
               size = "small";
