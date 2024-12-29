@@ -66,7 +66,7 @@ in
               widgets = [
                 {
                   type = "weather";
-                  location = "Boston, MA";
+                  location = "Boston, Massachusetts, United States";
                 }
               ];
             }
