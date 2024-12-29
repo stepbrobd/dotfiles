@@ -12,15 +12,20 @@ in
     enable = true;
     virtualHosts."sso.ysun.co".extraConfig = ''
       import common
-      reverse_proxy ${config.services.kanidm.serverSettings.bindaddress} {
-        tls "${directory}/fullchain.pem" "${directory}/key.pem"
+      tls "${directory}/fullchain.pem" "${directory}/key.pem"
+      reverse_proxy ${config.services.kanidm.provision.instanceUrl} {
         header_up Host {host}
         header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+        transport http {
+            tls_server_name sso.ysun.co
+        }
       }
     '';
   };
 
   services.kanidm = {
+    package = pkgs.kanidm.override { enableSecretProvisioning = true; };
+
     enableClient = true;
     clientSettings.uri = config.services.kanidm.serverSettings.origin;
 
@@ -28,9 +33,11 @@ in
     serverSettings = {
       domain = "ysun.co";
       origin = "https://sso.ysun.co";
-      ldapbindaddress = "0.0.0.0:636";
-      bindaddress = "0.0.0.0:40069";
       trust_x_forward_for = true;
+
+      ldapbindaddress = "0.0.0.0:636";
+      bindaddress = "0.0.0.0:8443";
+
       tls_key = "${directory}/key.pem";
       tls_chain = "${directory}/fullchain.pem";
     };
@@ -38,7 +45,6 @@ in
     provision = {
       enable = true;
       autoRemove = true;
-      instanceUrl = config.services.kanidm.serverSettings.origin;
       acceptInvalidCerts = true;
 
       groups = {
@@ -59,8 +65,9 @@ in
     };
   };
 
+  users.groups.sso.members = [ "caddy" "kanidm" ];
   security.acme.certs."sso.ysun.co" = {
-    postRun = "systemctl restart kanidm.service";
-    group = "kanidm";
+    group = "sso";
+    reloadServices = [ "caddy.service" "kanidm.service" ];
   };
 }
