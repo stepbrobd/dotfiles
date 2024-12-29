@@ -39,12 +39,17 @@ in
         positive-color = "92 33 65";
         negative-color = "354 47 56";
       };
+      branding = {
+        hide-footer = true;
+        favicon-url = "https://ysun.co/assets/static/img/favicon.ico";
+        logo-url = "https://ysun.co/assets/static/img/favicon.ico";
+      };
       pages = [
         {
           name = "Home";
           centerVertically = true;
           hideDesktopNavigation = true;
-          width = "slim";
+          width = "default";
           columns = [
             {
               size = "small";
