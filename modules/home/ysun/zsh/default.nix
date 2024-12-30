@@ -27,6 +27,10 @@
         vim = "nvim";
         vimdiff = "nvim -d";
       }
+      # tailscale
+      (lib.mkIf pkgs.stdenv.isDarwin {
+        tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
+      })
       # other aliases
       { tf = "terraform"; }
     ];

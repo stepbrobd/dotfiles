@@ -1,4 +1,6 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
+
+{ config, pkgs, ... }:
 
 {
   imports = with inputs.self.homeManagerModules.ysun; [ starship ];
@@ -7,6 +9,31 @@
 
   programs.nushell = {
     enable = true;
+
+    shellAliases = lib.mkMerge [
+      # bat
+      (lib.mkIf config.programs.bat.enable { cat = "bat --plain"; })
+      # lsd
+      (lib.mkIf config.programs.lsd.enable {
+        # ls = "lsd"; # use nushell builtin ls
+        tree = "lsd --tree";
+      })
+      # must use neovim
+      {
+        emacs = "nvim";
+        nano = "nvim";
+        vi = "nvim";
+        vim = "nvim";
+        vimdiff = "nvim -d";
+      }
+      # tailscale
+      (lib.mkIf pkgs.stdenv.isDarwin {
+        tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
+      })
+      # other aliases
+      { tf = "terraform"; }
+    ];
+
     configFile.text = /* nu */ ''
       $env.config = {
         edit_mode: vi
