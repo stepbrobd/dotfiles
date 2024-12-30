@@ -3,6 +3,8 @@
 {
   imports = with inputs.self.homeManagerModules.ysun; [ starship ];
 
+  programs.carapace.enable = true;
+
   programs.nushell = {
     enable = true;
     configFile.text = /* nu */ ''

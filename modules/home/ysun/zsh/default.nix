@@ -1,8 +1,10 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 { config, pkgs, ... }:
 
 {
+  imports = with inputs.self.homeManagerModules.ysun; [ starship ];
+
   programs.carapace.enable = true;
 
   programs.zsh = {
