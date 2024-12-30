@@ -96,4 +96,7 @@ in
 
   # pager
   environment.variables.PAGER = "less -FRX";
+
+  # shells
+  environment.shells = with pkgs; [ bashInteractive nushell zsh ];
 }
