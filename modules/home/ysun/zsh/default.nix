@@ -12,13 +12,11 @@
     shellAliases = lib.mkMerge [
       # bat
       (lib.mkIf config.programs.bat.enable { cat = "bat --plain"; })
-
       # lsd
       (lib.mkIf config.programs.lsd.enable {
         ls = "lsd";
         tree = "lsd --tree";
       })
-
       # must use neovim
       {
         emacs = "nvim";
@@ -27,7 +25,6 @@
         vim = "nvim";
         vimdiff = "nvim -d";
       }
-
       # other aliases
       { tf = "terraform"; }
     ];
@@ -36,13 +33,6 @@
       enable = true;
       zplugHome = "${config.xdg.dataHome}/zplug";
       plugins = [
-        {
-          name = "romkatv/powerlevel10k";
-          tags = [
-            "as:theme"
-            "depth:1"
-          ];
-        }
         {
           name = "zsh-users/zsh-autosuggestions";
           tags = [
@@ -69,17 +59,7 @@
 
     # seems broken
     # defaultKeymap = "vicmd";
-
-    initExtra = ''
-      bindkey -v
-      source ${./p10k.zsh}
-    '';
-
-    initExtraFirst = ''
-      if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-        source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-      fi
-    '';
+    initExtra = "bindkey -v";
 
     profileExtra = lib.optionalString pkgs.stdenv.isDarwin ''
       eval $(${

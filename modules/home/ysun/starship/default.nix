@@ -3,7 +3,6 @@
 {
   programs.starship = {
     enable = true;
-    enableZshIntegration = false;
     settings = {
       add_newline = false;
       format = lib.concatStrings [
@@ -67,13 +66,13 @@
       fill = {
         disabled = false;
         symbol = ".";
-        style = "blue";
+        style = "black";
       };
 
       cmd_duration = {
         disabled = false;
         format = "[$duration]($style) ";
-        style = "black";
+        style = "blue";
         min_time = 0;
         show_milliseconds = true;
       };

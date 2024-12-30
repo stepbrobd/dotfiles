@@ -67,6 +67,3 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 .gitkeep export-ignore
-
-# Generated p10k config
-modules/home/ysun/zsh/p10k.zsh linguist-generated
