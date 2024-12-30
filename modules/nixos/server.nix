@@ -17,6 +17,10 @@
     git
     curl
     wget
+
+    bash
+    nushell
+    zsh
   ];
 
   users.mutableUsers = false;
