@@ -1,9 +1,7 @@
-{ inputs, ... }:
-
 { config, ... }:
 
 {
-  age.secrets.acme.file = "${inputs.self}/secrets/cloudflare-acme.age";
+  sops.secrets.acme = { };
 
   security.acme = {
     acceptTerms = true;
@@ -11,7 +9,7 @@
       email = "ysun@hey.com";
       dnsProvider = "cloudflare";
       extraLegoFlags = [ "--dns.resolvers=1.1.1.1:53" ];
-      environmentFile = config.age.secrets.acme.path;
+      environmentFile = config.sops.secrets.acme.path;
     };
   };
 }
