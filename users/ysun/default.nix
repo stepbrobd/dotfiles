@@ -4,8 +4,10 @@
 }:
 
 {
+  programs.zsh.enable = true;
+
   users.users.ysun = {
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
 
     description = "Yifei Sun";
     home =

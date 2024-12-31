@@ -22,7 +22,7 @@
     jujutsu
     lsd
     # mpd # linux only
-    nushell
+    # nushell # imported in minimal
     pyenv
     ssh
     # tmux # imported in minimal
