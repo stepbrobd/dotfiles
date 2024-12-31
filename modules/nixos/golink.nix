@@ -11,12 +11,11 @@ in
   imports = [ inputs.golink.nixosModules.default ];
 
   config = mkIf cfg.enable {
-    age.secrets.tailscale = {
-      file = "${inputs.self.outPath}/secrets/tailscale.age";
+    sops.secrets.golink = {
       owner = config.services.golink.user;
       group = config.services.golink.group;
     };
 
-    services.golink.tailscaleAuthKeyFile = config.age.secrets.tailscale.path;
+    services.golink.tailscaleAuthKeyFile = config.sops.secrets.golink.path;
   };
 }
