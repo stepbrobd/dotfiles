@@ -23,7 +23,6 @@
     lsd
     # mpd # linux only
     # nushell # imported in minimal
-    pyenv
     ssh
     # tmux # imported in minimal
     vscode
