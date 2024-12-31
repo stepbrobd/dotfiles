@@ -1,12 +1,12 @@
 builds:
- include:
-   - darwinConfigurations.*
-   - nixosConfigurations.*
-   - packages.*.*
-   - devShells.*.*
- exclude:
-   - darwinConfigurations.macbook # sandbox
-   - packages.*.hey-mail          # unfree
-   - packages.*.spotify           # unfree
-   - packages.*.gallery           # broken
-   - packages.*.reminders         # broken
+  include:
+    - darwinConfigurations.*
+    - nixosConfigurations.*
+    - packages.*.*
+    - devShells.*.*
+  exclude:
+    - darwinConfigurations.macbook # sandbox
+    - packages.*.hey-mail # unfree
+    - packages.*.spotify # unfree
+    - packages.*.gallery # broken
+    - packages.*.reminders # broken
