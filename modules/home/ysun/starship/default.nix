@@ -13,6 +13,7 @@
         "$git_status"
         "$fill"
         "$cmd_duration"
+        "$hostname"
         "$direnv"
         "$nix_shell"
         "$line_break"
@@ -75,6 +76,13 @@
         style = "blue";
         min_time = 0;
         show_milliseconds = true;
+      };
+
+      hostname = {
+        disabled = false;
+        format = "[$hostname]($style) ";
+        style = "purple";
+        ssh_only = true;
       };
 
       direnv = {
