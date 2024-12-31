@@ -1,9 +1,9 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 
 { config, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.services.caddy.enable) {
+  config = lib.mkIf config.services.caddy.enable {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.caddy = {
@@ -46,14 +46,13 @@
       '';
     };
 
-    age.secrets.cloudflare = {
-      file = "${inputs.self.outPath}/secrets/cloudflare-caddy.age";
+    sops.secrets.caddy = {
       owner = config.services.caddy.user;
       group = config.services.caddy.group;
     };
 
     systemd.services.caddy.serviceConfig = {
-      EnvironmentFile = [ config.age.secrets.cloudflare.path ];
+      EnvironmentFile = [ config.sops.secrets.caddy.path ];
       AmbientCapabilities = "CAP_NET_BIND_SERVICE";
     };
   };
