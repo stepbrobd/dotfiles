@@ -11,6 +11,19 @@
     enable = true;
     autocd = true;
 
+    plugins = [
+      {
+        name = "zsh-autosuggestions";
+        file = "zsh-autosuggestions.zsh";
+        src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+      }
+      {
+        name = "fast-syntax-highlighting";
+        file = "fast-syntax-highlighting.plugin.zsh";
+        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      }
+    ];
+
     shellAliases = lib.mkMerge [
       # bat
       (lib.mkIf config.programs.bat.enable { cat = "bat --plain"; })
@@ -34,34 +47,6 @@
       # other aliases
       { tf = "terraform"; }
     ];
-
-    zplug = {
-      enable = true;
-      zplugHome = "${config.xdg.dataHome}/zplug";
-      plugins = [
-        {
-          name = "zsh-users/zsh-autosuggestions";
-          tags = [
-            "as:plugin"
-            "depth:1"
-          ];
-        }
-        {
-          name = "zsh-users/zsh-completions";
-          tags = [
-            "as:plugin"
-            "depth:1"
-          ];
-        }
-        {
-          name = "zsh-users/zsh-syntax-highlighting";
-          tags = [
-            "as:plugin"
-            "depth:1"
-          ];
-        }
-      ];
-    };
 
     # seems broken
     # defaultKeymap = "vicmd";
