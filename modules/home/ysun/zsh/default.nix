@@ -10,19 +10,8 @@
   programs.zsh = {
     enable = true;
     autocd = true;
-
-    plugins = [
-      {
-        name = "zsh-autosuggestions";
-        file = "zsh-autosuggestions.zsh";
-        src = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
-      }
-      {
-        name = "fast-syntax-highlighting";
-        file = "fast-syntax-highlighting.plugin.zsh";
-        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-      }
-    ];
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
     shellAliases = lib.mkMerge [
       # bat
