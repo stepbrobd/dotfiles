@@ -13,8 +13,6 @@ in
   "secrets/attic.age".publicKeys = ysun ++ [ odake ];
   "secrets/attic-client.toml.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
 
-  "secrets/cloudflare-caddy.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
-
   "secrets/plausible.goo.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.mal.age".publicKeys = ysun ++ [ lagern ];
   "secrets/plausible.mmd.age".publicKeys = ysun ++ [ lagern ];
