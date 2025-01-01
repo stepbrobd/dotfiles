@@ -2,8 +2,8 @@
 
 {
   # https://garnix.io/docs/hosting/secrets
-  imports = [ inputs.agenix.nixosModules.age ];
-  age.identityPaths = [ "/var/garnix/keys/repo-key" ];
+  imports = [ inputs.sops.nixosModules.sops ];
+  sops.age.sshKeyPaths = [ "/var/garnix/keys/repo-key" ];
 
   # https://garnix.io/docs/hosting/branch
   boot.loader.grub.device = "/dev/sda";
