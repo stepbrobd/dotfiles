@@ -10,7 +10,6 @@ let
   ysun = [ framework macbook ];
 in
 {
-  "secrets/attic.age".publicKeys = ysun ++ [ odake ];
   "secrets/attic-client.toml.age".publicKeys = ysun ++ [ bachtel lagern odake walberla ];
 
   "secrets/plausible.goo.age".publicKeys = ysun ++ [ lagern ];

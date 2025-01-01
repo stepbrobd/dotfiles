@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 
 { config, options, pkgs, ... }:
 
@@ -20,16 +20,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    age.secrets.attic = {
-      file = "${inputs.self.outPath}/secrets/attic.age";
-      owner = config.services.atticd.user;
-      group = config.services.atticd.group;
+    sops.secrets.atticd = {
+      # owner = config.services.atticd.user;
+      # group = config.services.atticd.group;
     };
 
     services.atticd = {
       inherit (cfg) enable;
 
-      environmentFile = config.age.secrets.attic.path;
+      environmentFile = config.sops.secrets.atticd.path;
 
       settings = cfg.settings // {
         compression.type = "zstd";
