@@ -22,14 +22,10 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
       imports = [
         # index
         inputs.index.hmModules.nix-index
-        # secret management
-        # inputs.agenix.homeManagerModules.age
-        # ({ config, ... }: with config.xdg; {
-        #   # agenix #300
-        #   age.secretsDir = "${stateHome}/agenix";
-        #   age.secretsMountPoint = "${stateHome}/agenix.d";
-        # })
+        # secrets
         # inputs.sops.homeManagerModules.sops
+        # { sops.defaultSopsFile = ./secrets.yaml; }
+        # ({ config, ... }: { sops.age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt"; })
         # state version
         { home = { inherit stateVersion; }; }
         # actual user module

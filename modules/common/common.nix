@@ -6,9 +6,6 @@ let
   inherit (lib) mapAttrs mapAttrsToList mkForce optional optionals;
 in
 {
-  # secrets
-  sops.defaultSopsFile = ./secrets.yaml;
-
   # enable nextdns and tailscale on all hosts
   services = {
     nextdns = {
