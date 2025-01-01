@@ -13,7 +13,7 @@ let
     inherit inputs hosts stateVersion;
     os = "nixos";
     platform = "x86_64-linux";
-    users = { ysun = with inputs.self; [ /* hmModules.ysun.minimal */ ]; };
+    users = { ysun = with inputs.self; [ hmModules.ysun.minimal ]; };
     modules = with inputs; [
       self.nixosModules.acme
       self.nixosModules.attic
