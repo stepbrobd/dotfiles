@@ -35,11 +35,6 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # a
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.inputs.darwin.follows = "darwin";
-    agenix.inputs.home-manager.follows = "hm";
-    agenix.inputs.systems.follows = "systems";
     autopilot.url = "github:stepbrobd/autopilot";
     autopilot.inputs.nixpkgs.follows = "nixpkgs";
     autopilot.inputs.parts.follows = "parts";

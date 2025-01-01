@@ -15,7 +15,6 @@ in
 
 [
   entrypoint
-  inputs.agenix."${os}Modules".age
   inputs.sops."${os}Modules".sops
   { sops.defaultSopsFile = ./secrets.yaml; }
   { nixpkgs.hostPlatform = mkDefault platform; }
