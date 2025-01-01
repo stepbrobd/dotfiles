@@ -5,8 +5,10 @@ builds:
     - packages.*.*
     - devShells.*.*
   exclude:
-    - darwinConfigurations.macbook # sandbox
-    - packages.*.hey-mail # unfree
-    - packages.*.spotify # unfree
-    - packages.*.gallery # broken
-    - packages.*.reminders # broken
+    - darwinConfigurations.macbook   # sandbox
+    - packages.aarch64-darwin.nixvim # sandbox
+    - packages.x86_64-darwin.nixvim  # sandbox
+    - packages.*.hey-mail            # unfree
+    - packages.*.spotify             # unfree
+    - packages.*.gallery             # broken
+    - packages.*.reminders           # broken
