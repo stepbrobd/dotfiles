@@ -25,6 +25,7 @@ let
       self.nixosModules.lix
       self.nixosModules.minimal
       self.nixosModules.passwordless
+      self.nixosModules.plausible
       self.nixosModules.server
       self.nixosModules.uptime
       srvos.nixosModules.server
