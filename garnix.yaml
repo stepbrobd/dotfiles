@@ -12,3 +12,9 @@ builds:
     - packages.*.spotify             # unfree
     - packages.*.gallery             # broken
     - packages.*.reminders           # broken
+
+servers:
+  - configuration: halti
+    deployment:
+      branch: master
+      type: on-branch

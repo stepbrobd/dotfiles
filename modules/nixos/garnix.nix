@@ -1,14 +1,11 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 { config, ... }:
 
 {
   imports = with inputs; [
     garnix.nixosModules.garnix
-    sops.nixosModules.sops
   ];
-
-  sops.age.sshKeyPaths = [ "/var/garnix/keys/repo-key" ];
 
   # https://garnix.io/docs/hosting/branch
   boot.loader.grub.device = "/dev/sda";
@@ -17,8 +14,24 @@
     fsType = "ext4";
   };
 
-  garnix.server.persistence = {
+  garnix.server = {
     enable = true;
-    name = config.networking.fqdn;
+    persistence = {
+      enable = true;
+      name = config.networking.hostName;
+    };
   };
+
+  networking.useNetworkd = lib.mkForce false;
+  security.sudo.execWheelOnly = lib.mkOverride 49 true;
+  security.sudo.extraRules = lib.mkOverride 49 [
+    {
+      users = [ "root" ];
+      commands = [{ command = "ALL"; options = [ "NOPASSWD" "SETENV" ]; }];
+    }
+    {
+      groups = [ "wheel" ];
+      commands = [{ command = "ALL"; options = [ "NOPASSWD" "SETENV" ]; }];
+    }
+  ];
 }
