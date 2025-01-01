@@ -61,6 +61,8 @@
     # g
     gallery.url = "github:sambecker/exif-photo-blog";
     gallery.flake = false;
+    garnix.url = "github:garnix-io/garnix-lib";
+    garnix.inputs.nixpkgs.follows = "nixpkgs";
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
     git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";

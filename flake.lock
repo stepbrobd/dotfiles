@@ -178,6 +178,26 @@
         "type": "github"
       }
     },
+    "garnix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734854478,
+        "narHash": "sha256-vY6AaPAY/G7PgMDqiykjB8NRD21swr1glES+TNF8HGI=",
+        "owner": "garnix-io",
+        "repo": "garnix-lib",
+        "rev": "6de2382cc0fafe01940ab74a67db9a2b8d239066",
+        "type": "github"
+      },
+      "original": {
+        "owner": "garnix-io",
+        "repo": "garnix-lib",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": [
@@ -550,6 +570,7 @@
         "disko": "disko",
         "flakey-profile": "flakey-profile",
         "gallery": "gallery",
+        "garnix": "garnix",
         "git-hooks": "git-hooks",
         "gitignore": "gitignore",
         "golink": "golink",

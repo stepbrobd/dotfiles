@@ -1,8 +1,13 @@
 { inputs, ... }:
 
+{ config, ... }:
+
 {
-  # https://garnix.io/docs/hosting/secrets
-  imports = [ inputs.sops.nixosModules.sops ];
+  imports = with inputs; [
+    garnix.nixosModules.garnix
+    sops.nixosModules.sops
+  ];
+
   sops.age.sshKeyPaths = [ "/var/garnix/keys/repo-key" ];
 
   # https://garnix.io/docs/hosting/branch
@@ -10,5 +15,10 @@
   fileSystems."/" = {
     device = "/dev/sda1";
     fsType = "ext4";
+  };
+
+  garnix.server.persistence = {
+    enable = true;
+    name = config.networking.fqdn;
   };
 }
