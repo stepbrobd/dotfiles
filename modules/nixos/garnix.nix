@@ -7,6 +7,17 @@
     garnix.nixosModules.garnix
   ];
 
+  sops = {
+    age = {
+      keyFile = lib.mkForce "/var/garnix/keys/repo-key";
+      sshKeyPaths = lib.mkForce [ ];
+    };
+    gnupg = {
+      home = lib.mkForce null;
+      sshKeyPaths = lib.mkForce [ ];
+    };
+  };
+
   # https://garnix.io/docs/hosting/branch
   boot.loader.grub.device = "/dev/sda";
   fileSystems."/" = {
