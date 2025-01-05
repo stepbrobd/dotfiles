@@ -5,6 +5,7 @@
 {
   imports = with inputs; [
     garnix.nixosModules.garnix
+    self.nixosModules.passwordless
   ];
 
   sops = {
@@ -34,15 +35,4 @@
   };
 
   networking.useNetworkd = lib.mkForce false;
-  security.sudo.execWheelOnly = lib.mkOverride 49 true;
-  security.sudo.extraRules = lib.mkOverride 49 [
-    {
-      users = [ "root" ];
-      commands = [{ command = "ALL"; options = [ "NOPASSWD" "SETENV" ]; }];
-    }
-    {
-      groups = [ "wheel" ];
-      commands = [{ command = "ALL"; options = [ "NOPASSWD" "SETENV" ]; }];
-    }
-  ];
 }
