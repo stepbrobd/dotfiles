@@ -65,7 +65,6 @@
     garnix.inputs.nixpkgs.follows = "nixpkgs";
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
-    git-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
     git-hooks.inputs.flake-compat.follows = "compat";
     git-hooks.inputs.gitignore.follows = "gitignore";
     gitignore.url = "github:hercules-ci/gitignore.nix";
@@ -88,7 +87,7 @@
     lanzaboote.inputs.flake-compat.follows = "compat";
     lanzaboote.inputs.flake-parts.follows = "parts";
     lanzaboote.inputs.flake-utils.follows = "utils";
-    lanzaboote.inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
+    lanzaboote.inputs.pre-commit-hooks-nix.follows = "";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
     lix.url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.91.1";
     lix.flake = false;
@@ -115,11 +114,6 @@
     # p
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
-    pre-commit-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
-    pre-commit-hooks.inputs.flake-compat.follows = "compat";
-    pre-commit-hooks.inputs.gitignore.follows = "gitignore";
     # r
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
