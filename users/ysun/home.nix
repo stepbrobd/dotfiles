@@ -64,7 +64,7 @@ in
     go
     nixvim
     obsidian
-    osu-lazer-bin
+    (osu-lazer-bin.override { nativeWayland = true; })
     pinentry-all
     slack
     smplayer
