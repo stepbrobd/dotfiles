@@ -125,6 +125,13 @@
     srvos.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
     # t
+    terranix.url = "github:terranix/terranix";
+    terranix.inputs.nixpkgs.follows = "nixpkgs";
+    terranix.inputs.flake-parts.follows = "parts";
+    terranix.inputs.systems.follows = "systems";
+    terranix.inputs.bats-assert.follows = "";
+    terranix.inputs.bats-support.follows = "";
+    terranix.inputs.terranix-examples.follows = "";
     treefmt.url = "github:numtide/treefmt-nix";
     treefmt.inputs.nixpkgs.follows = "nixpkgs";
     # u

@@ -13,6 +13,8 @@
         nix-direnv
         sops
         terraform
+        terraformer
+        terranix
       ];
     };
   };
