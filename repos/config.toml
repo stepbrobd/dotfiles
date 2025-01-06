@@ -237,6 +237,11 @@ description = "cs 5800 fall 2023 @ northeastern university"
 visibility = "private"
 archived = true
 
+[repo."neu-cs-6410"]
+description = "cs 6410 spring 2025 @ northeastern university"
+visibility = "private"
+archived = false
+
 [repo."neu-cy-6740"]
 description = "cy 6740 spring 2024 @ northeastern university"
 visibility = "private"
