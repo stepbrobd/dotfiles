@@ -65,6 +65,7 @@ in
     nixvim
     obsidian
     (osu-lazer-bin.override { nativeWayland = true; })
+    pat
     pinentry-all
     slack
     smplayer
@@ -79,6 +80,7 @@ in
     gitleaks
     go
     nixvim
+    pat
     pinentry_mac
     # reattach-to-user-namespace
     yt-dlp
