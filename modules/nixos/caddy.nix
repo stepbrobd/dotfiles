@@ -8,7 +8,7 @@
 
     services.caddy = {
       package = pkgs.caddy.withPlugins {
-        hash = "sha256-TvWpdYArCBcnlxN6YAWQH8fzldFxJhxaXHv2KAKq5ls=";
+        hash = "sha256-0DDtb7cLin09+HBiHpGPVWcEHNod3uoO1NNYagFOlOM=";
         plugins = [
           "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
           "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
