@@ -8,6 +8,10 @@ RAM: 64GB
 
 Storage: 1TB
 
+Troubleshooting:
+
+- if `/nix` is not mounting on boot: [nix-installer#1261](https://github.com/determinatesystems/nix-installer/issues/1261)
+
 ## Preparation
 
 > [!Important]
