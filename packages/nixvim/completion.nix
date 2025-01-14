@@ -56,20 +56,20 @@
           { name = "zsh"; }
         ];
 
-        window = {
-          completion = {
-            winhighlight =
-              "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
-            scrollbar = false;
-            sidePadding = 0;
-            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
-          };
-          settings.documentation = {
-            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
-            winhighlight =
-              "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
-          };
-        };
+        # window = {
+        #   completion = {
+        #     winhighlight =
+        #       "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+        #     scrollbar = false;
+        #     sidePadding = 0;
+        #     border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
+        #   };
+        #   settings.documentation = {
+        #     border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
+        #     winhighlight =
+        #       "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
+        #   };
+        # };
 
         mapping = {
           "<C-n>" = "cmp.mapping.select_next_item()";
