@@ -8,6 +8,11 @@
         suggestion.enabled = false;
         panel.enabled = false;
       };
+      settings.filetypes = {
+        gitcommit = true;
+        gitrebase = true;
+        markdown = true;
+      };
     };
 
     coq-nvim.enable = true;
