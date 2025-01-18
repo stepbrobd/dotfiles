@@ -55,7 +55,7 @@ in
 
       server = {
         baseUrl = "https://${cfg.domain}";
-        disableRegistration = true;
+        disableRegistration = "invite_only";
         listenAddress = "127.0.0.1";
         port = 20069;
         secretKeybaseFile = config.sops.secrets."plausible/keybase".path;
