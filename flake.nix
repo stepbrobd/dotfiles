@@ -110,7 +110,7 @@
     nixvim.inputs.home-manager.follows = "hm";
     nixvim.inputs.nix-darwin.follows = "darwin";
     nixvim.inputs.nuschtosSearch.follows = "";
-    nixvim.inputs.treefmt-nix.follows = "treefmt";
+    nixvim.inputs.treefmt-nix.follows = "";
     # p
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -132,8 +132,6 @@
     terranix.inputs.bats-assert.follows = "";
     terranix.inputs.bats-support.follows = "";
     terranix.inputs.terranix-examples.follows = "";
-    treefmt.url = "github:numtide/treefmt-nix";
-    treefmt.inputs.nixpkgs.follows = "nixpkgs";
     # u
     utils.url = "github:numtide/flake-utils";
     utils.inputs.systems.follows = "systems";
