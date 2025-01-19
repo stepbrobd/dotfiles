@@ -3,6 +3,7 @@
 { stdenv
 , lib
 , inputs
+, pkgs
 }:
 
 let
@@ -10,6 +11,13 @@ let
   inherit (lib) attrNames filter map readDir;
 in
 lib.makeOverridable nixvim.makeNixvimWithModule {
+  inherit pkgs;
+
+  extraSpecialArgs = {
+    inherit inputs;
+    lib = lib.extend inputs.nixvim.lib.overlay;
+  };
+
   module.imports = map
     (f: ./${f})
     (filter
