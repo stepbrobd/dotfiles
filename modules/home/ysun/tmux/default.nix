@@ -9,7 +9,7 @@
     clock24 = true;
     terminal = "screen-256color";
 
-    plugins = with pkgs.tmuxPlugins; [ nord resurrect ];
+    plugins = with pkgs.tmuxPlugins; [ nord resurrect continuum ];
     sensibleOnTop = false;
 
     extraConfig = ''
