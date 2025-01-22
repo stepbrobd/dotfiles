@@ -50,7 +50,6 @@
       "bartender"
       "betterdisplay"
       "cleanmymac"
-      "coconutbattery"
       "discord"
       "hey"
       "notchnook"
