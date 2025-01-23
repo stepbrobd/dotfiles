@@ -81,12 +81,11 @@
     index.url = "github:nix-community/nix-index-database";
     index.inputs.nixpkgs.follows = "nixpkgs";
     # l
-    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.1";
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.inputs.crane.follows = "crane";
     lanzaboote.inputs.flake-compat.follows = "compat";
     lanzaboote.inputs.flake-parts.follows = "parts";
-    lanzaboote.inputs.flake-utils.follows = "utils";
     lanzaboote.inputs.pre-commit-hooks-nix.follows = "";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
     lix.url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.91.1";
