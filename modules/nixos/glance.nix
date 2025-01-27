@@ -107,10 +107,6 @@ in
                   type = "hacker-news";
                   limit = 10;
                 }
-                {
-                  type = "html";
-                  source = ''<script defer data-domain="home.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>'';
-                }
               ];
             }
           ];
