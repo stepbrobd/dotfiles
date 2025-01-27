@@ -1,6 +1,6 @@
 { lib, ... }:
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   inherit (lib) genAttrs mkIf mkOption toString types;
@@ -26,6 +26,13 @@ in
         '';
       });
     };
+
+    services.glance.package = pkgs.glance.overrideAttrs (_: {
+      patchPhase = ''
+        substituteInPlace internal/assets/templates/document.html \
+          --replace-warn '</head>' '<script defer data-domain="home.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script></head>'
+      '';
+    });
 
     services.glance.settings = {
       server = {
