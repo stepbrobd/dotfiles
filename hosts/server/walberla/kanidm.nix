@@ -67,6 +67,7 @@ in
 
   users.groups.sso.members = [ "caddy" "kanidm" ];
   security.acme.certs."sso.ysun.co" = {
+    domain = "*.ysun.co";
     group = "sso";
     reloadServices = [ "caddy.service" "kanidm.service" ];
   };
