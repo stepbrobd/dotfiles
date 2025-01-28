@@ -1,18 +1,14 @@
 {
-  plugins.dap = {
+  plugins.dap.enable = true;
+
+  plugins.dap-ui = {
     enable = true;
-
-    extensions = {
-      dap-ui = {
-        enable = true;
-        controls.enabled = false;
-      };
-
-      dap-go.enable = true;
-      dap-python.enable = true;
-      dap-virtual-text.enable = true;
-    };
+    settings.controls.enabled = true;
   };
+
+  plugins.dap-go.enable = true;
+  plugins.dap-python.enable = true;
+  plugins.dap-virtual-text.enable = true;
 
   plugins.lualine.settings.extensions = [ "nvim-dap-ui" ];
 }

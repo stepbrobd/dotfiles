@@ -49,7 +49,6 @@
       ms-vscode-remote.remote-ssh
       ms-vscode.cmake-tools
       myriad-dreamin.tinymist
-      nvarner.typst-lsp
       redhat.vscode-yaml
       rust-lang.rust-analyzer
       shd101wyy.markdown-preview-enhanced
