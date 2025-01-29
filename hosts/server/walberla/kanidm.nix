@@ -23,6 +23,11 @@ in
     '';
   };
 
+  sops.secrets.kanidm = {
+    owner = "kanidm";
+    group = "kanidm";
+  };
+
   services.kanidm = {
     package = pkgs.kanidm.override { enableSecretProvisioning = true; };
 
@@ -46,6 +51,9 @@ in
       enable = true;
       autoRemove = true;
       acceptInvalidCerts = true;
+
+      adminPasswordFile = config.sops.secrets.kanidm.path;
+      idmAdminPasswordFile = config.sops.secrets.kanidm.path;
 
       groups = {
         "sso.admins" = { };
