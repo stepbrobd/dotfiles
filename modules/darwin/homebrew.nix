@@ -69,7 +69,6 @@
     masApps = {
       # utils
       "Apple Configurator" = 1037126344;
-      "Authenticator" = 1538761576;
       "Craft" = 1487937127;
       "Dropover" = 1355679052;
       "iMazing Profile Editor" = 1487860882;
@@ -89,13 +88,13 @@
       "Kagi" = 1622835804;
       "Noir" = 1592917505;
       "Vimari" = 1480933944;
-      # microsoft
-      "Microsoft Word" = 462054704;
-      "Microsoft Excel" = 462058435;
-      "Microsoft PowerPoint" = 462062816;
       # media
       "Infuse" = 1136220934;
       "Macgo Blu-ray Player Pro" = 1403952861;
+      # iwork
+      "Keynote" = 409183694;
+      "Numbers" = 409203825;
+      "Pages" = 409201541;
     };
   };
 }
