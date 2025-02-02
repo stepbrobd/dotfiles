@@ -82,10 +82,11 @@
         </config>
         <role_mapping>
           hydra.admins = admin
-          hydra.admins = create-projects
           hydra.admins = bump-to-front
-          hydra.users = restart-jobs
           hydra.users = cancel-build
+          hydra.users = eval-jobset
+          hydra.users = create-projects
+          hydra.users = restart-jobs
         </role_mapping>
       </ldap>
     '';
