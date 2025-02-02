@@ -13,6 +13,7 @@
   sops.secrets.hydra = {
     owner = "hydra";
     group = "hydra";
+    mode = "440";
   };
 
   services.hydra = {
