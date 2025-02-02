@@ -50,7 +50,7 @@ in
     provision = {
       enable = true;
       autoRemove = true;
-      # acceptInvalidCerts = true;
+      acceptInvalidCerts = true;
 
       adminPasswordFile = config.sops.secrets.kanidm.path;
       idmAdminPasswordFile = config.sops.secrets.kanidm.path;
