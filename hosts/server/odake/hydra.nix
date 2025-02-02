@@ -64,6 +64,7 @@
             <user_search_options>
               attrs = "+"
               attrs = "cn"
+              attrs = "mail"
               deref = always
             </user_search_options>
             use_roles = 1
