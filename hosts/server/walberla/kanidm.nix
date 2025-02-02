@@ -50,7 +50,7 @@ in
     provision = {
       enable = true;
       autoRemove = true;
-      acceptInvalidCerts = true;
+      # acceptInvalidCerts = true;
 
       adminPasswordFile = config.sops.secrets.kanidm.path;
       idmAdminPasswordFile = config.sops.secrets.kanidm.path;
@@ -67,7 +67,7 @@ in
           displayName = "Yifei";
           legalName = "Yifei Sun";
           mailAddresses = [ "ysun@hey.com" ];
-          groups = [ "sso.admins" "hydra.admins" ];
+          groups = [ "sso.admins" "sso.users" "hydra.admins" "hydra.users" ];
         };
       };
     };
