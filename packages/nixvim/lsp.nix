@@ -69,7 +69,10 @@
   plugins.lsp.servers.nushell.enable = true;
 
   # Spelling
-  plugins.lsp.servers.typos_lsp.enable = true;
+  plugins.lsp.servers.typos_lsp = {
+    enable = true;
+    extraOptions.init_options.diagnosticSeverity = "Hint";
+  };
 
   # TeX
   plugins.lsp.servers.ltex.enable = true;
