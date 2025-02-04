@@ -22,12 +22,18 @@
         tree = "lsd --tree";
       })
       # must use neovim
-      {
+      rec {
         emacs = "nvim";
         nano = "nvim";
         vi = "nvim";
         vim = "nvim";
         vimdiff = "nvim -d";
+        # emacs daemon like behavior but for neovim
+        vims = nvims;
+        nvims = ''pwd | sha256sum | cut -c1-8 | xargs -I{} nvim --headless --listen "/tmp/nvim.{}"'';
+        # attach to a nvim "daemon"
+        vimc = nvimc;
+        nvimc = ''pwd | sha256sum | cut -c1-8 | xargs -I{} nvim --remote-ui --server "/tmp/nvim.{}"'';
       }
       # tailscale
       (lib.mkIf pkgs.stdenv.isDarwin {
