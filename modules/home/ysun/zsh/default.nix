@@ -30,10 +30,10 @@
         vimdiff = "nvim -d";
         # emacs daemon like behavior but for neovim
         vims = nvims;
-        nvims = ''pwd | sha256sum | cut -c1-8 | xargs -I{} nvim --headless --listen "/tmp/nvim.{}"'';
+        nvims = "nvim --headless --listen '/tmp/nvim.'$(pwd | sha256sum | cut -c1-8)";
         # attach to a nvim "daemon"
         vimc = nvimc;
-        nvimc = ''pwd | sha256sum | cut -c1-8 | xargs -I{} nvim --remote-ui --server "/tmp/nvim.{}"'';
+        nvimc = "nvim --remote-ui --server '/tmp/nvim.'$(pwd | sha256sum | cut -c1-8)";
       }
       # tailscale
       (lib.mkIf pkgs.stdenv.isDarwin {
