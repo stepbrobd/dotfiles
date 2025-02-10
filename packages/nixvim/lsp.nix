@@ -70,6 +70,7 @@
 
   # SMT2
   plugins.lsp.servers.dolmenls.enable = true;
+  plugins.lsp.servers.dolmenls.package = pkgs.dolmen_lsp;
 
   # Spelling
   plugins.lsp.servers.typos_lsp = {
