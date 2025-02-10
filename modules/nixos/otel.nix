@@ -40,13 +40,35 @@ in
 
     services.grafana = {
       settings = {
-        analytics.reporting_enabled = false;
         server = {
           http_addr = "127.0.0.1";
           http_port = 25000;
           domain = cfg.mainDomain;
           root_url = "https://${cfg.mainDomain}/";
         };
+
+        analytics = {
+          check_for_updates = false;
+          feedback_links_enabled = false;
+          reporting_enabled = false;
+        };
+
+        security = {
+          cookie_secure = true;
+          csrf_trusted_origins = [ "https://ysun.co" "https://*.ysun.co" ];
+          disable_initial_admin_creation = true;
+          hide_version = true;
+        };
+
+        users = {
+          allow_org_create = false;
+          allow_sign_up = false;
+        };
+
+        auth.disable_login_form = true;
+        # "auth.generic_oauth" = { };
+
+        # smtp = { };
       };
     };
   };
