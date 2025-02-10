@@ -68,6 +68,9 @@
   plugins.lsp.servers.bashls.enable = true;
   plugins.lsp.servers.nushell.enable = true;
 
+  # SMT2
+  plugins.lsp.servers.dolmenls.enable = true;
+
   # Spelling
   plugins.lsp.servers.typos_lsp = {
     enable = true;
