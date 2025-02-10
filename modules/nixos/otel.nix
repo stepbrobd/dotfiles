@@ -28,7 +28,7 @@ in
     services.caddy = {
       enable = true;
       virtualHosts = genAttrs ([ cfg.mainDomain ] ++ cfg.extraDomains) (domain: {
-        extraConfig = with config.services.grafana.server; ''
+        extraConfig = with config.services.grafana.settings.server; ''
           import common
           reverse_proxy ${toString http_addr}:${toString http_port} {
             header_up Host {host}
