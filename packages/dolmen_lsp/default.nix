@@ -1,4 +1,4 @@
-{  ocamlPackages }:
+{ ocamlPackages }:
 
 ocamlPackages.buildDunePackage {
   pname = "dolmen_lsp";
