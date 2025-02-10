@@ -25,6 +25,7 @@ let
       self.nixosModules.golink
       self.nixosModules.lix
       self.nixosModules.minimal
+      self.nixosModules.otel
       self.nixosModules.passwordless
       self.nixosModules.plausible
       self.nixosModules.server

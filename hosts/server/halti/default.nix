@@ -1,6 +1,8 @@
 {
   imports = [
     ./hardware.nix
+
+    ./otel.nix
   ];
 
   networking = {
