@@ -26,6 +26,7 @@ in
 
   config = mkIf cfg.enable {
     services.caddy = {
+      enable = true;
       virtualHosts = genAttrs ([ cfg.mainDomain ] ++ cfg.extraDomains) (domain: {
         extraConfig = with config.services.grafana.server; ''
           import common
