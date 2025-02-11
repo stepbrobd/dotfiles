@@ -92,7 +92,7 @@ in
         displayName = "Grafana";
         originUrl = "https://otel.ysun.co/login/generic_oauth";
         originLanding = "https://otel.ysun.co/";
-        basicSecretFile = config.sops.secrets."kanidm/oauth/grafana".path;
+        # basicSecretFile = config.sops.secrets."kanidm/oauth/grafana".path;
         preferShortUsername = true;
         scopeMaps."grafana.users" = [
           "openid"
