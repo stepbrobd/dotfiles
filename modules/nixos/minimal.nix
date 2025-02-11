@@ -1,3 +1,6 @@
+{ inputs, ... }:
+
 {
-  imports = [ ./tailscale.nix ];
+  imports = with inputs.self.nixosModules; [ prometheus tailscale ];
+  services.prometheus.enable = true;
 }
