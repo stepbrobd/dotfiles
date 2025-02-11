@@ -3,13 +3,14 @@
 { config, ... }:
 
 let
-  inherit (lib) mkIf toString;
+  inherit (lib) /* mkIf */ toString;
 
   cfg = config.services.prometheus;
 in
 {
-  config = mkIf cfg.enable {
+  config = /* mkIf cfg.enable */ {
     services.prometheus = {
+      enable = true;
       globalConfig.scrape_interval = "30s";
 
       exporters = {
@@ -131,7 +132,7 @@ in
       virtualHosts."otel.${config.networking.fqdn}".extraConfig = ''
         import common
         handle_path /prometheus/* {
-          reverse_proxy  ${with config.services.prometheus; toString listenAddress + ":" + toString port}
+          reverse_proxy  ${with cfg; toString listenAddress + ":" + toString port}
         }
         handle_path /loki/* {
           reverse_proxy  ${with config.services.loki.configuration.server; http_listen_address + ":" + toString http_listen_port}
