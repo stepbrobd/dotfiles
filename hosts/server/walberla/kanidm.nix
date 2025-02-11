@@ -24,7 +24,9 @@ in
   };
 
   sops.secrets."kanidm/passwd".group = "kanidm";
+  sops.secrets."kanidm/passwd".mode = "440";
   sops.secrets."kanidm/oauth/grafana".group = "kanidm";
+  sops.secrets."kanidm/oauth/grafana".mode = "440";
 
   services.kanidm = {
     package = pkgs.kanidm.override { enableSecretProvisioning = true; };

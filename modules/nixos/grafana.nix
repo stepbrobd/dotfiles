@@ -39,7 +39,9 @@ in
     };
 
     sops.secrets."grafana/oauth".group = "grafana";
+    sops.secrets."grafana/oauth".mode = "440";
     sops.secrets."grafana/smtp".group = "grafana";
+    sops.secrets."grafana/smtp".mode = "440";
 
     services.grafana = {
       settings = {
