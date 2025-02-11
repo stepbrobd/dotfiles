@@ -93,7 +93,8 @@ in
           enabled = true;
           user = "ysun@purelymail.com";
           password = "$__file{${config.sops.secrets."grafana/smtp".path}}";
-          host = "smtp.purelymail.com:465";
+          host = "smtp.purelymail.com:587";
+          startTLS_policy = "MandatoryStartTLS";
           from_address = "noc@stepbrobd.com";
         };
       };
