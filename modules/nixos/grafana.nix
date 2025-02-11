@@ -93,7 +93,7 @@ in
           enabled = true;
           user = "ysun@purelymail.com";
           password = "$__file{${config.sops.secrets."grafana/smtp".path}}";
-          host = "smtp.purelymail.com";
+          host = "smtp.purelymail.com:465";
           from_address = "noc@stepbrobd.com";
         };
       };
