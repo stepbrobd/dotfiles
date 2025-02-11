@@ -51,7 +51,10 @@ in
         '';
       });
 
-      declarativePlugins = with pkgs.grafanaPlugins; [ yesoreyeram-infinity-datasource ];
+      declarativePlugins = with pkgs.grafanaPlugins; [
+        grafana-oncall-app
+        yesoreyeram-infinity-datasource
+      ];
 
       settings = {
         server = {
