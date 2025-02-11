@@ -1,6 +1,6 @@
 { lib, ... }:
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   inherit (lib) genAttrs mkIf mkOption toString types;
@@ -44,6 +44,13 @@ in
     sops.secrets."grafana/smtp".mode = "440";
 
     services.grafana = {
+      package = pkgs.grafana.overrideAttrs (_: {
+        preFixup = ''
+          substituteInPlace $out/share/grafana/public/views/index.html \
+            --replace-warn '</head>' '<script defer data-domain="${cfg.mainDomain}" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script></head>'
+        '';
+      });
+
       settings = {
         server = {
           http_addr = "127.0.0.1";
