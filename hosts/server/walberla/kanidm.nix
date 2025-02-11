@@ -23,16 +23,8 @@ in
     '';
   };
 
-  sops.secrets."kanidm/passwd" = {
-    owner = "kanidm";
-    group = "kanidm";
-  };
-
-
-  sops.secrets."kanidm/oauth/grafana" = {
-    owner = "kanidm";
-    group = "kanidm";
-  };
+  sops.secrets."kanidm/passwd".group = "kanidm";
+  sops.secrets."kanidm/oauth/grafana".group = "kanidm";
 
   services.kanidm = {
     package = pkgs.kanidm.override { enableSecretProvisioning = true; };
