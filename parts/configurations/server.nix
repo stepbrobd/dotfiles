@@ -28,6 +28,7 @@ let
       self.nixosModules.minimal
       self.nixosModules.passwordless
       self.nixosModules.plausible
+      self.nixosModules.prometheus
       self.nixosModules.server
       self.nixosModules.uptime
       srvos.nixosModules.server
