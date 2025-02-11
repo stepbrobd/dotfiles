@@ -51,6 +51,8 @@ in
         '';
       });
 
+      declarativePlugins = with pkgs.grafanaPlugins; [ grafana-oncall-app ];
+
       settings = {
         server = {
           http_addr = "127.0.0.1";
