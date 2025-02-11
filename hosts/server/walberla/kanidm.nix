@@ -23,7 +23,13 @@ in
     '';
   };
 
-  sops.secrets.kanidm = {
+  sops.secrets."kanidm/passwd" = {
+    owner = "kanidm";
+    group = "kanidm";
+  };
+
+
+  sops.secrets."kanidm/oauth/grafana" = {
     owner = "kanidm";
     group = "kanidm";
   };
@@ -52,14 +58,20 @@ in
       autoRemove = true;
       acceptInvalidCerts = true;
 
-      adminPasswordFile = config.sops.secrets.kanidm.path;
-      idmAdminPasswordFile = config.sops.secrets.kanidm.path;
+      adminPasswordFile = config.sops.secrets."kanidm/passwd".path;
+      idmAdminPasswordFile = config.sops.secrets."kanidm/passwd".path;
 
       groups = {
         "sso.admins" = { };
         "sso.users" = { };
+
         "hydra.admins" = { };
         "hydra.users" = { };
+
+        "grafana.server-admins" = { };
+        "grafana.admins" = { };
+        "grafana.editors" = { };
+        "grafana.users" = { };
       };
 
       persons = {
@@ -67,7 +79,39 @@ in
           displayName = "Yifei";
           legalName = "Yifei Sun";
           mailAddresses = [ "ysun@hey.com" ];
-          groups = [ "sso.admins" "sso.users" "hydra.admins" "hydra.users" ];
+          groups = [
+            "sso.admins"
+            "sso.users"
+
+            "hydra.admins"
+            "hydra.users"
+
+            "grafana.server-admins"
+            "grafana.admins"
+            "grafana.editors"
+            "grafana.users"
+          ];
+        };
+      };
+
+      systems.oauth2.grafana = {
+        displayName = "Grafana";
+        originUrl = "https://otel.ysun.co/login/generic_oauth";
+        originLanding = "https://otel.ysun.co/";
+        basicSecretFile = config.sops.secrets."kanidm/oauth/grafana".path;
+        preferShortUsername = true;
+        scopeMaps."grafana.users" = [
+          "openid"
+          "email"
+          "profile"
+        ];
+        claimMaps.groups = {
+          joinType = "array";
+          valuesByGroup = {
+            "grafana.server-admins" = [ "server_admin" ];
+            "grafana.admins" = [ "admin" ];
+            "grafana.editors" = [ "editor" ];
+          };
         };
       };
     };

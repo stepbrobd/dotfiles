@@ -2,7 +2,7 @@
   imports = [
     ./hardware.nix
 
-    ./otel.nix
+    ./grafana.nix
   ];
 
   networking = {

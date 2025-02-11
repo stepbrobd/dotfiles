@@ -38,6 +38,9 @@ in
       });
     };
 
+    sops.secrets."grafana/oauth".group = "grafana";
+    sops.secrets."grafana/smtp".group = "grafana";
+
     services.grafana = {
       settings = {
         server = {
@@ -66,9 +69,31 @@ in
         };
 
         auth.disable_login_form = true;
-        # "auth.generic_oauth" = { };
+        "auth.generic_oauth" = {
+          enabled = true;
+          name = "Kanidm";
+          icon = "signin";
+          allow_sign_up = true;
+          auto_login = true;
+          client_id = "grafana";
+          client_secret = "$__file{${config.sops.secrets."grafana/oauth".path}}";
+          scopes = "openid email profile";
+          login_attribute_path = "preferred_username";
+          use_pkce = true;
+          allow_assign_grafana_admin = true;
+          role_attribute_path = "contains(groups[*], 'server_admin') && 'GrafanaAdmin' || contains(groups[*], 'admin') && 'Admin' || contains(groups[*], 'editor') && 'Editor' || 'Viewer'";
+          auth_url = "https://sso.ysun.co/ui/oauth2";
+          token_url = "https://sso.ysun.co/oauth2/token";
+          api_url = "https://sso.ysun.co/oauth2/openid/grafana/userinfo";
+        };
 
-        # smtp = { };
+        smtp = {
+          enabled = true;
+          user = "ysun@purelymail.com";
+          password = "$__file{${config.sops.secrets."grafana/smtp".path}}";
+          host = "smtp.purelymail.com";
+          from_address = "noc@stepbrobd.com";
+        };
       };
     };
   };

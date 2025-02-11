@@ -23,9 +23,9 @@ let
       self.nixosModules.desktop
       self.nixosModules.glance
       self.nixosModules.golink
+      self.nixosModules.grafana
       self.nixosModules.lix
       self.nixosModules.minimal
-      self.nixosModules.otel
       self.nixosModules.passwordless
       self.nixosModules.plausible
       self.nixosModules.server
