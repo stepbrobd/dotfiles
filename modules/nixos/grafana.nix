@@ -51,7 +51,7 @@ in
         '';
       });
 
-      declarativePlugins = with pkgs.grafanaPlugins; [ grafana-oncall-app ];
+      # declarativePlugins = with pkgs.grafanaPlugins; [ grafana-oncall-app ];
 
       settings = {
         server = {
