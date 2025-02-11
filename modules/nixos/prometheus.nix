@@ -24,10 +24,29 @@ in
         {
           job_name = "prometheus-node-exporter";
           static_configs = [
-            { targets = [ "${with config.services.prometheus.exporters.node; toString listenAddress + ":" + toString port}" ]; }
+            { targets = [ "${with cfg.exporters.node; toString listenAddress + ":" + toString port}" ]; }
           ];
         }
       ];
+
+      alertmanagers = [{ static_configs = [{ targets = [ "${with cfg.alertmanager; toString listenAddress + ":" + toString port}" ]; }]; }];
+      alertmanager = {
+        enable = true;
+        listenAddress = "127.0.0.1";
+        port = 9093;
+        configuration = {
+          global = { };
+          route = {
+            receiver = "ignore";
+            group_wait = "30s";
+            group_interval = "5m";
+            repeat_interval = "24h";
+            group_by = [ "alertname" ];
+            routes = [ ];
+          };
+          receivers = [{ name = "ignore"; }];
+        };
+      };
     };
 
     services.loki = {
@@ -36,6 +55,7 @@ in
 
       configuration = {
         auth_enabled = false;
+        ruler.alertmanager_url = with cfg.alertmanager; "http://${listenAddress}:${toString port}";
 
         server = {
           http_listen_address = "127.0.0.1";
