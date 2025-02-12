@@ -143,9 +143,9 @@ in
           };
           pipeline_stages = [{
             match = {
-              selector = "";
+              selector = ''{unit="fail2ban.service"}'';
               stages = [
-                { regex.expression = "(?P<ip>(?:\d{1,3}\.){3}\d{1,3})"; }
+                { regex.expression = ''(?P<ip>(?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|[01]?\d?\d)){3})|(?:(?:[A-Fa-f0-9]{1,4}:){7}[A-Fa-f0-9]{1,4}|(?:[A-Fa-f0-9]{1,4}:){1,7}:|:(?::[A-Fa-f0-9]{1,4}){1,7}))\b.*''; }
                 {
                   geoip = {
                     source = "ip";
