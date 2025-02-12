@@ -25,6 +25,7 @@ let
       self.nixosModules.golink
       self.nixosModules.grafana
       self.nixosModules.lix
+      self.nixosModules.maxmind
       self.nixosModules.minimal
       self.nixosModules.passwordless
       self.nixosModules.plausible
