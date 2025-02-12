@@ -51,5 +51,7 @@
       "2a06:98c0::/29"
       "2c0f:f248::/32"
     ];
+
+    jails.sshd.settings.maxretry = 2;
   };
 }
