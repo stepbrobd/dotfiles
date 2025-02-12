@@ -54,6 +54,7 @@ in
       extraFlags = [ "-print-config-stderr" ];
 
       configuration = {
+        analytics.reporting_enabled = false;
         auth_enabled = false;
         # ruler.alertmanager_url = with cfg.alertmanager; "http://${listenAddress}:${toString port}";
 
