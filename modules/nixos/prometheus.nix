@@ -114,6 +114,8 @@ in
       };
     };
 
+    services.geoipupdate.enable = true;
+
     services.promtail = {
       enable = true;
 
@@ -139,6 +141,21 @@ in
               host = config.networking.hostName;
             };
           };
+          pipeline_stages = [{
+            match = {
+              selector = "";
+              stages = [
+                { regex.expression = "(?P<ip>(?:\d{1,3}\.){3}\d{1,3})"; }
+                {
+                  geoip = {
+                    source = "ip";
+                    db_type = "city";
+                    db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
+                  };
+                }
+              ];
+            };
+          }];
           relabel_configs = [{
             source_labels = [ "__journal__systemd_unit" ];
             target_label = "unit";

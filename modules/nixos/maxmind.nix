@@ -4,8 +4,6 @@
   sops.secrets."maxmind/license" = { };
 
   services.geoipupdate = {
-    enable = true;
-
     settings = {
       DatabaseDirectory = "/var/lib/maxmind";
 
