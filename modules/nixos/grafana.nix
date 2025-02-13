@@ -43,9 +43,6 @@ in
     sops.secrets."grafana/smtp".group = "grafana";
     sops.secrets."grafana/smtp".mode = "440";
 
-    # oncall
-    systemd.services.grafana.environment.GF_AUTH_MANAGED_SERVICE_ACCOUNTS_ENABLED = "true";
-
     services.grafana = {
       package = pkgs.grafana.overrideAttrs (_: {
         preFixup = ''
@@ -68,13 +65,15 @@ in
         };
 
         # oncall
+        # https://github.com/grafana/oncall/issues/5100#issuecomment-2490645666
+        auth.managed_service_accounts_enabled = true;
         # https://github.com/grafana/oncall/issues/4829#issuecomment-2567046523
         environment.stack_id = 5;
         # https://github.com/grafana/oncall/issues/4829
         # https://github.com/grafana/oncall/issues/5100#issuecomment-2515653591
         feature_toggles = {
           accessControlOncall = false;
-          enable = "externalServiceAccounts";
+          enable = "autoMigrateOldPanels correlations externalServiceAccounts featureToggleAdminPage traceQLStreaming";
         };
 
         analytics = {
