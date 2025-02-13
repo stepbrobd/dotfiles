@@ -64,6 +64,9 @@ in
           root_url = "https://${cfg.mainDomain}/";
         };
 
+        # https://github.com/grafana/oncall/issues/4829#issuecomment-2567046523
+        environment.stack_id = 5;
+
         analytics = {
           check_for_updates = false;
           feedback_links_enabled = false;
@@ -82,6 +85,7 @@ in
           allow_sign_up = false;
         };
 
+        "auth.anonymous".org_name = "StepBroBD, Inc.";
         auth.disable_login_form = true;
         "auth.generic_oauth" = {
           enabled = true;
