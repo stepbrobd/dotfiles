@@ -52,7 +52,14 @@ in
       });
 
       declarativePlugins = with pkgs.grafanaPlugins; [
-        grafana-oncall-app
+        (grafana-oncall-app.overrideAttrs (_: {
+          version = "1.14.3";
+          src = pkgs.fetchurl {
+            name = "grafana-oncall-app-1.14.3.zip";
+            url = "https://grafana.com/api/plugins/grafana-oncall-app/versions/1.14.3/download";
+            hash = "sha256-Mmo+cbNyXps1akhB6F6slmpfINHUD2B0EAmawkwjLGE=";
+          };
+        }))
         yesoreyeram-infinity-datasource
       ];
 
