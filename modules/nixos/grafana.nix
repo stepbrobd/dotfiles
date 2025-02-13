@@ -66,6 +66,12 @@ in
 
         # https://github.com/grafana/oncall/issues/4829#issuecomment-2567046523
         environment.stack_id = 5;
+        # https://github.com/grafana/oncall/issues/4829
+        # https://github.com/grafana/oncall/issues/5100#issuecomment-2515653591
+        feature_toggles = {
+          accessControlOncall = false;
+          enable = "externalServiceAccounts";
+        };
 
         analytics = {
           check_for_updates = false;
