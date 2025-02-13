@@ -80,7 +80,7 @@ in
         # https://github.com/grafana/oncall/issues/5100#issuecomment-2515653591
         feature_toggles = {
           accessControlOncall = false;
-          enable = "autoMigrateOldPanels correlations externalServiceAccounts featureToggleAdminPage traceQLStreaming";
+          enable = "externalServiceAccounts,featureToggleAdminPage";
         };
 
         analytics = {
