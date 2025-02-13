@@ -18,7 +18,7 @@ in
   inputs.sops."${os}Modules".sops
   { sops.defaultSopsFile = ./secrets.yaml; }
   { nixpkgs.hostPlatform = mkDefault platform; }
-  { system.stateVersion = if hasSuffix "darwin" platform then 4 else stateVersion; }
+  { system.stateVersion = if hasSuffix "darwin" platform then 5 else stateVersion; }
 ] ++ (genUserModules {
   inherit inputs os stateVersion specialArgs users;
 }) ++ modules

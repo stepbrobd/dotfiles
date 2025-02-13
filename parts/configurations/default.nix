@@ -1,7 +1,7 @@
 { inputs, lib, getSystem, ... }:
 
 let
-  stateVersion = "24.11";
+  stateVersion = "25.05";
 
   inherit (lib) deepMergeAttrsList filesList map;
 in
