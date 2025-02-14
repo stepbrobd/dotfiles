@@ -12,11 +12,15 @@ in
     services.prometheus = {
       enable = true;
       globalConfig.scrape_interval = "30s";
+      listenAddress = "127.0.0.1";
+      port = 9090;
 
       exporters = {
         node = {
           enable = true;
           enabledCollectors = [ "systemd" ];
+          listenAddress = "127.0.0.1";
+          port = 9100;
         };
       };
 
