@@ -359,53 +359,6 @@
         "type": "github"
       }
     },
-    "lix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1729298361,
-        "narHash": "sha256-hiGtfzxFkDc9TSYsb96Whg0vnqBVV7CUxyscZNhed0U=",
-        "ref": "refs/tags/2.91.1",
-        "rev": "ad9d06f7838a25beec425ff406fe68721fef73be",
-        "revCount": 16139,
-        "type": "git",
-        "url": "https://git@git.lix.systems/lix-project/lix"
-      },
-      "original": {
-        "ref": "refs/tags/2.91.1",
-        "type": "git",
-        "url": "https://git@git.lix.systems/lix-project/lix"
-      }
-    },
-    "lix-module": {
-      "inputs": {
-        "flake-utils": [
-          "utils"
-        ],
-        "flakey-profile": [
-          "flakey-profile"
-        ],
-        "lix": [
-          "lix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1732605668,
-        "narHash": "sha256-DN5/166jhiiAW0Uw6nueXaGTueVxhfZISAkoxasmz/g=",
-        "ref": "refs/tags/2.91.1-2",
-        "rev": "f19bd752910bbe3a861c9cad269bd078689d50fe",
-        "revCount": 113,
-        "type": "git",
-        "url": "https://git.lix.systems/lix-project/nixos-module"
-      },
-      "original": {
-        "ref": "refs/tags/2.91.1-2",
-        "type": "git",
-        "url": "https://git.lix.systems/lix-project/nixos-module"
-      }
-    },
     "nixos-generators": {
       "inputs": {
         "nixlib": [
@@ -539,8 +492,6 @@
         "impermanence": "impermanence",
         "index": "index",
         "lanzaboote": "lanzaboote",
-        "lix": "lix",
-        "lix-module": "lix-module",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

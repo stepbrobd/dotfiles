@@ -24,7 +24,6 @@ in
         # hammerspoon
         homebrew
         linux-builder
-        lix
         nixbuild
         passwordless
         sshd
@@ -52,7 +51,6 @@ in
         self.nixosModules.common
         self.nixosModules.docker
         self.nixosModules.graphical
-        self.nixosModules.lix
         self.nixosModules.passwordless
         self.nixosModules.rebuild
         srvos.nixosModules.desktop
