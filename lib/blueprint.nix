@@ -19,7 +19,13 @@ let
     , os # e.g. "darwin" or "nixos"
     , provider # e.g. "aws", "garnix", "hetzner", "owned", "ssdnodes", "vultr"
     , type # e.g. "laptop", "server"
-    }: { };
+    , ipv4 ? null
+    , ipv6 ? null
+    }: {
+      inherit platform os provider type; # metadata
+      inherit hostName domain ipv4 ipv6; # networking
+      fqdn = "${hostName}.${domain}";
+    };
 in
 {
   users.ysun = newUser {
@@ -44,6 +50,19 @@ in
     os = "nixos";
     provider = "aws";
     type = "server";
+    ipv4 = "23.161.104.169";
+    ipv6 = "2620:be:a000:479a:aff8:eb5:486a:8b06";
+  };
+
+  hosts.halti = newHost {
+    hostName = "halti";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "garnix";
+    type = "server";
+    ipv4 = "37.27.181.83";
+    ipv6 = null;
   };
 
   hosts.lagern = newHost {
@@ -53,6 +72,8 @@ in
     os = "nixos";
     provider = "aws";
     type = "server";
+    ipv4 = "23.161.104.251";
+    ipv6 = "2620:be:a000:942f:51bd:2bf6:9aa6:4528";
   };
 
   hosts.odake = newHost {
@@ -62,6 +83,8 @@ in
     os = "nixos";
     provider = "ssdnodes";
     type = "server";
+    ipv4 = "209.182.234.194";
+    ipv6 = "2602:ff16:14:0:1:56:0:1";
   };
 
   hosts.walberla = newHost {
@@ -71,5 +94,7 @@ in
     os = "nixos";
     provider = "hetzner";
     type = "server";
+    ipv4 = "23.88.126.45";
+    ipv6 = "2a01:4f8:c17:4b75::1";
   };
 }
