@@ -201,6 +201,11 @@ description = "forked from nixos/nixpkgs"
 visibility = "public"
 archived = false
 
+[repo."nixvim"]
+description = "forked from nix-community/nixvim"
+visibility = "public"
+archived = false
+
 [repo."nrok"]
 description = "forked from isker/neogrok"
 visibility = "public"
