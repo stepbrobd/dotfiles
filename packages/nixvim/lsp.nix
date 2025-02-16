@@ -19,7 +19,6 @@
 
   # Coq
   plugins.lsp.servers.coq_lsp.enable = true;
-  plugins.lsp.servers.coq_lsp.package = pkgs.coqPackages.coq-lsp;
   extraPlugins = with pkgs.vimPlugins; [ Coqtail ];
 
   # Docker
