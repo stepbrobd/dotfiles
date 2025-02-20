@@ -77,6 +77,7 @@
       "iStat Menus" = 1319778037;
       "Parcel" = 639968404;
       "Passepartout" = 1433648537;
+      "Pieoneer" = 6739781207;
       "Pixelmator Pro" = 1289583905;
       "Remote Desktop" = 409907375;
       "ServerCat" = 1501532023;
