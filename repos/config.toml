@@ -130,6 +130,11 @@ description = "teeebot..."
 visibility = "private"
 archived = false
 
+[repo."yeh"]
+description = "imap/smtp proxy for hey.com"
+visibility = "public"
+archived = false
+
 [repo."ysun"]
 description = "nix + deno + lume"
 visibility = "public"
