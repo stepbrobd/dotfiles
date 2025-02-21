@@ -50,7 +50,6 @@
       ms-vscode.cmake-tools
       myriad-dreamin.tinymist
       redhat.vscode-yaml
-      rust-lang.rust-analyzer
       shd101wyy.markdown-preview-enhanced
       streetsidesoftware.code-spell-checker
       tamasfe.even-better-toml
