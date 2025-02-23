@@ -22,6 +22,7 @@
     jujutsu
     lsd
     # mpd # linux only
+    neomutt
     # nushell # imported in minimal
     ssh
     # tmux # imported in minimal
