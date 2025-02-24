@@ -1,9 +1,13 @@
+{ config, ... }:
+
 {
   programs.neomutt = {
     enable = true;
     vimKeys = true;
 
     extraConfig = ''
+      set folder=${config.xdg.dataHome}/neomutt
+
       color normal		default default
       color index		brightblue default ~N
       color index		red default ~F
