@@ -1,5 +1,9 @@
+{ pkgs, ... }:
+
 {
   nix.enable = true;
+
+  environment.systemPackages = [ pkgs.iproute2mac ];
 
   system.defaults = {
     alf = {
