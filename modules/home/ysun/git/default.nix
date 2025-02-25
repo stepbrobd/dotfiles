@@ -7,7 +7,13 @@
     userEmail = "ysun@hey.com";
 
     # colored diff tool
-    difftastic.enable = true;
+    delta.enable = true;
+    includes = [{ path = "${pkgs.delta}/share/themes.gitconfig"; }];
+    delta.options = {
+      features = "collared-trogon";
+      navigate = true;
+      side-by-side = true;
+    };
 
     extraConfig = {
       # signing
