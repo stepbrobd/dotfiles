@@ -1,4 +1,8 @@
+{ pkgs, ... }:
+
 {
+  environment.systemPackages = [ pkgs.mas ];
+
   homebrew = {
     enable = true;
 
@@ -88,6 +92,7 @@
       "AdGuard" = 1440147259;
       "Kagi" = 1622835804;
       "Noir" = 1592917505;
+      "StopTheMadness" = 6471380298;
       "Vimari" = 1480933944;
       # media
       "Infuse" = 1136220934;
