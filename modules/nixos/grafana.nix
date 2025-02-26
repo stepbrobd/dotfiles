@@ -123,7 +123,7 @@ in
 
         smtp = {
           enabled = true;
-          user = "ysun@purelymail.com";
+          user = "ysun@stepbrobd.com";
           password = "$__file{${config.sops.secrets."grafana/smtp".path}}";
           host = "smtp.purelymail.com:587";
           startTLS_policy = "MandatoryStartTLS";

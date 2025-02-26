@@ -49,7 +49,7 @@ in
           hostAddr = "smtp.purelymail.com";
           hostPort = 465;
           passwordFile = config.sops.secrets."plausible/smtp".path;
-          user = "ysun@purelymail.com";
+          user = "ysun@stepbrobd.com";
         };
       };
 
