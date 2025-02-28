@@ -70,7 +70,10 @@
       "zotero"
     ];
 
-    masApps = {
+    # temporarily disabled
+    # https://github.com/LnL7/nix-darwin/issues/1323
+    # https://github.com/mas-cli/mas/issues/722
+    /* masApps = {
       # utils
       "Apple Configurator" = 1037126344;
       "Craft" = 1487937127;
@@ -101,6 +104,6 @@
       "Keynote" = 409183694;
       "Numbers" = 409203825;
       "Pages" = 409201541;
-    };
+    }; */
   };
 }
