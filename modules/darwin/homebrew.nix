@@ -56,6 +56,7 @@
       "cleanmymac"
       "discord"
       "hey"
+      "lulu"
       "notchnook"
       "obs"
       "orbstack"
