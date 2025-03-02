@@ -29,7 +29,7 @@ in
 
     services.glance.package = pkgs.glance.overrideAttrs (_: {
       patchPhase = ''
-        substituteInPlace internal/assets/templates/document.html \
+        substituteInPlace internal/glance/templates/document.html \
           --replace-warn '</head>' '<script defer data-domain="home.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script></head>'
       '';
     });
