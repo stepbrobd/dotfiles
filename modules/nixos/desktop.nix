@@ -47,7 +47,7 @@ in
     }
 
     # screen sharing
-    { environment.systemPackages = [ pkgs.xwaylandvideobridge ]; }
+    { environment.systemPackages = [ pkgs.kdePackages.xwaylandvideobridge ]; }
 
     # xdg
     {

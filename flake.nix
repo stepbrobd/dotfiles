@@ -95,14 +95,8 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim.inputs.devshell.follows = "devshell";
-    nixvim.inputs.flake-compat.follows = "compat";
     nixvim.inputs.flake-parts.follows = "parts";
-    nixvim.inputs.git-hooks.follows = "git-hooks";
-    nixvim.inputs.home-manager.follows = "hm";
-    nixvim.inputs.nix-darwin.follows = "darwin";
     nixvim.inputs.nuschtosSearch.follows = "";
-    nixvim.inputs.treefmt-nix.follows = "";
     # p
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
