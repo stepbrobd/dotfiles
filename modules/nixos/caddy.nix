@@ -7,20 +7,11 @@
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.caddy = {
-      package = pkgs.caddy.withPlugins {
-        hash = "sha256-6ZdgHDr7hMZi5oE7qlkSlx/Z0RUoxgin9VTJsvvdsB4=";
-        plugins = [
-          "github.com/WeidiDeng/caddy-cloudflare-ip@v0.0.0-20231130002422-f53b62aa13cb"
-          "github.com/caddy-dns/cloudflare@v0.0.0-20240703190432-89f16b99c18e"
-          "github.com/caddyserver/replace-response@v0.0.0-20240710174758-f92bc7d0c29d"
-        ];
-      };
-
+      package = pkgs.caddy-with-plugins;
       email = "ysun@hey.com";
 
       globalConfig = ''
         admin off
-        order replace after encode
 
         servers {
           trusted_proxies cloudflare {
