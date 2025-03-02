@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf config.wayland.windowManager.hyprland.enable {
-    programs.wpaperd = {
+    services.wpaperd = {
       enable = true;
       settings.default = {
         apply-shadow = false;
