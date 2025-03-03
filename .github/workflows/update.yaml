@@ -15,8 +15,6 @@ jobs:
           fetch-depth: 0
       - name: "Install Nix"
         uses: "cachix/install-nix-action@v30"
-      - name: "Magic Cache"
-        uses: "determinatesystems/magic-nix-cache-action@v9"
       - name: "Update"
         run: |
           git config --global user.name "GitHub Action"

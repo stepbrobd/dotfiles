@@ -17,8 +17,6 @@ jobs:
         uses: "cachix/install-nix-action@v30"
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      - name: "Magic Cache"
-        uses: "determinatesystems/magic-nix-cache-action@v9"
       - name: "Discord"
         run: nix run --accept-flake-config .#stepbrobd -- discord
         env:
