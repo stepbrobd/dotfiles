@@ -50,7 +50,7 @@
     compat.flake = false;
     crane.url = "github:ipetkov/crane";
     # d
-    darwin.url = "github:lnl7/nix-darwin";
+    darwin.url = "github:stepbrobd/nix-darwin";
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs";
