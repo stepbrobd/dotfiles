@@ -54,17 +54,6 @@ in
     ipv6 = null;
   };
 
-  hosts.lagern = newHost {
-    hostName = "lagern";
-    domain = "as10779.net";
-    platform = "x86_64-linux";
-    os = "nixos";
-    provider = "aws";
-    type = "server";
-    ipv4 = "23.161.104.251";
-    ipv6 = "2620:be:a000:942f:51bd:2bf6:9aa6:4528";
-  };
-
   hosts.odake = newHost {
     hostName = "odake";
     domain = "as10779.net";
