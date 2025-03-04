@@ -43,17 +43,6 @@ in
   hosts.macbook = { };
 
   # servers
-  hosts.bachtel = newHost {
-    hostName = "bachtel";
-    domain = "as10779.net";
-    platform = "x86_64-linux";
-    os = "nixos";
-    provider = "aws";
-    type = "server";
-    ipv4 = "23.161.104.169";
-    ipv6 = "2620:be:a000:479a:aff8:eb5:486a:8b06";
-  };
-
   hosts.halti = newHost {
     hostName = "halti";
     domain = "as10779.net";
