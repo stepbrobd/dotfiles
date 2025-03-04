@@ -6,7 +6,7 @@ let
     "halti" # Garnix.io Hosting, test server
     "lagern" # AWS EC2 ZRH T3.Large, 2 vCPU, 8GB RAM, 30GB Storage
     "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage
-    "toompea"
+    "toompea" # V.PS Pro Tallinn, 4 vCPU, 4GB RAM, 40GB Storage
     "walberla" # Hetzner Cloud CX32, 4 vCPU, 8GB RAM, 80GB Storage
   ];
 
@@ -39,7 +39,7 @@ let
   };
 
   # blocked on colmena #161
-  nixosConfigurations = (import ("${inputs.colmena}/src/nix/hive/eval.nix") {
+  nixosConfigurations = (import "${inputs.colmena}/src/nix/hive/eval.nix" {
     rawFlake = inputs.self;
   }).nodes;
 in
