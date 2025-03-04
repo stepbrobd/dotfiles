@@ -2,7 +2,7 @@
   imports = [
     ./hardware.nix
 
-    # ./plausible.nix
+    ./plausible.nix
   ];
 
   networking = {
