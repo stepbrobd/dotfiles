@@ -1,24 +1,30 @@
 { lib, modulesPath, ... }:
 
 {
-  services.caddy.enable = lib.mkForce false;
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
   services.qemuGuest.enable = true;
 
   boot.loader.grub.device = "/dev/sda";
+  boot.initrd.kernelModules = [ "nvme" ];
   boot.initrd.availableKernelModules = [
     "ahci"
+    "ata_piix"
     "ehci_pci"
     "sd_mod"
     "sr_mod"
     "uhci_hcd"
     "virtio_pci"
     "virtio_scsi"
+    "vmw_pvscsi"
+    "xen_blkfront"
   ];
+
   fileSystems."/" = {
-    device = "/dev/sda2";
+    device = "/dev/sda1";
     fsType = "ext4";
   };
+
+  swapDevices = [{ device = "/dev/sda5"; }];
 
   networking = {
     defaultGateway = {
