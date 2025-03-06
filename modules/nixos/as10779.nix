@@ -172,14 +172,8 @@ in
 
         protocol direct {
           interface "${cfg.local.interface.local}";
-
-          ipv4 {
-            import all;
-          };
-
-          ipv6 {
-            import all;
-          };
+          ipv4;
+          ipv6;
         }
 
         protocol static static4 {
@@ -187,7 +181,7 @@ in
 
           ${lib.concatMapStringsSep
             "\n  "
-            (prefix: ''route ${prefix} via "${cfg.local.ipv4.gateway}";'')
+            (prefix: ''route ${prefix} reject;'')
             cfg.router.announce.v4}
         }
 
@@ -196,7 +190,7 @@ in
 
           ${lib.concatMapStringsSep
           "\n  "
-            (prefix: ''route ${prefix} via "${cfg.local.ipv6.gateway}";'')
+            (prefix: ''route ${prefix} reject;'')
             cfg.router.announce.v6}
         }
 
