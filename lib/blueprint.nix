@@ -67,6 +67,34 @@ in
   hosts.macbook = { };
 
   # servers
+  hosts.goffle = newHost rec {
+    hostName = "goffle";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "vultr";
+    type = "server";
+    ipv4 = "66.135.21.33";
+    ipv6 = "2001:19f0:0000:71c6:5400:05ff:fe53:5f61";
+    as10779 = {
+      local = {
+        interface = {
+          local = "dummy0";
+          route = "virbr0-${hostName}";
+        };
+        ipv4 = {
+          address = "23.161.104.129/32";
+          gateway = "66.135.21.33";
+        };
+        ipv6 = {
+          address = "2620:BE:A000:81::/56";
+          gateway = "2001:19f0:0000:71c6:5400:05ff:fe53:5f61";
+        };
+      };
+      peers = genPeersFor hostName;
+    };
+  };
+
   hosts.halti = newHost {
     hostName = "halti";
     domain = "as10779.net";

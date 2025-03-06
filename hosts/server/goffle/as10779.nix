@@ -1,5 +1,8 @@
 { lib, config, ... }:
 
+let
+  cfg = config.services.as10779;
+in
 {
   sops.secrets.bgp = {
     sopsFile = ./secrets.yaml;
@@ -13,17 +16,25 @@
     enable = true;
 
     router = {
-      id = "185.194.53.29";
+      id = "66.135.21.33";
       secret = config.sops.secrets.bgp.path;
       sessions = [
         {
-          name = "xtom";
-          password = "PASS_AS3204";
-          type = "direct";
+          name = "vultr";
+          password = "PASS_AS64515";
+          type = "multihop";
           neighbor = {
-            asn = 3204;
-            ipv4 = "185.194.53.4";
-            ipv6 = "2a04:6f00:4::4";
+            asn = 64515;
+            ipv4 = "169.254.169.254";
+            ipv6 = "2001:19f0:ffff::1";
+          };
+          import = {
+            ipv4 = "import all;";
+            ipv6 = "import all;";
+          };
+          export = {
+            ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
           };
         }
         {
@@ -32,13 +43,21 @@
           type = "multihop";
           neighbor = {
             asn = 212232;
-            ipv4 = "185.230.223.78";
-            ipv6 = "2a0c:2f07:9459::b6";
+            ipv4 = "185.230.223.51";
+            ipv6 = "2a0c:2f07:9459::b7";
+          };
+          import = {
+            ipv4 = "import none;";
+            ipv6 = "import none;";
+          };
+          export = {
+            ipv4 = "export all;";
+            ipv6 = "export all;";
           };
         }
       ];
     };
 
-    inherit (lib.blueprint.hosts.toompea.as10779) local peers;
+    inherit (lib.blueprint.hosts.goffle.as10779) local peers;
   };
 }
