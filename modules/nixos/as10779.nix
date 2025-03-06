@@ -70,16 +70,67 @@ in
         description = "path to secret (imported via `include`)";
       };
 
-      announce = {
-        v4 = lib.mkOption {
-          type = with lib.types; listOf str;
-          default = [ "23.161.104.0/24" ];
-          description = "IPv4 prefixes to announce";
+      kernel = {
+        ipv4 = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            default = "kernel4";
+            description = "name of IPv4 kernel protocol";
+          };
+          import = lib.mkOption {
+            type = lib.types.str;
+            default = "import all;";
+            description = "import option";
+          };
+          export = lib.mkOption {
+            type = lib.types.str;
+            default = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            description = "export option";
+          };
         };
-        v6 = lib.mkOption {
-          type = with lib.types; listOf str;
-          default = [ "2620:BE:A000::/48" ];
-          description = "IPv6 prefixes to announce";
+        ipv6 = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            default = "kernel6";
+            description = "name of IPv6 kernel protocol";
+          };
+          import = lib.mkOption {
+            type = lib.types.str;
+            default = "import all;";
+            description = "import option";
+          };
+          export = lib.mkOption {
+            type = lib.types.str;
+            default = ''export where proto = "${cfg.router.static.ipv6.name}";'';
+            description = "export option";
+          };
+        };
+      };
+
+      static = {
+        ipv4 = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            default = "static4";
+            description = "name of IPv4 static protocol";
+          };
+          prefixes = lib.mkOption {
+            type = with lib.types; listOf str;
+            default = [ "23.161.104.0/24" ];
+            description = "IPv4 prefixes to announce";
+          };
+        };
+        ipv6 = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            default = "static6";
+            description = "name of IPv6 static protocol";
+          };
+          prefixes = lib.mkOption {
+            type = with lib.types; listOf str;
+            default = [ "2620:BE:A000::/48" ];
+            description = "IPv6 prefixes to announce";
+          };
         };
       };
 
@@ -115,6 +166,32 @@ in
                 description = "IPv6 of BGP neighbor";
               };
             };
+
+            import = {
+              ipv4 = lib.mkOption {
+                type = lib.types.str;
+                default = "import none;";
+                description = "IPv4 import option";
+              };
+              ipv6 = lib.mkOption {
+                type = lib.types.str;
+                default = "import none;";
+                description = "IPv6 import option";
+              };
+            };
+
+            export = {
+              ipv4 = lib.mkOption {
+                type = lib.types.str;
+                default = "export all;";
+                description = "IPv4 export option";
+              };
+              ipv6 = lib.mkOption {
+                type = lib.types.str;
+                default = "export all;";
+                description = "IPv6 export option";
+              };
+            };
           };
         });
       };
@@ -146,27 +223,27 @@ in
           scan time ${lib.toString cfg.router.scantime};
         }
 
-        protocol kernel kernel4 {
+        protocol kernel ${cfg.router.kernel.ipv4.name} {
           scan time ${lib.toString cfg.router.scantime};
 
           learn;
           persist;
 
           ipv4 {
-            import none;
-            export all;
+            ${cfg.router.kernel.ipv4.import}
+            ${cfg.router.kernel.ipv4.export}
           };
         }
 
-        protocol kernel kernel6 {
+        protocol kernel ${cfg.router.kernel.ipv6.name} {
           scan time ${lib.toString cfg.router.scantime};
 
           learn;
           persist;
 
           ipv6 {
-            import none;
-            export all;
+            ${cfg.router.kernel.ipv6.import}
+            ${cfg.router.kernel.ipv6.export}
           };
         }
 
@@ -176,22 +253,22 @@ in
           ipv6;
         }
 
-        protocol static static4 {
+        protocol static ${cfg.router.static.ipv4.name} {
           ipv4;
 
           ${lib.concatMapStringsSep
             "\n  "
             (prefix: ''route ${prefix} reject;'')
-            cfg.router.announce.v4}
+            cfg.router.static.ipv4.prefixes}
         }
 
-        protocol static static6 {
+        protocol static ${cfg.router.static.ipv6.name} {
           ipv6;
 
           ${lib.concatMapStringsSep
           "\n  "
             (prefix: ''route ${prefix} reject;'')
-            cfg.router.announce.v6}
+            cfg.router.static.ipv6.prefixes}
         }
 
         ${lib.concatMapStringsSep
@@ -206,8 +283,8 @@ in
             password ${session.password};
 
             ipv4 {
-              import none;
-              export where proto = "static4";
+              ${session.import.ipv4}
+              ${session.export.ipv4}
             };
           }
 
@@ -220,8 +297,8 @@ in
             password ${session.password};
 
             ipv6 {
-              import none;
-              export where proto = "static6";
+              ${session.import.ipv6}
+              ${session.export.ipv6}
             };
           }'')
         cfg.router.sessions}'';
