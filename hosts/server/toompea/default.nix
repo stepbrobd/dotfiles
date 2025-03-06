@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
 
+    ./as10779.nix
     ./plausible.nix
   ];
 
