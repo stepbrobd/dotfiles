@@ -4,16 +4,17 @@ let
   cfg = config.services.as10779;
 in
 {
-  sops.secrets.bgp = {
-    sopsFile = ./secrets.yaml;
-    mode = "440";
-    owner = config.systemd.services.bird.serviceConfig.User;
-    group = config.systemd.services.bird.serviceConfig.Group;
-    reloadUnits = [ config.systemd.services.bird.name ];
-  };
+  # sops.secrets.bgp = {
+  #   sopsFile = ./secrets.yaml;
+  #   mode = "440";
+  #   owner = config.systemd.services.bird.serviceConfig.User;
+  #   group = config.systemd.services.bird.serviceConfig.Group;
+  #   reloadUnits = [ config.systemd.services.bird.name ];
+  # };
 
   services.as10779 = {
-    enable = true;
+    enable = false;
+    # FIXME: core dump, see toompea
 
     router = {
       id = "66.135.21.33";
