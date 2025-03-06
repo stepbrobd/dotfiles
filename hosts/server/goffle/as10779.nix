@@ -14,7 +14,6 @@ in
 
   services.as10779 = {
     enable = true;
-    # FIXME: core dump, see toompea
 
     router = {
       id = "66.135.21.33";

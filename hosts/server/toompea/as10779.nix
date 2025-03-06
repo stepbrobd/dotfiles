@@ -14,18 +14,6 @@ in
 
   services.as10779 = {
     enable = true;
-    # FIXME: it crashes for no reason?
-    # bird.service: Failed with result 'core-dump'.
-    # Process 2217 (bird) of user 993 dumped core.
-    # Process 2217 (bird) of user 993 terminated abnormally with signal 6/ABRT, processing...
-    # Module libz.so.1 without build-id.
-    # Module libssh.so.4 without build-id.
-    # Stack trace of thread 2218:
-    # #0  0x00007f792ca9916c __pthread_kill_implementation (libc.so.6 + 0x9916c)
-    # #1  0x00007f792ca40e86 raise (libc.so.6 + 0x40e86)
-    # #2  0x00007f792ca2893a abort (libc.so.6 + 0x2893a)
-    # #3  0x00000000004d6a78 n/a (n/a + 0x0)
-    # ELF object binary architecture: AMD x86-64
 
     router = {
       id = "185.194.53.29";
