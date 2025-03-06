@@ -181,7 +181,7 @@ in
 
           ${lib.concatMapStringsSep
             "\n  "
-            (prefix: ''route ${prefix} reject;'')
+            (prefix: ''route ${prefix} via "${cfg.local.ipv4.gateway}";'')
             cfg.router.announce.v4}
         }
 
@@ -190,7 +190,7 @@ in
 
           ${lib.concatMapStringsSep
           "\n  "
-            (prefix: ''route ${prefix} reject;'')
+            (prefix: ''route ${prefix} via "${cfg.local.ipv6.gateway}";'')
             cfg.router.announce.v6}
         }
 
