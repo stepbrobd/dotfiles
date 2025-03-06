@@ -175,7 +175,9 @@ in
 
           ${lib.concatMapStringsSep
             "\n  "
-            (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
+            # FIXME: not working
+            # (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
+            (prefix: ''route ${prefix} via "lo";'')
             cfg.router.announce.v4}
         }
 
@@ -183,8 +185,10 @@ in
           ipv6;
 
           ${lib.concatMapStringsSep
-            "\n  "
-            (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
+          "\n  "
+            # FIXME: not working
+            # (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
+            (prefix: ''route ${prefix} via "lo";'')
             cfg.router.announce.v6}
         }
 
@@ -221,29 +225,30 @@ in
         cfg.router.sessions}'';
     }
     {
-      networking.interfaces.${cfg.local.interface.local} = {
-        virtual = true;
-        ipv4 = {
-          addresses =
-            let
-              split = lib.split "/" cfg.local.ipv4.address;
-            in
-            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
-          routes = [
-            { address = "0.0.0.0"; prefixLength = 0; via = cfg.local.ipv4.gateway; }
-          ];
-        };
-        ipv6 = {
-          addresses =
-            let
-              split = lib.split "/" cfg.local.ipv6.address;
-            in
-            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
-          routes = [
-            { address = "::"; prefixLength = 0; via = cfg.local.ipv6.gateway; }
-          ];
-        };
-      };
+      # FIXME: not working
+      # networking.interfaces.${cfg.local.interface.local} = {
+      #   virtual = true;
+      #   ipv4 = {
+      #     addresses =
+      #       let
+      #         split = lib.split "/" cfg.local.ipv4.address;
+      #       in
+      #       [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
+      #     routes = [
+      #       { address = "0.0.0.0"; prefixLength = 0; via = cfg.local.ipv4.gateway; }
+      #     ];
+      #   };
+      #   ipv6 = {
+      #     addresses =
+      #       let
+      #         split = lib.split "/" cfg.local.ipv6.address;
+      #       in
+      #       [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
+      #     routes = [
+      #       { address = "::"; prefixLength = 0; via = cfg.local.ipv6.gateway; }
+      #     ];
+      #   };
+      # };
     }
     {
       boot.kernelModules = [ "dummy" ];
