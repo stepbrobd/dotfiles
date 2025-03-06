@@ -170,14 +170,24 @@ in
           };
         }
 
+        protocol direct {
+          interface "${cfg.local.interface.local}";
+
+          ipv4 {
+            import all;
+          };
+
+          ipv6 {
+            import all;
+          };
+        }
+
         protocol static static4 {
           ipv4;
 
           ${lib.concatMapStringsSep
             "\n  "
-            # FIXME: not working
-            # (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
-            (prefix: ''route ${prefix} via "lo";'')
+            (prefix: ''route ${prefix} via "${cfg.local.ipv4.gateway}";'')
             cfg.router.announce.v4}
         }
 
@@ -186,9 +196,7 @@ in
 
           ${lib.concatMapStringsSep
           "\n  "
-            # FIXME: not working
-            # (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
-            (prefix: ''route ${prefix} via "lo";'')
+            (prefix: ''route ${prefix} via "${cfg.local.ipv6.gateway}";'')
             cfg.router.announce.v6}
         }
 
@@ -225,33 +233,29 @@ in
         cfg.router.sessions}'';
     }
     {
-      # FIXME: not working
-      # networking.interfaces.${cfg.local.interface.local} = {
-      #   virtual = true;
-      #   ipv4 = {
-      #     addresses =
-      #       let
-      #         split = lib.split "/" cfg.local.ipv4.address;
-      #       in
-      #       [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
-      #     routes = [
-      #       { address = "0.0.0.0"; prefixLength = 0; via = cfg.local.ipv4.gateway; }
-      #     ];
-      #   };
-      #   ipv6 = {
-      #     addresses =
-      #       let
-      #         split = lib.split "/" cfg.local.ipv6.address;
-      #       in
-      #       [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
-      #     routes = [
-      #       { address = "::"; prefixLength = 0; via = cfg.local.ipv6.gateway; }
-      #     ];
-      #   };
-      # };
+      boot.kernelModules = [ "dummy" ];
+      systemd.network.netdevs."40-${cfg.local.interface.local}".netdevConfig = {
+        Kind = "dummy";
+        Name = cfg.local.interface.local;
+      };
+      networking.interfaces.${cfg.local.interface.local} = {
+        ipv4 = {
+          addresses =
+            let
+              split = lib.split "/" cfg.local.ipv4.address;
+            in
+            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
+        };
+        ipv6 = {
+          addresses =
+            let
+              split = lib.split "/" cfg.local.ipv6.address;
+            in
+            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
+        };
+      };
     }
     {
-      boot.kernelModules = [ "dummy" ];
       boot.kernel.sysctl = {
         "net.ipv4.conf.all.forwarding" = 1;
         "net.ipv4.conf.default.forwarding" = 1;
