@@ -17,15 +17,39 @@ let
     , domain # e.g. "as10779.net"
     , platform # e.g. "x86_64-linux"
     , os # e.g. "darwin" or "nixos"
-    , provider # e.g. "aws", "garnix", "hetzner", "owned", "ssdnodes", "vultr"
+    , provider # e.g. "aws", "garnix", "hetzner", "owned", "ssdnodes", "vultr", "xtom"
     , type # e.g. "laptop", "server"
     , ipv4 ? null
     , ipv6 ? null
+    , as10779 ? { } # schema defined in `modules/nixos/as10779.nix` toplevel let binding (`decision`)
+    , services ? { }
     }: {
       inherit platform os provider type; # metadata
       inherit hostName domain ipv4 ipv6; # networking
+      inherit as10779;
+      inherit services;
       fqdn = "${hostName}.${domain}";
     };
+
+  genPeersFor = hostname:
+    let
+      all = lib.filterAttrs
+        (name: host: host ? type && host.type == "server")
+        lib.blueprint.hosts;
+
+      others = lib.filterAttrs
+        (name: host: host.hostName != hostname)
+        all;
+
+      peers = lib.mapAttrsToList
+        (name: host:
+          if host ? as10779 && host.as10779 ? local
+          then host.as10779.local
+          else null)
+        others;
+
+    in
+    lib.filter (peer: peer != null) peers;
 in
 {
   users.ysun = newUser {
@@ -63,6 +87,34 @@ in
     type = "server";
     ipv4 = "209.182.234.194";
     ipv6 = "2602:ff16:14:0:1:56:0:1";
+  };
+
+  hosts.toompea = newHost rec {
+    hostName = "toompea";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "xtom";
+    type = "server";
+    ipv4 = "185.194.53.29";
+    ipv6 = "2a04:6f00:4::a5";
+    as10779 = {
+      local = {
+        interface = {
+          local = "dummy0";
+          route = "virbr0-${hostName}";
+        };
+        ipv4 = {
+          address = "23.161.104.128/32";
+          gateway = "185.194.53.4";
+        };
+        ipv6 = {
+          address = "2620:BE:A000:80::/56";
+          gateway = "2a04:6f00:4::4";
+        };
+      };
+      peers = genPeersFor hostName;
+    };
   };
 
   hosts.walberla = newHost {

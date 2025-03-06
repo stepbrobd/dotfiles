@@ -5,6 +5,43 @@
 
 let
   cfg = config.services.as10779;
+
+  decision = (lib.types.submodule {
+    options = {
+      interface = {
+        local = lib.mkOption {
+          type = lib.types.str;
+          description = "local interface name";
+        };
+        route = lib.mkOption {
+          type = lib.types.str;
+          description = "route interface name (the interface name on peers announcing our prefixes)";
+        };
+      };
+
+      ipv4 = {
+        address = lib.mkOption {
+          type = lib.types.str;
+          description = "IPv4 address to use on local interface";
+        };
+        gateway = lib.mkOption {
+          type = lib.types.str;
+          description = "default gateway to use";
+        };
+      };
+
+      ipv6 = {
+        address = lib.mkOption {
+          type = lib.types.str;
+          description = "IPv6 address to use on local interface";
+        };
+        gateway = lib.mkOption {
+          type = lib.types.str;
+          description = "default gateway to use";
+        };
+      };
+    };
+  });
 in
 {
   options.services.as10779 = {
@@ -82,6 +119,16 @@ in
         });
       };
     };
+
+    local = lib.mkOption {
+      type = decision;
+      description = "local routing decision";
+    };
+
+    peers = lib.mkOption {
+      type = lib.types.listOf decision;
+      description = "peer decisions";
+    };
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -128,7 +175,7 @@ in
 
           ${lib.concatMapStringsSep
             "\n  "
-            (prefix: ''route ${prefix} via "lo";'') # FIXME: create a separate interface to route traffic to our prefixes
+            (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
             cfg.router.announce.v4}
         }
 
@@ -137,7 +184,7 @@ in
 
           ${lib.concatMapStringsSep
             "\n  "
-            (prefix: ''route ${prefix} via "lo";'') # FIXME: create a separate interface to route traffic to our prefixes
+            (prefix: ''route ${prefix} via "${cfg.local.interface.local}";'')
             cfg.router.announce.v6}
         }
 
@@ -172,6 +219,31 @@ in
             };
           }'')
         cfg.router.sessions}'';
+    }
+    {
+      networking.interfaces.${cfg.local.interface.local} = {
+        virtual = true;
+        ipv4 = {
+          addresses =
+            let
+              split = lib.split "/" cfg.local.ipv4.address;
+            in
+            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
+          routes = [
+            { address = "0.0.0.0"; prefixLength = 0; via = cfg.local.ipv4.gateway; options = { metric = "1000"; }; }
+          ];
+        };
+        ipv6 = {
+          addresses =
+            let
+              split = lib.split "/" cfg.local.ipv6.address;
+            in
+            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
+          routes = [
+            { address = "::"; prefixLength = 0; via = cfg.local.ipv6.gateway; options = { metric = "1000"; }; }
+          ];
+        };
+      };
     }
     {
       boot.kernel.sysctl = {

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 {
   sops.secrets.bgp = {
@@ -11,6 +11,7 @@
 
   services.as10779 = {
     enable = true;
+
     router = {
       id = "185.194.53.29";
       secret = config.sops.secrets.bgp.path;
@@ -37,5 +38,7 @@
         }
       ];
     };
+
+    inherit (lib.blueprint.hosts.toompea.as10779) local peers;
   };
 }
