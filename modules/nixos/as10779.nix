@@ -230,7 +230,7 @@ in
             in
             [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
           routes = [
-            { address = "0.0.0.0"; prefixLength = 0; via = cfg.local.ipv4.gateway; options = { metric = "1000"; }; }
+            { address = "0.0.0.0"; prefixLength = 0; via = cfg.local.ipv4.gateway; }
           ];
         };
         ipv6 = {
@@ -240,7 +240,7 @@ in
             in
             [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
           routes = [
-            { address = "::"; prefixLength = 0; via = cfg.local.ipv6.gateway; options = { metric = "1000"; }; }
+            { address = "::"; prefixLength = 0; via = cfg.local.ipv6.gateway; }
           ];
         };
       };
