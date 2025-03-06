@@ -18,6 +18,7 @@ in
     router = {
       id = "185.194.53.29";
       secret = config.sops.secrets.bgp.path;
+      source = { inherit (lib.blueprint.hosts.toompea) ipv4 ipv6; };
       sessions = [
         {
           name = "xtom";

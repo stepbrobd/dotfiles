@@ -70,6 +70,17 @@ in
         description = "path to secret (imported via `include`)";
       };
 
+      source = {
+        ipv4 = lib.mkOption {
+          type = lib.types.str;
+          description = "IPv4 source address";
+        };
+        ipv6 = lib.mkOption {
+          type = lib.types.str;
+          description = "IPv6 source address";
+        };
+      };
+
       kernel = {
         ipv4 = {
           name = lib.mkOption {
@@ -278,6 +289,7 @@ in
             graceful restart on;
 
             ${session.type};
+            source address ${cfg.router.source.ipv4};
             local as ${lib.toString cfg.asn};
             neighbor ${session.neighbor.ipv4} as ${lib.toString session.neighbor.asn};
             password ${session.password};
@@ -292,6 +304,7 @@ in
             graceful restart on;
 
             ${session.type};
+            source address ${cfg.router.source.ipv6};
             local as ${lib.toString cfg.asn};
             neighbor ${session.neighbor.ipv6} as ${lib.toString session.neighbor.asn};
             password ${session.password};
