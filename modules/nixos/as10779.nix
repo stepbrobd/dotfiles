@@ -1,6 +1,6 @@
 { lib, ... }:
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 
 let
@@ -230,6 +230,7 @@ in
     {
       services.bird.enable = true;
       services.bird.checkConfig = false;
+      services.bird.package = pkgs.bird2;
       services.bird.config = ''
         include "${cfg.router.secret}";
 
