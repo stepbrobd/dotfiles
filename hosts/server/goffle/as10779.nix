@@ -18,7 +18,10 @@ in
     router = {
       id = "66.135.21.33";
       secret = config.sops.secrets.bgp.path;
-      source = { inherit (lib.blueprint.hosts.goffle) ipv4 ipv6; };
+      source = {
+        inherit (lib.blueprint.hosts.goffle) ipv4 ipv6;
+        explicit = true;
+      };
       sessions = [
         {
           name = "vultr";
