@@ -3,6 +3,7 @@
 let
   inherit (lib) mkColmena;
   hosts = [
+    "goffle" # Vultr, 1 vCPU, 1GB RAM, 25GB Storage
     "halti" # Garnix.io Hosting, test server
     "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage
     "toompea" # V.PS Pro Tallinn, 4 vCPU, 4GB RAM, 40GB Storage
