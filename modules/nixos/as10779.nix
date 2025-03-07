@@ -178,6 +178,12 @@ in
               };
             };
 
+            addpath = lib.mkOption {
+              type = lib.types.enum [ "switch" "rx" "tx" "off" ];
+              default = "off";
+              description = "BGP Add-Path extension";
+            };
+
             import = {
               ipv4 = lib.mkOption {
                 type = lib.types.str;
@@ -296,6 +302,7 @@ in
             password ${session.password};
 
             ipv4 {
+              add paths ${session.addpath};
               ${session.import.ipv4}
               ${session.export.ipv4}
             };
@@ -311,6 +318,7 @@ in
             password ${session.password};
 
             ipv6 {
+              add paths ${session.addpath};
               ${session.import.ipv6}
               ${session.export.ipv6}
             };
