@@ -44,7 +44,7 @@ in
           type = "multihop";
           neighbor = {
             asn = 212232;
-            ipv4 = "185.230.223.45";
+            ipv4 = "185.230.223.79";
             ipv6 = "2a0c:2f07:9459::b15";
           };
           import = {
