@@ -348,5 +348,20 @@ in
         "net.ipv6.conf.default.forwarding" = 1;
       };
     }
+    {
+      services.prometheus = {
+        exporters.bird = {
+          enable = with config.services; bird.enable && prometheus.enable;
+          listenAddress = "127.0.0.1";
+          port = 9324;
+        };
+        scrapeConfigs = [{
+          job_name = "prometheus-bird-exporter";
+          static_configs = [
+            { targets = [ "${with config.services.prometheus.exporters.bird; toString listenAddress + ":" + toString port}" ]; }
+          ];
+        }];
+      };
+    }
   ]);
 }

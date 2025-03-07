@@ -15,13 +15,11 @@ in
       listenAddress = "127.0.0.1";
       port = 9090;
 
-      exporters = {
-        node = {
-          enable = true;
-          enabledCollectors = [ "systemd" ];
-          listenAddress = "127.0.0.1";
-          port = 9100;
-        };
+      exporters.node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        listenAddress = "127.0.0.1";
+        port = 9100;
       };
 
       scrapeConfigs = [
