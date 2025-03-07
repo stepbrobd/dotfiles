@@ -363,12 +363,19 @@ in
           listenAddress = "127.0.0.1";
           port = 9324;
         };
-        scrapeConfigs = [{
-          job_name = "prometheus-bird-exporter";
-          static_configs = [
-            { targets = [ "${with config.services.prometheus.exporters.bird; toString listenAddress + ":" + toString port}" ]; }
-          ];
-        }];
+        scrapeConfigs = [
+          {
+            job_name = "prometheus-bird-exporter";
+            static_configs = [
+              { targets = [ "${with config.services.prometheus.exporters.bird; toString listenAddress + ":" + toString port}" ]; }
+            ];
+          }
+          {
+            job_name = "prometheus-bgptools-exporter";
+            static_configs = [{ targets = [ "bgp.tools" ]; }];
+            metrics_path = "/prom/1dafeced-2b12-40c0-a173-e9296ddb6df4";
+          }
+        ];
       };
     }
   ]);
