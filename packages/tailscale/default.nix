@@ -7,4 +7,4 @@ if stdenv.isDarwin
 then
   pkgsPrev.tailscale.overrideAttrs
     (_: { doCheck = false; }) # remove after nixpkgs #387340 closes
-else pkgsPrev.tailscle
+else pkgsPrev.tailscale
