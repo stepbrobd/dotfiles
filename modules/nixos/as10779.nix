@@ -332,20 +332,26 @@ in
         Name = cfg.local.interface.local;
       };
       networking.interfaces.${cfg.local.interface.local} = {
-        ipv4 = {
-          addresses =
-            let
-              split = lib.split "/" cfg.local.ipv4.address;
-            in
-            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
-        };
-        ipv6 = {
-          addresses =
-            let
-              split = lib.split "/" cfg.local.ipv6.address;
-            in
-            [{ address = lib.head split; prefixLength = lib.toInt (lib.last split); }];
-        };
+        ipv4 =
+          let
+            split = lib.split "/" cfg.local.ipv4.address;
+            address = lib.head split;
+            prefixLength = lib.toInt (lib.last split);
+          in
+          {
+            addresses = [{ inherit address prefixLength; }];
+            routes = [{ inherit address prefixLength; via = cfg.local.ipv4.gateway; }];
+          };
+        ipv6 =
+          let
+            split = lib.split "/" cfg.local.ipv6.address;
+            address = lib.head split;
+            prefixLength = lib.toInt (lib.last split);
+          in
+          {
+            addresses = [{ inherit address prefixLength; }];
+            routes = [{ inherit address prefixLength; via = cfg.local.ipv6.gateway; }];
+          };
       };
     }
     {
