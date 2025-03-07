@@ -57,6 +57,7 @@ in
         "flakes"
         "impure-derivations"
         "nix-command"
+        "pipe-operators"
       ];
 
       extra-substituters = [
