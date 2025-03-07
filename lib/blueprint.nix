@@ -106,6 +106,34 @@ in
     ipv6 = null;
   };
 
+  hosts.kongo = newHost rec {
+    hostName = "kongo";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "vultr";
+    type = "server";
+    ipv4 = "64.176.58.7";
+    ipv6 = "2401:c080:3800:21c4:5400:05ff:fe53:aca3";
+    as10779 = {
+      local = {
+        interface = {
+          local = "dummy0";
+          route = "virbr0-${hostName}";
+        };
+        ipv4 = {
+          address = "23.161.104.130/32";
+          gateway = "64.176.58.7";
+        };
+        ipv6 = {
+          address = "2620:BE:A000:82::/56";
+          gateway = "2401:c080:3800:21c4:5400:05ff:fe53:aca3";
+        };
+      };
+      peers = genPeersFor hostName;
+    };
+  };
+
   hosts.odake = newHost {
     hostName = "odake";
     domain = "as10779.net";
