@@ -261,6 +261,12 @@ in
           scan time ${lib.toString cfg.router.scantime};
         }
 
+        protocol direct {
+          interface "${cfg.local.interface.local}";
+          ipv4;
+          ipv6;
+        }
+
         protocol kernel ${cfg.router.kernel.ipv4.name} {
           scan time ${lib.toString cfg.router.scantime};
 
@@ -283,12 +289,6 @@ in
             ${cfg.router.kernel.ipv6.import}
             ${cfg.router.kernel.ipv6.export}
           };
-        }
-
-        protocol direct {
-          interface "${cfg.local.interface.local}";
-          ipv4;
-          ipv6;
         }
 
         protocol static ${cfg.router.static.ipv4.name} {
