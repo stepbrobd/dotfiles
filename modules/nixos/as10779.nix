@@ -117,7 +117,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            default = "export none;";
             description = "export option";
           };
         };
@@ -134,7 +134,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv6.name}";'';
+            default = "export none;";
             description = "export option";
           };
         };
