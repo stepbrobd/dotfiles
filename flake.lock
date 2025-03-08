@@ -257,15 +257,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1736559065,
-        "narHash": "sha256-nagT/6nkC4k+Ec5KC6l8OmntFuvN2nu8QMy0/6M03rg=",
-        "owner": "stepbrobd",
+        "lastModified": 1741020552,
+        "narHash": "sha256-xTgu+gPBdV787CPwE04xGmE3LwiIp8y58CSeEr8akIE=",
+        "owner": "tailscale",
         "repo": "golink",
-        "rev": "03140593e85bfbf2d663a29c697df81c4a1a17d0",
+        "rev": "9b756d5e17fcf3cdc5ddc17d78a06b87de3d795b",
         "type": "github"
       },
       "original": {
-        "owner": "stepbrobd",
+        "owner": "tailscale",
         "repo": "golink",
         "type": "github"
       }

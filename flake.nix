@@ -69,7 +69,7 @@
     git-hooks.inputs.gitignore.follows = "gitignore";
     gitignore.url = "github:hercules-ci/gitignore.nix";
     gitignore.inputs.nixpkgs.follows = "nixpkgs";
-    golink.url = "github:stepbrobd/golink";
+    golink.url = "github:tailscale/golink";
     golink.inputs.nixpkgs.follows = "nixpkgs";
     golink.inputs.parts.follows = "parts";
     golink.inputs.systems.follows = "systems";
