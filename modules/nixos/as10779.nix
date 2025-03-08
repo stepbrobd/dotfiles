@@ -351,7 +351,7 @@ in
           in
           {
             addresses = [{ inherit address prefixLength; }];
-            routes = [{ inherit address prefixLength; via = cfg.local.ipv4.gateway; }];
+            # routes = [{ inherit address prefixLength; via = cfg.local.ipv4.gateway; }];
           };
         ipv6 =
           let
@@ -361,8 +361,25 @@ in
           in
           {
             addresses = [{ inherit address prefixLength; }];
-            routes = [{ inherit address prefixLength; via = cfg.local.ipv6.gateway; }];
+            # routes = [{ inherit address prefixLength; via = cfg.local.ipv6.gateway; }];
           };
+      };
+      systemd.services."gateway-setup-${lib.toString cfg.asn}" = {
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        description = "setup gateway for announced prefixes";
+        path = [ pkgs.iproute2 ];
+        serviceConfig = {
+          Type = "oneshot";
+          User = "root";
+          Restart = "no";
+        };
+        script = ''
+          ip rule add from ${cfg.local.ipv4.address} table ${lib.toString cfg.asn}
+          ip route add default via ${cfg.local.ipv4.gateway} table ${lib.toString cfg.asn}
+          ip -6 rule add from ${cfg.local.ipv6.address} table ${lib.toString cfg.asn}
+          ip -6 route add default via ${cfg.local.ipv6.gateway} table ${lib.toString cfg.asn}
+        '';
       };
     }
     {
@@ -384,7 +401,7 @@ in
           {
             job_name = "prometheus-bird-exporter";
             static_configs = [
-              { targets = [ "${with config.services.prometheus.exporters.bird; toString listenAddress + ":" + toString port}" ]; }
+              { targets = [ "${with config.services.prometheus.exporters.bird; lib.toString listenAddress + ":" + lib.toString port}" ]; }
             ];
           }
           {
