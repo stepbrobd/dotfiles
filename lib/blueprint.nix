@@ -79,7 +79,7 @@ in
     as10779 = {
       local = {
         interface = {
-          local = "dummy0";
+          local = "enp1s0";
           route = "virbr0-${hostName}";
         };
         ipv4 = {
@@ -118,7 +118,7 @@ in
     as10779 = {
       local = {
         interface = {
-          local = "dummy0";
+          local = "enp1s0";
           route = "virbr0-${hostName}";
         };
         ipv4 = {
@@ -157,7 +157,7 @@ in
     as10779 = {
       local = {
         interface = {
-          local = "dummy0";
+          local = "enp6s18";
           route = "virbr0-${hostName}";
         };
         ipv4 = {

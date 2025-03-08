@@ -337,11 +337,11 @@ in
         cfg.router.sessions}'';
     }
     {
-      boot.kernelModules = [ "dummy" ];
-      systemd.network.netdevs."40-${cfg.local.interface.local}".netdevConfig = {
-        Kind = "dummy";
-        Name = cfg.local.interface.local;
-      };
+      # boot.kernelModules = [ "dummy" ];
+      # systemd.network.netdevs."40-${cfg.local.interface.local}".netdevConfig = {
+      #   Kind = "dummy";
+      #   Name = cfg.local.interface.local;
+      # };
       networking.interfaces.${cfg.local.interface.local} = {
         ipv4 =
           let
