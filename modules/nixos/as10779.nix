@@ -21,14 +21,15 @@ let
 
   decisionType = lib.types.submodule {
     options = {
+      hostname = lib.mkOption {
+        type = lib.types.str;
+        description = "hostname";
+      };
+
       interface = {
         local = lib.mkOption {
           type = lib.types.str;
           description = "local interface name";
-        };
-        route = lib.mkOption {
-          type = lib.types.str;
-          description = "route interface name (the interface name on peers announcing our prefixes)";
         };
       };
 
@@ -41,6 +42,10 @@ let
           type = lib.types.str;
           description = "default gateway to use";
         };
+        upstream = lib.mkOption {
+          type = lib.types.str;
+          description = "upstream IPv4 address";
+        };
       };
 
       ipv6 = {
@@ -51,6 +56,10 @@ let
         gateway = lib.mkOption {
           type = lib.types.str;
           description = "default gateway to use";
+        };
+        upstream = lib.mkOption {
+          type = lib.types.str;
+          description = "upstream IPv6 address";
         };
       };
     };
@@ -108,7 +117,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            default = ''export where proto = "${cfg.router.static.ipv4.name}" ||${lib.concatMapStringsSep " ||" (p: " proto = \"${p.hostname}\"") cfg.peers};'';
             description = "export option";
           };
         };
@@ -125,7 +134,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv6.name}";'';
+            default = ''export where proto = "${cfg.router.static.ipv6.name}" ||${lib.concatMapStringsSep " ||" (p: " proto = \"${p.hostname}\"") cfg.peers};'';
             description = "export option";
           };
         };
@@ -289,11 +298,6 @@ in
             "\n  "
             (r: ''route ${r.prefix} ${r.option};'')
             cfg.router.static.ipv4.routes}
-
-          ${lib.concatMapStringsSep
-            "\n  "
-            (p: ''route ${p.ipv4.address} via "tailscale0";'')
-            cfg.peers}
         }
 
         protocol static ${cfg.router.static.ipv6.name} {
@@ -303,12 +307,30 @@ in
           "\n  "
             (r: ''route ${r.prefix} ${r.option};'')
             cfg.router.static.ipv6.routes}
-
-          ${lib.concatMapStringsSep
-            "\n  "
-            (p: ''route ${p.ipv6.address} via "tailscale0";'')
-            cfg.peers}
         }
+
+        ${lib.concatMapStringsSep
+        "\n\n"
+        (peer: ''
+          protocol bgp ${peer.hostname} {
+            graceful restart on;
+
+            multihop;
+            source address ${cfg.router.source.ipv4};
+            local as ${lib.toString cfg.asn};
+            neighbor ${peer.ipv4.upstream} as ${lib.toString cfg.asn};
+
+            ipv4 {
+              import all;
+              export where proto = "direct1";
+            };
+
+            ipv6 {
+              import all;
+              export where proto = "direct1";
+            };
+          }'')
+          cfg.peers}
 
         ${lib.concatMapStringsSep
         "\n\n"
