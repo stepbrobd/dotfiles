@@ -309,6 +309,69 @@ in
             cfg.router.static.ipv6.routes}
         }
 
+
+        protocol ospf v3 ospf4 {
+          area 0 {
+            interface "tailscale0" {
+              type nonbroadcast;
+              cost 10;
+              hello 10;
+              poll 10;
+              dead 60;
+              neighbors {
+                100.100.1.2;
+                100.100.1.4;
+                100.100.1.7;
+              };
+            };
+
+            interface "*" {
+              stub yes;
+            };
+
+            networks { 23.161.104.0/24; };
+          };
+
+          ipv4 {
+            import all;
+            export filter {
+              if (net ~ 23.161.104.0/24 && net.len = 32) then accept;
+              reject;
+            };
+          };
+        }
+
+        protocol ospf v3 ospf6 {
+          area 0 {
+            interface "tailscale0" {
+              type nonbroadcast;
+              cost 10;
+              hello 10;
+              poll 10;
+              dead 60;
+              neighbors {
+                100.100.1.2;
+                100.100.1.4;
+                100.100.1.7;
+              };
+            };
+
+            interface "*" {
+              stub yes;
+            };
+
+            networks { 2620:BE:A000::/48; };
+          };
+
+          ipv6 {
+            import all;
+            export filter {
+              if (net ~ 2620:BE:A000::/48 && net.len = 128) then accept;
+              reject;
+            };
+          };
+        }
+
         ${lib.concatMapStringsSep
         "\n\n"
         (session: ''
