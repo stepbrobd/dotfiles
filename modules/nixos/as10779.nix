@@ -46,6 +46,10 @@ let
           type = lib.types.str;
           description = "upstream IPv4 address";
         };
+        tailscale = lib.mkOption {
+          type = lib.types.str;
+          description = "tailscale IPv4 address";
+        };
       };
 
       ipv6 = {
@@ -60,6 +64,10 @@ let
         upstream = lib.mkOption {
           type = lib.types.str;
           description = "upstream IPv6 address";
+        };
+        tailscale = lib.mkOption {
+          type = lib.types.str;
+          description = "tailscale IPv6 address";
         };
       };
     };
@@ -117,7 +125,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            default = ''export where proto = "${cfg.router.static.ipv4.name}" ||${lib.concatMapStringsSep " ||" (p: " proto = \"${p.hostname}\"") cfg.peers};'';
             description = "export option";
           };
         };
@@ -134,7 +142,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv6.name}";'';
+            default = ''export where proto = "${cfg.router.static.ipv6.name}" ||${lib.concatMapStringsSep " ||" (p: " proto = \"${p.hostname}\"") cfg.peers};'';
             description = "export option";
           };
         };
@@ -308,6 +316,45 @@ in
             (r: ''route ${r.prefix} ${r.option};'')
             cfg.router.static.ipv6.routes}
         }
+
+        protocol static routable {
+          ipv4;
+          ${lib.concatMapStringsSep
+            "\n  "
+            (p: ''route ${p.ipv4.address} via ${p.ipv4.tailscale};'')
+            cfg.peers}
+
+          ipv6;
+          ${lib.concatMapStringsSep
+            "\n  "
+            (p: ''route ${p.ipv6.address} via ${p.ipv6.tailscale};'')
+            cfg.peers}
+        }
+
+        ${lib.concatMapStringsSep
+        "\n\n"
+        (peer: ''
+          protocol bgp ${peer.hostname} {
+            graceful restart on;
+
+            # direct;
+            # source address ${cfg.local.ipv4.tailscale};
+            local as ${lib.toString cfg.asn};
+            neighbor ${peer.ipv4.tailscale} as ${lib.toString cfg.asn};
+
+            ipv4 {
+              import all;
+              export where proto = "direct1";
+              next hop self;
+            };
+
+            ipv6 {
+              import all;
+              export where proto = "direct1";
+              next hop self;
+            };
+          }'')
+          cfg.peers}
 
         ${lib.concatMapStringsSep
         "\n\n"
