@@ -19,6 +19,10 @@ in
       id = lib.blueprint.hosts.toompea.ipv4;
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.toompea) ipv4 ipv6; };
+      static = with lib.blueprint.hosts.toompea.as10779.local; {
+        ipv4.routes = [{ prefix = "23.161.104.0/24"; option = "via ${ipv4.gateway}"; }];
+        ipv6.routes = [{ prefix = "2620:BE:A000::/48"; option = "via ${ipv6.gateway}"; }];
+      };
       sessions = [
         {
           name = "xtom";

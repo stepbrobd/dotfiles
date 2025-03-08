@@ -19,6 +19,10 @@ in
       id = lib.blueprint.hosts.goffle.ipv4;
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.goffle) ipv4 ipv6; };
+      static = {
+        ipv4.routes = [{ prefix = "23.161.104.0/24"; option = "reject"; }];
+        ipv6.routes = [{ prefix = "2620:BE:A000::/48"; option = "reject"; }];
+      };
       sessions = [
         {
           name = "vultr";

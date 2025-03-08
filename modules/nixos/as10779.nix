@@ -6,7 +6,20 @@
 let
   cfg = config.services.as10779;
 
-  decision = (lib.types.submodule {
+  routeType = lib.types.submodule {
+    options = {
+      prefix = lib.mkOption {
+        type = lib.types.str;
+        description = "prefix to announce";
+      };
+      option = lib.mkOption {
+        type = lib.types.str;
+        description = "option";
+      };
+    };
+  };
+
+  decisionType = lib.types.submodule {
     options = {
       interface = {
         local = lib.mkOption {
@@ -41,7 +54,7 @@ let
         };
       };
     };
-  });
+  };
 in
 {
   options.services.as10779 = {
@@ -125,10 +138,9 @@ in
             default = "static4";
             description = "name of IPv4 static protocol";
           };
-          prefixes = lib.mkOption {
-            type = with lib.types; listOf str;
-            default = [ "23.161.104.0/24" ];
-            description = "IPv4 prefixes to announce";
+          routes = lib.mkOption {
+            type = with lib.types; listOf routeType;
+            description = "IPv4 prefixes to announce and their corresponding options";
           };
         };
         ipv6 = {
@@ -137,10 +149,9 @@ in
             default = "static6";
             description = "name of IPv6 static protocol";
           };
-          prefixes = lib.mkOption {
-            type = with lib.types; listOf str;
-            default = [ "2620:BE:A000::/48" ];
-            description = "IPv6 prefixes to announce";
+          routes = lib.mkOption {
+            type = with lib.types; listOf routeType;
+            description = "IPv6 prefixes to announce and their corresponding options";
           };
         };
       };
@@ -215,12 +226,12 @@ in
     };
 
     local = lib.mkOption {
-      type = decision;
+      type = decisionType;
       description = "local routing decision";
     };
 
     peers = lib.mkOption {
-      type = lib.types.listOf decision;
+      type = lib.types.listOf decisionType;
       description = "peer decisions";
     };
   };
@@ -276,8 +287,8 @@ in
 
           ${lib.concatMapStringsSep
             "\n  "
-            (prefix: ''route ${prefix} reject;'')
-            cfg.router.static.ipv4.prefixes}
+            (r: ''route ${r.prefix} ${r.option};'')
+            cfg.router.static.ipv4.routes}
         }
 
         protocol static ${cfg.router.static.ipv6.name} {
@@ -285,8 +296,8 @@ in
 
           ${lib.concatMapStringsSep
           "\n  "
-            (prefix: ''route ${prefix} reject;'')
-            cfg.router.static.ipv6.prefixes}
+            (r: ''route ${r.prefix} ${r.option};'')
+            cfg.router.static.ipv6.routes}
         }
 
         ${lib.concatMapStringsSep
