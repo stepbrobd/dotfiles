@@ -117,7 +117,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv4.name}" ||${lib.concatMapStringsSep " ||" (p: " proto = \"${p.hostname}\"") cfg.peers};'';
+            default = ''export where proto = "${cfg.router.static.ipv4.name}";'';
             description = "export option";
           };
         };
@@ -134,7 +134,7 @@ in
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = ''export where proto = "${cfg.router.static.ipv6.name}" ||${lib.concatMapStringsSep " ||" (p: " proto = \"${p.hostname}\"") cfg.peers};'';
+            default = ''export where proto = "${cfg.router.static.ipv6.name}";'';
             description = "export option";
           };
         };
@@ -286,9 +286,9 @@ in
         }
 
         protocol direct {
+          interface "${cfg.local.interface.local}";
           ipv4;
           ipv6;
-          interface "${cfg.local.interface.local}";
         }
 
         protocol static ${cfg.router.static.ipv4.name} {
@@ -308,29 +308,6 @@ in
             (r: ''route ${r.prefix} ${r.option};'')
             cfg.router.static.ipv6.routes}
         }
-
-        ${lib.concatMapStringsSep
-        "\n\n"
-        (peer: ''
-          protocol bgp ${peer.hostname} {
-            graceful restart on;
-
-            multihop;
-            source address ${cfg.router.source.ipv4};
-            local as ${lib.toString cfg.asn};
-            neighbor ${peer.ipv4.upstream} as ${lib.toString cfg.asn};
-
-            ipv4 {
-              import all;
-              export where proto = "direct1";
-            };
-
-            ipv6 {
-              import all;
-              export where proto = "direct1";
-            };
-          }'')
-          cfg.peers}
 
         ${lib.concatMapStringsSep
         "\n\n"
