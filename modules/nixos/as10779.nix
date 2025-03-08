@@ -277,9 +277,9 @@ in
         }
 
         protocol direct {
-          interface "${cfg.local.interface.local}";
           ipv4;
           ipv6;
+          interface "${cfg.local.interface.local}";
         }
 
         protocol static ${cfg.router.static.ipv4.name} {
@@ -289,6 +289,11 @@ in
             "\n  "
             (r: ''route ${r.prefix} ${r.option};'')
             cfg.router.static.ipv4.routes}
+
+          ${lib.concatMapStringsSep
+            "\n  "
+            (p: ''route ${p.ipv4.address} via "tailscale0";'')
+            cfg.peers}
         }
 
         protocol static ${cfg.router.static.ipv6.name} {
@@ -298,6 +303,11 @@ in
           "\n  "
             (r: ''route ${r.prefix} ${r.option};'')
             cfg.router.static.ipv6.routes}
+
+          ${lib.concatMapStringsSep
+            "\n  "
+            (p: ''route ${p.ipv6.address} via "tailscale0";'')
+            cfg.peers}
         }
 
         ${lib.concatMapStringsSep
@@ -364,23 +374,12 @@ in
             # routes = [{ inherit address prefixLength; via = cfg.local.ipv6.gateway; }];
           };
       };
-      systemd.services."gateway-setup-${lib.toString cfg.asn}" = {
-        wantedBy = [ "multi-user.target" ];
-        after = [ "network.target" ];
-        description = "setup gateway for announced prefixes";
-        path = [ pkgs.iproute2 ];
-        serviceConfig = {
-          Type = "oneshot";
-          User = "root";
-          Restart = "no";
-        };
-        script = ''
-          ip rule add from ${cfg.local.ipv4.address} table ${lib.toString cfg.asn}
-          ip route add default via ${cfg.local.ipv4.gateway} table ${lib.toString cfg.asn}
-          ip -6 rule add from ${cfg.local.ipv6.address} table ${lib.toString cfg.asn}
-          ip -6 route add default via ${cfg.local.ipv6.gateway} table ${lib.toString cfg.asn}
-        '';
-      };
+      networking.localCommands = ''
+        ip rule add from ${cfg.local.ipv4.address} table ${lib.toString cfg.asn}
+        ip route add default via ${cfg.local.ipv4.gateway} table ${lib.toString cfg.asn}
+        ip -6 rule add from ${cfg.local.ipv6.address} table ${lib.toString cfg.asn}
+        ip -6 route add default via ${cfg.local.ipv6.gateway} table ${lib.toString cfg.asn}
+      '';
     }
     {
       boot.kernel.sysctl = {
