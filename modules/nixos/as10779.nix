@@ -333,25 +333,42 @@ in
           cfg.local.ipv4.address
           cfg.local.ipv6.address
         ];
-        routingPolicyRules = [
-          {
-            From = "23.161.104.0/24";
-            Table = cfg.asn;
-            Priority = 10000;
-          }
-          {
-            From = "2620:BE:A000::/48";
-            Table = cfg.asn;
-            Priority = 10000;
-          }
+        routingPolicyRules = lib.flatten [
+          (lib.map
+            (r: {
+              From = r.prefix;
+              Table = cfg.asn;
+              Priority = 10000;
+            })
+            cfg.router.static.ipv4.routes)
+
+          (lib.map
+            (r: {
+              From = r.prefix;
+              Table = cfg.asn;
+              Priority = 10000;
+            })
+            cfg.router.static.ipv6.routes)
         ];
       };
 
       networking.localCommands = ''
+        set -x
+
+        # tailscale
         ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address} --snat-subnet-routes=false
 
-        ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s   23.161.104.0/24 -j MASQUERADE
-        ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s 2620:BE:A000::/48 -j MASQUERADE
+        # v4
+        ${lib.concatMapStringsSep
+          "\n"
+          (r: ''${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE'')
+          cfg.router.static.ipv4.routes}
+
+        # v6
+        ${lib.concatMapStringsSep
+          "\n"
+          (r: ''${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE'')
+          cfg.router.static.ipv6.routes}
       '';
     }
     {
