@@ -416,16 +416,8 @@ in
         ];
       };
 
-      services.tailscale.extraUpFlags = [
-        "--reset"
-        "--ssh"
-        "--advertise-exit-node"
-        "--accept-routes"
-        "--advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}"
-        "--snat-subnet-routes=false"
-      ];
-
       networking.localCommands = ''
+        ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address} --snat-subnet-routes=false
         ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s   23.161.104.0/24 -j MASQUERADE
         ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s 2620:BE:A000::/48 -j MASQUERADE
       '';
