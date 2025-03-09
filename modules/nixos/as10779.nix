@@ -46,6 +46,10 @@ let
           type = lib.types.str;
           description = "upstream IPv4 address";
         };
+        tailscale = lib.mkOption {
+          type = lib.types.str;
+          description = "tailscale IPv4 address";
+        };
       };
 
       ipv6 = {
@@ -60,6 +64,10 @@ let
         upstream = lib.mkOption {
           type = lib.types.str;
           description = "upstream IPv6 address";
+        };
+        tailscale = lib.mkOption {
+          type = lib.types.str;
+          description = "tailscale IPv6 address";
         };
       };
     };
@@ -263,8 +271,8 @@ in
 
         protocol direct {
           interface "${cfg.local.interface.local}";
-          ipv4;
-          ipv6;
+          ipv4 { import all; export all;};
+          ipv6 { import all; export all;};
         }
 
         protocol kernel ${cfg.router.kernel.ipv4.name} {
@@ -315,10 +323,10 @@ in
           protocol bgp ${peer.hostname} {
             graceful restart on;
 
-            direct;
-            source address ${lib.head (lib.split "/" cfg.local.ipv4.address)};
+            multihop;
+            source address ${cfg.local.ipv4.tailscale};
             local as ${lib.toString cfg.asn};
-            neighbor ${lib.head (lib.split "/" peer.ipv4.address)} as ${lib.toString cfg.asn};
+            neighbor ${peer.ipv4.tailscale} as ${lib.toString cfg.asn};
 
             ipv4 {
               import all;
