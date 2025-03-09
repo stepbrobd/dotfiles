@@ -15,6 +15,13 @@ in
   services.as10779 = {
     enable = true;
 
+    local = {
+      hostname = config.networking.hostName;
+      interface.local = "dummy0";
+      ipv4.address = "23.161.104.128/32";
+      ipv6.address = "2620:BE:A000::23:161:104:128/128";
+    };
+
     router = {
       id = lib.blueprint.hosts.toompea.ipv4;
       secret = config.sops.secrets.bgp.path;
@@ -63,7 +70,5 @@ in
         }
       ];
     };
-
-    inherit (lib.blueprint.hosts.toompea.as10779) local;
   };
 }

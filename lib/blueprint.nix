@@ -21,12 +21,10 @@ let
     , type # e.g. "laptop", "server"
     , ipv4 ? null
     , ipv6 ? null
-    , as10779 ? { } # schema defined in `modules/nixos/as10779.nix` toplevel let binding (`decision`)
     , services ? { }
     }: {
       inherit platform os provider type; # metadata
       inherit hostName domain ipv4 ipv6; # networking
-      inherit as10779;
       inherit services;
       fqdn = "${hostName}.${domain}";
     };
@@ -47,7 +45,7 @@ in
   hosts.macbook = { };
 
   # servers
-  hosts.goffle = newHost rec {
+  hosts.goffle = newHost {
     hostName = "goffle";
     domain = "as10779.net";
     platform = "x86_64-linux";
@@ -56,14 +54,6 @@ in
     type = "server";
     ipv4 = "66.135.21.33";
     ipv6 = "2001:19f0:0000:71c6:5400:05ff:fe53:5f61";
-    as10779 = {
-      local = {
-        hostname = hostName;
-        interface.local = "dummy0";
-        ipv4.address = "23.161.104.129/32";
-        ipv6.address = "2620:BE:A000::23:161:104:129/128";
-      };
-    };
   };
 
   hosts.halti = newHost {
@@ -77,7 +67,7 @@ in
     ipv6 = null;
   };
 
-  hosts.kongo = newHost rec {
+  hosts.kongo = newHost {
     hostName = "kongo";
     domain = "as10779.net";
     platform = "x86_64-linux";
@@ -86,14 +76,6 @@ in
     type = "server";
     ipv4 = "64.176.58.7";
     ipv6 = "2401:c080:3800:21c4:5400:05ff:fe53:aca3";
-    as10779 = {
-      local = {
-        hostname = hostName;
-        interface.local = "dummy0";
-        ipv4.address = "23.161.104.130/32";
-        ipv6.address = "2620:BE:A000::23:161:104:130/128";
-      };
-    };
   };
 
   hosts.odake = newHost {
@@ -107,7 +89,7 @@ in
     ipv6 = "2602:ff16:14:0:1:56:0:1";
   };
 
-  hosts.toompea = newHost rec {
+  hosts.toompea = newHost {
     hostName = "toompea";
     domain = "as10779.net";
     platform = "x86_64-linux";
@@ -116,14 +98,6 @@ in
     type = "server";
     ipv4 = "185.194.53.29";
     ipv6 = "2a04:6f00:4::a5";
-    as10779 = {
-      local = {
-        hostname = hostName;
-        interface.local = "dummy0";
-        ipv4.address = "23.161.104.128/32";
-        ipv6.address = "2620:BE:A000::23:161:104:128/128";
-      };
-    };
   };
 
   hosts.walberla = newHost {

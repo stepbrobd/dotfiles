@@ -53,6 +53,11 @@ in
       description = "ASN";
     };
 
+    local = lib.mkOption {
+      type = decisionType;
+      description = "local routing decision";
+    };
+
     router = {
       id = lib.mkOption {
         type = lib.types.str;
@@ -210,11 +215,6 @@ in
           };
         });
       };
-    };
-
-    local = lib.mkOption {
-      type = decisionType;
-      description = "local routing decision";
     };
   };
 
