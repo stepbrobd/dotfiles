@@ -84,13 +84,11 @@ in
         };
         ipv4 = {
           address = "23.161.104.129/32";
-          gateway = "66.135.21.33";
           upstream = ipv4;
           tailscale = "100.100.1.2";
         };
         ipv6 = {
           address = "2620:BE:A000::23:161:104:129/128";
-          gateway = "2001:19f0:0000:71c6:5400:05ff:fe53:5f61";
           upstream = ipv6;
           tailscale = "fd7a:115c:a1e0::2b01:6d5c";
         };
@@ -127,13 +125,11 @@ in
         };
         ipv4 = {
           address = "23.161.104.130/32";
-          gateway = "64.176.58.7";
           upstream = ipv4;
           tailscale = "100.100.1.4";
         };
         ipv6 = {
           address = "2620:BE:A000::23:161:104:130/128";
-          gateway = "2401:c080:3800:21c4:5400:05ff:fe53:aca3";
           upstream = ipv6;
           tailscale = "fd7a:115c:a1e0::b801:9a81";
         };
@@ -170,13 +166,11 @@ in
         };
         ipv4 = {
           address = "23.161.104.128/32";
-          gateway = "185.194.53.4";
           upstream = ipv4;
           tailscale = "100.100.1.7";
         };
         ipv6 = {
           address = "2620:BE:A000::23:161:104:128/128";
-          gateway = "2a04:6f00:4::4";
           upstream = ipv6;
           tailscale = "fd7a:115c:a1e0::2201:6648";
         };
