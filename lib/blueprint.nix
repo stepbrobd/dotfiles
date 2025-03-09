@@ -30,26 +30,6 @@ let
       inherit services;
       fqdn = "${hostName}.${domain}";
     };
-
-  genPeersFor = hostname:
-    let
-      all = lib.filterAttrs
-        (name: host: host ? type && host.type == "server")
-        lib.blueprint.hosts;
-
-      others = lib.filterAttrs
-        (name: host: host.hostName != hostname)
-        all;
-
-      peers = lib.mapAttrsToList
-        (name: host:
-          if host ? as10779 && host.as10779 ? local
-          then host.as10779.local
-          else null)
-        others;
-
-    in
-    lib.filter (peer: peer != null) peers;
 in
 {
   users.ysun = newUser {
@@ -83,7 +63,6 @@ in
         ipv4.address = "23.161.104.129/32";
         ipv6.address = "2620:BE:A000::23:161:104:129/128";
       };
-      peers = genPeersFor hostName;
     };
   };
 
@@ -114,7 +93,6 @@ in
         ipv4.address = "23.161.104.130/32";
         ipv6.address = "2620:BE:A000::23:161:104:130/128";
       };
-      peers = genPeersFor hostName;
     };
   };
 
@@ -145,7 +123,6 @@ in
         ipv4.address = "23.161.104.128/32";
         ipv6.address = "2620:BE:A000::23:161:104:128/128";
       };
-      peers = genPeersFor hostName;
     };
   };
 

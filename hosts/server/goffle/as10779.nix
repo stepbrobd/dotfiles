@@ -64,6 +64,6 @@ in
       ];
     };
 
-    inherit (lib.blueprint.hosts.goffle.as10779) local peers;
+    inherit (lib.blueprint.hosts.goffle.as10779) local;
   };
 }

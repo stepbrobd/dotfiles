@@ -64,6 +64,6 @@ in
       ];
     };
 
-    inherit (lib.blueprint.hosts.kongo.as10779) local peers;
+    inherit (lib.blueprint.hosts.kongo.as10779) local;
   };
 }

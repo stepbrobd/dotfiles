@@ -216,11 +216,6 @@ in
       type = decisionType;
       description = "local routing decision";
     };
-
-    peers = lib.mkOption {
-      type = lib.types.listOf decisionType;
-      description = "peer decisions";
-    };
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
