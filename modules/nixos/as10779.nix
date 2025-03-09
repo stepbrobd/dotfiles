@@ -26,41 +26,19 @@ let
         description = "hostname";
       };
 
-      interface = {
-        local = lib.mkOption {
-          type = lib.types.str;
-          description = "local interface name";
-        };
+      interface.local = lib.mkOption {
+        type = lib.types.str;
+        description = "local interface name";
       };
 
-      ipv4 = {
-        address = lib.mkOption {
-          type = lib.types.str;
-          description = "IPv4 address to use on local interface";
-        };
-        upstream = lib.mkOption {
-          type = lib.types.str;
-          description = "upstream IPv4 address";
-        };
-        tailscale = lib.mkOption {
-          type = lib.types.str;
-          description = "tailscale IPv4 address";
-        };
+      ipv4.address = lib.mkOption {
+        type = lib.types.str;
+        description = "IPv4 address to use on local interface";
       };
 
-      ipv6 = {
-        address = lib.mkOption {
-          type = lib.types.str;
-          description = "IPv6 address to use on local interface";
-        };
-        upstream = lib.mkOption {
-          type = lib.types.str;
-          description = "upstream IPv6 address";
-        };
-        tailscale = lib.mkOption {
-          type = lib.types.str;
-          description = "tailscale IPv6 address";
-        };
+      ipv6.address = lib.mkOption {
+        type = lib.types.str;
+        description = "IPv6 address to use on local interface";
       };
     };
   };
@@ -308,31 +286,6 @@ in
             (r: ''route ${r.prefix} ${r.option};'')
             cfg.router.static.ipv6.routes}
         }
-
-        ${lib.concatMapStringsSep
-        "\n\n"
-        (peer: ''
-          protocol bgp ${peer.hostname} {
-            graceful restart on;
-
-            multihop;
-            source address ${cfg.local.ipv4.tailscale};
-            local as ${lib.toString cfg.asn};
-            neighbor ${peer.ipv4.tailscale} as ${lib.toString cfg.asn};
-
-            ipv4 {
-              import all;
-              export where proto = "direct1";
-              next hop self;
-            };
-
-            ipv6 {
-              import all;
-              export where proto = "direct1";
-              next hop self;
-            };
-          }'')
-          cfg.peers}
 
         ${lib.concatMapStringsSep
         "\n\n"

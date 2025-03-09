@@ -79,19 +79,9 @@ in
     as10779 = {
       local = {
         hostname = hostName;
-        interface = {
-          local = "dummy0";
-        };
-        ipv4 = {
-          address = "23.161.104.129/32";
-          upstream = ipv4;
-          tailscale = "100.100.1.2";
-        };
-        ipv6 = {
-          address = "2620:BE:A000::23:161:104:129/128";
-          upstream = ipv6;
-          tailscale = "fd7a:115c:a1e0::2b01:6d5c";
-        };
+        interface.local = "dummy0";
+        ipv4.address = "23.161.104.129/32";
+        ipv6.address = "2620:BE:A000::23:161:104:129/128";
       };
       peers = genPeersFor hostName;
     };
@@ -120,19 +110,9 @@ in
     as10779 = {
       local = {
         hostname = hostName;
-        interface = {
-          local = "dummy0";
-        };
-        ipv4 = {
-          address = "23.161.104.130/32";
-          upstream = ipv4;
-          tailscale = "100.100.1.4";
-        };
-        ipv6 = {
-          address = "2620:BE:A000::23:161:104:130/128";
-          upstream = ipv6;
-          tailscale = "fd7a:115c:a1e0::b801:9a81";
-        };
+        interface.local = "dummy0";
+        ipv4.address = "23.161.104.130/32";
+        ipv6.address = "2620:BE:A000::23:161:104:130/128";
       };
       peers = genPeersFor hostName;
     };
@@ -161,19 +141,9 @@ in
     as10779 = {
       local = {
         hostname = hostName;
-        interface = {
-          local = "dummy0";
-        };
-        ipv4 = {
-          address = "23.161.104.128/32";
-          upstream = ipv4;
-          tailscale = "100.100.1.7";
-        };
-        ipv6 = {
-          address = "2620:BE:A000::23:161:104:128/128";
-          upstream = ipv6;
-          tailscale = "fd7a:115c:a1e0::2201:6648";
-        };
+        interface.local = "dummy0";
+        ipv4.address = "23.161.104.128/32";
+        ipv6.address = "2620:BE:A000::23:161:104:128/128";
       };
       peers = genPeersFor hostName;
     };
