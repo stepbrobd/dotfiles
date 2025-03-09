@@ -408,10 +408,16 @@ in
       };
       networking.localCommands = ''
         ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}
-        ip rule add from ${cfg.local.ipv4.address} table ${lib.toString cfg.asn} priority 10000 || true
-        ip route add default via ${cfg.local.ipv4.gateway} table ${lib.toString cfg.asn} || true
-        ip -6 rule add from ${cfg.local.ipv6.address} table ${lib.toString cfg.asn} priority 10000 || true
+
+        # networkd
+        ip -4 route add default via ${cfg.local.ipv4.gateway} table ${lib.toString cfg.asn} || true
         ip -6 route add default via ${cfg.local.ipv6.gateway} table ${lib.toString cfg.asn} || true
+
+        ip -4 rule add from   23.161.104.0/24 table ${lib.toString cfg.asn} priority 10000 || true
+        ip -6 rule add from 2620:BE:A000::/48 table ${lib.toString cfg.asn} priority 10000 || true
+
+        ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o tailscale0 ! -s   23.161.104.0/24 -j MASQUERADE
+        ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o tailscale0 ! -s 2620:BE:A000::/48 -j MASQUERADE
       '';
     }
     {
