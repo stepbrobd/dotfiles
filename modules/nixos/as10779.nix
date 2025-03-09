@@ -120,12 +120,12 @@ in
           };
           import = lib.mkOption {
             type = lib.types.str;
-            default = "import all;";
+            default = "import none;";
             description = "import option";
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = "export none;";
+            default = "export all;";
             description = "export option";
           };
         };
@@ -137,12 +137,12 @@ in
           };
           import = lib.mkOption {
             type = lib.types.str;
-            default = "import all;";
+            default = "import none;";
             description = "import option";
           };
           export = lib.mkOption {
             type = lib.types.str;
-            default = "export none;";
+            default = "export all;";
             description = "export option";
           };
         };
@@ -271,12 +271,13 @@ in
 
         protocol direct {
           interface "${cfg.local.interface.local}";
-          ipv4 { import all; export all;};
-          ipv6 { import all; export all;};
+          ipv4;
+          ipv6;
         }
 
         protocol kernel ${cfg.router.kernel.ipv4.name} {
           scan time ${lib.toString cfg.router.scantime};
+          kernel table ${lib.toString cfg.asn};
 
           learn;
           persist;
@@ -289,6 +290,7 @@ in
 
         protocol kernel ${cfg.router.kernel.ipv6.name} {
           scan time ${lib.toString cfg.router.scantime};
+          kernel table ${lib.toString cfg.asn};
 
           learn;
           persist;
@@ -391,18 +393,6 @@ in
         address = [
           cfg.local.ipv4.address
           cfg.local.ipv6.address
-        ];
-        routes = [
-          {
-            GatewayOnLink = true;
-            Gateway = cfg.local.ipv4.gateway;
-            Table = cfg.asn;
-          }
-          {
-            GatewayOnLink = true;
-            Gateway = cfg.local.ipv6.gateway;
-            Table = cfg.asn;
-          }
         ];
         routingPolicyRules = [
           {
