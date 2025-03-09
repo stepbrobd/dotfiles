@@ -384,37 +384,37 @@ in
         Kind = "dummy";
         Name = cfg.local.interface.local;
       };
-      networking.interfaces.${cfg.local.interface.local} = {
-        ipv4 =
-          let
-            split = lib.split "/" cfg.local.ipv4.address;
-            address = lib.head split;
-            prefixLength = lib.toInt (lib.last split);
-          in
+      systemd.network.networks."40-${cfg.local.interface.local}" = {
+        name = cfg.local.interface.local;
+        address = [
+          cfg.local.ipv4.address
+          cfg.local.ipv6.address
+        ];
+        routes = [
           {
-            addresses = [{ inherit address prefixLength; }];
-            # routes = [{ inherit address prefixLength; via = cfg.local.ipv4.gateway; }];
-          };
-        ipv6 =
-          let
-            split = lib.split "/" cfg.local.ipv6.address;
-            address = lib.head split;
-            prefixLength = lib.toInt (lib.last split);
-          in
+            Gateway = cfg.local.ipv4.gateway;
+            Table = cfg.asn;
+          }
           {
-            addresses = [{ inherit address prefixLength; }];
-            # routes = [{ inherit address prefixLength; via = cfg.local.ipv6.gateway; }];
-          };
+            Gateway = cfg.local.ipv6.gateway;
+            Table = cfg.asn;
+          }
+        ];
+        routingPolicyRules = [
+          {
+            From = "23.161.104.0/24";
+            Table = cfg.asn;
+            Priority = 10000;
+          }
+          {
+            From = "2620:BE:A000::/48";
+            Table = cfg.asn;
+            Priority = 10000;
+          }
+        ];
       };
       networking.localCommands = ''
         ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}
-
-        # networkd
-        ip -4 route add default via ${cfg.local.ipv4.gateway} table ${lib.toString cfg.asn} || true
-        ip -6 route add default via ${cfg.local.ipv6.gateway} table ${lib.toString cfg.asn} || true
-
-        ip -4 rule add from   23.161.104.0/24 table ${lib.toString cfg.asn} priority 10000 || true
-        ip -6 rule add from 2620:BE:A000::/48 table ${lib.toString cfg.asn} priority 10000 || true
 
         ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o tailscale0 ! -s   23.161.104.0/24 -j MASQUERADE
         ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o tailscale0 ! -s 2620:BE:A000::/48 -j MASQUERADE
