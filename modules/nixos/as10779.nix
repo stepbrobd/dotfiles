@@ -311,6 +311,31 @@ in
 
         ${lib.concatMapStringsSep
         "\n\n"
+        (peer: ''
+          protocol bgp ${peer.hostname} {
+            graceful restart on;
+
+            direct;
+            source address ${lib.head (lib.split "/" cfg.local.ipv4.address)};
+            local as ${lib.toString cfg.asn};
+            neighbor ${lib.head (lib.split "/" peer.ipv4.address)} as ${lib.toString cfg.asn};
+
+            ipv4 {
+              import all;
+              export where proto = "direct1";
+              next hop self;
+            };
+
+            ipv6 {
+              import all;
+              export where proto = "direct1";
+              next hop self;
+            };
+          }'')
+          cfg.peers}
+
+        ${lib.concatMapStringsSep
+        "\n\n"
         (session: ''
           protocol bgp ${session.name}4 {
             graceful restart on;
