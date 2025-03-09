@@ -171,16 +171,12 @@ in
       enable = true;
       virtualHosts."otel.${config.networking.fqdn}".extraConfig = ''
         import common
-        @blocked not remote_ip ${lib.blueprint.hosts.halti.ipv4}
-        respond @blocked "Forbidden" 403
 
         handle_path /prometheus/* {
-          respond @blocked "Forbidden" 403
           reverse_proxy  ${with cfg; toString listenAddress + ":" + toString port}
         }
 
         handle_path /loki/* {
-          respond @blocked "Forbidden" 403
           reverse_proxy  ${with config.services.loki.configuration.server; http_listen_address + ":" + toString http_listen_port}
         }
       '';
