@@ -380,10 +380,12 @@ in
     }
     {
       boot.kernelModules = [ "dummy" ];
+
       systemd.network.netdevs."40-${cfg.local.interface.local}".netdevConfig = {
         Kind = "dummy";
         Name = cfg.local.interface.local;
       };
+
       systemd.network.networks."40-${cfg.local.interface.local}" = {
         name = cfg.local.interface.local;
         address = [
@@ -413,11 +415,19 @@ in
           }
         ];
       };
-      networking.localCommands = ''
-        ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}
 
-        ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o tailscale0 ! -s   23.161.104.0/24 -j MASQUERADE
-        ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o tailscale0 ! -s 2620:BE:A000::/48 -j MASQUERADE
+      services.tailscale.extraUpFlags = [
+        "--reset"
+        "--ssh"
+        "--advertise-exit-node"
+        "--accept-routes"
+        "--advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}"
+        "--snat-subnet-routes=false"
+      ];
+
+      networking.localCommands = ''
+        ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s   23.161.104.0/24 -j MASQUERADE
+        ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s 2620:BE:A000::/48 -j MASQUERADE
       '';
     }
     {
