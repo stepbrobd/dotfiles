@@ -375,9 +375,9 @@ in
       };
       networking.localCommands = ''
         ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}
-        ip rule add from ${cfg.local.ipv4.address} table ${lib.toString cfg.asn} || true
+        ip rule add from ${cfg.local.ipv4.address} table ${lib.toString cfg.asn} priority 10000 || true
         ip route add default via ${cfg.local.ipv4.gateway} table ${lib.toString cfg.asn} || true
-        ip -6 rule add from ${cfg.local.ipv6.address} table ${lib.toString cfg.asn} || true
+        ip -6 rule add from ${cfg.local.ipv6.address} table ${lib.toString cfg.asn} priority 10000 || true
         ip -6 route add default via ${cfg.local.ipv6.gateway} table ${lib.toString cfg.asn} || true
       '';
     }
