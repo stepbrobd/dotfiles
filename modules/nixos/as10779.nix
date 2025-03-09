@@ -382,6 +382,7 @@ in
     }
     {
       boot.kernelModules = [ "dummy" ];
+      systemd.network.config.networkConfig.ManageForeignRoutes = false;
 
       systemd.network.netdevs."40-${cfg.local.interface.local}".netdevConfig = {
         Kind = "dummy";
