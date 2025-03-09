@@ -394,10 +394,12 @@ in
         ];
         routes = [
           {
+            GatewayOnLink = true;
             Gateway = cfg.local.ipv4.gateway;
             Table = cfg.asn;
           }
           {
+            GatewayOnLink = true;
             Gateway = cfg.local.ipv6.gateway;
             Table = cfg.asn;
           }
