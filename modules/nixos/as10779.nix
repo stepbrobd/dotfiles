@@ -312,17 +312,10 @@ in
         protocol ospf v3 ospf4 {
           area 0 {
             interface "tailscale0" {
-              type nonbroadcast;
               cost 10;
               hello 10;
               poll 10;
               dead 60;
-              neighbors {
-                ${lib.concatMapStringsSep
-                "\n        "
-                (p: ''${lib.head (lib.split "/" (p.ipv4.address))};'')
-                cfg.peers}
-              };
             };
 
             interface "*" {
@@ -349,17 +342,10 @@ in
         protocol ospf v3 ospf6 {
           area 0 {
             interface "tailscale0" {
-              type nonbroadcast;
               cost 10;
               hello 10;
               poll 10;
               dead 60;
-              neighbors {
-                ${lib.concatMapStringsSep
-                "\n        "
-                (p: ''${lib.head (lib.split "/" (p.ipv6.address))};'')
-                cfg.peers}
-              };
             };
 
             interface "*" {
