@@ -169,9 +169,7 @@ in
 
     services.caddy = {
       enable = true;
-      virtualHosts."otel.${config.networking.fqdn}".extraConfig = ''
-        import common
-
+      virtualHosts."${config.networking.hostName}.tail650e82.ts.net".extraConfig = ''
         handle_path /prometheus/* {
           reverse_proxy  ${with cfg; toString listenAddress + ":" + toString port}
         }
