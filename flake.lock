@@ -290,6 +290,34 @@
         "type": "github"
       }
     },
+    "htmx-src": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-nm6avZuEBg67SSyyZUhjpXVNstHHgUxrtBHqJgowU08=",
+        "type": "file",
+        "url": "https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"
+      }
+    },
+    "ia-fonts-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1686932517,
+        "narHash": "sha256-2T165nFfCzO65/PIHauJA//S+zug5nUwPcg8NUEydfc=",
+        "owner": "iaolo",
+        "repo": "iA-Fonts",
+        "rev": "f32c04c3058a75d7ce28919ce70fe8800817491b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iaolo",
+        "repo": "iA-Fonts",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -325,6 +353,22 @@
         "type": "github"
       }
     },
+    "indigo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738491661,
+        "narHash": "sha256-+njDigkvjH4XmXZMog5Mp0K4x9mamHX6gSGJCZB9mE4=",
+        "owner": "oppiliappan",
+        "repo": "indigo",
+        "rev": "feb802f02a462ac0a6392ffc3e40b0529f0cdf71",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oppiliappan",
+        "repo": "indigo",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": [
@@ -357,6 +401,18 @@
         "ref": "v0.4.2",
         "repo": "lanzaboote",
         "type": "github"
+      }
+    },
+    "lucide-src": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-h3LsMyt4gaugENlg07Uxl96j89O5B2ZaO6fQ07cjZgQ=",
+        "type": "file",
+        "url": "https://unpkg.com/lucide@latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://unpkg.com/lucide@latest"
       }
     },
     "nixos-generators": {
@@ -486,6 +542,7 @@
         "sops": "sops",
         "srvos": "srvos",
         "systems": "systems",
+        "tangled": "tangled",
         "terranix": "terranix",
         "utils": "utils"
       }
@@ -578,6 +635,33 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "tangled": {
+      "inputs": {
+        "gitignore": [
+          "gitignore"
+        ],
+        "htmx-src": "htmx-src",
+        "ia-fonts-src": "ia-fonts-src",
+        "indigo": "indigo",
+        "lucide-src": "lucide-src",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741644644,
+        "narHash": "sha256-wAeSEDs89G+2S/CDO8pwgA1OQWj62s61UU62+u6chw4=",
+        "ref": "refs/heads/master",
+        "rev": "cc344af0da418b803282054aee90e03b994437d7",
+        "revCount": 295,
+        "type": "git",
+        "url": "https://tangled.sh/@tangled.sh/core"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://tangled.sh/@tangled.sh/core"
       }
     },
     "terranix": {

@@ -111,6 +111,9 @@
     srvos.inputs.nixpkgs.follows = "nixpkgs";
     systems.url = "github:nix-systems/default";
     # t
+    tangled.url = "git+https://tangled.sh/@tangled.sh/core";
+    tangled.inputs.nixpkgs.follows = "nixpkgs";
+    tangled.inputs.gitignore.follows = "gitignore";
     terranix.url = "github:terranix/terranix";
     terranix.inputs.nixpkgs.follows = "nixpkgs";
     terranix.inputs.flake-parts.follows = "parts";
