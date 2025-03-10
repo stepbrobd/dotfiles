@@ -28,7 +28,18 @@ let
 
       interface.local = lib.mkOption {
         type = lib.types.str;
-        description = "local interface name";
+        description = "local interface name that will be used to assign addresses within the announced prefixes";
+      };
+
+      interface.outbound = lib.mkOption {
+        type = lib.types.str;
+        default = "enp+";
+        description = ''
+          interface name where the machine can reach the internet
+          usually the interface on the machine where hosting company assigned IP to
+          and the name starts with `enp`
+          required for tailscale exit node to work (since tailscale subnet router SNAT is disabled)
+        '';
       };
 
       ipv4.address = lib.mkOption {
@@ -361,13 +372,19 @@ in
         # v4
         ${lib.concatMapStringsSep
           "\n"
-          (r: ''${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE'')
+          (r: ''
+            ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE
+            ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${cfg.local.interface.outbound}            ! -s ${r.prefix} -j MASQUERADE
+          '')
           cfg.router.static.ipv4.routes}
 
         # v6
         ${lib.concatMapStringsSep
           "\n"
-          (r: ''${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE'')
+          (r: ''
+            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE
+            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${cfg.local.interface.outbound}            ! -s ${r.prefix} -j MASQUERADE
+          '')
           cfg.router.static.ipv6.routes}
       '';
     }
