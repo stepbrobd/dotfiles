@@ -19,7 +19,7 @@ in
       hostname = config.networking.hostName;
       interface.local = "dummy0";
       ipv4.address = "23.161.104.130/32";
-      ipv6.address = "2620:BE:A000::23:161:104:130/128";
+      ipv6.address = "2620:be:a000::23:161:104:130/128";
     };
 
     router = {
@@ -28,7 +28,7 @@ in
       source = { inherit (lib.blueprint.hosts.kongo) ipv4 ipv6; };
       static = {
         ipv4.routes = [{ prefix = "23.161.104.0/24"; option = "reject"; }];
-        ipv6.routes = [{ prefix = "2620:BE:A000::/48"; option = "reject"; }];
+        ipv6.routes = [{ prefix = "2620:be:a000::/48"; option = "reject"; }];
       };
       sessions = [
         {
