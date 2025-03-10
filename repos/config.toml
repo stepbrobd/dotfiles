@@ -24,6 +24,11 @@ origin = false
 domain = "git.sr.ht"
 user = "~stepbrobd"
 
+[platform.tangled]
+origin = false
+domain = "tangled.sh"
+user = "stepbrobd.com"
+
 ## Personal
 [repo."aoc"]
 description = "advent of code"
