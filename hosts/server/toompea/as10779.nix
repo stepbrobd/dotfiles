@@ -51,12 +51,12 @@ in
         }
         {
           name = "bgptools";
-          password = "PASS_AS212232";
+          password = null;
           type = "multihop";
           neighbor = {
             asn = 212232;
-            ipv4 = "185.230.223.78";
-            ipv6 = "2a0c:2f07:9459::b6";
+            ipv4 = "185.230.223.45";
+            ipv6 = "2a0c:2f07:9459::b19";
           };
           addpath = "tx";
           import = {

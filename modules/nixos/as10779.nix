@@ -157,7 +157,7 @@ in
             };
 
             password = lib.mkOption {
-              type = lib.types.str;
+              type = with lib.types; nullOr str;
               description = "key of BGP session password in the environment file";
             };
 
@@ -291,8 +291,11 @@ in
             ${session.type};
             source address ${cfg.router.source.ipv4};
             local as ${lib.toString cfg.asn};
-            neighbor ${session.neighbor.ipv4} as ${lib.toString session.neighbor.asn};
-            password ${session.password};
+            neighbor ${session.neighbor.ipv4} as ${lib.toString session.neighbor.asn};${
+              if lib.isNull session.password
+              then ""
+              else "\n  password ${session.password};"
+            }
 
             ipv4 {
               add paths ${session.addpath};
@@ -307,8 +310,11 @@ in
             ${session.type};
             source address ${cfg.router.source.ipv6};
             local as ${lib.toString cfg.asn};
-            neighbor ${session.neighbor.ipv6} as ${lib.toString session.neighbor.asn};
-            password ${session.password};
+            neighbor ${session.neighbor.ipv6} as ${lib.toString session.neighbor.asn};${
+              if lib.isNull session.password
+              then ""
+              else "\n  password ${session.password};"
+            }
 
             ipv6 {
               add paths ${session.addpath};
