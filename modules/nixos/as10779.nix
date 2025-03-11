@@ -86,6 +86,58 @@ in
         };
       };
 
+      rpki = {
+        retry = lib.mkOption {
+          type = lib.types.int;
+          default = 600;
+          description = "retry time";
+        };
+        refresh = lib.mkOption {
+          type = lib.types.int;
+          default = 3600;
+          description = "refresh time";
+        };
+        expire = lib.mkOption {
+          type = lib.types.int;
+          default = 7200;
+          description = "expire time";
+        };
+        validators = lib.mkOption {
+          type = lib.types.listOf (lib.types.submodule {
+            options = {
+              name = lib.mkOption {
+                type = lib.types.str;
+                description = "name of RPKI validator";
+              };
+              remote = lib.mkOption {
+                type = lib.types.str;
+                description = "remote address";
+              };
+              port = lib.mkOption {
+                type = lib.types.int;
+                description = "port";
+              };
+            };
+          });
+          default = [
+            { name = "cloudflare"; remote = "rtr.rpki.cloudflare.com"; port = 8282; }
+          ];
+          description = "RPKI validators";
+        };
+      };
+
+      device.name = lib.mkOption {
+        type = lib.types.str;
+        default = "device0";
+        description = "name of device protocol";
+      };
+
+      direct.name = lib.mkOption {
+        type = lib.types.str;
+        default = "direct0";
+        description = "name of direct protocol";
+      };
+
       kernel = {
         ipv4 = {
           name = lib.mkOption {
@@ -230,11 +282,29 @@ in
 
         router id ${cfg.router.id};
 
-        protocol device {
+        roa4 table rpki4;
+        roa6 table rpki6;
+
+        ${lib.concatMapStringsSep
+        "\n\n"
+        (validator: ''
+          protocol rpki ${validator.name} {
+            roa4 { table rpki4; };
+            roa6 { table rpki6; };
+
+            remote "${validator.remote}" port ${lib.toString validator.port};
+
+            retry keep ${lib.toString cfg.router.rpki.retry};
+            refresh keep ${lib.toString cfg.router.rpki.refresh};
+            expire ${lib.toString cfg.router.rpki.expire};
+          }'')
+        cfg.router.rpki.validators}
+
+        protocol device ${cfg.router.device.name} {
           scan time ${lib.toString cfg.router.scantime};
         }
 
-        protocol direct {
+        protocol direct ${cfg.router.direct.name} {
           interface "${cfg.local.interface.local}";
           ipv4;
           ipv6;
