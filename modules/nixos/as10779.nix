@@ -87,6 +87,30 @@ in
       };
 
       rpki = {
+        ipv4 = {
+          table = lib.mkOption {
+            type = lib.types.str;
+            default = "trpki4";
+            description = "IPv4 RPKI table name";
+          };
+          filter = lib.mkOption {
+            type = lib.types.str;
+            default = "validated4";
+            description = "IPv4 RPKI filter name";
+          };
+        };
+        ipv6 = {
+          table = lib.mkOption {
+            type = lib.types.str;
+            default = "trpki6";
+            description = "IPv6 RPKI table name";
+          };
+          filter = lib.mkOption {
+            type = lib.types.str;
+            default = "validated6";
+            description = "IPv6 RPKI filter name";
+          };
+        };
         retry = lib.mkOption {
           type = lib.types.int;
           default = 600;
@@ -105,9 +129,9 @@ in
         validators = lib.mkOption {
           type = lib.types.listOf (lib.types.submodule {
             options = {
-              name = lib.mkOption {
-                type = lib.types.str;
-                description = "name of RPKI validator";
+              id = lib.mkOption {
+                type = lib.types.int;
+                description = "id of RPKI validator (only for generating unique names)";
               };
               remote = lib.mkOption {
                 type = lib.types.str;
@@ -120,7 +144,7 @@ in
             };
           });
           default = [
-            { name = "cloudflare"; remote = "rtr.rpki.cloudflare.com"; port = 8282; }
+            { id = 0; remote = "rtr.rpki.cloudflare.com"; port = 8282; }
           ];
           description = "RPKI validators";
         };
@@ -282,15 +306,15 @@ in
 
         router id ${cfg.router.id};
 
-        roa4 table rpki4;
-        roa6 table rpki6;
+        roa4 table ${cfg.router.rpki.ipv4.table};
+        roa6 table ${cfg.router.rpki.ipv6.table};
 
         ${lib.concatMapStringsSep
         "\n\n"
         (validator: ''
-          protocol rpki ${validator.name} {
-            roa4 { table rpki4; };
-            roa6 { table rpki6; };
+          protocol rpki rpki${lib.toString validator.id} {
+            roa4 { table ${cfg.router.rpki.ipv4.table}; };
+            roa6 { table ${cfg.router.rpki.ipv6.table}; };
 
             remote "${validator.remote}" port ${lib.toString validator.port};
 
@@ -299,6 +323,22 @@ in
             expire ${lib.toString cfg.router.rpki.expire};
           }'')
         cfg.router.rpki.validators}
+
+        filter ${cfg.router.rpki.ipv4.filter} {
+          if (roa_check(${cfg.router.rpki.ipv4.table}, net, bgp_path.last) = ROA_INVALID) then {
+            print "Ignore RPKI invalid ", net, " for ASN ", bgp_path.last;
+            reject;
+          }
+          accept;
+        }
+
+        filter ${cfg.router.rpki.ipv6.filter} {
+          if (roa_check(${cfg.router.rpki.ipv6.table}, net, bgp_path.last) = ROA_INVALID) then {
+            print "Ignore RPKI invalid ", net, " for ASN ", bgp_path.last;
+            reject;
+          }
+          accept;
+        }
 
         protocol device ${cfg.router.device.name} {
           scan time ${lib.toString cfg.router.scantime};
