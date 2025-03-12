@@ -45,6 +45,17 @@ in
   hosts.macbook = { };
 
   # servers
+  hosts.diablo = newHost {
+    hostName = "diablo";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "misaka";
+    type = "server";
+    ipv4 = "38.175.104.134";
+    ipv6 = "2a0e:6901:410:2af:26a3:f0ff:fe47:898d";
+  };
+
   hosts.goffle = newHost {
     hostName = "goffle";
     domain = "as10779.net";
