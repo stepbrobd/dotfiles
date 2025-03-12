@@ -31,43 +31,43 @@ in
         ipv6.routes = [{ prefix = "2620:be:a000::/48"; option = "reject"; }];
       };
       sessions = [
-        {
-          name = "misaka";
-          password = "PASS_AS917";
-          type = "multihop";
-          neighbor = {
-            asn = 64515;
-            ipv4 = "";
-            ipv6 = "";
-          };
-          import = {
-            ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
-            ipv6 = "import filter ${cfg.router.rpki.ipv6.filter};";
-          };
-          export = {
-            ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
-            ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
-          };
-        }
-        {
-          name = "bgptools";
-          password = null;
-          type = "multihop";
-          neighbor = {
-            asn = 212232;
-            ipv4 = "";
-            ipv6 = "";
-          };
-          addpath = "tx";
-          import = {
-            ipv4 = "import none;";
-            ipv6 = "import none;";
-          };
-          export = {
-            ipv4 = "export all;";
-            ipv6 = "export all;";
-          };
-        }
+        # {
+        #   name = "misaka";
+        #   password = "PASS_AS917";
+        #   type = "multihop";
+        #   neighbor = {
+        #     asn = 64515;
+        #     ipv4 = "";
+        #     ipv6 = "";
+        #   };
+        #   import = {
+        #     ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
+        #     ipv6 = "import filter ${cfg.router.rpki.ipv6.filter};";
+        #   };
+        #   export = {
+        #     ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+        #     ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
+        #   };
+        # }
+        # {
+        #   name = "bgptools";
+        #   password = null;
+        #   type = "multihop";
+        #   neighbor = {
+        #     asn = 212232;
+        #     ipv4 = "";
+        #     ipv6 = "";
+        #   };
+        #   addpath = "tx";
+        #   import = {
+        #     ipv4 = "import none;";
+        #     ipv6 = "import none;";
+        #   };
+        #   export = {
+        #     ipv4 = "export all;";
+        #     ipv6 = "export all;";
+        #   };
+        # }
       ];
     };
   };
