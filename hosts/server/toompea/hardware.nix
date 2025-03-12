@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, ... }:
+{ lib, modulesPath, ... }:
 
 {
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
@@ -46,14 +46,6 @@
       ipv4.routes = [{ address = "185.194.53.1"; prefixLength = 32; }];
       ipv6.routes = [{ address = "2a04:6f00:4::1"; prefixLength = 128; }];
     };
-    localCommands =
-      let
-        asn = lib.toString config.services.as10779.asn;
-      in
-      ''
-        ip -4 route replace default via   185.194.53.4 table ${asn}
-        ip -6 route replace default via 2a04:6f00:4::4 table ${asn}
-      '';
   };
 
   services.udev.extraRules = ''

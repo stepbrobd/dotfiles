@@ -64,6 +64,31 @@ in
         description = "router ID";
       };
 
+      exit = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "is this node capable of sending outboud traffic (i.e. have BGP session or not)";
+      };
+
+      outboundGateway = {
+        ipv4 = lib.mkOption {
+          type = with lib.types; nullOr str;
+          default = null;
+          description = ''
+            IPv4 address of outbound gateway if different from main interface's default gateway
+            only set this if upstream provider requires it
+          '';
+        };
+        ipv6 = lib.mkOption {
+          type = with lib.types; nullOr str;
+          default = null;
+          description = ''
+            IPv6 address of outbound gateway if different from main interface's default gateway
+            only set this if upstream provider requires it
+          '';
+        };
+      };
+
       scantime = lib.mkOption {
         type = lib.types.int;
         default = 10;
@@ -295,10 +320,9 @@ in
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
-    { networking.firewall.allowedTCPPorts = [ 179 ]; }
-
     {
-      services.bird.enable = true;
+      networking.firewall.allowedTCPPorts = lib.optional cfg.router.exit 179;
+      services.bird.enable = cfg.router.exit;
       services.bird.checkConfig = false;
       services.bird.package = pkgs.bird2;
       services.bird.config = ''
@@ -449,23 +473,24 @@ in
           cfg.local.ipv4.address
           cfg.local.ipv6.address
         ];
-        routingPolicyRules = lib.flatten [
-          (lib.map
+        # only needed when announced prefixes' outbound gateway is
+        # different from the default gateway of the main interface
+        routingPolicyRules = lib.remove { } (lib.flatten [
+          (lib.optionalAttrs (lib.isString cfg.router.outboundGateway.ipv4) (lib.map
             (r: {
               From = r.prefix;
               Table = cfg.asn;
               Priority = 10000;
             })
-            cfg.router.static.ipv4.routes)
-
-          (lib.map
+            cfg.router.static.ipv4.routes))
+          (lib.optionalAttrs (lib.isString cfg.router.outboundGateway.ipv6) (lib.map
             (r: {
               From = r.prefix;
               Table = cfg.asn;
               Priority = 10000;
             })
-            cfg.router.static.ipv6.routes)
-        ];
+            cfg.router.static.ipv6.routes))
+        ]);
       };
 
       networking.localCommands = ''
@@ -495,7 +520,13 @@ in
             ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o $NETDEV                                    ! -s ${r.prefix} -j MASQUERADE
           '')
           cfg.router.static.ipv6.routes}
-      '';
+      ''
+      + (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv4) ''
+        ip -4 route replace default via ${cfg.router.outboundGateway.ipv4} table ${lib.toString cfg.asn}
+      '')
+      + (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv6) ''
+        ip -6 route replace default via ${cfg.router.outboundGateway.ipv6} table ${lib.toString cfg.asn}
+      '');
     }
     {
       networking.tempAddresses = "disabled";

@@ -24,6 +24,10 @@ in
 
     router = {
       id = lib.blueprint.hosts.toompea.ipv4;
+      outboundGateway = {
+        ipv4 = "185.194.53.4";
+        ipv6 = "2a04:6f00:4::4";
+      };
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.toompea) ipv4 ipv6; };
       static = {

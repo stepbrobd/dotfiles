@@ -24,6 +24,7 @@ in
 
     router = {
       id = lib.blueprint.hosts.diablo.ipv4;
+      exit = false;
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.diablo) ipv4 ipv6; };
       static = {
