@@ -10,7 +10,10 @@
   systemd.services.tailscaled.environment.TS_DEBUG_FIREWALL_MODE = config.networking.firewall.package.pname;
 
   # allow caddy to use tailscale certs
-  systemd.services.tailscaled.environment.TS_PERMIT_CERT_UID = config.services.caddy.user;
+  systemd.services.tailscaled.environment.TS_PERMIT_CERT_UID =
+    pkgs.lib.optionalString
+      config.services.caddy.enable
+      config.services.caddy.user;
 
   # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
   networking.localCommands = ''

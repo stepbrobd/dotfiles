@@ -52,8 +52,10 @@ in
         self.nixosModules.common
         self.nixosModules.docker
         self.nixosModules.graphical
+        self.nixosModules.nftables
         self.nixosModules.passwordless
         self.nixosModules.rebuild
+        self.nixosModules.tailscale
         srvos.nixosModules.desktop
       ];
     };
