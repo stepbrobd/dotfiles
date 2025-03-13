@@ -510,6 +510,7 @@ in
           content = ''
             chain postrouting {
               type nat hook postrouting priority srcnat; policy accept;
+              ${lib.optionalString (! cfg.router.exit) ''ip saddr { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} } oifname "${cfg.local.interface.primary}" masquerade''}
               ip saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} } oifname { "${cfg.local.interface.primary}", "${config.services.tailscale.interfaceName}" } masquerade
             }
           '';
@@ -520,6 +521,7 @@ in
           content = ''
             chain postrouting {
               type nat hook postrouting priority srcnat; policy accept;
+              ${lib.optionalString (! cfg.router.exit) ''ip6 saddr { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} } oifname "${cfg.local.interface.primary}" masquerade''}
               ip6 saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} } oifname { "${cfg.local.interface.primary}", "${config.services.tailscale.interfaceName}" } masquerade
             }
           '';
