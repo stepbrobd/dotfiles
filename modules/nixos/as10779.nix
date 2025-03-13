@@ -502,8 +502,8 @@ in
           content = ''
             chain postrouting {
               type nat hook postrouting priority srcnat; policy accept;
-              oifname { "lo", "${cfg.local.interface.local}" } return
-              ip saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} } masquerade
+              ip saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} }
+              oifname != { "lo", "${cfg.local.interface.local}" } masquerade
             }
           '';
         };
@@ -512,8 +512,8 @@ in
           content = ''
             chain postrouting {
               type nat hook postrouting priority srcnat; policy accept;
-              oifname { "lo", "${cfg.local.interface.local}" } return
-              ip6 saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} } masquerade
+              ip6 saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} }
+              oifname != { "lo", "${cfg.local.interface.local}" } masquerade
             }
           '';
         };
