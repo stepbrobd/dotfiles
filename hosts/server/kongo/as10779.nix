@@ -17,7 +17,10 @@ in
 
     local = {
       hostname = config.networking.hostName;
-      interface.local = "dummy0";
+      interface = {
+        local = "dummy0";
+        primary = "enp1s0";
+      };
       ipv4.address = "23.161.104.130/32";
       ipv6.address = "2620:be:a000::23:161:104:130/128";
     };

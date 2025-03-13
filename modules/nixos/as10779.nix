@@ -26,9 +26,15 @@ let
         description = "hostname";
       };
 
-      interface.local = lib.mkOption {
-        type = lib.types.str;
-        description = "local interface name that will be used to assign addresses within the announced prefixes";
+      interface = {
+        local = lib.mkOption {
+          type = lib.types.str;
+          description = "local interface name that will be used to assign addresses within the announced prefixes";
+        };
+        primary = lib.mkOption {
+          type = lib.types.str;
+          description = "the primary interface (assigned by hosting provider)";
+        };
       };
 
       ipv4.address = lib.mkOption {
@@ -504,8 +510,7 @@ in
           content = ''
             chain postrouting {
               type nat hook postrouting priority srcnat; policy accept;
-              ip saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} }
-              oifname != { "lo", "${cfg.local.interface.local}" } masquerade
+              ip saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} } oifname { "${cfg.local.interface.primary}", "${config.services.tailscale.interfaceName}" } masquerade
             }
           '';
         };
@@ -515,8 +520,7 @@ in
           content = ''
             chain postrouting {
               type nat hook postrouting priority srcnat; policy accept;
-              ip6 saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} }
-              oifname != { "lo", "${cfg.local.interface.local}" } masquerade
+              ip6 saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} } oifname { "${cfg.local.interface.primary}", "${config.services.tailscale.interfaceName}" } masquerade
             }
           '';
         };
