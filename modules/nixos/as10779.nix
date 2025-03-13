@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 { config, pkgs, ... }:
 
@@ -319,6 +319,9 @@ in
     };
   };
 
+  # require nftables and tailscale
+  imports = with inputs.self.nixosModules; [ nftables tailscale ];
+
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
       networking.firewall.allowedTCPPorts = lib.optional cfg.router.exit 179;
@@ -493,6 +496,29 @@ in
         ]);
       };
 
+      networking.nftables.tables = {
+        outbound4 = {
+          family = "ip";
+          content = ''
+            chain postrouting {
+              type nat hook postrouting priority srcnat; policy accept;
+              oifname { "lo", "${cfg.local.interface.local}" } return
+              ip saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} } masquerade
+            }
+          '';
+        };
+        outbound6 = {
+          family = "ip6";
+          content = ''
+            chain postrouting {
+              type nat hook postrouting priority srcnat; policy accept;
+              oifname { "lo", "${cfg.local.interface.local}" } return
+              ip6 saddr != { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} } masquerade
+            }
+          '';
+        };
+      };
+
       networking.localCommands = ''
         set -x
 
@@ -502,24 +528,6 @@ in
 
         # tailscale
         ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address} --snat-subnet-routes=false
-
-        # v4
-        ${lib.concatMapStringsSep
-          "\n"
-          (r: ''
-            ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE
-            ${pkgs.iptables}/bin/iptables  -t nat -A POSTROUTING -o $NETDEV                                    ! -s ${r.prefix} -j MASQUERADE
-          '')
-          cfg.router.static.ipv4.routes}
-
-        # v6
-        ${lib.concatMapStringsSep
-          "\n"
-          (r: ''
-            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${config.services.tailscale.interfaceName} ! -s ${r.prefix} -j MASQUERADE
-            ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o $NETDEV                                    ! -s ${r.prefix} -j MASQUERADE
-          '')
-          cfg.router.static.ipv6.routes}
       ''
       + (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv4) ''
         ip -4 route replace default via ${cfg.router.outboundGateway.ipv4} table ${lib.toString cfg.asn}
