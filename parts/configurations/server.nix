@@ -35,6 +35,7 @@ let
       self.nixosModules.rebuild
       self.nixosModules.server
       self.nixosModules.uptime
+      srvos.nixosModules.common
       srvos.nixosModules.server
     ];
     nixpkgs = (getSystem platform).allModuleArgs.pkgs;

@@ -24,5 +24,11 @@
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
 
-  services.openssh.enable = true;
+  services.openssh =
+    let inherit (pkgs) lib; in
+    {
+      enable = true;
+      hostKeys = lib.mkForce [{ type = "ed25519"; path = "/etc/ssh/ssh_host_ed25519_key"; }];
+      settings.PermitRootLogin = lib.mkForce "no";
+    };
 }

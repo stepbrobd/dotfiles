@@ -29,6 +29,7 @@ in
         sshd
         system
         tailscale
+        inputs.srvos.darwinModules.desktop
       ];
     };
   };
