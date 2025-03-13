@@ -4,16 +4,14 @@
   services.tailscale = {
     openFirewall = true;
     useRoutingFeatures = "both";
+    permitCertUid =
+      if config.services.caddy.enable
+      then config.services.caddy.user
+      else null;
   };
 
   # in case nftables is used
   systemd.services.tailscaled.environment.TS_DEBUG_FIREWALL_MODE = config.networking.firewall.package.pname;
-
-  # allow caddy to use tailscale certs
-  systemd.services.tailscaled.environment.TS_PERMIT_CERT_UID =
-    pkgs.lib.optionalString
-      config.services.caddy.enable
-      config.services.caddy.user;
 
   # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
   networking.localCommands = ''

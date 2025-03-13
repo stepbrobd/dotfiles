@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 
 { config, pkgs, ... }:
 
@@ -320,7 +320,8 @@ in
   };
 
   # require nftables and tailscale
-  imports = with inputs.self.nixosModules; [ nftables tailscale ];
+  # already imported in minimal
+  # imports = with inputs.self.nixosModules; [ nftables tailscale ];
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
@@ -519,22 +520,22 @@ in
         };
       };
 
-      networking.localCommands = ''
-        set -x
+      services.tailscale.extraSetFlags = [
+        "--accept-routes"
+        "--advertise-exit-node"
+        "--advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}"
+        "--snat-subnet-routes=false"
+        "--ssh"
+      ];
 
-        # setup
-        NETDEV=$(${pkgs.iproute2}/bin/ip -o route get 1.1.1.1 | ${pkgs.coreutils}/bin/cut -f 5 -d " ")
-        ${pkgs.ethtool}/bin/ethtool -K $NETDEV rx-udp-gro-forwarding on rx-gro-list off
-
-        # tailscale
-        ${pkgs.tailscale}/bin/tailscale up --reset --ssh --advertise-exit-node --accept-routes --advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address} --snat-subnet-routes=false
-      ''
-      + (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv4) ''
-        ip -4 route replace default via ${cfg.router.outboundGateway.ipv4} table ${lib.toString cfg.asn}
-      '')
-      + (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv6) ''
-        ip -6 route replace default via ${cfg.router.outboundGateway.ipv6} table ${lib.toString cfg.asn}
-      '');
+      networking.localCommands =
+        (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv4) ''
+          ip -4 route replace default via ${cfg.router.outboundGateway.ipv4} table ${lib.toString cfg.asn}
+        '')
+        +
+        (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv6) ''
+          ip -6 route replace default via ${cfg.router.outboundGateway.ipv6} table ${lib.toString cfg.asn}
+        '');
     }
     {
       networking.tempAddresses = "disabled";
