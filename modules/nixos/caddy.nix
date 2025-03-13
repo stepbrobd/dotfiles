@@ -7,11 +7,12 @@
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     services.caddy = {
+      enableReload = config.services.caddy.enable;
       package = pkgs.caddy-with-plugins;
       email = "ysun@hey.com";
 
       globalConfig = ''
-        admin off
+        admin unix/${config.services.caddy.dataDir}/admin.sock
 
         servers {
           trusted_proxies cloudflare {
