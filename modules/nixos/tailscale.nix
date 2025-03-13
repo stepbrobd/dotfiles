@@ -6,6 +6,9 @@
     useRoutingFeatures = "both";
   };
 
+  # in case nftables is used
+  systemd.services.tailscaled.environment.TS_DEBUG_FIREWALL_MODE = config.networking.firewall.package.pname;
+
   # allow caddy to use tailscale certs
   systemd.services.tailscaled.environment.TS_PERMIT_CERT_UID = config.services.caddy.user;
 
