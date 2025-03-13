@@ -499,6 +499,7 @@ in
 
       networking.nftables.tables = {
         outbound4 = {
+          name = "nat";
           family = "ip";
           content = ''
             chain postrouting {
@@ -509,6 +510,7 @@ in
           '';
         };
         outbound6 = {
+          name = "nat";
           family = "ip6";
           content = ''
             chain postrouting {
