@@ -32,12 +32,20 @@ in
     nixPath = mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
+      allow-import-from-derivation = true;
       builders-use-substitutes = true;
+      fallback = true;
+      keep-build-log = true;
+      keep-derivations = true;
+      keep-env-derivations = true;
+      keep-failed = true;
+      keep-going = true;
+      keep-outputs = true;
       use-xdg-base-directories = true;
       warn-dirty = false;
 
       sandbox = lib.mkDefault true;
-      extra-sandbox-paths = [ ] ++ optionals pkgs.stdenv.isDarwin [
+      extra-sandbox-paths = optionals pkgs.stdenv.isDarwin [
         "/System/Library/Frameworks"
         "/System/Library/PrivateFrameworks"
         "/private/tmp"
@@ -80,16 +88,6 @@ in
         "public:Y9EARSt+KLUY1JrY4X8XWmzs6uD+Zh2hRqN9eCUg55U="
       ];
     };
-
-    extraOptions = ''
-      allow-import-from-derivation = true
-      keep-build-log = true
-      keep-derivations = true
-      keep-env-derivations = true
-      keep-failed = true
-      keep-going = true
-      keep-outputs = true
-    '';
   };
 
   # alacritty terminfo
