@@ -24,6 +24,7 @@
     fsType = "ext4";
   };
 
+  zramSwap.enable = lib.mkForce false;
   swapDevices = [{ device = "/dev/sda5"; }];
 
   networking = {
