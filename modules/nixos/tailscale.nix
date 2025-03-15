@@ -25,4 +25,6 @@
     static_configs = [{ targets = [ "100.100.100.100:80" ]; }];
     metrics_path = "/metrics";
   }];
+  # must set this flag or cant scrape
+  services.tailscale.extraSetFlags = [ "--webclient" ];
 }
