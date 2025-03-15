@@ -78,6 +78,17 @@ in
     ipv6 = null;
   };
 
+  hosts.highline = newHost {
+    hostName = "highline";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "neptune";
+    type = "server";
+    ipv4 = "172.82.22.168";
+    ipv6 = "2602:fe2e:4:99:8d:20ff:fe6f:8869";
+  };
+
   hosts.kongo = newHost {
     hostName = "kongo";
     domain = "as10779.net";
