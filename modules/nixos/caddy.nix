@@ -2,9 +2,19 @@
 
 { config, pkgs, ... }:
 
+let
+  metricsTarget = "localhost:9019";
+  metricsPath = "/metrics";
+in
 {
   config = lib.mkIf config.services.caddy.enable {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+    services.prometheus.scrapeConfigs = [{
+      job_name = "prometheus-caddy-exporter";
+      static_configs = [{ targets = [ metricsTarget ]; }];
+      metrics_path = metricsPath;
+    }];
 
     services.caddy = {
       enableReload = config.services.caddy.enable;
@@ -35,6 +45,10 @@
             -X-Powered-By
           }
         }
+      '';
+
+      virtualHosts."http://${metricsTarget}".extraConfig = ''
+        metrics ${metricsPath}
       '';
     };
 
