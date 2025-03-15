@@ -41,7 +41,7 @@ in
         {
           name = "xtom";
           password = "PASS_AS3204";
-          type = "direct";
+          type = { ipv4 = "direct"; ipv6 = "direct"; };
           neighbor = {
             asn = 3204;
             ipv4 = "185.194.53.4";
@@ -59,7 +59,7 @@ in
         {
           name = "bgptools";
           password = null;
-          type = "multihop";
+          type = { ipv4 = "multihop"; ipv6 = "multihop"; };
           neighbor = {
             asn = 212232;
             ipv4 = "185.230.223.45";

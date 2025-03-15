@@ -37,7 +37,7 @@ in
         {
           name = "neptune";
           password = null;
-          type = "direct";
+          type = { ipv4 = "direct"; ipv6 = "multihop"; };
           neighbor = {
             asn = 21700;
             ipv4 = "172.82.22.129";
@@ -55,7 +55,7 @@ in
         {
           name = "bgptools";
           password = null;
-          type = "multihop";
+          type = { ipv4 = "multihop"; ipv6 = "multihop"; };
           neighbor = {
             asn = 212232;
             ipv4 = "185.230.223.51";

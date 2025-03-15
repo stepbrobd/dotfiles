@@ -38,7 +38,7 @@ in
         # {
         #   name = "misaka";
         #   password = "PASS_AS917";
-        #   type = "multihop";
+        #   type = { ipv4 = "direct"; ipv6 = "direct"; };
         #   neighbor = {
         #     asn = 64515;
         #     ipv4 = "";
@@ -56,7 +56,7 @@ in
         # {
         #   name = "bgptools";
         #   password = null;
-        #   type = "multihop";
+        #   type = { ipv4 = "multihop"; ipv6 = "multihop"; };
         #   neighbor = {
         #     asn = 212232;
         #     ipv4 = "";

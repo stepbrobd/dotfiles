@@ -268,9 +268,15 @@ in
               description = "key of BGP session password in the environment file";
             };
 
-            type = lib.mkOption {
-              type = lib.types.enum [ "direct" "multihop" ];
-              description = "connection type";
+            type = {
+              ipv4 = lib.mkOption {
+                type = lib.types.enum [ "direct" "multihop" ];
+                description = "IPv4 peer connection type";
+              };
+              ipv6 = lib.mkOption {
+                type = lib.types.enum [ "direct" "multihop" ];
+                description = "IPv6 peer connection type";
+              };
             };
 
             neighbor = {
@@ -432,7 +438,7 @@ in
           protocol bgp ${session.name}4 {
             graceful restart on;
 
-            ${session.type};
+            ${session.type.ipv4};
             source address ${cfg.router.source.ipv4};
             local as ${lib.toString cfg.asn};
             neighbor ${session.neighbor.ipv4} as ${lib.toString session.neighbor.asn};${
@@ -451,7 +457,7 @@ in
           protocol bgp ${session.name}6 {
             graceful restart on;
 
-            ${session.type};
+            ${session.type.ipv6};
             source address ${cfg.router.source.ipv6};
             local as ${lib.toString cfg.asn};
             neighbor ${session.neighbor.ipv6} as ${lib.toString session.neighbor.asn};${

@@ -37,7 +37,7 @@ in
         {
           name = "vultr";
           password = "PASS_AS64515";
-          type = "multihop";
+          type = { ipv4 = "multihop"; ipv6 = "multihop"; };
           neighbor = {
             asn = 64515;
             ipv4 = "169.254.169.254";
@@ -55,7 +55,7 @@ in
         {
           name = "bgptools";
           password = null;
-          type = "multihop";
+          type = { ipv4 = "multihop"; ipv6 = "multihop"; };
           neighbor = {
             asn = 212232;
             ipv4 = "185.230.223.78";
