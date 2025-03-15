@@ -5,6 +5,7 @@ keys:
     - &diablo age1xy7jx60rncxs2qvdnxc4a0q2xngcgs30hwkzzs6mz99dcljxu5pqk64h8p
     - &goffle age1xx8urzd5ksyhsejknxylwfu28yy4ay8axxmsea4padlygrjn2p6scel0g9
     - &halti age1lchn0h0a63g7k9zl76f7nuylp5cl9ak2f6ucy87q0gyk8qa8negst87jle
+    - &highline age1qvcaxsqwqf4cs83pc646w22g4kq44xuvj2jvy2g3a67pjem2cazqn7x0tl
     - &kongo age18np64w0h4adalpwxgdysppjy4hqd6adhrrmz7q2xekjyczzfes4qkj52uj
     - &odake age16urcveanputmn5vrt579xnk2pk87mlv0d2fmwzn2059qtzklmq9smj34a5
     - &toompea age1ma866cuslrcgvtdjnnezy58smq66p2zsdduetm0deud2c4xxygts9vvm0k
@@ -18,6 +19,7 @@ creation_rules:
           - *diablo
           - *goffle
           - *halti
+          - *highline
           - *kongo
           - *odake
           - *toompea
