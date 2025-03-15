@@ -3,7 +3,7 @@
 { config, pkgs, ... }:
 
 let
-  metricsTarget = "localhost:9019";
+  metricsTarget = "127.0.0.1:9019";
   metricsPath = "/metrics";
 in
 {
