@@ -23,5 +23,6 @@
   services.prometheus.scrapeConfigs = [{
     job_name = "prometheus-tailscale-exporter";
     static_configs = [{ targets = [ "100.100.100.100:80" ]; }];
+    metrics_path = "/metrics";
   }];
 }
