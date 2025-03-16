@@ -7,9 +7,12 @@
   environment.systemPackages = with pkgs; [
     cacert
 
+    cfspeedtest
     coreutils
-    inetutils
     dnsutils
+    inetutils
+    mtr
+    tcpdump
 
     direnv
     nix-direnv
