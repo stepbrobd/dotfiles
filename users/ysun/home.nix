@@ -58,6 +58,7 @@ in
   ]
   # linux only and when kde plasma is enabled
   ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.enabled != null) [
+    cfspeedtest
     cider
     discord
     gitleaks
@@ -75,6 +76,7 @@ in
   ])
   # darwin only
   ++ (lib.optionals pkgs.stdenv.isDarwin [
+    cfspeedtest
     cocoapods
     flyctl
     gitleaks
