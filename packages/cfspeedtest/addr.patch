@@ -1,0 +1,77 @@
+diff --git i/examples/simple_speedtest.rs w/examples/simple_speedtest.rs
+index a34cc1d..e8b944b 100644
+--- i/examples/simple_speedtest.rs
++++ w/examples/simple_speedtest.rs
+@@ -7,8 +7,8 @@ fn main() {
+     // define speedtest options
+     let options = SpeedTestCLIOptions {
+         output_format: OutputFormat::None, // don't write to stdout
+-        ipv4: false,                       // don't force ipv4 usage
+-        ipv6: false,                       // don't force ipv6 usage
++        ipv4: None,                        // don't force ipv4 usage
++        ipv6: None,                        // don't force ipv6 usage
+         verbose: false,
+         upload_only: false,
+         download_only: false,
+diff --git i/src/lib.rs w/src/lib.rs
+index 54ce84b..c282e30 100644
+--- i/src/lib.rs
++++ w/src/lib.rs
+@@ -61,12 +61,12 @@ pub struct SpeedTestCLIOptions {
+     pub verbose: bool,
+ 
+     /// Force usage of IPv4
+-    #[arg(long)]
+-    pub ipv4: bool,
++    #[clap(long, value_name = "ADDRESS", num_args = 0..=1)]
++    pub ipv4: Option<String>,
+ 
+     /// Force usage of IPv6
+-    #[arg(long)]
+-    pub ipv6: bool,
++    #[clap(long, value_name = "ADDRESS", num_args = 0..=1)]
++    pub ipv6: Option<String>,
+ 
+     /// Disables dynamically skipping tests with larger payload sizes if the tests for the previous payload
+     /// size took longer than 5 seconds
+diff --git i/src/main.rs w/src/main.rs
+index ae2dd55..0ff4b57 100644
+--- i/src/main.rs
++++ w/src/main.rs
+@@ -12,18 +12,32 @@ fn main() {
+     if options.output_format == OutputFormat::StdOut {
+         println!("Starting Cloudflare speed test");
+     }
++
+     let client;
+-    if options.ipv4 {
++    if options.ipv4.is_some() {
++        let addr_str = options.ipv4.as_deref().unwrap_or("");
++        let addr = if addr_str.is_empty() {
++            "0.0.0.0"
++        } else {
++            addr_str
++        }.parse::<IpAddr>().expect("Invalid IPv4 address");
+         client = reqwest::blocking::Client::builder()
+-            .local_address("0.0.0.0".parse::<IpAddr>().unwrap())
++            .local_address(addr)
+             .build();
+-    } else if options.ipv6 {
++    } else if options.ipv6.is_some() {
++        let addr_str = options.ipv6.as_deref().unwrap_or("");
++        let addr = if addr_str.is_empty() {
++            "::"
++        } else {
++            addr_str
++        }.parse::<IpAddr>().expect("Invalid IPv6 address");
+         client = reqwest::blocking::Client::builder()
+-            .local_address("::".parse::<IpAddr>().unwrap())
++            .local_address(addr)
+             .build();
+     } else {
+         client = reqwest::blocking::Client::builder().build();
+     }
++
+     speed_test(
+         client.expect("Failed to initialize reqwest client"),
+         options,
