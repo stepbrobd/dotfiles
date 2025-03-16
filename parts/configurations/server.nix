@@ -4,7 +4,6 @@ let
   inherit (lib) mkColmena;
   hosts = [
     "diablo" # Misaka, 1 vCPU, 2GB RAM, 32GB Storage
-    "goffle" # Vultr, 1 vCPU, 1GB RAM, 25GB Storage
     "halti" # Garnix.io Hosting, test server
     "highline" # Neptune Networks, 1 vCPU, 1GB RAM, 10GB Storage
     "kongo" # Vultr, 1 vCPU, 1GB RAM, 25GB Storage

@@ -56,17 +56,6 @@ in
     ipv6 = "2a0e:6901:410:2af:26a3:f0ff:fe47:898d";
   };
 
-  hosts.goffle = newHost {
-    hostName = "goffle";
-    domain = "as10779.net";
-    platform = "x86_64-linux";
-    os = "nixos";
-    provider = "vultr";
-    type = "server";
-    ipv4 = "66.135.21.33";
-    ipv6 = "2001:19f0:0000:71c6:5400:05ff:fe53:5f61";
-  };
-
   hosts.halti = newHost {
     hostName = "halti";
     domain = "as10779.net";
