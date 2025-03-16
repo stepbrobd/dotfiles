@@ -146,6 +146,11 @@ visibility = "public"
 archived = false
 
 ## Forks
+[repo."cfspeedtest"]
+description = "forked from code-inflation/cfspeedtest"
+visibility = "public"
+archived = false
+
 [repo."coq"]
 description = "forked from coq/coq"
 visibility = "public"
