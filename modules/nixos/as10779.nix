@@ -518,9 +518,11 @@ in
               type nat hook postrouting priority srcnat; policy accept;
               ${if cfg.router.exit then
               # if node have BGP session, SNAT Tailscale exit node traffic to announced IP
-              ''
-                meta mark & 0x0000ff00 == 0x00000400 oifname "${cfg.local.interface.primary}" snat to ${cfg.local.ipv4.address}
-              '' else
+              # ''
+              #   meta mark & 0x0000ff00 == 0x00000400 oifname "${cfg.local.interface.primary}" snat to ${cfg.local.ipv4.address}
+              # ''
+              ""
+              else
               # if no BGP session, outbound traffic will be SNATed to the primary interface address
               ''
                 ip saddr { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv4.routes} } oifname "${cfg.local.interface.primary}" masquerade
@@ -537,9 +539,11 @@ in
               type nat hook postrouting priority srcnat; policy accept;
               ${if cfg.router.exit then
               # if node have BGP session, SNAT Tailscale exit node traffic to announced IP
-              ''
-                meta mark & 0x0000ff00 == 0x00000400 oifname "${cfg.local.interface.primary}" snat to ${cfg.local.ipv6.address}
-              '' else
+              # ''
+              #   meta mark & 0x0000ff00 == 0x00000400 oifname "${cfg.local.interface.primary}" snat to ${cfg.local.ipv6.address}
+              # ''
+              ""
+              else
               # if no BGP session, outbound traffic will be SNATed to the primary interface address
               ''
                 ip6 saddr { ${lib.concatMapStringsSep ", " (r: r.prefix) cfg.router.static.ipv6.routes} } oifname "${cfg.local.interface.primary}" masquerade
