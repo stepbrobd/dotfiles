@@ -95,6 +95,11 @@ description = "learn a useful language"
 visibility = "public"
 archived = false
 
+[repo."router"]
+description = "simple and declarative nixos router"
+visibility = "public"
+archived = false
+
 [repo."ruga"]
 description = "ruby meets genetic algorithm"
 visibility = "private"
