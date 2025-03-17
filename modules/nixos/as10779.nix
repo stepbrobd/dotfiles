@@ -516,7 +516,6 @@ in
           content = ''
             chain postrouting {
               type nat hook postrouting priority srcnat; policy accept;
-              meta mark & 0x0000ff00 == 0x00000400 oifname "${cfg.local.interface.primary}" snat to ${cfg.local.ipv4.address}
               ${if cfg.router.exit then
               # if node have BGP session, SNAT Tailscale exit node traffic to announced IP
               ''
