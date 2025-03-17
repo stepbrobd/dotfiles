@@ -9,6 +9,7 @@ in
 {
   config = lib.mkIf config.services.caddy.enable {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedUDPPorts = [ 443 ];
 
     services.prometheus.scrapeConfigs = [{
       job_name = "prometheus-caddy-exporter";
