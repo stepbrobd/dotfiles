@@ -23,6 +23,7 @@
     lsd
     # mpd # linux only
     neomutt
+    neovide
     # nushell # imported in minimal
     ssh
     # tmux # imported in minimal

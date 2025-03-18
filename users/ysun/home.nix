@@ -63,7 +63,6 @@ in
     discord
     gitleaks
     go
-    neovide
     nixvim
     obsidian
     (osu-lazer-bin.override { nativeWayland = true; })
@@ -82,7 +81,6 @@ in
     flyctl
     gitleaks
     go
-    neovide
     nixvim
     pat
     pinentry_mac
