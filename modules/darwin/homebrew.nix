@@ -57,6 +57,7 @@
       "discord"
       "hey"
       "lulu"
+      "neovide"
       "notchnook"
       "obs"
       "orbstack"

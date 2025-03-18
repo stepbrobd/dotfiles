@@ -63,6 +63,7 @@ in
     discord
     gitleaks
     go
+    neovide
     nixvim
     obsidian
     (osu-lazer-bin.override { nativeWayland = true; })
