@@ -44,30 +44,30 @@
           {
             type = "button";
             val = "      New File ";
-            opts.shortcut = "n";
-            opts.position = "center";
             on_press.__raw = "function() vim.cmd[[ene | startinsert]] end";
+            opts.position = "center";
+            opts.shortcut = "n";
           }
           {
             type = "button";
             val = "      Find File";
-            opts.shortcut = "f";
-            opts.position = "center";
             on_press.__raw = "function() vim.cmd[[Telescope find_files]] end";
+            opts.position = "center";
+            opts.shortcut = "f";
           }
           {
             type = "button";
             val = "      Live Grep";
-            opts.shortcut = "g";
-            opts.position = "center";
             on_press.__raw = "function() vim.cmd[[Telescope live_grep]] end";
+            opts.position = "center";
+            opts.shortcut = "g";
           }
           {
             type = "button";
             val = "      Quit     ";
-            opts.shortcut = "q";
-            opts.position = "center";
             on_press.__raw = "function() vim.cmd[[qa]] end";
+            opts.position = "center";
+            opts.shortcut = "q";
           }
         ];
       }
