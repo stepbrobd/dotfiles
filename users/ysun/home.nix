@@ -82,6 +82,7 @@ in
     flyctl
     gitleaks
     go
+    neovide
     nixvim
     pat
     pinentry_mac
