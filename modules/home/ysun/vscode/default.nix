@@ -2,7 +2,7 @@
 
 {
   programs.vscode = {
-    enable = true;
+    enable = pkgs.lib.mkForce false;
     mutableExtensionsDir = false;
 
     profiles.default = {
