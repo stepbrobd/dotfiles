@@ -91,7 +91,8 @@
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
     nixos-generators.inputs.nixlib.follows = "nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixvim.url = "github:nix-community/nixvim";
+    # nixvim.url = "github:nix-community/nixvim";
+    nixvim.url = "github:stepbrobd/nixvim/lsp";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "parts";
     nixvim.inputs.nuschtosSearch.follows = "";

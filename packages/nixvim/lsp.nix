@@ -19,6 +19,7 @@
 
   # Coq
   plugins.lsp.servers.coq_lsp.enable = true;
+  plugins.lsp.servers.coq_lsp.package = pkgs.coqPackages.coq-lsp;
   extraPlugins = with pkgs.vimPlugins; [ Coqtail ];
 
   # Docker
@@ -55,7 +56,6 @@
 
   # OCaml
   plugins.lsp.servers.ocamllsp.enable = true;
-  plugins.lsp.servers.ocamllsp.package = pkgs.ocamlPackages.ocaml-lsp;
 
   # Python
   plugins.lsp.servers.jedi_language_server.enable = true;
@@ -69,7 +69,6 @@
 
   # SMT2
   plugins.lsp.servers.dolmenls.enable = true;
-  plugins.lsp.servers.dolmenls.package = pkgs.ocamlPackages.dolmen_lsp;
 
   # Spelling
   plugins.lsp.servers.typos_lsp = {
