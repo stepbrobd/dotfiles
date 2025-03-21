@@ -18,8 +18,7 @@
   plugins.lsp.servers.clangd.enable = true;
 
   # Coq
-  plugins.lsp.servers.coq_lsp.enable = true;
-  plugins.lsp.servers.coq_lsp.package = pkgs.coqPackages.coq-lsp;
+  plugins.lsp.servers.coq_lsp.enable = false;
   extraPlugins = with pkgs.vimPlugins; [ Coqtail ];
 
   # Docker
@@ -39,7 +38,7 @@
   plugins.lsp.servers.jsonls.enable = true;
 
   # Lean
-  plugins.lean.enable = true;
+  plugins.lean.enable = false;
 
   # Markdown
   plugins.lsp.servers.marksman.enable = true;
