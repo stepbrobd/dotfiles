@@ -78,13 +78,11 @@ in
   ++ (lib.optionals pkgs.stdenv.isDarwin [
     cfspeedtest
     cocoapods
-    flyctl
     gitleaks
     go
     nixvim
     pat
     pinentry_mac
-    # reattach-to-user-namespace
     yt-dlp
   ]);
 
