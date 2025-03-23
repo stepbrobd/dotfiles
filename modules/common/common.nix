@@ -22,9 +22,10 @@ in
   nix = {
     package = pkgs.nixVersions.stable;
 
+    optimise.automatic = true;
     gc = {
       automatic = true;
-      options = "--delete-older-than 14d";
+      options = "--delete-older-than 7d";
     };
 
     registry = mkForce (mapAttrs (_: value: { flake = value; }) inputs);
@@ -32,6 +33,7 @@ in
     nixPath = mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
+      accept-flake-config = true;
       allow-import-from-derivation = true;
       builders-use-substitutes = true;
       fallback = true;
