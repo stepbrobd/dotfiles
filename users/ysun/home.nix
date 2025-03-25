@@ -65,7 +65,6 @@ in
     ripgrep
     slack
     smplayer
-    spacedrive
     yt-dlp
     zoom-us
   ])

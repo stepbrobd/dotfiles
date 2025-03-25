@@ -64,7 +64,6 @@
       "osu"
       "raycast"
       "slack"
-      "spacedrive"
       "wacom-tablet"
       "yubico-yubikey-manager"
       "zoom"

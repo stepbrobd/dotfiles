@@ -6,8 +6,9 @@
       sorting.dir-grouping = "first";
       ignore-globs = [
         ".DS_Store"
+        ".direnv"
         ".git"
-        ".spacedrive"
+        ".jj"
       ];
     };
   };
