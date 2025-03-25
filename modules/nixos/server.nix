@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     cacert
+    vim
 
     cfspeedtest
     coreutils
@@ -14,10 +15,6 @@
     mtr
     tcpdump
 
-    direnv
-    nix-direnv
-    vim
-    git
     curl
     wget
   ];
@@ -34,4 +31,7 @@
       hostKeys = lib.mkForce [{ type = "ed25519"; path = "/etc/ssh/ssh_host_ed25519_key"; }];
       settings.PermitRootLogin = lib.mkForce "no";
     };
+
+  programs.zsh.enableCompletion = pkgs.lib.mkForce false;
+  programs.bash.completion.enable = pkgs.lib.mkForce false;
 }

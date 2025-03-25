@@ -47,42 +47,40 @@ in
     GOMODCACHE = "${config.xdg.cacheHome}/go/pkg/mod";
   };
 
-  home.packages = with pkgs; [
-    comma
-    curl
-    jq
-    vim
-    nix-output-monitor
-    ripgrep
-    wget
-  ]
-  # linux only and when kde plasma is enabled
-  ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.enabled != null) [
+  home.packages = with pkgs; [ ]
+    # linux only and when kde plasma is enabled
+    ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.enabled != null) [
     cfspeedtest
     cider
+    comma
     discord
     gitleaks
     go
+    nix-output-monitor
     nixvim
     obsidian
     (osu-lazer-bin.override { nativeWayland = true; })
     pat
     pinentry-all
+    ripgrep
     slack
     smplayer
     spacedrive
     yt-dlp
     zoom-us
   ])
-  # darwin only
-  ++ (lib.optionals pkgs.stdenv.isDarwin [
+    # darwin only
+    ++ (lib.optionals pkgs.stdenv.isDarwin [
     cfspeedtest
     cocoapods
+    comma
     gitleaks
     go
+    nix-output-monitor
     nixvim
     pat
     pinentry_mac
+    ripgrep
     yt-dlp
   ]);
 
