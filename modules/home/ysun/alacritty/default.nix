@@ -25,19 +25,19 @@
       font = {
         size = 16.00;
         normal = {
-          family = "PixelMplus12 Nerd Font";
+          family = "JetBrainsMono Nerd Font";
           style = "Regular";
         };
         bold = {
-          family = "PixelMplus12 Nerd Font";
+          family = "JetBrainsMono Nerd Font";
           style = "Bold";
         };
         italic = {
-          family = "PixelMplus12 Nerd Font";
+          family = "JetBrainsMono Nerd Font";
           style = "Italic";
         };
         bold_italic = {
-          family = "PixelMplus12 Nerd Font";
+          family = "JetBrainsMono Nerd Font";
           style = "Bold Italic";
         };
       };
