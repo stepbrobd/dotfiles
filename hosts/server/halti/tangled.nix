@@ -3,24 +3,22 @@
 {
   imports = [ inputs.tangled.nixosModules.knotserver ];
 
-  services.tangled-knotserver = {
-    enable = true;
-    repo.mainBranch = "master";
-    server.hostname = "knot.stepbrobd.com";
-    server = {
-      secret = ""; # overridden in environment file with key KNOT_SERVER_SECRET
-      listenAddr = "127.0.0.1:5443";
-      internalListenAddr = "127.0.0.1:5444";
-    };
-  };
-
   sops.secrets.knotserver = {
     owner = "git";
     group = "git";
     mode = "440";
   };
 
-  systemd.services.knotserver.serviceConfig.EnvironmentFile = config.sops.secrets.knotserver.path;
+  services.tangled-knotserver = {
+    enable = true;
+    repo.mainBranch = "master";
+    server.hostname = "knot.stepbrobd.com";
+    server = {
+      secretFile = config.sops.secrets.knotserver.path;
+      listenAddr = "127.0.0.1:5443";
+      internalListenAddr = "127.0.0.1:5444";
+    };
+  };
 
   services.caddy = {
     enable = true;
