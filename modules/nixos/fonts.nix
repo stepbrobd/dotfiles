@@ -7,12 +7,13 @@
     enableGhostscriptFonts = true;
 
     packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      jetbrains-mono
       font-awesome
+      nerd-fonts.intone-mono
+      nerd-fonts.jetbrains-mono
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
+      pixelmplus
     ];
 
     fontconfig = {
@@ -37,7 +38,7 @@
           "Noto Color Emoji"
         ];
         monospace = [
-          "JetBrainsMono Nerd Font"
+          "IntoneMono Nerd Font"
           "Noto Color Emoji"
         ];
       };

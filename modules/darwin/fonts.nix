@@ -3,7 +3,7 @@
 {
   fonts.packages = with pkgs; [
     font-awesome
-    jetbrains-mono
+    nerd-fonts.intone-mono
     nerd-fonts.jetbrains-mono
     pixelmplus
   ];

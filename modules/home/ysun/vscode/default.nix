@@ -72,8 +72,8 @@
         "vsicons.dontShowNewVersionMessage" = true;
         "editor.fontSize" = 12;
         "editor.fontLigatures" = true;
-        "editor.fontFamily" = "JetBrainsMono Nerd Font";
-        "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font";
+        "editor.fontFamily" = "IntoneMono Nerd Font";
+        "terminal.integrated.fontFamily" = "IntoneMono Nerd Font";
         "terminal.integrated.confirmOnExit" = "hasChildProcesses";
         "explorer.excludeGitIgnore" = true;
         "github.copilot.enable"."markdown" = true;
