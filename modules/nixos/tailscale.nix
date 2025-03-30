@@ -20,11 +20,11 @@
   '';
 
   # scrape tailscale metrics
-  services.prometheus.scrapeConfigs = [{
+  services.prometheus.scrapeConfigs = pkgs.lib.mkIf config.services.prometheus.enable [{
     job_name = "prometheus-tailscale-exporter";
     static_configs = [{ targets = [ "100.100.100.100:80" ]; }];
     metrics_path = "/metrics";
   }];
   # must set this flag or cant scrape
-  services.tailscale.extraSetFlags = [ "--webclient" ];
+  services.tailscale.extraSetFlags = pkgs.lib.mkIf config.services.prometheus.enable [ "--webclient" ];
 }
