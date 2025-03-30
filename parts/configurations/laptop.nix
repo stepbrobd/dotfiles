@@ -56,6 +56,7 @@ in
         self.nixosModules.passwordless
         self.nixosModules.rebuild
         self.nixosModules.tailscale
+        self.nixosModules.time
         srvos.nixosModules.desktop
       ];
     };
