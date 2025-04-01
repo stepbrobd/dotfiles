@@ -73,25 +73,25 @@ in
             ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
           };
         }
-        # {
-        #   name = "bgptools";
-        #   password = null;
-        #   type = { ipv4 = "multihop"; ipv6 = "multihop"; };
-        #   neighbor = {
-        #     asn = 212232;
-        #     ipv4 = "";
-        #     ipv6 = "";
-        #   };
-        #   addpath = "tx";
-        #   import = {
-        #     ipv4 = "import none;";
-        #     ipv6 = "import none;";
-        #   };
-        #   export = {
-        #     ipv4 = "export all;";
-        #     ipv6 = "export all;";
-        #   };
-        # }
+        {
+          name = "bgptools";
+          password = null;
+          type = { ipv4 = "multihop"; ipv6 = "multihop"; };
+          neighbor = {
+            asn = 212232;
+            ipv4 = "185.230.223.75";
+            ipv6 = "2a0c:2f07:9459::b6";
+          };
+          addpath = "tx";
+          import = {
+            ipv4 = "import none;";
+            ipv6 = "import none;";
+          };
+          export = {
+            ipv4 = "export all;";
+            ipv6 = "export all;";
+          };
+        }
       ];
     };
   };
