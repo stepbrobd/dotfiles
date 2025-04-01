@@ -55,7 +55,7 @@ in
     comma
     discord
     gitleaks
-    go
+    monocle
     nix-output-monitor
     nixvim
     obsidian
@@ -74,7 +74,7 @@ in
     cocoapods
     comma
     gitleaks
-    go
+    monocle
     nix-output-monitor
     nixvim
     pat
