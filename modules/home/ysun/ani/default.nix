@@ -6,7 +6,6 @@
       name = "ani";
       text = "exec ani-cli";
       runtimeInputs = [
-        ani-cli
         aria2
         curl
         ffmpeg
@@ -15,8 +14,8 @@
         gnugrep
         yt-dlp
       ]
-      ++ lib.optional stdenv.isDarwin iina
-      ++ lib.optional stdenv.isLinux mpv;
+      ++ lib.optional stdenv.isDarwin (ani-cli.override { withMpv = false; withVlc = false; withIina = true; })
+      ++ lib.optional stdenv.isLinux (ani-cli.override { withMpv = true; withVlc = false; withIina = false; });
     })
   ];
 }
