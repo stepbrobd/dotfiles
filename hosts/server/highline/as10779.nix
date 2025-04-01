@@ -21,8 +21,8 @@ in
         local = "dummy0";
         primary = "ens3";
       };
-      ipv4.address = "23.161.104.129/32";
-      ipv6.address = "2620:be:a000::23:161:104:129/128";
+      ipv4.addresses = [ "23.161.104.129/32" ];
+      ipv6.addresses = [ "2620:be:a000::23:161:104:129/128" ];
     };
 
     router = {

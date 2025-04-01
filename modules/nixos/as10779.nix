@@ -37,14 +37,14 @@ let
         };
       };
 
-      ipv4.address = lib.mkOption {
-        type = lib.types.str;
-        description = "IPv4 address to use on local interface";
+      ipv4.addresses = lib.mkOption {
+        type = with lib.types; listOf str;
+        description = "IPv4 addresses to use on local interface";
       };
 
-      ipv6.address = lib.mkOption {
-        type = lib.types.str;
-        description = "IPv6 address to use on local interface";
+      ipv6.addresses = lib.mkOption {
+        type = with lib.types; listOf str;
+        description = "IPv6 addresses to use on local interface";
       };
     };
   };
@@ -485,10 +485,7 @@ in
 
       systemd.network.networks."40-${cfg.local.interface.local}" = {
         name = cfg.local.interface.local;
-        address = [
-          cfg.local.ipv4.address
-          cfg.local.ipv6.address
-        ];
+        address = with cfg.local; ipv4.addresses ++ ipv6.addresses;
         # only needed when announced prefixes' outbound gateway is
         # different from the default gateway of the main interface
         routingPolicyRules = lib.remove { } (lib.flatten [
@@ -554,13 +551,22 @@ in
         };
       };
 
-      services.tailscale.extraSetFlags = [
-        "--accept-routes"
-        "--advertise-exit-node"
-        "--advertise-routes=${cfg.local.ipv4.address},${cfg.local.ipv6.address}"
-        "--snat-subnet-routes=false"
-        "--ssh"
-      ];
+      services.tailscale.extraSetFlags =
+        let
+          v4s = lib.concatStringsSep "," cfg.local.ipv4.addresses;
+          v6s = lib.concatStringsSep "," cfg.local.ipv6.addresses;
+          addresses =
+            if v4s == "" then v6s
+            else if v6s == "" then v4s
+            else v4s + "," + v6s;
+        in
+        [
+          "--accept-routes"
+          "--advertise-exit-node"
+          "--advertise-routes=${addresses}"
+          "--snat-subnet-routes=false"
+          "--ssh"
+        ];
 
       networking.localCommands =
         (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv4) ''
