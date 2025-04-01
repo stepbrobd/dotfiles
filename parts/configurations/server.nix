@@ -3,6 +3,7 @@
 let
   inherit (lib) mkColmena;
   hosts = [
+    "butte" # Virtua Cloud, 1 vCPU, 1GB RAM, 20GB Storage
     "diablo" # Misaka, 1 vCPU, 2GB RAM, 32GB Storage
     "halti" # Garnix.io Hosting, test server
     "highline" # Neptune Networks, 1 vCPU, 1GB RAM, 10GB Storage

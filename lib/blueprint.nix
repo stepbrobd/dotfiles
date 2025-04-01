@@ -45,6 +45,17 @@ in
   hosts.macbook = { };
 
   # servers
+  hosts.butte = newHost {
+    hostName = "butte";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "virtua";
+    type = "server";
+    ipv4 = "185.234.100.120";
+    ipv6 = "2a07:8dc0:1c:0:48:f1ff:febe:1c6";
+  };
+
   hosts.diablo = newHost {
     hostName = "diablo";
     domain = "as10779.net";

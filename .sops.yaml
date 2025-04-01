@@ -2,6 +2,7 @@ keys:
   age:
     - &framework age102w4y6gsntvw93n590agqdg9v3tt8rs0x2kpunvu39jh6lyvdpeq7ct844
     - &macbook age1cfd003wlk8w2hhtlwflyuc6lzwsswc48kpl9cafrg4kc5jp3u5rqckcf5l
+    - &butte age1js9g9de2g2hqtzfhaepn9uff3n8f3m0xnkneyslsd28xs4pnmfxsuvthaj
     - &diablo age1xy7jx60rncxs2qvdnxc4a0q2xngcgs30hwkzzs6mz99dcljxu5pqk64h8p
     - &halti age1lchn0h0a63g7k9zl76f7nuylp5cl9ak2f6ucy87q0gyk8qa8negst87jle
     - &highline age1qvcaxsqwqf4cs83pc646w22g4kq44xuvj2jvy2g3a67pjem2cazqn7x0tl
@@ -15,6 +16,7 @@ creation_rules:
       - age:
           - *framework
           - *macbook
+          - *butte
           - *diablo
           - *halti
           - *highline
