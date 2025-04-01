@@ -5,11 +5,12 @@ builds:
     - packages.*.*
     - devShells.*.*
   exclude:
-    - darwinConfigurations.macbook   # sandbox
-    - packages.aarch64-darwin.nixvim # sandbox
-    - packages.*.hey-mail            # unfree
-    - packages.*.spotify             # unfree
-    - '*.x86_64-darwin.*'            # useless :(
+    - darwinConfigurations.macbook         # sandbox
+    - packages.aarch64-darwin.nixvim       # sandbox
+    - packages.*.hey-mail                  # unfree
+    - packages.*.ripe-atlas-software-probe # broken
+    - packages.*.spotify                   # unfree
+    - '*.x86_64-darwin.*'                  # useless :(
 
 servers:
   - configuration: halti
