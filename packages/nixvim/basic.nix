@@ -15,7 +15,6 @@
     smartindent = true;
     smarttab = true;
     pumheight = 10;
-    foldmethod = "expr";
     foldlevel = 99;
   };
 }
