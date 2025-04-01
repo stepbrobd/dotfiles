@@ -34,7 +34,10 @@ in
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.toompea) ipv4 ipv6; };
       static = {
-        ipv4.routes = [{ prefix = "23.161.104.0/24"; option = "reject"; }];
+        ipv4.routes = [
+          { prefix = "23.161.104.0/24"; option = "reject"; }
+          { prefix = "44.32.189.0/24"; option = "reject"; }
+        ];
         ipv6.routes = [{ prefix = "2620:be:a000::/48"; option = "reject"; }];
       };
       sessions = [
