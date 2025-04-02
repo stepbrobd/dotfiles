@@ -21,8 +21,15 @@ in
         local = "dummy0";
         primary = "enp1s0";
       };
-      ipv4.addresses = [ "23.161.104.130/32" ];
-      ipv6.addresses = [ "2620:be:a000::23:161:104:130/128" ];
+      ipv4.addresses = [
+        "23.161.104.130/32" # unicast
+        "23.161.104.17/32" # personal site anycast
+        "44.32.189.0/24" # 44net anycast test
+      ];
+      ipv6.addresses = [
+        "2620:be:a000::23:161:104:130/128" # unicast
+        "2620:be:a000::23:161:104:17/128" # personal site anycast
+      ];
     };
 
     router = {
