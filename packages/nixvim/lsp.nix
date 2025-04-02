@@ -30,6 +30,18 @@
 
   # HTML/JS/TS/CSS
   plugins.lsp.servers.cssls.enable = true; # CSS
+  plugins.lsp.servers.denols = {
+    enable = true;
+    extraOptions = {
+      single_file_support = true;
+      init_options = {
+        lint = true;
+        unstable = true;
+        suggest.imports.hosts."https://deno.land" = true;
+      };
+    };
+    rootDir.__raw = "require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')";
+  };
   plugins.lsp.servers.html.enable = true; # HTML
   plugins.lsp.servers.tailwindcss.enable = true; # TailwindCSS
   plugins.lsp.servers.ts_ls.enable = true; # TS/JS
