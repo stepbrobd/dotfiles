@@ -24,7 +24,7 @@ in
       ipv4.addresses = [
         "23.161.104.132/32" # unicast
         "23.161.104.17/32" # personal site anycast
-        "44.32.189.0/24" # 44net anycast test
+        # "44.32.189.0/24" # 44net anycast test
       ];
       ipv6.addresses = [
         "2620:be:a000::23:161:104:132/128" # unicast
