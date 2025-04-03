@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     (writeShellApplication {
       name = "ani";
-      text = "exec ani-cli";
+      text = ''exec ani-cli "$@"'';
       runtimeInputs = [
         aria2
         curl
