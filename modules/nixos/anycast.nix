@@ -26,21 +26,21 @@ in
     {
       services.caddy = {
         enable = true;
-        # virtualHosts."anycast.as10779.net".extraConfig = ''
-        #   import common
-        #   respond ${config.networking.hostName} 
-        # '';
         virtualHosts."anycast.as10779.net".extraConfig = ''
           import common
-          reverse_proxy ${bind}:${lib.toString port}
+          respond ${config.networking.hostName}
         '';
+        # virtualHosts."anycast.as10779.net".extraConfig = ''
+        #   import common
+        #   reverse_proxy ${bind}:${lib.toString port}
+        # '';
       };
 
-      systemd.services.ysun = {
-        description = "personal homepage anycast test";
-        wantedBy = [ "multi-user.target" ];
-        after = [ "network.target" ];
-        script = "${ysun}/bin/ysun ${bind} ${toString port}";
-      };
+      # systemd.services.ysun = {
+      #   description = "personal homepage anycast test";
+      #   wantedBy = [ "multi-user.target" ];
+      #   after = [ "network.target" ];
+      #   script = "${ysun}/bin/ysun ${bind} ${toString port}";
+      # };
     };
 }
