@@ -107,6 +107,27 @@
         "type": "github"
       }
     },
+    "deno": {
+      "inputs": {
+        "nixpkgs": [
+          "ysun",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729525729,
+        "narHash": "sha256-YiooFGeR7+sXSkHNfSzT8GQf+xtzbDwUbfbwkCCyuUs=",
+        "owner": "nekowinston",
+        "repo": "nix-deno",
+        "rev": "e92687492a4faec48ab1eb45adbdba30c876b0e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nekowinston",
+        "repo": "nix-deno",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -528,7 +549,8 @@
         "systems": "systems",
         "tangled": "tangled",
         "terranix": "terranix",
-        "utils": "utils"
+        "utils": "utils",
+        "ysun": "ysun"
       }
     },
     "rust-overlay": {
@@ -694,6 +716,33 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "ysun": {
+      "inputs": {
+        "deno": "deno",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "parts": [
+          "parts"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743707157,
+        "narHash": "sha256-Le/gR4XPvhDDH7MFVS8kPg0CxF3CjMu5l85L13uuoP4=",
+        "owner": "stepbrobd",
+        "repo": "ysun",
+        "rev": "ac3956f0dbc5ef4cebfd19728e4b3d6721ab12ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stepbrobd",
+        "repo": "ysun",
         "type": "github"
       }
     }
