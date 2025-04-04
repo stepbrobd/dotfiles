@@ -6,7 +6,7 @@ A hacky `nix` based config that works on both NixOS and macOS.
 
 ## Notes
 
-For VxLAN:
+For VxLAN (finish `modules/nixos/vxlan.nix`):
 
 ```nix
 {
