@@ -13,11 +13,11 @@ in
   };
 
   networking.vxlans.vx0 = {
-    vni = 9565;
+    vni = 9567;
     local = lib.blueprint.hosts.highline.ipv4;
-    remote = "108.181.251.30";
+    remote = "193.148.251.117";
     port = 4789;
-    address = [ "100.67.69.38/22" "2a0e:8f01:1000:82::126/64" ];
+    address = [ "100.66.125.37/22" "2a0e:8f01:1000:32::125/64" ];
   };
 
   services.as10779 = {
@@ -74,11 +74,11 @@ in
           name = "bgpx";
           password = null;
           type = { ipv4 = "direct"; ipv6 = "direct"; };
-          source = { ipv4 = "100.67.69.38"; ipv6 = "2a0e:8f01:1000:82::126"; };
+          source = { ipv4 = "100.66.125.37"; ipv6 = "2a0e:8f01:1000:32::125"; };
           neighbor = {
             asn = 24381;
-            ipv4 = "100.67.71.254";
-            ipv6 = "2a0e:8f01:1000:82::1";
+            ipv4 = "100.66.127.254";
+            ipv6 = "2a0e:8f01:1000:32::1";
           };
           import = {
             ipv4 = "import none;";
