@@ -68,5 +68,13 @@ in
     networking.firewall.extraInputRules = lib.concatStringsSep "\n  " (lib.map
       (vxlan: "${if (lib.hasInfix ":" vxlan.local) then "ip6" else "ip"} saddr ${vxlan.local} udp dport ${lib.toString vxlan.port} accept")
       (lib.attrValues cfg));
+
+    networking.firewall.extraReversePathFilterRules = lib.concatStringsSep "\n  " (lib.map
+      (vxlan: (lib.concatStringsSep "\n  " (lib.map
+        (addr:
+          "${if (lib.hasInfix ":" addr) then "ip6" else "ip"} saddr ${addr} accept"
+        )
+        vxlan.address)))
+      (lib.attrValues cfg));
   };
 }
