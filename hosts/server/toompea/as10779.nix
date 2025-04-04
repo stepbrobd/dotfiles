@@ -75,6 +75,25 @@ in
           };
         }
         {
+          name = "bgpx";
+          password = null;
+          type = { ipv4 = "direct"; ipv6 = "direct"; };
+          source = { ipv4 = "100.66.93.62"; ipv6 = "2a0e:8f01:1000:24::13e"; };
+          neighbor = {
+            asn = 24381;
+            ipv4 = "100.66.95.254";
+            ipv6 = "2a0e:8f01:1000:24::1";
+          };
+          import = {
+            ipv4 = "import none;";
+            ipv6 = "import none;";
+          };
+          export = {
+            ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
+          };
+        }
+        {
           name = "bgptools";
           password = null;
           type = { ipv4 = "multihop"; ipv6 = "multihop"; };
