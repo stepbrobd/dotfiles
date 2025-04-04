@@ -27,10 +27,6 @@ in
           type = lib.types.int;
           description = "UDP port";
         };
-        ttl = lib.mkOption {
-          type = lib.types.int;
-          description = "Time to live";
-        };
         address = lib.mkOption {
           type = with lib.types; listOf str;
           description = "IP address(es)";
@@ -57,7 +53,6 @@ in
               Local = vxlan.local;
               Remote = vxlan.remote;
               DestinationPort = vxlan.port;
-              TTL = vxlan.ttl;
               Independent = true;
               MacLearning = true;
             };
