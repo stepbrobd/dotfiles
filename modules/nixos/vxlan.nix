@@ -3,44 +3,70 @@
 { config, ... }:
 
 let
-  cfg = config.networking.vxlan;
+  cfg = config.networking.vxlans;
 in
 {
-  options.networking.vxlan = {
+  options.networking.vxlans = lib.mkOption {
     description = '''';
     default = { };
-    type = null; # TODO
+    type = with lib.types; attrsOf (submodule {
+      options = {
+        vni = lib.mkOption {
+          type = lib.types.int;
+          description = "VxLAN network identifier";
+        };
+        local = lib.mkOption {
+          type = lib.types.str;
+          description = "Local IP address";
+        };
+        remote = lib.mkOption {
+          type = lib.types.str;
+          description = "Remote IP address";
+        };
+        port = lib.mkOption {
+          type = lib.types.int;
+          description = "UDP port";
+        };
+        address = lib.mkOption {
+          type = with lib.types; listOf str;
+          description = "IP address(es)";
+        };
+      };
+    });
   };
 
   config = {
-    # TODO:fold over config
-    # should open all dest ports
-    networking.firewall.allowedUDPPorts = lib.optional (lib.length (lib.attrNames cfg) > 0) 4789;
+    systemd.network = lib.mkMerge (
+      lib.flip lib.mapAttrsToList cfg (
+        name: vxlan: {
+          networks."45-${name}" = {
+            inherit name;
+            address = vxlan.address;
+          };
+          netdevs."45-${name}" = {
+            netdevConfig = {
+              Name = name;
+              Kind = "vxlan";
+            };
+            vxlanConfig = {
+              VNI = vxlan.vni;
+              Local = vxlan.local;
+              Remote = vxlan.remote;
+              DestinationPort = vxlan.port;
+              Independent = true;
+              MacLearning = true;
+            };
+          };
+        }
+      )
+    );
 
-    # TODO: parameterize ip/ip6 based on saddr (if `:` present in string)
-    networking.firewall.extraInputRules = ''
-      ip saddr 1.1.1.1 udp dport 4789 accept
-    '';
+    networking.firewall.allowedUDPPorts = lib.optionals
+      (cfg != { })
+      (lib.map (vxlan: vxlan.port) (lib.attrValues cfg));
 
-    # TODO: map attr over cfg
-    systemd.network = {
-      networks."45-vx0" = {
-        name = "vx0";
-        address = [ "100.66.33.17/22" "2a0e:8f01:1000:9::111/64" ];
-      };
-      netdevs."45-vx0" = {
-        netdevConfig = {
-          Name = "vx0";
-          Kind = "vxlan";
-        };
-        vxlanConfig = {
-          VNI = 9559;
-          Local = lib.blueprint.hosts.kongo.ipv4;
-          Remote = "156.231.102.211";
-          DestinationPort = 4789;
-          Independent = true;
-        };
-      };
-    };
+    networking.firewall.extraInputRules = lib.concatStringsSep "\n  " (lib.map
+      (vxlan: "${if (lib.hasInfix ":" vxlan.local) then "ip6" else "ip"} saddr ${vxlan.local} udp dport ${lib.toString vxlan.port} accept")
+      (lib.attrValues cfg));
   };
 }
