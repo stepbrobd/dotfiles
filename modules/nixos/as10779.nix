@@ -280,6 +280,19 @@ in
               };
             };
 
+            source = {
+              ipv4 = lib.mkOption {
+                type = lib.types.str;
+                default = cfg.router.source.ipv4;
+                description = "IPv4 source address if different from router's default outbound IPv4";
+              };
+              ipv6 = lib.mkOption {
+                type = lib.types.str;
+                default = cfg.router.source.ipv6;
+                description = "IPv6 source address if different from router's default outbound IPv6";
+              };
+            };
+
             neighbor = {
               asn = lib.mkOption {
                 type = lib.types.int;
@@ -440,7 +453,7 @@ in
             graceful restart on;
 
             ${session.type.ipv4};
-            source address ${cfg.router.source.ipv4};
+            source address ${session.source.ipv4};
             local as ${lib.toString cfg.asn};
             neighbor ${session.neighbor.ipv4} as ${lib.toString session.neighbor.asn};${
               if lib.isNull session.password
@@ -459,7 +472,7 @@ in
             graceful restart on;
 
             ${session.type.ipv6};
-            source address ${cfg.router.source.ipv6};
+            source address ${session.source.ipv6};
             local as ${lib.toString cfg.asn};
             neighbor ${session.neighbor.ipv6} as ${lib.toString session.neighbor.asn};${
               if lib.isNull session.password
