@@ -77,11 +77,11 @@ in
         {
           name = "bgpx";
           password = null;
-          type = { ipv4 = "direct"; ipv6 = "direct"; };
+          type = { ipv4 = "multihop"; ipv6 = "direct"; };
           source = { ipv4 = "100.66.93.62"; ipv6 = "2a0e:8f01:1000:24::13e"; };
           neighbor = {
             asn = 24381;
-            ipv4 = "100.66.95.254";
+            ipv4 = "193.148.249.248";
             ipv6 = "2a0e:8f01:1000:24::1";
           };
           import = {
