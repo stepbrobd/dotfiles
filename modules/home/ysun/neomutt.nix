@@ -2,7 +2,7 @@
 
 {
   programs.neomutt = {
-    enable = true;
+    enable = false;
     vimKeys = true;
 
     extraConfig = ''
