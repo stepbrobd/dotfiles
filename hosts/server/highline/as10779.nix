@@ -73,7 +73,8 @@ in
         {
           name = "bgpx";
           password = null;
-          type = { ipv4 = "direct"; ipv6 = "direct"; };
+          type = { ipv4 = "disabled"; ipv6 = "direct"; };
+          mp = "v4 over v6";
           source = { ipv4 = "100.67.69.38"; ipv6 = "2a0e:8f01:1000:82::126"; };
           neighbor = {
             asn = 24381;
