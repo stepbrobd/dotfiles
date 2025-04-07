@@ -53,6 +53,7 @@
       "aldente"
       "bartender"
       "betterdisplay"
+      "calibre"
       "cleanmymac"
       "discord"
       "hey"
