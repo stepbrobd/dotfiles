@@ -6,42 +6,17 @@ A hacky `nix` based config that works on both NixOS and macOS.
 
 ## Notes
 
-For VxLAN (finish `modules/nixos/vxlan.nix`):
+Todo: export IXP routes to kernel.
 
-```nix
-{
-  networking.firewall.allowedUDPPorts = [ 4789 ];
-  systemd.network = {
-    networks."45-vx0" = {
-      name = "vx0";
-      address = [ "100.66.33.17/22" "2a0e:8f01:1000:9::111/64" ];
-    };
-    netdevs."45-vx0" = {
-      netdevConfig = {
-        Name = "vx0";
-        Kind = "vxlan";
-      };
-      vxlanConfig = {
-        VNI = 9559;
-        Local = lib.blueprint.hosts.kongo.ipv4;
-        Remote = "156.231.102.211";
-        DestinationPort = 4789;
-        Independent = true;
-      };
-    };
-  };
-}
-```
+VxLAN IPv4 connectivity issue with BGP.Exchange is caused by Tailscale claiming
+the entirety of CGNAT IPv4 block.
 
-IPv6 works but IPv4 doesn't?
+Work around by any of these:
 
-```sh
-sudo tcpdump -e -nn -i vx0
-```
-
-MTU (DF bit set by default)?
-
-Firewall?
+- Use BGP multi-protocol extension to advertise IPv4 over IPv6 session
+- Inject specific rules to before in firewall before Tailscale's 100.64.0.0/10
+  rule
+- Use VRF
 
 ## Templates
 
@@ -58,5 +33,6 @@ nix flake [init|new] -t github:stepbrobd/dotfiles#{go|python|rust|typst}
 
 ## License
 
-The contents inside this repository, excluding all submodules, are licensed under the [MIT License](license.txt).
-Third-party file(s) and/or code(s) are subject to their original term(s) and/or license(s).
+The contents inside this repository, excluding all submodules, are licensed
+under the [MIT License](license.txt). Third-party file(s) and/or code(s) are
+subject to their original term(s) and/or license(s).
