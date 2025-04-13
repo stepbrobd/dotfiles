@@ -1,3 +1,5 @@
+# remove after nixpkgs##398435 is merged
+
 { lib
 , stdenv
 , rustPlatform
