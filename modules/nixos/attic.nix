@@ -34,10 +34,10 @@ in
         compression.type = "zstd";
 
         chunking = {
-          min-size = 16 * 1024;
-          avg-size = 64 * 1024;
-          max-size = 256 * 1024;
-          nar-size-threshold = 64 * 1024;
+          nar-size-threshold = 1; # chunk all cause cloudflare upload limit
+          min-size = 128 * 1024;
+          avg-size = 256 * 1024;
+          max-size = 512 * 1024;
         };
 
         garbage-collection = {
