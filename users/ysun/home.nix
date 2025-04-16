@@ -71,6 +71,7 @@ in
     # darwin only
     ++ (lib.optionals pkgs.stdenv.isDarwin [
     cfspeedtest
+    claude-code
     cocoapods
     comma
     gitleaks
