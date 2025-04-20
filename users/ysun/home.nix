@@ -73,6 +73,7 @@ in
     cfspeedtest
     claude-code
     cocoapods
+    codex
     comma
     gitleaks
     monocle
