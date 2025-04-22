@@ -69,7 +69,6 @@
     gitignore.inputs.nixpkgs.follows = "nixpkgs";
     golink.url = "github:tailscale/golink";
     golink.inputs.nixpkgs.follows = "nixpkgs";
-    golink.inputs.parts.follows = "parts";
     golink.inputs.systems.follows = "systems";
     # h
     hm.url = "github:nix-community/home-manager";
