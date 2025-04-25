@@ -226,6 +226,11 @@ description = "forked from nixos/nixpkgs"
 visibility = "public"
 archived = false
 
+[repo."nixpkgs-review-gha"]
+description = "forked from defelo/nixpkgs-review-gha"
+visibility = "public"
+archived = false
+
 [repo."nixvim"]
 description = "forked from nix-community/nixvim"
 visibility = "public"
