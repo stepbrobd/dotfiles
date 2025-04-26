@@ -55,7 +55,6 @@
           { name = "rg"; }
           { name = "spell"; }
           { name = "treesitter"; }
-          { name = "ultisnips"; }
           { name = "vsnip"; }
           { name = "yanky"; }
           { name = "zsh"; }
