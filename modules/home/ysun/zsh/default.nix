@@ -9,6 +9,7 @@
 
   programs.zsh = {
     enable = true;
+    defaultKeymap = "vicmd";
     autocd = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
@@ -45,10 +46,6 @@
       # other aliases
       { tf = "terraform"; }
     ];
-
-    # seems broken
-    # defaultKeymap = "vicmd";
-    initExtra = "bindkey -v";
 
     profileExtra = lib.optionalString pkgs.stdenv.isDarwin ''
       eval $(${

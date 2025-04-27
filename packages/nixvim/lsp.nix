@@ -39,8 +39,8 @@
         unstable = true;
         suggest.imports.hosts."https://deno.land" = true;
       };
+      root_dir = "require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')";
     };
-    rootDir.__raw = "require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')";
   };
   plugins.lsp.servers.html.enable = true; # HTML
   plugins.lsp.servers.tailwindcss.enable = true; # TailwindCSS

@@ -115,9 +115,6 @@
     terranix.inputs.nixpkgs.follows = "nixpkgs";
     terranix.inputs.flake-parts.follows = "parts";
     terranix.inputs.systems.follows = "systems";
-    terranix.inputs.bats-assert.follows = "";
-    terranix.inputs.bats-support.follows = "";
-    terranix.inputs.terranix-examples.follows = "";
     # u
     utils.url = "github:numtide/flake-utils";
     utils.inputs.systems.follows = "systems";
