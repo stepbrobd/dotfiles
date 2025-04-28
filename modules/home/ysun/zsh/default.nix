@@ -9,7 +9,7 @@
 
   programs.zsh = {
     enable = true;
-    defaultKeymap = "vicmd";
+    defaultKeymap = "viins";
     autocd = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
