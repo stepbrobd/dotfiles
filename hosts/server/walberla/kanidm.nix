@@ -59,6 +59,9 @@ in
         "sso.admins" = { };
         "sso.users" = { };
 
+        "calibre.admins" = { };
+        "calibre.users" = { };
+
         "hydra.admins" = { };
         "hydra.users" = { };
 
@@ -76,6 +79,9 @@ in
           groups = [
             "sso.admins"
             "sso.users"
+
+            "calibre.admins"
+            "calibre.users"
 
             "hydra.admins"
             "hydra.users"

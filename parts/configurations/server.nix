@@ -23,6 +23,7 @@ let
       self.nixosModules.as10779
       self.nixosModules.attic
       self.nixosModules.caddy
+      self.nixosModules.calibre
       self.nixosModules.common
       self.nixosModules.desktop
       self.nixosModules.glance
