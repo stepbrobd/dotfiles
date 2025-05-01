@@ -1,0 +1,24 @@
+diff --git i/cps/templates/layout.html w/cps/templates/layout.html
+index d433a5a..f87568b 100644
+--- i/cps/templates/layout.html
++++ w/cps/templates/layout.html
+@@ -22,6 +22,7 @@
+        <link href="{{ url_for('static', filename='css/caliBlur.css') }}" rel="stylesheet" media="screen">
+        <link href="{{ url_for('static', filename='css/caliBlur_override.css') }}" rel="stylesheet" media="screen">
+     {% endif %}
++    <script defer data-domain="read.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>
+   </head>
+   <body class="{{ page }} {{ bodyClass }}{% if g.current_theme == 1 %} blur{% endif %}" data-text="{{_('Home')}}" data-textback="{{_('Back')}}">
+     <!-- Static navbar -->
+diff --git i/cps/web.py w/cps/web.py
+index 31e124e..738f384 100644
+--- i/cps/web.py
++++ w/cps/web.py
+@@ -108,6 +108,7 @@ def add_security_headers(resp):
+     if request.endpoint == "web.read_book":
+         csp += " blob: ; style-src-elem 'self' blob: 'unsafe-inline'"
+     csp += "; object-src 'none';"
++    resp.headers['Cache-Control'] = 'private'
+     resp.headers['Content-Security-Policy'] = csp
+     resp.headers['X-Content-Type-Options'] = 'nosniff'
+     resp.headers['X-Frame-Options'] = 'SAMEORIGIN'

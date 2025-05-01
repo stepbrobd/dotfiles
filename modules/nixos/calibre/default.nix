@@ -6,7 +6,7 @@
   config = lib.mkIf config.services.calibre-web.enable {
     services.calibre-web = {
       package = pkgs.calibre-web.overrideAttrs (final: prev: {
-        propagatedBuildInputs = prev.passthru.dependencies ++ prev.passthru.optional-dependencies.ldap;
+        patches = prev.patches ++ [ ./header-and-stats.patch ];
       });
 
       listen.ip = "127.0.0.1";
