@@ -27,7 +27,7 @@
         with config.services.calibre-web.listen ;
         ''
           import common
-          header >Content-Security-Policy (.*) "$1; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.cloudflareinsights.com;"
+          header >Content-Security-Policy (.*) "$1; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://stats.ysun.co https://static.cloudflareinsights.com;"
           reverse_proxy ${ip}:${lib.toString port}
         '';
     };
