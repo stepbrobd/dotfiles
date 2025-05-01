@@ -19,7 +19,7 @@
       (lib.mkIf config.programs.bat.enable { cat = "bat --plain"; })
       # lsd
       (lib.mkIf config.programs.lsd.enable {
-        ls = "lsd";
+        # ls = "lsd";
         tree = "lsd --tree";
       })
       # must use neovim
