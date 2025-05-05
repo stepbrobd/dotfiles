@@ -8,6 +8,7 @@ let
     "halti" # Garnix.io Hosting, test server
     "highline" # Neptune Networks, 1 vCPU, 1GB RAM, 10GB Storage
     "kongo" # Vultr, 1 vCPU, 1GB RAM, 25GB Storage
+    "lagern" # AWS, T3.Large, 25GB Storage
     "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage
     "toompea" # V.PS Pro Tallinn, 4 vCPU, 4GB RAM, 40GB Storage
     "walberla" # Hetzner Cloud CX32, 4 vCPU, 8GB RAM, 80GB Storage
