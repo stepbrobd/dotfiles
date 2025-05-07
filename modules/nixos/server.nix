@@ -34,4 +34,8 @@
 
   programs.zsh.enableCompletion = pkgs.lib.mkForce false;
   programs.bash.completion.enable = pkgs.lib.mkForce false;
+
+  services.journald.extraConfig = ''
+    SystemMaxUse=64M
+  '';
 }
