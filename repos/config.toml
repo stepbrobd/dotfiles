@@ -246,6 +246,11 @@ description = "forked from ppy/osu"
 visibility = "public"
 archived = false
 
+[repo."shiki"]
+description = "forked from furiouzz/lume_shiki"
+visibility = "public"
+archived = false
+
 [repo."soft-serve"]
 description = "forked from charmbracelet/soft-serve"
 visibility = "public"
