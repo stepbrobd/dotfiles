@@ -20,6 +20,9 @@
       set -g status-interval 5
       set -g status-keys emacs
       set -g focus-events on
+      set -g allow-passthrough on
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
       setw -g aggressive-resize on
       bind C-p previous-window
       bind C-n next-window
