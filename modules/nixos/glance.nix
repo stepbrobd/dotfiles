@@ -27,13 +27,6 @@ in
       });
     };
 
-    services.glance.package = pkgs.glance.overrideAttrs (_: {
-      patchPhase = ''
-        substituteInPlace internal/glance/templates/document.html \
-          --replace-warn '</head>' '<script defer data-domain="home.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script></head>'
-      '';
-    });
-
     services.glance.settings = {
       server = {
         host = "127.0.0.1";
@@ -46,6 +39,7 @@ in
         positive-color = "92 33 65";
         negative-color = "354 47 56";
       };
+      document.head = ''<script defer data-domain="home.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>'';
       branding = {
         hide-footer = true;
         favicon-url = "https://ysun.co/assets/static/img/favicon.ico";
@@ -80,32 +74,31 @@ in
                     {
                       links = [
                         { title = "GoLink"; url = "https://go.tail650e82.ts.net/"; icon = "si:shortcut"; same-tab = true; }
+                        { title = "Telemetry"; url = "https://otel.ysun.co/dashboards"; icon = "si:grafana"; same-tab = true; }
                         { title = "Plausible"; url = "https://stats.ysun.co/ysun.co"; icon = "si:plausibleanalytics"; same-tab = true; }
                         { title = "NextDNS"; url = "https://my.nextdns.io/"; icon = "si:nextdns"; same-tab = true; }
                         { title = "Tailscale"; url = "https://login.tailscale.com/admin/machines"; icon = "si:tailscale"; same-tab = true; }
                         { title = "Cloudflare"; url = "https://dash.cloudflare.com/6ff6fca6d9ffe9c77dd15a9095076b3b"; icon = "si:cloudflare"; same-tab = true; }
-                        { title = "AWS"; url = "https://eu-central-2.console.aws.amazon.com/ec2/home?region=eu-central-2#Instances:"; icon = "si:amazonwebservices"; same-tab = true; }
                       ];
                     }
                     {
                       links = [
-                        { title = "Lemmy"; url = "https://phtn.app/"; icon = "si:lemmy"; same-tab = true; }
+                        { title = "Hey"; url = "https://app.hey.com/imbox"; icon = "si:hey"; same-tab = true; }
                         { title = "NixOS"; url = "https://discourse.nixos.org/"; icon = "si:nixos"; same-tab = true; }
-                        { title = "Framework"; url = "https://community.frame.work/"; icon = "si:framework"; same-tab = true; }
-                        { title = "OCaml"; url = "https://discuss.ocaml.org/"; icon = "si:ocaml"; same-tab = true; }
-                        { title = "Churning"; url = "https://www.uscardforum.com/"; icon = "si:cashapp"; same-tab = true; }
+                        { title = "Calibre"; url = "https://read.ysun.co"; icon = "si:calibreweb"; same-tab = true; }
+                        { title = "AniList"; url = "https://anilist.co/home"; icon = "si:anilist"; same-tab = true; }
                         { title = "Timetable"; url = "https://animeschedule.net/"; icon = "si:myanimelist"; same-tab = true; }
+                        { title = "ニコニコ"; url = "https://site.nicovideo.jp/danime/"; icon = "si:niconico"; same-tab = true; }
                       ];
                     }
                   ];
                 }
                 {
-                  type = "lobsters";
-                  limit = 10;
-                }
-                {
-                  type = "hacker-news";
-                  limit = 10;
+                  type = "group";
+                  widgets = [
+                    { type = "lobsters"; limit = 10; }
+                    { type = "hacker-news"; limit = 10; }
+                  ];
                 }
               ];
             }
