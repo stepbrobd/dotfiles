@@ -26,11 +26,11 @@
             section_c = { },
           },
           right = {
-            section_a = {
+            section_a = { },
+            section_b = { },
+            section_c = {
               { type = "coloreds", custom = false, name = "count", params = "true" },
             },
-            section_b = { },
-            section_c = { },
           }
         },
 
