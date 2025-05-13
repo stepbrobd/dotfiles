@@ -1,6 +1,108 @@
+{ pkgs, ... }:
+
 {
   programs.yazi = {
     enable = true;
+
+    plugins = with pkgs.yaziPlugins; {
+      inherit full-border git yatline;
+    };
+
+    initLua = /* lua */ ''
+      -- pkgs.yaziPlugins.full-border
+      require("full-border"):setup()
+
+      -- pkgs.yaziPlugins.git
+      require("git"):setup()
+
+      -- pkgs.yaziPlugins.yatline
+      require("yatline"):setup({
+        header_line = {
+          left = {
+            section_a = {
+              { type = "line", custom = false, name = "tabs", params = { "left" }, },
+            },
+            section_b = { },
+            section_c = { },
+          },
+          right = {
+            section_a = {
+              { type = "coloreds", custom = false, name = "count", params = "true" },
+            },
+            section_b = { },
+            section_c = { },
+          }
+        },
+
+        status_line = {
+          left = {
+            section_a = {
+              { type = "string", custom = false, name = "tab_mode", },
+            },
+            section_b = {
+              { type = "string", custom = false, name = "hovered_size", },
+            },
+            section_c = {
+              { type = "string", custom = false, name = "hovered_path", },
+              { type = "coloreds", custom = false, name = "count", },
+            },
+          },
+          right = {
+            section_a = {
+              { type = "string", custom = false, name = "cursor_position", },
+            },
+            section_b = {
+              { type = "string", custom = false, name = "cursor_percentage", },
+            },
+            section_c = {
+              { type = "string", custom = false, name = "hovered_file_extension", params = { true }, },
+              { type = "coloreds", custom = false, name = "permissions", },
+            },
+          },
+        },
+
+        theme = {
+          section_separator = { open = "", close = "" },
+          part_separator = { open = "", close = "" },
+          inverse_separator = { open = "", close = "" },
+
+          style_a = {
+                  fg = "black",
+                  bg_mode = {
+                          normal = "#81A1C1",
+                          select = "#88C0D0",
+                          un_set = "#D08770"
+                  }
+          },
+          style_b = { bg = "#4C566A", fg = "#E5E9F0" },
+          style_c = { bg = "#3B4252", fg = "#81A1C1" },
+
+          permissions_t_fg = "#A3BE8C",
+          permissions_r_fg = "#EBCB8B",
+          permissions_w_fg = "#BF616A",
+          permissions_x_fg = "#88C0D0",
+          permissions_s_fg = "#E5E9F0",
+
+          selected = { icon = "󰻭", fg = "#EBCB8B" },
+          copied = { icon = "", fg = "#A3BE8C" },
+          cut = { icon = "", fg = "#BF616A" },
+          files = { icon = "", fg = "#5E81AC" },
+          filtereds = { icon = "", fg = "#B48EAD" },
+
+          total = { icon = "󰮍", fg = "#EBCB8B" },
+          succ = { icon = "", fg = "#A3BE8C" },
+          fail = { icon = "", fg = "#BF616A" },
+          found = { icon = "󰮕", fg = "#5E81AC" },
+          processed = { icon = "󰐍", fg = "#A3BE8C" },
+        },
+      })
+    '';
+
+    # pkgs.yaziPlugins.git
+    settings.plugin.prepend_fetchers = [
+      { id = "git"; name = "*"; run = "git"; }
+      { id = "git"; name = "*/"; run = "git"; }
+    ];
 
     theme = {
       cmp = {
