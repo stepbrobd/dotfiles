@@ -90,6 +90,11 @@ description = "all about nix"
 visibility = "public"
 archived = false
 
+[repo."nord.yazi"]
+description = "nordic yazi"
+visibility = "public"
+archived = false
+
 [repo."rkt"]
 description = "learn a useful language"
 visibility = "public"
