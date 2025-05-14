@@ -176,6 +176,11 @@ description = "forked from ruanyf/markdown-it-image-lazy-loading"
 visibility = "public"
 archived = false
 
+[repo."flavors"]
+description = "forked from yazi-rs/flavors"
+visibility = "public"
+archived = false
+
 [repo."go"]
 description = "forked from golang/go"
 visibility = "public"
