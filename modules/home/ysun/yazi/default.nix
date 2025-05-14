@@ -166,7 +166,7 @@
       };
       manager = {
         border_style = {
-          fg = "#4C566A";
+          fg = "#7B88A1";
         };
         border_symbol = "│";
         count_copied = {
@@ -282,7 +282,7 @@
           fg = "#EBCB8B";
         };
         perm_sep = {
-          fg = "#4C566A";
+          fg = "#7B88A1";
         };
         perm_type = {
           fg = "#81A1C1";
@@ -296,7 +296,7 @@
         };
         progress_label = {
           bold = true;
-          fg = "#E5E9F0";
+          fg = "#ffffff";
         };
         progress_normal = {
           bg = "#434C5E";
@@ -324,9 +324,9 @@
           bg = "#3B4252";
         };
         rest = {
-          fg = "#5E81AC";
+          fg = "#8FBCBB";
         };
-        separator = "  ";
+        separator = "  ";
         separator_style = {
           fg = "#4C566A";
         };
