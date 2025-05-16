@@ -93,6 +93,7 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "parts";
+    nixvim.inputs.systems.follows = "systems";
     nixvim.inputs.nuschtosSearch.follows = "";
     nord.url = "github:stepbrobd/nord.yazi";
     nord.inputs.nixpkgs.follows = "nixpkgs";
