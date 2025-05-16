@@ -10,13 +10,14 @@ Storage: 1TB
 
 Troubleshooting:
 
-- if `/nix` is not mounting on boot: [nix-installer#1261](https://github.com/determinatesystems/nix-installer/issues/1261)
+- if `/nix` is not mounting on boot:
+  [nix-installer#1261](https://github.com/determinatesystems/nix-installer/issues/1261)
 
 ## Preparation
 
-> [!Important]
-> Ensure the Security Policy for the boot partition is set to "Full Security"
-> in the [recovery menu](https://support.apple.com/guide/security/startup-disk-security-policy-control-sec7d92dc49f/web).
+> [!Important] Ensure the Security Policy for the boot partition is set to "Full
+> Security" in the
+> [recovery menu](https://support.apple.com/guide/security/startup-disk-security-policy-control-sec7d92dc49f/web).
 
 Follow macOS built-in setup tool.
 
@@ -32,7 +33,8 @@ Sign-in to App Store (required for `nix-darwin.options.homebrew.masApps`).
 
 ## Installation
 
-Install `nix` with [Determinate Systems Nix Installer](https://github.com/determinatesystems/nix-installer).
+Install `nix` with
+[Determinate Systems Nix Installer](https://github.com/determinatesystems/nix-installer).
 
 ```shell
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm

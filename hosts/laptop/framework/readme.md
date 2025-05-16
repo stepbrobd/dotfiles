@@ -10,8 +10,7 @@ Storage: 1TB
 
 ## Installation
 
-> [!Important]
-> Disable Secure Boot before getting started.
+> [!Important] Disable Secure Boot before getting started.
 
 Boot into minimal NixOS installer and switch to root user.
 
@@ -27,7 +26,9 @@ Install:
 nixos-install --no-root-password --flake github:stepbrobd/dotfiles#framework --option extra-substituters https://cache.garnix.io
 ```
 
-It's expected to have errors related to [Lanzaboote](https://github.com/nix-community/lanzaboote) since secure boot PKI bundle is not setup.
+It's expected to have errors related to
+[Lanzaboote](https://github.com/nix-community/lanzaboote) since secure boot PKI
+bundle is not setup.
 
 After `nixos-install`, DO NOT reboot.
 
@@ -83,4 +84,6 @@ Usually not used, managed directly by this flake.
 nix run github:nix-community/disko -- --mode disko ./disko.nix
 ```
 
-See [Disko Quick Start Guide](https://github.com/nix-community/disko/blob/master/docs/quickstart.md) for details.
+See
+[Disko Quick Start Guide](https://github.com/nix-community/disko/blob/master/docs/quickstart.md)
+for details.
