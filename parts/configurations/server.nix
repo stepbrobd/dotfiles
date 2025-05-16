@@ -45,9 +45,10 @@ let
     specialArgs = { inherit inputs lib; };
   };
 
-  # blocked on colmena #161
+  colmenaHive = lib.makeHive colmena;
+
   nixosConfigurations = (import "${inputs.colmena}/src/nix/hive/eval.nix" {
-    rawFlake = inputs.self;
+    rawHive = colmena;
   }).nodes;
 in
-{ flake = { inherit colmena nixosConfigurations; }; }
+{ flake = { inherit colmena colmenaHive nixosConfigurations; }; }
