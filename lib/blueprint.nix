@@ -56,17 +56,6 @@ in
     ipv6 = "2a07:8dc0:1c:0:48:f1ff:febe:1c6";
   };
 
-  hosts.diablo = newHost {
-    hostName = "diablo";
-    domain = "as10779.net";
-    platform = "x86_64-linux";
-    os = "nixos";
-    provider = "misaka";
-    type = "server";
-    ipv4 = "38.175.104.134";
-    ipv6 = "2a0e:6901:410:2af:26a3:f0ff:fe47:898d";
-  };
-
   hosts.halti = newHost {
     hostName = "halti";
     domain = "as10779.net";
