@@ -36,3 +36,9 @@
     hashedPassword = "$y$j9T$.4YGom.yj/t0BqlWv3ysg.$f.LzZrxQpB.vpmKd7mu4yxYWiERgEtTAxJHIGti2vg2";
   };
 }
+  # required by nix-darwin system activation
+  # remove after nix-darwin migrated modules either to `users.users` namespace
+  # or moved to home-manager
+  // lib.optionalAttrs pkgs.stdenv.isDarwin {
+  system.primaryUser = "ysun";
+}
