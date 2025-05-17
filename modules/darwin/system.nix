@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  # required by nix-darwin system activation
+  # remove after nix-darwin migrated modules either to `users.users` namespace
+  # or moved to home-manager
+  system.primaryUser = "ysun";
+
   nix.enable = true;
 
   environment.systemPackages = [ pkgs.iproute2mac ];
