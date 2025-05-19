@@ -52,7 +52,7 @@ archived = false
 
 [repo."consistency-z3"]
 description = "consistency semantics with z3"
-visibility = "public"
+visibility = "private"
 archived = false
 
 [repo."cv"]
