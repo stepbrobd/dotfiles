@@ -95,10 +95,6 @@
     nixvim.inputs.flake-parts.follows = "parts";
     nixvim.inputs.systems.follows = "systems";
     nixvim.inputs.nuschtosSearch.follows = "";
-    nord.url = "github:stepbrobd/nord.yazi";
-    nord.inputs.nixpkgs.follows = "nixpkgs";
-    nord.inputs.parts.follows = "parts";
-    nord.inputs.systems.follows = "systems";
     # p
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";

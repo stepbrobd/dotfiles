@@ -1,10 +1,5 @@
-{ inputs, ... }:
-
 { pkgs, ... }:
 
-let
-  nord = inputs.nord.packages.${pkgs.stdenv.system}.default;
-in
 {
   programs.yazi = {
     enable = true;
@@ -13,7 +8,7 @@ in
       inherit full-border git nord yatline;
     };
 
-    flavors = { inherit nord; };
+    flavors = { inherit (pkgs.yaziPlugins) nord; };
 
     theme.flavor = {
       light = "nord";
