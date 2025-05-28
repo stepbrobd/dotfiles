@@ -28,21 +28,6 @@
         mkpass = key: "${lib.getExe' pkgs.toybox "cat"} ${config.sops.defaultSymlinkPath}/${key}";
       in
       {
-        goo = rec {
-          inherit realName mbsync msmtp notmuch neomutt;
-          address = "ysun@goo.jp";
-          userName = address;
-          passwordCommand = mkpass "mail/goo/pass";
-          imap = {
-            host = "imap.mail.goo.jp";
-            port = 993;
-          };
-          smtp = {
-            host = "smtp.mail.goo.jp";
-            port = 465;
-          };
-        };
-
         softbank = rec {
           inherit realName mbsync msmtp notmuch neomutt;
           address = "ysun@i.softbank.jp";
@@ -76,7 +61,6 @@
       };
   };
 
-  sops.secrets."mail/goo/pass" = { };
   sops.secrets."mail/softbank/pass" = { };
   sops.secrets."mail/stepbrobd/pass" = { };
 
