@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 
 {
-  imports = [ inputs.tangled.nixosModules.knotserver ];
+  imports = [ inputs.tangled.nixosModules.knot ];
 
   sops.secrets.knotserver = {
     owner = "git";
@@ -9,7 +9,7 @@
     mode = "440";
   };
 
-  services.tangled-knotserver = {
+  services.tangled-knot = {
     enable = true;
     repo.mainBranch = "master";
     server.hostname = "knot.stepbrobd.com";
@@ -22,9 +22,9 @@
 
   services.caddy = {
     enable = true;
-    virtualHosts.${config.services.tangled-knotserver.server.hostname}.extraConfig = ''
+    virtualHosts.${config.services.tangled-knot.server.hostname}.extraConfig = ''
       import common
-      reverse_proxy ${config.services.tangled-knotserver.server.listenAddr}
+      reverse_proxy ${config.services.tangled-knot.server.listenAddr}
     '';
   };
 }
