@@ -22,6 +22,9 @@
       # my own taps
       # "stepbrobd/tap"
 
+      # pro audio
+      "resonative/proaudio"
+
       # official taps
       # "homebrew/cask"
       # "homebrew/cask-versions"
@@ -48,6 +51,9 @@
     casks = [
       # my own casks
       # "stepbrobd/tap/research"
+
+      # pro audio
+      "resonative/proaudio/ua-connect"
 
       "airbuddy"
       "aldente"
