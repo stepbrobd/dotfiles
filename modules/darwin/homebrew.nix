@@ -21,9 +21,10 @@
     taps = [
       # my own taps
       # "stepbrobd/tap"
-
-      # pro audio
+      # universal audio
       "resonative/proaudio"
+      # sonarworks soundid
+      "lyraphase/av-casks"
 
       # official taps
       # "homebrew/cask"
@@ -51,9 +52,10 @@
     casks = [
       # my own casks
       # "stepbrobd/tap/research"
-
-      # pro audio
+      # universal audio
       "resonative/proaudio/ua-connect"
+      # sonarworks soundid
+      "lyraphase/av-casks/soundid-reference"
 
       "airbuddy"
       "aldente"
