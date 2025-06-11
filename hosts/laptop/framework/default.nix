@@ -4,7 +4,7 @@
   imports = [ ./hardware.nix ];
 
   i18n.defaultLocale = "en_US.UTF-8";
-  time.timeZone = "America/New_York";
+  time.timeZone = "Europe/Paris";
 
   services.openssh.enable = true;
 
