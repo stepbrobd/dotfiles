@@ -71,7 +71,6 @@
       "orbstack"
       "orion"
       "osu"
-      "raycast"
       "slack"
       "wacom-tablet"
       "yubico-yubikey-manager"
