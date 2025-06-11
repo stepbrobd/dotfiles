@@ -62,7 +62,7 @@ in
                   hour-format = "24h";
                   hide-location = false;
                   show-area-name = true;
-                  location = "Boston, Massachusetts, United States";
+                  location = "Grenoble, Auvergne-Rhône-Alpes, France";
                 }
                 {
                   type = "search";
