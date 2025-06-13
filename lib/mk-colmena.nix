@@ -23,7 +23,18 @@ in
     let
       entrypoint = "${inputs.self}/hosts/server/${host}";
     in
-    genHostModules {
-      inherit inputs os platform stateVersion entrypoint users modules specialArgs;
-    };
+    genHostModules
+      {
+        inherit inputs os platform stateVersion entrypoint users modules specialArgs;
+      } ++ [
+      (
+        { config, ... }:
+        {
+          deployment = {
+            targetUser = null;
+            targetHost = "${config.networking.hostName}.tail650e82.ts.net";
+          };
+        }
+      )
+    ];
 })
