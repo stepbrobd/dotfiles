@@ -65,6 +65,7 @@
       "cleanmymac"
       "container"
       "discord"
+      "google-chrome"
       "hey"
       "lulu"
       "notchnook"
