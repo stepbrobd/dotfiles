@@ -97,10 +97,11 @@ in
         {
           name = "bgptools";
           password = null;
-          type = { ipv4 = "multihop"; ipv6 = "multihop"; };
+          type = { ipv4 = "disabled"; ipv6 = "multihop"; };
+          mp = "v4 over v6";
           neighbor = {
             asn = 212232;
-            ipv4 = "185.230.223.45";
+            ipv4 = null;
             ipv6 = "2a0c:2f07:9459::b19";
           };
           addpath = "tx";
