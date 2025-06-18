@@ -50,6 +50,7 @@ in
         nixos-hardware.nixosModules.common-hidpi
         nixos-hardware.nixosModules.framework-13th-gen-intel
         self.nixosModules.common
+        self.nixosModules.cross
         self.nixosModules.docker
         self.nixosModules.graphical
         self.nixosModules.nftables
