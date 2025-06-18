@@ -5,6 +5,7 @@ keys:
     - &butte age1js9g9de2g2hqtzfhaepn9uff3n8f3m0xnkneyslsd28xs4pnmfxsuvthaj
     - &halti age1lchn0h0a63g7k9zl76f7nuylp5cl9ak2f6ucy87q0gyk8qa8negst87jle
     - &highline age1qvcaxsqwqf4cs83pc646w22g4kq44xuvj2jvy2g3a67pjem2cazqn7x0tl
+    - &isere age1qpvtf77ylsq9fhnpfd2ew9mfm6whus57vxjdvpsw4ytphmrukvlskffqt5
     - &kongo age18np64w0h4adalpwxgdysppjy4hqd6adhrrmz7q2xekjyczzfes4qkj52uj
     - &lagern age17q42dw293nnu5pdkargd09f090zlss9ee5wp78vwh54mez729yzqp9kfk6
     - &odake age16urcveanputmn5vrt579xnk2pk87mlv0d2fmwzn2059qtzklmq9smj34a5
@@ -19,6 +20,7 @@ creation_rules:
           - *butte
           - *halti
           - *highline
+          - *isere
           - *kongo
           - *lagern
           - *odake
