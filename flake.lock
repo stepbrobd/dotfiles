@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "argononed": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729566243,
+        "narHash": "sha256-DPNI0Dpk5aym3Baf5UbEe5GENDrSmmXVdriRSWE+rgk=",
+        "owner": "nvmd",
+        "repo": "argononed",
+        "rev": "16dbee54d49b66d5654d228d1061246b440ef7cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvmd",
+        "repo": "argononed",
+        "type": "github"
+      }
+    },
     "autopilot": {
       "inputs": {
         "nixpkgs": [
@@ -134,15 +150,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1749436314,
-        "narHash": "sha256-CqmqU5FRg5AadtIkxwu8ulDSOSoIisUMZRLlcED3Q5w=",
+        "lastModified": 1750244439,
+        "narHash": "sha256-cauZ34mdgjczjiorgJ5BlPj4ce5rURr9YhuyDIblIOI=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "dfa4d1b9c39c0342ef133795127a3af14598017a",
+        "rev": "101085444b29c2c24456611a1567f13aae85edf1",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
+        "ref": "pull/1069/merge",
         "repo": "disko",
         "type": "github"
       }
@@ -445,18 +462,60 @@
         "type": "github"
       }
     },
+    "nixos-images": {
+      "inputs": {
+        "nixos-stable": [
+          "rpi",
+          "nixpkgs"
+        ],
+        "nixos-unstable": [
+          "rpi",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1747747741,
+        "narHash": "sha256-LUOH27unNWbGTvZFitHonraNx0JF/55h30r9WxqrznM=",
+        "owner": "nvmd",
+        "repo": "nixos-images",
+        "rev": "cbbd6db325775096680b65e2a32fb6187c09bbb4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvmd",
+        "ref": "sdimage-installer",
+        "repo": "nixos-images",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1749285348,
-        "narHash": "sha256-frdhQvPbmDYaScPFiCnfdh3B/Vh81Uuoo0w5TkWmmjU=",
+        "lastModified": 1750238963,
+        "narHash": "sha256-OMFse49nSroRzzuk2hNJ7IT7kw5H3Js4sbyu9ZmA+mE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "3e3afe5174c561dee0df6f2c2b2236990146329f",
+        "rev": "5bc458332805146ab2450890bc9891d29707585d",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "pull/398456/merge",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1748882666,
+        "narHash": "sha256-z2uanxifOXGEqdiprquIGZu0XaRYih3FHXDQwLc1xis=",
+        "owner": "nvmd",
+        "repo": "nixpkgs",
+        "rev": "d2e9e5abf6308b83487d26e383799f7520dc5cdf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvmd",
+        "ref": "modules-with-keys-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -531,6 +590,7 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "parts": "parts",
+        "rpi": "rpi",
         "rust-overlay": "rust-overlay",
         "schemas": "schemas",
         "sops": "sops",
@@ -539,6 +599,26 @@
         "tangled": "tangled",
         "terranix": "terranix",
         "utils": "utils"
+      }
+    },
+    "rpi": {
+      "inputs": {
+        "argononed": "argononed",
+        "nixos-images": "nixos-images",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1749156319,
+        "narHash": "sha256-Eilhss+fV1Fp88Sua5LwPnxGJ2A1/3TEDI1cMQja/+w=",
+        "owner": "nvmd",
+        "repo": "nixos-raspberrypi",
+        "rev": "dc5ff85af8a5c1e0913bfdc15e419ae430fd0df2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvmd",
+        "repo": "nixos-raspberrypi",
+        "type": "github"
       }
     },
     "rust-overlay": {

@@ -18,7 +18,7 @@ let
     , platform # e.g. "x86_64-linux"
     , os # e.g. "darwin" or "nixos"
     , provider # e.g. "aws", "garnix", "hetzner", "owned", "ssdnodes", "vultr", "xtom"
-    , type # e.g. "laptop", "server"
+    , type # e.g. "laptop", "desktop", "server", "rpi"
     , ipv4 ? null
     , ipv6 ? null
     , services ? { }
@@ -64,6 +64,17 @@ in
     provider = "garnix";
     type = "server";
     ipv4 = "37.27.181.83";
+    ipv6 = null;
+  };
+
+  hosts.isere = newHost {
+    hostName = "isere";
+    domain = "as10779.net";
+    platform = "aarch64-linux";
+    os = "nixos";
+    provider = "owned";
+    type = "rpi";
+    ipv4 = null;
     ipv6 = null;
   };
 

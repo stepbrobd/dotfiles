@@ -33,7 +33,7 @@
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=pull/398456/merge";
     # a
     autopilot.url = "github:stepbrobd/autopilot";
     autopilot.inputs.nixpkgs.follows = "nixpkgs";
@@ -54,7 +54,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs";
-    disko.url = "github:nix-community/disko";
+    disko.url = "github:nix-community/disko?ref=pull/1069/merge";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
@@ -99,6 +99,7 @@
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     # r
+    rpi.url = "github:nvmd/nixos-raspberrypi";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # s

@@ -6,6 +6,7 @@ let
     "butte" # Virtua Cloud, 1 vCPU, 1GB RAM, 20GB Storage
     "halti" # Garnix.io Hosting, test server
     "highline" # Neptune Networks, 1 vCPU, 1GB RAM, 10GB Storage
+    "isere" # 
     "kongo" # Vultr, 1 vCPU, 1GB RAM, 25GB Storage
     "lagern" # AWS, T3.Large, 25GB Storage
     "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage

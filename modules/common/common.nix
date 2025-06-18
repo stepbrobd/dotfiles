@@ -73,6 +73,7 @@ in
       extra-substituters = [
         "https://cache.nixos.org?priority=10"
         "https://cache.garnix.io?priority=20"
+        "https://nixos-raspberrypi.cachix.org?priority=20"
         "https://nix-community.cachix.org?priority=20"
         "https://nixpkgs-update.cachix.org?priority=20"
         "https://colmena.cachix.org?priority=20"
@@ -83,6 +84,7 @@ in
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "nixpkgs-update.cachix.org-1:6y6Z2JdoL3APdu6/+Iy8eZX2ajf09e4EE9SnxSML1W8="
         "colmena.cachix.org-1:7BzpDnjjH8ki2CT3f6GdOk7QAzPOl+1t3LvTLXqYcSg="
