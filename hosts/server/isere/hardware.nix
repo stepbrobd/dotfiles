@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   imports = with inputs.rpi.nixosModules; [
@@ -12,6 +12,8 @@
     raspberry-pi-5.bluetooth
     raspberry-pi-5.display-vc4
   ];
+
+  nixpkgs.hostPlatform = lib.mkForce "aarch64-linux";
 
   # https://github.com/nvmd/nixos-raspberrypi-demo/blob/2847963e7555fc412c1d0f37bb48c761e78f350d/flake.nix#L154-L160
   # Ignore partitions with "Required Partition" GPT partition attribute
