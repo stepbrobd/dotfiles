@@ -608,16 +608,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1750246732,
-        "narHash": "sha256-QDB4lNEqn1BIUZAY+pbJWBnUoP+SaGRXRTbuCI7uw94=",
-        "owner": "stepbrobd",
+        "lastModified": 1749156319,
+        "narHash": "sha256-Eilhss+fV1Fp88Sua5LwPnxGJ2A1/3TEDI1cMQja/+w=",
+        "owner": "nvmd",
         "repo": "nixos-raspberrypi",
-        "rev": "4ee1a242afaa15afbf5cc177db427a54e7d66e94",
+        "rev": "dc5ff85af8a5c1e0913bfdc15e419ae430fd0df2",
         "type": "github"
       },
       "original": {
-        "owner": "stepbrobd",
+        "owner": "nvmd",
         "repo": "nixos-raspberrypi",
+        "rev": "dc5ff85af8a5c1e0913bfdc15e419ae430fd0df2",
         "type": "github"
       }
     },
