@@ -176,6 +176,16 @@ description = "forked from sno2wman/deno2nix"
 visibility = "public"
 archived = false
 
+[repo."disko"]
+description = "forked from nix-community/disko"
+visibility = "public"
+archived = false
+
+[repo."dolmen"]
+description = "forked from gbury/dolmen"
+visibility = "public"
+archived = false
+
 [repo."figure"]
 description = "forked from ruanyf/markdown-it-image-lazy-loading"
 visibility = "public"
@@ -228,6 +238,11 @@ archived = false
 
 [repo."nix-darwin"]
 description = "forked from lnl7/nix-darwin"
+visibility = "public"
+archived = false
+
+[repo."nixos-raspberrypi"]
+description = "forked from nvmd/nixos-raspberrypi"
 visibility = "public"
 archived = false
 
