@@ -12,7 +12,6 @@ in
     services.home-assistant = {
       openFirewall = false;
 
-      config.default_config = { };
       config.homeassistant.time_zone = null;
 
       config.http = {
