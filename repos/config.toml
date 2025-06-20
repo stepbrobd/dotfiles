@@ -216,6 +216,11 @@ description = "forked from cybergenik/hopper"
 visibility = "public"
 archived = false
 
+[repo."kumify"]
+description = "forked from denzha24/kumify"
+visibility = "public"
+archived = false
+
 [repo."lean4"]
 description = "forked from leanprover/lean4"
 visibility = "public"
