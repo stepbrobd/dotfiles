@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   imports = with inputs.rpi.nixosModules; [
@@ -12,6 +12,20 @@
     raspberry-pi-5.bluetooth
     raspberry-pi-5.display-vc4
   ];
+
+  # bluetooth
+  # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_5#Bluetooth
+  boot.kernelModules = [ "hci_uart" "btbcm" "bluetooth" "btsdio" "brcmfmac" ];
+
+  boot.kernelParams = lib.mkForce [
+    "8250.nr_uarts=11"
+    "console=ttyAMA10,115200"
+    "console=tty1"
+    "root=fstab"
+    "loglevel=7"
+    "lsm=landlock,yama,bpf"
+  ];
+
 
   # https://github.com/nvmd/nixos-raspberrypi-demo/blob/2847963e7555fc412c1d0f37bb48c761e78f350d/flake.nix#L154-L160
   # Ignore partitions with "Required Partition" GPT partition attribute
