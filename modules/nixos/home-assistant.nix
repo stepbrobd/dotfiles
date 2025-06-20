@@ -21,6 +21,14 @@ in
         use_x_forwarded_for = true;
         trusted_proxies = [ "127.0.0.1" "::1" ];
       };
+
+      extraComponents = [
+        "bluetooth"
+        "homekit"
+        "homekit_controller"
+        "switchbot"
+        "switchbot_cloud"
+      ];
     };
 
     services.caddy.virtualHosts."ha.ysun.co".extraConfig = ''
