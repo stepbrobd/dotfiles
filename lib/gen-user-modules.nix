@@ -24,7 +24,7 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
         inputs.index.hmModules.nix-index
         # secrets
         inputs.sops.homeManagerModules.sops
-        { sops.defaultSopsFile = ./secrets.yaml; sops.gnupg.sshKeyPaths = [ ]; }
+        { sops.defaultSopsFile = ./secrets.yaml; }
         ({ config, ... }: { sops.age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt"; })
         # state version
         { home = { inherit stateVersion; }; }
