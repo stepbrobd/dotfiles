@@ -34,6 +34,40 @@ in
       config.sops.secrets."plausible/environment".path
     ];
 
+    # clickhouse eats massive amount of disk space
+    # disable logging to save space
+    # https://github.com/plausible/hosting/tree/master/clickhouse
+    # https://github.com/NixOS/nixpkgs/issues/196935
+    # https://github.com/NixOS/nixpkgs/issues/245024
+    environment.etc = {
+      "clickhouse-server/config.d/nologs.xml".text = ''
+        <clickhouse>
+            <logger>
+                <level>warning</level>
+                <console>true</console>
+            </logger>
+            <query_thread_log remove="remove"/>
+            <query_log remove="remove"/>
+            <text_log remove="remove"/>
+            <trace_log remove="remove"/>
+            <metric_log remove="remove"/>
+            <asynchronous_metric_log remove="remove"/>
+            <session_log remove="remove"/>
+            <part_log remove="remove"/>
+        </clickhouse>
+      '';
+      "clickhouse-server/users.d/nologs.xml".text = ''
+        <clickhouse>
+            <profiles>
+                <default>
+                    <log_queries>0</log_queries>
+                    <log_query_threads>0</log_query_threads>
+                </default>
+            </profiles>
+        </clickhouse>
+      '';
+    };
+
     services.plausible = {
       package = pkgs.plausible.overrideAttrs (_: {
         prePatch = ''
