@@ -21,6 +21,7 @@ let
         self.nixosModules.glance
         self.nixosModules.golink
         self.nixosModules.grafana
+        self.nixosModules.home-assistant
         self.nixosModules.maxmind
         self.nixosModules.minimal
         self.nixosModules.passwordless

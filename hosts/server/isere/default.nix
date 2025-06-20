@@ -1,6 +1,8 @@
 {
   imports = [
     ./hardware.nix
+
+    ./home-assistant.nix
   ];
 
   networking = {
