@@ -12,6 +12,7 @@ in
     services.home-assistant = {
       openFirewall = false;
 
+      config.default_config = { };
       config.homeassistant.time_zone = null;
 
       config.http = {
@@ -22,6 +23,7 @@ in
       };
 
       extraComponents = [
+        "apple_tv"
         "bluetooth"
         "homekit"
         "homekit_controller"
@@ -29,6 +31,11 @@ in
         "switchbot"
         "switchbot_cloud"
       ];
+    };
+
+    networking.firewall = {
+      allowedTCPPorts = [ 21064 ];
+      allowedUDPPorts = [ 5353 ];
     };
 
     services.caddy.virtualHosts."ha.ysun.co".extraConfig = ''
