@@ -61,7 +61,6 @@
       "aldente"
       "bartender"
       "betterdisplay"
-      "calibre"
       "cleanmymac"
       "container"
       "discord"
