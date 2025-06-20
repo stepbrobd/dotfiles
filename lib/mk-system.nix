@@ -17,7 +17,7 @@ let
   system = platform;
 in
 lib."${os}System" {
-  inherit specialArgs system;
+  inherit specialArgs system lib;
 
   modules = genHostModules {
     inherit inputs os platform stateVersion entrypoint users modules specialArgs;
