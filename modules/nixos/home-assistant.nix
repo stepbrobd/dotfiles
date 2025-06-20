@@ -26,6 +26,7 @@ in
         "bluetooth"
         "homekit"
         "homekit_controller"
+        "met"
         "switchbot"
         "switchbot_cloud"
       ];
