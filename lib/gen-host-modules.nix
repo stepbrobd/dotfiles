@@ -16,7 +16,7 @@ in
 [
   entrypoint
   inputs.sops."${os}Modules".sops
-  { sops.defaultSopsFile = ./secrets.yaml; }
+  { sops.defaultSopsFile = ./secrets.yaml; sops.gnupg.sshKeyPaths = [ ]; }
   { nixpkgs.hostPlatform = mkDefault platform; }
   { system.stateVersion = if hasSuffix "darwin" platform then 5 else stateVersion; }
 ] ++ (genUserModules {
