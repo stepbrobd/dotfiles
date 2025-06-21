@@ -9,6 +9,7 @@
         lib = {
           path = ./lib;
           extender = inputs.nixpkgs.lib;
+          excludes = [ "secrets.yaml" ];
           extensions = with inputs; [
             autopilot.lib
             colmena.lib
