@@ -22,4 +22,5 @@
   };
 
   # nix.nixbuild.enable = true;
+  system.stateVersion = 5;
 }

@@ -43,4 +43,6 @@
   services.udev.extraRules = ''
     ATTR{address}=="52:54:25:46:aa:1c", NAME="enp3s0"
   '';
+
+  system.stateVersion = "25.05";
 }

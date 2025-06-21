@@ -2,7 +2,6 @@
 
 { inputs
 , os
-, stateVersion
 , specialArgs ? { }
 , users ? { } # { "username" -> [ module ] }
 }:
@@ -26,8 +25,6 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
         inputs.sops.homeManagerModules.sops
         { sops.defaultSopsFile = ./secrets.yaml; }
         ({ config, ... }: { sops.age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt"; })
-        # state version
-        { home = { inherit stateVersion; }; }
         # actual user module
         "${inputs.self}/users/${u}/home.nix"
       ] ++ (users.${u});

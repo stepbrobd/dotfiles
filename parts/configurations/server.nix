@@ -1,4 +1,4 @@
-{ getSystem, inputs, lib, stateVersion }:
+{ getSystem, inputs, lib }:
 
 let
   inherit (lib) mkColmena;
@@ -35,7 +35,7 @@ let
       ];
     in
     (mkColmena rec {
-      inherit os inputs specialArgs modules users stateVersion;
+      inherit os inputs specialArgs modules users;
       platform = "x86_64-linux";
       nixpkgs = (getSystem platform).allModuleArgs.pkgs;
       hosts = [
@@ -49,7 +49,7 @@ let
         "walberla" # Hetzner Cloud CX32, 4 vCPU, 8GB RAM, 80GB Storage
       ];
     }) // (mkColmena rec {
-      inherit os inputs specialArgs modules users stateVersion;
+      inherit os inputs specialArgs modules users;
       platform = "aarch64-linux";
       nixpkgs = inputs.rpi.inputs.nixpkgs.legacyPackages.${platform};
       hosts = [

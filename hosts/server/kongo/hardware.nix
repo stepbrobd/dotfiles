@@ -22,4 +22,6 @@
     "/" = { device = "/dev/vda2"; fsType = "ext4"; };
     "/boot" = { device = "/dev/disk/by-uuid/E779-7666"; fsType = "vfat"; };
   };
+
+  system.stateVersion = "25.05";
 }

@@ -50,4 +50,6 @@
   services.udev.extraRules = ''
     ATTR{address}=="02:8d:20:6f:88:69", NAME="ens3"
   '';
+
+  system.stateVersion = "25.05";
 }

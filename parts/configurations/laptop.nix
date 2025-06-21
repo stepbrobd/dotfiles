@@ -1,4 +1,4 @@
-{ getSystem, inputs, lib, stateVersion }:
+{ getSystem, inputs, lib }:
 
 let
   inherit (lib) mkSystem;
@@ -12,7 +12,7 @@ in
   flake.darwinConfigurations = {
     # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
     macbook = mkSystem rec {
-      inherit inputs stateVersion;
+      inherit inputs;
       os = "darwin";
       platform = "aarch64-darwin";
       entrypoint = ../../hosts/laptop/macbook;
@@ -37,7 +37,7 @@ in
   flake.nixosConfigurations = {
     # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
     framework = mkSystem rec {
-      inherit inputs stateVersion;
+      inherit inputs;
       os = "nixos";
       platform = "x86_64-linux";
       entrypoint = ../../hosts/laptop/framework;

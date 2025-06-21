@@ -100,4 +100,6 @@
     # tod.enable = true;
     # tod.driver = pkgs.libfprint-2-tod1-goodix;
   };
+
+  system.stateVersion = "25.05";
 }

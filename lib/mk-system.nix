@@ -6,7 +6,6 @@ in
 { inputs
 , os
 , platform
-, stateVersion ? (versions.majorMinor version)
 , entrypoint # file path
 , users ? { } # { "username" -> [ module ] }
 , modules ? [ ] # nixos/darwin modules
@@ -20,6 +19,6 @@ lib."${os}System" {
   inherit specialArgs system lib;
 
   modules = genHostModules {
-    inherit inputs os platform stateVersion entrypoint users modules specialArgs;
+    inherit inputs os platform entrypoint users modules specialArgs;
   };
 }

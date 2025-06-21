@@ -10,6 +10,8 @@ let
   nixvim = inputs.self.packages.${pkgs.stdenv.system}.nixvim;
 in
 {
+  home.stateVersion = "25.05";
+
   xdg = {
     enable = true;
   } // lib.optionalAttrs pkgs.stdenv.isLinux {

@@ -1,12 +1,11 @@
 { lib }:
 
 let
-  inherit (lib) genHostModules version versions;
+  inherit (lib) genHostModules;
 in
 { inputs
 , os
 , platform
-, stateVersion ? (versions.majorMinor version)
 , hosts ? [ ] # [ "server1" "server2" ]
 , users ? { } # { "username" -> [ module ] }
 , modules ? [ ] # nixos/darwin modules
@@ -25,7 +24,7 @@ in
     in
     genHostModules
       {
-        inherit inputs os platform stateVersion entrypoint users modules specialArgs;
+        inherit inputs os platform entrypoint users modules specialArgs;
       } ++ [
       (
         { config, ... }:
