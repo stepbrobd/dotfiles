@@ -16,6 +16,7 @@
             hm.lib
             parts.lib
             utils.lib
+            { std = inputs.std.lib; }
           ];
         };
 
@@ -108,6 +109,7 @@
     sops.inputs.nixpkgs.follows = "nixpkgs";
     srvos.url = "github:nix-community/srvos";
     srvos.inputs.nixpkgs.follows = "nixpkgs";
+    std.url = "github:chessai/nix-std";
     systems.url = "github:nix-systems/default";
     # t
     tangled.url = "git+https://tangled.sh/@tangled.sh/core";
