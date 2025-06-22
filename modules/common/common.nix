@@ -46,7 +46,7 @@ in
       use-xdg-base-directories = true;
       warn-dirty = false;
 
-      sandbox = lib.mkDefault true;
+      sandbox = if pkgs.stdenv.isDarwin then "relaxed" else true;
       extra-sandbox-paths = optionals pkgs.stdenv.isDarwin [
         "/System/Library/Frameworks"
         "/System/Library/PrivateFrameworks"
