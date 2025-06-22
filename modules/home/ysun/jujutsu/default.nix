@@ -11,7 +11,7 @@
       };
 
       signing = {
-        sign-all = true;
+        signing.behavior = "own";
         backend = "ssh";
         key = "${config.home.homeDirectory}/.ssh/id_ed25519";
       };
