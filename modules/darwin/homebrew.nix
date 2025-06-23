@@ -65,7 +65,7 @@
       "container"
       "discord"
       "google-chrome"
-      "hey"
+      "hey-desktop"
       "lulu"
       "notchnook"
       "obs"
