@@ -13,7 +13,7 @@
     };
 
     global = {
-      autoUpdate = false;
+      autoUpdate = true;
       brewfile = true;
       lockfiles = true;
     };
