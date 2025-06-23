@@ -22,7 +22,7 @@ in
       virtualHosts = genAttrs domains (domain: {
         extraConfig = ''
           import common
-          header Cache-Control "public, max-age=3600, must-revalidate"
+          header Cache-Control "public, max-age=600, must-revalidate"
           reverse_proxy ${settings.server.host}:${toString settings.server.port}
         '';
       });
