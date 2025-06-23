@@ -10,15 +10,15 @@
 
   environment.systemPackages = [ pkgs.iproute2mac ];
 
-  system.defaults = {
-    alf = {
-      allowdownloadsignedenabled = 1;
-      allowsignedenabled = 1;
-      globalstate = 1;
-      loggingenabled = 0;
-      stealthenabled = 0;
-    };
+  networking.applicationFirewall = {
+    enable = true;
+    blockAllIncoming = false;
+    enableStealthMode = false;
+    allowSigned = true;
+    allowSignedApp = true;
+  };
 
+  system.defaults = {
     dock = {
       autohide = true;
       tilesize = 64;
