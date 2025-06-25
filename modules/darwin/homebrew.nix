@@ -60,7 +60,6 @@
       "airbuddy"
       "aldente"
       "betterdisplay"
-      "cleanmymac"
       "container"
       "discord"
       "element"
