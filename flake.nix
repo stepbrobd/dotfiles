@@ -106,7 +106,7 @@
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # s
     schemas.url = "github:determinatesystems/flake-schemas";
-    sops.url = "github:Mic92/sops-nix";
+    sops.url = "github:mic92/sops-nix";
     sops.inputs.nixpkgs.follows = "nixpkgs";
     srvos.url = "github:nix-community/srvos";
     srvos.inputs.nixpkgs.follows = "nixpkgs";
