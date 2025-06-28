@@ -76,6 +76,10 @@
       "yubico-yubikey-manager"
       "zoom"
       "zotero"
+
+      # caldigit
+      "caldigit-docking-utility"
+      "caldigit-thunderbolt-charging"
     ];
 
     masApps = {
