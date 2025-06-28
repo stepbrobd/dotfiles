@@ -24,6 +24,7 @@
     # mpd # linux only
     neomutt
     neovide
+    nh
     # nushell # imported in minimal
     ssh
     # tmux # imported in minimal
