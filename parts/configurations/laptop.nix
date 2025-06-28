@@ -25,6 +25,7 @@ in
         homebrew
         linux-builder
         nixbuild
+        ntpd-rs
         passwordless
         sshd
         system

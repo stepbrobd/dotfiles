@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 { pkgs, ... }:
 
 {
@@ -7,6 +9,26 @@
   system.primaryUser = "ysun";
 
   nix.enable = true;
+
+  services.ntpd-rs = {
+    enable = true;
+    settings.source = lib.map
+      (s: {
+        mode = "nts";
+        address = s;
+      })
+      [
+        "time.cloudflare.com"
+        "virginia.time.system76.com"
+        "ohio.time.system76.com"
+        "oregon.time.system76.com"
+        "paris.time.system76.com"
+        "brazil.time.system76.com"
+        "ntppool1.time.nl"
+        "ntppool2.time.nl"
+      ];
+  };
+
 
   environment.systemPackages = [ pkgs.iproute2mac ];
 
