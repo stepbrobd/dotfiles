@@ -286,6 +286,11 @@ description = "forked from charmbracelet/soft-serve"
 visibility = "public"
 archived = false
 
+[repo."sora"]
+description = "forked from cranci1/sora"
+visibility = "public"
+archived = false
+
 [repo."tailscale"]
 description = "forked from tailscale/tailscale"
 visibility = "public"
