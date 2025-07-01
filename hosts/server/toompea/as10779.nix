@@ -44,6 +44,7 @@ in
         ipv4.routes = [
           { prefix = "23.161.104.0/24"; option = "reject"; }
           { prefix = "44.32.189.0/24"; option = "reject"; }
+          { prefix = "192.104.136.0/24"; option = "reject"; }
         ];
         ipv6.routes = [{ prefix = "2620:be:a000::/48"; option = "reject"; }];
       };
