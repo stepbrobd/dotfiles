@@ -26,6 +26,7 @@
     neovide
     nh
     # nushell # imported in minimal
+    openconnect
     ssh
     # tmux # imported in minimal
     vscode
