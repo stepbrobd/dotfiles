@@ -24,10 +24,10 @@ origin = false
 domain = "git.sr.ht"
 user = "~stepbrobd"
 
-[platform.tangled]
+[platform.inria]
 origin = false
-domain = "knot.stepbrobd.com"
-user = "stepbrobd.com"
+domain = "gitlab.inria.fr"
+user = "yisun"
 
 ## Personal
 [repo."aoc"]
