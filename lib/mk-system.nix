@@ -1,7 +1,7 @@
 { lib }:
 
 let
-  inherit (lib) genHostModules version versions;
+  inherit (lib) genHostModules;
 in
 { inputs
 , os
