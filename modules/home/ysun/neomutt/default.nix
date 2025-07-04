@@ -14,25 +14,35 @@
         msmtp.enable = true;
         notmuch = {
           enable = true;
-          neomutt = {
-            enable = true;
-            virtualMailboxes = [ ];
-          };
+          neomutt.enable = true;
         };
 
         neomutt = {
           enable = true;
           mailboxType = "imap";
+          extraMailboxes = [
+            "Drafts"
+            "Sent"
+            "Trash"
+            "Junk"
+            "Archive"
+          ];
         };
 
-        mkpass = key: "${lib.getExe' pkgs.toybox "cat"} ${config.sops.defaultSymlinkPath}/${key}";
+        mkpass = key: "${lib.getExe' pkgs.toybox "cat"} ${config.sops.defaultSymlinkPath}/mail/${key}/pass";
       in
       {
         softbank = rec {
-          inherit realName mbsync msmtp notmuch neomutt;
+          inherit
+            realName
+            mbsync
+            msmtp
+            notmuch
+            neomutt
+            ;
           address = "ysun@i.softbank.jp";
           userName = address;
-          passwordCommand = mkpass "mail/softbank/pass";
+          passwordCommand = mkpass "softbank";
           imap = {
             host = "imap.softbank.jp";
             port = 993;
@@ -45,10 +55,16 @@
 
         stepbrobd = rec {
           primary = true;
-          inherit realName mbsync msmtp notmuch neomutt;
+          inherit
+            realName
+            mbsync
+            msmtp
+            notmuch
+            neomutt
+            ;
           address = "ysun@stepbrobd.com";
           userName = address;
-          passwordCommand = mkpass "mail/stepbrobd/pass";
+          passwordCommand = mkpass "stepbrobd";
           imap = {
             host = "imap.purelymail.com";
             port = 993;
@@ -86,7 +102,7 @@
       color index		brightred default ~D
       color body		brightgreen default         (https?|ftp)://[\-\.+,/%~_:?&=\#a-zA-Z0-9]+
       color body		brightgreen default         [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
-      color attachment	magenta default
+      color attachment	        magenta default
       color signature		brightwhite default
       color search		brightred black
 
@@ -96,7 +112,7 @@
       color tree		white default
       color tilde		cyan default
 
-      color hdrdefault	brightblue default
+      color hdrdefault	        brightblue default
       color header		cyan default "^From:"
       color header	 	cyan default "^Subject:"
 
