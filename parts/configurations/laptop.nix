@@ -3,22 +3,22 @@
 let
   inherit (lib) mkSystem;
 
-  genSpecialArgs = system: {
-    inherit inputs lib;
-    inherit ((getSystem system).allModuleArgs) pkgs;
-  };
+  # instead of setting specialArgs.pkgs, set pkgs in a module
+  # https://discourse.nixos.org/t/misleading-error-from-specialargs-pkgs-mypkgs/66384/2
+  unification = system: { nixpkgs = { inherit ((getSystem system).allModuleArgs) pkgs; }; };
+  specialArgs = { inherit inputs lib; };
 in
 {
   flake.darwinConfigurations = {
     # MacBook Pro 14-inch, Apple M2 Max, 64GB RAM, 1TB Storage
     macbook = mkSystem rec {
-      inherit inputs;
+      inherit inputs specialArgs;
       os = "darwin";
       platform = "aarch64-darwin";
       entrypoint = ../../hosts/laptop/macbook;
-      specialArgs = genSpecialArgs platform;
       users = { ysun = with inputs.self; [ hmModules.ysun.darwin ]; };
       modules = with inputs.self.darwinModules; [
+        (unification platform)
         common
         fonts
         # hammerspoon
@@ -38,13 +38,13 @@ in
   flake.nixosConfigurations = {
     # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
     framework = mkSystem rec {
-      inherit inputs;
+      inherit inputs specialArgs;
       os = "nixos";
       platform = "x86_64-linux";
       entrypoint = ../../hosts/laptop/framework;
-      specialArgs = genSpecialArgs platform;
       users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
       modules = with inputs; [
+        (unification platform)
         disko.nixosModules.disko
         lanzaboote.nixosModules.lanzaboote
         nixos-generators.nixosModules.all-formats
