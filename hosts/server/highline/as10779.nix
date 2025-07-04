@@ -12,6 +12,14 @@ in
     reloadUnits = [ config.systemd.services.bird.name ];
   };
 
+  networking.vxlans.vx0 = {
+    vni = 18774;
+    local = lib.blueprint.hosts.highline.ipv6;
+    remote = "2a11:6c7:3::1";
+    port = 4789;
+    address = [ "2a11:6c7:f01:8d::2/64" ];
+  };
+
   services.as10779 = {
     enable = true;
 

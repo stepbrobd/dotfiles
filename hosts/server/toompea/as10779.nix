@@ -12,6 +12,14 @@ in
     reloadUnits = [ config.systemd.services.bird.name ];
   };
 
+  networking.vxlans.vx0 = {
+    vni = 18776;
+    local = lib.blueprint.hosts.toompea.ipv6;
+    remote = "2a11:6c7:1::1";
+    port = 4789;
+    address = [ "2a11:6c7:f00:19e::2/64" ];
+  };
+
   services.as10779 = {
     enable = true;
 
