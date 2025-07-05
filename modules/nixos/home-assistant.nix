@@ -1,6 +1,6 @@
 { lib, ... }:
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   cfg = config.services.home-assistant;
@@ -31,6 +31,8 @@ in
         "switchbot"
         "switchbot_cloud"
       ];
+
+      customComponents = with pkgs.home-assistant-custom-components; [ midea_ac_lan ];
     };
 
     networking.firewall = {
