@@ -58,6 +58,8 @@
     devshell.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko?ref=pull/1069/merge";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    doom.url = "github:doomemacs/doomemacs";
+    doom.flake = false;
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
     # g

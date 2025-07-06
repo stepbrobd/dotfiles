@@ -20,7 +20,6 @@
       })
       # must use neovim
       rec {
-        emacs = "nvim";
         nano = "nvim";
         vi = "nvim";
         vim = "nvim";

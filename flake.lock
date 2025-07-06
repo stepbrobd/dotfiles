@@ -164,6 +164,22 @@
         "type": "github"
       }
     },
+    "doom": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1751746896,
+        "narHash": "sha256-2KFT9v/PGb2K8Vd2eLAhDFQW6ORQapmQmBXipObpkoo=",
+        "owner": "doomemacs",
+        "repo": "doomemacs",
+        "rev": "5b5b170f7902e81826fd8efbec88eb38e23e2807",
+        "type": "github"
+      },
+      "original": {
+        "owner": "doomemacs",
+        "repo": "doomemacs",
+        "type": "github"
+      }
+    },
     "flakey-profile": {
       "locked": {
         "lastModified": 1712898590,
@@ -588,6 +604,7 @@
         "darwin": "darwin",
         "devshell": "devshell",
         "disko": "disko",
+        "doom": "doom",
         "flakey-profile": "flakey-profile",
         "garnix": "garnix",
         "git-hooks": "git-hooks",
