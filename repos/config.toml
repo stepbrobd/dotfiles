@@ -305,3 +305,8 @@ archived = false
 description = "forked from tvlfyi/tvix"
 visibility = "public"
 archived = false
+
+[repo."verus"]
+description = "forked from verus-lang/verus"
+visibility = "public"
+archived = false
