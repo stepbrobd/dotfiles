@@ -23,14 +23,14 @@
 
         nixpkgs = {
           config = { allowUnfree = true; };
-          overlays = with inputs; [ self.overlays.default golink.overlays.default ];
+          overlays = with inputs; [ self.overlays.default golink.overlays.default rust-overlay.overlays.default ];
           instances = { pkgs = inputs.nixpkgs; };
         };
 
         parts.path = ./parts;
       };
     }
-    { systems = import inputs.systems; };
+    { debug = true; systems = import inputs.systems; };
 
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/master";
