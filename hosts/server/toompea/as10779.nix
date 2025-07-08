@@ -76,6 +76,26 @@ in
           };
         }
         {
+          name = "route64";
+          password = null;
+          type = { ipv4 = "disabled"; ipv6 = "direct"; };
+          mp = "v4 over v6";
+          source = { ipv4 = null; ipv6 = "2a11:6c7:f00:19e::2"; };
+          neighbor = {
+            asn = 212895;
+            ipv4 = null;
+            ipv6 = "2a11:6c7:f00:19e::1";
+          };
+          import = {
+            ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
+            ipv6 = "import filter ${cfg.router.rpki.ipv6.filter};";
+          };
+          export = {
+            ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
+          };
+        }
+        {
           name = "bgptools";
           password = null;
           type = { ipv4 = "disabled"; ipv6 = "multihop"; };
