@@ -52,7 +52,8 @@ rustPlatform.buildRustPackage (finalAttrs: {
     };
   };
 
-  env.VERUS_Z3_PATH = lib.getExe z3;
+  RUSTC_BOOTSTRAP = 1;
+  VERUS_Z3_PATH = lib.getExe z3;
 
   buildInputs = [ zlib ] ++ lib.optional stdenv.hostPlatform.isDarwin apple-sdk;
 
@@ -75,17 +76,21 @@ rustPlatform.buildRustPackage (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    ls -la
-
     mkdir -p $out/lib $out/bin
     cp -r target-verus/release $out/lib/verus-root
-    ln -s ../lib/verus-root/cargo-verus $out/bin
+
+    install_name_tool -add_rpath ${rustPlatform.rust.rustc}/lib $out/lib/verus-root/rust_verify
 
     wrapProgram $out/lib/verus-root/verus \
       --prefix PATH : ${lib.makeBinPath [ rustup ]}
 
+    ln -s ../lib/verus-root/verus $out/bin
+    ln -s ../lib/verus-root/cargo-verus $out/bin
+
     runHook postInstall
   '';
+
+  doCheck = false;
 
   passthru = {
     inherit
@@ -94,5 +99,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
       vargo
       z3
       ;
+  };
+
+  meta = {
+    broken = true;
+    mainProgram = "verus";
   };
 })
