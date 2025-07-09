@@ -20,6 +20,7 @@
     gpg
     # hyprland # linux only
     jujutsu
+    lazygit
     lsd
     # mpd # linux only
     neomutt
