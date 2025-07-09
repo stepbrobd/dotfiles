@@ -56,7 +56,6 @@ in
     cider
     comma
     discord
-    doom
     gitleaks
     monocle
     nix-output-monitor
@@ -76,7 +75,6 @@ in
     cfspeedtest
     cocoapods
     comma
-    doom
     gitleaks
     monocle
     nix-output-monitor

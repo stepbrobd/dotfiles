@@ -23,7 +23,12 @@
 
         nixpkgs = {
           config = { allowUnfree = true; };
-          overlays = with inputs; [ self.overlays.default golink.overlays.default rust-overlay.overlays.default ];
+          overlays = with inputs; [
+            self.overlays.default
+            golink.overlays.default
+            rust-overlay.overlays.default
+            unstraightened.overlays.default
+          ];
           instances = { pkgs = inputs.nixpkgs; };
         };
 
@@ -58,8 +63,6 @@
     devshell.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko?ref=pull/1069/merge";
     disko.inputs.nixpkgs.follows = "nixpkgs";
-    doom.url = "github:doomemacs/doomemacs";
-    doom.flake = false;
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
     # g
@@ -123,6 +126,9 @@
     terranix.inputs.flake-parts.follows = "parts";
     terranix.inputs.systems.follows = "systems";
     # u
+    unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
+    unstraightened.inputs.nixpkgs.follows = "nixpkgs";
+    unstraightened.inputs.systems.follows = "systems";
     utils.url = "github:numtide/flake-utils";
     utils.inputs.systems.follows = "systems";
     # y
