@@ -79,8 +79,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     mkdir -p $out/lib $out/bin
     cp -r target-verus/release $out/lib/verus-root
 
-    install_name_tool -add_rpath ${rustPlatform.rust.rustc}/lib $out/lib/verus-root/rust_verify
-
     wrapProgram $out/lib/verus-root/verus \
       --prefix PATH : ${lib.makeBinPath [ rustup ]}
 
@@ -88,6 +86,14 @@ rustPlatform.buildRustPackage (finalAttrs: {
     ln -s ../lib/verus-root/cargo-verus $out/bin
 
     runHook postInstall
+  '';
+
+  preFixup = ""
+    + lib.optionalString stdenv.hostPlatform.isDarwin ''
+    install_name_tool -add_rpath ${lib.makeLibraryPath [ rustPlatform.rust.rustc ]}  $out/lib/verus-root/rust_verify
+  ''
+    + lib.optionalString stdenv.hostPlatform.isLinux ''
+    patchelf --set-rpath ${lib.makeLibraryPath [ rustPlatform.rust.rustc ]} $out/lib/verus-root/rust_verify
   '';
 
   doCheck = false;

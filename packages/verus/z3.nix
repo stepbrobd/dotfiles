@@ -1,11 +1,11 @@
 { lib
-, stdenvNoCC
+, stdenv
 , fetchzip
 , autoPatchelfHook
 , fixDarwinDylibNames
 }:
 
-stdenvNoCC.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "z3";
   version = "4.12.5";
 
@@ -26,15 +26,15 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       url = "https://github.com/z3prover/z3/releases/download/z3-${finalAttrs.version}/z3-${finalAttrs.version}-x64-glibc-2.31.zip";
       hash = "sha256-kHWanLxL180OPiDSvrxXjgyd/sKFHVgX5/SFfL+pJJs=";
     };
-  }.${stdenvNoCC.system};
+  }.${stdenv.system};
 
   dontConfigure = true;
   dontBuild = true;
   dontStrip = true;
 
   nativeBuildInputs = [ ]
-    ++ lib.optional stdenvNoCC.isDarwin fixDarwinDylibNames
-    ++ lib.optional stdenvNoCC.isLinux autoPatchelfHook;
+    ++ lib.optional stdenv.isDarwin fixDarwinDylibNames
+    ++ lib.optionals stdenv.isLinux [ autoPatchelfHook stdenv.cc.cc.lib ];
 
   installPhase = ''
     runHook preInstall
