@@ -28,6 +28,7 @@
 
        :lang
        emacs-lisp
+       (markdown +grip)
        (nix +lsp)
 
        :config
