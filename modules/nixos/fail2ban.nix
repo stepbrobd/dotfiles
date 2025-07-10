@@ -2,13 +2,15 @@
   services.fail2ban = {
     enable = true;
 
-    bantime = "1h";
+    bantime = "24h";
     bantime-increment = {
       enable = true;
       overalljails = true;
-      maxtime = "168h"; # 7 * 24h
+      maxtime = "720h"; # 30 * 24h
       formula = "ban.Time * math.exp(float(ban.Count+1)*banFactor)/math.exp(1*banFactor)";
     };
+
+    maxretry = 1;
 
     ignoreIP = [
       # local
@@ -51,7 +53,5 @@
       "2a06:98c0::/29"
       "2c0f:f248::/32"
     ];
-
-    jails.sshd.settings.maxretry = 2;
   };
 }
