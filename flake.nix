@@ -107,7 +107,7 @@
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     # r
     rpi.url = "github:nvmd/nixos-raspberrypi";
-    rpi.inputs.nixpkgs.follows = "nixpkgs";
+    # rpi.inputs.nixpkgs.follows = "nixpkgs";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # s
