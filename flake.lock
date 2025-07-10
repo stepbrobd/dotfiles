@@ -661,17 +661,16 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1749156319,
-        "narHash": "sha256-Eilhss+fV1Fp88Sua5LwPnxGJ2A1/3TEDI1cMQja/+w=",
+        "lastModified": 1751645438,
+        "narHash": "sha256-PH/EEaWI33UWcahMLYxG2aL7K2qSNJsyckITYrNPr2E=",
         "owner": "nvmd",
         "repo": "nixos-raspberrypi",
-        "rev": "dc5ff85af8a5c1e0913bfdc15e419ae430fd0df2",
+        "rev": "157cf84d037896411b2d2b3fde3d03a8967d8aed",
         "type": "github"
       },
       "original": {
         "owner": "nvmd",
         "repo": "nixos-raspberrypi",
-        "rev": "dc5ff85af8a5c1e0913bfdc15e419ae430fd0df2",
         "type": "github"
       }
     },

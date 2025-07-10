@@ -106,7 +106,7 @@
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     # r
-    rpi.url = "github:nvmd/nixos-raspberrypi/dc5ff85af8a5c1e0913bfdc15e419ae430fd0df2";
+    rpi.url = "github:nvmd/nixos-raspberrypi";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # s

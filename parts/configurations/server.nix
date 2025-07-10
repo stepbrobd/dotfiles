@@ -51,7 +51,7 @@ let
     }) // (mkColmena rec {
       inherit os inputs specialArgs modules users;
       platform = "aarch64-linux";
-      nixpkgs = inputs.rpi.inputs.nixpkgs.legacyPackages.${platform};
+      nixpkgs = (getSystem platform).allModuleArgs.pkgs;
       hosts = [
         "isere" # Raspberry Pi 4, 8GB RAM, 500GB Storage
       ];
