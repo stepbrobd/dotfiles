@@ -6,7 +6,6 @@ builds:
     - devShells.*.*
   exclude:
     - darwinConfigurations.macbook # sandbox
-    - packages.aarch64-darwin.nixvim # garnix failing due to ssh connection issue?
     - packages.aarch64-linux.verus # z3 incorrect binary release
     - packages.*.hey-mail # unfree
     - packages.*.ripe-atlas-software-probe # broken
