@@ -67,6 +67,7 @@ in
     ripgrep
     slack
     smplayer
+    stepbrobd
     yt-dlp
     zoom-us
   ])
@@ -82,6 +83,7 @@ in
     pat
     pinentry_mac
     ripgrep
+    stepbrobd
     yt-dlp
   ]);
 
