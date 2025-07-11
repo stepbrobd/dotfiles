@@ -14,14 +14,7 @@ in
 
 [
   entrypoint
-  {
-    nixpkgs.overlays = with inputs; [
-      self.overlays.default
-      golink.overlays.default
-      rust-overlay.overlays.default
-      unstraightened.overlays.default
-    ];
-  }
+  { nixpkgs = { inherit (inputs.self.autopilot.nixpkgs) overlays; }; }
   inputs.sops."${os}Modules".sops
   { sops.defaultSopsFile = ./secrets.yaml; }
   { nixpkgs.hostPlatform = mkDefault platform; }

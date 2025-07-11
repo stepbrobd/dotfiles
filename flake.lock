@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750500676,
-        "narHash": "sha256-FAdfGVV5xfOWDKLIi1sz+amLg0IkBkQBpr0+zqPXeXM=",
+        "lastModified": 1752259867,
+        "narHash": "sha256-TNWq+JXciYI+mgaeBKmWU6NJp4UuYpTJ2+YH/FB9KvQ=",
         "owner": "stepbrobd",
         "repo": "autopilot",
-        "rev": "bb502530e1338ba654edd78b7abe06fc66dba65b",
+        "rev": "2cd5e4c6e7d0017d5ddf9f0bd58950bbac94917f",
         "type": "github"
       },
       "original": {
