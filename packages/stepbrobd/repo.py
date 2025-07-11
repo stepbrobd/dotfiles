@@ -92,7 +92,7 @@ class Context:
 def mkctx(cfg: Configuration) -> dict[pathlib.Path, Context]:
     return {
         cfg.general.home / r.name: Context(
-            env=cfg.general.env,
+            env = {**(os.environ or {}), **(cfg.general.env or {})},
             branch=r.branch,
             remote={
                 "fetch": [
@@ -164,7 +164,7 @@ def init(
                 env=ctx[tgt].env,
             )
         else:
-            # git remote | xargs -L1 -n1 git remote remove
+            # git remote | xargs -L1 git remote remove
             git_remote = subprocess.Popen(
                 ["git", "remote"],
                 cwd=tgt,
@@ -172,7 +172,7 @@ def init(
                 stdout=subprocess.PIPE,
             )
             subprocess.run(
-                ["xargs", "-L1", "-n1", "git", "remote", "remove"],
+                ["xargs", "-L1", "git", "remote", "remove"],
                 cwd=tgt,
                 env=ctx[tgt].env,
                 stdin=git_remote.stdout,
