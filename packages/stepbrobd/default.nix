@@ -49,7 +49,7 @@ lib.recursiveUpdate
     postBuild = ''
       wrapProgram $out/bin/${pname} \
         --prefix PATH : $out/bin \
-        --prefix REPO_CONFIG : ${configPath}
+        --set REPO_CONFIG ${configPath}
     '';
   })
 { inherit meta; }
