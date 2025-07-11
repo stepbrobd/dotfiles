@@ -10,6 +10,8 @@ let
     maintainers = [ lib.maintainers.stepbrobd ];
   };
 
+  configPath = ../../repos/config.toml;
+
   libexec = stdenv.mkDerivation {
     pname = "${pname}-libexec";
     inherit version;
@@ -44,6 +46,10 @@ lib.recursiveUpdate
     name = "${pname}-${version}";
     paths = [ libexec stepbrobd ] ++ [ bash curl gh git jq python311 ];
     buildInputs = [ makeWrapper ];
-    postBuild = "wrapProgram $out/bin/${pname} --prefix PATH : $out/bin";
+    postBuild = ''
+      wrapProgram $out/bin/${pname} \
+        --prefix PATH : $out/bin \
+        --prefix REPO_CONFIG : ${configPath}
+    '';
   })
 { inherit meta; }
