@@ -3,9 +3,7 @@
 { config, options, pkgs, ... }:
 
 let
-  # ysun = inputs.ysun.packages.${pkgs.stdenv.system}.default;
-  bind = "127.0.0.1";
-  port = 13000;
+  ysun = inputs.ysun.packages.${pkgs.stdenv.system}.default;
 in
 {
   # anycast test
@@ -27,20 +25,15 @@ in
       services.caddy = {
         enable = true;
         virtualHosts."anycast.as10779.net".extraConfig = ''
-          import common
-          respond ${config.networking.hostName}
+                    import common
+                    header X-Served-By ${config.networking.fqdn}
+                    root * ${ysun}/var/www/html
+                    file_server
+                    handle_errors {
+                      rewrite * /error
+          	    file_server
+                    }
         '';
-        # virtualHosts."anycast.as10779.net".extraConfig = ''
-        #   import common
-        #   reverse_proxy ${bind}:${lib.toString port}
-        # '';
       };
-
-      # systemd.services.ysun = {
-      #   description = "personal homepage anycast test";
-      #   wantedBy = [ "multi-user.target" ];
-      #   after = [ "network.target" ];
-      #   script = "${ysun}/bin/ysun ${bind} ${toString port}";
-      # };
     };
 }

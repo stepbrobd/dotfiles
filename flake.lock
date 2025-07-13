@@ -651,7 +651,8 @@
         "tangled": "tangled",
         "terranix": "terranix",
         "unstraightened": "unstraightened",
-        "utils": "utils"
+        "utils": "utils",
+        "ysun": "ysun"
       }
     },
     "rpi": {
@@ -890,6 +891,32 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "ysun": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "parts": [
+          "parts"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752416295,
+        "narHash": "sha256-Y28oyJCwwO4otLAJogojOjGxNqDPV8GwwzZu5Hg9FeM=",
+        "owner": "stepbrobd",
+        "repo": "ysun",
+        "rev": "64f24b2327a5fc10590d2431ac4780ec7f3e15c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stepbrobd",
+        "repo": "ysun",
         "type": "github"
       }
     }
