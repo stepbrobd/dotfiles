@@ -3,7 +3,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (lib) mapAttrs mapAttrsToList mkForce optional optionals;
+  inherit (lib) elem filterAttrs mapAttrs mapAttrsToList mkForce optional optionals;
 in
 {
   # enable nextdns and tailscale on all hosts
@@ -28,7 +28,14 @@ in
       options = "--delete-older-than 7d";
     };
 
-    registry = mkForce (mapAttrs (_: value: { flake = value; }) inputs);
+    registry =
+      let
+        allowed = [ "nixpkgs" ];
+      in
+      mkForce (
+        mapAttrs (_: value: { flake = value; })
+          (filterAttrs (name: _: elem name allowed) inputs)
+      );
 
     nixPath = mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
