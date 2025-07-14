@@ -35,21 +35,13 @@ in
     };
   };
 
-  flake.nixosConfigurations = {
-    # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
-    framework = mkSystem rec {
-      inherit inputs specialArgs;
-      os = "nixos";
-      platform = "x86_64-linux";
-      entrypoint = ../../hosts/laptop/framework;
-      users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
-      modules = with inputs; [
-        (unification platform)
+  flake.nixosConfigurations =
+    let
+      common = with inputs; [
         disko.nixosModules.disko
         lanzaboote.nixosModules.lanzaboote
         nixos-generators.nixosModules.all-formats
         nixos-hardware.nixosModules.common-hidpi
-        nixos-hardware.nixosModules.framework-13th-gen-intel
         self.nixosModules.common
         self.nixosModules.cross
         self.nixosModules.docker
@@ -61,6 +53,32 @@ in
         self.nixosModules.time
         srvos.nixosModules.desktop
       ];
+    in
+    {
+      # Framework Laptop 13, Intel Core i7-1360P, 64GB RAM, 1TB Storage
+      framework = mkSystem rec {
+        inherit inputs specialArgs;
+        os = "nixos";
+        platform = "x86_64-linux";
+        entrypoint = ../../hosts/laptop/framework;
+        users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
+        modules = with inputs; common ++ [
+          (unification platform)
+          nixos-hardware.nixosModules.framework-13th-gen-intel
+        ];
+      };
+
+      # XPS 13 9305, Intel COre i5-1135G7, 16GB RAM, 512GB Storage
+      xps = mkSystem rec {
+        inherit inputs specialArgs;
+        os = "nixos";
+        platform = "x86_64-linux";
+        entrypoint = ../../hosts/laptop/xps;
+        users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
+        modules = with inputs; common ++ [
+          (unification platform)
+          nixos-hardware.nixosModules.dell-xps-13-9300
+        ];
+      };
     };
-  };
 }
