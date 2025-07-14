@@ -35,7 +35,7 @@ After `nixos-install`, DO NOT reboot.
 Create secure boot keys and copy them to new system:
 
 ```shell
-sbctl create-keys && mv /etc/secureboot /mnt/etc
+sbctl create-keys && mv /var/lib/sbctl /mnt/var/lib/sbctl
 ```
 
 Run installation again:
