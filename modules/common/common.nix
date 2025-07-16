@@ -101,8 +101,10 @@ in
     };
   };
 
-  # alacritty terminfo
-  environment.systemPackages = with pkgs; [ alacritty.terminfo ];
+  environment.systemPackages = with pkgs; [
+    alacritty.terminfo
+    inputs.sweep.packages.${pkgs.system}.default
+  ];
 
   # pager
   environment.variables.PAGER = "less -FRX";
