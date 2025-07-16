@@ -88,6 +88,26 @@
         "type": "github"
       }
     },
+    "cornflake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1739211036,
+        "narHash": "sha256-71S/Co02YIm8r6dc740wmO3lj5I3zGHkYVLxOXc6VPM=",
+        "owner": "jzbor",
+        "repo": "cornflakes",
+        "rev": "720b23be91760665d3a5823d1a8dea84944cd30b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jzbor",
+        "repo": "cornflakes",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1751562746,
@@ -555,22 +575,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1751644338,
-        "narHash": "sha256-dXN4Ig8grBd7Hd5zk9bSmajZlcGbJbqLNI0LCus9+A0=",
-        "owner": "nvmd",
-        "repo": "nixpkgs",
-        "rev": "df3e3357bdc6ec1c098f5baedbec86320f26d84c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvmd",
-        "ref": "modules-with-keys-25.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixvim": {
       "inputs": {
         "flake-parts": [
@@ -623,6 +627,7 @@
         "autopilot": "autopilot",
         "colmena": "colmena",
         "compat": "compat",
+        "cornflake": "cornflake",
         "crane": "crane",
         "darwin": "darwin",
         "devshell": "devshell",
@@ -647,6 +652,7 @@
         "sops": "sops",
         "srvos": "srvos",
         "std": "std",
+        "sweep": "sweep",
         "systems": "systems",
         "tangled": "tangled",
         "terranix": "terranix",
@@ -659,7 +665,9 @@
       "inputs": {
         "argononed": "argononed",
         "nixos-images": "nixos-images",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1751645438,
@@ -775,6 +783,32 @@
       "original": {
         "owner": "chessai",
         "repo": "nix-std",
+        "type": "github"
+      }
+    },
+    "sweep": {
+      "inputs": {
+        "cf": [
+          "cornflake"
+        ],
+        "crane": [
+          "crane"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751876241,
+        "narHash": "sha256-c9odU1kTuhbwRC4Tzmi0Y2+Bfy2+Uod/1eKQ49WsR9w=",
+        "owner": "jzbor",
+        "repo": "nix-sweep",
+        "rev": "18afad996d386f5aab7d687974df1392d0058262",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jzbor",
+        "repo": "nix-sweep",
         "type": "github"
       }
     },

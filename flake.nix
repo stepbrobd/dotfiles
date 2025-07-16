@@ -55,6 +55,8 @@
     colmena.inputs.nix-github-actions.follows = "";
     compat.url = "github:edolstra/flake-compat";
     compat.flake = false;
+    cornflake.url = "github:jzbor/cornflakes";
+    cornflake.inputs.nixpkgs.follows = "nixpkgs";
     crane.url = "github:ipetkov/crane";
     # d
     darwin.url = "github:lnl7/nix-darwin";
@@ -107,7 +109,7 @@
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     # r
     rpi.url = "github:nvmd/nixos-raspberrypi";
-    # rpi.inputs.nixpkgs.follows = "nixpkgs";
+    rpi.inputs.nixpkgs.follows = "nixpkgs";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # s
@@ -117,6 +119,10 @@
     srvos.url = "github:nix-community/srvos";
     srvos.inputs.nixpkgs.follows = "nixpkgs";
     std.url = "github:chessai/nix-std";
+    sweep.url = "github:jzbor/nix-sweep";
+    sweep.inputs.nixpkgs.follows = "nixpkgs";
+    sweep.inputs.cf.follows = "cornflake";
+    sweep.inputs.crane.follows = "crane";
     systems.url = "github:nix-systems/default";
     # t
     tangled.url = "git+https://tangled.sh/@tangled.sh/core";
