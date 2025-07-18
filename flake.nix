@@ -1,41 +1,50 @@
 {
   description = "@stepbrobd: yet another dotfiles repo with nix";
 
-  outputs = { self, ... } @ inputs: inputs.autopilot.lib.mkFlake
-    {
-      inherit inputs;
+  outputs =
+    { self, ... }@inputs:
+    inputs.autopilot.lib.mkFlake
+      {
+        inherit inputs;
 
-      autopilot = {
-        lib = {
-          path = ./lib;
-          extender = inputs.nixpkgs.lib;
-          excludes = [ "secrets.yaml" ];
-          extensions = with inputs; [
-            autopilot.lib
-            colmena.lib
-            darwin.lib
-            hm.lib
-            parts.lib
-            utils.lib
-            { std = inputs.std.lib; }
-          ];
+        autopilot = {
+          lib = {
+            path = ./lib;
+            extender = inputs.nixpkgs.lib;
+            excludes = [ "secrets.yaml" ];
+            extensions = with inputs; [
+              autopilot.lib
+              colmena.lib
+              darwin.lib
+              hm.lib
+              parts.lib
+              utils.lib
+              { std = inputs.std.lib; }
+            ];
+          };
+
+          nixpkgs = {
+            config = {
+              allowUnfree = true;
+            };
+            overlays = with inputs; [
+              self.overlays.default
+              golink.overlays.default
+              rust-overlay.overlays.default
+              unstraightened.overlays.default
+            ];
+            instances = {
+              pkgs = inputs.nixpkgs;
+            };
+          };
+
+          parts.path = ./parts;
         };
-
-        nixpkgs = {
-          config = { allowUnfree = true; };
-          overlays = with inputs; [
-            self.overlays.default
-            golink.overlays.default
-            rust-overlay.overlays.default
-            unstraightened.overlays.default
-          ];
-          instances = { pkgs = inputs.nixpkgs; };
-        };
-
-        parts.path = ./parts;
+      }
+      {
+        debug = true;
+        systems = import inputs.systems;
       };
-    }
-    { debug = true; systems = import inputs.systems; };
 
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/master";
@@ -79,6 +88,9 @@
     golink.url = "github:tailscale/golink";
     golink.inputs.nixpkgs.follows = "nixpkgs";
     golink.inputs.systems.follows = "systems";
+    gomod2nix.url = "github:nix-community/gomod2nix";
+    gomod2nix.inputs.nixpkgs.follows = "nixpkgs";
+    gomod2nix.inputs.flake-utils.follows = "utils";
     # h
     hm.url = "github:nix-community/home-manager";
     hm.inputs.nixpkgs.follows = "nixpkgs";
@@ -128,6 +140,7 @@
     tangled.url = "git+https://tangled.sh/@tangled.sh/core";
     tangled.inputs.nixpkgs.follows = "nixpkgs";
     tangled.inputs.gitignore.follows = "gitignore";
+    tangled.inputs.gomod2nix.follows = "gomod2nix";
     terranix.url = "github:terranix/terranix";
     terranix.inputs.nixpkgs.follows = "nixpkgs";
     terranix.inputs.flake-parts.follows = "parts";

@@ -20,7 +20,7 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
     home-manager.users = genAttrs usernames (u: {
       imports = [
         # index
-        inputs.index.hmModules.nix-index
+        inputs.index.homeModules.nix-index
         # secrets
         inputs.sops.homeManagerModules.sops
         { sops.defaultSopsFile = ./secrets.yaml; }
