@@ -11,13 +11,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "ripe-atlas-software-probe";
-  version = "5100";
+  version = "5110";
 
   src = fetchFromGitHub {
     owner = "ripe-ncc";
     repo = "ripe-atlas-software-probe";
     tag = finalAttrs.version;
-    hash = "sha256-n+SbjQoAf4Tnc52DNt5JFG9iyRBpeEuVtsewHnamgA8=";
+    hash = "sha256-PH4mdz7OGYpS5KwXVbH7PV+DI3y8MG7uzXXMKnGrJ24=";
   };
 
   nativeBuildInputs = [ autoreconfHook pkg-config ];
