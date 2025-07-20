@@ -4,9 +4,9 @@
 , autoreconfHook
 , openssl
 , pkg-config
-, user ? "ripe-atlas"
-, group ? "ripe-atlas"
-, measurement ? "ripe-atlas-measurement"
+, withUser ? "ripe-atlas"
+, withGroup ? "ripe-atlas"
+, withMeasurementUser ? "ripe-atlas-measurement"
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -24,23 +24,28 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [ openssl ];
 
-  env.NIX_CFLAGS_COMPILE = toString [
+  env.NIX_CFLAGS_COMPILE = lib.toString [
     "-Wno-error=format-security"
     "-Wno-error=implicit-function-declaration"
   ];
 
   configureFlags = [
+    "--enable-systemd"
     "--disable-chown"
-    "--disable-systemd"
     "--disable-setcap-install"
-    "--libdir=${placeholder "out"}/lib"
-    "--sysconfdir=/etc"
-    "--localstatedir=/var"
+    "--prefix=${lib.placeholder "out"}"
+    "--libdir=${lib.placeholder "out"}/lib"
+    "--sysconfdir=${lib.placeholder "out"}/etc"
+    "--localstatedir=${lib.placeholder "out"}/var"
     "--runstatedir=/run"
-    "--with-user=${user}"
-    "--with-group=${group}"
-    "--with-measurement-user=${measurement}"
+    "--with-user=${withUser}"
+    "--with-group=${withGroup}"
+    "--with-measurement-user=${withMeasurementUser}"
   ];
+
+  preBuild = ''
+    sed -i '/install-exec-local:/,/^$/d' Makefile
+  '';
 
   meta = {
     broken = true;
