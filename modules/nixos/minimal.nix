@@ -1,6 +1,6 @@
 { inputs, ... }:
 
 {
-  imports = with inputs.self.nixosModules; [ fail2ban nftables tailscale time vxlan ];
+  imports = with inputs.self.nixosModules; [ fail2ban nftables mglru tailscale time vxlan ];
   # services.prometheus.enable = true;
 }
