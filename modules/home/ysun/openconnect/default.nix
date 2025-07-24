@@ -14,7 +14,7 @@ let
   cfg = config.programs.openconnect;
 
   mkOpenConnect =
-    name: userFile: passFile: connFile:
+    name: userFile: passFile: authGroupFile: connFile:
     (pkgs.writeShellApplication {
       inherit name;
       runtimeInputs = [
@@ -26,6 +26,7 @@ let
           --protocol=anyconnect \
           --passwd-on-stdin \
           --user="$(cat ${userFile})" \
+          --authgroup="$(cat ${authGroupFile})" \
           "$(cat ${connFile})" < ${passFile}
       '';
     });
@@ -60,6 +61,11 @@ in
                 description = "Path to the VPN password file";
               };
 
+              authGroupFile = mkOption {
+                type = types.path;
+                description = "Path to authentication group";
+              };
+
               connFile = mkOption {
                 type = types.path;
                 description = "Path to the VPN connection URL";
@@ -78,31 +84,35 @@ in
       cfg.package
     ]
     ++ (lib.mapAttrsToList
-      (
-        name: attrs: with attrs; mkOpenConnect execName userFile passFile connFile
-      )
+      (name: attrs: with attrs;
+      mkOpenConnect
+        execName
+        userFile
+        passFile
+        authGroupFile
+        connFile)
       cfg.accounts);
 
     sops.secrets."openconnect/inria/user" = { };
     sops.secrets."openconnect/inria/pass" = { };
+    sops.secrets."openconnect/inria/agfp" = { };
     sops.secrets."openconnect/inria/conn" = { };
+    programs.openconnect.accounts.inria = {
+      userFile = config.sops.secrets."openconnect/inria/user".path;
+      passFile = config.sops.secrets."openconnect/inria/pass".path;
+      authGroupFile = config.sops.secrets."openconnect/inria/agfp".path;
+      connFile = config.sops.secrets."openconnect/inria/conn".path;
+    };
+
     sops.secrets."openconnect/grenet/user" = { };
     sops.secrets."openconnect/grenet/pass" = { };
+    sops.secrets."openconnect/grenet/agfp" = { };
     sops.secrets."openconnect/grenet/conn" = { };
-
-    programs.openconnect = {
-      accounts = {
-        inria = {
-          userFile = config.sops.secrets."openconnect/inria/user".path;
-          passFile = config.sops.secrets."openconnect/inria/pass".path;
-          connFile = config.sops.secrets."openconnect/inria/conn".path;
-        };
-        grenet = {
-          userFile = config.sops.secrets."openconnect/grenet/user".path;
-          passFile = config.sops.secrets."openconnect/grenet/pass".path;
-          connFile = config.sops.secrets."openconnect/grenet/conn".path;
-        };
-      };
+    programs.openconnect.accounts.grenet = {
+      userFile = config.sops.secrets."openconnect/grenet/user".path;
+      passFile = config.sops.secrets."openconnect/grenet/pass".path;
+      authGroupFile = config.sops.secrets."openconnect/grenet/agfp".path;
+      connFile = config.sops.secrets."openconnect/grenet/conn".path;
     };
   };
 }
