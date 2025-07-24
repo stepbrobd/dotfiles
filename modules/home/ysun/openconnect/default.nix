@@ -3,58 +3,106 @@
 { config, pkgs, ... }:
 
 let
-  inherit (lib) types mkEnableOption mkIf mkPackageOption mkOption;
+  inherit (lib)
+    types
+    mkEnableOption
+    mkIf
+    mkPackageOption
+    mkOption
+    ;
 
   cfg = config.programs.openconnect;
+
+  mkOpenConnect =
+    name: userFile: passFile: connFile:
+    (pkgs.writeShellApplication {
+      inherit name;
+      runtimeInputs = [
+        pkgs.coreutils
+        cfg.package
+      ];
+      text = ''
+        openconnect \
+          --protocol=anyconnect \
+          --passwd-on-stdin \
+          --user="$(cat ${userFile})" \
+          "$(cat ${connFile})" < ${passFile}
+      '';
+    });
 in
 {
   options.programs.openconnect = {
-    enable = mkEnableOption "OpenConnect client" // { default = true; };
+    enable = mkEnableOption "OpenConnect client" // {
+      default = true;
+    };
 
     package = mkPackageOption pkgs "openconnect" { };
 
-    userFile = mkOption {
-      type = types.path;
-      description = "Path to the VPN user file";
-    };
+    accounts = mkOption {
+      type = types.attrsOf (
+        types.submodule (
+          { name, ... }:
+          {
+            options = {
+              execName = mkOption {
+                type = types.str;
+                description = "Output executable name of the VPN account";
+                default = "openconnect-${name}";
+              };
 
-    passFile = mkOption {
-      type = types.path;
-      description = "Path to the VPN password file";
-    };
+              userFile = mkOption {
+                type = types.path;
+                description = "Path to the VPN user file";
+              };
 
-    connFile = mkOption {
-      type = types.path;
-      description = "Path to the VPN connection URL";
+              passFile = mkOption {
+                type = types.path;
+                description = "Path to the VPN password file";
+              };
+
+              connFile = mkOption {
+                type = types.path;
+                description = "Path to the VPN connection URL";
+              };
+            };
+          }
+        )
+      );
+      default = { };
+      description = "Accounts to use for OpenConnect";
     };
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."openconnect/user" = { };
-    sops.secrets."openconnect/pass" = { };
-    sops.secrets."openconnect/conn" = { };
+    home.packages = [
+      cfg.package
+    ]
+    ++ (lib.mapAttrsToList
+      (
+        name: attrs: with attrs; mkOpenConnect execName userFile passFile connFile
+      )
+      cfg.accounts);
+
+    sops.secrets."openconnect/inria/user" = { };
+    sops.secrets."openconnect/inria/pass" = { };
+    sops.secrets."openconnect/inria/conn" = { };
+    sops.secrets."openconnect/grenet/user" = { };
+    sops.secrets."openconnect/grenet/pass" = { };
+    sops.secrets."openconnect/grenet/conn" = { };
 
     programs.openconnect = {
-      userFile = config.sops.secrets."openconnect/user".path;
-      passFile = config.sops.secrets."openconnect/pass".path;
-      connFile = config.sops.secrets."openconnect/conn".path;
+      accounts = {
+        inria = {
+          userFile = config.sops.secrets."openconnect/inria/user".path;
+          passFile = config.sops.secrets."openconnect/inria/pass".path;
+          connFile = config.sops.secrets."openconnect/inria/conn".path;
+        };
+        grenet = {
+          userFile = config.sops.secrets."openconnect/grenet/user".path;
+          passFile = config.sops.secrets."openconnect/grenet/pass".path;
+          connFile = config.sops.secrets."openconnect/grenet/conn".path;
+        };
+      };
     };
-
-    home.packages = [
-      (pkgs.writeShellApplication {
-        name = "openconnect";
-        runtimeInputs = [
-          pkgs.coreutils
-          cfg.package
-        ];
-        text = ''
-          openconnect \
-            --protocol=anyconnect \
-            --passwd-on-stdin \
-            --user="$(cat ${cfg.userFile})" \
-            "$(cat ${cfg.connFile})" < ${cfg.passFile}
-        '';
-      })
-    ];
   };
 }
