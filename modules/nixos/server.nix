@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     cacert
+    file
     vim
 
     cfspeedtest
