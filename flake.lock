@@ -210,11 +210,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753348404,
-        "narHash": "sha256-tgoLlrQJYIB5hIq49QOl5Hz/J4ksVXLB+3X6HC5remU=",
+        "lastModified": 1753410343,
+        "narHash": "sha256-chcs8JU2LWVK0Mb/+SgUTUSM0LVr00wR5eWoAsfw7BU=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "ddac345590a88937958cebd46589178d142b97d7",
+        "rev": "f95d76f855a08eada6da509bc53e6227d8e4803f",
         "type": "github"
       },
       "original": {
@@ -598,6 +598,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-staging-next": {
+      "locked": {
+        "lastModified": 1753445232,
+        "narHash": "sha256-3XEEj7drKZqDLgu2PTVOo+OhkstC3hTfY5xi7uBxPbI=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "41c256abca1f7f07cb82e3c3f3a5c80652c118d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "staging-next",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": [
@@ -668,6 +684,7 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-staging-next": "nixpkgs-staging-next",
         "nixvim": "nixvim",
         "parts": "parts",
         "rpi": "rpi",
@@ -922,11 +939,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753359076,
-        "narHash": "sha256-OQIg8Q4+BWrtcDjPh76qK3Pv88+UIhJQ+KjwY+Ek8H8=",
+        "lastModified": 1753433157,
+        "narHash": "sha256-7EAUSg2wbNo/Ga0ZEjq349DU40ipXOMSJSXu8wYmw+w=",
         "owner": "marienz",
         "repo": "nix-doom-emacs-unstraightened",
-        "rev": "84e340154b9cac90109eac57f907a8d752054929",
+        "rev": "4a59077c13a2ca8be360daf530bb777c447943b2",
         "type": "github"
       },
       "original": {

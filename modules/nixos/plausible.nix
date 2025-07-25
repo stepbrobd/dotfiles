@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 { config, pkgs, ... }:
 
@@ -69,7 +69,7 @@ in
     };
 
     services.plausible = {
-      package = pkgs.plausible.overrideAttrs (_: {
+      package = inputs.nixpkgs-staging-next.legacyPackages.${pkgs.system}.plausible.overrideAttrs (_: {
         prePatch = ''
           substituteInPlace lib/plausible_web/templates/layout/app.html.heex \
             --replace-warn '</head>' '<script defer data-domain="${cfg.domain}" src="/js/script.file-downloads.hash.outbound-links.js"></script></head>'
