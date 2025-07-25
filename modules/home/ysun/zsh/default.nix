@@ -56,5 +56,23 @@
           abort "Unsupported OS"
       }/brew shellenv)
     '';
+
+    initContent = lib.mkAfter ''
+      export KEYTIMEOUT=1
+      export VI_MODE_SET_CURSOR=true
+
+      _set_cursor_shape() {
+        if [[ ''${KEYMAP} == 'vicmd' ]]; then
+          printf '\e[2 q'
+        else
+          printf '\e[6 q'
+        fi
+      }
+      zle-keymap-select() { _set_cursor_shape }
+      zle-line-init() { _set_cursor_shape }
+      zle -N zle-keymap-select
+      zle -N zle-line-init
+      precmd_functions+=(_set_cursor_shape)
+    '';
   };
 }

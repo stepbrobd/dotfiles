@@ -105,12 +105,12 @@
       character = {
         disabled = false;
         format = "$symbol ";
-        success_symbol = "[>](green)";
-        error_symbol = "[>](red)";
-        vimcmd_symbol = "[<](green)";
-        vimcmd_replace_one_symbol = "[<](purple)";
-        vimcmd_replace_symbol = "[<](purple)";
-        vimcmd_visual_symbol = "[<](yellow)";
+        success_symbol = "[\\$](green)";
+        error_symbol = "[\\$](red)";
+        vimcmd_symbol = "[\\$](green)";
+        vimcmd_replace_one_symbol = "[\\$](purple)";
+        vimcmd_replace_symbol = "[\\$](purple)";
+        vimcmd_visual_symbol = "[\\$](yellow)";
       };
     };
   };

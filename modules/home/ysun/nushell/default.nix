@@ -47,7 +47,12 @@
       $env.config = {
         edit_mode: vi
         show_banner: false
+        cursor_shape: {
+          vi_insert: line
+          vi_normal: block
+        }
       }
+
       $env.PROMPT_COMMAND = ""
       $env.PROMPT_COMMAND_RIGHT = ""
       $env.PROMPT_INDICATOR = ""
