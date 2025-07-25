@@ -26,12 +26,6 @@
       # sonarworks soundid
       "lyraphase/av-casks"
 
-      # official taps
-      # "homebrew/cask"
-      # "homebrew/cask-versions"
-      # "homebrew/core"
-      "homebrew/services"
-
       # third-party taps
       "nextfire/tap"
     ];
