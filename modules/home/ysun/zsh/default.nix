@@ -46,6 +46,10 @@
       { tf = "terraform"; }
     ];
 
+    envExtra = ''
+      export SHELL=$(which zsh)
+    '';
+
     profileExtra = lib.optionalString pkgs.stdenv.isDarwin ''
       eval $(${
         if pkgs.stdenv.hostPlatform.isx86_64 then

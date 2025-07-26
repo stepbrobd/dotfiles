@@ -102,7 +102,10 @@
           }
         ]
       }
+    '';
 
+    extraEnv = ''
+      $env.SHELL = (which nu | get path.0)
       $env.PROMPT_COMMAND = ""
       $env.PROMPT_COMMAND_RIGHT = ""
       $env.PROMPT_INDICATOR = ""
