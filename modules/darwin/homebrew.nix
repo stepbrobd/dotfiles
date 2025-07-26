@@ -65,6 +65,7 @@
       "obs"
       "orion"
       "osu"
+      "signal"
       "slack"
       "wacom-tablet"
       "yubico-yubikey-manager"
