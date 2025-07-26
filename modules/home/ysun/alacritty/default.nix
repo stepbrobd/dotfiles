@@ -7,6 +7,11 @@
     enable = true;
 
     settings = {
+      terminal.shell = {
+        program = "/run/current-system/sw/bin/zsh";
+        args = [ "-l" "-c" "nu" ];
+      };
+
       window = {
         startup_mode = "Windowed";
         padding = {
