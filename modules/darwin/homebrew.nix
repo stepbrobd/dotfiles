@@ -68,7 +68,7 @@
       "signal"
       "slack"
       "wacom-tablet"
-      "yubico-yubikey-manager"
+      "yubico-authenticator"
       "zoom"
       "zotero"
 
