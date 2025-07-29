@@ -364,7 +364,6 @@ in
       networking.firewall.allowedTCPPorts = lib.optional cfg.router.exit 179;
       services.bird.enable = cfg.router.exit;
       services.bird.checkConfig = false;
-      services.bird.package = pkgs.bird2;
       services.bird.config = ''
         include "${cfg.router.secret}";
 
