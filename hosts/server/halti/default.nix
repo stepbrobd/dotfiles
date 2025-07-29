@@ -3,7 +3,7 @@
     ./hardware.nix
 
     ./grafana.nix
-    ./tangled.nix
+    # ./tangled.nix
   ];
 
   networking = {

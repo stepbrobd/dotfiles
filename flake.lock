@@ -370,43 +370,6 @@
         "type": "github"
       }
     },
-    "htmx-src": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-nm6avZuEBg67SSyyZUhjpXVNstHHgUxrtBHqJgowU08=",
-        "type": "file",
-        "url": "https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"
-      }
-    },
-    "htmx-ws-src": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-2fg6KyEJoO24q0fQqbz9RMaYNPQrMwpZh29tkSqdqGY=",
-        "type": "file",
-        "url": "https://cdn.jsdelivr.net/npm/htmx-ext-ws@2.0.2"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://cdn.jsdelivr.net/npm/htmx-ext-ws@2.0.2"
-      }
-    },
-    "ibm-plex-mono-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731402384,
-        "narHash": "sha256-OwUmrPfEehLDz0fl2ChYLK8FQM2p0G1+EMrGsYEq+6g=",
-        "type": "tarball",
-        "url": "https://github.com/IBM/plex/releases/download/@ibm/plex-mono@1.1.0/ibm-plex-mono.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/IBM/plex/releases/download/@ibm/plex-mono@1.1.0/ibm-plex-mono.zip"
-      }
-    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -442,35 +405,6 @@
         "type": "github"
       }
     },
-    "indigo": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1745333930,
-        "narHash": "sha256-83fIHqDE+dfnZ88HaNuwfKFO+R0RKAM1WxMfNh/Matk=",
-        "owner": "oppiliappan",
-        "repo": "indigo",
-        "rev": "e4e59280737b8676611fc077a228d47b3e8e9491",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oppiliappan",
-        "repo": "indigo",
-        "type": "github"
-      }
-    },
-    "inter-fonts-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1731687360,
-        "narHash": "sha256-5vdKKvHAeZi6igrfpbOdhZlDX2/5+UvzlnCQV6DdqoQ=",
-        "type": "tarball",
-        "url": "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip"
-      }
-    },
     "lanzaboote": {
       "inputs": {
         "crane": [
@@ -503,19 +437,6 @@
         "ref": "v0.4.2",
         "repo": "lanzaboote",
         "type": "github"
-      }
-    },
-    "lucide-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1742302029,
-        "narHash": "sha256-OyPVtpnC4/AAmPq84Wt1r1Gcs48d9KG+UBCtZK87e9k=",
-        "type": "tarball",
-        "url": "https://github.com/lucide-icons/lucide/releases/download/0.483.0/lucide-icons-0.483.0.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/lucide-icons/lucide/releases/download/0.483.0/lucide-icons-0.483.0.zip"
       }
     },
     "nixos-generators": {
@@ -695,7 +616,6 @@
         "std": "std",
         "sweep": "sweep",
         "systems": "systems",
-        "tangled": "tangled",
         "terranix": "terranix",
         "unstraightened": "unstraightened",
         "utils": "utils",
@@ -779,19 +699,6 @@
         "type": "github"
       }
     },
-    "sqlite-lib-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1706631843,
-        "narHash": "sha256-bJoMjirsBjm2Qk9KPiy3yV3+8b/POlYe76/FQbciHro=",
-        "type": "tarball",
-        "url": "https://sqlite.org/2024/sqlite-amalgamation-3450100.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://sqlite.org/2024/sqlite-amalgamation-3450100.zip"
-      }
-    },
     "srvos": {
       "inputs": {
         "nixpkgs": [
@@ -866,39 +773,6 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
-      }
-    },
-    "tangled": {
-      "inputs": {
-        "gitignore": [
-          "gitignore"
-        ],
-        "gomod2nix": [
-          "gomod2nix"
-        ],
-        "htmx-src": "htmx-src",
-        "htmx-ws-src": "htmx-ws-src",
-        "ibm-plex-mono-src": "ibm-plex-mono-src",
-        "indigo": "indigo",
-        "inter-fonts-src": "inter-fonts-src",
-        "lucide-src": "lucide-src",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "sqlite-lib-src": "sqlite-lib-src"
-      },
-      "locked": {
-        "lastModified": 1753788097,
-        "narHash": "sha256-sT1GSt7SKyy++aCYO5HuvehKCX98b9eI07wsTFnQweM=",
-        "ref": "refs/heads/master",
-        "rev": "defce014427cf814889be07f67911ba77c5d5689",
-        "revCount": 1005,
-        "type": "git",
-        "url": "https://tangled.sh/@tangled.sh/core"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://tangled.sh/@tangled.sh/core"
       }
     },
     "terranix": {
