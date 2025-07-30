@@ -15,6 +15,10 @@ jobs:
           fetch-depth: 0
       - name: "Install Nix"
         uses: "cachix/install-nix-action@v31"
+        with:
+          extra_nix_config: |
+            trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            substituters = https://cache.garnix.io https://cache.nixos.org/
       - name: "Update"
         run: |
           git config --global user.name "GitHub Action"
