@@ -2,7 +2,16 @@
 
 [![Built with Nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-A hacky `nix` based config that works on both NixOS and macOS.
+A hacky config that works on both NixOS and macOS.
+
+NixOS server config evaluation order: `inputs.autopilot` -> `lib/*` ->
+`parts/configurations/server.nix` -> `lib.mkColmena` -> conversion:
+
+```nix
+nixosConfigurations = (import "${inputs.colmena}/src/nix/hive/eval.nix" {
+  rawHive = ...;
+}).nodes;
+```
 
 ## Notes
 
