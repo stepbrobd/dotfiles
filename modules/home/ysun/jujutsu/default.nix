@@ -15,6 +15,8 @@
         backend = "ssh";
         key = "${config.home.homeDirectory}/.ssh/id_ed25519";
       };
+
+      ui.default-command = "log";
     };
   };
 }
