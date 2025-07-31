@@ -104,7 +104,6 @@
       # media
       "Infuse" = 1136220934;
       "Macgo Blu-ray Player Pro" = 1403952861;
-      "Paperback" = 1626613373;
       # iwork
       "Keynote" = 409183694;
       "Numbers" = 409203825;
