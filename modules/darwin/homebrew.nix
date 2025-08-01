@@ -71,7 +71,7 @@
       "zoom"
       "zotero"
 
-      # caldigit
+      # caldigit, mostly fixing superdrive power issue
       "caldigit-docking-utility"
       "caldigit-thunderbolt-charging"
     ];
