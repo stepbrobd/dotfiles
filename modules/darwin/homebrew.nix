@@ -20,7 +20,7 @@
 
     taps = [
       # my own taps
-      # "stepbrobd/tap"
+      "stepbrobd/tap"
       # universal audio
       "resonative/proaudio"
       # sonarworks soundid
@@ -45,7 +45,7 @@
 
     casks = [
       # my own casks
-      # "stepbrobd/tap/research"
+      "stepbrobd/tap/opentabletdriver"
       # universal audio
       "resonative/proaudio/ua-connect"
       # sonarworks soundid
@@ -67,7 +67,6 @@
       "osu"
       "signal"
       "slack"
-      "wacom-tablet"
       "yubico-authenticator"
       "zoom"
       "zotero"
