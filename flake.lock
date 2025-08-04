@@ -519,22 +519,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-staging-next": {
-      "locked": {
-        "lastModified": 1754287771,
-        "narHash": "sha256-wzM6HN0xxyooekXfl7p5P4Bn0LieOKOfsLg4DqY7XLk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "b77c5b9bee23d8989fbcd70f0a7a7bffa68619e0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "staging-next",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixvim": {
       "inputs": {
         "flake-parts": [
@@ -605,7 +589,6 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-staging-next": "nixpkgs-staging-next",
         "nixvim": "nixvim",
         "parts": "parts",
         "rpi": "rpi",

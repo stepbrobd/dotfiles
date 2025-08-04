@@ -50,7 +50,6 @@
     # nixpkgs.url = "github:nixos/nixpkgs/master";
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-staging-next.url = "github:nixos/nixpkgs/staging-next";
     # a
     autopilot.url = "github:stepbrobd/autopilot";
     autopilot.inputs.nixpkgs.follows = "nixpkgs";

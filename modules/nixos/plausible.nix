@@ -69,7 +69,6 @@ in
     };
 
     services.plausible = {
-      # package = inputs.nixpkgs-staging-next.legacyPackages.${pkgs.system}.plausible.overrideAttrs (_: {
       package = pkgs.plausible.overrideAttrs (_: {
         prePatch = ''
           substituteInPlace lib/plausible_web/templates/layout/app.html.heex \
