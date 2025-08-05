@@ -37,7 +37,10 @@ in
           }
         '';
         virtualHosts."*.ysun.co" = {
-          extraConfig = ''redir https://ysun.co{uri} permanent'';
+          extraConfig = ''
+            import common
+            redir https://ysun.co{uri} permanent
+          '';
           serverAliases = [
             "*.as10779.net"
             "*.churn.cards"
