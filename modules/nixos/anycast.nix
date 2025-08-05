@@ -24,18 +24,28 @@ in
     {
       services.caddy = {
         enable = true;
-        virtualHosts."ysun.co".extraConfig = ''
-          import common
-          header X-Served-By "${config.networking.fqdn}"
+        virtualHosts."ysun.co" = {
+          extraConfig = ''
+            import common
+            header X-Served-By "${config.networking.fqdn}"
 
-          root * ${ysun}/var/www/html
-          file_server
-
-          handle_errors {
-            rewrite * /error
+            root * ${ysun}/var/www/html
             file_server
-          }
-        '';
+
+            handle_errors {
+              rewrite * /error
+              file_server
+            }
+          '';
+          serverAliases = [
+            # my weird flex -
+            # dont redirect arpa zones
+            "0.0.0.a.e.b.0.0.0.2.6.2.ip6.arpa"
+            "104.161.23.in-addr.arpa"
+            "136.104.192.in-addr.arpa"
+          ];
+        };
+
         virtualHosts."*.ysun.co" = {
           extraConfig = ''
             import common
