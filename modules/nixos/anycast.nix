@@ -24,19 +24,20 @@ in
     {
       services.caddy = {
         enable = true;
-        virtualHosts."ysun.co" = {
-          extraConfig = ''
-            import common
-            header X-Served-By "${config.networking.fqdn}"
+        virtualHosts."ysun.co".extraConfig = ''
+          import common
+          header X-Served-By "${config.networking.fqdn}"
 
-            root * ${ysun}/var/www/html
+          root * ${ysun}/var/www/html
+          file_server
+
+          handle_errors {
+            rewrite * /error
             file_server
-
-            handle_errors {
-              rewrite * /error
-              file_server
-            }
-          '';
+          }
+        '';
+        virtualHosts."*.ysun.co" = {
+          extraConfig = ''redir https://ysun.co{uri} permanent'';
           serverAliases = [
             "*.as10779.net"
             "*.churn.cards"
@@ -44,7 +45,6 @@ in
             "*.internal.center"
             "*.stepbrobd.com"
             "*.xdg.sh"
-            "*.ysun.co"
             "*.ysun.life"
             "as10779.net"
             "churn.cards"
@@ -52,7 +52,6 @@ in
             "internal.center"
             "stepbrobd.com"
             "xdg.sh"
-            # "ysun.co"
             "ysun.life"
           ];
         };
