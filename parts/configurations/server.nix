@@ -29,7 +29,6 @@ let
         self.nixosModules.prometheus
         self.nixosModules.rebuild
         self.nixosModules.server
-        self.nixosModules.uptime
         srvos.nixosModules.common
         srvos.nixosModules.server
       ];
