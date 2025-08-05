@@ -1,31 +1,41 @@
 { lib, ... }:
 
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
-  inherit (lib) genAttrs mkIf mkOption toString types;
+  inherit (lib) mkIf mkOption toString types;
 
   cfg = config.services.glance;
 in
 {
-  options.services.glance.domains = mkOption {
-    default = [ ];
-    description = "List of domains to serve glance on";
-    example = [ "home.ysun.co" ];
-    type = types.listOf types.str;
+  options.services.glance = {
+    mainDomain = mkOption {
+      default = "home.ysun.co";
+      description = "Main domain to serve glance on";
+      example = "home.ysun.co";
+      type = types.str;
+    };
+
+    extraDomains = mkOption {
+      default = [ ];
+      description = "List of domains to serve glance on";
+      example = [ "home.ysun.co" ];
+      type = types.listOf types.str;
+    };
   };
 
   config = mkIf cfg.enable {
     services.caddy = with cfg; {
       enable = true;
 
-      virtualHosts = genAttrs domains (domain: {
+      virtualHosts.${cfg.mainDomain} = {
+        serverAliases = cfg.extraDomains;
         extraConfig = ''
           import common
           header Cache-Control "public, max-age=600, must-revalidate"
           reverse_proxy ${settings.server.host}:${toString settings.server.port}
         '';
-      });
+      };
     };
 
     services.glance.settings = {

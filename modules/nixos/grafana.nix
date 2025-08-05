@@ -3,7 +3,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (lib) genAttrs mkIf mkOption toString types;
+  inherit (lib) mkIf mkOption toString types;
 
   cfg = config.services.grafana;
 in
@@ -27,7 +27,8 @@ in
   config = mkIf cfg.enable {
     services.caddy = {
       enable = true;
-      virtualHosts = genAttrs ([ cfg.mainDomain ] ++ cfg.extraDomains) (domain: {
+      virtualHosts.${cfg.mainDomain} = {
+        serverAliases = cfg.extraDomains;
         extraConfig = with config.services.grafana.settings.server; ''
           import common
           reverse_proxy ${toString http_addr}:${toString http_port} {
@@ -35,7 +36,7 @@ in
             header_up X-Real-IP {http.request.header.CF-Connecting-IP}
           }
         '';
-      });
+      };
     };
 
     sops.secrets."grafana/oauth".group = "grafana";
