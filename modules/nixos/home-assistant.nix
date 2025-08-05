@@ -25,11 +25,15 @@ in
       extraComponents = [
         "apple_tv"
         "bluetooth"
+        "cloud"
+        "default_config"
         "homekit"
         "homekit_controller"
         "met"
+        "ssdp"
         "switchbot"
         "switchbot_cloud"
+        "zeroconf"
       ];
 
       customComponents = with pkgs.home-assistant-custom-components; [ midea_ac_lan ];
