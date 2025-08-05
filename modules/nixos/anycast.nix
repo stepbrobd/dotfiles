@@ -40,9 +40,10 @@ in
           serverAliases = [
             # my weird flex -
             # dont redirect arpa zones
-            "0.0.0.a.e.b.0.0.0.2.6.2.ip6.arpa"
-            "104.161.23.in-addr.arpa"
-            "136.104.192.in-addr.arpa"
+            # but cannot get certificates
+            "http://0.0.0.a.e.b.0.0.0.2.6.2.ip6.arpa"
+            "http://104.161.23.in-addr.arpa"
+            "http://136.104.192.in-addr.arpa"
           ];
         };
 
