@@ -24,18 +24,38 @@ in
     {
       services.caddy = {
         enable = true;
-        virtualHosts."anycast.as10779.net".extraConfig = ''
-          import common
-          header X-Served-By "${config.networking.fqdn}"
+        virtualHosts."ysun.co" = {
+          extraConfig = ''
+            import common
+            header X-Served-By "${config.networking.fqdn}"
 
-          root * ${ysun}/var/www/html
-          file_server
-
-          handle_errors {
-            rewrite * /error
+            root * ${ysun}/var/www/html
             file_server
-          }
-        '';
+
+            handle_errors {
+              rewrite * /error
+              file_server
+            }
+          '';
+          serverAliases = [
+            "*.as10779.net"
+            "*.churn.cards"
+            "*.deeznuts.phd"
+            "*.internal.center"
+            "*.stepbrobd.com"
+            "*.xdg.sh"
+            "*.ysun.co"
+            "*.ysun.life"
+            "as10779.net"
+            "churn.cards"
+            "deeznuts.phd"
+            "internal.center"
+            "stepbrobd.com"
+            "xdg.sh"
+            # "ysun.co"
+            "ysun.life"
+          ];
+        };
       };
     };
 }
