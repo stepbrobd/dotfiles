@@ -2,6 +2,6 @@
   services.plausible = {
     enable = true;
     domain = "stats.ysun.co";
-    extraDomains = [ "stats.rkt.lol" ];
+    extraDomains = [ "stats.grenug.fr" "stats.rkt.lol" ];
   };
 }
