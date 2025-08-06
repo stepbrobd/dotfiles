@@ -53,9 +53,12 @@ in
         }
       '';
 
-      virtualHosts."http://${metricsTarget}".extraConfig = ''
-        metrics ${metricsPath}
-      '';
+      virtualHosts."http://${metricsTarget}" = {
+        logFormat = lib.mkForce "output discard";
+        extraConfig = ''
+          metrics ${metricsPath}
+        '';
+      };
     };
 
     sops.secrets.caddy = {

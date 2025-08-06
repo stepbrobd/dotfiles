@@ -54,6 +54,7 @@ in
           };
 
           virtualHosts."*.ysun.co" = {
+            logFormat = lib.mkForce config.services.caddy.virtualHosts."ysun.co".logFormat;
             extraConfig = ''
               ${common}
               redir https://ysun.co{uri} permanent

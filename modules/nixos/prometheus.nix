@@ -169,15 +169,18 @@ in
 
     services.caddy = {
       enable = true;
-      virtualHosts."${config.networking.hostName}.tail650e82.ts.net".extraConfig = ''
-        handle_path /prometheus/* {
-          reverse_proxy  ${with cfg; toString listenAddress + ":" + toString port}
-        }
+      virtualHosts."${config.networking.hostName}.tail650e82.ts.net" = {
+        logFormat = lib.mkForce "output discard";
+        extraConfig = ''
+          handle_path /prometheus/* {
+            reverse_proxy  ${with cfg; toString listenAddress + ":" + toString port}
+          }
 
-        handle_path /loki/* {
-          reverse_proxy  ${with config.services.loki.configuration.server; http_listen_address + ":" + toString http_listen_port}
-        }
-      '';
+          handle_path /loki/* {
+            reverse_proxy  ${with config.services.loki.configuration.server; http_listen_address + ":" + toString http_listen_port}
+          }
+        '';
+      };
     };
   };
 }
