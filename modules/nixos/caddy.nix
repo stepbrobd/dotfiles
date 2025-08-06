@@ -9,7 +9,7 @@ in
 {
   config = lib.mkIf config.services.caddy.enable {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
-    networking.firewall.allowedUDPPorts = [ 443 ];
+    networking.firewall.allowedUDPPorts = [ 80 443 ];
 
     services.prometheus.scrapeConfigs = [{
       job_name = "prometheus-caddy-exporter";
@@ -41,7 +41,7 @@ in
       extraConfig = ''
         (common) {
           tls { dns cloudflare {env.CF_API_TOKEN} }
-          encode zstd gzip
+          encode br zstd gzip
           header {
             Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
             X-Content-Type-Options "nosniff"
