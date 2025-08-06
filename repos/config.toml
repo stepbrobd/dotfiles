@@ -291,6 +291,11 @@ description = "forked from charmbracelet/soft-serve"
 visibility = "public"
 archived = false
 
+[repo."souin"]
+description = "forked from darkweak/souin"
+visibility = "public"
+archived = false
+
 [repo."sora"]
 description = "forked from cranci1/sora"
 visibility = "public"
