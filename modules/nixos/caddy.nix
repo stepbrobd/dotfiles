@@ -28,6 +28,7 @@ in
         cache {
           log_level ERROR
           badger
+          allowed_http_verbs GET HEAD
           default_cache_control no-store
         }
 
