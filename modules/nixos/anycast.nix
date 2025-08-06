@@ -26,7 +26,10 @@ in
         let
           common = ''
             import common
-            cache { ttl 60s }
+            cache {
+              ttl 60s
+              default_cache_control "public, max-age=60, must-revalidate"
+            }
             header X-Served-By "${config.networking.fqdn}"
           '';
         in
