@@ -25,6 +25,11 @@ in
       globalConfig = ''
         admin unix/${config.services.caddy.dataDir}/admin.sock
 
+        cache {
+          log_level ERROR
+          badger
+        }
+
         servers {
           trusted_proxies cloudflare {
             interval 24h
@@ -36,7 +41,7 @@ in
       extraConfig = ''
         (common) {
           tls { dns cloudflare {env.CF_API_TOKEN} }
-          encode gzip zstd
+          encode zstd gzip
           header {
             Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
             X-Content-Type-Options "nosniff"
