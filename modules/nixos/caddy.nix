@@ -25,6 +25,9 @@ in
       globalConfig = ''
         admin unix/${config.services.caddy.dataDir}/admin.sock
 
+        dns cloudflare {env.CF_API_TOKEN}
+        ech ysun.co
+
         cache {
           log_level ERROR
           badger
@@ -33,6 +36,8 @@ in
         }
 
         servers {
+          protocols h3 h2 h1
+
           trusted_proxies cloudflare {
             interval 24h
             timeout 60s
