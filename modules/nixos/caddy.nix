@@ -33,8 +33,6 @@ in
         }
 
         servers {
-          protocols h3 h2 h1
-
           trusted_proxies cloudflare {
             interval 24h
             timeout 60s
