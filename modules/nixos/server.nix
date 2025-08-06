@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   i18n.defaultLocale = "en_US.UTF-8";
@@ -39,4 +39,22 @@
   services.journald.extraConfig = ''
     SystemMaxUse=64M
   '';
+  services.logrotate.settings =
+    let
+      inherit (pkgs.lib) mkDefault mapAttrs;
+    in
+    {
+      "/var/log/btmp" = mapAttrs (_: mkDefault) {
+        frequency = "monthly";
+        rotate = 1;
+        create = "0660 root ${config.users.groups.utmp.name}";
+        minsize = "1M";
+      };
+      "/var/log/wtmp" = mapAttrs (_: mkDefault) {
+        frequency = "monthly";
+        rotate = 1;
+        create = "0664 root ${config.users.groups.utmp.name}";
+        minsize = "1M";
+      };
+    };
 }
