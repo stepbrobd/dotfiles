@@ -22,53 +22,59 @@ in
         config.services.as10779.local.ipv6.addresses
     )
     {
-      services.caddy = {
-        enable = true;
-        virtualHosts."ysun.co" = {
-          extraConfig = ''
+      services.caddy =
+        let
+          common = ''
             import common
+            cache { ttl 60s }
             header X-Served-By "${config.networking.fqdn}"
-
-            root * ${ysun}/var/www/html
-            file_server
-
-            handle_errors {
-              rewrite * /error
+          '';
+        in
+        {
+          enable = true;
+          virtualHosts."ysun.co" = {
+            extraConfig = ''
+              ${common}
+              root * ${ysun}/var/www/html
               file_server
-            }
-          '';
-          serverAliases = [
-            # my weird flex -
-            # dont redirect arpa zones
-            # but cannot get certificates
-            "http://0.0.0.a.e.b.0.0.0.2.6.2.ip6.arpa"
-            "http://104.161.23.in-addr.arpa"
-            "http://136.104.192.in-addr.arpa"
-          ];
-        };
 
-        virtualHosts."*.ysun.co" = {
-          extraConfig = ''
-            import common
-            redir https://ysun.co{uri} permanent
-          '';
-          serverAliases = [
-            "*.as10779.net"
-            "*.churn.cards"
-            "*.deeznuts.phd"
-            "*.internal.center"
-            "*.stepbrobd.com"
-            "*.xdg.sh"
-            "*.ysun.life"
-            "as10779.net"
-            "churn.cards"
-            "deeznuts.phd"
-            "internal.center"
-            "stepbrobd.com"
-            "xdg.sh"
-            "ysun.life"
-          ];
+              handle_errors {
+                rewrite * /error
+                file_server
+              }
+            '';
+            serverAliases = [
+              # my weird flex -
+              # dont redirect arpa zones
+              # but cannot get certificates
+              "http://0.0.0.a.e.b.0.0.0.2.6.2.ip6.arpa"
+              "http://104.161.23.in-addr.arpa"
+              "http://136.104.192.in-addr.arpa"
+            ];
+          };
+
+          virtualHosts."*.ysun.co" = {
+            extraConfig = ''
+              ${common}
+              redir https://ysun.co{uri} permanent
+            '';
+            serverAliases = [
+              "*.as10779.net"
+              "*.churn.cards"
+              "*.deeznuts.phd"
+              "*.internal.center"
+              "*.stepbrobd.com"
+              "*.xdg.sh"
+              "*.ysun.life"
+              "as10779.net"
+              "churn.cards"
+              "deeznuts.phd"
+              "internal.center"
+              "stepbrobd.com"
+              "xdg.sh"
+              "ysun.life"
+            ];
+          };
         };
-      };
     };
 }
