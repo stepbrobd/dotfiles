@@ -1,4 +1,4 @@
-{ lib, stdenv, writeShellScriptBin, symlinkJoin, makeWrapper, bash, curl, gh, git, jq, python311 }:
+{ lib, stdenv, writeShellScriptBin, symlinkJoin, makeWrapper, bash, curlHTTP3, gh, git, jq, python311 }:
 
 
 let
@@ -44,7 +44,7 @@ lib.recursiveUpdate
   (symlinkJoin
   {
     name = "${pname}-${version}";
-    paths = [ libexec stepbrobd ] ++ [ bash curl gh git jq python311 ];
+    paths = [ libexec stepbrobd ] ++ [ bash curlHTTP3 gh git jq python311 ];
     buildInputs = [ makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/${pname} \

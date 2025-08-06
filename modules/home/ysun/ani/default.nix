@@ -7,7 +7,7 @@
       text = ''exec ani-cli "$@"'';
       runtimeInputs = [
         aria2
-        curl
+        curlHTTP3
         ffmpeg
         fzf
         git
