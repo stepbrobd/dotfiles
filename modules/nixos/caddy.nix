@@ -28,6 +28,7 @@ in
         cache {
           log_level ERROR
           badger
+          default_cache_control no-store
         }
 
         servers {
