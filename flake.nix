@@ -160,7 +160,7 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://cache.garnix.io"
+      "https://garnix-cache.com"
       "https://colmena.cachix.org"
     ];
     extra-trusted-public-keys = [

@@ -79,7 +79,7 @@ in
 
       extra-substituters = [
         "https://cache.nixos.org?priority=10"
-        "https://cache.garnix.io?priority=20"
+        "https://garnix-cache.com?priority=20"
         "https://nixos-raspberrypi.cachix.org?priority=20"
         "https://nix-community.cachix.org?priority=20"
         "https://nixpkgs-update.cachix.org?priority=20"

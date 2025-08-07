@@ -23,7 +23,7 @@ bash $(nix --extra-experimental-features "nix-command flakes" --accept-flake-con
 Install:
 
 ```shell
-nixos-install --no-root-password --flake github:stepbrobd/dotfiles#xps --option extra-substituters https://cache.garnix.io
+nixos-install --no-root-password --flake github:stepbrobd/dotfiles#xps --option extra-substituters https://garnix-cache.com
 ```
 
 It's expected to have errors related to
@@ -41,7 +41,7 @@ sbctl create-keys && mv /var/lib/sbctl /mnt/var/lib/sbctl
 Run installation again:
 
 ```shell
-nixos-install --no-root-password --flake github:stepbrobd/dotfiles#xps --option extra-substituters https://cache.garnix.io
+nixos-install --no-root-password --flake github:stepbrobd/dotfiles#xps --option extra-substituters https://garnix-cache.com
 ```
 
 Lanzaboote should not complain this time.
