@@ -18,7 +18,7 @@ jobs:
         with:
           extra_nix_config: |
             trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
-            substituters = https://garnix-cache.com https://cache.nixos.org/
+            substituters = https://cache.garnix.io https://cache.nixos.org/
       - name: "Sync"
         run: nix run --accept-flake-config .#stepbrobd -- sync
         env:
