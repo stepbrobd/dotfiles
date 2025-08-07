@@ -23,7 +23,7 @@ in
         fonts
         # hammerspoon
         homebrew
-        linux-builder
+        # linux-builder # wait and see if https://discourse.nixos.org/t/67617 will get merged into mainline
         nixbuild
         ntpd-rs
         passwordless
