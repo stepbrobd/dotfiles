@@ -104,7 +104,7 @@ in
                 "${pkgs.cage}/bin/cage"
                 "-s"
                 "--"
-                "${pkgs.greetd.gtkgreet}/bin/gtkgreet"
+                "${pkgs.gtkgreet}/bin/gtkgreet"
                 "-l"
                 "-s"
                 "${style}"

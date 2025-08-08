@@ -1,13 +1,14 @@
 {
   plugins.nvim-tree = {
     enable = true;
-
-    autoReloadOnWrite = true;
     openOnSetupFile = true;
-    syncRootWithCwd = true;
 
-    diagnostics.enable = true;
-    modified.enable = true;
+    settings = {
+      auto_reload_on_write = true;
+      diagnostics.enable = true;
+      modified.enable = true;
+      sync_root_with_cwd = true;
+    };
   };
 
   plugins.oil.enable = true;
