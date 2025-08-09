@@ -5,9 +5,11 @@
 {
   config = lib.mkIf config.services.calibre-web.enable {
     services.calibre-web = {
-      package = pkgs.calibre-web.overrideAttrs (prev: {
+      package = pkgs.calibre-web.overridePythonAttrs (prev: {
         patches = prev.patches ++ [ ./header-and-stats.patch ];
-        propagatedBuildInputs = prev.propagatedBuildInputs ++ prev.passthru.optional-dependencies.ldap;
+        dependencies =
+          prev.dependencies
+          ++ lib.flatten (with prev.optional-dependencies; [ comics kobo ldap metadata ]);
       });
 
       listen.ip = "127.0.0.1";
