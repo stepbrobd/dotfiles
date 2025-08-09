@@ -60,6 +60,7 @@
       "google-chrome"
       "hey-desktop"
       "jordanbaird-ice"
+      "kindavim"
       "lulu"
       "notchnook"
       "obs"
