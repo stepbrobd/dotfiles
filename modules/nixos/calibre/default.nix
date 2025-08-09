@@ -19,9 +19,15 @@
       options = {
         enableBookUploading = true;
         enableBookConversion = true;
-        reverseProxyAuth.enable = true;
         calibreLibrary = "${config.services.calibre-web.dataDir}/books";
       };
+    };
+
+    # fix book cover cache dir in /nix/store/ error
+    # see cps/constants.py and cps/fs.py
+    systemd.services.calibre-web = {
+      serviceConfig.CacheDirectory = "/var/cache/calibre-web";
+      environment.CACHE_DIR = "/var/cache/calibre-web";
     };
 
     services.caddy = {
