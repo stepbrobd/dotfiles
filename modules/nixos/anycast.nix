@@ -26,6 +26,7 @@ in
         let
           common = ''
             import common
+            import csp
             cache {
               ttl 60s
               default_cache_control "public, max-age=60, must-revalidate"

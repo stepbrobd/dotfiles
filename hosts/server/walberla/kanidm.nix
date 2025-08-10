@@ -12,8 +12,8 @@ in
     enable = true;
     virtualHosts."sso.ysun.co".extraConfig = ''
       import common
+      import csp
       tls "${directory}/fullchain.pem" "${directory}/key.pem"
-      header >Content-Security-Policy (.*) "$1 script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.ysun.co https://static.cloudflareinsights.com; connect-src 'self' https://*.ysun.co; style-src 'self' 'unsafe-inline' https://*.ysun.co; frame-src 'self' https://*.ysun.co; media-src 'self' https://*.ysun.co;"
       reverse_proxy ${config.services.kanidm.provision.instanceUrl} {
         header_up Host {host}
         header_up X-Real-IP {http.request.header.CF-Connecting-IP}
