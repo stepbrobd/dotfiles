@@ -72,7 +72,7 @@ in
       package = pkgs.plausible.overrideAttrs (_: {
         prePatch = ''
           substituteInPlace lib/plausible_web/templates/layout/app.html.heex \
-            --replace-warn '</head>' '<script defer data-domain="${cfg.mainDomain}" src="/js/script.file-downloads.hash.outbound-links.js"></script></head>'
+            --replace-fail '</head>' '<script defer data-domain="${cfg.mainDomain}" src="/js/script.file-downloads.hash.outbound-links.js"></script></head>'
         '';
       });
 

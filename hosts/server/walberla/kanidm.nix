@@ -29,7 +29,15 @@ in
   sops.secrets."kanidm/oauth/grafana".mode = "440";
 
   services.kanidm = {
-    package = pkgs.kanidm.override { enableSecretProvisioning = true; };
+    package = pkgs.kanidmWithSecretProvisioning.overrideAttrs (_: {
+      prePatch = ''
+        substituteInPlace server/core/templates/base.html \
+          --replace-fail '</head>' '<script defer data-domain="sso.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script></head>'
+
+        substituteInPlace server/core/templates/base_htmx.html \
+          --replace-fail '</head>' '<script defer data-domain="sso.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script></head>'
+      '';
+    });
 
     enableClient = true;
     clientSettings.uri = config.services.kanidm.serverSettings.origin;
