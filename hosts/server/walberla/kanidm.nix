@@ -12,7 +12,7 @@ in
     enable = true;
     virtualHosts."sso.ysun.co".extraConfig = ''
       import common
-      import csp
+      # import csp
       tls "${directory}/fullchain.pem" "${directory}/key.pem"
       reverse_proxy ${config.services.kanidm.provision.instanceUrl} {
         header_up Host {host}
