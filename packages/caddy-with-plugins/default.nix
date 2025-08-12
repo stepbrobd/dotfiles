@@ -8,13 +8,13 @@ let
     "github.com/caddyserver/cache-handler@v0.16.0"
     "github.com/darkweak/storages/badger/caddy@v0.0.15"
     "github.com/ueffel/caddy-brotli@v1.6.0"
-    "github.com/darkweak/souin=github.com/stepbrobd/souin@v0.0.0-20250812090337-771bce939c6a" # https://github.com/darkweak/souin/pull/657
+    "github.com/darkweak/souin=github.com/darkweak/souin@v1.7.8-0.20250812092955-b2a08bf1141e"
   ];
   pluginsSorted = sort lessThan plugins;
 in
 (pkgs.caddy.withPlugins {
   inherit plugins;
-  hash = "sha256-iksU6DnI7RBXHfhA8iISxHmd9/7aan1cxfD1ehxru8w=";
+  hash = "sha256-9tNj477aHLvlS8PdG0bmDKPqmH/x1PEkog3w4LWW1Jk=";
 }).overrideAttrs (_: _: {
   # https://github.com/NixOS/nixpkgs/pull/433072
   doInstallCheck = true;
