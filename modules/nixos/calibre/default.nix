@@ -15,18 +15,18 @@
       listen.ip = "127.0.0.1";
       listen.port = 8083;
 
-      dataDir = "/var/lib/calibre-web";
       options = {
         enableBookUploading = true;
         enableBookConversion = true;
-        calibreLibrary = "${config.services.calibre-web.dataDir}/books";
+        calibreLibrary = "/var/lib/calibre-web/books";
       };
     };
 
     # fix book cover cache dir in /nix/store/ error
     # see cps/constants.py and cps/fs.py
+    # https://github.com/NixOS/nixpkgs/pull/432604
     systemd.services.calibre-web = {
-      serviceConfig.CacheDirectory = "/var/cache/calibre-web";
+      serviceConfig.CacheDirectory = "calibre-web";
       environment.CACHE_DIR = "/var/cache/calibre-web";
     };
 
