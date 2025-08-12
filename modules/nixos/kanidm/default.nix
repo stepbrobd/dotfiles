@@ -12,7 +12,9 @@ in
     enable = true;
     virtualHosts."sso.ysun.co".extraConfig = ''
       import common
-      # import csp # injected in custom patch
+      import csp
+      header  Cache-Control      "private, must-revalidate, max-age=0;"
+      header >Cache-Control (.*) "private, must-revalidate, max-age=0;"
       tls "${directory}/fullchain.pem" "${directory}/key.pem"
       reverse_proxy ${config.services.kanidm.provision.instanceUrl} {
         header_up Host {host}
@@ -31,6 +33,8 @@ in
 
   services.kanidm = {
     package = pkgs.kanidmWithSecretProvisioning.overrideAttrs (prev: {
+      # the patch probably only need to inject plausible script now
+      # but lets just leave private cache and csp as is in there
       patches = prev.patches ++ [ ./custom-deployment.patch ];
     });
 
