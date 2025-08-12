@@ -16,77 +16,72 @@ in
   inherit plugins;
   hash = "sha256-iksU6DnI7RBXHfhA8iISxHmd9/7aan1cxfD1ehxru8w=";
 }).overrideAttrs (_: _: {
-  # https://github.com/NixOS/nixpkgs/pull/417247
+  # https://github.com/NixOS/nixpkgs/pull/433072
   doInstallCheck = true;
   installCheckPhase = ''
     runHook preInstallCheck
 
+    declare -A modules errors
     ${toShellVar "notfound" pluginsSorted}
 
-    local build_info_output
-    build_info_output=$($out/bin/caddy build-info)
-
-    print_common_advice() {
-      echo "  - if you are using \`go.mod\` alias or other advanced usage(s), set \`doInstallCheck = false\` or write your own \`installCheckPhase\` in \`caddy.withPlugins\` call"
-      echo "  - if you are sure this error is caused by packaging, or caused by caddy/xcaddy, raise an issue with nixpkgs or upstream"
-    }
-
+    # put build info that we care about into `modules` list
     while read -r kind module version rest; do
-      if [[ "$kind" != "dep" && "$kind" != "=>" ]]; then
-        continue
-      fi
-
-      if [[ -z "$module" || -z "$version" ]]; then
-        continue
-      fi
-
-      local module_from_build="''${module}@''${version}"
-
-      for i in "''${!notfound[@]}"; do
-        local user_plugin="''${notfound[i]}"
-        local expected_in_build="$user_plugin"
-
-        if [[ "$user_plugin" == *"="* ]]; then
-          expected_in_build="''${user_plugin#*=}"
-        fi
-
-        if [[ "$expected_in_build" == "$module_from_build" ]]; then
-          unset 'notfound[i]'
-          break
-        fi
-      done
-    done < <(echo "$build_info_output")
-
-    if (( ''${#notfound[@]} )); then
-      for plugin in "''${notfound[@]}"; do
-        if [[ "$plugin" == *"="* ]]; then
-          echo "Plugin with alias \"$plugin\" not found in build:"
-          echo "  The check looks for the replacement module \"''${plugin#*=}\" in the build output."
-          echo "  This replacement module was not found:"
-          print_common_advice
-        else
-          local base=''${plugin%@*}
-          local specified=''${plugin#*@}
-          local found=0
-
-          while read -r kind module expected rest; do
-            if [[ ("$kind" = "dep" || "$kind" = "=>") && "$module" = "$base" ]]; then
-              echo "Plugin \"$base\" have incorrect tag:"
-              echo "  specified: \"$base@$specified\""
-              echo "  got: \"$base@$expected\""
-              found=1
-              break
-            fi
-          done < <(echo "$build_info_output")
-
-          if (( found == 0 )); then
-            echo "Plugin \"$base\" not found in build:"
-            echo "  specified: \"$base@$specified\""
-            echo "  plugin does not exist in the xcaddy build output:"
-            print_common_advice
+      case "$kind" in
+        'dep'|'=>')
+          if [[ -n "$module" && -n "$version" ]]; then
+            modules["$module"]="$version"
           fi
+          ;;
+        *)
+          # we only care about 'dep' and '=>' directives for now
+          ;;
+      esac
+    done < <($out/bin/caddy build-info)
+
+    # compare build-time (Nix side) against runtime (Caddy side)
+    for spec in "''${notfound[@]}"; do
+      if [[ "$spec" == *"="* ]]; then
+          # orig=repl_mod@repl_ver
+          orig="''${spec%%=*}"
+          repl="''${spec#*=}"
+          repl_mod="''${repl%@*}"
+          repl_ver="''${repl#*@}"
+
+          if [[ -z "''${modules[$orig]}" ]]; then
+              errors["$spec"]="plugin \"$spec\" with replacement not found in build info:\n  reason: \"$orig\" missing"
+          elif [[ -z "''${modules[$repl_mod]}" ]]; then
+              errors["$spec"]="plugin \"$spec\" with replacement not found in build info:\n  reason: \"$repl_mod\" missing"
+          elif [[ "''${modules[$repl_mod]}" != "$repl_ver" ]]; then
+              errors["$spec"]="plugin \"$spec\" have incorrect tag:\n  specified: \"$spec\"\n  got: \"$orig=$repl_mod@''${modules[$repl_mod]}\""
+          fi
+      else
+        # mod@ver
+        mod="''${spec%@*}"
+        ver="''${spec#*@}"
+
+        if [[ -z "''${modules[$mod]}" ]]; then
+            errors["$spec"]="plugin \"$spec\" not found in build info"
+        elif [[ "''${modules[$mod]}" != "$ver" ]]; then
+            errors["$spec"]="plugin \"$spec\" have incorrect tag:\n  specified: \"$spec\"\n  got: \"$mod@''${modules[$mod]}\""
         fi
+      fi
+    done
+
+    # print errors if any
+    if [[ ''${#errors[@]} -gt 0 ]]; then
+      for spec in "''${!errors[@]}"; do
+        printf "Error: ''${errors[$spec]}\n" >&2
       done
+
+      echo "Tips:"
+      echo "If:"
+      echo "  - you are using module replacement (e.g. \`plugin1=plugin2@version\`)"
+      echo "  - the provided Caddy plugin is under a repository's subdirectory, and \`go.{mod,sum}\` files are not in that subdirectory"
+      echo "  - you have custom build logic or other advanced use cases"
+      echo "Please consider:"
+      echo "  - set \`doInstallCheck = false\`"
+      echo "  - write your own \`installCheckPhase\` and override the default script"
+      echo "If you are sure this error is caused by packaging, or by caddy/xcaddy, raise an issue with upstream or nixpkgs"
 
       exit 1
     fi
