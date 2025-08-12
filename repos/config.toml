@@ -226,6 +226,11 @@ description = "forked from cybergenik/hopper"
 visibility = "public"
 archived = false
 
+[repo."kanidm"]
+description = "forked from kanidm/kanidm"
+visibility = "public"
+archived = false
+
 [repo."kumify"]
 description = "forked from denzha24/kumify"
 visibility = "public"
