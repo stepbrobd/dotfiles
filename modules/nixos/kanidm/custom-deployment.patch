@@ -1,0 +1,68 @@
+From 1804015ab7bd77c13d4a94cd46b054084828c67e Mon Sep 17 00:00:00 2001
+From: Yifei Sun <ysun@hey.com>
+Date: Tue, 12 Aug 2025 19:08:20 +0200
+Subject: [PATCH] stepbrobd: custom deployment patch
+
+---
+ server/core/src/https/mod.rs         | 19 ++++++++++++-------
+ server/core/templates/base.html      |  1 +
+ server/core/templates/base_htmx.html |  1 +
+ 3 files changed, 14 insertions(+), 7 deletions(-)
+
+diff --git a/server/core/src/https/mod.rs b/server/core/src/https/mod.rs
+index 17672818..101be6a3 100644
+--- a/server/core/src/https/mod.rs
++++ b/server/core/src/https/mod.rs
+@@ -200,13 +200,18 @@ pub async fn create_https_server(
+ 
+     let csp_header = format!(
+         concat!(
+-            "default-src 'self'; ",
+-            "base-uri 'self' https:; ",
+-            "form-action 'self' https:;",
+-            "frame-ancestors 'none'; ",
+-            "img-src 'self' data:; ",
+-            "worker-src 'none'; ",
+-            "script-src 'self' 'unsafe-eval'{};",
++            "default-src 'self' https://ysun.co https://*.ysun.co; ",
++            "base-uri 'self' https://ysun.co https://*.ysun.co https:; ",
++            "form-action 'self' https://ysun.co https://*.ysun.co https:; ",
++            "frame-ancestors 'self' https://ysun.co https://*.ysun.co; ",
++            "img-src 'self' https://ysun.co https://*.ysun.co data:; ",
++            "worker-src 'self' https://ysun.co https://*.ysun.co; ",
++            "font-src 'self' https://ysun.co https://*.ysun.co data:; ",
++            "script-src 'self' 'unsafe-inline' 'unsafe-eval'{} https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com; ",
++            "connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com; ",
++            "style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co; ",
++            "frame-src 'self' https://ysun.co https://*.ysun.co; ",
++            "media-src 'self' https://ysun.co https://*.ysun.co;"
+         ),
+         js_checksums
+     );
+diff --git a/server/core/templates/base.html b/server/core/templates/base.html
+index 4455c680..df9ec3d8 100644
+--- a/server/core/templates/base.html
++++ b/server/core/templates/base.html
+@@ -22,6 +22,7 @@
+ 			href="/pkg/style.css?v=((crate::https::cache_buster::get_cache_buster_key()))" />
+ 
+ 		(% block head %)(% endblock %)
++        <script defer data-domain="sso.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>
+ 	</head>
+ 	<body class="flex-column d-flex h-100">
+ 		(% block body %)(% endblock %)
+diff --git a/server/core/templates/base_htmx.html b/server/core/templates/base_htmx.html
+index a749fcf7..273100da 100644
+--- a/server/core/templates/base_htmx.html
++++ b/server/core/templates/base_htmx.html
+@@ -26,6 +26,7 @@
+ 			href="/pkg/style.css?v=((crate::https::cache_buster::get_cache_buster_key()))" />
+ 
+ 		(% block head %)(% endblock %)
++        <script defer data-domain="sso.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>
+ 	</head>
+ 	<body hx-boost="true" class="flex-column d-flex h-100">
+ 		(% block nav %)(% endblock %)
+-- 
+2.50.1
+
