@@ -842,11 +842,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754670823,
-        "narHash": "sha256-QQF0hIGDn9SLGuGdBUuDhvtQk9N+ZiAf/GQNZxHh0X8=",
+        "lastModified": 1755114791,
+        "narHash": "sha256-WOYw3IPCTPH6vkeN/umxaBQMG0wOeLNksOsAaA/6tU8=",
         "owner": "stepbrobd",
         "repo": "ysun",
-        "rev": "a36e6bb15dfff35afe6259f985c56bb2d092609f",
+        "rev": "87e047191bc18de5ce5dcfbe6ecdb39586bb8675",
         "type": "github"
       },
       "original": {
