@@ -64,20 +64,22 @@ in
               redir https://ysun.co{uri} permanent
             '';
             serverAliases = [
-              "*.as10779.net"
-              "*.churn.cards"
-              "*.deeznuts.phd"
-              "*.internal.center"
-              "*.stepbrobd.com"
-              "*.xdg.sh"
-              "*.ysun.life"
               "as10779.net"
               "churn.cards"
               "deeznuts.phd"
               "internal.center"
+              "rkt.lol"
               "stepbrobd.com"
               "xdg.sh"
               "ysun.life"
+              "*.as10779.net"
+              "*.churn.cards"
+              "*.deeznuts.phd"
+              "*.internal.center"
+              "*.rkt.lol"
+              "*.stepbrobd.com"
+              "*.xdg.sh"
+              "*.ysun.life"
             ];
           };
         };
