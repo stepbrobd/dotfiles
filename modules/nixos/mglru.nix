@@ -5,7 +5,7 @@
   boot.kernelPatches = lib.singleton {
     name = "mglru-config";
     patch = null;
-    extraStructuredConfig = {
+    structuredExtraConfig = {
       LRU_GEN = lib.kernel.yes;
       LRU_GEN_ENABLED = lib.kernel.yes;
     };
