@@ -53,8 +53,8 @@ in
       document.head = ''<script defer data-domain="home.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>'';
       branding = {
         hide-footer = true;
-        favicon-url = "https://ysun.co/assets/static/img/favicon.ico";
-        logo-url = "https://ysun.co/assets/static/img/favicon.ico";
+        favicon-url = "https://ysun.co/favicon.ico";
+        logo-url = "https://ysun.co/favicon.ico";
       };
       pages = [
         {
