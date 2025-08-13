@@ -103,7 +103,7 @@ archived = false
 [repo."rkt"]
 description = "learn a useful language"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."router"]
 description = "simple and declarative nixos router"
