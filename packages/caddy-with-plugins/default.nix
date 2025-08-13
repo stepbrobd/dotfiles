@@ -25,12 +25,10 @@ in
     ${toShellVar "notfound" pluginsSorted}
 
     # put build info that we care about into `modules` list
-    while read -r kind module version rest; do
+    while read -r kind module version _; do
       case "$kind" in
         'dep'|'=>')
-          if [[ -n "$module" && -n "$version" ]]; then
-            modules["$module"]="$version"
-          fi
+          modules[$module]=$version
           ;;
         *)
           # we only care about 'dep' and '=>' directives for now
@@ -40,29 +38,29 @@ in
 
     # compare build-time (Nix side) against runtime (Caddy side)
     for spec in "''${notfound[@]}"; do
-      if [[ "$spec" == *"="* ]]; then
+      if [[ $spec == *=* ]]; then
           # orig=repl_mod@repl_ver
-          orig="''${spec%%=*}"
-          repl="''${spec#*=}"
-          repl_mod="''${repl%@*}"
-          repl_ver="''${repl#*@}"
+          orig=''${spec%%=*}
+          repl=''${spec#*=}
+          repl_mod=''${repl%@*}
+          repl_ver=''${repl#*@}
 
-          if [[ -z "''${modules[$orig]}" ]]; then
-              errors["$spec"]="plugin \"$spec\" with replacement not found in build info:\n  reason: \"$orig\" missing"
-          elif [[ -z "''${modules[$repl_mod]}" ]]; then
-              errors["$spec"]="plugin \"$spec\" with replacement not found in build info:\n  reason: \"$repl_mod\" missing"
+          if [[ -z ''${modules[$orig]} ]]; then
+              errors[$spec]="plugin \"$spec\" with replacement not found in build info:\n  reason: \"$orig\" missing"
+          elif [[ -z ''${modules[$repl_mod]} ]]; then
+              errors[$spec]="plugin \"$spec\" with replacement not found in build info:\n  reason: \"$repl_mod\" missing"
           elif [[ "''${modules[$repl_mod]}" != "$repl_ver" ]]; then
-              errors["$spec"]="plugin \"$spec\" have incorrect tag:\n  specified: \"$spec\"\n  got: \"$orig=$repl_mod@''${modules[$repl_mod]}\""
+              errors[$spec]="plugin \"$spec\" have incorrect tag:\n  specified: \"$spec\"\n  got: \"$orig=$repl_mod@''${modules[$repl_mod]}\""
           fi
       else
         # mod@ver
-        mod="''${spec%@*}"
-        ver="''${spec#*@}"
+        mod=''${spec%@*}
+        ver=''${spec#*@}
 
-        if [[ -z "''${modules[$mod]}" ]]; then
-            errors["$spec"]="plugin \"$spec\" not found in build info"
+        if [[ -z ''${modules[$mod]} ]]; then
+            errors[$spec]="plugin \"$spec\" not found in build info"
         elif [[ "''${modules[$mod]}" != "$ver" ]]; then
-            errors["$spec"]="plugin \"$spec\" have incorrect tag:\n  specified: \"$spec\"\n  got: \"$mod@''${modules[$mod]}\""
+            errors[$spec]="plugin \"$spec\" have incorrect tag:\n  specified: \"$spec\"\n  got: \"$mod@''${modules[$mod]}\""
         fi
       fi
     done
