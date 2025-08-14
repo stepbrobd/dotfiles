@@ -1,0 +1,11 @@
+diff --git i/base.html w/base.html
+index f5d75e2..93a3187 100644
+--- i/base.html
++++ w/base.html
+@@ -1 +1,6 @@
+ <base href="/" />
++<script
++  defer
++  data-domain="meet.ysun.co"
++  src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"
++></script>
