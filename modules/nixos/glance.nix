@@ -59,13 +59,16 @@ in
       pages = [
         {
           name = "Home";
-          center-vertically = true;
-          hide-desktop-navigation = true;
           width = "slim";
           columns = [
             {
               size = "full";
               widgets = [
+                {
+                  type = "search";
+                  autofocus = true;
+                  search-engine = "https://kagi.com/search?q={QUERY}";
+                }
                 {
                   type = "weather";
                   units = "metric";
@@ -75,40 +78,118 @@ in
                   location = "Grenoble, Auvergne-Rhône-Alpes, France";
                 }
                 {
+                  type = "bookmarks";
+                  groups = [
+                    {
+                      links = [
+                        { title = "Hey"; url = "https://app.hey.com"; icon = "si:hey"; same-tab = true; }
+                        { title = "Tailscale"; url = "https://login.tailscale.com"; icon = "si:tailscale"; same-tab = true; }
+                        { title = "Cloudflare"; url = "https://dash.cloudflare.com"; icon = "si:cloudflare"; same-tab = true; }
+                        { title = "NextDNS"; url = "https://my.nextdns.io"; icon = "si:nextdns"; same-tab = true; }
+                      ];
+                    }
+                    {
+                      links = [
+                        { title = "Neptune"; url = "https://app.neptunenetworks.com"; icon = "si:neptune"; same-tab = true; }
+                        { title = "Virtua"; url = "https://manager.virtua.cloud"; icon = "si:serverless"; same-tab = true; }
+                        { title = "Vultr"; url = "https://my.vultr.com"; icon = "si:vultr"; same-tab = true; }
+                        { title = "xTom"; url = "https://vps.hosting/clientarea"; icon = "si:xstate"; same-tab = true; }
+                      ];
+                    }
+                    {
+                      links = [
+                        { title = "GitHub"; url = "https://github.com"; icon = "si:github"; same-tab = true; }
+                        { title = "GitLab"; url = "https://gitlab.com"; icon = "si:gitlab"; same-tab = true; }
+                        { title = "SourceHut"; url = "https://git.sr.ht"; icon = "si:sourcehut"; same-tab = true; }
+                        { title = "Codeberg"; url = "https://codeberg.org"; icon = "si:codeberg"; same-tab = true; }
+                      ];
+                    }
+                  ];
+                }
+              ];
+            }
+          ];
+        }
+        {
+          name = "Monitor";
+          width = "slim";
+          columns = [
+            {
+              size = "full";
+              widgets = [
+                {
                   type = "search";
                   autofocus = true;
                   search-engine = "https://kagi.com/search?q={QUERY}";
                 }
                 {
-                  type = "bookmarks";
-                  groups = [
-                    {
-                      links = [
-                        { title = "GoLink"; url = "https://go.tail650e82.ts.net/"; icon = "si:shortcut"; same-tab = true; }
-                        { title = "Telemetry"; url = "https://otel.ysun.co/dashboards"; icon = "si:grafana"; same-tab = true; }
-                        { title = "Plausible"; url = "https://stats.ysun.co/ysun.co"; icon = "si:plausibleanalytics"; same-tab = true; }
-                        { title = "NextDNS"; url = "https://my.nextdns.io/"; icon = "si:nextdns"; same-tab = true; }
-                        { title = "Tailscale"; url = "https://login.tailscale.com/admin/machines"; icon = "si:tailscale"; same-tab = true; }
-                        { title = "Cloudflare"; url = "https://dash.cloudflare.com/6ff6fca6d9ffe9c77dd15a9095076b3b"; icon = "si:cloudflare"; same-tab = true; }
-                      ];
-                    }
-                    {
-                      links = [
-                        { title = "Hey"; url = "https://app.hey.com/imbox"; icon = "si:hey"; same-tab = true; }
-                        { title = "NixOS"; url = "https://discourse.nixos.org/"; icon = "si:nixos"; same-tab = true; }
-                        { title = "Calibre"; url = "https://read.ysun.co"; icon = "si:calibreweb"; same-tab = true; }
-                        { title = "AniList"; url = "https://anilist.co/home"; icon = "si:anilist"; same-tab = true; }
-                        { title = "Timetable"; url = "https://animeschedule.net/"; icon = "si:myanimelist"; same-tab = true; }
-                        { title = "ニコニコ"; url = "https://site.nicovideo.jp/danime/"; icon = "si:niconico"; same-tab = true; }
-                      ];
-                    }
+                  type = "monitor";
+                  title = "Monitor";
+                  sites = [
+                    { title = "Attic"; url = "https://cache.ysun.co"; icon = "si:googlecloudstorage"; same-tab = true; }
+                    { title = "Calibre"; url = "https://read.ysun.co"; icon = "si:calibreweb"; same-tab = true; }
+                    { title = "Glance"; url = "https://home.ysun.co"; icon = "si:homepage"; same-tab = true; }
+                    { title = "GoLink"; url = "https://go.tail650e82.ts.net"; icon = "si:linktree"; same-tab = true; }
+                    { title = "Grafana"; url = "https://otel.ysun.co"; icon = "si:grafana"; same-tab = true; }
+                    { title = "Homepage"; url = "https://ysun.co"; icon = "si:googlehome"; same-tab = true; }
+                    { title = "Home Assistant"; url = "https://ha.ysun.co"; icon = "si:homeassistant"; same-tab = true; }
+                    { title = "Hydra"; url = "https://hydra.ysun.co"; icon = "si:nixos"; same-tab = true; }
+                    { title = "Jitsi"; url = "https://meet.ysun.co"; icon = "si:jitsi"; same-tab = true; }
+                    { title = "Kanidm"; url = "https://sso.ysun.co"; icon = "si:adblock"; same-tab = true; }
+                    { title = "Plausible"; url = "https://stats.ysun.co"; icon = "si:plausibleanalytics"; same-tab = true; }
+                    { title = "Tailscale"; url = "https://login.tailscale.com"; icon = "si:tailscale"; same-tab = true; }
                   ];
                 }
                 {
-                  type = "group";
+                  type = "split-column";
+                  max-columns = 2;
                   widgets = [
-                    { type = "lobsters"; limit = 10; }
                     { type = "hacker-news"; limit = 10; }
+                    { type = "lobsters"; limit = 10; }
+                  ];
+                }
+              ];
+            }
+          ];
+        }
+        {
+          name = "Market";
+          width = "slim";
+          columns = [
+            {
+              size = "small";
+              widgets = [
+                {
+                  type = "markets";
+                  title = "Market";
+                  sort-by = "absolute-change";
+                  markets = [
+                    { symbol = "SPY"; name = "S&P 500"; }
+                    { symbol = "NVDA"; name = "NVIDIA"; }
+                    { symbol = "AAPL"; name = "Apple"; }
+                    { symbol = "MSFT"; name = "Microsoft"; }
+                    { symbol = "GOOGL"; name = "Google"; }
+                    { symbol = "AMD"; name = "AMD"; }
+                    { symbol = "RDDT"; name = "Reddit"; }
+                    { symbol = "AMZN"; name = "Amazon"; }
+                    { symbol = "TSLA"; name = "Tesla"; }
+                    { symbol = "INTC"; name = "Intel"; }
+                    { symbol = "META"; name = "Meta"; }
+                  ];
+                }
+              ];
+            }
+            {
+              size = "full";
+              widgets = [
+                {
+                  type = "rss";
+                  title = "News";
+                  style = "detailed-list";
+                  feeds = [
+                    { url = "https://feeds.bloomberg.com/markets/news.rss"; title = "Bloomberg"; }
+                    { url = "https://www.ft.com/rss/home"; title = "Financial Times"; }
+                    { url = "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"; title = "Wall Street Journal"; }
                   ];
                 }
               ];
