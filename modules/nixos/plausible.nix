@@ -34,6 +34,10 @@ in
       config.sops.secrets."plausible/environment".path
     ];
 
+    # sso feature is guarded
+    # https://github.com/plausible/analytics/blob/master/config/.env.load
+    systemd.services.plausible.environment.SSO_ENABLED = "true";
+
     # clickhouse eats massive amount of disk space
     # disable logging to save space
     # https://github.com/plausible/hosting/tree/master/clickhouse
