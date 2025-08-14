@@ -1,6 +1,8 @@
 {
   imports = [
     ./hardware.nix
+
+    ./jitsi.nix
   ];
 
   networking = {

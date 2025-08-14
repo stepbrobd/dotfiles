@@ -1,0 +1,3 @@
+{
+  services.jitsi.enable = true;
+}
