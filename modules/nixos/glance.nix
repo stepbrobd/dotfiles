@@ -141,11 +141,10 @@ in
                   ];
                 }
                 {
-                  type = "split-column";
-                  max-columns = 2;
+                  type = "group";
                   widgets = [
-                    { type = "hacker-news"; limit = 10; }
-                    { type = "lobsters"; limit = 10; }
+                    { type = "hacker-news"; limit = 10; collapse-after = 10; }
+                    { type = "lobsters"; limit = 10; collapse-after = 10; }
                   ];
                 }
               ];
@@ -157,31 +156,32 @@ in
           width = "slim";
           columns = [
             {
-              size = "small";
+              size = "full";
               widgets = [
+                {
+                  type = "search";
+                  autofocus = true;
+                  search-engine = "https://kagi.com/search?q={QUERY}";
+                }
                 {
                   type = "markets";
                   title = "Market";
-                  sort-by = "absolute-change";
+                  sort-by = "change";
                   markets = [
-                    { symbol = "SPY"; name = "S&P 500"; }
-                    { symbol = "NVDA"; name = "NVIDIA"; }
+                    { symbol = "QQQ"; name = "Nasdaq-100"; }
+                    { symbol = "SQQQ"; name = "ProShares UltraPro Short QQQ"; }
+                    { symbol = "VOO"; name = "Vanguard S&P 500"; }
                     { symbol = "AAPL"; name = "Apple"; }
-                    { symbol = "MSFT"; name = "Microsoft"; }
-                    { symbol = "GOOGL"; name = "Google"; }
+                    { symbol = "NET"; name = "Cloudflare"; }
+                    { symbol = "FSLY"; name = "Fastly"; }
+                    { symbol = "TSM"; name = "TSMC"; }
+                    { symbol = "QCOM"; name = "Qualcomm"; }
                     { symbol = "AMD"; name = "AMD"; }
-                    { symbol = "RDDT"; name = "Reddit"; }
-                    { symbol = "AMZN"; name = "Amazon"; }
-                    { symbol = "TSLA"; name = "Tesla"; }
                     { symbol = "INTC"; name = "Intel"; }
-                    { symbol = "META"; name = "Meta"; }
+                    { symbol = "PLTR"; name = "Palantir"; }
+                    { symbol = "ASML"; name = "ASML"; }
                   ];
                 }
-              ];
-            }
-            {
-              size = "full";
-              widgets = [
                 {
                   type = "rss";
                   title = "News";
@@ -189,7 +189,7 @@ in
                   feeds = [
                     { url = "https://feeds.bloomberg.com/markets/news.rss"; title = "Bloomberg"; }
                     { url = "https://www.ft.com/rss/home"; title = "Financial Times"; }
-                    { url = "https://feeds.a.dj.com/rss/RSSMarketsMain.xml"; title = "Wall Street Journal"; }
+                    { url = "https://feeds.content.dowjones.io/public/rss/RSSMarketsMain"; title = "Wall Street Journal"; }
                   ];
                 }
               ];
