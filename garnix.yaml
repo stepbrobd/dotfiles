@@ -7,6 +7,7 @@ builds:
   exclude:
     - packages.aarch64-linux.verus # z3 incorrect binary release
     - packages.*.hey-mail # unfree
+    - packages.*.jitsi-meet # insecure
     - packages.*.ripe-atlas-software-probe # broken
     - packages.*.spotify # unfree
     - "*.x86_64-darwin.*" # useless :(

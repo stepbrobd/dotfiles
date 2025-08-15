@@ -4,5 +4,5 @@
 }:
 
 pkgsPrev.jitsi-meet.overrideAttrs (prev: {
-  patches = [ ./plausible.patch ];
+  patches = pkgs.lib.singleton ./plausible.patch;
 })
