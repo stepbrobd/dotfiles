@@ -45,6 +45,7 @@ in
     };
 
     services.prosody.checkConfig = false;
+    services.jitsi-videobridge.openFirewall = true;
 
     services.jitsi-meet = {
       enable = true;
@@ -57,8 +58,20 @@ in
 
       config = {
         defaultLang = "en";
+        analytics.disabled = true;
         enableWelcomePage = false;
         prejoinPageEnabled = true;
+        requireDisplayName = true;
+        maxFullResolutionParticipants = 1;
+        stunServers = [
+          { urls = "turn:turn.matrix.org:3478?transport=udp"; }
+          { urls = "turn:turn.matrix.org:3478?transport=tcp"; }
+        ];
+        constraints.video.height = {
+          ideal = 720;
+          max = 1080;
+          min = 240;
+        };
       };
 
       interfaceConfig = {
