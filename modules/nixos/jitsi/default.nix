@@ -30,9 +30,17 @@ in
     ];
 
     services.caddy.virtualHosts.${cfg.mainDomain} = {
-      serverAliases = cfg.extraDomains;
       extraConfig = lib.mkBefore ''
         import common
+      '';
+    };
+
+    services.caddy.virtualHosts.${lib.head cfg.extraDomains} = {
+      serverAliases = lib.tail cfg.extraDomains;
+      logFormat = lib.mkForce config.services.caddy.virtualHosts.${cfg.mainDomain}.logFormat;
+      extraConfig = lib.mkBefore ''
+        import common
+        redir https://${cfg.mainDomain}{uri} permanent
       '';
     };
 
