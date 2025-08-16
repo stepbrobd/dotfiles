@@ -143,8 +143,8 @@ in
                 {
                   type = "group";
                   widgets = [
-                    { type = "hacker-news"; limit = 10; collapse-after = 10; }
                     { type = "lobsters"; limit = 10; collapse-after = 10; }
+                    { type = "hacker-news"; limit = 10; collapse-after = 10; }
                   ];
                 }
               ];
