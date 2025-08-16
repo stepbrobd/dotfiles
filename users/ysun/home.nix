@@ -55,7 +55,7 @@ in
     cfspeedtest
     cider
     comma
-    discord
+    discord # (discord.override { withEquicord = true; }) nixpkgs#430391
     gitleaks
     monocle
     nix-output-monitor
