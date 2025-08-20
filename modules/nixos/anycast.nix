@@ -51,7 +51,7 @@ in
               # my weird flex -
               # dont redirect arpa zones
               # but cannot get certificates
-              "http://0.0.0.a.e.b.0.0.0.2.6.2.ip6.arpa"
+              "http://0.0.9.5.f.2.0.6.2.ip6.arpa"
               "http://104.161.23.in-addr.arpa"
               "http://136.104.192.in-addr.arpa"
             ];
