@@ -3,6 +3,7 @@
 {
   imports = with inputs.self.homeManagerModules.ysun; [
     minimal
+    nix
 
     alacritty
     ani
