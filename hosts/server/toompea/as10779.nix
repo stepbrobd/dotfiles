@@ -35,8 +35,6 @@ in
         # "44.32.189.0/24" # 44net anycast test
       ];
       ipv6.addresses = [
-        "2620:be:a000::23:161:104:128/128" # unicast, offboard soon
-        "2620:be:a000::23:161:104:17/128" # personal site anycast, offboard soon
         "2602:f590:0::23:161:104:128/128" # unicast
         "2602:f590:0::23:161:104:17/128" # personal site anycast
       ];
@@ -58,7 +56,6 @@ in
         ];
         ipv6.routes = [
           { prefix = "2602:f590::/36"; option = "reject"; }
-          { prefix = "2620:be:a000::/48"; option = "reject"; } # offboard soon
         ];
       };
       sessions = [
