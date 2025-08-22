@@ -12,7 +12,7 @@
         git
         nix-direnv
         sops
-        terraform
+        (terraform.withPlugins (_: with pkgs.terraform-providers; [ cloudflare sops ]))
         terraformer
         terranix
       ];
