@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone mkPurelyMailRecord;
+  inherit (lib.terranix) mkZone mkPersonalSiteRebind mkPurelyMailRecord;
 in
 {
   resource.cloudflare_dns_record = mkZone "ysun.co"
@@ -13,14 +13,7 @@ in
         content = "anycast.as10779.net";
         comment = "CNAME Rebind - Personal Site";
       };
-
-      co_ysun_wildcard = {
-        type = "CNAME";
-        proxied = false;
-        name = "*";
-        content = "ysun.co";
-        comment = "CNAME Rebind - Personal Site";
-      };
+      co_ysun_wildcard = mkPersonalSiteRebind { name = "*"; };
 
       co_ysun_cache = {
         type = "CNAME";

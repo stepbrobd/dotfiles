@@ -1,18 +1,12 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone mkPurelyMailRecord;
+  inherit (lib.terranix) mkZone mkPersonalSiteRebind mkPurelyMailRecord;
 in
 {
   resource.cloudflare_dns_record = mkZone "104.161.23.in-addr.arpa"
     {
-      arpa_in_addr_23_161_104_apex = {
-        type = "CNAME";
-        proxied = false;
-        name = "@";
-        content = "ysun.co";
-        comment = "CNAME Rebind - Personal Site";
-      };
+      arpa_in_addr_23_161_104_apex = mkPersonalSiteRebind { name = "@"; };
 
       arpa_in_addr_23_161_104_17 = {
         type = "PTR";

@@ -56,6 +56,14 @@ rec {
       zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
       ttl = 1;
     } // record;
+  mkPersonalSiteRebind =
+    let target = "co_ysun_apex"; in
+    overrides: {
+      type = tfRef "cloudflare_dns_record.${target}.type";
+      proxied = tfRef "cloudflare_dns_record.${target}.proxied";
+      content = tfRef "cloudflare_dns_record.${target}.content";
+      comment = tfRef "cloudflare_dns_record.${target}.comment";
+    } // overrides;
 
   # cf helpers for adding purelymail records
   mkPurelyMailRecord =

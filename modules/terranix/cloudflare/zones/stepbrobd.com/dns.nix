@@ -1,26 +1,13 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone mkPurelyMailRecord;
+  inherit (lib.terranix) mkZone mkPersonalSiteRebind mkPurelyMailRecord;
 in
 {
   resource.cloudflare_dns_record = mkZone "stepbrobd.com"
     {
-      com_stepbrobd_apex = {
-        type = "CNAME";
-        proxied = false;
-        name = "@";
-        content = "ysun.co";
-        comment = "CNAME Rebind - Personal Site";
-      };
-
-      com_stepbrobd_wildcard = {
-        type = "CNAME";
-        proxied = false;
-        name = "*";
-        content = "ysun.co";
-        comment = "CNAME Rebind - Personal Site";
-      };
+      com_stepbrobd_apex = mkPersonalSiteRebind { name = "@"; };
+      com_stepbrobd_wildcard = mkPersonalSiteRebind { name = "*"; };
 
       com_stepbrobd_atproto = {
         type = "TXT";
