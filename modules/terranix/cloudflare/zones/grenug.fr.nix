@@ -40,6 +40,5 @@ in
     } // mkPurelyMailRecord
     "grenug.fr"
     "fr_grenug"
-    ''"purelymail_ownership_proof=1559fbc37e4cd506bdc8f5737c3f951d0229b1b32c0d72b38d11f40fc9b00676d25a724c5904a7ba1440d46529b3ac8b5101208d5d96a01d2941ed1bd77ed7df"''
   ;
 }

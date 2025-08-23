@@ -1,0 +1,68 @@
+{ lib, ... }:
+
+let
+  inherit (lib.terranix) mkZone mkPurelyMailRecord;
+in
+{
+  resource.cloudflare_dns_record = mkZone "stepbrobd.com"
+    {
+      com_stepbrobd_apex = {
+        type = "CNAME";
+        proxied = false;
+        name = "@";
+        content = "ysun.co";
+        comment = "CNAME Rebind - Personal Site";
+      };
+
+      com_stepbrobd_wildcard = {
+        type = "CNAME";
+        proxied = false;
+        name = "*";
+        content = "ysun.co";
+        comment = "CNAME Rebind - Personal Site";
+      };
+
+      com_stepbrobd_atproto = {
+        type = "TXT";
+        proxied = false;
+        name = "_atproto";
+        content = ''"did=did:plc:y7e726xl4qjoubevqiccgc4q"'';
+        comment = "Bluesky - Domain Verification";
+      };
+
+      com_stepbrobd_discord = {
+        type = "TXT";
+        proxied = false;
+        name = "_discord";
+        content = ''"dh=e9440c4b087ef618d1ad72ee0b2cd6dc64f90b6e"'';
+        comment = "Discord - Verification";
+      };
+
+      com_stepbrobd_openai = {
+        type = "TXT";
+        proxied = false;
+        name = "@";
+        content = ''"openai-domain-verification=dv-DYE0c3pKC8HodeEvjkCjBrUK"'';
+        comment = "OpenAI - Domain Verification";
+      };
+
+      com_stepbrobd_tailscale = {
+        type = "TXT";
+        proxied = false;
+        name = "@";
+        content = ''"TAILSCALE-n5eugndxcV9xFXlLFOpC"'';
+        comment = "Tailscale - Verification";
+      };
+
+      com_stepbrobd_twilio = {
+        type = "TXT";
+        proxied = false;
+        name = "_twilio";
+        content = ''"twilio-domain-verification=f46e7a05c199fb36f91438cc6d2fabee"'';
+        comment = "Twilio - Verification";
+      };
+    } // mkPurelyMailRecord
+    "stepbrobd.com"
+    "com_stepbrobd"
+  ;
+}
