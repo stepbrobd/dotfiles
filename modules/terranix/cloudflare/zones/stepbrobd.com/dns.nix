@@ -1,10 +1,10 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone mkPersonalSiteRebind mkPurelyMailRecord;
+  inherit (lib.terranix) forZone mkPersonalSiteRebind mkPurelyMailRecord;
 in
 {
-  resource.cloudflare_dns_record = mkZone "stepbrobd.com"
+  resource.cloudflare_dns_record = forZone "stepbrobd.com"
     {
       com_stepbrobd_apex = mkPersonalSiteRebind { name = "@"; };
       com_stepbrobd_wildcard = mkPersonalSiteRebind { name = "*"; };

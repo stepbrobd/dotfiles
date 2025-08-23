@@ -1,10 +1,10 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone mkPersonalSiteRebind mkPurelyMailRecord;
+  inherit (lib.terranix) forZone mkPersonalSiteRebind mkPurelyMailRecord;
 in
 {
-  resource.cloudflare_dns_record = mkZone "ysun.co"
+  resource.cloudflare_dns_record = forZone "ysun.co"
     {
       # dependency: all sites using `lib.terranix.mkPersonalSiteRebind`
       co_ysun_apex = {

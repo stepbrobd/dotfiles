@@ -1,10 +1,10 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone mkPurelyMailRecord tfRef;
+  inherit (lib.terranix) forZone mkPurelyMailRecord tfRef;
 in
 {
-  resource.cloudflare_dns_record = mkZone "grenug.fr"
+  resource.cloudflare_dns_record = forZone "grenug.fr"
     {
       fr_grenug_wildcard = {
         type = "CNAME";
