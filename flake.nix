@@ -18,6 +18,7 @@
               darwin.lib
               hm.lib
               parts.lib
+              terranix.lib
               utils.lib
               { std = inputs.std.lib; }
             ];

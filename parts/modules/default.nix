@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, lib, ... } @ args:
 
 let
   inherit (lib) deepMergeAttrsList filesList importApplyWithArgs loadAll map;
@@ -21,6 +21,6 @@ let
   common = modulesFor "common";
 in
 deepMergeAttrsList (map
-  (x: import x { inherit common modulesFor; })
+  (x: import x (args // { inherit common modulesFor; }))
   (filesList ./. [ "default.nix" ])
 )
