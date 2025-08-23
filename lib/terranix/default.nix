@@ -1,6 +1,7 @@
 { lib }:
 
 rec {
+  # default settings for terraform block
   terraform = {
     backend = rec {
       r2 = s3;
@@ -23,6 +24,7 @@ rec {
     };
   };
 
+  # default settings for provider block
   provider = {
     cloudflare = {
       terraform.required_providers.cloudflare.source = "cloudflare/cloudflare";
@@ -39,18 +41,23 @@ rec {
     };
   };
 
+  # helper functions
+  tfRef = ref: "\${${ref}}";
+
+  # cf r2 helper
   mkBucket = config: {
     account_id = ''''${data.sops_file.secrets.data["cloudflare.account_id"]}'';
   } // config;
 
+  # cf dns helper
   mkZone = zone: lib.mapAttrs (_: record: mkRecord zone record);
-
   mkRecord =
     zone: record: {
       zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
       ttl = 1;
     } // record;
 
+  # cf helpers for adding purelymail records
   mkPurelyMailRecord =
     let
       comment = "Purelymail - Custom Domain";
