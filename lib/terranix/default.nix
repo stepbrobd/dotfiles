@@ -62,6 +62,28 @@ rec {
     #   "dad.ysun.co"
     # ];
   } // config;
+  mkZoneSettings = zone: {
+    zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
+    nameservers = {
+      type = "custom.zone";
+      ns_set = 1;
+    };
+    foundation_dns = false;
+    multi_provider = false;
+    secondary_overrides = false;
+    soa = {
+      mname = "dns.ysun.co";
+      rname = "noc.ysun.co";
+      refresh = 10000;
+      retry = 2400;
+      expire = 604800;
+      min_ttl = 1800;
+      ttl = 3600;
+    };
+    ns_ttl = 86400;
+    zone_mode = "standard";
+    flatten_all_cnames = false;
+  };
   forZone = zone: lib.mapAttrs (_: record: mkRecord zone record);
   mkRecord =
     zone: record: {

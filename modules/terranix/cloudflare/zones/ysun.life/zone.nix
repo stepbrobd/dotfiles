@@ -1,10 +1,13 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone;
+  inherit (lib.terranix) mkZone;# mkZoneSettings;
+  zone = "ysun.life";
 in
 {
   resource.cloudflare_zone.life_ysun = mkZone {
-    name = "ysun.life";
+    name = zone;
   };
+
+  # resource.cloudflare_zone_dns_settings.life_ysun_acns_settings = mkZoneSettings zone;
 }
