@@ -11,6 +11,9 @@
         git
         nix-direnv
         sops
+
+        inputs'.terranix.packages.default
+        (terraform.withPlugins (p: with p; [ cloudflare sops ]))
       ];
     };
   };

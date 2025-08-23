@@ -9,6 +9,7 @@ in
   imports = flatten (map
     (f: [
       (import ./${f}/dns.nix args)
+      (import ./${f}/zone.nix args)
     ])
     (filter
       (f: f != "default.nix")

@@ -54,7 +54,13 @@ rec {
     account.id = ''''${data.sops_file.secrets.data["cloudflare.account_id"]}'';
     type = "full";
     paused = false;
-    # vanity_name_servers = [];
+    # for some reason only works with enterprise zones
+    # even though ACNS is enabled
+    # vanity_name_servers = [
+    #   "dns.ysun.co"
+    #   "mom.ysun.co"
+    #   "dad.ysun.co"
+    # ];
   } // config;
   forZone = zone: lib.mapAttrs (_: record: mkRecord zone record);
   mkRecord =
