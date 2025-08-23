@@ -6,6 +6,7 @@ in
 {
   resource.cloudflare_dns_record = mkZone "ysun.co"
     {
+      # dependency: all sites using `lib.terranix.mkPersonalSiteRebind`
       co_ysun_apex = {
         type = "CNAME";
         proxied = false;
@@ -55,6 +56,7 @@ in
         comment = "Hetzner - Kanidm";
       };
 
+      # dependency: cloudflare_dns_record.fr_grenug_meet
       co_ysun_meet = {
         type = "CNAME";
         proxied = false;
@@ -87,6 +89,7 @@ in
         comment = "Hetzner - Kanidm";
       };
 
+      # dependency: cloudflare_dns_record.fr_grenug_stats
       co_ysun_stats = {
         type = "CNAME";
         proxied = true;

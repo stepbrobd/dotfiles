@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone mkPurelyMailRecord;
+  inherit (lib.terranix) mkZone mkPurelyMailRecord tfRef;
 in
 {
   resource.cloudflare_dns_record = mkZone "grenug.fr"
@@ -16,18 +16,18 @@ in
 
       fr_grenug_meet = {
         type = "CNAME";
-        proxied = false;
         name = "meet";
-        content = "lagern.as10779.net";
-        comment = "AWS - EU Central 2 - Jitsi Meet";
+        proxied = tfRef "cloudflare_dns_record.co_ysun_meet.proxied";
+        content = tfRef "cloudflare_dns_record.co_ysun_meet.content";
+        comment = tfRef "cloudflare_dns_record.co_ysun_meet.comment";
       };
 
       fr_grenug_stats = {
         type = "CNAME";
-        proxied = true;
         name = "stats";
-        content = "toompea.as10779.net";
-        comment = "V.PS - Tallinn, Estonia - Plausible Analytics";
+        proxied = tfRef "cloudflare_dns_record.co_ysun_stats.proxied";
+        content = tfRef "cloudflare_dns_record.co_ysun_stats.content";
+        comment = tfRef "cloudflare_dns_record.co_ysun_stats.comment";
       };
 
       fr_grenug_atproto = {

@@ -59,7 +59,7 @@ rec {
   mkPersonalSiteRebind =
     let target = "co_ysun_apex"; in
     overrides: {
-      type = tfRef "cloudflare_dns_record.${target}.type";
+      type = "CNAME";
       proxied = tfRef "cloudflare_dns_record.${target}.proxied";
       content = tfRef "cloudflare_dns_record.${target}.content";
       comment = tfRef "cloudflare_dns_record.${target}.comment";
