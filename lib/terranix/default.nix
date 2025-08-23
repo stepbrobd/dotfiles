@@ -1,6 +1,26 @@
 { lib }:
 
 rec {
+  terraform = {
+    backend = rec {
+      r2 = s3;
+      s3 = {
+        terraform.backend.s3 = {
+          bucket = "terraform";
+          key = "github.com/stepbrobd/dotfiles/terraform.tfstate";
+          region = "auto";
+          skip_credentials_validation = true;
+          skip_metadata_api_check = true;
+          skip_region_validation = true;
+          skip_requesting_account_id = true;
+          skip_s3_checksum = true;
+          use_path_style = true;
+          endpoints.s3 = "https://6ff6fca6d9ffe9c77dd15a9095076b3b.eu.r2.cloudflarestorage.com";
+        };
+      };
+    };
+  };
+
   provider = {
     cloudflare = {
       terraform.required_providers.cloudflare.source = "cloudflare/cloudflare";
@@ -16,6 +36,10 @@ rec {
       data.sops_file.secrets.source_file = lib.toString ./secrets.yaml;
     };
   };
+
+  mkBucket = config: {
+    account_id = ''''${data.sops_file.secrets.data["cloudflare.account_id"]}'';
+  } // config;
 
   mkZone = zone: lib.mapAttrs (_: record: mkRecord zone record);
 
