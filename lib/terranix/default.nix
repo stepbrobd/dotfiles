@@ -6,16 +6,18 @@ rec {
       r2 = s3;
       s3 = {
         terraform.backend.s3 = {
+          region = "auto";
           bucket = "terraform";
           key = "github.com/stepbrobd/dotfiles/terraform.tfstate";
-          region = "auto";
+          endpoints.s3 = "https://6ff6fca6d9ffe9c77dd15a9095076b3b.eu.r2.cloudflarestorage.com";
+          encrypt = true;
+          use_lockfile = true;
           skip_credentials_validation = true;
           skip_metadata_api_check = true;
           skip_region_validation = true;
           skip_requesting_account_id = true;
           skip_s3_checksum = true;
           use_path_style = true;
-          endpoints.s3 = "https://6ff6fca6d9ffe9c77dd15a9095076b3b.eu.r2.cloudflarestorage.com";
         };
       };
     };
