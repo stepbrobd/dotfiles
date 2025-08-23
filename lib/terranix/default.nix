@@ -63,7 +63,7 @@ rec {
         proxied = false;
         name = "@";
         content = "mailserver.purelymail.com";
-        priority = 1;
+        priority = 10;
       };
       "${prefix}_purelymail_spf" = {
         inherit comment;
