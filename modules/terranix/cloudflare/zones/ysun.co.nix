@@ -30,6 +30,14 @@ in
         comment = "SSDNodes - Tokyo 2 - Hydra";
       };
 
+      co_ysun_ha = {
+        type = "CNAME";
+        proxied = false;
+        name = "ha";
+        content = "isere.as10779.net";
+        comment = "Tailscale Internal - Raspberry Pi - Home Assistant";
+      };
+
       co_ysun_home = {
         type = "CNAME";
         proxied = true;

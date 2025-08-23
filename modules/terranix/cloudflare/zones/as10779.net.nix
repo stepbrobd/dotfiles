@@ -86,6 +86,22 @@ in
         comment = "Neptune - New York";
       };
 
+      net_as10779_isere_v4 = {
+        type = "A";
+        proxied = false;
+        name = "isere";
+        content = "100.100.30.2";
+        comment = "Tailscale Internal - Raspberry Pi";
+      };
+
+      net_as10779_isere_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "isere";
+        content = "fd7a:115c:a1e0::5e01:a576";
+        comment = "Tailscale Internal - Raspberry Pi";
+      };
+
       net_as10779_kongo_v4 = {
         type = "A";
         proxied = false;
