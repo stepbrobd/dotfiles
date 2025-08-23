@@ -3,12 +3,14 @@
 { ... }:
 
 let
-  inherit (lib) map filter attrNames readDir;
+  inherit (lib) map filter flatten attrNames readDir;
 in
 {
-  imports = map
-    (f: import ./${f} args)
+  imports = flatten (map
+    (f: [
+      (import ./${f}/dns.nix args)
+    ])
     (filter
       (f: f != "default.nix")
-      (attrNames (readDir ./.)));
+      (attrNames (readDir ./.))));
 }
