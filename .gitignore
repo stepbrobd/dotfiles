@@ -4,8 +4,13 @@
 **/result-*/
 
 # Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
 .terraform
 .terraform.*
+config.tf.json
 
 # Editor
 **/.idea/

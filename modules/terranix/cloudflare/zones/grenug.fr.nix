@@ -11,6 +11,7 @@ in
         proxied = true;
         name = "*";
         content = "grenug.fr";
+        comment = "Cloudflare Workers - Grenuble Nix User Group";
       };
 
       fr_grenug_meet = {
