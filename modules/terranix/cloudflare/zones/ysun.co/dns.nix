@@ -28,7 +28,7 @@ in
         type = "CNAME";
         proxied = false;
         name = "ha";
-        content = "isere.as10779.net";
+        content = "isere.internal.center";
         comment = "Tailscale Internal - Raspberry Pi - Home Assistant";
       };
 
