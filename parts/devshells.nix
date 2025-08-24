@@ -13,7 +13,7 @@
         sops
 
         inputs'.terranix.packages.default
-        (terraform.withPlugins (p: with p; [ cloudflare sops ]))
+        (terraform.withPlugins (p: with p; [ cloudflare sops tailscale ]))
       ];
     };
   };

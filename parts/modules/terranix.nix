@@ -21,7 +21,7 @@
 
     apps.terranix =
       let
-        tf = (pkgs.terraform.withPlugins (p: with p; [ cloudflare sops ]));
+        tf = (pkgs.terraform.withPlugins (p: with p; [ cloudflare sops tailscale ]));
         secrets = lib.toString ../../lib/terranix/secrets.yaml;
       in
       {

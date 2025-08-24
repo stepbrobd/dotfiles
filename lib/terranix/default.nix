@@ -39,6 +39,15 @@ rec {
       provider.sops = { };
       data.sops_file.secrets.source_file = lib.toString ./secrets.yaml;
     };
+
+    tailscale = {
+      terraform.required_providers.tailscale.source = "tailscale/tailscale";
+      provider.tailscale = {
+        tailnet = ''''${data.sops_file.secrets.data["tailscale.tailnet"]}'';
+        oauth_client_id = ''''${data.sops_file.secrets.data["tailscale.client_id"]}'';
+        oauth_client_secret = ''''${data.sops_file.secrets.data["tailscale.client_secret"]}'';
+      };
+    };
   };
 
   # helper functions
@@ -157,4 +166,16 @@ rec {
         content = "dmarcroot.purelymail.com";
       };
     };
+
+  # tailscale device data helper
+  mkDevices = devices: lib.listToAttrs
+    (lib.map
+      (d: {
+        name = d;
+        value = {
+          hostname = d;
+          wait_for = "10s";
+        };
+      })
+      devices);
 }
