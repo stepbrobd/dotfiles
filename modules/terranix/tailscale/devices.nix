@@ -6,6 +6,8 @@ let
   inherit (lib.terranix) mkDevices;
 in
 {
+  data.tailscale_devices.all = { };
+
   data.tailscale_device = mkDevices [
     # server, router
     "butte"
