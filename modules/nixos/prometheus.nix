@@ -170,11 +170,8 @@ in
     services.caddy = {
       enable = true;
       virtualHosts."${config.networking.hostName}.tail650e82.ts.net" = {
-        serverAliases = [ "${config.networking.hostName}.internal.center" ];
         logFormat = lib.mkForce "output discard";
         extraConfig = ''
-          import common
-
           handle_path /prometheus/* {
             reverse_proxy  ${with cfg; toString listenAddress + ":" + toString port}
           }
