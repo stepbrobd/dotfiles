@@ -44,16 +44,35 @@ in
       id = lib.blueprint.hosts.butte.ipv4;
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.butte) ipv4 ipv6; };
-      static = {
-        ipv4.routes = [
-          { prefix = "23.161.104.0/24"; option = "reject"; }
-          { prefix = "44.32.189.0/24"; option = "reject"; }
-          { prefix = "192.104.136.0/24"; option = "reject"; }
-        ];
-        ipv6.routes = [
-          { prefix = "2602:f590::/36"; option = "reject"; }
-        ];
-      };
+      static =
+        let
+          option = lib.trim ''
+            reject {
+                # come from
+                bgp_community.add((35661, 6010)); # FranceIX Paris
+                bgp_community.add((35661, 6410)); # DE-CIX Frankfurt
+                bgp_community.add((35661, 6510)); # LILLIX Lille
+                bgp_community.add((35661, 6610)); # FranceIX Lille
+                bgp_community.add((35661, 7010)); # HOPUS
+                # prepend 1x
+                bgp_community.add((35661, 7021)); # Orange
+                bgp_community.add((35661, 7031)); # Arelion
+                # dont announce
+                bgp_community.add((35661, 6074)); # Hurricane Electric
+                bgp_community.add((35661, 7004)); # Cogent
+              }
+          '';
+        in
+        {
+          ipv4.routes = [
+            { inherit option; prefix = "23.161.104.0/24"; }
+            { inherit option; prefix = "44.32.189.0/24"; }
+            { inherit option; prefix = "192.104.136.0/24"; }
+          ];
+          ipv6.routes = [
+            { inherit option; prefix = "2602:f590::/36"; }
+          ];
+        };
       sessions = [
         {
           name = "virtua1";
