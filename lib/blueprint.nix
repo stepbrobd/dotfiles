@@ -143,4 +143,20 @@ in
     ipv4 = "23.88.126.45";
     ipv6 = "2a01:4f8:c17:4b75::1";
   };
+
+  prefixes = {
+    experiment = {
+      ipv4 = [ ];
+      ipv6 = lib.map
+        (prefix: {
+          inherit prefix;
+          option = ''
+            reject {
+                bgp_path.prepend(18932);
+              }
+          '';
+        })
+        [ "2602:f590:a::/48" "2602:f590:b::/48" "2602:f590:b::/48" ];
+    };
+  };
 }
