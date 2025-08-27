@@ -48,16 +48,29 @@ in
       };
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.toompea) ipv4 ipv6; };
-      static = {
-        ipv4.routes = [
-          { prefix = "23.161.104.0/24"; option = "reject"; }
-          { prefix = "44.32.189.0/24"; option = "reject"; }
-          { prefix = "192.104.136.0/24"; option = "reject"; }
-        ];
-        ipv6.routes = [
-          { prefix = "2602:f590::/36"; option = "reject"; }
-        ];
-      };
+      static =
+        let
+          option = lib.trim ''
+            reject {
+                # prefer
+                bgp_community.add((3204, 3001)); # Arelion
+                # prepend 1x
+                bgp_community.add((3204, 1101)); # xTom
+                # dont announce
+                bgp_community.add((3204, 1700)); # Liberty Global
+              }
+          '';
+        in
+        {
+          ipv4.routes = [
+            { inherit option; prefix = "23.161.104.0/24"; }
+            { inherit option; prefix = "44.32.189.0/24"; }
+            { inherit option; prefix = "192.104.136.0/24"; }
+          ];
+          ipv6.routes = [
+            { inherit option; prefix = "2602:f590::/36"; }
+          ];
+        };
       sessions = [
         {
           name = "xtom";
