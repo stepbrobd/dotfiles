@@ -54,7 +54,7 @@ in
           ];
           ipv6.routes = [
             { inherit option; prefix = "2602:f590::/36"; }
-          ];
+          ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
       sessions = [
         {

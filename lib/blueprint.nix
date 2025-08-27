@@ -145,12 +145,12 @@ in
   };
 
   prefixes = {
-    experiment = {
+    experimental = {
       ipv4 = [ ];
       ipv6 = lib.map
         (prefix: {
           inherit prefix;
-          option = ''
+          option = lib.trim ''
             reject {
                 bgp_path.prepend(18932);
               }
