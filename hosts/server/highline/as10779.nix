@@ -44,16 +44,27 @@ in
       id = lib.blueprint.hosts.highline.ipv4;
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.highline) ipv4 ipv6; };
-      static = {
-        ipv4.routes = [
-          { prefix = "23.161.104.0/24"; option = "reject"; }
-          { prefix = "44.32.189.0/24"; option = "reject"; }
-          { prefix = "192.104.136.0/24"; option = "reject"; }
-        ];
-        ipv6.routes = [
-          { prefix = "2602:f590::/36"; option = "reject"; }
-        ];
-      };
+      static =
+        let
+          option = lib.trim ''
+            reject {
+                bgp_large_community.add((21700, 101, 2)); # customer route
+                bgp_large_community.add((21700, 102, 840)); # source US
+                bgp_large_community.add((21700, 103, 1)); # source NYC
+                bgp_large_community.add((21700, 660, 2)); # not exported to peers
+              }
+          '';
+        in
+        {
+          ipv4.routes = [
+            { inherit option; prefix = "23.161.104.0/24"; }
+            { inherit option; prefix = "44.32.189.0/24"; }
+            { inherit option; prefix = "192.104.136.0/24"; }
+          ];
+          ipv6.routes = [
+            { inherit option; prefix = "2602:f590::/36"; }
+          ];
+        };
       sessions = [
         {
           name = "neptune";
