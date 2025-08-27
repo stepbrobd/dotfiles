@@ -36,16 +36,41 @@ in
       id = lib.blueprint.hosts.kongo.ipv4;
       secret = config.sops.secrets.bgp.path;
       source = { inherit (lib.blueprint.hosts.kongo) ipv4 ipv6; };
-      static = {
-        ipv4.routes = [
-          { prefix = "23.161.104.0/24"; option = "reject"; }
-          { prefix = "44.32.189.0/24"; option = "reject"; }
-          { prefix = "192.104.136.0/24"; option = "reject"; }
-        ];
-        ipv6.routes = [
-          { prefix = "2602:f590::/36"; option = "reject"; }
-        ];
-      };
+      static =
+        let
+          option = lib.trim ''
+            reject {
+                # geotag
+                bgp_community.add((20473, 23)); # Tokyo
+                bgp_community.add((20473, 26)); # Soul
+                # metric 0
+                bgp_large_community.add((20473, 6009, 2914));  # NTT
+                bgp_large_community.add((20473, 6009, 17676)); # SoftBank
+                # prepend 1x
+                bgp_large_community.add((20473, 6001, 3320)); # DTAG
+                # prepend 2x
+                bgp_large_community.add((20473, 6002, 701));  # Verizon
+                bgp_large_community.add((20473, 6002, 1299)); # Arelion
+                bgp_large_community.add((20473, 6002, 3491)); # PCCW
+                bgp_large_community.add((20473, 6002, 6830)); # Liberty Global
+                # prepend 3x
+                bgp_large_community.add((20473, 6003, 174));  # Cogent
+                bgp_large_community.add((20473, 6003, 1221)); # Telstra
+                bgp_large_community.add((20473, 6003, 3356)); # Level3
+                bgp_large_community.add((20473, 6003, 4826)); # Vocus
+              }
+          '';
+        in
+        {
+          ipv4.routes = [
+            { inherit option; prefix = "23.161.104.0/24"; }
+            { inherit option; prefix = "44.32.189.0/24"; }
+            { inherit option; prefix = "192.104.136.0/24"; }
+          ];
+          ipv6.routes = [
+            { inherit option; prefix = "2602:f590::/36"; }
+          ];
+        };
       sessions = [
         {
           name = "vultr";
