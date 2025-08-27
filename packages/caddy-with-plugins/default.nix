@@ -14,7 +14,7 @@ let
 in
 (pkgs.caddy.withPlugins {
   inherit plugins;
-  hash = "sha256-9tNj477aHLvlS8PdG0bmDKPqmH/x1PEkog3w4LWW1Jk=";
+  hash = "sha256-attsfFfGgikZoqof3fIJA3aLn2ZoXBgCR2zv2EZVTbA=";
 }).overrideAttrs (_: _: {
   # https://github.com/NixOS/nixpkgs/pull/433072
   doInstallCheck = true;
