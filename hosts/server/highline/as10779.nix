@@ -12,14 +12,6 @@ in
     reloadUnits = [ config.systemd.services.bird.name ];
   };
 
-  networking.vxlans.vx0 = {
-    vni = 18774;
-    local = lib.blueprint.hosts.highline.ipv6;
-    remote = "2a11:6c7:3::1";
-    port = 4789;
-    address = [ "2a11:6c7:f01:8d::2/64" ];
-  };
-
   services.as10779 = {
     enable = true;
 
@@ -74,26 +66,6 @@ in
             asn = 21700;
             ipv4 = "172.82.22.129";
             ipv6 = "2602:fe2e:4:80::1";
-          };
-          import = {
-            ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
-            ipv6 = "import filter ${cfg.router.rpki.ipv6.filter};";
-          };
-          export = {
-            ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
-            ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
-          };
-        }
-        {
-          name = "route64";
-          password = null;
-          type = { ipv4 = "disabled"; ipv6 = "direct"; };
-          mp = "v4 over v6";
-          source = { ipv4 = null; ipv6 = "2a11:6c7:f01:8d::2"; };
-          neighbor = {
-            asn = 212895;
-            ipv4 = null;
-            ipv6 = "2a11:6c7:f01:8d::1";
           };
           import = {
             ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";

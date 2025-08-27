@@ -12,14 +12,6 @@ in
     reloadUnits = [ config.systemd.services.bird.name ];
   };
 
-  networking.vxlans.vx0 = {
-    vni = 18776;
-    local = lib.blueprint.hosts.toompea.ipv6;
-    remote = "2a11:6c7:1::1";
-    port = 4789;
-    address = [ "2a11:6c7:f00:19e::2/64" ];
-  };
-
   services.as10779 = {
     enable = true;
 
@@ -79,26 +71,6 @@ in
             asn = 3204;
             ipv4 = "185.194.53.4";
             ipv6 = "2a04:6f00:4::4";
-          };
-          import = {
-            ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
-            ipv6 = "import filter ${cfg.router.rpki.ipv6.filter};";
-          };
-          export = {
-            ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
-            ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
-          };
-        }
-        {
-          name = "route64";
-          password = null;
-          type = { ipv4 = "disabled"; ipv6 = "direct"; };
-          mp = "v4 over v6";
-          source = { ipv4 = null; ipv6 = "2a11:6c7:f00:19e::2"; };
-          neighbor = {
-            asn = 212895;
-            ipv4 = null;
-            ipv6 = "2a11:6c7:f00:19e::1";
           };
           import = {
             ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
