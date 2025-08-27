@@ -4,6 +4,15 @@
   programs.ssh = {
     enable = true;
 
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      forwardAgent = lib.mkDefault false;
+      addKeysToAgent = lib.mkDefault "no";
+      compression = lib.mkDefault false;
+      serverAliveInterval = 60;
+      hashKnownHosts = lib.mkDefault false;
+    };
+
     extraConfig =
       let
         proxy = "ProxyCommand ssh -W %h:%p yifei@133.11.234.34";
