@@ -14,7 +14,7 @@
   };
 
   # C/C++
-  plugins.lsp.servers.cmake.enable = true;
+  plugins.lsp.servers.cmake.enable = false; # nixpkgs#437306
   plugins.lsp.servers.clangd.enable = true;
 
   # Coq
@@ -69,7 +69,7 @@
   plugins.lsp.servers.ocamllsp.enable = true;
 
   # Python
-  plugins.lsp.servers.jedi_language_server.enable = true;
+  plugins.lsp.servers.jedi_language_server.enable = false; # nixpkgs#437306
   plugins.lsp.servers.pyright.enable = true;
   plugins.lsp.servers.pylsp.enable = true;
   plugins.lsp.servers.ruff.enable = true;
