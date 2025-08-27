@@ -48,15 +48,6 @@ in
         let
           option = lib.trim ''
             reject {
-                # come from
-                bgp_community.add((35661, 6010)); # FranceIX Paris
-                bgp_community.add((35661, 6410)); # DE-CIX Frankfurt
-                bgp_community.add((35661, 6510)); # LILLIX Lille
-                bgp_community.add((35661, 6610)); # FranceIX Lille
-                bgp_community.add((35661, 7010)); # HOPUS
-                # prepend 1x
-                bgp_community.add((35661, 7021)); # Orange
-                bgp_community.add((35661, 7031)); # Arelion
                 # dont announce
                 bgp_community.add((35661, 6074)); # Hurricane Electric
                 bgp_community.add((35661, 7004)); # Cogent

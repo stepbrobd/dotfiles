@@ -42,7 +42,6 @@ in
             reject {
                 # geotag
                 bgp_community.add((20473, 23)); # Tokyo
-                bgp_community.add((20473, 26)); # Soul
                 # metric 0
                 bgp_large_community.add((20473, 6009, 2914));  # NTT
                 bgp_large_community.add((20473, 6009, 17676)); # SoftBank

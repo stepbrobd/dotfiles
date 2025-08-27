@@ -46,14 +46,14 @@ in
       source = { inherit (lib.blueprint.hosts.highline) ipv4 ipv6; };
       static =
         let
-          option = lib.trim ''
-            reject {
-                bgp_large_community.add((21700, 101, 2)); # customer route
-                bgp_large_community.add((21700, 102, 840)); # source US
-                bgp_large_community.add((21700, 103, 1)); # source NYC
-                bgp_large_community.add((21700, 660, 2)); # not exported to peers
-              }
-          '';
+          option = "reject";
+          # lib.trim ''
+          #   reject {
+          #       bgp_large_community.add((21700, 101, 2)); # customer route
+          #       bgp_large_community.add((21700, 102, 840)); # source US
+          #       bgp_large_community.add((21700, 103, 1)); # source NYC
+          #     }
+          # '';
         in
         {
           ipv4.routes = [

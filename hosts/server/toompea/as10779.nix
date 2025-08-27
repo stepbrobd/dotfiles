@@ -50,16 +50,15 @@ in
       source = { inherit (lib.blueprint.hosts.toompea) ipv4 ipv6; };
       static =
         let
-          option = lib.trim ''
-            reject {
-                # prefer
-                bgp_community.add((3204, 3001)); # Arelion
-                # prepend 1x
-                bgp_community.add((3204, 1101)); # xTom
-                # dont announce
-                bgp_community.add((3204, 1700)); # Liberty Global
-              }
-          '';
+          option = "reject";
+          # lib.trim ''
+          #   reject {
+          #       # prepend 1x
+          #       bgp_community.add((3204, 1101)); # xTom
+          #       # dont announce
+          #       bgp_community.add((3204, 1700)); # Liberty Global
+          #     }
+          # '';
         in
         {
           ipv4.routes = [
