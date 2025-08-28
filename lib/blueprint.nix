@@ -85,8 +85,8 @@ in
     os = "nixos";
     provider = "neptune";
     type = "server";
-    ipv4 = "172.82.22.168";
-    ipv6 = "2602:fe2e:4:99:8d:20ff:fe6f:8869";
+    ipv4 = "172.82.22.183";
+    ipv6 = "2602:fe2e:4:b2:fd:87ff:fe11:53cb";
   };
 
   hosts.kongo = newHost {

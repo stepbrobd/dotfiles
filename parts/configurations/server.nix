@@ -11,6 +11,7 @@ let
       users = { ysun = with inputs.self; [ hmModules.ysun.minimal ]; };
 
       modules = with inputs; [
+        disko.nixosModules.disko
         self.nixosModules.acme
         self.nixosModules.as10779
         self.nixosModules.attic
