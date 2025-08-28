@@ -78,6 +78,7 @@ in
         modules = with inputs; common ++ [
           (unification platform)
           nixos-hardware.nixosModules.dell-xps-13-9300
+          self.nixosModules.ebpf
         ];
       };
     };
