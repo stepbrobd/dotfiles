@@ -61,6 +61,7 @@
       "hey-desktop"
       "jordanbaird-ice"
       "kindavim"
+      "loop"
       "lulu"
       "notchnook"
       "obs"
