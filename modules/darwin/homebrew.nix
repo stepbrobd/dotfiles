@@ -53,6 +53,7 @@
 
       "airbuddy"
       "aldente"
+      "beeper"
       "betterdisplay"
       "container"
       "discord"
@@ -67,7 +68,6 @@
       "obs"
       "orion"
       "osu"
-      "signal"
       "slack"
       "yubico-authenticator"
       "zoom"
