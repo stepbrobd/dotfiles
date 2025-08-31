@@ -95,6 +95,8 @@
     # h
     hm.url = "github:nix-community/home-manager";
     hm.inputs.nixpkgs.follows = "nixpkgs";
+    hydra.url = "github:ners/hydra/oidc";
+    hydra.inputs.nixpkgs.follows = "nixpkgs";
     # i
     impermanence.url = "github:nix-community/impermanence";
     index.url = "github:nix-community/nix-index-database";

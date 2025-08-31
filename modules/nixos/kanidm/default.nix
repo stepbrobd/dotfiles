@@ -28,6 +28,8 @@ in
 
   sops.secrets."kanidm/passwd".group = "kanidm";
   sops.secrets."kanidm/passwd".mode = "440";
+  sops.secrets."kanidm/oauth/hydra".group = "kanidm";
+  sops.secrets."kanidm/oauth/hydra".mode = "440";
   sops.secrets."kanidm/oauth/grafana".group = "kanidm";
   sops.secrets."kanidm/oauth/grafana".mode = "440";
 
@@ -101,23 +103,47 @@ in
         };
       };
 
-      systems.oauth2.grafana = {
-        displayName = "Grafana";
-        originUrl = "https://otel.ysun.co/login/generic_oauth";
-        originLanding = "https://otel.ysun.co/";
-        # basicSecretFile = config.sops.secrets."kanidm/oauth/grafana".path;
-        preferShortUsername = true;
-        scopeMaps."grafana.users" = [
-          "openid"
-          "email"
-          "profile"
-        ];
-        claimMaps.groups = {
-          joinType = "array";
-          valuesByGroup = {
-            "grafana.server-admins" = [ "server_admin" ];
-            "grafana.admins" = [ "admin" ];
-            "grafana.editors" = [ "editor" ];
+      systems.oauth2 = {
+        hydra = {
+          displayName = "Hydra";
+          allowInsecureClientDisablePkce = true;
+          originUrl = "https://hydra.ysun.co/oidc-login";
+          originLanding = "https://hydra.ysun.co/";
+          basicSecretFile = config.sops.secrets."kanidm/oauth/hydra".path;
+          preferShortUsername = true;
+          scopeMaps."hydra.users" = [
+            "openid"
+            "email"
+            "profile"
+            "groups"
+          ];
+          claimMaps.groups = {
+            joinType = "array";
+            valuesByGroup = {
+              "hydra.admins" = [ "admins" ];
+              "hydra.users" = [ "users" ];
+            };
+          };
+        };
+
+        grafana = {
+          displayName = "Grafana";
+          originUrl = "https://otel.ysun.co/login/generic_oauth";
+          originLanding = "https://otel.ysun.co/";
+          basicSecretFile = config.sops.secrets."kanidm/oauth/grafana".path;
+          preferShortUsername = true;
+          scopeMaps."grafana.users" = [
+            "openid"
+            "email"
+            "profile"
+          ];
+          claimMaps.groups = {
+            joinType = "array";
+            valuesByGroup = {
+              "grafana.server-admins" = [ "server_admin" ];
+              "grafana.admins" = [ "admin" ];
+              "grafana.editors" = [ "editor" ];
+            };
           };
         };
       };

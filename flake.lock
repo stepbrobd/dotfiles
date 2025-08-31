@@ -370,6 +370,29 @@
         "type": "github"
       }
     },
+    "hydra": {
+      "inputs": {
+        "nix": "nix",
+        "nix-eval-jobs": "nix-eval-jobs",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756473006,
+        "narHash": "sha256-t9BY832fUnjxu/bh2umrVnYqN6nPsW+g9nlm1kszCJ4=",
+        "owner": "ners",
+        "repo": "hydra",
+        "rev": "1740258233731fd3800627056e8894ceae6e87ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ners",
+        "ref": "oidc",
+        "repo": "hydra",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -436,6 +459,39 @@
         "owner": "nix-community",
         "ref": "v0.4.2",
         "repo": "lanzaboote",
+        "type": "github"
+      }
+    },
+    "nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750777360,
+        "narHash": "sha256-nDWFxwhT+fQNgi4rrr55EKjpxDyVKSl1KaNmSXtYj40=",
+        "owner": "NixOS",
+        "repo": "nix",
+        "rev": "7bb200199705eddd53cb34660a76567c6f1295d9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "2.29-maintenance",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
+    "nix-eval-jobs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748680938,
+        "narHash": "sha256-TQk6pEMD0mFw7jZXpg7+2qNKGbAluMQgc55OMgEO8bM=",
+        "owner": "nix-community",
+        "repo": "nix-eval-jobs",
+        "rev": "974a4af3d4a8fd242d8d0e2608da4be87a62b83f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-eval-jobs",
         "type": "github"
       }
     },
@@ -583,6 +639,7 @@
         "golink": "golink",
         "gomod2nix": "gomod2nix",
         "hm": "hm",
+        "hydra": "hydra",
         "impermanence": "impermanence",
         "index": "index",
         "lanzaboote": "lanzaboote",
