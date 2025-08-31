@@ -16,6 +16,7 @@
       (s: {
         mode = "nts";
         address = s;
+        ntp-version = "auto";
       })
       [
         "time.cloudflare.com"
