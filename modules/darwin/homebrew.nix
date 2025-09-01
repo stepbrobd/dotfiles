@@ -69,6 +69,7 @@
       "orion"
       "osu"
       "slack"
+      "webex"
       "yubico-authenticator"
       "zoom"
       "zotero"
