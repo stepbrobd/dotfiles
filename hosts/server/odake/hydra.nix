@@ -42,8 +42,6 @@
         </dynamicruncommand>
       '' + # generic oidc
       ''
-        enable_hydra_login = 0
-
         enable_oidc_login = 1
         oidc_client_id = "hydra"
         oidc_scope = "openid email profile groups"
@@ -60,61 +58,62 @@
           users = create-projects
           users = restart-jobs
         </oidc_role_mapping>
-      '';
-    /* + # ldap config
+      '' + # ldap config
       ''
-      <ldap>
-        <config>
-          <credential>
-            class = Password
-            password_field = password
-            password_type = self_check
-          </credential>
-          <store>
-            class = LDAP
-            ldap_server = "ldaps://ldap.ysun.co"
-            <ldap_server_options>
-              timeout = 30
-            </ldap_server_options>
-            binddn = "dn=token"
-            include ${config.sops.secrets.hydra.path}
-            start_tls = 0
-            <start_tls_options>
-              verify = none
-            </start_tls_options>
-            user_basedn = "dc=ysun,dc=co"
-            user_filter = "(&(class=person)(name=%s))"
-            user_scope = one
-            user_field = name
-            <user_search_options>
-              attrs = "+"
-              attrs = "cn"
-              attrs = "mail"
-              deref = always
-            </user_search_options>
-            use_roles = 1
-            role_basedn = "dc=ysun,dc=co"
-            role_filter = "(&(class=group)(member=%s))"
-            role_scope = one
-            role_field = name
-            role_value = spn
-            <role_search_options>
-              attrs = "+"
-              attrs = "cn"
-              deref = always
-            </role_search_options>
-          </store>
-        </config>
-        <role_mapping>
-          hydra.admins = admin
-          hydra.admins = bump-to-front
-          hydra.users = cancel-build
-          hydra.users = eval-jobset
-          hydra.users = create-projects
-          hydra.users = restart-jobs
-        </role_mapping>
-      </ldap>
-    ''; */
+        enable_hydra_login = 1
+
+        <ldap>
+          <config>
+            <credential>
+              class = Password
+              password_field = password
+              password_type = self_check
+            </credential>
+            <store>
+              class = LDAP
+              ldap_server = "ldaps://ldap.ysun.co"
+              <ldap_server_options>
+                timeout = 30
+              </ldap_server_options>
+              binddn = "dn=token"
+              include ${config.sops.secrets.hydra.path}
+              start_tls = 0
+              <start_tls_options>
+                verify = none
+              </start_tls_options>
+              user_basedn = "dc=ysun,dc=co"
+              user_filter = "(&(class=person)(name=%s))"
+              user_scope = one
+              user_field = name
+              <user_search_options>
+                attrs = "+"
+                attrs = "cn"
+                attrs = "mail"
+                deref = always
+              </user_search_options>
+              use_roles = 1
+              role_basedn = "dc=ysun,dc=co"
+              role_filter = "(&(class=group)(member=%s))"
+              role_scope = one
+              role_field = name
+              role_value = spn
+              <role_search_options>
+                attrs = "+"
+                attrs = "cn"
+                deref = always
+              </role_search_options>
+            </store>
+          </config>
+          <role_mapping>
+            hydra.admins = admin
+            hydra.admins = bump-to-front
+            hydra.users = cancel-build
+            hydra.users = eval-jobset
+            hydra.users = create-projects
+            hydra.users = restart-jobs
+          </role_mapping>
+        </ldap>
+      '';
   };
 
   nix = {
