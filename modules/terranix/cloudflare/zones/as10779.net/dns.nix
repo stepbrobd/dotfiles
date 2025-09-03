@@ -73,22 +73,6 @@ in
         comment = "Neptune - New York";
       };
 
-      net_as10779_isere_v4 = {
-        type = "A";
-        proxied = false;
-        name = "isere";
-        content = "23.161.104.131";
-        comment = "Raspberry Pi - Grenoble";
-      };
-
-      net_as10779_isere_v6 = {
-        type = "AAAA";
-        proxied = false;
-        name = "isere";
-        content = "2602:f590:0::23:161:104:131";
-        comment = "Raspberry Pi - Grenoble";
-      };
-
       net_as10779_kongo_v4 = {
         type = "A";
         proxied = false;

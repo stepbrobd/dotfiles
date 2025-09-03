@@ -40,14 +40,6 @@ in
         comment = "Vultr - Osaka";
       };
 
-      arpa_in_addr_23_161_104_131 = {
-        type = "PTR";
-        proxied = false;
-        name = "131";
-        content = "isere.as10779.net";
-        comment = "Raspberry Pi - Grenoble";
-      };
-
       arpa_in_addr_23_161_104_132 = {
         type = "PTR";
         proxied = false;
