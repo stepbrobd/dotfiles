@@ -40,6 +40,14 @@ in
         comment = "Vultr - Osaka";
       };
 
+      arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_1_3_1 = {
+        type = "PTR";
+        proxied = false;
+        name = "1.3.1.0.4.0.1.0.1.6.1.0.3.2.0.0.0.0.0.0.0.0.0";
+        content = "isere.as10779.net";
+        comment = "Raspberry Pi - Grenoble";
+      };
+
       arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_1_3_2 = {
         type = "PTR";
         proxied = false;

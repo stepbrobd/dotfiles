@@ -106,6 +106,14 @@ in
         comment = "Tailscale - Verification";
       };
 
+      co_ysun_time = {
+        type = "CNAME";
+        proxied = false;
+        name = "time";
+        content = "isere.as10779.net";
+        comment = "Raspberry Pi - Grenoble - Time Server";
+      };
+
       co_ysun_google = {
         type = "TXT";
         proxied = false;
