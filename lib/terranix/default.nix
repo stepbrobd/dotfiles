@@ -74,7 +74,7 @@ rec {
   mkZoneSettings = zone: {
     zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
     nameservers = {
-      type = "custom.zone";
+      type = "custom.account";
       ns_set = 1;
     };
     foundation_dns = false;

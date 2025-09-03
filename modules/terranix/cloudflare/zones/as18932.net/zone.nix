@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) mkZone;# mkZoneSettings;
+  inherit (lib.terranix) mkZone mkZoneSettings;
   zone = "as18932.net";
 in
 {
@@ -9,5 +9,5 @@ in
     name = zone;
   };
 
-  # resource.cloudflare_zone_dns_settings.net_as18932_acns_settings = mkZoneSettings zone;
+  resource.cloudflare_zone_dns_settings.net_as18932_acns_settings = mkZoneSettings zone;
 }
