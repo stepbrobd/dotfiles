@@ -89,17 +89,12 @@
       }
     },
     "cornflake": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
       "locked": {
-        "lastModified": 1739211036,
-        "narHash": "sha256-71S/Co02YIm8r6dc740wmO3lj5I3zGHkYVLxOXc6VPM=",
+        "lastModified": 1756852014,
+        "narHash": "sha256-OrfTRBwerFrlK1fbWhu1eW40XUrOdE/Rq7IyxthEpcA=",
         "owner": "jzbor",
         "repo": "cornflakes",
-        "rev": "720b23be91760665d3a5823d1a8dea84944cd30b",
+        "rev": "7ef6d8be9b66f46cee3af1d5797e01f301b93149",
         "type": "github"
       },
       "original": {
@@ -899,11 +894,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756811643,
-        "narHash": "sha256-ghyt+KvemgOe7wQelk2AGKMXyzlTBklzL8lo06ShvVQ=",
+        "lastModified": 1757018294,
+        "narHash": "sha256-sJFu7j26IS+FaNCXMU+nex4ii4p5schrzdT2lpND6Lw=",
         "owner": "stepbrobd",
         "repo": "ysun",
-        "rev": "80412d47dec3a334c5237bdd5af6ded332d52106",
+        "rev": "aa29ac51ba8a589b1a6a157038a295037c5a15bd",
         "type": "github"
       },
       "original": {
