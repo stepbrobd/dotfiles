@@ -5,10 +5,10 @@
   virtualisation.docker.enable = lib.mkForce false;
 
   virtualisation.oci-containers.backend = "podman";
-  virtualisation.containers.enable = false;
+  virtualisation.containers.enable = true;
   virtualisation = {
     podman = {
-      enable = false;
+      enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };

@@ -28,6 +28,7 @@
       "docker"
       "input"
       "networkmanager"
+      "podman"
       "video"
       "wheel"
     ];
