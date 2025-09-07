@@ -72,7 +72,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs";
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs";
-    disko.url = "github:nix-community/disko?ref=pull/1069/merge";
+    disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
