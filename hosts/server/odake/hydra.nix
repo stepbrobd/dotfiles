@@ -51,12 +51,12 @@
         include ${config.sops.secrets.hydra.path}
 
         <oidc_role_mapping>
-          admins = admin
-          admins = bump-to-front
-          users = cancel-build
-          users = eval-jobset
-          users = create-projects
-          users = restart-jobs
+          hydra.admins@ysun.co = admin
+          hydra.admins@ysun.co = bump-to-front
+          hydra.users@ysun.co = cancel-build
+          hydra.users@ysun.co = eval-jobset
+          hydra.users@ysun.co = create-projects
+          hydra.users@ysun.co = restart-jobs
         </oidc_role_mapping>
       '' + # ldap config
       ''

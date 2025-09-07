@@ -117,13 +117,6 @@ in
             "profile"
             "groups"
           ];
-          claimMaps.groups = {
-            joinType = "array";
-            valuesByGroup = {
-              "hydra.admins" = [ "admins" ];
-              "hydra.users" = [ "users" ];
-            };
-          };
         };
 
         grafana = {
