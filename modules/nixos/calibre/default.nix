@@ -22,14 +22,6 @@
       };
     };
 
-    # fix book cover cache dir in /nix/store/ error
-    # see cps/constants.py and cps/fs.py
-    # https://github.com/NixOS/nixpkgs/pull/432604
-    systemd.services.calibre-web = {
-      serviceConfig.CacheDirectory = "calibre-web";
-      environment.CACHE_DIR = "/var/cache/calibre-web";
-    };
-
     services.caddy = {
       enable = true;
       virtualHosts."read.ysun.co".extraConfig =
