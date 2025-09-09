@@ -52,7 +52,7 @@ in
         type = "CNAME";
         proxied = false;
         name = "ldap";
-        content = "walberla.as10779.net";
+        content = "walberla.internal.center";
         comment = "Hetzner - Kanidm";
       };
 
