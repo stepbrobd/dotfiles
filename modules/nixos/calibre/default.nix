@@ -22,6 +22,11 @@
       };
     };
 
+    # https://github.com/nixos/nixpkgs/issues/441359
+    # https://github.com/nixos/nixpkgs/pull/441487
+    systemd.services.calibre-web.serviceConfig.environment = lib.mkForce "";
+    systemd.services.calibre-web.environment.CACHE_DIR = "/var/cache/calibre-web";
+
     services.caddy = {
       enable = true;
       virtualHosts."read.ysun.co".extraConfig =
