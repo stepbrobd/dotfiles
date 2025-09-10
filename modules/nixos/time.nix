@@ -40,7 +40,7 @@ in
 
       # NTS only servers
       networking.timeServers = lib.mkForce [
-        "time.ysun.co"
+        # "time.ysun.co"
         "time.cloudflare.com"
         "virginia.time.system76.com"
         "ohio.time.system76.com"
