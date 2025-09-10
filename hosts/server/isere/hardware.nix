@@ -72,11 +72,29 @@
           enable = true;
           value = "3";
         };
+        i2c_arm = {
+          enable = true;
+          value = "on";
+        };
       };
 
-      dt-overlays.uart0-pi5 = {
-        enable = true;
-        params = { };
+      dt-overlays = {
+        miniuart-bt = {
+          enable = true;
+          params = { };
+        };
+        uart0-pi5 = {
+          enable = true;
+          params = { };
+        };
+        "i2c-rtc,rv3028" = {
+          enable = true;
+          params = { };
+        };
+        "pps-gpio,gpiopin=18" = {
+          enable = true;
+          params = { };
+        };
       };
     };
   };
