@@ -99,11 +99,11 @@ in
       # ntp, nts, and keyset config for nts
       services.ntpd-rs.settings = {
         server = [{
-          listen = "0.0.0.0:123";
+          listen = "[::]:123";
           accept-ntp-versions = serverConfig.acceptedVersions;
         }];
         nts-ke-server = [{
-          listen = "0.0.0.0:4460";
+          listen = "[::]:4460";
           accept-ntp-versions = serverConfig.acceptedVersions;
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
