@@ -73,6 +73,11 @@
           value = "3";
         };
       };
+
+      dt-overlays.uart0-pi5 = {
+        enable = true;
+        params = { };
+      };
     };
   };
 
