@@ -49,8 +49,8 @@ in
       origin = "https://sso.ysun.co";
       trust_x_forward_for = true;
 
-      ldapbindaddress = "0.0.0.0:636";
-      bindaddress = "0.0.0.0:8443";
+      ldapbindaddress = "[::]:636";
+      bindaddress = "[::]:8443";
 
       tls_key = "${directory}/key.pem";
       tls_chain = "${directory}/fullchain.pem";
