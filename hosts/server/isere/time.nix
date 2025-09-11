@@ -30,10 +30,10 @@
         enable = true;
         value = "on";
       };
-      uart0_console = {
-        enable = true;
-        value = "on";
-      };
+      # uart0_console = {
+      #   enable = true;
+      #   value = "on";
+      # };
     };
 
     dt-overlays = {
