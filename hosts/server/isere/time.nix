@@ -3,56 +3,51 @@
 {
   systemd.services."serial-getty@ttyAMA0".enable = false;
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="tty", KERNEL=="ttyAMA0", OWNER="root", GROUP="gpsd", MODE="0666"
-    SUBSYSTEM=="pps", KERNEL=="pps0", OWNER="root", GROUP="gpsd", MODE="0666"
-  '';
+  # services.udev.extraRules = ''
+  #   SUBSYSTEM=="tty", KERNEL=="ttyAMA0", OWNER="root", GROUP="gpsd", MODE="0666"
+  #   SUBSYSTEM=="pps", KERNEL=="pps0", OWNER="root", GROUP="gpsd", MODE="0666"
+  # '';
 
   boot.kernelModules = [ "pps-gpio" ];
-  hardware.raspberry-pi.config = {
-    pi5 = {
-      base-dt-params.uart0_console = {
+  hardware.raspberry-pi.config.all = {
+    options = {
+      init_uart_baud = {
         enable = true;
-        value = "on";
+        value = 115200;
       };
-      dt-overlays.uart0-pi5 = {
+      nohz = {
         enable = true;
-        params = { };
+        value = "off";
+      };
+      force_turbo = {
+        enable = true;
+        value = 1;
       };
     };
 
-    all = {
-      options = {
-        init_uart_baud = {
-          enable = true;
-          value = 115200;
-        };
-        nohz = {
-          enable = true;
-          value = "off";
-        };
-        force_turbo = {
-          enable = true;
-          value = 1;
-        };
+    base-dt-params = {
+      i2c_arm = {
+        enable = true;
+        value = "on";
       };
-
-      base-dt-params = {
-        i2c_arm = {
-          enable = true;
-          value = "on";
-        };
+      uart0_console = {
+        enable = true;
+        value = "on";
       };
+    };
 
-      dt-overlays = {
-        "i2c-rtc,rv3028" = {
-          enable = true;
-          params = { };
-        };
-        "pps-gpio,gpiopin=18" = {
-          enable = true;
-          params = { };
-        };
+    dt-overlays = {
+      uart0-pi5 = {
+        enable = true;
+        params = { };
+      };
+      "i2c-rtc,rv3028" = {
+        enable = true;
+        params = { };
+      };
+      "pps-gpio,gpiopin=18" = {
+        enable = true;
+        params = { };
       };
     };
   };
