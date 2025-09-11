@@ -3,12 +3,12 @@
 {
   systemd.services."serial-getty@ttyAMA0".enable = false;
 
-  # services.udev.extraRules = ''
-  #   SUBSYSTEM=="tty", KERNEL=="ttyAMA0", OWNER="root", GROUP="gpsd", MODE="0666"
-  #   SUBSYSTEM=="pps", KERNEL=="pps0", OWNER="root", GROUP="gpsd", MODE="0666"
-  # '';
+  services.udev.extraRules = ''
+    SUBSYSTEM=="tty", KERNEL=="ttyAMA0", OWNER="root", GROUP="gpsd", MODE="0666"
+    SUBSYSTEM=="pps", KERNEL=="pps0", OWNER="root", GROUP="gpsd", MODE="0666"
+  '';
 
-  boot.kernelModules = [ "pps-gpio" ];
+  boot.kernelModules = [ "pps-gpio" "pps-ldisc" ];
   hardware.raspberry-pi.config.all = {
     options = {
       init_uart_baud = {
@@ -30,10 +30,8 @@
         enable = true;
         value = "on";
       };
-      # uart0_console = {
-      #   enable = true;
-      #   value = "on";
-      # };
+      uart0.enable = true;
+      uart0_console.enable = true;
     };
 
     dt-overlays = {
