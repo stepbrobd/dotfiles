@@ -24,6 +24,8 @@ in
 
       globalConfig = ''
         admin unix/${config.services.caddy.dataDir}/admin.sock
+        dns cloudflare {env.CF_API_TOKEN}
+        ech ysun.co
 
         cache {
           log_level ERROR
