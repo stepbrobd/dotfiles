@@ -34,7 +34,7 @@ in
   sops.secrets."kanidm/oauth/grafana".mode = "440";
 
   services.kanidm = {
-    package = pkgs.kanidmWithSecretProvisioning.overrideAttrs (prev: {
+    package = pkgs.kanidm_1_7.withSecretProvisioning.overrideAttrs (prev: {
       # the patch probably only need to inject plausible script now
       # but lets just leave private cache and csp as is in there
       patches = prev.patches ++ [ ./custom-deployment.patch ];
