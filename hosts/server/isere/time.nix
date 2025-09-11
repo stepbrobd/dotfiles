@@ -9,34 +9,50 @@
   '';
 
   boot.kernelModules = [ "pps-gpio" ];
-  hardware.raspberry-pi.config.all = {
-    base-dt-params = {
-      i2c_arm = {
+  hardware.raspberry-pi.config = {
+    pi5 = {
+      base-dt-params.uart0_console = {
         enable = true;
         value = "on";
       };
-      uart0 = {
+      dt-overlays.uart0-pi5 = {
         enable = true;
-        value = "on";
+        params = { };
       };
     };
 
-    dt-overlays = {
-      miniuart-bt = {
-        enable = true;
-        params = { };
+    all = {
+      options = {
+        init_uart_baud = {
+          enable = true;
+          value = 115200;
+        };
+        nohz = {
+          enable = true;
+          value = "off";
+        };
+        force_turbo = {
+          enable = true;
+          value = 1;
+        };
       };
-      uart0-pi5 = {
-        enable = true;
-        params = { };
+
+      base-dt-params = {
+        i2c_arm = {
+          enable = true;
+          value = "on";
+        };
       };
-      "i2c-rtc,rv3028" = {
-        enable = true;
-        params = { };
-      };
-      "pps-gpio,gpiopin=18" = {
-        enable = true;
-        params = { };
+
+      dt-overlays = {
+        "i2c-rtc,rv3028" = {
+          enable = true;
+          params = { };
+        };
+        "pps-gpio,gpiopin=18" = {
+          enable = true;
+          params = { };
+        };
       };
     };
   };
