@@ -19,7 +19,6 @@
 
   boot.kernelParams = lib.mkForce [
     "8250.nr_uarts=11"
-    "console=ttyAMA10,115200"
     "console=tty1"
     "root=fstab"
     "loglevel=7"

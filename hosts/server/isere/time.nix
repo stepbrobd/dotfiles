@@ -10,9 +10,15 @@
 
   boot.kernelModules = [ "pps-gpio" ];
   hardware.raspberry-pi.config.all = {
-    base-dt-params.i2c_arm = {
-      enable = true;
-      value = "on";
+    base-dt-params = {
+      i2c_arm = {
+        enable = true;
+        value = "on";
+      };
+      uart0 = {
+        enable = true;
+        value = "on";
+      };
     };
 
     dt-overlays = {
