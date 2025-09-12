@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   systemd.services."serial-getty@ttyAMA0".enable = false;
@@ -8,6 +8,7 @@
     SUBSYSTEM=="pps", KERNEL=="pps0", OWNER="root", GROUP="gpsd", MODE="0666"
   '';
 
+  srvos.boot.consoles = lib.mkForce [ ];
   boot.kernelParams = [ "nohz=off" ];
   boot.kernelModules = [ "pps-gpio" "pps-ldisc" ];
   hardware.raspberry-pi.config.all = {
