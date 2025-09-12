@@ -9,7 +9,14 @@
   '';
 
   srvos.boot.consoles = lib.mkForce [ ];
-  boot.kernelParams = [ "nohz=off" ];
+  boot.kernelParams = lib.mkForce [
+    "console=tty1"
+    "loglevel=7"
+    "lsm=landlock,yama,bpf"
+    "nohz=off"
+    "root=fstab"
+  ];
+
   boot.kernelModules = [ "pps-gpio" "pps-ldisc" ];
   hardware.raspberry-pi.config.all = {
     options.force_turbo = {
