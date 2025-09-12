@@ -8,30 +8,23 @@
     SUBSYSTEM=="pps", KERNEL=="pps0", OWNER="root", GROUP="gpsd", MODE="0666"
   '';
 
+  boot.kernelParams = [ "nohz=off" ];
   boot.kernelModules = [ "pps-gpio" "pps-ldisc" ];
   hardware.raspberry-pi.config.all = {
-    options = {
-      init_uart_baud = {
-        enable = true;
-        value = 115200;
-      };
-      nohz = {
-        enable = true;
-        value = "off";
-      };
-      force_turbo = {
-        enable = true;
-        value = 1;
-      };
+    options.force_turbo = {
+      enable = true;
+      value = 1;
     };
 
     base-dt-params = {
+      uart0 = {
+        enable = true;
+        value = "on";
+      };
       i2c_arm = {
         enable = true;
         value = "on";
       };
-      uart0.enable = true;
-      uart0_console.enable = true;
     };
 
     dt-overlays = {
@@ -39,13 +32,16 @@
         enable = true;
         params = { };
       };
-      "i2c-rtc,rv3028" = {
+      i2c-rtc = {
         enable = true;
-        params = { };
+        params.rv3028.enable = true;
       };
-      "pps-gpio,gpiopin=18" = {
+      pps-gpio = {
         enable = true;
-        params = { };
+        params.gpiopin = {
+          enable = true;
+          value = 18;
+        };
       };
     };
   };

@@ -23,14 +23,6 @@
     "brcmfmac"
   ];
 
-  boot.kernelParams = lib.mkForce [
-    "8250.nr_uarts=11"
-    "console=tty1"
-    "root=fstab"
-    "loglevel=7"
-    "lsm=landlock,yama,bpf"
-  ];
-
   # https://github.com/nvmd/nixos-raspberrypi-demo/blob/2847963e7555fc412c1d0f37bb48c761e78f350d/flake.nix#L154-L160
   # Ignore partitions with "Required Partition" GPT partition attribute
   # On our RPis this is firmware (/boot/firmware) partition
