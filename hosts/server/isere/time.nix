@@ -25,6 +25,10 @@
         enable = true;
         value = "on";
       };
+      rtc = {
+        enable = true;
+        value = "off";
+      };
     };
 
     dt-overlays = {
@@ -34,7 +38,13 @@
       };
       i2c-rtc = {
         enable = true;
-        params.rv3028.enable = true;
+        params = {
+          rv3028.enable = true;
+          addr = {
+            enable = true;
+            value = "0x52";
+          };
+        };
       };
       pps-gpio = {
         enable = true;
@@ -46,7 +56,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ gpsd pps-tools ];
+  environment.systemPackages = with pkgs; [ i2c-tools gpsd pps-tools ];
 
   services.gpsd = {
     enable = true;
