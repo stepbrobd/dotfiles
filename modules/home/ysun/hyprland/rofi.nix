@@ -4,7 +4,6 @@
   config = lib.mkIf config.wayland.windowManager.hyprland.enable {
     programs.rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
 
       cycle = true;
       font = "Noto Sans 12";
