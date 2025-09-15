@@ -21,10 +21,6 @@
   plugins.lsp.servers.coq_lsp.enable = false;
   extraPlugins = with pkgs.vimPlugins; [ Coqtail ];
 
-  # Docker
-  plugins.lsp.servers.dockerls.enable = true;
-  plugins.lsp.servers.docker_compose_language_service.enable = true;
-
   # Go
   plugins.lsp.servers.gopls.enable = true;
 
