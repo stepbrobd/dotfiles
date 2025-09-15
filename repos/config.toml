@@ -246,6 +246,11 @@ description = "forked from lenianiva/lean4-nix"
 visibility = "public"
 archived = false
 
+[repo."linux"]
+description = "forked from torvalds/linux"
+visibility = "public"
+archived = false
+
 [repo."ngipkgs"]
 description = "forked from ngi-nix/ngipkgs"
 visibility = "public"
