@@ -3,7 +3,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.floorp ];
+  home.packages = [ pkgs.floorp-bin ];
 
   xdg.mimeApps.defaultApplications = lib.optionalAttrs pkgs.stdenv.isLinux {
     "text/html" = [ "floorp.desktop" ];
