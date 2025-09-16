@@ -96,14 +96,15 @@
       "Remote Desktop" = 409907375;
       "ServerCat" = 1501532023;
       "Tailscale" = 1475387142;
-      "Tampermonkey" = 6738342400;
       "The Unarchiver" = 425424353;
       "Things" = 904280696;
+      "Xcode" = 497799835;
       # safari
       "AdGuard" = 1440147259;
       "Kagi" = 1622835804;
       "Noir" = 1592917505;
       "StopTheMadness" = 6471380298;
+      "Tampermonkey" = 6738342400;
       "Vimari" = 1480933944;
       # media
       "Infuse" = 1136220934;
