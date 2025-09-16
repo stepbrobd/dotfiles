@@ -1,7 +1,7 @@
-# { pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  # environment.systemPackages = [ pkgs.mas ];
+  environment.systemPackages = [ pkgs.mas ];
 
   homebrew = {
     enable = true;
@@ -97,6 +97,7 @@
       "ServerCat" = 1501532023;
       "Tailscale" = 1475387142;
       "The Unarchiver" = 425424353;
+      "Things" = 904280696;
       # safari
       "AdGuard" = 1440147259;
       "Kagi" = 1622835804;
