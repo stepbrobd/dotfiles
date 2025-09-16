@@ -96,6 +96,7 @@
       "Remote Desktop" = 409907375;
       "ServerCat" = 1501532023;
       "Tailscale" = 1475387142;
+      "Tampermonkey" = 6738342400;
       "The Unarchiver" = 425424353;
       "Things" = 904280696;
       # safari
