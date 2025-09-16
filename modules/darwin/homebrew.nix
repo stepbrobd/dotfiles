@@ -82,11 +82,9 @@
     masApps = {
       # utils
       "Apple Configurator" = 1037126344;
-      "Craft" = 1487937127;
       "Dropover" = 1355679052;
       "Folder Preview" = 6698876601;
       "iMazing Profile Editor" = 1487860882;
-      "Reeder" = 1529448980;
       "Flighty" = 1358823008;
       "iStat Menus" = 1319778037;
       "Parcel" = 639968404;
