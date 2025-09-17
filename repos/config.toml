@@ -171,6 +171,11 @@ description = "forked from coq/coq"
 visibility = "public"
 archived = false
 
+[repo."coq-nix-toolbox"]
+description = "forked from rocq-community/coq-nix-toolbox"
+visibility = "public"
+archived = false
+
 [repo."crunchycli"]
 description = "forked from crunchy-labs/crunchy-cli"
 visibility = "public"
