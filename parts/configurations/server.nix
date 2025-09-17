@@ -31,6 +31,7 @@ let
         self.nixosModules.prometheus
         self.nixosModules.rebuild
         self.nixosModules.server
+        self.nixosModules.tsnsrv
         srvos.nixosModules.common
         srvos.nixosModules.server
       ];

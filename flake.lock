@@ -651,6 +651,7 @@
         "sweep": "sweep",
         "systems": "systems",
         "terranix": "terranix",
+        "tsnsrv": "tsnsrv",
         "unstraightened": "unstraightened",
         "utils": "utils",
         "ysun": "ysun"
@@ -832,6 +833,29 @@
       "original": {
         "owner": "terranix",
         "repo": "terranix",
+        "type": "github"
+      }
+    },
+    "tsnsrv": {
+      "inputs": {
+        "flake-parts": [
+          "parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756154209,
+        "narHash": "sha256-GPt16AAGEYlubmCfK2B5NX976eOv8pojnT+av/Oy7b0=",
+        "owner": "boinkor-net",
+        "repo": "tsnsrv",
+        "rev": "6c0f45ed88f0d3bbb26b3f8b727cf5febadaf04d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "boinkor-net",
+        "repo": "tsnsrv",
         "type": "github"
       }
     },

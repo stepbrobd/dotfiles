@@ -147,6 +147,9 @@
     terranix.inputs.nixpkgs.follows = "nixpkgs";
     terranix.inputs.flake-parts.follows = "parts";
     terranix.inputs.systems.follows = "systems";
+    tsnsrv.url = "github:boinkor-net/tsnsrv";
+    tsnsrv.inputs.nixpkgs.follows = "nixpkgs";
+    tsnsrv.inputs.flake-parts.follows = "parts";
     # u
     unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
     unstraightened.inputs.nixpkgs.follows = "nixpkgs";
