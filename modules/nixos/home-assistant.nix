@@ -46,7 +46,6 @@ in
 
     services.caddy.virtualHosts."ha.ysun.co".extraConfig = ''
       import common
-      tailscale_auth
       reverse_proxy ${cfg.config.http.server_host}:${lib.toString cfg.config.http.server_port} 
     '';
   };
