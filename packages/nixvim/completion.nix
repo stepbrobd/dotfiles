@@ -2,21 +2,7 @@
 
 {
   plugins = {
-    copilot-lua = {
-      enable = true;
-      settings = {
-        suggestion.enabled = false;
-        panel.enabled = false;
-      };
-      settings.filetypes = {
-        gitcommit = true;
-        gitrebase = true;
-        markdown = true;
-      };
-    };
-
     coq-nvim.enable = true;
-    coq-thirdparty.enable = true;
 
     cmp = {
       enable = true;
@@ -37,8 +23,9 @@
             name = "buffer";
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
           }
+          { name = "calc"; }
           { name = "cmdline"; }
-          { name = "copilot"; }
+          { name = "coq"; }
           { name = "dap"; }
           { name = "dictionary"; }
           { name = "emoji"; }
