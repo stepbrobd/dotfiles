@@ -29,6 +29,7 @@ in
         "default_config"
         "homekit"
         "homekit_controller"
+        "isal"
         "met"
         "ssdp"
         "switchbot"
