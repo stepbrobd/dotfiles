@@ -19,7 +19,7 @@
         ntp-version = "auto";
       })
       [
-        # "time.ysun.co"
+        "time.ysun.co"
         "time.cloudflare.com"
         "virginia.time.system76.com"
         "ohio.time.system76.com"
