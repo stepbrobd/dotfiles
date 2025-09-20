@@ -49,9 +49,60 @@
           enable = true;
           value = "3";
         };
+
+        fan_temp0 = {
+          enable = true;
+          value = 40000; # 40c
+        };
+        fan_temp0_hyst = {
+          enable = true;
+          value = 10000;
+        };
+        fan_temp0_speed = {
+          enable = true;
+          value = 135;
+        };
+
+        fan_temp1 = {
+          enable = true;
+          value = 45000; # 45c
+        };
+        fan_temp1_hyst = {
+          enable = true;
+          value = 5000;
+        };
+        fan_temp1_speed = {
+          enable = true;
+          value = 175;
+        };
+
+        fan_temp2 = {
+          enable = true;
+          value = 50000; # 50c
+        };
+        fan_temp2_hyst = {
+          enable = true;
+          value = 5000;
+        };
+        fan_temp2_speed = {
+          enable = true;
+          value = 215;
+        };
+
+        fan_temp3 = {
+          enable = true;
+          value = 55000; # 55c
+        };
+        fan_temp3_hyst = {
+          enable = true;
+          value = 5000;
+        };
+        fan_temp3_speed = {
+          enable = true;
+          value = 255;
+        };
       };
     };
   };
-
   system.stateVersion = "25.05";
 }
