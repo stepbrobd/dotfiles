@@ -16,7 +16,6 @@
     hostName = "framework";
     domain = "ysun.co";
     networkmanager.enable = true;
-    firewall.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
