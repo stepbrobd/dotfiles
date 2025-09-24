@@ -13,7 +13,10 @@ echo "$forks" | jq -c '.[]' | while read -r repo; do
     if [ "$upstream" = "/" ]; then
         echo "Skipped"
     else
-        gh repo sync "$own" --source "$upstream"
-        echo "Done"
+        if gh repo sync "$own" --source "$upstream"; then
+            echo "Done"
+        else
+            echo "Failed to sync $own from $upstream"
+        fi
     fi
 done
