@@ -52,10 +52,18 @@
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # a
+    ai.url = "github:numtide/nix-ai-tools";
+    ai.inputs.nixpkgs.follows = "nixpkgs";
+    ai.inputs.blueprint.follows = "blueprint";
+    ai.inputs.treefmt-nix.follows = "treefmt";
     autopilot.url = "github:stepbrobd/autopilot";
     autopilot.inputs.nixpkgs.follows = "nixpkgs";
     autopilot.inputs.parts.follows = "parts";
     autopilot.inputs.systems.follows = "systems";
+    # b
+    blueprint.url = "github:numtide/blueprint";
+    blueprint.inputs.nixpkgs.follows = "nixpkgs";
+    blueprint.inputs.systems.follows = "systems";
     # c
     colmena.url = "github:zhaofengli/colmena";
     colmena.inputs.nixpkgs.follows = "nixpkgs";
@@ -147,6 +155,8 @@
     terranix.inputs.nixpkgs.follows = "nixpkgs";
     terranix.inputs.flake-parts.follows = "parts";
     terranix.inputs.systems.follows = "systems";
+    treefmt.url = "github:numtide/treefmt-nix";
+    treefmt.inputs.nixpkgs.follows = "nixpkgs";
     tsnsrv.url = "github:boinkor-net/tsnsrv";
     tsnsrv.inputs.nixpkgs.follows = "nixpkgs";
     tsnsrv.inputs.flake-parts.follows = "parts";
