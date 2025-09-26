@@ -16,5 +16,6 @@
     smarttab = true;
     pumheight = 10;
     foldlevel = 99;
+    termguicolors = true;
   };
 }
