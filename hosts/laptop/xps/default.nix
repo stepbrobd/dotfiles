@@ -8,7 +8,7 @@
 
   services.openssh.enable = true;
 
-  services.desktopManager.enabled = "hyprland";
+  services.desktopManager.enabled = "niri";
 
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4

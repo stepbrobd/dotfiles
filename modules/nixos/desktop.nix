@@ -10,7 +10,7 @@ in
 {
   options.services.desktopManager = {
     enabled = mkOption {
-      type = with types; nullOr (enum [ "hyprland" "plasma" ]);
+      type = with types; nullOr (enum [ "hyprland" "niri" "plasma" ]);
       default = null;
       example = "hyprland";
       description = ''
@@ -121,6 +121,59 @@ in
       security.pam.services.gtklock = { };
 
       # gnome polkit and keyring are used for hyprland sessions
+      services.gnome.gnome-keyring.enable = true;
+      security.pam.services.greetd.enableGnomeKeyring = true;
+    })
+
+    (mkIf (cfg.enabled == "niri") {
+      programs.niri.enable = true;
+
+      environment.variables = {
+        GDK_BACKEND = "wayland";
+        MOZ_ENABLE_WAYLAND = 1;
+        MOZ_WEBRENDER = 1;
+        NIXOS_OZONE_WL = 1;
+        QT_QPA_PLATFORM = "wayland";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+        SDL_VIDEODRIVER = "wayland";
+        _JAVA_AWT_WM_NONREPARENTING = 1;
+      };
+
+      # login manager: use gtkgreet, and use gtklock for locker
+      services.greetd = {
+        enable = true;
+        settings = {
+          default_session =
+            let
+              style = pkgs.writeText "gtk.css" ''
+                @import url("${pkgs.nordic}/share/themes/Nordic/gtk-3.0/gtk.css");
+                window {
+                  background-image: url("${../home/ysun/hyprland/wallpaper.jpg}");
+                  background-size: cover;
+                  background-position: center;
+                }
+              '';
+            in
+            {
+              user = "greeter";
+              command = lib.concatStringsSep " " [
+                "${pkgs.cage}/bin/cage"
+                "-s"
+                "--"
+                "${pkgs.gtkgreet}/bin/gtkgreet"
+                "-l"
+                "-s"
+                "${style}"
+              ];
+            };
+          initial_session = {
+            user = "ysun";
+            command = "niri-session";
+          };
+        };
+      };
+
+      security.pam.services.gtklock = { };
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.greetd.enableGnomeKeyring = true;
     })
