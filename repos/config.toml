@@ -85,6 +85,11 @@ description = "metaprocessor, all-in-one data pipeline for mbientlab metawear se
 visibility = "public"
 archived = false
 
+[repo."miroir"]
+description = "repo manager wannabe?"
+visibility = "public"
+archived = false
+
 [repo."mono"]
 description = "the only source of truth"
 visibility = "private"
