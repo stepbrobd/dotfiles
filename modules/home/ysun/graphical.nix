@@ -23,6 +23,7 @@
     jujutsu
     lazygit
     lsd
+    man
     # mpd # linux only
     neomutt
     neovide
