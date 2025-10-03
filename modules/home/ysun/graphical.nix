@@ -26,7 +26,7 @@
     # mpd # linux only
     neomutt
     neovide
-    nh
+    # nh
     # nushell # imported in minimal
     openconnect
     ssh
