@@ -20,7 +20,7 @@ in
   };
 
   nix = {
-    package = pkgs.nixVersions.git;
+    package = pkgs.nixVersions.latest;
 
     optimise.automatic = true;
     gc = {
