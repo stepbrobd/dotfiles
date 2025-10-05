@@ -87,7 +87,7 @@
       "iMazing Profile Editor" = 1487860882;
       "Flighty" = 1358823008;
       "iStat Menus" = 1319778037;
-      "Parcel" = 639968404;
+      "Parcel" = 375589283;
       "Passepartout" = 1433648537;
       "Pieoneer" = 6739781207;
       "Pixelmator Pro" = 1289583905;
