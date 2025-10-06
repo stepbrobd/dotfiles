@@ -6,7 +6,7 @@ in
 {
   resource.cloudflare_dns_record = forZone "0.0.9.5.f.2.0.6.2.ip6.arpa"
     {
-      arpa_ip6_2_6_0_2_f_5_9_0_0_apex = mkPersonalSiteRebind { name = "@"; };
+      arpa_ip6_2_6_0_2_f_5_9_0_0_apex = mkPersonalSiteRebind { name = "@"; proxied = true; };
 
       arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_0_1_7 = {
         type = "PTR";

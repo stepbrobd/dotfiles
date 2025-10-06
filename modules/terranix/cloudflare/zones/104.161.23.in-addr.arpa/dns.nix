@@ -6,7 +6,7 @@ in
 {
   resource.cloudflare_dns_record = forZone "104.161.23.in-addr.arpa"
     {
-      arpa_in_addr_23_161_104_apex = mkPersonalSiteRebind { name = "@"; };
+      arpa_in_addr_23_161_104_apex = mkPersonalSiteRebind { name = "@"; proxied = true; };
 
       arpa_in_addr_23_161_104_17 = {
         type = "PTR";
