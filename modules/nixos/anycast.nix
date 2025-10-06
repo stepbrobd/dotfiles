@@ -33,11 +33,6 @@ in
             }
             header X-Served-By "${config.networking.fqdn}"
           '';
-
-          arpa = ''
-            import zerossl
-            ${config.services.caddy.virtualHosts."ysun.co".extraConfig}
-          '';
         in
         {
           enable = true;
@@ -52,20 +47,14 @@ in
                 file_server
               }
             '';
-          };
-
-          # dont redirect arpa zones
-          virtualHosts."0.0.9.5.f.2.0.6.2.ip6.arpa" = {
-            logFormat = lib.mkForce config.services.caddy.virtualHosts."ysun.co".logFormat;
-            extraConfig = arpa;
-          };
-          virtualHosts."104.161.23.in-addr.arpa" = {
-            logFormat = lib.mkForce config.services.caddy.virtualHosts."ysun.co".logFormat;
-            extraConfig = arpa;
-          };
-          virtualHosts."136.104.192.in-addr.arpa" = {
-            logFormat = lib.mkForce config.services.caddy.virtualHosts."ysun.co".logFormat;
-            extraConfig = arpa;
+            serverAliases = [
+              # my weird flex -
+              # dont redirect arpa zones
+              # but cannot get certificates
+              "http://0.0.9.5.f.2.0.6.2.ip6.arpa"
+              "http://104.161.23.in-addr.arpa"
+              "http://136.104.192.in-addr.arpa"
+            ];
           };
 
           virtualHosts."*.ysun.co" = {
