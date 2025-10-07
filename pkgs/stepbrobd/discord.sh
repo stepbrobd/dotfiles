@@ -1,5 +1,5 @@
 #!/usr/bin/env nix
-#!nix shell nixpkgs#bash nixpkgs#curlHTTP3 nixpkgs#jq nixpkgs#gh --command bash
+#!nix shell nixpkgs#bash nixpkgs#curl nixpkgs#jq nixpkgs#gh --command bash
 
 set -euo pipefail
 

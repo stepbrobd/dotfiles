@@ -32,7 +32,7 @@
     nix-direnv
     vim
     git
-    curlHTTP3
+    curl
     wget
   ];
 

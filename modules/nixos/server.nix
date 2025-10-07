@@ -16,7 +16,7 @@
     mtr
     tcpdump
 
-    curlHTTP3
+    curl
     wget
   ];
 
