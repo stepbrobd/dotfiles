@@ -16,7 +16,12 @@ in
       os = "darwin";
       platform = "aarch64-darwin";
       entrypoint = ../../hosts/laptop/macbook;
-      users = { ysun = with inputs.self; [ hmModules.ysun.darwin ]; };
+      users = {
+        ysun = with inputs.self; [
+          hmModules.ysun.darwin
+          inputs.trampoline.homeManagerModules.default
+        ];
+      };
       modules = with inputs.self.darwinModules; [
         (unification platform)
         common
@@ -31,6 +36,7 @@ in
         system
         tailscale
         inputs.srvos.darwinModules.desktop
+        inputs.trampoline.darwinModules.default
       ];
     };
   };
