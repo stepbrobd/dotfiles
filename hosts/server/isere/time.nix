@@ -79,7 +79,7 @@
   services.ntpd-rs.settings.source = [
     {
       mode = "sock";
-      path = "/run/chrony.ttyAMA0.sock";
+      path = "/run/ntpd-rs/chrony.ttyAMA0.sock";
       precision = 0.0000001;
     }
     {
@@ -88,4 +88,26 @@
       precision = 0.0000001;
     }
   ];
+
+  # https://docs.ntpd-rs.pendulum-project.org/guide/gps-pps/
+  systemd.services.gpsd-socket-shim = {
+    description = "gpsd socket shim for ntpd-rs";
+    documentation = [ "https://github.com/pendulum-project/ntpd-rs" ];
+
+    after = [ "ntpd-rs.service" ];
+    before = [ "gpsd.service" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.bash}/bin/bash -c 'ln -sf /run/ntpd-rs/chrony.ttyAMA0.sock /run/chrony.ttyAMA0.sock'";
+      ExecStop = "${pkgs.coreutils}/bin/rm -f /run/chrony.ttyAMA0.sock";
+    };
+  };
+
+  systemd.services.gpsd = {
+    after = [ "gpsd-socket-shim.service" ];
+    wants = [ "gpsd-socket-shim.service" ];
+  };
 }
