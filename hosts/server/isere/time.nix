@@ -80,7 +80,7 @@
     {
       mode = "sock";
       path = "/run/ntpd-rs/chrony.ttyAMA0.sock";
-      precision = 0.0000001;
+      precision = 0.005;
     }
     {
       mode = "pps";
