@@ -75,4 +75,17 @@
     enable = true;
     domain = "time.ysun.co";
   };
+
+  services.ntpd-rs.settings.source = [
+    {
+      mode = "sock";
+      path = "/run/chrony.ttyAMA0.sock";
+      precision = "1e-7";
+    }
+    {
+      mode = "pps";
+      path = "/dev/pps0";
+      precision = "1e-7";
+    }
+  ];
 }
