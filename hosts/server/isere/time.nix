@@ -80,12 +80,12 @@
     {
       mode = "sock";
       path = "/run/chrony.ttyAMA0.sock";
-      precision = "1e-7";
+      precision = 0.0000001;
     }
     {
       mode = "pps";
       path = "/dev/pps0";
-      precision = "1e-7";
+      precision = 0.0000001;
     }
   ];
 }
