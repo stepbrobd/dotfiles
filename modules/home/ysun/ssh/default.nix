@@ -54,7 +54,17 @@
           in
           lib.concatStringsSep "\n" configs;
       in
-      gen targets
+      gen targets + "\n" + ''
+        Host g5k
+          User yisun
+          Hostname access.grid5000.fr
+          ForwardAgent no
+
+        Host *.g5k
+          User login
+          ProxyCommand ssh g5k -W "$(basename %h .g5k):%p"
+          ForwardAgent no
+      ''
       /* + "\n" +
       (if pkgs.stdenv.isLinux then ''
       Host *
