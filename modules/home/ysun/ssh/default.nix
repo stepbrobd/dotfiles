@@ -61,7 +61,7 @@
           ForwardAgent no
 
         Host *.g5k
-          User login
+          User yisun
           ProxyCommand ssh g5k -W "$(basename %h .g5k):%p"
           ForwardAgent no
       ''
