@@ -61,7 +61,7 @@
 
         Host *.g5k
           User yisun
-          ProxyCommand ssh g5k -W "$(basename %h .g5k):%p"
+          ProxyCommand sh -c 'ssh g5k -W "$(basename %h .g5k):%p"'
       ''
       /* + "\n" +
       (if pkgs.stdenv.isLinux then ''
