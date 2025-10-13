@@ -132,6 +132,7 @@
     # r
     rpi.url = "github:nvmd/nixos-raspberrypi";
     rpi.inputs.nixpkgs.follows = "nixpkgs";
+    rpi.inputs.flake-compat.follows = "compat";
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
     # s
