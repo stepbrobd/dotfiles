@@ -83,9 +83,10 @@
       # utils
       "Apple Configurator" = 1037126344;
       "Dropover" = 1355679052;
+      "Finalist" = 6447014685;
+      "Flighty" = 1358823008;
       "Folder Preview" = 6698876601;
       "iMazing Profile Editor" = 1487860882;
-      "Flighty" = 1358823008;
       "iStat Menus" = 1319778037;
       "Parcel" = 375589283;
       "Passepartout" = 1433648537;
