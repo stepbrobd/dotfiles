@@ -28,6 +28,8 @@ in
 
   sops.secrets."kanidm/passwd".group = "kanidm";
   sops.secrets."kanidm/passwd".mode = "440";
+  sops.secrets."kanidm/oauth/cloudflare".group = "kanidm";
+  sops.secrets."kanidm/oauth/cloudflare".mode = "440";
   sops.secrets."kanidm/oauth/hydra".group = "kanidm";
   sops.secrets."kanidm/oauth/hydra".mode = "440";
   sops.secrets."kanidm/oauth/grafana".group = "kanidm";
@@ -71,6 +73,9 @@ in
         "calibre.admins" = { };
         "calibre.users" = { };
 
+        "cloudflare.admins" = { };
+        "cloudflare.users" = { };
+
         "hydra.admins" = { };
         "hydra.users" = { };
 
@@ -92,6 +97,9 @@ in
             "calibre.admins"
             "calibre.users"
 
+            "cloudflare.admins"
+            "cloudflare.users"
+
             "hydra.admins"
             "hydra.users"
 
@@ -104,6 +112,19 @@ in
       };
 
       systems.oauth2 = {
+        cloudflare = {
+          displayName = "Cloudflare";
+          originUrl = "https://stepbrobd.cloudflareaccess.com/cdn-cgi/access/callback";
+          originLanding = "https://stepbrobd.cloudflareaccess.com/";
+          basicSecretFile = config.sops.secrets."kanidm/oauth/cloudflare".path;
+          preferShortUsername = true;
+          scopeMaps."grafana.users" = [
+            "openid"
+            "email"
+            "profile"
+          ];
+        };
+
         hydra = {
           displayName = "Hydra";
           allowInsecureClientDisablePkce = true;
