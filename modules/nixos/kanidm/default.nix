@@ -118,7 +118,7 @@ in
           originLanding = "https://stepbrobd.cloudflareaccess.com/";
           basicSecretFile = config.sops.secrets."kanidm/oauth/cloudflare".path;
           preferShortUsername = true;
-          scopeMaps."grafana.users" = [
+          scopeMaps."cloudflare.users" = [
             "openid"
             "email"
             "profile"
