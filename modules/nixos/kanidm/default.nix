@@ -89,7 +89,7 @@ in
         ysun = {
           displayName = "Yifei";
           legalName = "Yifei Sun";
-          mailAddresses = [ "ysun@hey.com" ];
+          mailAddresses = [ "ysun@hey.com" "ysun@stepbrobd.com" "ysun@ysun.co" ];
           groups = [
             "sso.admins"
             "sso.users"
