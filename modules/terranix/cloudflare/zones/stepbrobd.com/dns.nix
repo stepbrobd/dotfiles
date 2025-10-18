@@ -48,6 +48,14 @@ in
         content = ''"twilio-domain-verification=f46e7a05c199fb36f91438cc6d2fabee"'';
         comment = "Twilio - Verification";
       };
+
+      com_stepbrobd_cloudflare = {
+        type = "TXT";
+        proxied = false;
+        name = "@";
+        content = ''"cloudflare_dashboard_sso=e8c437abef18c13ceb49958860ea050a"'';
+        comment = "Cloudflare - SSO Verification";
+      };
     } // mkPurelyMailRecord
     "stepbrobd.com"
     "com_stepbrobd"

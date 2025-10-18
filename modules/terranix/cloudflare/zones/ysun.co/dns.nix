@@ -121,6 +121,14 @@ in
         content = ''"google-site-verification=2LutjaV7j2eFT1GaPS5YcbRM5QrX-pZsvzNOYK4i-mQ"'';
         comment = "Google - Search Console";
       };
+
+      co_ysun_cloudflare = {
+        type = "TXT";
+        proxied = false;
+        name = "@";
+        content = ''"cloudflare_dashboard_sso=16225a3c3e10d1b53d78b2e3886f8a99"'';
+        comment = "Cloudflare - SSO Verification";
+      };
     } // mkPurelyMailRecord
     "ysun.co"
     "co_ysun"
