@@ -1,21 +1,26 @@
 { config, pkgs, ... }:
 
 {
-  programs.git = {
+  # colored diff tool
+  programs.delta = {
     enable = true;
-    userName = "Yifei Sun";
-    userEmail = "ysun@hey.com";
-
-    # colored diff tool
-    delta.enable = true;
-    includes = [{ path = "${pkgs.delta}/share/themes.gitconfig"; }];
-    delta.options = {
+    enableGitIntegration = true;
+    options = {
       features = "collared-trogon";
       navigate = true;
       side-by-side = true;
     };
+  };
 
-    extraConfig = {
+  programs.git = {
+    enable = true;
+
+    includes = [{ path = "${pkgs.delta}/share/themes.gitconfig"; }];
+
+    settings = {
+      user.name = "Yifei Sun";
+      user.email = "ysun@hey.com";
+
       # signing
       gpg.format = "ssh";
       commit.gpgsign = "true";

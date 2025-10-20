@@ -5,9 +5,8 @@
     enable = true;
 
     settings = {
-      user = with config.programs.git; {
-        name = userName;
-        email = userEmail;
+      user = with config.programs.git.settings.user; {
+        inherit name email;
       };
 
       signing = {
