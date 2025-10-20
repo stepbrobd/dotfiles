@@ -57,6 +57,11 @@
         exec-once = waybar &
         exec-once = wpaperd &
 
+        ecosystem {
+          no_update_news = true
+          no_donation_nag = true
+        }
+
         general {
           gaps_in = 4
           gaps_out = 4
@@ -82,10 +87,7 @@
             }
         }
 
-        gestures {
-          workspace_swipe = true
-          workspace_swipe_fingers = 3
-        }
+        gesture = 3, horizontal, workspace
 
         misc {
           disable_hyprland_logo = true
