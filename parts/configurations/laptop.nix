@@ -52,11 +52,9 @@ in
         self.nixosModules.cross
         self.nixosModules.docker
         self.nixosModules.graphical
-        self.nixosModules.nftables
+        self.nixosModules.minimal
         self.nixosModules.passwordless
         self.nixosModules.rebuild
-        self.nixosModules.tailscale
-        self.nixosModules.time
         srvos.nixosModules.desktop
       ];
     in
