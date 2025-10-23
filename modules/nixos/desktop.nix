@@ -46,9 +46,6 @@ in
       boot.plymouth.enable = true;
     }
 
-    # screen sharing
-    { environment.systemPackages = [ pkgs.kdePackages.xwaylandvideobridge ]; }
-
     # xdg
     {
       xdg.portal = {

@@ -47,12 +47,6 @@
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
         exec-once = ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
 
-        exec-once = ${pkgs.kdePackages.xwaylandvideobridge}/bin/xwaylandvideobridge &
-        windowrulev2 = opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$
-        windowrulev2 = noanim,class:^(xwaylandvideobridge)$
-        windowrulev2 = nofocus,class:^(xwaylandvideobridge)$
-        windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
-
         exec-once = dunst &
         exec-once = waybar &
         exec-once = wpaperd &
