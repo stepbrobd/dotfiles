@@ -6,4 +6,9 @@
   services.bpftune.enable = true;
 
   # services.prometheus.enable = true;
+
+  systemd.services.network-local-commands = {
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+  };
 }
