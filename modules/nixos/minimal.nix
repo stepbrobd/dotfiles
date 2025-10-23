@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 {
   imports = with inputs.self.nixosModules; [ fail2ban nftables mglru tailscale time vxlan ];
@@ -8,7 +8,9 @@
   # services.prometheus.enable = true;
 
   systemd.services.network-local-commands = {
-    wants = [ "network-online.target" ];
-    after = [ "network-online.target" ];
+    before = lib.mkForce [ ];
+    after = lib.mkForce [ "network-online.target" "systemd-networkd.service" ];
+    wants = lib.mkForce [ "network-online.target" ];
+    wantedBy = lib.mkForce [ "multi-user.target" ];
   };
 }
