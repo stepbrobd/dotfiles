@@ -83,7 +83,6 @@
       # utils
       "Apple Configurator" = 1037126344;
       "Dropover" = 1355679052;
-      "Finalist" = 6447014685;
       "Flighty" = 1358823008;
       "Folder Preview" = 6698876601;
       "iMazing Profile Editor" = 1487860882;
@@ -96,7 +95,6 @@
       "ServerCat" = 1501532023;
       "Tailscale" = 1475387142;
       "The Unarchiver" = 425424353;
-      "Things" = 904280696;
       "Xcode" = 497799835;
       # safari
       "AdGuard" = 1440147259;
