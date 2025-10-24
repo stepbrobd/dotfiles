@@ -69,6 +69,7 @@
       "orion"
       "osu"
       "slack"
+      "spotify"
       "webex"
       "yubico-authenticator"
       "zoom"
