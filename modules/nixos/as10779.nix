@@ -603,6 +603,7 @@ in
           "--ssh"
         ];
 
+      # switch to networkd dispatcher?
       networking.localCommands =
         (lib.optionalString (lib.isString cfg.router.outboundGateway.ipv4) ''
           ip -4 route replace default via ${cfg.router.outboundGateway.ipv4} table ${lib.toString cfg.asn}

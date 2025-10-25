@@ -13,6 +13,19 @@
   # in case nftables is used
   systemd.services.tailscaled.environment.TS_DEBUG_FIREWALL_MODE = config.networking.firewall.package.pname;
 
+  # switch to networkd dispatcher?
+  # services.networkd-dispatcher = {
+  #   enable = true;
+  #   rules = {
+  #     "50-tailscale" = {
+  #       onState = [ "routable" ];
+  #       script = ''
+  #         #!${pkgs.runtimeShell}
+  #         ${lib.getExe pkgs.ethtool} -K end0 rx-udp-gro-forwarding on rx-gro-list off
+  #       '';
+  #     };
+  #   };
+  # };
   # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
   networking.localCommands = ''
     NETDEV=$(${pkgs.iproute2}/bin/ip -o route get 1.1.1.1 | ${pkgs.coreutils}/bin/cut -f 5 -d " ")
