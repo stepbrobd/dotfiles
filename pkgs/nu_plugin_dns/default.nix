@@ -7,16 +7,16 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "nu_plugin_dns";
-  version = "4.0.5";
+  version = "4.0.4";
 
   src = fetchFromGitHub {
     owner = "dead10ck";
     repo = "nu_plugin_dns";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-Zf66C8YFS3pC5g24jh5mXhdSNoFDjGJSSWG1VSEZ4PM=";
+    hash = "sha256-/f6ccLD2MUJx1S5wSQNaC8vDFCnomAXT/t+aQryNr6k=";
   };
 
-  cargoHash = "sha256-7qS1cXNuztVs6preUut0l/XZtsO7eAzdljst+mGBQnA=";
+  cargoHash = "sha256-E92ViE0FvSMA5HdRZN99bjHbxezvkZyb+mRSSgopu9s=";
 
   nativeBuildInputs = [ pkg-config ] ++ lib.optionals stdenv.cc.isClang [ rustPlatform.bindgenHook ];
 
