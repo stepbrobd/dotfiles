@@ -61,8 +61,6 @@ let
 
   colmenaHive = lib.makeHive colmena;
 
-  nixosConfigurations = (import "${inputs.colmena}/src/nix/hive/eval.nix" {
-    rawHive = colmena;
-  }).nodes;
+  nixosConfigurations = colmenaHive.nodes;
 in
-{ flake = { inherit colmena colmenaHive nixosConfigurations; }; }
+{ flake = { inherit colmenaHive nixosConfigurations; }; }

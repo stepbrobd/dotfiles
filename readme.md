@@ -5,13 +5,10 @@
 A hacky config that works on both NixOS and macOS.
 
 NixOS server config evaluation order: `inputs.autopilot` -> `lib/*` ->
-`parts/configurations/server.nix` -> `lib.mkColmena` -> conversion:
+`parts/configurations/server.nix` -> `lib.mkColmena` (Linux only)
 
-```nix
-nixosConfigurations = (import "${inputs.colmena}/src/nix/hive/eval.nix" {
-  rawHive = ...;
-}).nodes;
-```
+Laptop config evaluation order: `inputs.autopilot` -> `lib/*` ->
+`parts/configurations/laptop.nix` -> `lib.mkSystem` (would work for macOS)
 
 ## Notes
 
