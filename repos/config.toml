@@ -241,6 +241,11 @@ description = "forked from kanidm/kanidm"
 visibility = "public"
 archived = false
 
+[repo."kapack"]
+description = "forked from oar-team/nur-kapack"
+visibility = "public"
+archived = false
+
 [repo."kumify"]
 description = "forked from denzha24/kumify"
 visibility = "public"
