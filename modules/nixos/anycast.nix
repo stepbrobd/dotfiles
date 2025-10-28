@@ -84,7 +84,6 @@ in
               "rkt.lol"
               "stepbrobd.com"
               "xdg.sh"
-              "ysun.life"
               "*.as10779.net"
               "*.as18932.net"
               "*.churn.cards"
@@ -93,7 +92,6 @@ in
               "*.rkt.lol"
               "*.stepbrobd.com"
               "*.xdg.sh"
-              "*.ysun.life"
             ];
           };
         };
