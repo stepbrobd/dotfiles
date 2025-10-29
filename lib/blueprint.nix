@@ -123,6 +123,17 @@ in
     ipv6 = "2602:ff16:14:0:1:56:0:1";
   };
 
+  hosts.timah = newHost {
+    hostName = "timah";
+    domain = "as10779.net";
+    platform = "x86_64-linux";
+    os = "nixos";
+    provider = "misaka";
+    type = "server";
+    ipv4 = "194.114.138.187";
+    ipv6 = "2407:b9c0:e002:25c:26a3:f0ff:fe45:a7b7";
+  };
+
   hosts.toompea = newHost {
     hostName = "toompea";
     domain = "as10779.net";
