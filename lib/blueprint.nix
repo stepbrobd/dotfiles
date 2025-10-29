@@ -97,8 +97,8 @@ in
     os = "nixos";
     provider = "vultr";
     type = "server";
-    ipv4 = "64.176.58.7";
-    ipv6 = "2401:c080:3800:21c4:5400:05ff:fe53:aca3";
+    ipv4 = "45.32.59.137";
+    ipv6 = "2001:19f0:7002:0327:5400:05ff:febb:599b";
   };
 
   hosts.lagern = newHost {
