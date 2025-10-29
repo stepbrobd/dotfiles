@@ -78,7 +78,7 @@ in
           neighbor = {
             asn = 212232;
             ipv4 = null;
-            ipv6 = "2a0c:2f07:9459::b6";
+            ipv6 = "2a0c:2f07:9459::b4";
           };
           addpath = "tx";
           import = {
