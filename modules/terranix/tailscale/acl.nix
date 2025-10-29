@@ -29,10 +29,6 @@ in
     reset_acl_on_destroy = true;
 
     acl = lib.toJSON {
-      # ensure each device gets a /32 rule
-      # for their v4 address under CGNAT range
-      OneCGNATRoute = "";
-
       tagOwners = {
         ${tag.golink} = [ autogroup.admin ];
         ${tag.router} = [ autogroup.admin ];
@@ -111,8 +107,15 @@ in
         };
       };
 
+      # ensure each device gets a /32 rule
+      # for their v4 address under CGNAT range
+      OneCGNATRoute = "";
+
       nodeAttrs = [
-        { target = [ "*" ]; attr = [ "funnel" "nextdns:d8664a" ]; }
+        # see above
+        # in tailscale/tailcfg/tailcfg.go:
+        # NodeAttrOneCGNATEnable NodeCapability = "one-cgnat?v=false"
+        { target = [ "*" ]; attr = [ "one-cgnat?v=false" "funnel" "nextdns:d8664a" ]; }
         { target = [ self.email ]; attr = [ "mullvad" ]; }
         # 100.100.20.0/24 reserved for devices that are shared into my tailnet
         { target = [ tag.router ]; ipPool = [ "100.100.20.0/24" ]; }
