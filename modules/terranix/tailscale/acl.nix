@@ -29,6 +29,10 @@ in
     reset_acl_on_destroy = true;
 
     acl = lib.toJSON {
+      # ensure each device gets a /32 rule
+      # for their v4 address under CGNAT range
+      OneCGNATRoute = "";
+
       tagOwners = {
         ${tag.golink} = [ autogroup.admin ];
         ${tag.router} = [ autogroup.admin ];
