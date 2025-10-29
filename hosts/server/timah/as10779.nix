@@ -54,11 +54,10 @@ in
         {
           name = "misaka";
           password = null;
-          type = { ipv4 = "disabled"; ipv6 = "multihop"; };
-          mp = "v4 over v6";
+          type = { ipv4 = "multihop"; ipv6 = "multihop"; };
           neighbor = {
             asn = 57695;
-            ipv4 = null;
+            ipv4 = "100.100.0.0";
             ipv6 = "2a0b:4342:ffff::";
           };
           import = {
