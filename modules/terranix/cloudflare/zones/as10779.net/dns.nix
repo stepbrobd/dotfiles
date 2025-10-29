@@ -121,6 +121,22 @@ in
         comment = "SSDNodes - Tokyo 2";
       };
 
+      net_as10779_timah_v4 = {
+        type = "A";
+        proxied = false;
+        name = "timah";
+        content = "23.161.104.131";
+        comment = "Misaka - Singapore";
+      };
+
+      net_as10779_timah_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "timah";
+        content = "2602:f590::23:161:104:131";
+        comment = "Misaka - Singapore";
+      };
+
       net_as10779_toompea_v4 = {
         type = "A";
         proxied = false;
@@ -134,7 +150,7 @@ in
         proxied = false;
         name = "toompea";
         content = "2602:f590::23:161:104:128";
-        comment = "V.PS - Tallinn, Estonia";
+        comment = "xTom - Tallinn, Estonia";
       };
 
       net_as10779_walberla_v4 = {
