@@ -5,6 +5,8 @@ builds:
     - packages.*.*
     - devShells.*.*
   exclude:
+    - packages.aarch64-linux.mac-app-util # not available
+    - packages.x86_64-linux.mac-app-util # not available
     - packages.aarch64-linux.verus # z3 incorrect binary release
     - packages.*.hey-mail # unfree
     - packages.*.jitsi-meet # insecure
