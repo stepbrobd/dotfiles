@@ -156,12 +156,6 @@
     terranix.inputs.nixpkgs.follows = "nixpkgs";
     terranix.inputs.flake-parts.follows = "parts";
     terranix.inputs.systems.follows = "systems";
-    trampoline.url = "github:hraban/mac-app-util";
-    trampoline.inputs.nixpkgs.follows = "nixpkgs";
-    trampoline.inputs.systems.follows = "systems";
-    trampoline.inputs.flake-compat.follows = "compat";
-    trampoline.inputs.flake-utils.follows = "utils";
-    trampoline.inputs.treefmt-nix.follows = "treefmt";
     treefmt.url = "github:numtide/treefmt-nix";
     treefmt.inputs.nixpkgs.follows = "nixpkgs";
     tsnsrv.url = "github:boinkor-net/tsnsrv";

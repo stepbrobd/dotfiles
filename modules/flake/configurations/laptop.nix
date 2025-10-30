@@ -19,7 +19,7 @@ in
       users = {
         ysun = with inputs.self; [
           hmModules.ysun.darwin
-          inputs.trampoline.homeManagerModules.default
+          hmModules.ysun.trampoline
         ];
       };
       modules = with inputs.self.darwinModules; [
@@ -35,8 +35,8 @@ in
         sshd
         system
         tailscale
+        trampoline
         inputs.srvos.darwinModules.desktop
-        inputs.trampoline.darwinModules.default
       ];
     };
   };
