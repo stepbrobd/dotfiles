@@ -1,18 +1,10 @@
-{ inputs
+{ lib
 , stdenv
-, pkgs
 }:
 
-inputs.trampoline.packages.${stdenv.hostPlatform.system}.default.overrideAttrs {
-  doCheck = false;
-  buildInputs = [
-    (pkgs.sbcl_2_5_5.withPackages (_: with _; [
-      alexandria
-      cl-interpol
-      cl-json
-      inferior-shell
-      str
-      trivia
-    ]))
-  ];
+(lib.getFlake "github:hraban/mac-app-util/8414fa1e2cb775b17793104a9095aabeeada63ef").packages.${stdenv.hostPlatform.system}.default.overrideAttrs {
+  meta = {
+    platforms = lib.platforms.darwin;
+    badPlatforms = lib.platforms.linux;
+  };
 }
