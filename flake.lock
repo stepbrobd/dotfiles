@@ -316,6 +316,29 @@
         "type": "github"
       }
     },
+    "generators": {
+      "inputs": {
+        "nixlib": [
+          "nixpkgs"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751903740,
+        "narHash": "sha256-PeSkNMvkpEvts+9DjFiop1iT2JuBpyknmBUs0Un0a4I=",
+        "owner": "nix-community",
+        "repo": "nixos-generators",
+        "rev": "032decf9db65efed428afd2fa39d80f7089085eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-generators",
+        "type": "github"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": [
@@ -405,6 +428,21 @@
       "original": {
         "owner": "nix-community",
         "repo": "gomod2nix",
+        "type": "github"
+      }
+    },
+    "hardware": {
+      "locked": {
+        "lastModified": 1761827175,
+        "narHash": "sha256-XdPVSYyIBK4/ruoqujaQmmSGg3J2/EenexV9IEXhr6o=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "43ffe9ac82567512abb83187cb673de1091bdfa8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixos-hardware",
         "type": "github"
       }
     },
@@ -554,44 +592,6 @@
         "type": "github"
       }
     },
-    "nixos-generators": {
-      "inputs": {
-        "nixlib": [
-          "nixpkgs"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1751903740,
-        "narHash": "sha256-PeSkNMvkpEvts+9DjFiop1iT2JuBpyknmBUs0Un0a4I=",
-        "owner": "nix-community",
-        "repo": "nixos-generators",
-        "rev": "032decf9db65efed428afd2fa39d80f7089085eb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixos-generators",
-        "type": "github"
-      }
-    },
-    "nixos-hardware": {
-      "locked": {
-        "lastModified": 1761827175,
-        "narHash": "sha256-XdPVSYyIBK4/ruoqujaQmmSGg3J2/EenexV9IEXhr6o=",
-        "owner": "nixos",
-        "repo": "nixos-hardware",
-        "rev": "43ffe9ac82567512abb83187cb673de1091bdfa8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixos-hardware",
-        "type": "github"
-      }
-    },
     "nixos-images": {
       "inputs": {
         "nixos-stable": [
@@ -695,17 +695,17 @@
         "disko": "disko",
         "flakey-profile": "flakey-profile",
         "garnix": "garnix",
+        "generators": "generators",
         "git-hooks": "git-hooks",
         "gitignore": "gitignore",
         "golink": "golink",
         "gomod2nix": "gomod2nix",
+        "hardware": "hardware",
         "hm": "hm",
         "hydra": "hydra",
         "impermanence": "impermanence",
         "index": "index",
         "lanzaboote": "lanzaboote",
-        "nixos-generators": "nixos-generators",
-        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "parts": "parts",

@@ -46,8 +46,8 @@ in
       common = with inputs; [
         disko.nixosModules.disko
         lanzaboote.nixosModules.lanzaboote
-        nixos-generators.nixosModules.all-formats
-        nixos-hardware.nixosModules.common-hidpi
+        generators.nixosModules.all-formats
+        hardware.nixosModules.common-hidpi
         self.nixosModules.common
         self.nixosModules.cross
         self.nixosModules.docker
@@ -68,7 +68,7 @@ in
         users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
         modules = with inputs; common ++ [
           (unification platform)
-          nixos-hardware.nixosModules.framework-13th-gen-intel
+          hardware.nixosModules.framework-13th-gen-intel
         ];
       };
 
@@ -81,7 +81,7 @@ in
         users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
         modules = with inputs; common ++ [
           (unification platform)
-          nixos-hardware.nixosModules.dell-xps-13-9300
+          hardware.nixosModules.dell-xps-13-9300
           self.nixosModules.ebpf
         ];
       };

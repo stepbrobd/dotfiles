@@ -87,6 +87,9 @@
     # g
     garnix.url = "github:garnix-io/garnix-lib";
     garnix.inputs.nixpkgs.follows = "nixpkgs";
+    generators.url = "github:nix-community/nixos-generators";
+    generators.inputs.nixpkgs.follows = "nixpkgs";
+    generators.inputs.nixlib.follows = "nixpkgs";
     git-hooks.url = "github:cachix/git-hooks.nix";
     git-hooks.inputs.nixpkgs.follows = "nixpkgs";
     git-hooks.inputs.flake-compat.follows = "compat";
@@ -100,6 +103,7 @@
     gomod2nix.inputs.nixpkgs.follows = "nixpkgs";
     gomod2nix.inputs.flake-utils.follows = "utils";
     # h
+    hardware.url = "github:nixos/nixos-hardware";
     hm.url = "github:nix-community/home-manager";
     hm.inputs.nixpkgs.follows = "nixpkgs";
     hydra.url = "github:ners/hydra/oidc";
@@ -117,10 +121,6 @@
     lanzaboote.inputs.pre-commit-hooks-nix.follows = "";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
     # n
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-generators.inputs.nixlib.follows = "nixpkgs";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.inputs.flake-parts.follows = "parts";
