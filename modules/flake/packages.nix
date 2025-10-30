@@ -6,9 +6,9 @@ in
 {
   perSystem = { pkgs, ... }:
     {
-      packages = mkDynamicAttrs {
-        dir = ../pkgs;
-        fun = name: importPackagesWith (pkgs // { inherit inputs lib; }) (../pkgs/. + "/${name}") { };
+      packages = mkDynamicAttrs rec {
+        dir = ../../pkgs;
+        fun = name: importPackagesWith (pkgs // { inherit inputs lib; }) (dir + "/${name}") { };
       };
     };
 

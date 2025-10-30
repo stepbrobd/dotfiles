@@ -39,7 +39,7 @@
             };
           };
 
-          parts.path = ./parts;
+          parts.path = ./modules/flake;
         };
       }
       {

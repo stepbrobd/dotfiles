@@ -6,7 +6,7 @@ let
   # args passed to `importApplyWithArgs`
   moduleArgs = { inherit inputs lib; };
   # not `modulesPath`
-  modulePath = ../../modules;
+  modulePath = ../../../modules;
 
   modulesFor = name: loadAll {
     dir = "${modulePath}/${name}";

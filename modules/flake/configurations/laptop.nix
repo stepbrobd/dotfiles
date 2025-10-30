@@ -15,7 +15,7 @@ in
       inherit inputs specialArgs;
       os = "darwin";
       platform = "aarch64-darwin";
-      entrypoint = ../../hosts/laptop/macbook;
+      entrypoint = ../../../hosts/laptop/macbook;
       users = {
         ysun = with inputs.self; [
           hmModules.ysun.darwin
@@ -64,7 +64,7 @@ in
         inherit inputs specialArgs;
         os = "nixos";
         platform = "x86_64-linux";
-        entrypoint = ../../hosts/laptop/framework;
+        entrypoint = ../../../hosts/laptop/framework;
         users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
         modules = with inputs; common ++ [
           (unification platform)
@@ -77,7 +77,7 @@ in
         inherit inputs specialArgs;
         os = "nixos";
         platform = "x86_64-linux";
-        entrypoint = ../../hosts/laptop/xps;
+        entrypoint = ../../../hosts/laptop/xps;
         users = { ysun = with inputs.self; [ hmModules.ysun.linux ]; };
         modules = with inputs; common ++ [
           (unification platform)
