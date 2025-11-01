@@ -1,13 +1,88 @@
-diff --git i/net/tsaddr/tsaddr.go w/net/tsaddr/tsaddr.go
-index 06e6a26dd..4f29ea8c3 100644
---- i/net/tsaddr/tsaddr.go
-+++ w/net/tsaddr/tsaddr.go
-@@ -31,7 +31,7 @@ func ChromeOSVMRange() netip.Prefix {
- // See https://tailscale.com/s/cgnat
- // Note that Tailscale does not assign out of the ChromeOSVMRange.
- func CGNATRange() netip.Prefix {
--	cgnatRange.Do(func() { mustPrefix(&cgnatRange.v, "100.64.0.0/10") })
-+	cgnatRange.Do(func() { mustPrefix(&cgnatRange.v, "100.100.1.0/10") })
- 	return cgnatRange.v
+diff --git i/util/linuxfw/nftables_runner.go w/util/linuxfw/nftables_runner.go
+index faa02f7c7..3c9b971e7 100644
+--- i/util/linuxfw/nftables_runner.go
++++ w/util/linuxfw/nftables_runner.go
+@@ -1209,12 +1209,38 @@ func addReturnChromeOSVMRangeRule(c *nftables.Conn, table *nftables.Table, chain
  }
  
+ // addDropCGNATRangeRule adds a rule to drop if the source IP is in the
+-// CGNAT range.
++// CGNAT range, excluding 100.100.0.0/24.
+ func addDropCGNATRangeRule(c *nftables.Conn, table *nftables.Table, chain *nftables.Chain, tunname string) error {
+ 	rule, err := createRangeRule(table, chain, tunname, tsaddr.CGNATRange(), expr.VerdictDrop)
+ 	if err != nil {
+ 		return fmt.Errorf("create rule: %w", err)
+ 	}
++
++	excludeNet := net.ParseIP("100.100.0.0").To4()
++	excludeMask := net.IPv4Mask(255, 255, 255, 0)
++	saddrExpr, err := newLoadSaddrExpr(nftables.TableFamilyIPv4, 1)
++	if err != nil {
++		return fmt.Errorf("newLoadSaddrExpr: %w", err)
++	}
++
++	rule.Exprs = append(rule.Exprs[:len(rule.Exprs)-2],
++		saddrExpr,
++		&expr.Bitwise{
++			SourceRegister: 1,
++			DestRegister:   1,
++			Len:            4,
++			Mask:           excludeMask,
++			Xor:            []byte{0x00, 0x00, 0x00, 0x00},
++		},
++		&expr.Cmp{
++			Op:       expr.CmpOpNeq,
++			Register: 1,
++			Data:     excludeNet,
++		},
++		rule.Exprs[len(rule.Exprs)-2],
++		rule.Exprs[len(rule.Exprs)-1],
++	)
++
+ 	_ = c.AddRule(rule)
+ 	if err = c.Flush(); err != nil {
+ 		return fmt.Errorf("add rule: %w", err)
+@@ -1274,7 +1300,7 @@ func addSetSubnetRouteMarkRule(c *nftables.Conn, table *nftables.Table, chain *n
+ }
+ 
+ // createDropOutgoingPacketFromCGNATRangeRuleWithTunname creates a rule to drop
+-// outgoing packets from the CGNAT range.
++// outgoing packets from the CGNAT range, excluding 100.100.0.0/24.
+ func createDropOutgoingPacketFromCGNATRangeRuleWithTunname(table *nftables.Table, chain *nftables.Chain, tunname string) (*nftables.Rule, error) {
+ 	_, ipNet, err := net.ParseCIDR(tsaddr.CGNATRange().String())
+ 	if err != nil {
+@@ -1285,10 +1311,14 @@ func createDropOutgoingPacketFromCGNATRangeRuleWithTunname(table *nftables.Table
+ 		return nil, fmt.Errorf("decode mask: %v", err)
+ 	}
+ 	netip := ipNet.IP.Mask(ipNet.Mask).To4()
++
++	excludeNet := net.ParseIP("100.100.0.0").To4()
++	excludeMask := net.IPv4Mask(255, 255, 255, 0)
+ 	saddrExpr, err := newLoadSaddrExpr(nftables.TableFamilyIPv4, 1)
+ 	if err != nil {
+ 		return nil, fmt.Errorf("newLoadSaddrExpr: %v", err)
+ 	}
++
+ 	rule := &nftables.Rule{
+ 		Table: table,
+ 		Chain: chain,
+@@ -1312,6 +1342,19 @@ func createDropOutgoingPacketFromCGNATRangeRuleWithTunname(table *nftables.Table
+ 				Register: 1,
+ 				Data:     netip,
+ 			},
++			saddrExpr,
++			&expr.Bitwise{
++				SourceRegister: 1,
++				DestRegister:   1,
++				Len:            4,
++				Mask:           excludeMask,
++				Xor:            []byte{0x00, 0x00, 0x00, 0x00},
++			},
++			&expr.Cmp{
++				Op:       expr.CmpOpNeq,
++				Register: 1,
++				Data:     excludeNet,
++			},
+ 			&expr.Counter{},
+ 			&expr.Verdict{
+ 				Kind: expr.VerdictDrop,
