@@ -130,7 +130,7 @@
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     # r
-    rpi.url = "github:nvmd/nixos-raspberrypi";
+    rpi.url = "github:nvmd/nixos-raspberrypi?ref=pull/104/merge";
     rpi.inputs.nixpkgs.follows = "nixpkgs";
     rpi.inputs.flake-compat.follows = "compat";
     rust-overlay.url = "github:oxalica/rust-overlay";
