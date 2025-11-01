@@ -57,8 +57,8 @@ in
           type = { ipv4 = "multihop"; ipv6 = "multihop"; };
           neighbor = {
             asn = 57695;
-            ipv4 = "100.100.0.0";
-            ipv6 = "2a0b:4342:ffff::";
+            ipv4 = "194.114.138.187";
+            ipv6 = "2407:b9c0:e002:25c:26a3:f0ff:fe45:a7b7";
           };
           import = {
             ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
