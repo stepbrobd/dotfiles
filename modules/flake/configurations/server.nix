@@ -41,10 +41,10 @@ let
       platform = "x86_64-linux";
       nixpkgs = (getSystem platform).allModuleArgs.pkgs;
       hosts = [
-        "butte" # Virtua Cloud, 1 vCPU, 1GB RAM, 20GB Storage
+        "butte" # Virtua Cloud, 1 vCPU, 2GB RAM, 20GB Storage
         "halti" # Garnix.io Hosting, test server
-        "highline" # Neptune Networks, 1 vCPU, 1GB RAM, 10GB Storage
-        "kongo" # Vultr, 1 vCPU, 1GB RAM, 32GB Storage
+        "highline" # Neptune Networks, 2 vCPU, 2GB RAM, 80GB Storage
+        "kongo" # Vultr, 1 vCPU, 2GB RAM, 64GB Storage
         "lagern" # AWS, T3.Large, 25GB Storage
         "odake" # SSDNodes NRT Performance, 8 vCPU, 32GB RAM, 640GB Storage
         "timah" # Misaka Networks, 1 vCPU, 2GB RAM, 32 GB Storage
