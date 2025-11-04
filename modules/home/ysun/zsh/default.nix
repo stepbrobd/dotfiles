@@ -43,7 +43,7 @@
         tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
       })
       # other aliases
-      { tf = "terraform"; }
+      { tf = "tofu"; }
     ];
 
     envExtra = ''

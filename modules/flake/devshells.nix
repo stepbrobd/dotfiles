@@ -12,8 +12,8 @@
         nix-direnv
         sops
 
-        # inputs'.terranix.packages.default
-        # (terraform.withPlugins (p: with p; [ cloudflare sops tailscale ]))
+        inputs'.terranix.packages.default
+        (opentofu.withPlugins (p: with p; [ cloudflare_cloudflare carlpett_sops tailscale_tailscale ]))
       ];
     };
   };
