@@ -1,3 +1,7 @@
+actions:
+  - on: push
+    run: terranix
+
 builds:
   include:
     - darwinConfigurations.*
