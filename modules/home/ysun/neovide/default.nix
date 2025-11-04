@@ -6,7 +6,7 @@
   programs.neovide = {
     enable = true;
 
-    package = inputs.self.packages.${pkgs.stdenv.system}.neovide;
+    package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovide;
 
     settings = {
       inherit (config.programs.alacritty.settings) font;

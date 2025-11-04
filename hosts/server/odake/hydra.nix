@@ -19,7 +19,7 @@
   services.hydra = {
     enable = true;
     logo = ./logo.png;
-    package = inputs.hydra.packages.${pkgs.system}.default;
+    package = inputs.hydra.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     useSubstitutes = true;
     minimumDiskFree = 5;

@@ -3,7 +3,7 @@
 { config, options, pkgs, ... }:
 
 let
-  ysun = inputs.ysun.packages.${pkgs.stdenv.system}.default;
+  ysun = inputs.ysun.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
 {
   # anycast test

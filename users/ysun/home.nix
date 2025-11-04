@@ -7,7 +7,7 @@
 }:
 
 let
-  nixvim = inputs.self.packages.${pkgs.stdenv.system}.nixvim;
+  nixvim = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.nixvim;
 in
 {
   home.stateVersion = "25.05";
@@ -82,7 +82,7 @@ in
     nixvim
     pat
     pinentry_mac
-    inputs.ai.packages.${pkgs.stdenv.system}.coderabbit-cli
+    inputs.ai.packages.${pkgs.stdenv.hostPlatform.system}.coderabbit-cli
     ripgrep
     stepbrobd
     yt-dlp

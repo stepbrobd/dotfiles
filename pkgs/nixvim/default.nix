@@ -7,7 +7,7 @@
 }:
 
 let
-  nixvim = inputs.nixvim.legacyPackages."${stdenv.system}";
+  nixvim = inputs.nixvim.legacyPackages."${stdenv.hostPlatform.system}";
   inherit (lib) attrNames filter map readDir;
 in
 lib.makeOverridable nixvim.makeNixvimWithModule {

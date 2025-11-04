@@ -26,7 +26,7 @@ stdenv.mkDerivation (finalAttrs: {
       url = "https://github.com/z3prover/z3/releases/download/z3-${finalAttrs.version}/z3-${finalAttrs.version}-x64-glibc-2.31.zip";
       hash = "sha256-kHWanLxL180OPiDSvrxXjgyd/sKFHVgX5/SFfL+pJJs=";
     };
-  }.${stdenv.system};
+  }.${stdenv.hostPlatform.system};
 
   dontConfigure = true;
   dontBuild = true;

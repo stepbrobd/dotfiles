@@ -103,7 +103,7 @@ in
 
   environment.systemPackages = with pkgs; [
     alacritty.terminfo
-    inputs.sweep.packages.${pkgs.system}.default
+    inputs.sweep.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # pager

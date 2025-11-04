@@ -33,7 +33,7 @@ let
       aarch64-linux = "aarch64-unknown-linux-gnu";
       x86_64-darwin = "x86_64-apple-darwin";
       aarch64-darwin = "aarch64-apple-darwin";
-    }.${stdenv.system}}";
+    }.${stdenv.hostPlatform.system}}";
   };
   vargo = callPackage ./vargo.nix { };
   z3 = callPackage ./z3.nix { };
