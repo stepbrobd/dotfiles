@@ -22,6 +22,9 @@ in
         config.services.as10779.local.ipv6.addresses
     )
     {
+      # https://nixpkgs-tracker.ocfox.me/?pr=455610
+      # services.go-csp-collector.enable = true;
+
       services.caddy =
         let
           common = ''
@@ -43,11 +46,19 @@ in
           virtualHosts."ysun.co" = {
             extraConfig = ''
               ${common}
-              root * ${ysun}/var/www/html
-              file_server
 
-              handle_errors {
-                rewrite * /error
+              root * ${ysun}/var/www/html
+              route {
+                # @post method POST
+                # handle_path @post /csp/* {
+                #   reverse_proxy [::1]:{config.services.go-csp-collector.settings.port} # add $ after updating
+                # }
+
+                handle_errors {
+                  rewrite * /error
+                  file_server
+                }
+
                 file_server
               }
             '';
