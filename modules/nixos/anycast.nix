@@ -23,7 +23,10 @@ in
     )
     {
       # https://nixpkgs-tracker.ocfox.me/?pr=455610
-      services.go-csp-collector.enable = true;
+      services.go-csp-collector = {
+        enable = true;
+        settings.output-format = "json";
+      };
 
       services.caddy =
         let
@@ -50,7 +53,9 @@ in
               root * ${ysun}/var/www/html
               file_server
 
-              handle_path /csp {
+              @csp method POST && path /csp/*
+              handle @csp {
+                uri @csp strip_prefix /csp/
                 reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
               }
 
