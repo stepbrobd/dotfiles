@@ -25,7 +25,14 @@ in
       # https://nixpkgs-tracker.ocfox.me/?pr=455610
       services.go-csp-collector = {
         enable = true;
-        settings.output-format = "json";
+        settings = {
+          output-format = "json";
+          health-check-path = "/health";
+          log-client-ip = true;
+          query-params-metadata = true;
+          truncate-query-fragment = false;
+          debug = false;
+        };
       };
 
       services.caddy =
@@ -53,7 +60,7 @@ in
               root * ${ysun}/var/www/html
               file_server
 
-              @csp method POST && path /csp/*
+              @csp path /csp/health || (method POST && path /csp/*) 
               handle @csp {
                 uri @csp strip_prefix /csp/
                 reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
