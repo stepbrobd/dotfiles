@@ -64,6 +64,7 @@
       "kindavim"
       "loop"
       "lulu"
+      "mullvad-vpn"
       "notchnook"
       "obs"
       "orion"
