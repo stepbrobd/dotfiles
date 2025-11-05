@@ -30,8 +30,11 @@
         ];
 
         text = ''
-          rm -f config.tf.json
+          rm -f config.tf.json .terraform.lock.hcl
 
+          if [[ -v GARNIX_CI ]]; then 
+            export SOPS_AGE_KEY_FILE="$GARNIX_ACTION_PRIVATE_KEY_FILE"
+          fi
           eval "$(sops decrypt --extract '["cloudflare"]["backend"]["export"]' ${../../../lib/terranix/secrets.yaml})"
 
           cp ${self'.packages.terranixConfiguration} config.tf.json
@@ -39,7 +42,7 @@
           tofu init
           tofu apply -auto-approve
 
-          rm -f config.tf.json
+          rm -f config.tf.json .terraform.lock.hcl
         '';
       };
     };
