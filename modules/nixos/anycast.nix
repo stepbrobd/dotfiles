@@ -47,10 +47,9 @@ in
             extraConfig = ''
               ${common}
 
-              @post method POST
               root * ${ysun}/var/www/html
               route {
-                handle_path @post /csp/* {
+                handle_path /csp {
                   reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
                 }
 
