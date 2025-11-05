@@ -62,7 +62,7 @@ in
 
               @csp path /csp/health || (method POST && path /csp/*) 
               handle @csp {
-                uri @csp strip_prefix /csp/
+                uri strip_prefix /csp/
                 reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
               }
 
