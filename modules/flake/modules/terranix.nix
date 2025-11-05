@@ -22,13 +22,12 @@
     apps.terranix =
       let
         tf = (pkgs.opentofu.withPlugins (p: with p; [ cloudflare_cloudflare carlpett_sops tailscale_tailscale ]));
-        secrets = lib.toString ../../../lib/terranix/secrets.yaml;
       in
       {
         type = "app";
         program = toString (pkgs.writers.writeBash "apply" ''
           rm -f config.tf.json
-          $(${lib.getExe pkgs.sops} decrypt --extract '["cloudflare"]["backend"]["export"]' ${secrets})
+          $(${lib.getExe pkgs.sops} decrypt --extract '["cloudflare"]["backend"]["export"]' ${../../../lib/terranix/secrets.yaml})
           cp ${self'.packages.terranixConfiguration} config.tf.json \
             && ${lib.getExe tf} init \
             && ${lib.getExe tf} apply -auto-approve
