@@ -1,4 +1,4 @@
-{ config, lib, modulesFor, ... }:
+{ config, lib, modulesFor, self, ... }:
 
 {
   flake.terranixModules = modulesFor "terranix";
@@ -25,23 +25,20 @@
         name = "terranix";
 
         runtimeInputs = with pkgs; [
+          gnused
           sops
           (opentofu.withPlugins (_: with _; [ cloudflare_cloudflare carlpett_sops tailscale_tailscale ]))
         ];
 
         text = ''
           rm -f config.tf.json .terraform.lock.hcl
+          cp ${self'.packages.terranixConfiguration} config.tf.json
 
           if [[ -v GARNIX_CI ]]; then 
-            echo "running in garnix actions"
-            echo "file location: $GARNIX_ACTION_PRIVATE_KEY_FILE"
-            # export SOPS_AGE_KEY_FILE="$GARNIX_ACTION_PRIVATE_KEY_FILE"
-            SOPS_AGE_KEY=$(cat "$GARNIX_ACTION_PRIVATE_KEY_FILE") || exit 1
-            export SOPS_AGE_KEY
+            export SOPS_AGE_KEY_FILE="$GARNIX_ACTION_PRIVATE_KEY_FILE"
+            pushd ${self.outPath} && popd # depend on flake source root
           fi
           eval "$(sops decrypt --extract '["cloudflare"]["backend"]["export"]' ${../../../lib/terranix/secrets.yaml})"
-
-          cp ${self'.packages.terranixConfiguration} config.tf.json
 
           tofu init
           tofu apply -auto-approve
