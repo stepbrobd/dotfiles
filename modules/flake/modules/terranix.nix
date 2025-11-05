@@ -19,20 +19,29 @@
         };
       });
 
-    apps.terranix =
-      let
-        tf = (pkgs.opentofu.withPlugins (p: with p; [ cloudflare_cloudflare carlpett_sops tailscale_tailscale ]));
-      in
-      {
-        type = "app";
-        program = toString (pkgs.writers.writeBash "apply" ''
+    apps.terranix = {
+      type = "app";
+      program = pkgs.writeShellApplication {
+        name = "terranix";
+
+        runtimeInputs = with pkgs; [
+          sops
+          (opentofu.withPlugins (_: with _; [ cloudflare_cloudflare carlpett_sops tailscale_tailscale ]))
+        ];
+
+        text = ''
           rm -f config.tf.json
-          $(${lib.getExe pkgs.sops} decrypt --extract '["cloudflare"]["backend"]["export"]' ${../../../lib/terranix/secrets.yaml})
-          cp ${self'.packages.terranixConfiguration} config.tf.json \
-            && ${lib.getExe tf} init \
-            && ${lib.getExe tf} apply -auto-approve
+
+          eval "$(sops decrypt --extract '["cloudflare"]["backend"]["export"]' ${../../../lib/terranix/secrets.yaml})"
+
+          cp ${self'.packages.terranixConfiguration} config.tf.json
+
+          tofu init
+          tofu apply -auto-approve
+
           rm -f config.tf.json
-        '');
+        '';
       };
+    };
   };
 }
