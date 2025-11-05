@@ -106,7 +106,6 @@
       "Tampermonkey" = 6738342400;
       "Vimari" = 1480933944;
       # media
-      "Infuse" = 1136220934;
       "Macgo Blu-ray Player Pro" = 1403952861;
       # iwork
       "Keynote" = 409183694;
