@@ -27,7 +27,6 @@ in
         enable = true;
         settings = {
           output-format = "json";
-          health-check-path = "/health";
           log-client-ip = true;
           query-params-metadata = true;
           truncate-query-fragment = false;
@@ -60,7 +59,7 @@ in
               root * ${ysun}/var/www/html
               file_server
 
-              @csp path /csp/health || (method POST && path /csp/*) 
+              @csp method POST && path /csp/*
               handle @csp {
                 uri strip_prefix /csp/
                 reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
