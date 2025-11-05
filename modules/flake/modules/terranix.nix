@@ -34,7 +34,10 @@
 
           if [[ -v GARNIX_CI ]]; then 
             echo "running in garnix actions"
-            export SOPS_AGE_KEY_FILE="$GARNIX_ACTION_PRIVATE_KEY_FILE"
+            echo "file location: $GARNIX_ACTION_PRIVATE_KEY_FILE"
+            # export SOPS_AGE_KEY_FILE="$GARNIX_ACTION_PRIVATE_KEY_FILE"
+            SOPS_AGE_KEY=$(cat "$GARNIX_ACTION_PRIVATE_KEY_FILE") || exit 1
+            export SOPS_AGE_KEY
           fi
           eval "$(sops decrypt --extract '["cloudflare"]["backend"]["export"]' ${../../../lib/terranix/secrets.yaml})"
 
