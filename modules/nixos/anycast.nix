@@ -23,7 +23,7 @@ in
     )
     {
       # https://nixpkgs-tracker.ocfox.me/?pr=455610
-      # services.go-csp-collector.enable = true;
+      services.go-csp-collector.enable = true;
 
       services.caddy =
         let
@@ -49,10 +49,10 @@ in
 
               root * ${ysun}/var/www/html
               route {
-                # @post method POST
-                # handle_path @post /csp/* {
-                #   reverse_proxy [::1]:{config.services.go-csp-collector.settings.port} # add $ after updating
-                # }
+                @post method POST
+                handle_path @post /csp/* {
+                  reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
+                }
 
                 handle_errors {
                   rewrite * /error
