@@ -48,16 +48,14 @@ in
               ${common}
 
               root * ${ysun}/var/www/html
-              route {
-                handle_path /csp {
-                  reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
-                }
+              file_server
 
-                handle_errors {
-                  rewrite * /error
-                  file_server
-                }
+              handle_path /csp {
+                reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
+              }
 
+              handle_errors {
+                rewrite * /error
                 file_server
               }
             '';
