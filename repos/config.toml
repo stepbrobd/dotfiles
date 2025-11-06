@@ -155,6 +155,11 @@ description = "teeebot..."
 visibility = "private"
 archived = false
 
+[repo."x"]
+description = "all the weird stuff goes here"
+visibility = "public"
+archived = false
+
 [repo."yeh"]
 description = "imap/smtp proxy for hey.com"
 visibility = "public"
