@@ -20,7 +20,6 @@ let
         self.nixosModules.common
         self.nixosModules.desktop
         self.nixosModules.glance
-        self.nixosModules.go-csp-collector
         self.nixosModules.golink
         self.nixosModules.grafana
         self.nixosModules.home-assistant
