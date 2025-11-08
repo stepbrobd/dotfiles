@@ -98,7 +98,7 @@ in
             };
           initial_session = {
             user = "ysun";
-            command = "Hyprland";
+            command = "Hyprland > /dev/null";
           };
         };
       };
