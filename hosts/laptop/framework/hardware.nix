@@ -37,12 +37,13 @@
   services.tlp = {
     enable = true;
     settings = {
+      # not needed after firmware update
       # run `ls /sys/class/power_supply` to check available power supplies
       # run `tlp fullcharge` to charge to 100%
-      START_CHARGE_THRESH_BAT0 = 70;
-      STOP_CHARGE_THRESH_BAT0 = 75;
-      START_CHARGE_THRESH_BAT1 = 70;
-      STOP_CHARGE_THRESH_BAT1 = 75;
+      # START_CHARGE_THRESH_BAT0 = 70;
+      # STOP_CHARGE_THRESH_BAT0 = 75;
+      # START_CHARGE_THRESH_BAT1 = 70;
+      # STOP_CHARGE_THRESH_BAT1 = 75;
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
