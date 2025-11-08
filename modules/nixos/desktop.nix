@@ -43,7 +43,10 @@ in
       };
 
       # boot.loader.grub.theme = pkgs.nixos-grub2-theme;
-      boot.plymouth.enable = true;
+      boot.plymouth = {
+        enable = true;
+        font = "${pkgs.nerd-fonts.intone-mono}/share/fonts/truetype/NerdFonts/IntoneMono/IntoneMonoNerdFont-Regular.ttf";
+      };
     }
 
     # xdg
