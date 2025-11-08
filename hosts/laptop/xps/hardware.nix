@@ -26,6 +26,7 @@
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
+    settings.timeout = 0;
   };
   security.tpm2 = {
     enable = true;

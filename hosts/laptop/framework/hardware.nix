@@ -24,6 +24,7 @@
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";
+    settings.timeout = 0;
   };
   security.tpm2 = {
     enable = true;
