@@ -65,9 +65,11 @@ in
             { inherit option; prefix = "23.161.104.0/24"; }
             # { inherit option; prefix = "44.32.189.0/24"; } # stop announcing 44net for now
             { inherit option; prefix = "192.104.136.0/24"; }
+            { prefix = "169.254.169.254/32"; option = "via ${lib.blueprint.hosts.kongo.ipv4}"; }
           ];
           ipv6.routes = [
             { inherit option; prefix = "2602:f590::/36"; }
+            { prefix = "2001:19f0:ffff::1/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
       sessions = [
@@ -79,10 +81,6 @@ in
             asn = 64515;
             ipv4 = "169.254.169.254";
             ipv6 = "2001:19f0:ffff::1";
-          };
-          nexthop = {
-            ipv4 = "next hop ipv4 ${lib.blueprint.hosts.kongo.ipv4};";
-            ipv6 = "next hop ipv6 ${lib.blueprint.hosts.kongo.ipv6};";
           };
           import = {
             ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
