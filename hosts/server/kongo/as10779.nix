@@ -78,8 +78,14 @@ in
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
       kernel = {
-        ipv4.export = "export all;";
-        ipv6.export = "export all;";
+        ipv4.export = ''export filter {
+          if net = ${vultrPeerV4}/32 then reject;
+          accept;
+        };'';
+        ipv6.export = ''export filter {
+          if net = ${vultrPeerV6}/128 then reject;
+          accept;
+        };'';
       };
       sessions = [
         {
