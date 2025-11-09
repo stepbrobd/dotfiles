@@ -178,7 +178,7 @@ in
           });
           default = [
             { id = 0; remote = "rtr.rpki.cloudflare.com"; port = 8282; }
-            { id = 1; remote = "r3k.zrh2.v.rpki.daknob.net"; port = 3323; }
+            # { id = 1; remote = "r3k.zrh2.v.rpki.daknob.net"; port = 3323; }
           ];
           description = "RPKI validators";
         };
