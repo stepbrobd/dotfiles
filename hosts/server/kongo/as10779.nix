@@ -70,10 +70,6 @@ in
             { inherit option; prefix = "2602:f590::/36"; }
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
-      kernel = {
-        ipv4.export = "export all;";
-        ipv6.export = "export all;";
-      };
       sessions = [
         {
           name = "vultr";
