@@ -81,8 +81,8 @@ in
             ipv6 = "2001:19f0:ffff::1";
           };
           nexthop = {
-            ipv4 = "next hop self;";
-            ipv6 = "next hop self;";
+            ipv4 = "next hop ipv4 ${lib.blueprint.hosts.kongo.ipv4};";
+            ipv6 = "next hop ipv6 ${lib.blueprint.hosts.kongo.ipv6};";
           };
           import = {
             ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
