@@ -80,6 +80,10 @@ in
             ipv4 = "169.254.169.254";
             ipv6 = "2001:19f0:ffff::1";
           };
+          nexthop = {
+            ipv4 = "next hop self;";
+            ipv6 = "next hop self;";
+          };
           import = {
             ipv4 = "import filter ${cfg.router.rpki.ipv4.filter};";
             ipv6 = "import filter ${cfg.router.rpki.ipv6.filter};";

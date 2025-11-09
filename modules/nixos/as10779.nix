@@ -349,6 +349,19 @@ in
                 description = "IPv6 export option";
               };
             };
+
+            nexthop = {
+              ipv4 = lib.mkOption {
+                type = with lib.types; nullOr str;
+                default = null;
+                description = "IPv4 next hop option";
+              };
+              ipv6 = lib.mkOption {
+                type = with lib.types; nullOr str;
+                default = null;
+                description = "IPv6 next hop option";
+              };
+            };
           };
         });
       };
@@ -473,12 +486,14 @@ in
 
             ipv4 {
               add paths ${session.addpath};
+              ${lib.optionalString (!lib.isNull session.nexthop.ipv4) session.nexthop.ipv4}
               ${session.import.ipv4}
               ${session.export.ipv4}
             };
             ${lib.optionalString (session.mp == "v6 over v4") ''
               ipv6 {
                   add paths ${session.addpath};
+                  ${lib.optionalString (!lib.isNull session.nexthop.ipv6) session.nexthop.ipv6}
                   ${session.import.ipv6}
                   ${session.export.ipv6}
                 };''}
@@ -498,12 +513,14 @@ in
 
             ipv6 {
               add paths ${session.addpath};
+              ${lib.optionalString (!lib.isNull session.nexthop.ipv6) session.nexthop.ipv6}
               ${session.import.ipv6}
               ${session.export.ipv6}
             };
             ${lib.optionalString (session.mp == "v4 over v6") ''
               ipv4 {
                   add paths ${session.addpath};
+                  ${lib.optionalString (!lib.isNull session.nexthop.ipv4) session.nexthop.ipv4}
                   ${session.import.ipv4}
                   ${session.export.ipv4}
                 };''}
