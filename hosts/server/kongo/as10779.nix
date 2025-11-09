@@ -41,40 +41,38 @@ in
       source = { inherit (lib.blueprint.hosts.kongo) ipv4 ipv6; };
       static =
         let
-          option = lib.trim ''
-            reject {
-                # geotag
-                bgp_community.add((20473, 23)); # Tokyo
-                # metric 0
-                bgp_large_community.add((20473, 6009, 2914));  # NTT
-                bgp_large_community.add((20473, 6009, 17676)); # SoftBank
-                # prepend 1x
-                bgp_large_community.add((20473, 6001, 3320)); # DTAG
-                # prepend 2x
-                bgp_large_community.add((20473, 6002, 701));  # Verizon
-                bgp_large_community.add((20473, 6002, 1299)); # Arelion
-                bgp_large_community.add((20473, 6002, 3491)); # PCCW
-                bgp_large_community.add((20473, 6002, 6830)); # Liberty Global
-                # prepend 3x
-                bgp_large_community.add((20473, 6003, 174));  # Cogent
-                bgp_large_community.add((20473, 6003, 1221)); # Telstra
-                bgp_large_community.add((20473, 6003, 3356)); # Level3
-                bgp_large_community.add((20473, 6003, 4826)); # Vocus
-              }
-          '';
+          option = lib.trim ''{
+            # geotag
+            bgp_community.add((20473, 23)); # Tokyo
+            # metric 0
+            bgp_large_community.add((20473, 6009, 2914));  # NTT
+            bgp_large_community.add((20473, 6009, 17676)); # SoftBank
+            # prepend 1x
+            bgp_large_community.add((20473, 6001, 3320)); # DTAG
+            # prepend 2x
+            bgp_large_community.add((20473, 6002, 701));  # Verizon
+            bgp_large_community.add((20473, 6002, 1299)); # Arelion
+            bgp_large_community.add((20473, 6002, 3491)); # PCCW
+            bgp_large_community.add((20473, 6002, 6830)); # Liberty Global
+            # prepend 3x
+            bgp_large_community.add((20473, 6003, 174));  # Cogent
+            bgp_large_community.add((20473, 6003, 1221)); # Telstra
+            bgp_large_community.add((20473, 6003, 3356)); # Level3
+            bgp_large_community.add((20473, 6003, 4826)); # Vocus
+          }'';
+          # https://skym.fi/blog/2020/07/vultr-trouble/
+          optionV4 = "via ${lib.blueprint.hosts.kongo.ipv4} ${option}";
+          optionV6 = "via ${lib.blueprint.hosts.kongo.ipv6} ${option}";
         in
         {
           ipv4.routes = [
-            { inherit option; prefix = "23.161.104.0/24"; }
-            # { inherit option; prefix = "44.32.189.0/24"; } # stop announcing 44net for now
-            { inherit option; prefix = "192.104.136.0/24"; }
-            # https://skym.fi/blog/2020/07/vultr-trouble/
-            { prefix = "${vultrPeerV4}/32"; option = "via ${lib.blueprint.hosts.kongo.ipv4}"; }
+            { prefix = "23.161.104.0/24"; option = optionV4; }
+            { prefix = "192.104.136.0/24"; option = optionV4; }
+            { prefix = "${vultrPeerV4}/32"; option = optionV4; }
           ];
           ipv6.routes = [
-            { inherit option; prefix = "2602:f590::/36"; }
-            # https://skym.fi/blog/2020/07/vultr-trouble/
-            { prefix = "${vultrPeerV6}/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
+            { prefix = "2602:f590::/36"; option = optionV6; }
+            { prefix = "${vultrPeerV6}/128"; option = optionV6; }
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
       kernel = {
