@@ -69,23 +69,23 @@ in
             # { inherit option; prefix = "44.32.189.0/24"; } # stop announcing 44net for now
             { inherit option; prefix = "192.104.136.0/24"; }
             # https://skym.fi/blog/2020/07/vultr-trouble/
-            { prefix = "${vultrPeerV4}/32"; option = "via ${lib.blueprint.hosts.kongo.ipv4}"; }
+            # { prefix = "${vultrPeerV4}/32"; option = "via ${lib.blueprint.hosts.kongo.ipv4}"; }
           ];
           ipv6.routes = [
             { inherit option; prefix = "2602:f590::/36"; }
             # https://skym.fi/blog/2020/07/vultr-trouble/
-            { prefix = "${vultrPeerV6}/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
+            # { prefix = "${vultrPeerV6}/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
       kernel = {
-        ipv4.export = ''export filter {
-          if net = ${vultrPeerV4}/32 then reject;
-          accept;
-        };'';
-        ipv6.export = ''export filter {
-          if net = ${vultrPeerV6}/128 then reject;
-          accept;
-        };'';
+        # ipv4.export = ''export filter {
+        #   if net = ${vultrPeerV4}/32 then reject;
+        #   accept;
+        # };'';
+        # ipv6.export = ''export filter {
+        #   if net = ${vultrPeerV6}/128 then reject;
+        #   accept;
+        # };'';
       };
       sessions = [
         {
