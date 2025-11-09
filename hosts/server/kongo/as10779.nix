@@ -72,6 +72,10 @@ in
             { prefix = "2001:19f0:ffff::1/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
+      kernel = {
+        ipv4.export = "export all;";
+        ipv6.export = "export all;";
+      };
       sessions = [
         {
           name = "vultr";
