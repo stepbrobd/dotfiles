@@ -53,7 +53,7 @@ in
     # linux only and when kde plasma is enabled
     ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.enabled != null) [
     cfspeedtest
-    cider
+    cider-2
     comma
     discord # (discord.override { withEquicord = true; }) nixpkgs#430391
     gitleaks
