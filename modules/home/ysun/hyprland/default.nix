@@ -1,7 +1,6 @@
 # { inputs, lib, ... }:
 
-{ config
-, pkgs
+{ pkgs
 , osConfig ? { services.desktopManager.enabled = null; }
 , ...
 }:
@@ -13,6 +12,18 @@
     ./theme.nix
     ./waybar.nix
     ./wpaperd.nix
+  ];
+
+  home.packages = with pkgs; [
+    brightnessctl
+    dunst
+    gnome-keyring
+    grimblast
+    gtklock
+    networkmanagerapplet
+    playerctl
+    rofi
+    wireplumber
   ];
 
   wayland.windowManager.hyprland =
@@ -43,9 +54,9 @@
         }
 
         exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-        exec-once = ${pkgs.networkmanagerapplet}/bin/nm-applet --indicator &
+        exec-once = nm-applet --indicator &
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
-        exec-once = ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
+        exec-once = gnome-keyring-daemon --start --components=pkcs11,secrets,ssh &
 
         exec-once = dunst &
         exec-once = waybar &
@@ -88,7 +99,6 @@
           disable_splash_rendering = true
           mouse_move_enables_dpms = true
           enable_swallow = true
-          swallow_regex = ^(${config.home.sessionVariables.TERM})$
         }
 
         decoration {
@@ -127,23 +137,23 @@
         }
 
         # change to another locker
-        bind = CTRL SUPER, Q, exec, ${pkgs.gtklock}/bin/gtklock --daemonize --style "${style}"
-        bind = , XF86AudioMute, exec, ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Volume: Mute/Unmute"
-        bind = , XF86AudioRaiseVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
-        bind = , XF86AudioLowerVolume, exec, ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "$(${pkgs.wireplumber}/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@)"
-        bind = , XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Media: Previous"
-        bind = , XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Media: Play/Pause"
-        bind = , XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Media: Next"
-        bind = , XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%+ && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
-        bind = , XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 5%- && ${pkgs.dunst}/bin/dunstify --timeout=1000 --replace=1 "Brightness: $(${pkgs.brightnessctl}/bin/brightnessctl get)"
-        bind = SUPER SHIFT, 3, exec, ${pkgs.grimblast}/bin/grimblast save screen
-        bind = SUPER SHIFT, 4, exec, ${pkgs.grimblast}/bin/grimblast save active
-        bind = SUPER SHIFT, 5, exec, ${pkgs.grimblast}/bin/grimblast save area
+        bind = CTRL SUPER, Q, exec, gtklock --daemonize --style "${style}"
+        bind = , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && dunstify --timeout=1000 --replace=1 "Volume: Mute/Unmute"
+        bind = , XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && dunstify --timeout=1000 --replace=1 "$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+        bind = , XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && dunstify --timeout=1000 --replace=1 "$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+        bind = , XF86AudioPrev, exec, playerctl previous && dunstify --timeout=1000 --replace=1 "Media: Previous"
+        bind = , XF86AudioPlay, exec, playerctl play-pause && dunstify --timeout=1000 --replace=1 "Media: Play/Pause"
+        bind = , XF86AudioNext, exec, playerctl next && dunstify --timeout=1000 --replace=1 "Media: Next"
+        bind = , XF86MonBrightnessUp, exec, brightnessctl set 5%+ && dunstify --timeout=1000 --replace=1 "Brightness: $(brightnessctl get)"
+        bind = , XF86MonBrightnessDown, exec, brightnessctl set 5%- && dunstify --timeout=1000 --replace=1 "Brightness: $(brightnessctl get)"
+        bind = SUPER SHIFT, 3, exec, grimblast save screen
+        bind = SUPER SHIFT, 4, exec, grimblast save active
+        bind = SUPER SHIFT, 5, exec, grimblast save area
 
         $mod = SUPER
 
-        bind = $mod, T, exec, ${pkgs.alacritty}/bin/alacritty
-        bind = $mod, SPACE, exec, ${pkgs.rofi}/bin/rofi -show-icons -combi-modi window,drun,run,ssh -show combi
+        bind = $mod, T, exec, alacritty
+        bind = $mod, SPACE, exec, rofi -show-icons -combi-modi window,drun,run,ssh -show combi
 
         bind = $mod, M, exit,
         bind = $mod, Q, killactive,
