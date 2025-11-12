@@ -20,6 +20,7 @@
     gnome-keyring
     grimblast
     gtklock
+    hyprmon
     networkmanagerapplet
     playerctl
     rofi
