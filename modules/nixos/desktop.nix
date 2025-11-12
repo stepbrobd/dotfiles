@@ -117,6 +117,7 @@ in
 
       environment.variables = {
         GDK_BACKEND = "wayland";
+        LIBSEAT_BACKEND = "logind";
         MOZ_ENABLE_WAYLAND = 1;
         MOZ_WEBRENDER = 1;
         NIXOS_OZONE_WL = 1;
@@ -129,35 +130,33 @@ in
       # login manager: use gtkgreet, and use gtklock for locker
       services.greetd = {
         enable = true;
-        settings = {
-          default_session =
-            let
-              style = pkgs.writeText "gtk.css" ''
-                @import url("${pkgs.nordic}/share/themes/Nordic/gtk-3.0/gtk.css");
-                window {
-                  background-image: url("${../home/ysun/hyprland/wallpaper.jpg}");
-                  background-size: cover;
-                  background-position: center;
-                }
-              '';
-            in
-            {
-              user = "greeter";
-              command = lib.concatStringsSep " " [
-                "${pkgs.cage}/bin/cage"
-                "-s"
-                "--"
-                "${pkgs.gtkgreet}/bin/gtkgreet"
-                "-l"
-                "-s"
-                "${style}"
-              ];
-            };
-          initial_session = {
-            user = "ysun";
-            command = "niri-session";
+        settings.default_session =
+          let
+            style = pkgs.writeText "gtk.css" ''
+              @import url("${pkgs.nordic}/share/themes/Nordic/gtk-3.0/gtk.css");
+              window {
+                background-image: url("${../home/ysun/hyprland/wallpaper.jpg}");
+                background-size: cover;
+                background-position: center;
+              }
+            '';
+          in
+          {
+            user = "greeter";
+            command = lib.concatStringsSep " " [
+              "${pkgs.cage}/bin/cage"
+              "-s"
+              "-d"
+              "-m"
+              "last"
+              "--"
+              "${pkgs.gtkgreet}/bin/gtkgreet"
+              "-s"
+              "${style}"
+              "-c"
+              "niri-session"
+            ];
           };
-        };
       };
 
       security.pam.services.gtklock = { };
