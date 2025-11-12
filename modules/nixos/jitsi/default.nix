@@ -26,7 +26,7 @@ in
 
   config = lib.mkIf (config.services.jitsi.enable) {
     nixpkgs.config.permittedInsecurePackages = [
-      "jitsi-meet-1.0.8043"
+      "jitsi-meet-1.0.8792"
     ];
 
     services.caddy.virtualHosts.${cfg.mainDomain} = {
