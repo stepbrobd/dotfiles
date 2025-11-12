@@ -154,7 +154,7 @@
         $mod = SUPER
 
         bind = $mod, T, exec, alacritty
-        bind = $mod, SPACE, exec, rofi -show-icons -combi-modi window,drun,run,ssh -show combi
+        bind = $mod, SPACE, exec, pgrep -x rofi > /dev/null && pkill -x rofi || rofi -show-icons -combi-modi window,drun,run,ssh -show combi
 
         bind = $mod, M, exit,
         bind = $mod, Q, killactive,
