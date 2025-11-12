@@ -76,6 +76,14 @@ bootctl status
 
 That's it!
 
+## Optional TPM2 Disk Unlock
+
+See more [here](https://jnsgr.uk/2024/04/nixos-secure-boot-tpm-fde/):
+
+```shell
+sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2 /dev/nvme0n1p2
+```
+
 ## Standalone Disko Setup
 
 Usually not used, managed directly by this flake.
