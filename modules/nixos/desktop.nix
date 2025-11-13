@@ -44,7 +44,6 @@ in
         enable = lib.mkOverride 999 true;
         lxqt.enable = lib.mkOverride 999 true;
         wlr.enable = lib.mkOverride 999 true;
-        xdgOpenUsePortal = lib.mkOverride 999 true;
         config.common.default = lib.mkOverride 999 "*";
       };
     }
