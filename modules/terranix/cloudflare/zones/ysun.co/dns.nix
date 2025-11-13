@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) forZone mkPersonalSiteRebind mkPurelyMailRecord;
+  inherit (lib.terranix) forZone mkPersonalSiteRebind mkPurelyMailRecord tfRef;
 in
 {
   resource.cloudflare_dns_record = forZone "ysun.co"
@@ -15,6 +15,22 @@ in
         comment = "CNAME Rebind - Personal Site";
       };
       co_ysun_wildcard = mkPersonalSiteRebind { name = "*"; };
+
+      co_ysun_srvc = {
+        type = "HTTPS";
+        proxied = false;
+        name = "@";
+        data = {
+          priority = 1;
+          target = ".";
+          value = lib.concatStringsSep " " [
+            ''alpn="h3,h2"''
+            ("ipv4hint=" + tfRef "cloudflare_dns_record.net_as10779_anycast_v4.content")
+            ("ipv6hint=" + tfRef "cloudflare_dns_record.net_as10779_anycast_v6.content")
+          ];
+        };
+        comment = "HTTPS Service Binding - Personal Site";
+      };
 
       co_ysun_cache = {
         type = "CNAME";
