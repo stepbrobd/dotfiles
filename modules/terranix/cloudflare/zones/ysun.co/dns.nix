@@ -130,6 +130,14 @@ in
         comment = "Tailscale Internal - Raspberry Pi - Time Server";
       };
 
+      co_ysun_vault = {
+        type = "CNAME";
+        proxied = false;
+        name = "vault";
+        content = "isere.internal.center";
+        comment = "Tailscale Internal - Raspberry Pi - Vaultwarden";
+      };
+
       co_ysun_google = {
         type = "TXT";
         proxied = false;
