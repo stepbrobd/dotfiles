@@ -4,6 +4,7 @@
 
     ./home-assistant.nix
     ./time.nix
+    ./vaultwarden.nix
   ];
 
   networking = {
