@@ -22,6 +22,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    bitwarden-desktop
+
     cacert
     sbctl
 
