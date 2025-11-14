@@ -17,7 +17,6 @@ in
       header >Cache-Control (.*) "private, must-revalidate, max-age=0;"
       tls "${directory}/fullchain.pem" "${directory}/key.pem"
       reverse_proxy ${config.services.kanidm.provision.instanceUrl} {
-        header_up Host {host}
         header_up X-Real-IP {http.request.header.CF-Connecting-IP}
         transport http {
             tls_server_name sso.ysun.co
