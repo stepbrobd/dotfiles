@@ -20,8 +20,10 @@ in
         ROCKET_ADDRESS = "::";
         ROCKET_PORT = 9999;
         SIGNUPS_ALLOWED = false;
+        PASSWORD_HINTS_ALLOWED = false;
         SHOW_PASSWORD_HINT = false;
         ORG_EVENTS_ENABLED = true;
+        SSO_ENABLED = true;
       };
     };
 
