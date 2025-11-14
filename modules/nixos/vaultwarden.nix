@@ -32,12 +32,12 @@ in
       # most likely i'll only be using this behind tailscale
       virtualHosts.${domain}.extraConfig = ''
         import common
-        reverse_proxy ${lib.toString cfg.config.ROCKET_ADDRESS}:${lib.toString cfg.config.ROCKET_PORT} {
-          vars realip {remote_host}
-          @cf header CF-Connecting-IP *
-          vars @cf realip {header.CF-Connecting-IP}
-          @xf header X-Forwarded-For *
-          vars @xf realip {header.X-Forwarded-For}
+        vars realip {remote_host}
+        @cf header CF-Connecting-IP *
+        vars @cf realip {header.CF-Connecting-IP}
+        @xf header X-Forwarded-For *
+        vars @xf realip {header.X-Forwarded-For}
+        reverse_proxy [${lib.toString cfg.config.ROCKET_ADDRESS}]:${lib.toString cfg.config.ROCKET_PORT} {
           header_up X-Real-IP {vars.realip}
         }
       '';
