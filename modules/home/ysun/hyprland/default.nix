@@ -22,6 +22,7 @@
     gtklock
     hyprmon
     networkmanagerapplet
+    pavucontrol
     playerctl
     rofi
     wireplumber
@@ -154,6 +155,7 @@
         $mod = SUPER
 
         bind = $mod, T, exec, alacritty
+        bind = $mod, S, exec, pavucontrol
         bind = $mod, SPACE, exec, pgrep -x rofi > /dev/null && pkill -x rofi || rofi -show-icons -combi-modi window,drun,run,ssh -show combi
 
         bind = $mod, M, exit,
