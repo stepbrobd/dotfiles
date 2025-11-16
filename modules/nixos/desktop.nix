@@ -51,6 +51,16 @@ in
     # gpg
     { programs.gnupg.agent.enable = true; }
 
+    # basic stuff
+    {
+      security.pam.services.login.enableGnomeKeyring = true;
+
+      services = {
+        dbus.packages = with pkgs; [ gcr ];
+        gnome.gnome-keyring.enable = true;
+      };
+    }
+
     (mkIf (cfg.enabled == "hyprland") {
       programs.hyprland = {
         enable = true;

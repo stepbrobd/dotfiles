@@ -6,8 +6,5 @@
     desktop
     fonts
     i18n
-    one-password
-    tailscale
-    mglru
   ];
 }
