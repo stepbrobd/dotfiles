@@ -23,6 +23,13 @@
   }];
   # must set this flag or cant scrape
   services.tailscale.extraSetFlags = pkgs.lib.mkIf config.services.prometheus.enable [ "--webclient" ];
+
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.forwarding" = 1;
+    "net.ipv4.conf.default.forwarding" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+    "net.ipv6.conf.default.forwarding" = 1;
+  };
 } // (
   let
     # https://tailscale.com/kb/1320/performance-best-practices#linux-optimizations-for-subnet-routers-and-exit-nodes
