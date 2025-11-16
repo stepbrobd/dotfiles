@@ -8,6 +8,8 @@
     inputs.self.nixosModules.anycast
   ];
 
+  services.tailscale.useRoutingFeatures = "both";
+
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "f222f0f0";

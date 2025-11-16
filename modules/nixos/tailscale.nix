@@ -3,7 +3,6 @@
 {
   services.tailscale = {
     openFirewall = true;
-    useRoutingFeatures = "both";
     permitCertUid =
       if config.services.caddy.enable
       then config.services.caddy.user
