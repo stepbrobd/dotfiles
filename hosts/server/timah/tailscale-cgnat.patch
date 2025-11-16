@@ -7,7 +7,7 @@ index faa02f7c7..3c9b971e7 100644
  
  // addDropCGNATRangeRule adds a rule to drop if the source IP is in the
 -// CGNAT range.
-+// CGNAT range, excluding 100.100.0.0/24.
++// CGNAT range, excluding 100.100.0.0/32.
  func addDropCGNATRangeRule(c *nftables.Conn, table *nftables.Table, chain *nftables.Chain, tunname string) error {
  	rule, err := createRangeRule(table, chain, tunname, tsaddr.CGNATRange(), expr.VerdictDrop)
  	if err != nil {
@@ -15,7 +15,7 @@ index faa02f7c7..3c9b971e7 100644
  	}
 +
 +	excludeNet := net.ParseIP("100.100.0.0").To4()
-+	excludeMask := net.IPv4Mask(255, 255, 255, 0)
++	excludeMask := net.IPv4Mask(255, 255, 255, 255)
 +	saddrExpr, err := newLoadSaddrExpr(nftables.TableFamilyIPv4, 1)
 +	if err != nil {
 +		return fmt.Errorf("newLoadSaddrExpr: %w", err)
@@ -47,7 +47,7 @@ index faa02f7c7..3c9b971e7 100644
  
  // createDropOutgoingPacketFromCGNATRangeRuleWithTunname creates a rule to drop
 -// outgoing packets from the CGNAT range.
-+// outgoing packets from the CGNAT range, excluding 100.100.0.0/24.
++// outgoing packets from the CGNAT range, excluding 100.100.0.0/32.
  func createDropOutgoingPacketFromCGNATRangeRuleWithTunname(table *nftables.Table, chain *nftables.Chain, tunname string) (*nftables.Rule, error) {
  	_, ipNet, err := net.ParseCIDR(tsaddr.CGNATRange().String())
  	if err != nil {
@@ -57,7 +57,7 @@ index faa02f7c7..3c9b971e7 100644
  	netip := ipNet.IP.Mask(ipNet.Mask).To4()
 +
 +	excludeNet := net.ParseIP("100.100.0.0").To4()
-+	excludeMask := net.IPv4Mask(255, 255, 255, 0)
++	excludeMask := net.IPv4Mask(255, 255, 255, 255)
  	saddrExpr, err := newLoadSaddrExpr(nftables.TableFamilyIPv4, 1)
  	if err != nil {
  		return nil, fmt.Errorf("newLoadSaddrExpr: %v", err)
