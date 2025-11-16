@@ -23,6 +23,7 @@ let
         self.nixosModules.golink
         self.nixosModules.grafana
         self.nixosModules.home-assistant
+        self.nixosModules.ip-forwarding
         self.nixosModules.jitsi
         self.nixosModules.maxmind
         self.nixosModules.minimal

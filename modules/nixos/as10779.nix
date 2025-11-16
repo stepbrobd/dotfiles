@@ -631,15 +631,6 @@ in
         '');
     }
     {
-      networking.tempAddresses = "disabled";
-      boot.kernel.sysctl = {
-        "net.ipv4.conf.all.forwarding" = 1;
-        "net.ipv4.conf.default.forwarding" = 1;
-        "net.ipv6.conf.all.forwarding" = 1;
-        "net.ipv6.conf.default.forwarding" = 1;
-      };
-    }
-    {
       services.prometheus = {
         exporters.bird = {
           enable = with config.services; bird.enable && prometheus.enable;

@@ -1,7 +1,14 @@
 { inputs, lib, ... }:
 
 {
-  imports = with inputs.self.nixosModules; [ fail2ban nftables mglru tailscale time vxlan ];
+  imports = with inputs.self.nixosModules; [
+    fail2ban
+    mglru
+    nftables
+    tailscale
+    time
+    vxlan
+  ];
 
   services.bpftune.enable = true;
 

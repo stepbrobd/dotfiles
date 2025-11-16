@@ -1,5 +1,3 @@
-{ lib, ... }:
-
 { config, pkgs, ... }:
 
 {
@@ -29,7 +27,7 @@
     script = ''
       #!${pkgs.runtimeShell}
 
-      export PATH=${lib.makeBinPath (with pkgs; [ coreutils ethtool iproute2 ])}
+      export PATH=${pkgs.lib.makeBinPath (with pkgs; [ coreutils ethtool iproute2 ])}
 
       ethtool -K "$(ip -o route get 1.1.1.1 | cut -f 5 -d ' ')" rx-udp-gro-forwarding on rx-gro-list off
     '';
