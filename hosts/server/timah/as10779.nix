@@ -19,7 +19,7 @@ in
       hostname = config.networking.hostName;
       interface = {
         local = "dummy0";
-        primary = "eth0";
+        primary = "enp3s0";
       };
       ipv4.addresses = [
         "23.161.104.131/32" # unicast
