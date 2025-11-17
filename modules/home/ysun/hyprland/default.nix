@@ -63,6 +63,7 @@
         exec-once = dunst &
         exec-once = waybar &
         exec-once = wpaperd &
+        exec-once = fcitx5 -d
 
         ecosystem {
           no_update_news = true
