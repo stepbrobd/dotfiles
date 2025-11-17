@@ -7,11 +7,11 @@
     fcitx5.waylandFrontend = true;
     fcitx5.addons = with pkgs; [
       fcitx5-gtk
-      qt6Packages.fcitx5-configtool
-      # ja
       fcitx5-mozc
-      # zh
+      fcitx5-nord
       fcitx5-rime
+      fcitx5-table-extra
+      qt6Packages.fcitx5-configtool
       rime-data
     ];
   };
