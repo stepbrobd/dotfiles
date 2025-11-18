@@ -32,7 +32,7 @@
         mkpass = key: "${lib.getExe' pkgs.toybox "cat"} ${config.sops.defaultSymlinkPath}/mail/${key}/pass";
       in
       {
-        softbank = rec {
+        SoftBank = rec {
           inherit
             realName
             mbsync
@@ -40,6 +40,7 @@
             notmuch
             neomutt
             ;
+          thunderbird.enable = true;
           address = "ysun@i.softbank.jp";
           userName = address;
           passwordCommand = mkpass "softbank";
@@ -53,7 +54,7 @@
           };
         };
 
-        stepbrobd = rec {
+        StepBroBD = rec {
           primary = true;
           inherit
             realName
@@ -62,6 +63,7 @@
             notmuch
             neomutt
             ;
+          thunderbird.enable = true;
           address = "ysun@stepbrobd.com";
           userName = address;
           passwordCommand = mkpass "stepbrobd";
@@ -84,7 +86,10 @@
   programs.msmtp.enable = true;
   programs.notmuch.enable = true;
 
-  programs.thunderbird.enable = true;
+  programs.thunderbird = {
+    enable = true;
+    profiles.Default.isDefault = true;
+  };
 
   programs.neomutt = {
     enable = true;
