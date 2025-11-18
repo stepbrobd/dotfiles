@@ -6,7 +6,11 @@
     ./hydra.nix
   ];
 
-  services.tailscale.useRoutingFeatures = "both";
+  services.tailscale = {
+    openFirewall = true;
+    useRoutingFeatures = "both";
+    permitCertUid = "caddy";
+  };
 
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
