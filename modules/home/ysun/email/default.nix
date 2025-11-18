@@ -29,9 +29,79 @@
           ];
         };
 
+        thunderbird = {
+          enable = true;
+        };
+
         mkpass = key: "${lib.getExe' pkgs.toybox "cat"} ${config.sops.defaultSymlinkPath}/mail/${key}/pass";
       in
       {
+        Inria = rec {
+          inherit
+            realName
+            mbsync
+            msmtp
+            notmuch
+            neomutt
+            thunderbird
+            ;
+          address = "yifei.sun@inria.fr";
+          userName = address;
+          passwordCommand = mkpass "inria";
+          imap = {
+            host = "zimbra.inria.fr";
+            port = 993;
+          };
+          smtp = {
+            host = "smtp.inria.fr";
+            port = 587;
+          };
+        };
+
+        "ENS de Lyon" = rec {
+          inherit
+            realName
+            mbsync
+            msmtp
+            notmuch
+            neomutt
+            thunderbird
+            ;
+          address = "yifei.sun@ens-lyon.fr";
+          userName = address;
+          passwordCommand = mkpass "ens";
+          imap = {
+            host = "imap.ens-lyon.fr";
+            port = 993;
+          };
+          smtp = {
+            host = "smtp.ens-lyon.fr";
+            port = 587;
+          };
+        };
+
+        UGA = rec {
+          inherit
+            realName
+            mbsync
+            msmtp
+            notmuch
+            neomutt
+            thunderbird
+            ;
+          address = "yifei.sun@univ-grenoble-alpes.fr";
+          userName = address;
+          passwordCommand = mkpass "uga";
+          imap = {
+            host = "zimbra.univ-grenoble-alpes.fr";
+            port = 993;
+          };
+          smtp = {
+            host = "smtps.univ-grenoble-alpes.fr";
+            port = 465;
+          };
+        };
+
         SoftBank = rec {
           inherit
             realName
@@ -39,8 +109,8 @@
             msmtp
             notmuch
             neomutt
+            thunderbird
             ;
-          thunderbird.enable = true;
           address = "ysun@i.softbank.jp";
           userName = address;
           passwordCommand = mkpass "softbank";
@@ -62,8 +132,8 @@
             msmtp
             notmuch
             neomutt
+            thunderbird
             ;
-          thunderbird.enable = true;
           address = "ysun@stepbrobd.com";
           userName = address;
           passwordCommand = mkpass "stepbrobd";
@@ -81,6 +151,9 @@
 
   sops.secrets."mail/softbank/pass" = { };
   sops.secrets."mail/stepbrobd/pass" = { };
+  sops.secrets."mail/inria/pass" = { };
+  sops.secrets."mail/ens/pass" = { };
+  sops.secrets."mail/uga/pass" = { };
 
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
