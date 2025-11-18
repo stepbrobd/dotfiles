@@ -84,6 +84,8 @@
   programs.msmtp.enable = true;
   programs.notmuch.enable = true;
 
+  programs.thunderbird.enable = true;
+
   programs.neomutt = {
     enable = true;
     vimKeys = true;

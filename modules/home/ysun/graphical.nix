@@ -12,6 +12,7 @@
     bat
     btop
     # chromium # linux only
+    email
     direnv
     # firefox # linux only
     # floorp # linux only
@@ -25,7 +26,6 @@
     lsd
     man
     # mpd # linux only
-    neomutt
     neovide
     # nh
     # nushell # imported in minimal
