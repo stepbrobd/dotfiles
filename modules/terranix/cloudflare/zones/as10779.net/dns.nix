@@ -121,6 +121,22 @@ in
         comment = "SSDNodes - Tokyo 2";
       };
 
+      net_as10779_sevran_v4 = {
+        type = "A";
+        proxied = false;
+        name = "sevran";
+        content = lib.blueprint.hosts.sevran.ipv4;
+        comment = "Hostinger - Paris";
+      };
+
+      net_as10779_sevran_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "timah";
+        content = lib.blueprint.hosts.sevran.ipv6;
+        comment = "Hostinger - Paris";
+      };
+
       net_as10779_timah_v4 = {
         type = "A";
         proxied = false;
