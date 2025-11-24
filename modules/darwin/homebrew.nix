@@ -51,6 +51,8 @@
       # sonarworks soundid
       "lyraphase/av-casks/soundid-reference"
 
+      # "lulu" # removed cause too annoying
+
       "airbuddy"
       "aldente"
       "beeper"
@@ -63,7 +65,6 @@
       "jordanbaird-ice"
       "kindavim"
       "loop"
-      "lulu"
       "mullvad-vpn"
       "notchnook"
       "obs"
