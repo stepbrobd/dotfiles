@@ -59,7 +59,6 @@
       "betterdisplay"
       "container"
       "discord"
-      "element"
       "google-chrome"
       "hey-desktop"
       "jordanbaird-ice"
