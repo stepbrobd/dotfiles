@@ -64,6 +64,7 @@ in
     (osu-lazer-bin.override { nativeWayland = true; })
     pat
     pinentry-all
+    remmina
     ripgrep
     slack
     smplayer
