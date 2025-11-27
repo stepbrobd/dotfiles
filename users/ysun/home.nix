@@ -52,6 +52,7 @@ in
   home.packages = with pkgs; [ ]
     # linux only and when kde plasma is enabled
     ++ (lib.optionals (pkgs.stdenv.isLinux && osConfig.services.desktopManager.enabled != null) [
+    beeper
     cfspeedtest
     cider-2
     comma
