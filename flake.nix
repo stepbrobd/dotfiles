@@ -50,8 +50,8 @@
 
   inputs = {
     # nixpkgs.url = "github:nixos/nixpkgs/master";
-    # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # a
     ai.url = "github:numtide/nix-ai-tools";
     ai.inputs.nixpkgs.follows = "nixpkgs";
