@@ -2,11 +2,12 @@
 
 let
   inherit (config.security.acme.certs."sso.ysun.co") directory;
+  kanidm = pkgs.kanidmWithSecretProvisioning_1_8;
 in
 {
   networking.firewall.allowedTCPPorts = [ 636 ];
 
-  environment.systemPackages = with pkgs; [ kanidm ];
+  environment.systemPackages = [ kanidm ];
 
   services.caddy = {
     enable = true;
@@ -35,7 +36,7 @@ in
   sops.secrets."kanidm/oauth/grafana".mode = "440";
 
   services.kanidm = {
-    package = pkgs.kanidm_1_7.withSecretProvisioning.overrideAttrs (prev: {
+    package = kanidm.overrideAttrs (prev: {
       # the patch probably only need to inject plausible script now
       # but lets just leave private cache and csp as is in there
       patches = prev.patches ++ [ ./custom-deployment.patch ];
