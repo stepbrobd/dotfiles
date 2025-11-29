@@ -24,6 +24,7 @@ in
       };
       modules = with inputs.self.darwinModules; [
         (unification platform)
+        aerospace
         common
         fonts
         # hammerspoon
