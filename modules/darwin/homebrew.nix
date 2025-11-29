@@ -25,7 +25,8 @@
       "resonative/proaudio"
       # sonarworks soundid
       "lyraphase/av-casks"
-
+      # window management
+      "nikitabobko/tap"
       # third-party taps
       "nextfire/tap"
     ];
@@ -50,6 +51,8 @@
       "resonative/proaudio/ua-connect"
       # sonarworks soundid
       "lyraphase/av-casks/soundid-reference"
+      # window management
+      "nikitabobko/tap/aerospace"
 
       # "lulu" # removed cause too annoying
 
