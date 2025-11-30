@@ -11,8 +11,8 @@
           right = 4;
         };
         inner = {
-          horizontal = 2;
-          vertical = 2;
+          horizontal = 4;
+          vertical = 4;
         };
       };
 
@@ -63,7 +63,6 @@
         "cmd-ctrl-0" = "move-node-to-workspace 10";
 
         "cmd-q" = "close";
-        "cmd-f" = "fullscreen";
         "cmd-z" = "layout floating tiling";
       };
     };
