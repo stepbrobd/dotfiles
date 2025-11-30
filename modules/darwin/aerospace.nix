@@ -61,9 +61,6 @@
         "cmd-ctrl-8" = "move-node-to-workspace 8";
         "cmd-ctrl-9" = "move-node-to-workspace 9";
         "cmd-ctrl-0" = "move-node-to-workspace 10";
-
-        "cmd-q" = "close";
-        "cmd-z" = "layout floating tiling";
       };
     };
   };
