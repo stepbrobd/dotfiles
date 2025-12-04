@@ -109,6 +109,7 @@
     hm.inputs.nixpkgs.follows = "nixpkgs";
     hydra.url = "github:ners/hydra/oidc";
     hydra.inputs.nixpkgs.follows = "nixpkgs";
+    hydra.inputs.nix.url = "github:nixos/nix";
     # i
     impermanence.url = "github:nix-community/impermanence";
     index.url = "github:nix-community/nix-index-database";
