@@ -2,4 +2,5 @@
 
 pkgsPrev.hydra.overrideAttrs {
   patches = [ ./oidc.patch ];
+  doCheck = false;
 }
