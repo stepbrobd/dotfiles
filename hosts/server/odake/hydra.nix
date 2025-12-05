@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   services.caddy = {
@@ -19,9 +19,6 @@
   services.hydra = {
     enable = true;
     logo = ./logo.png;
-    package = inputs.hydra.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-      postgresql_13 = pkgs.postgresql;
-    };
 
     useSubstitutes = true;
     minimumDiskFree = 5;

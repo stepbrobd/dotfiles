@@ -1,0 +1,449 @@
+From f963dba1552d85f299859c8a78b1d9ef71f69e76 Mon Sep 17 00:00:00 2001
+From: Linus Heckemann <git@sphalerite.org>
+Date: Fri, 4 Feb 2022 19:54:43 +0100
+Subject: [PATCH 1/6] Implement generic OIDC-based authentication
+
+Co-Authored-By: Maximilian Bosch <maximilian@mbosch.me>
+---
+ package.nix                      |  5 ++-
+ perl-packages.nix                | 77 ++++++++++++++++++++++++++++++++
+ src/lib/Hydra/Controller/Root.pm |  2 +
+ src/lib/Hydra/Controller/User.pm | 74 +++++++++++++++++++++++++++++-
+ src/root/topbar.tt               |  4 ++
+ 5 files changed, 159 insertions(+), 3 deletions(-)
+ create mode 100644 perl-packages.nix
+
+diff --git a/package.nix b/package.nix
+index 2ea21b1eb..725ffcdce 100644
+--- a/package.nix
++++ b/package.nix
+@@ -6,7 +6,7 @@
+ 
+ , buildEnv
+ 
+-, perlPackages
++, pkgs
+ 
+ , nixComponents
+ , git
+@@ -63,7 +63,7 @@ let
+       ([
+         nixComponents.nix-perl-bindings
+         git
+-      ] ++ (with perlPackages; [
++      ] ++ (with (import ./perl-packages.nix pkgs); [
+         AuthenSASL
+         CatalystActionREST
+         CatalystAuthenticationStoreDBIxClass
+@@ -110,6 +110,7 @@ let
+         NetAmazonS3
+         NetPrometheus
+         NetStatsd
++        OIDCLite
+         NumberBytesHuman
+         PadWalker
+         ParallelForkManager
+diff --git a/perl-packages.nix b/perl-packages.nix
+new file mode 100644
+index 000000000..e8dedac06
+--- /dev/null
++++ b/perl-packages.nix
+@@ -0,0 +1,77 @@
++prev:
++with prev.perlPackages;
++let inherit (prev) lib fetchurl;
++in prev.perlPackages // rec {
++  ClassErrorHandler = buildPerlPackage {
++    pname = "Class-ErrorHandler";
++    version = "0.04";
++    src = fetchurl {
++      url = "mirror://cpan/authors/id/T/TO/TOKUHIROM/Class-ErrorHandler-0.04.tar.gz";
++      sha256 = "342d2dcfc797a20bee8179b1b96b85c0ae7a5b48827359523cd8c74c3e704502";
++    };
++    meta = {
++      homepage = "https://github.com/tokuhirom/Class-ErrorHandler";
++      description = "Base class for error handling";
++      license = with lib.licenses; [ artistic1 gpl1Plus ];
++    };
++  };
++  OIDCLite = buildPerlModule {
++    pname = "OIDC-Lite";
++    version = "0.10";
++    src = fetchurl {
++      url = "mirror://cpan/authors/id/R/RI/RITOU/OIDC-Lite-0.10.tar.gz";
++      sha256 = "529096272a160d8cd947bec79e01b48639db93726432b4d93039a7507421245a";
++    };
++    buildInputs = [ CryptOpenSSLRSA TestMockLWPConditional TestMockObject ];
++    propagatedBuildInputs = [ ClassAccessor DataDump JSONWebToken JSONXS OAuthLite2 ParamsValidate ];
++    meta = {
++      homepage = "https://github.com/ritou/p5-oidc-lite";
++      description = "OpenID Connect Library";
++      license = with lib.licenses; [ artistic1 gpl1Plus ];
++    };
++  };
++  OAuthLite = buildPerlPackage {
++    pname = "OAuth-Lite";
++    version = "1.35";
++    src = fetchurl {
++      url = "mirror://cpan/authors/id/L/LY/LYOKATO/OAuth-Lite-1.35.tar.gz";
++      sha256 = "740528f8345bcb8849c1e3bfc91510b3c7f9df6255af09987d4175c1dea43c5e";
++    };
++    propagatedBuildInputs = [ ClassAccessor ClassDataAccessor ClassErrorHandler CryptOpenSSLRSA CryptOpenSSLRandom LWP ListMoreUtils UNIVERSALrequire URI ];
++    meta = {
++      description = "OAuth framework";
++      license = with lib.licenses; [ artistic1 gpl1Plus ];
++    };
++  };
++  TestMockLWPConditional = buildPerlModule {
++    pname = "Test-Mock-LWP-Conditional";
++    version = "0.04";
++    src = fetchurl {
++      url = "mirror://cpan/authors/id/M/MA/MASAKI/Test-Mock-LWP-Conditional-0.04.tar.gz";
++      sha256 = "8817129488f1eae4896aae59b8e09e94f720fdd697a73aef13241e8123940667";
++    };
++    buildInputs = [ ModuleBuildTiny TestFakeHTTPD TestUseAllModules TestTCP TestSharedFork ];
++    propagatedBuildInputs = [ ClassMethodModifiers LWP MathRandomSecure SubInstall ];
++    meta = {
++      homepage = "https://github.com/masaki/Test-Mock-LWP-Conditional";
++      description = "Stubbing on LWP request";
++      license = with lib.licenses; [ artistic1 gpl1Plus ];
++    };
++  };
++  OAuthLite2 = buildPerlModule {
++    pname = "OAuth-Lite2";
++    version = "0.11";
++    src = fetchurl {
++      url = "mirror://cpan/authors/id/R/RI/RITOU/OAuth-Lite2-0.11.tar.gz";
++      sha256 = "01417ec28acefd25a839bdb4b846056036ae122c181dab907e48e0bdb938686a";
++    };
++    buildInputs = [ ModuleBuildTiny ];
++    propagatedBuildInputs = [ ClassAccessor ClassErrorHandler DataDump HashMultiValue IOString JSONXS LWP ParamsValidate Plack StringRandom TryTiny URI XMLLibXML ];
++    meta = {
++      homepage = "https://github.com/ritou/p5-oauth-lite2";
++      description = "OAuth 2.0 Library";
++      license = with lib.licenses; [ artistic1 gpl1Plus ];
++    };
++  };
++
++}
+diff --git a/src/lib/Hydra/Controller/Root.pm b/src/lib/Hydra/Controller/Root.pm
+index 264b4bbb8..3491fb14f 100644
+--- a/src/lib/Hydra/Controller/Root.pm
++++ b/src/lib/Hydra/Controller/Root.pm
+@@ -40,6 +40,8 @@ sub noLoginNeeded {
+          $c->request->path eq "api/push-github" ||
+          $c->request->path eq "api/push-gitea" ||
+          $c->request->path eq "google-login" ||
++         $c->request->path eq "oidc-login" ||
++         $c->request->path eq "oidc-redirect" ||
+          $c->request->path eq "github-redirect" ||
+          $c->request->path eq "github-login" ||
+          $c->request->path eq "login" ||
+diff --git a/src/lib/Hydra/Controller/User.pm b/src/lib/Hydra/Controller/User.pm
+index 9e7d96e5a..46f8f12dd 100644
+--- a/src/lib/Hydra/Controller/User.pm
++++ b/src/lib/Hydra/Controller/User.pm
+@@ -11,14 +11,26 @@ use Hydra::Config qw(getLDAPConfigAmbient);
+ use Hydra::Helper::Nix;
+ use Hydra::Helper::CatalystUtils;
+ use Hydra::Helper::Email;
++use OIDC::Lite::Client::WebServer;
+ use LWP::UserAgent;
+ use JSON::MaybeXS;
+ use HTML::Entities;
++use UUID4::Tiny;
+ use Encode qw(decode);
+ 
+ 
+ __PACKAGE__->config->{namespace} = '';
+ 
++sub get_oidc_client {
++    my $c = shift;
++    return OIDC::Lite::Client::WebServer->new(
++        id               => $c->config->{oidc_client_id},
++        secret           => $c->config->{oidc_client_secret},
++        authorize_uri    => $c->config->{oidc_auth_uri},
++        access_token_uri => $c->config->{oidc_token_uri},
++    );
++}
++
+ 
+ sub login :Local :Args(0) :ActionClass('REST') { }
+ 
+@@ -92,7 +104,7 @@ sub doLDAPLogin {
+ }
+ 
+ sub doEmailLogin {
+-    my ($self, $c, $type, $email, $fullName) = @_;
++    my ($self, $c, $type, $email, $fullName, $username) = @_;
+ 
+     die "No email address provided.\n" unless defined $email;
+ 
+@@ -100,6 +112,8 @@ sub doEmailLogin {
+     # in URLs.
+     die "Illegal email address.\n" unless $email =~ /^[a-zA-Z0-9\.\-\_]+@[a-zA-Z0-9\.\-\_]+$/;
+ 
++    $username = $email unless defined $username;
++
+     # If allowed_domains is set, check if the email address
+     # returned is on these domains.  When not configured, allow all
+     # domains.
+@@ -143,6 +157,40 @@ sub doEmailLogin {
+ }
+ 
+ 
++sub oidc_login :Path('/oidc-login') Args(0) {
++    my ($self, $c) = @_;
++
++    error($c, "Logging in via OIDC is not enabled.", 404) unless $c->config->{enable_oidc_login};
++    my $oidc_client = get_oidc_client($c);
++
++    error($c, q{OIDC state mismatch. Is this a CSRF attack?}) unless $c->session->{oidc_state} && $c->session->{oidc_state} eq $c->request->param("state");
++
++    my $code = $c->request->param("code");
++    my $token_response = $oidc_client->get_access_token(
++        code => $code,
++        redirect_uri => $c->uri_for('/oidc-login'),
++    ) or error($c, $oidc_client->errstr);
++
++    $c->session->{access_token} = $token_response->access_token;
++    $c->session->{expires_at} = time() + $token_response->expires_in;
++    $c->session->{refresh_token} = $token_response->refresh_token;
++
++    my $res = LWP::UserAgent->new->get(
++        $c->config->{oidc_userinfo_uri},
++        Authorization => sprintf(q{Bearer %s}, $token_response->access_token)
++    );
++
++    my $claims = decode_json($res->decoded_content) or error($c, q{Could not decode claims.}, 401);
++
++    if (defined $claims->{email_verified} and !$claims->{email_verified}) {
++        error($c, "Email address must be verified.", 401);
++    }
++
++    doEmailLogin($self, $c, "oidc", $claims->{email}, $claims->{name} // undef, sprintf("oidc:$claims->{sub}"));
++
++    $c->res->redirect($c->uri_for($c->res->cookies->{'after_oidc'}));
++}
++
+ sub google_login :Path('/google-login') Args(0) {
+     my ($self, $c) = @_;
+     requirePost($c);
+@@ -226,6 +274,30 @@ sub github_redirect :Path('/github-redirect') Args(0) {
+     $c->res->redirect("https://github.com/login/oauth/authorize?client_id=$client_id&scope=user:email");
+ }
+ 
++sub oidc_redirect :Path('/oidc-redirect') Args(0) {
++
++    my ($self, $c) = @_;
++
++    my $after = "/" . $c->req->params->{after};
++
++    $c->res->cookies->{'after_oidc'} = {
++        name => 'after_oidc',
++        value => $after,
++    };
++
++    my $oidc_client = get_oidc_client($c);
++    my $state = UUID4::Tiny::create_uuid_string();
++    $c->session->{oidc_state} = $state;
++    my @scope = $c->config->{oidc_scope} or ("openid");
++    my $redirect_url = $oidc_client->uri_to_redirect(
++        redirect_uri => $c->uri_for('/oidc-login'),
++        scope        => "@scope",
++        state        => $state,
++    );
++
++    $c->res->redirect( $redirect_url );
++}
++
+ 
+ sub captcha :Local Args(0) {
+     my ($self, $c) = @_;
+diff --git a/src/root/topbar.tt b/src/root/topbar.tt
+index dc35dd1fe..b5abe3a9b 100644
+--- a/src/root/topbar.tt
++++ b/src/root/topbar.tt
+@@ -146,6 +146,10 @@
+         <a class="dropdown-item" href="/github-redirect?after=[% c.req.path | uri %]">Sign in with GitHub</a>
+         <div class="dropdown-divider"></div>
+       [% END %]
++      [% IF c.config.enable_oidc_login %]
++        <a class="dropdown-item" href="/oidc-redirect?after=[% c.req.path %]">Sign in with OIDC</a>
++        <div class="dropdown-divider"></div>
++      [% END %]
+       <a class="dropdown-item" href="#hydra-signin" data-toggle="modal">Sign in with a Hydra account</a>
+     [% END %]
+   [% END %]
+
+From 039165e1dbad90bcf755f441c22d81ed5233f96b Mon Sep 17 00:00:00 2001
+From: Linus Heckemann <git@sphalerite.org>
+Date: Sun, 20 Aug 2023 19:38:49 +0200
+Subject: [PATCH 2/6] Set convenient variables for db access in shellHook
+
+---
+ package.nix | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/package.nix b/package.nix
+index 725ffcdce..86a76cd83 100644
+--- a/package.nix
++++ b/package.nix
+@@ -246,6 +246,9 @@ stdenv.mkDerivation (finalAttrs: {
+     mkdir -p .hydra-data
+     export HYDRA_DATA="$(pwd)/.hydra-data"
+     export HYDRA_DBI='dbi:Pg:dbname=hydra;host=localhost;port=64444'
++    export PGPORT=64444
++    export PGDATABASE=hydra
++    export PGHOST=localhost
+ 
+     popd >/dev/null
+   '';
+
+From 9d8b420281fd0f9bc7443474747de32e341e9748 Mon Sep 17 00:00:00 2001
+From: ners <ners@gmx.ch>
+Date: Sun, 17 Aug 2025 16:42:06 +0200
+Subject: [PATCH 3/6] Make OIDC name configurable
+
+---
+ src/root/topbar.tt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/root/topbar.tt b/src/root/topbar.tt
+index b5abe3a9b..32a34c249 100644
+--- a/src/root/topbar.tt
++++ b/src/root/topbar.tt
+@@ -147,7 +147,7 @@
+         <div class="dropdown-divider"></div>
+       [% END %]
+       [% IF c.config.enable_oidc_login %]
+-        <a class="dropdown-item" href="/oidc-redirect?after=[% c.req.path %]">Sign in with OIDC</a>
++        <a class="dropdown-item" href="/oidc-redirect?after=[% c.req.path %]">Sign in with [% c.config.oidc_name or "OIDC" %]</a>
+         <div class="dropdown-divider"></div>
+       [% END %]
+       <a class="dropdown-item" href="#hydra-signin" data-toggle="modal">Sign in with a Hydra account</a>
+
+From 8d220903696a0be5459777d32ad7ef05c6ee7970 Mon Sep 17 00:00:00 2001
+From: ners <ners@gmx.ch>
+Date: Sun, 17 Aug 2025 16:42:46 +0200
+Subject: [PATCH 4/6] Make Hydra login optional
+
+---
+ src/root/topbar.tt | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/src/root/topbar.tt b/src/root/topbar.tt
+index 32a34c249..b1ad13677 100644
+--- a/src/root/topbar.tt
++++ b/src/root/topbar.tt
+@@ -140,17 +140,19 @@
+         <div id="g_id_onload" data-client_id="[% c.config.google_client_id %]" data-auto_prompt="false" data-callback="onGoogleSignIn">
+         </div>
+         <div class="g_id_signin" data-type="standard"></div>
+-        <div class="dropdown-divider"></div>
+       [% END %]
+       [% IF c.config.github_client_id %]
+         <a class="dropdown-item" href="/github-redirect?after=[% c.req.path | uri %]">Sign in with GitHub</a>
+-        <div class="dropdown-divider"></div>
+       [% END %]
+       [% IF c.config.enable_oidc_login %]
+         <a class="dropdown-item" href="/oidc-redirect?after=[% c.req.path %]">Sign in with [% c.config.oidc_name or "OIDC" %]</a>
+-        <div class="dropdown-divider"></div>
+       [% END %]
+-      <a class="dropdown-item" href="#hydra-signin" data-toggle="modal">Sign in with a Hydra account</a>
++      [% IF !c.config.enable_hydra_login.defined or c.config.enable_hydra_login %]
++        [% IF c.config.enable_google_login or c.config.github_client_id or c.config.enable_oidc_login %]
++          <div class="dropdown-divider"></div>
++        [% END %]
++        <a class="dropdown-item" href="#hydra-signin" data-toggle="modal">Sign in with a Hydra account</a>
++      [% END %]
+     [% END %]
+   [% END %]
+ 
+
+From f9072362dd77fccb659913ed3c35bfb42a4d3a29 Mon Sep 17 00:00:00 2001
+From: ners <ners@gmx.ch>
+Date: Sun, 17 Aug 2025 16:43:45 +0200
+Subject: [PATCH 5/6] Use session instead of cookie for OIDC
+
+---
+ src/lib/Hydra/Controller/User.pm | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/src/lib/Hydra/Controller/User.pm b/src/lib/Hydra/Controller/User.pm
+index 46f8f12dd..0e2b712f5 100644
+--- a/src/lib/Hydra/Controller/User.pm
++++ b/src/lib/Hydra/Controller/User.pm
+@@ -188,7 +188,7 @@ sub oidc_login :Path('/oidc-login') Args(0) {
+ 
+     doEmailLogin($self, $c, "oidc", $claims->{email}, $claims->{name} // undef, sprintf("oidc:$claims->{sub}"));
+ 
+-    $c->res->redirect($c->uri_for($c->res->cookies->{'after_oidc'}));
++    $c->res->redirect($c->uri_for($c->session->{oidc_after}));
+ }
+ 
+ sub google_login :Path('/google-login') Args(0) {
+@@ -280,10 +280,7 @@ sub oidc_redirect :Path('/oidc-redirect') Args(0) {
+ 
+     my $after = "/" . $c->req->params->{after};
+ 
+-    $c->res->cookies->{'after_oidc'} = {
+-        name => 'after_oidc',
+-        value => $after,
+-    };
++    $c->session->{oidc_after} = $after;
+ 
+     my $oidc_client = get_oidc_client($c);
+     my $state = UUID4::Tiny::create_uuid_string();
+
+From a9c16a19518a238d74fce789e27dd166ef7058b1 Mon Sep 17 00:00:00 2001
+From: ners <ners@gmx.ch>
+Date: Sun, 17 Aug 2025 16:46:30 +0200
+Subject: [PATCH 6/6] Add OIDC role mapping
+
+---
+ src/lib/Hydra/Controller/User.pm | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
+
+diff --git a/src/lib/Hydra/Controller/User.pm b/src/lib/Hydra/Controller/User.pm
+index 0e2b712f5..c2d9a5265 100644
+--- a/src/lib/Hydra/Controller/User.pm
++++ b/src/lib/Hydra/Controller/User.pm
+@@ -156,7 +156,6 @@ sub doEmailLogin {
+     $c->flash->{successMsg} = "You are now signed in as <tt>" . encode_entities($email) . "</tt>.";
+ }
+ 
+-
+ sub oidc_login :Path('/oidc-login') Args(0) {
+     my ($self, $c) = @_;
+ 
+@@ -183,11 +182,29 @@ sub oidc_login :Path('/oidc-login') Args(0) {
+     my $claims = decode_json($res->decoded_content) or error($c, q{Could not decode claims.}, 401);
+ 
+     if (defined $claims->{email_verified} and !$claims->{email_verified}) {
+-        error($c, "Email address must be verified.", 401);
++      error($c, "Email address is not verified", 401)
+     }
+ 
+     doEmailLogin($self, $c, "oidc", $claims->{email}, $claims->{name} // undef, sprintf("oidc:$claims->{sub}"));
+ 
++    my $role_mapping = $c->config->{oidc_role_mapping} or ();
++    my @groups = @{ $claims->{groups} // [] };
++    $c->user->userroles->delete;
++    foreach my $group ( @groups ) {
++        next unless defined($role_mapping->{$group});
++        my $mapping = $role_mapping->{$group};
++        my @mapped_roles;
++        if (ref($mapping) eq 'ARRAY') {
++            @mapped_roles = @{$mapping};
++        } else {
++            @mapped_roles = split /[\s,]+/, $mapping;
++        }
++        for my $mapped_role (@mapped_roles) {
++            next unless $mapped_role;
++            $c->user->userroles->create({ role => $mapped_role });
++        }
++    }
++
+     $c->res->redirect($c->uri_for($c->session->{oidc_after}));
+ }
