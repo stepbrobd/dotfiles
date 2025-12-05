@@ -92,12 +92,10 @@ let
         XMLSimple
       ]));
   };
-
-  version = hydra.version + "-unstable-oidc";
 in
-hydra.overrideAttrs (prev: {
+hydra.overrideAttrs (final: prev: {
   pname = "hydra";
-  inherit version;
+  version = prev.version + "-unstable-oidc";
 
   src = fetchFromGitHub {
     owner = "ners";
@@ -111,15 +109,15 @@ hydra.overrideAttrs (prev: {
   postInstall = ''
     mkdir -p $out/nix-support
     for i in $out/bin/*; do
-        read -n 4 chars < $i
-        if [[ $chars =~ ELF ]]; then continue; fi
-        wrapProgram $i \
-            --prefix PERL5LIB ':' "$out/libexec/hydra/lib:${perlPackages.makePerlPath [ perlDeps ]}" \
-            --prefix PATH ':' $out/bin:$hydraPath \
-            --set-default HYDRA_RELEASE ${version} \
-            --set HYDRA_HOME $out/libexec/hydra \
-            --set NIX_RELEASE ${nix.name or "unknown"} \
-            --set NIX_EVAL_JOBS_RELEASE ${nix-eval-jobs.name or "unknown"}
+      read -n 4 chars < $i
+      if [[ $chars =~ ELF ]]; then continue; fi
+      wrapProgram $i \
+        --prefix PERL5LIB ':' "$out/libexec/hydra/lib:${perlPackages.makePerlPath [ perlDeps ]}" \
+        --prefix PATH ':' $out/bin:$hydraPath \
+        --set-default HYDRA_RELEASE ${final.version} \
+        --set HYDRA_HOME $out/libexec/hydra \
+        --set NIX_RELEASE ${nix.name or "unknown"} \
+        --set NIX_EVAL_JOBS_RELEASE ${nix-eval-jobs.name or "unknown"}
     done
   '';
 
