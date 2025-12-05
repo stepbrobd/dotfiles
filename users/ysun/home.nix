@@ -57,6 +57,7 @@ in
     cider-2
     comma
     discord # (discord.override { withEquicord = true; }) nixpkgs#430391
+    epiphany
     gitleaks
     monocle
     nix-output-monitor
