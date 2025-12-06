@@ -1,18 +1,12 @@
-{ lib, inputs, ... }:
+{ lib, ... }:
 
 let
-  inherit (lib) importPackagesWith mkDynamicAttrs;
+  inherit (lib) attrNames genAttrs pipe readDir;
 in
 {
-  perSystem = { pkgs, ... }:
-    {
-      packages = mkDynamicAttrs rec {
-        dir = ../../pkgs;
-        fun = name: importPackagesWith (pkgs // { inherit inputs lib; }) (dir + "/${name}") { };
-      };
-    };
-
-  # seems like `legacyPackages` is equivalent to `packages`?
-  # https://nixos.wiki/wiki/Flakes#Output_schema
-  flake.legacyPackages = inputs.self.packages;
+  perSystem = { pkgs, ... }: {
+    packages = genAttrs
+      (pipe ../../pkgs [ readDir attrNames ])
+      (name: pkgs.${name});
+  };
 }
