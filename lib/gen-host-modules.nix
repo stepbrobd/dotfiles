@@ -14,7 +14,8 @@ in
 
 [
   entrypoint
-  { nixpkgs = { inherit (inputs.self.autopilot.nixpkgs) overlays; }; }
+  # no need to re-evaluate overlay as its already been applied by autopilot
+  # { nixpkgs = { inherit (inputs.self.autopilot.nixpkgs) overlays; }; }
   inputs.sops."${os}Modules".sops
   { sops.defaultSopsFile = ./secrets.yaml; }
   { nixpkgs.hostPlatform = mkDefault platform; }
