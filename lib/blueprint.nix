@@ -123,17 +123,6 @@ in
     ipv6 = "2602:ff16:14:0:1:56:0:1";
   };
 
-  hosts.sevran = newHost {
-    hostName = "sevran";
-    domain = "as10779.net";
-    platform = "x86_64-linux";
-    os = "nixos";
-    provider = "hostinger";
-    type = "server";
-    ipv4 = "77.37.125.123";
-    ipv6 = "2a02:4780:28:5bd::1";
-  };
-
   hosts.timah = newHost {
     hostName = "timah";
     domain = "as10779.net";
