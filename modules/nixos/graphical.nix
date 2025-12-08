@@ -6,5 +6,6 @@
     desktop
     fonts
     i18n
+    wayvnc
   ];
 }

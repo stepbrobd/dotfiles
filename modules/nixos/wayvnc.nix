@@ -1,0 +1,1 @@
+{ programs.wayvnc.enable = true; }
