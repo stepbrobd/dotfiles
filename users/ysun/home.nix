@@ -72,6 +72,7 @@ in
     smplayer
     stepbrobd
     yt-dlp
+    zotero
     zoom-us
   ])
     # darwin only
