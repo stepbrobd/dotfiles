@@ -40,6 +40,15 @@ in
             timeout 60s
           }
         }
+
+        storage s3 {
+          host       {env.S3_HOST}
+          bucket     {env.S3_BUCKET}
+          access_id  {env.S3_ACCESS_ID}
+          secret_key {env.S3_SECRET_KEY}
+          prefix     {env.S3_PREFIX}
+          insecure   false
+        }
       '';
 
       extraConfig = ''
