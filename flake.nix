@@ -114,13 +114,11 @@
     index.url = "github:nix-community/nix-index-database";
     index.inputs.nixpkgs.follows = "nixpkgs";
     # l
-    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.3";
+    lanzaboote.url = "github:nix-community/lanzaboote/v1.0.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.inputs.crane.follows = "crane";
-    lanzaboote.inputs.flake-compat.follows = "compat";
-    lanzaboote.inputs.flake-parts.follows = "parts";
-    lanzaboote.inputs.pre-commit-hooks-nix.follows = "";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
+    lanzaboote.inputs.pre-commit.follows = "";
     # m
     mac-style-plymouth.url = "github:sergioribera/s4rchiso-plymouth-theme";
     mac-style-plymouth.inputs.nixpkgs.follows = "nixpkgs";
