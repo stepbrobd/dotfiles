@@ -13,11 +13,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765508910,
-        "narHash": "sha256-rcNH6JgKo36ufvPJGUkZW4jktkVz0t8FBtPJv/gRUnQ=",
+        "lastModified": 1765549999,
+        "narHash": "sha256-CEzP3hVccghgleHi+ms6BUslYAaZ9WgIz7cRclupiT4=",
         "owner": "numtide",
         "repo": "nix-ai-tools",
-        "rev": "46c494b51cecf3476c20e54e772c6bc48f10e04d",
+        "rev": "cd88c75a88b158ae97b084d6e3e32bba78ba01fc",
         "type": "github"
       },
       "original": {
@@ -278,6 +278,29 @@
       "original": {
         "owner": "lf-",
         "repo": "flakey-profile",
+        "type": "github"
+      }
+    },
+    "gaming": {
+      "inputs": {
+        "flake-parts": [
+          "parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765505604,
+        "narHash": "sha256-ldyzNBEwP9qIXz087HGJ73OH8hp1YoPDgtK9aaii1PU=",
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "rev": "2597ac42bcf2b32253ab6acab70264fdbb2b102e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fufexan",
+        "repo": "nix-gaming",
         "type": "github"
       }
     },
@@ -592,11 +615,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765532309,
-        "narHash": "sha256-/2w8cC+Bwut14P33SZydqni+DxvRpRLjq4dSjdfoJio=",
+        "lastModified": 1765549401,
+        "narHash": "sha256-/7jUlBsI2DCm9LOF4upS7+kMYM4K78dPpHO5pCKYV6k=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "8486f9144ecebdac9672a34b41e532f5a41fcb19",
+        "rev": "a80557e1425ad9438dde7652b12fd5a449df6f00",
         "type": "github"
       },
       "original": {
@@ -638,6 +661,7 @@
         "devshell": "devshell",
         "disko": "disko",
         "flakey-profile": "flakey-profile",
+        "gaming": "gaming",
         "garnix": "garnix",
         "generators": "generators",
         "git-hooks": "git-hooks",
@@ -716,11 +740,11 @@
     },
     "schemas": {
       "locked": {
-        "lastModified": 1761577921,
-        "narHash": "sha256-eK3/xbUOrxp9fFlei09XNjqcdiHXxndzrTXp7jFpOk8=",
+        "lastModified": 1765542151,
+        "narHash": "sha256-rzv+NVnOcr9pzd8RnvTscwAHAZmD8FLgxEEmHP1xGTA=",
         "owner": "determinatesystems",
         "repo": "flake-schemas",
-        "rev": "47849c7625e223d36766968cc6dc23ba0e135922",
+        "rev": "6f53c45897ef6d9e1f39e8ca9611571ac4aa4f17",
         "type": "github"
       },
       "original": {
@@ -736,11 +760,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765231718,
-        "narHash": "sha256-qdBzo6puTgG4G2RHG0PkADg22ZnQo1JmSVFRxrD4QM4=",
+        "lastModified": 1765553226,
+        "narHash": "sha256-Ii16Nq5jL2wURXpV3D3tOM3vPpbKh18roHLkyZCHK4Q=",
         "owner": "mic92",
         "repo": "sops-nix",
-        "rev": "7fd1416aba1865eddcdec5bb11339b7222c2363e",
+        "rev": "496a6f625f63b780ce849891868f2fad22fd49c6",
         "type": "github"
       },
       "original": {
