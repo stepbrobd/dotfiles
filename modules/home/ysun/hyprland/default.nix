@@ -55,6 +55,10 @@
           force_zero_scaling = true
         }
 
+        render {
+          direct_scanout = 2
+        }
+
         exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
         exec-once = nm-applet --indicator &
         exec-once = ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1 &
@@ -108,13 +112,11 @@
           rounding = 8
           active_opacity = 1.0
           inactive_opacity = 1.0
+          blur {
+            enabled = false
+          }
           shadow {
-            enabled = true
-            ignore_window = true
-            offset = 2 2
-            range = 4
-            render_power = 2
-            color = 0x66000000
+            enabled = false
           }
         }
 
