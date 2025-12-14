@@ -30,7 +30,6 @@ let
         self.nixosModules.passwordless
         self.nixosModules.plausible
         self.nixosModules.prometheus
-        self.nixosModules.rebuild
         self.nixosModules.server
         self.nixosModules.tsnsrv
         self.nixosModules.vaultwarden

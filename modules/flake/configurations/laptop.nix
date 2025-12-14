@@ -55,7 +55,6 @@ in
         self.nixosModules.graphical
         self.nixosModules.minimal
         self.nixosModules.passwordless
-        self.nixosModules.rebuild
         srvos.nixosModules.desktop
       ];
     in
