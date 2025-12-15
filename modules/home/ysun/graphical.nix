@@ -30,6 +30,7 @@
     # nh
     # nushell # imported in minimal
     openconnect
+    openvpn
     ssh
     # tmux # imported in minimal
     vscode
