@@ -93,10 +93,10 @@ in
         connFile)
       cfg.accounts);
 
-    sops.secrets."openconnect/inria/user" = { };
-    sops.secrets."openconnect/inria/pass" = { };
-    sops.secrets."openconnect/inria/agfp" = { };
-    sops.secrets."openconnect/inria/conn" = { };
+    sops.secrets."openconnect/inria/user" = { sopsFile = ./secrets.yaml; };
+    sops.secrets."openconnect/inria/pass" = { sopsFile = ./secrets.yaml; };
+    sops.secrets."openconnect/inria/agfp" = { sopsFile = ./secrets.yaml; };
+    sops.secrets."openconnect/inria/conn" = { sopsFile = ./secrets.yaml; };
     programs.openconnect.accounts.inria = {
       userFile = config.sops.secrets."openconnect/inria/user".path;
       passFile = config.sops.secrets."openconnect/inria/pass".path;
@@ -104,10 +104,11 @@ in
       connFile = config.sops.secrets."openconnect/inria/conn".path;
     };
 
-    sops.secrets."openconnect/grenet/user" = { };
-    sops.secrets."openconnect/grenet/pass" = { };
-    sops.secrets."openconnect/grenet/agfp" = { };
-    sops.secrets."openconnect/grenet/conn" = { };
+
+    sops.secrets."openconnect/grenet/user" = { sopsFile = ./secrets.yaml; };
+    sops.secrets."openconnect/grenet/pass" = { sopsFile = ./secrets.yaml; };
+    sops.secrets."openconnect/grenet/agfp" = { sopsFile = ./secrets.yaml; };
+    sops.secrets."openconnect/grenet/conn" = { sopsFile = ./secrets.yaml; };
     programs.openconnect.accounts.grenet = {
       userFile = config.sops.secrets."openconnect/grenet/user".path;
       passFile = config.sops.secrets."openconnect/grenet/pass".path;
