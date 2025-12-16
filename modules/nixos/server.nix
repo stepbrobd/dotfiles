@@ -31,6 +31,22 @@
       enable = true;
       hostKeys = lib.mkForce [{ type = "ed25519"; path = "/etc/ssh/ssh_host_ed25519_key"; }];
       settings.PermitRootLogin = lib.mkForce "no";
+      settings.KexAlgorithms = lib.mkForce [
+        "mlkem768x25519-sha256"
+        "sntrup761x25519-sha512"
+        "sntrup761x25519-sha512@openssh.com"
+      ];
+      settings.Ciphers = lib.mkForce [ "chacha20-poly1305@openssh.com" ];
+      settings.Macs = lib.mkForce [ ];
+      banner = ''
+         ▄▄  ▗          ▗▄▄         ▗▄▄ ▗▄▖         ▗▄▄             
+        ▐▘ ▘▗▟▄  ▄▖ ▗▄▖ ▐  ▌ ▖▄  ▄▖ ▐  ▌▐ ▝▖         ▐  ▗▗▖  ▄▖     
+        ▝▙▄  ▐  ▐▘▐ ▐▘▜ ▐▄▄▘ ▛ ▘▐▘▜ ▐▄▄▘▐  ▌         ▐  ▐▘▐ ▐▘▝     
+          ▝▌ ▐  ▐▀▀ ▐ ▐ ▐  ▌ ▌  ▐ ▐ ▐  ▌▐  ▌         ▐  ▐ ▐ ▐       
+        ▝▄▟▘ ▝▄ ▝▙▞ ▐▙▛ ▐▄▄▘ ▌  ▝▙▛ ▐▄▄▘▐▄▞  ▐      ▗▟▄ ▐ ▐ ▝▙▞  ▐  
+                    ▐                        ▘                      
+                    ▝                                               
+      '';
     };
 
   programs.zsh.enableCompletion = pkgs.lib.mkForce false;
