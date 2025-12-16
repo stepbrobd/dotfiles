@@ -37,7 +37,10 @@
         "sntrup761x25519-sha512@openssh.com"
       ];
       settings.Ciphers = lib.mkForce [ "chacha20-poly1305@openssh.com" ];
-      settings.Macs = lib.mkForce null;
+      settings.Macs = lib.mkForce [
+        "hmac-sha2-256-etm@openssh.com"
+        "hmac-sha2-512-etm@openssh.com"
+      ];
       banner = ''
          ▄▄  ▗          ▗▄▄         ▗▄▄ ▗▄▖         ▗▄▄             
         ▐▘ ▘▗▟▄  ▄▖ ▗▄▖ ▐  ▌ ▖▄  ▄▖ ▐  ▌▐ ▝▖         ▐  ▗▗▖  ▄▖     
