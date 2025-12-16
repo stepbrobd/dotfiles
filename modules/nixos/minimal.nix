@@ -3,7 +3,12 @@
 { pkgs, ... }:
 
 {
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # lower  than option default (1500)
+  # higher than        default (1000)
+  # need to do this since nixos for raspberry pi module set mkDefault
+  # for the kernel with rpi firmware, and we'd want to keep that but override
+  # the default for other linux machines, which is set by mkOptionDefault
+  boot.kernelPackages = lib.mkOverride 1250 pkgs.linuxPackages_latest;
 
   imports = with inputs.self.nixosModules; [
     fail2ban
