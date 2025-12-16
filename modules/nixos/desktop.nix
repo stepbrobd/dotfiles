@@ -40,11 +40,10 @@ in
     # xdg
     {
       xdg.portal = {
-        # a bit higher than mkDefault (1000)
-        enable = lib.mkOverride 999 true;
-        lxqt.enable = lib.mkOverride 999 true;
-        wlr.enable = lib.mkOverride 999 true;
-        config.common.default = lib.mkOverride 999 "*";
+        enable = true;
+        lxqt.enable = true;
+        wlr.enable = true;
+        config.common.default = "*";
       };
     }
 
