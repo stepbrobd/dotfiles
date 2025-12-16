@@ -1,6 +1,10 @@
 { inputs, lib, ... }:
 
+{ pkgs, ... }:
+
 {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   imports = with inputs.self.nixosModules; [
     fail2ban
     mglru
