@@ -13,6 +13,8 @@
     raspberry-pi-5.display-vc4
   ];
 
+  boot.loader.raspberryPi.bootloader = "kernel";
+
   # bluetooth
   # https://wiki.nixos.org/wiki/NixOS_on_ARM/Raspberry_Pi_5#Bluetooth
   boot.kernelModules = [
