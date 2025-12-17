@@ -12,12 +12,12 @@
 
 let
   pname = "verus";
-  version = "0.2025.07.05.8bd7c32";
+  version = "release/0.2025.07.05.8bd7c32";
   src = fetchFromGitHub {
     leaveDotGit = true;
     owner = "verus-lang";
     repo = "verus";
-    tag = "release/${version}";
+    tag = version;
     hash = "sha256-fKeEqsvsGMwujGVmjP4rpK7haI3ScPkIkai7gUpPZD8=";
   };
 
