@@ -22,21 +22,31 @@ in
       };
 
       extraComponents = [
+        "analytics"
         "apple_tv"
         "bluetooth"
         "cloud"
         "default_config"
+        "google_translate"
         "homekit"
         "homekit_controller"
         "isal"
+        "kegtron"
         "met"
+        "nextdns"
+        "radio_browser"
+        "shopping_list"
         "ssdp"
         "switchbot"
         "switchbot_cloud"
         "zeroconf"
       ];
 
-      customComponents = with pkgs.home-assistant-custom-components; [ midea_ac_lan ];
+      customComponents = with pkgs.home-assistant-custom-components; [
+        auth_oidc
+        midea_ac_lan
+        spook
+      ];
     };
 
     networking.firewall = {
