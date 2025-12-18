@@ -16,7 +16,6 @@ in
       config.homeassistant.time_zone = null;
 
       config.http = {
-        server_host = "127.0.0.1";
         server_port = 8123;
         use_x_forwarded_for = true;
         trusted_proxies = [ "127.0.0.1" "::1" ];
@@ -47,7 +46,7 @@ in
 
     services.caddy.virtualHosts."ha.ysun.co".extraConfig = ''
       import common
-      reverse_proxy ${cfg.config.http.server_host}:${lib.toString cfg.config.http.server_port} 
+      reverse_proxy localhost:${lib.toString cfg.config.http.server_port} 
     '';
   };
 }
