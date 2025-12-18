@@ -126,8 +126,8 @@ in
         type = "CNAME";
         proxied = false;
         name = "time";
-        content = "isere.internal.center";
-        comment = "Tailscale Internal - Raspberry Pi - Time Server";
+        content = "isere.as10779.net";
+        comment = "Raspberry Pi - Time Server";
       };
 
       co_ysun_vault = {

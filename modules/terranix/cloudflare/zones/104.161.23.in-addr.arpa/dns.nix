@@ -55,6 +55,14 @@ in
         content = "butte.as10779.net";
         comment = "Virtua - Paris";
       };
+
+      arpa_in_addr_23_161_104_133 = {
+        type = "PTR";
+        proxied = false;
+        name = "133";
+        content = "isere.as10779.net";
+        comment = "Raspberry Pi 5B - Grenoble";
+      };
     } // mkPurelyMailRecord
     "104.161.23.in-addr.arpa"
     "arpa_in_addr_23_161_104"

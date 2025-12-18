@@ -56,6 +56,13 @@ in
         comment = "Virtua - Paris";
       };
 
+      arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_1_3_3 = {
+        type = "PTR";
+        proxied = false;
+        name = "3.3.1.0.4.0.1.0.1.6.1.0.3.2.0.0.0.0.0.0.0.0.0";
+        content = "isere.as10779.net";
+        comment = "Raspberry Pi 5B - Grenoble";
+      };
     } // mkPurelyMailRecord
     "0.0.9.5.f.2.0.6.2.ip6.arpa"
     "arpa_ip6_2_6_0_2_f_5_9_0_0"
