@@ -27,8 +27,8 @@ in
         # "44.32.189.0/24" # 44net anycast test
       ];
       ipv6.addresses = [
-        "2602:f590:0::23:161:104:129/128" # unicast
-        "2602:f590:0::23:161:104:17/128" # personal site anycast
+        "2602:f590::23:161:104:129/128" # unicast
+        "2602:f590::23:161:104:17/128" # personal site anycast
       ];
     };
 

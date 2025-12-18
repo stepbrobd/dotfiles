@@ -18,7 +18,7 @@ in
         config.services.as10779.local.ipv4.addresses
       &&
       lib.elem
-        "2602:f590:0::23:161:104:17/128"
+        "2602:f590::23:161:104:17/128"
         config.services.as10779.local.ipv6.addresses
     )
     {
