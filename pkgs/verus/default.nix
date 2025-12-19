@@ -12,13 +12,13 @@
 
 let
   pname = "verus";
-  version = "release/0.2025.07.05.8bd7c32";
+  version = "release/rolling/0.2025.12.18.10ea71c";
   src = fetchFromGitHub {
     leaveDotGit = true;
     owner = "verus-lang";
     repo = "verus";
     tag = version;
-    hash = "sha256-fKeEqsvsGMwujGVmjP4rpK7haI3ScPkIkai7gUpPZD8=";
+    hash = "sha256-7gTsEePyKH9DfIrVwpURQbEu1YI/LUhIMSgdPIKpp7g=";
   };
 
   rustToolchain = rust-bin.fromRustupToolchainFile "${src}/rust-toolchain.toml";
@@ -48,7 +48,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
     outputHashes = {
       "getopts-0.2.21" = "sha256-N/QJvyOmLoU5TabrXi8i0a5s23ldeupmBUzP8waVOiU=";
       "smt2parser-0.6.1" = "sha256-AKBq8Ph8D2ucyaBpmDtOypwYie12xVl4gLRxttv5Ods=";
-      "synstructure-0.13.0" = "sha256-nluVB2uL8nSv3XPvxa2MsjRhSMoTybCKGiBqlshnnVU=";
     };
   };
 
