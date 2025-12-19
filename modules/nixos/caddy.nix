@@ -1,6 +1,6 @@
 { lib, ... }:
 
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   metricsTarget = "127.0.0.1:9019";
@@ -19,7 +19,7 @@ in
 
     services.caddy = {
       enableReload = config.services.caddy.enable;
-      package = pkgs.caddy-with-plugins;
+
       email = "ysun@hey.com";
 
       globalConfig = ''
