@@ -86,34 +86,34 @@ in
 
     systemd.services.caddy.serviceConfig = {
       EnvironmentFile = [ config.sops.secrets.caddy.path ];
-      AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+      # AmbientCapabilities = "CAP_NET_BIND_SERVICE";
       # remove after https://github.com/nixos/nixpkgs/pull/471670 is merged
-      # CapabilityBoundingSet = [ "CAP_NET_BIND_SERVICE" ];
+      CapabilityBoundingSet = [ "CAP_NET_BIND_SERVICE" ];
       # MemoryDenyWriteExecute = true;
-      # LockPersonality = true;
-      # ProcSubset = "pid";
-      # ProtectClock = true;
-      # ProtectControlGroups = true;
-      # ProtectHostname = true;
-      # ProtectKernelLogs = true;
-      # ProtectKernelModules = true;
-      # ProtectKernelTunables = true;
-      # ProtectProc = "invisible";
+      LockPersonality = true;
+      ProcSubset = "pid";
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
       # ProtectSystem = "strict";
-      # RestrictAddressFamilies = [
-      #   "AF_UNIX"
-      #   "AF_INET"
-      #   "AF_INET6"
-      # ];
+      RestrictAddressFamilies = [
+        "AF_UNIX"
+        "AF_INET"
+        "AF_INET6"
+      ];
       # RestrictNamespaces = true;
-      # RestrictRealtime = true;
-      # RestrictSUIDSGID = true;
-      # RemoveIPC = true;
-      # SystemCallArchitectures = "native";
-      # SystemCallFilter = [
-      #   "@system-service"
-      #   "~@privileged"
-      # ];
+      RestrictRealtime = true;
+      RestrictSUIDSGID = true;
+      RemoveIPC = true;
+      SystemCallArchitectures = "native";
+      SystemCallFilter = [
+        "@system-service"
+        "~@privileged"
+      ];
     };
   };
 }
