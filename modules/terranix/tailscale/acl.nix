@@ -5,6 +5,7 @@
 let
   tag = {
     golink = "tag:golink";
+    routee = "tag:routee";
     router = "tag:router";
     server = "tag:server";
   };
@@ -31,6 +32,7 @@ in
     acl = lib.toJSON {
       tagOwners = {
         ${tag.golink} = [ autogroup.admin ];
+        ${tag.routee} = [ autogroup.admin ];
         ${tag.router} = [ autogroup.admin ];
         ${tag.server} = [ autogroup.admin ];
       };
@@ -64,9 +66,10 @@ in
         }
         # routers and servers rules
         {
-          src = [ tag.router tag.server ];
+          src = with tag; [ routee router server ];
           dst = [
             # tags
+            tag.routee
             tag.router
             tag.server
             # tailscale
@@ -86,7 +89,7 @@ in
         {
           action = "accept";
           src = [ autogroup.admin ];
-          dst = [ autogroup.self tag.router tag.server ];
+          dst = [ autogroup.self tag.routee tag.router tag.server ];
           users = [ autogroup.nonroot "root" ];
         }
         {
@@ -98,12 +101,12 @@ in
       ];
 
       autoApprovers = {
-        exitNode = [ tag.router tag.server ];
+        exitNode = with tag; [ routee router server ];
         routes = {
-          "23.161.104.0/24" = [ tag.router tag.server ];
-          "44.32.189.0/24" = [ tag.router tag.server ];
-          "192.104.136.0/24" = [ tag.router tag.server ];
-          "2602:f590::/36" = [ tag.router tag.server ];
+          "23.161.104.0/24" = with tag; [ routee router server ];
+          "44.32.189.0/24" = with tag; [ routee router server ];
+          "192.104.136.0/24" = with tag; [ routee router server ];
+          "2602:f590::/36" = with tag; [ routee router server ];
         };
       };
 
@@ -118,7 +121,7 @@ in
         { target = [ "*" ]; attr = [ "one-cgnat?v=false" "funnel" "nextdns:d8664a" ]; }
         { target = [ self.email ]; attr = [ "mullvad" ]; }
         # 100.100.20.0/24 reserved for devices that are shared into my tailnet
-        { target = [ tag.router ]; ipPool = [ "100.100.20.0/24" ]; }
+        { target = with tag; [ routee router ]; ipPool = [ "100.100.20.0/24" ]; }
         { target = [ tag.server ]; ipPool = [ "100.100.30.0/24" ]; }
         { target = [ tag.golink ]; ipPool = [ "100.100.40.0/24" ]; }
         { target = [ autogroup.admin self.email ]; ipPool = [ "100.100.50.0/24" ]; }
