@@ -53,6 +53,7 @@ in
         self.nixosModules.cross
         self.nixosModules.docker
         self.nixosModules.graphical
+        self.nixosModules.ip-forwarding
         self.nixosModules.minimal
         self.nixosModules.passwordless
         srvos.nixosModules.desktop
