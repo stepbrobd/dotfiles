@@ -331,6 +331,11 @@ description = "forked from raven-ml/raven"
 visibility = "public"
 archived = false
 
+[repo."ring"]
+description = "forked from muhokama/ring"
+visibility = "public"
+archived = false
+
 [repo."souin"]
 description = "forked from darkweak/souin"
 visibility = "public"
