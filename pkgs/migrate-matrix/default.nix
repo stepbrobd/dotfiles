@@ -8,7 +8,7 @@
 
 rustPlatform.buildRustPackage {
   pname = "migrate-matrix";
-  version = "0.1.1-unstable-2025-08-11";
+  version = "0.1.0";
 
   src = fetchFromGitHub {
     owner = "tilosp";
