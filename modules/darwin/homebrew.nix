@@ -38,6 +38,7 @@
         restart_service = "changed";
       }
       "deno"
+      "mole"
       "readline"
       "sqlite"
     ];
