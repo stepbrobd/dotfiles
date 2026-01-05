@@ -10,7 +10,7 @@
   };
 
   extraPlugins = with pkgs.vimPlugins; [
-    nvim-treesitter-sexp
+    # nvim-treesitter-sexp
     pkgs.treesitter-coq-grammar
   ];
 
