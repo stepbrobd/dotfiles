@@ -82,9 +82,6 @@
     # f
     flakey-profile.url = "github:lf-/flakey-profile";
     # g
-    gaming.url = "github:fufexan/nix-gaming";
-    gaming.inputs.nixpkgs.follows = "nixpkgs";
-    gaming.inputs.flake-parts.follows = "parts";
     garnix.url = "github:garnix-io/garnix-lib";
     garnix.inputs.nixpkgs.follows = "nixpkgs";
     generators.url = "github:nix-community/nixos-generators";
