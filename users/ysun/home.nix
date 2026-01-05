@@ -86,7 +86,6 @@ in
     nixvim
     pat
     pinentry_mac
-    inputs.ai.packages.${pkgs.stdenv.hostPlatform.system}.coderabbit-cli
     ripgrep
     stepbrobd
     yt-dlp

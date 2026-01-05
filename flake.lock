@@ -1,31 +1,5 @@
 {
   "nodes": {
-    "ai": {
-      "inputs": {
-        "blueprint": [
-          "blueprint"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "treefmt-nix": [
-          "treefmt"
-        ]
-      },
-      "locked": {
-        "lastModified": 1767537002,
-        "narHash": "sha256-EePEPSGHB4V/2I0XnDuWMWxHfuvZU/px5xCXyqb8Vbk=",
-        "owner": "numtide",
-        "repo": "nix-ai-tools",
-        "rev": "1295ca9f0f7189e4732c35a8cc67de1efb266129",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "nix-ai-tools",
-        "type": "github"
-      }
-    },
     "argononed": {
       "flake": false,
       "locked": {
@@ -650,7 +624,6 @@
     },
     "root": {
       "inputs": {
-        "ai": "ai",
         "autopilot": "autopilot",
         "blueprint": "blueprint",
         "colmena": "colmena",

@@ -53,10 +53,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # a
-    ai.url = "github:numtide/nix-ai-tools";
-    ai.inputs.nixpkgs.follows = "nixpkgs";
-    ai.inputs.blueprint.follows = "blueprint";
-    ai.inputs.treefmt-nix.follows = "treefmt";
     autopilot.url = "github:stepbrobd/autopilot";
     autopilot.inputs.nixpkgs.follows = "nixpkgs";
     autopilot.inputs.parts.follows = "parts";
