@@ -30,6 +30,12 @@ let
     };
 in
 {
+  tailscale = {
+    tailnet = "tail650e82.ts.net";
+    domain = "internal.center";
+    prefix = "center_internal_tailscale";
+  };
+
   users.ysun = newUser {
     userName = "ysun";
     fullName = "Yifei Sun";

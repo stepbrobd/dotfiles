@@ -1,10 +1,13 @@
 { lib, ... }:
 
 let
+  inherit (lib) pipe;
+  inherit (lib.blueprint) tailscale;
   inherit (lib.terranix) forZone tfRef;
 
-  for_each = tfRef "{ for d in data.tailscale_devices.all.devices : d.hostname => d }";
-  name = tfRef "each.value.hostname";
+  get_node_name = name: ''trimsuffix(${name}, ".${tailscale.tailnet}")'';
+  for_each = tfRef "{ for d in data.tailscale_devices.all.devices : ${get_node_name "d.name"} => d }";
+  name = pipe "each.value.name" [ get_node_name tfRef ];
   proxied = false;
   ipv4 = tfRef "each.value.addresses[0]";
   ipv6 = tfRef "each.value.addresses[1]";
@@ -25,18 +28,18 @@ in
   resource.tailscale_dns_search_paths.search_paths.search_paths = [
     # default, and added by default
     # ''''${data.sops_file.secrets.data["tailscale.tailnet_name"]}''
-    "internal.center" # rebind to cloudflare
+    tailscale.domain # rebind to cloudflare
   ];
 
   # cloudflare interop
-  resource.cloudflare_dns_record = forZone "internal.center" {
-    center_internal_tailscale_v4 = {
+  resource.cloudflare_dns_record = forZone tailscale.domain {
+    "${tailscale.prefix}_v4" = {
       inherit for_each name proxied;
       type = "A";
       content = ipv4;
       comment = "Tailscale IPv4 - `tailscale whois ${ipv4}`";
     };
-    center_internal_tailscale_v6 = {
+    "${tailscale.prefix}_v6" = {
       inherit for_each name proxied;
       type = "AAAA";
       content = ipv6;
