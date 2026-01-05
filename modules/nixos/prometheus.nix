@@ -169,7 +169,7 @@ in
 
     services.caddy = {
       enable = true;
-      virtualHosts."${config.networking.hostName}.tail650e82.ts.net" = {
+      virtualHosts."${config.networking.hostName}.${lib.blueprint.tailscale.tailnet}" = {
         logFormat = lib.mkForce "output discard";
         extraConfig = ''
           handle_path /prometheus/* {

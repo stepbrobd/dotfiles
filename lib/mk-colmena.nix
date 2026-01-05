@@ -31,7 +31,7 @@ in
         {
           deployment = {
             targetUser = null;
-            targetHost = "${config.networking.hostName}.tail650e82.ts.net";
+            targetHost = "${config.networking.hostName}.${lib.blueprint.tailscale.tailnet}";
           };
         }
       )

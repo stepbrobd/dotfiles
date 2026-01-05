@@ -24,8 +24,8 @@
           --html-refresh=60 \
           --addr=127.0.0.1 \
           --port=7890 \
-          --ws-url=wss://${config.networking.hostName}.tail650e82.ts.net:443/access/ws \
-          --origin="https://${config.networking.hostName}.tail650e82.ts.net" \
+          --ws-url=wss://${config.networking.hostName}.${lib.blueprint.tailscale.tailnet}:443/access/ws \
+          --origin="https://${config.networking.hostName}.${lib.blueprint.tailscale.tailnet}" \
           --geoip-database="${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb"
       '';
       ExecReload = "${lib.getExe' pkgs.coreutils "kill"} -HUP $MAINPID";
