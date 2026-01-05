@@ -1,6 +1,9 @@
 {
   services.mpd = {
     enable = true;
+
+    enableSessionVariables = false;
+
     network.listenAddress = "any";
     extraConfig = ''
       auto_update "yes"
