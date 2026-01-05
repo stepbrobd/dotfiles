@@ -95,7 +95,7 @@ let
 in
 hydra.overrideAttrs (final: prev: {
   pname = "hydra";
-  version = prev.version + "-unstable-oidc";
+  version = prev.version + "-oidc";
 
   src = fetchFromGitHub {
     owner = "ners";
