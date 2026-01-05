@@ -4,9 +4,9 @@
   plugins = {
     treesitter.enable = true;
     treesitter.folding.enable = true;
-    treesitter-context.enable = true;
-    treesitter-refactor.enable = true;
-    treesitter-textobjects.enable = true;
+    # treesitter-context.enable = true;
+    # treesitter-refactor.enable = true;
+    # treesitter-textobjects.enable = true;
   };
 
   extraPlugins = with pkgs.vimPlugins; [
