@@ -49,7 +49,7 @@ in
     serverSettings = {
       domain = "ysun.co";
       origin = "https://sso.ysun.co";
-      trust_x_forward_for = true;
+      http_client_address_info.x-forward-for = [ "::1" "127.0.0.1" ];
 
       ldapbindaddress = "[::]:636";
       bindaddress = "[::]:8443";
