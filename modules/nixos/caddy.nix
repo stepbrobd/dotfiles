@@ -24,6 +24,7 @@ in
 
       globalConfig = ''
         admin unix/${config.services.caddy.dataDir}/admin.sock
+
         # dns cloudflare {env.CF_API_TOKEN}
         # ech ech.ysun.co
 
@@ -32,6 +33,10 @@ in
           badger
           allowed_http_verbs GET HEAD
           default_cache_control no-store
+        }
+
+        cert_issuer acme {
+          profile shortlived
         }
 
         servers {
