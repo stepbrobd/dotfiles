@@ -24,6 +24,7 @@ in
         SHOW_PASSWORD_HINT = false;
         ORG_EVENTS_ENABLED = true;
         SSO_ENABLED = true;
+        SSO_PKCE = true;
       };
     };
 

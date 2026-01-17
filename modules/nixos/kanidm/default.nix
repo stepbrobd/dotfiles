@@ -34,6 +34,8 @@ in
   sops.secrets."kanidm/oauth/hydra".mode = "440";
   sops.secrets."kanidm/oauth/grafana".group = "kanidm";
   sops.secrets."kanidm/oauth/grafana".mode = "440";
+  sops.secrets."kanidm/oauth/vaultwarden".group = "kanidm";
+  sops.secrets."kanidm/oauth/vaultwarden".mode = "440";
 
   services.kanidm = {
     package = kanidm.overrideAttrs (prev: {
@@ -107,6 +109,8 @@ in
             "grafana.admins"
             "grafana.editors"
             "grafana.users"
+
+            "vaultwarden.users"
           ];
         };
       };
@@ -159,6 +163,18 @@ in
               "grafana.editors" = [ "editor" ];
             };
           };
+        };
+
+        vaultwarden = {
+          displayName = "Vaultwarden";
+          originUrl = "https://vault.ysun.co/identity/connect/oidc-signin";
+          originLanding = "https://vault.ysun.co/";
+          basicSecretFile = config.sops.secrets."kanidm/oauth/vaultwarden".path;
+          scopeMaps."vaultwarden.users" = [
+            "openid"
+            "email"
+            "profile"
+          ];
         };
       };
     };
