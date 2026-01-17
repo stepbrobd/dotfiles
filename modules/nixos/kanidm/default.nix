@@ -85,6 +85,8 @@ in
         "grafana.admins" = { };
         "grafana.editors" = { };
         "grafana.users" = { };
+
+        "vaultwarden.users" = { };
       };
 
       persons = {
