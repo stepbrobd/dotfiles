@@ -25,6 +25,7 @@ in
         ORG_EVENTS_ENABLED = true;
         SSO_ENABLED = true;
         SSO_PKCE = true;
+        SSO_SCOPES = "openid email profile";
       };
     };
 
