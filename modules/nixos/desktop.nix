@@ -107,7 +107,7 @@ in
               "-s"
               "${style}"
               "-c"
-              "Hyprland"
+              "start-hyprland"
             ];
           };
       };
