@@ -80,7 +80,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     # f
-    flakey-profile.url = "github:lf-/flakey-profile";
+    flatpak.url = "github:gmodena/nix-flatpak";
     # g
     garnix.url = "github:garnix-io/garnix-lib";
     garnix.inputs.nixpkgs.follows = "nixpkgs";
