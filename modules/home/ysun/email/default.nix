@@ -36,7 +36,7 @@
         mkpass = key: "${lib.getExe' pkgs.toybox "cat"} ${config.sops.defaultSymlinkPath}/mail/${key}/pass";
       in
       {
-        Inria = rec {
+        Inria = {
           inherit
             realName
             mbsync
@@ -46,7 +46,7 @@
             thunderbird
             ;
           address = "yifei.sun@inria.fr";
-          userName = address;
+          userName = "yisun";
           passwordCommand = mkpass "inria";
           imap = {
             host = "zimbra.inria.fr";
@@ -58,7 +58,7 @@
           };
         };
 
-        "ENS de Lyon" = rec {
+        "ENS de Lyon" = {
           inherit
             realName
             mbsync
@@ -68,7 +68,7 @@
             thunderbird
             ;
           address = "yifei.sun@ens-lyon.fr";
-          userName = address;
+          userName = "ysun05";
           passwordCommand = mkpass "ens";
           imap = {
             host = "imap.ens-lyon.fr";
@@ -80,7 +80,7 @@
           };
         };
 
-        UGA = rec {
+        UGA = {
           inherit
             realName
             mbsync
@@ -90,7 +90,7 @@
             thunderbird
             ;
           address = "yifei.sun@univ-grenoble-alpes.fr";
-          userName = address;
+          userName = "sunyif";
           passwordCommand = mkpass "uga";
           imap = {
             host = "zimbra.univ-grenoble-alpes.fr";
