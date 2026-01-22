@@ -10,8 +10,16 @@
       let
         realName = "Yifei Sun";
 
-        mbsync.enable = true;
+        mbsync = {
+          enable = true;
+          flatten = ".";
+          create = "maildir";
+          expunge = "both";
+          remove = "both";
+        };
+
         msmtp.enable = true;
+
         notmuch = {
           enable = true;
           neomutt.enable = true;
@@ -19,7 +27,7 @@
 
         neomutt = {
           enable = true;
-          mailboxType = "imap";
+          mailboxType = "maildir";
           extraMailboxes = [
             "Drafts"
             "Sent"
@@ -36,116 +44,141 @@
         mkpass = key: "${lib.getExe' pkgs.toybox "cat"} ${config.sops.defaultSymlinkPath}/mail/${key}/pass";
       in
       {
-        Inria = {
-          inherit
-            realName
-            mbsync
-            msmtp
-            notmuch
-            neomutt
-            thunderbird
-            ;
-          address = "yifei.sun@inria.fr";
-          userName = "yisun";
-          passwordCommand = mkpass "inria";
-          imap = {
-            host = "zimbra.inria.fr";
-            port = 993;
-          };
-          smtp = {
-            host = "smtp.inria.fr";
-            port = 587;
-          };
-        };
+        ENS = lib.deepMergeAttrsList [
+          {
+            inherit
+              realName
+              mbsync
+              msmtp
+              notmuch
+              neomutt
+              thunderbird
+              ;
+            address = "yifei.sun@ens-lyon.fr";
+            userName = "ysun05";
+            passwordCommand = mkpass "ens";
+            imap = {
+              host = "imap.ens-lyon.fr";
+              port = 993;
+            };
+            smtp = {
+              host = "smtp.ens-lyon.fr";
+              port = 587;
+            };
+          }
+          {
+            neomutt.mailboxName = "=== ENS de Lyon ===";
+          }
+        ];
 
-        "ENS de Lyon" = {
-          inherit
-            realName
-            mbsync
-            msmtp
-            notmuch
-            neomutt
-            thunderbird
-            ;
-          address = "yifei.sun@ens-lyon.fr";
-          userName = "ysun05";
-          passwordCommand = mkpass "ens";
-          imap = {
-            host = "imap.ens-lyon.fr";
-            port = 993;
-          };
-          smtp = {
-            host = "smtp.ens-lyon.fr";
-            port = 587;
-          };
-        };
+        Inria = lib.deepMergeAttrsList [
+          {
+            inherit
+              realName
+              mbsync
+              msmtp
+              notmuch
+              neomutt
+              thunderbird
+              ;
+            address = "yifei.sun@inria.fr";
+            userName = "yisun";
+            passwordCommand = mkpass "inria";
+            imap = {
+              host = "zimbra.inria.fr";
+              port = 993;
+            };
+            smtp = {
+              host = "smtp.inria.fr";
+              port = 587;
+            };
+          }
+          {
+            neomutt.mailboxName = "=== Inria ===";
+          }
+        ];
 
-        UGA = {
-          inherit
-            realName
-            mbsync
-            msmtp
-            notmuch
-            neomutt
-            thunderbird
-            ;
-          address = "yifei.sun@univ-grenoble-alpes.fr";
-          userName = "sunyif";
-          passwordCommand = mkpass "uga";
-          imap = {
-            host = "zimbra.univ-grenoble-alpes.fr";
-            port = 993;
-          };
-          smtp = {
-            host = "smtps.univ-grenoble-alpes.fr";
-            port = 465;
-          };
-        };
+        SoftBank = lib.deepMergeAttrsList [
+          rec {
+            inherit
+              realName
+              mbsync
+              msmtp
+              notmuch
+              neomutt
+              thunderbird
+              ;
+            address = "ysun@i.softbank.jp";
+            userName = address;
+            passwordCommand = mkpass "softbank";
+            imap = {
+              host = "imap.softbank.jp";
+              port = 993;
+            };
+            smtp = {
+              host = "smtp.softbank.jp";
+              port = 465;
+            };
+          }
+          {
+            neomutt.mailboxName = "=== SoftBank ===";
+          }
+        ];
 
-        SoftBank = rec {
-          inherit
-            realName
-            mbsync
-            msmtp
-            notmuch
-            neomutt
-            thunderbird
-            ;
-          address = "ysun@i.softbank.jp";
-          userName = address;
-          passwordCommand = mkpass "softbank";
-          imap = {
-            host = "imap.softbank.jp";
-            port = 993;
-          };
-          smtp = {
-            host = "smtp.softbank.jp";
-            port = 465;
-          };
-        };
+        StepBroBD = lib.deepMergeAttrsList [
+          rec {
+            primary = true;
+            inherit
+              realName
+              mbsync
+              msmtp
+              notmuch
+              neomutt
+              thunderbird
+              ;
+            address = "ysun@stepbrobd.com";
+            userName = address;
+            passwordCommand = mkpass "stepbrobd";
+            imap = {
+              host = "imap.purelymail.com";
+              port = 993;
+            };
+            smtp = {
+              host = "smtp.purelymail.com";
+              port = 465;
+            };
+          }
+          {
+            neomutt.mailboxName = "=== StepBroBD ===";
+          }
+        ];
 
-        StepBroBD = rec {
-          primary = true;
-          inherit
-            realName
-            mbsync
-            msmtp
-            notmuch
-            neomutt
-            thunderbird
-            ;
-          address = "ysun@stepbrobd.com";
-          userName = address;
-          passwordCommand = mkpass "stepbrobd";
-          imap = {
-            host = "imap.purelymail.com";
-            port = 993;
-          };
-          smtp = {
-            host = "smtp.purelymail.com";
-            port = 465;
-          };
-        };
+        UGA = lib.deepMergeAttrsList [
+          {
+            inherit
+              realName
+              mbsync
+              msmtp
+              notmuch
+              neomutt
+              thunderbird
+              ;
+            address = "yifei.sun@univ-grenoble-alpes.fr";
+            userName = "sunyif";
+            passwordCommand = mkpass "uga";
+            imap = {
+              host = "zimbra.univ-grenoble-alpes.fr";
+              port = 993;
+            };
+            smtp = {
+              host = "smtps.univ-grenoble-alpes.fr";
+              port = 465;
+            };
+          }
+          {
+            neomutt.mailboxName = "=== UGA ===";
+          }
+        ];
       };
   };
 
@@ -175,6 +208,13 @@
     };
 
     extraConfig = ''
+      set mail_check_stats = yes
+
+      set sidebar_sort_method = 'unsorted'
+      set sidebar_format = "%D%?F? [%F]?%* %?N?%N/?%S"
+      set sidebar_indent_string = "  "
+      set sidebar_short_path = no
+
       color normal		default default
       color index		brightblue default ~N
       color index		red default ~F
