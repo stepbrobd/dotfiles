@@ -33,7 +33,6 @@
               golink.overlays.default
               mac-style-plymouth.overlays.default
               rust-overlay.overlays.default
-              unstraightened.overlays.default
             ];
             instances = {
               pkgs = inputs.nixpkgs;
@@ -160,9 +159,6 @@
     tsnsrv.inputs.nixpkgs.follows = "nixpkgs";
     tsnsrv.inputs.flake-parts.follows = "parts";
     # u
-    unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
-    unstraightened.inputs.nixpkgs.follows = "nixpkgs";
-    unstraightened.inputs.systems.follows = "systems";
     utils.url = "github:numtide/flake-utils";
     utils.inputs.systems.follows = "systems";
     # y

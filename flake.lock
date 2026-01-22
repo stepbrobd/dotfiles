@@ -201,45 +201,6 @@
         "type": "github"
       }
     },
-    "doomemacs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1768984347,
-        "narHash": "sha256-VvC4rgAAaFnYLCdcUoz7dTE3kuBNuHIc+GlXOrPCxpg=",
-        "owner": "doomemacs",
-        "repo": "doomemacs",
-        "rev": "57818a6da90fbef39ff80d62fab2cd319496c3b9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "doomemacs",
-        "repo": "doomemacs",
-        "type": "github"
-      }
-    },
-    "emacs-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "unstraightened"
-        ],
-        "nixpkgs-stable": [
-          "unstraightened"
-        ]
-      },
-      "locked": {
-        "lastModified": 1769070831,
-        "narHash": "sha256-9JqzfhqWqSY2atAxsBMORWbp/TNNfiPfItiW7elJ8Ds=",
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "rev": "8c8fc84826921c8146fba102574e91f3d605d03d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "emacs-overlay",
-        "type": "github"
-      }
-    },
     "flatpak": {
       "locked": {
         "lastModified": 1768656715,
@@ -678,7 +639,6 @@
         "terranix": "terranix",
         "treefmt": "treefmt",
         "tsnsrv": "tsnsrv",
-        "unstraightened": "unstraightened",
         "utils": "utils",
         "ysun": "ysun"
       }
@@ -905,31 +865,6 @@
       "original": {
         "owner": "boinkor-net",
         "repo": "tsnsrv",
-        "type": "github"
-      }
-    },
-    "unstraightened": {
-      "inputs": {
-        "doomemacs": "doomemacs",
-        "emacs-overlay": "emacs-overlay",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": [
-          "systems"
-        ]
-      },
-      "locked": {
-        "lastModified": 1769071968,
-        "narHash": "sha256-P+RuimrEk2jmkXpJuy1wS+ih6eMdjAm7YiN8Q9g9xhY=",
-        "owner": "marienz",
-        "repo": "nix-doom-emacs-unstraightened",
-        "rev": "d9761c3ab2cec2579bfcfb8249e59b324d2a1df4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "marienz",
-        "repo": "nix-doom-emacs-unstraightened",
         "type": "github"
       }
     },
