@@ -104,9 +104,6 @@
     hm.inputs.nixpkgs.follows = "nixpkgs";
     # hydra.url = "github:ners/hydra/oidc";
     # hydra.inputs.nixpkgs.follows = "nixpkgs";
-    # i
-    index.url = "github:nix-community/nix-index-database";
-    index.inputs.nixpkgs.follows = "nixpkgs";
     # l
     lanzaboote.url = "github:nix-community/lanzaboote/v1.0.0";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
