@@ -62,7 +62,6 @@ in
     monocle
     nix-output-monitor
     nixvim
-    obsidian
     (osu-lazer-bin.override { nativeWayland = true; })
     pat
     pinentry-all
