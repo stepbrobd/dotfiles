@@ -60,6 +60,7 @@ in
     epiphany
     gitleaks
     monocle
+    mpv
     nix-output-monitor
     nixvim
     obs-studio
@@ -68,7 +69,6 @@ in
     remmina
     ripgrep
     slack
-    smplayer
     stepbrobd
     yt-dlp
     zotero
