@@ -103,6 +103,7 @@ in
 
   environment.systemPackages = with pkgs; [
     alacritty.terminfo
+    file
     inputs.sweep.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
