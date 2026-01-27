@@ -62,8 +62,8 @@ in
     monocle
     nix-output-monitor
     nixvim
+    obs-studio
     (osu-lazer-bin.override { nativeWayland = true; })
-    pat
     pinentry-all
     remmina
     ripgrep
@@ -83,7 +83,6 @@ in
     monocle
     nix-output-monitor
     nixvim
-    pat
     pinentry_mac
     ripgrep
     stepbrobd
