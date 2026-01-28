@@ -71,7 +71,7 @@ visibility = "public"
 archived = false
 
 [repo."fosdem"]
-description = "fosdem '26 stuff";
+description = "fosdem '26 stuff"
 visibility = "public"
 archived = false
 
