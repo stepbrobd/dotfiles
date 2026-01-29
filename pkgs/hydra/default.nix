@@ -6,6 +6,7 @@
 , pkgsPrev ? pkgs
 , lib
 , fetchFromGitHub
+, fetchpatch2
 , buildEnv
 , git
 , nix
@@ -104,6 +105,11 @@ hydra.overrideAttrs (final: prev: {
     hash = "sha256-Mhi3avp4xUcs73WRXm/sSmrBdfCAHDFaBZxuKA/9DCs=";
   };
 
+  patches = [(fetchpatch2 {
+    url = "https://github.com/ners/hydra/compare/a9c16a19518a238d74fce789e27dd166ef7058b1...8bc95a96f787eb36f29ceec773f5bf48bd121097.patch";
+    hash = "sha256-WG5ddG3lgHz426knXCcMvk/Rl/IeOhnwS+luQpWZ9XU=";
+  })];
+
   buildInputs = prev.buildInputs ++ [ perlDeps ];
 
   postInstall = ''
@@ -122,7 +128,4 @@ hydra.overrideAttrs (final: prev: {
   '';
 
   dontStrip = true;
-
-  # bruh idk what's going on but disable test first
-  doCheck = false;
 })
