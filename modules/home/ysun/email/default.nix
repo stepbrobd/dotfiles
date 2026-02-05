@@ -193,7 +193,7 @@
   programs.notmuch.enable = true;
 
   programs.thunderbird = {
-    enable = true;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     profiles.Default.isDefault = true;
   };
 
