@@ -18,7 +18,7 @@ in
     userDirs = {
       enable = true;
       createDirectories = true;
-      extraConfig.XDG_WORKSPACE_DIR = "${config.home.homeDirectory}/Workspace";
+      extraConfig.WORKSPACE = "${config.home.homeDirectory}/Workspace";
     };
     mimeApps = rec {
       enable = true;
