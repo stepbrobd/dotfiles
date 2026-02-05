@@ -14,12 +14,13 @@ in
 
   xdg = {
     enable = true;
-  } // lib.optionalAttrs pkgs.stdenv.isLinux {
     userDirs = {
       enable = true;
+      setSessionVariables = true;
       createDirectories = true;
       extraConfig.WORKSPACE = "${config.home.homeDirectory}/Workspace";
     };
+  } // lib.optionalAttrs pkgs.stdenv.isLinux {
     mimeApps = rec {
       enable = true;
       associations.added = defaultApplications;
