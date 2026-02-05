@@ -70,9 +70,10 @@ in
     ripgrep
     slack
     stepbrobd
+    wl-clipboard
     yt-dlp
-    zotero
     zoom-us
+    zotero
   ])
     # darwin only
     ++ (lib.optionals pkgs.stdenv.isDarwin [
