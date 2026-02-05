@@ -25,6 +25,10 @@
           neomutt.enable = true;
         };
 
+        himalaya = {
+          enable = true;
+        };
+
         neomutt = {
           enable = true;
           mailboxType = "maildir";
@@ -52,6 +56,7 @@
               msmtp
               notmuch
               neomutt
+              himalaya
               thunderbird
               ;
             address = "yifei.sun@ens-lyon.fr";
@@ -79,6 +84,7 @@
               msmtp
               notmuch
               neomutt
+              himalaya
               thunderbird
               ;
             address = "yifei.sun@inria.fr";
@@ -106,6 +112,7 @@
               msmtp
               notmuch
               neomutt
+              himalaya
               thunderbird
               ;
             address = "ysun@i.softbank.jp";
@@ -134,6 +141,7 @@
               msmtp
               notmuch
               neomutt
+              himalaya
               thunderbird
               ;
             address = "ysun@stepbrobd.com";
@@ -161,6 +169,7 @@
               msmtp
               notmuch
               neomutt
+              himalaya
               thunderbird
               ;
             address = "yifei.sun@univ-grenoble-alpes.fr";
@@ -191,6 +200,12 @@
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
   programs.notmuch.enable = true;
+  programs.himalaya = {
+    enable = true;
+    package = pkgs.himalaya.override {
+      withFeatures = lib.optionals config.programs.notmuch.enable [ "notmuch" ];
+    };
+  };
 
   programs.thunderbird = {
     enable = pkgs.stdenv.hostPlatform.isLinux;
