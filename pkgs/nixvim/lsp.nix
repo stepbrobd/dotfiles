@@ -38,7 +38,7 @@
   };
 
   # Markdown
-  plugins.lsp.servers.marksman.enable = true;
+  plugins.lsp.servers.markdown_oxide.enable = true;
 
   # Nix
   plugins.lsp.servers.nil_ls.enable = true;
