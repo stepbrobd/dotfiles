@@ -100,6 +100,11 @@ description = "the only source of truth"
 visibility = "private"
 archived = false
 
+[repo."multikernel"]
+description = "multikernel test"
+visibility = "public"
+archived = false
+
 [repo."nixology"]
 description = "all about nix"
 visibility = "public"
