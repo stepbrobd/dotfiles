@@ -25,7 +25,6 @@ in
     # golink
     "go"
     # untagged
-    "air"
     "framework"
     "iphone"
     "macbook"
