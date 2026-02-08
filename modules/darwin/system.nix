@@ -31,7 +31,6 @@
       ];
   };
 
-
   environment.systemPackages = [ pkgs.iproute2mac ];
 
   networking.applicationFirewall = {
@@ -54,6 +53,15 @@
       wvous-br-corner = 1;
       wvous-tl-corner = 1;
       wvous-tr-corner = 1;
+      # check home-manager modules and homebrew config first
+      # before adding/removing here
+      persistent-apps = [
+        "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
+        "/Applications/HEY.app"
+        "/System/Applications/Mail.app"
+        "/System/Applications/Calendar.app"
+        "/System/Applications/Reminders.app"
+      ];
     };
 
     finder = {
