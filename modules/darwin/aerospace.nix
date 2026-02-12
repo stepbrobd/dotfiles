@@ -26,7 +26,7 @@
         "7" = "secondary";
         "8" = "secondary";
         "9" = "secondary";
-        "0" = "secondary";
+        "10" = "secondary";
       };
 
       mode.main.binding = {
