@@ -62,6 +62,63 @@
         "cmd-ctrl-9" = "move-node-to-workspace 9";
         "cmd-ctrl-0" = "move-node-to-workspace 10";
       };
+
+      on-window-detected = [
+        # workspace 1
+        {
+          "if".app-id = "org.alacritty";
+          run = "move-node-to-workspace 1";
+        }
+        # workspace 2
+        {
+          "if".app-id = "com.apple.Safari";
+          run = "move-node-to-workspace 2";
+        }
+        # workspace 3
+        {
+          "if".app-id = "com.hey.app.desktop";
+          run = "move-node-to-workspace 3";
+        }
+        {
+          "if".app-id = "com.apple.mail";
+          run = "move-node-to-workspace 3";
+        }
+        # workspace 4
+        {
+          "if".app-id = "com.apple.iCal";
+          run = "move-node-to-workspace 4";
+        }
+        {
+          "if".app-id = "com.apple.reminders";
+          run = "move-node-to-workspace 4";
+        }
+        # workspace 5
+        {
+          "if".app-id = "com.apple.Music";
+          run = "move-node-to-workspace 5";
+        }
+        {
+          "if".app-id = "com.automattic.beeper.desktop";
+          run = "move-node-to-workspace 5";
+        }
+        {
+          "if".app-id = "com.hnc.Discord";
+          run = "move-node-to-workspace 5";
+        }
+        # floating
+        {
+          "if".app-id = "com.apple.systempreferences";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.apple.Passwords";
+          run = "layout floating";
+        }
+        {
+          "if".app-id = "com.apple.finder";
+          run = "layout floating";
+        }
+      ];
     };
   };
 }
