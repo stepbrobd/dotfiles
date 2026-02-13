@@ -135,7 +135,7 @@
     schemas.url = "github:determinatesystems/flake-schemas";
     sops.url = "github:mic92/sops-nix";
     sops.inputs.nixpkgs.follows = "nixpkgs";
-    srvos.url = "github:nix-community/srvos";
+    srvos.url = "github:nix-community/srvos/pull/765/merge";
     srvos.inputs.nixpkgs.follows = "nixpkgs";
     std.url = "github:chessai/nix-std";
     sweep.url = "github:jzbor/nix-sweep";
