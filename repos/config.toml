@@ -1,6 +1,6 @@
 [general]
 home = "~/Workspace"
-concurrency = 1
+
 [general.env]
 "GIT_SSH_COMMAND" = "ssh -o TcpKeepAlive=no -o ServerAliveInterval=10"
 
