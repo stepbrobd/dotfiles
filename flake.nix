@@ -117,6 +117,10 @@
     mac-style-plymouth.url = "github:sergioribera/s4rchiso-plymouth-theme";
     mac-style-plymouth.inputs.nixpkgs.follows = "nixpkgs";
     mac-style-plymouth.inputs.flake-utils.follows = "utils";
+    miroir.url = "github:stepbrobd/miroir";
+    miroir.inputs.nixpkgs.follows = "nixpkgs";
+    miroir.inputs.parts.follows = "parts";
+    miroir.inputs.systems.follows = "systems";
     # n
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";

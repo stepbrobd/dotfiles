@@ -60,6 +60,7 @@ in
     discord # (discord.override { withEquicord = true; }) nixpkgs#430391
     epiphany
     gitleaks
+    miroir
     monocle
     mpv
     nix-output-monitor
@@ -82,6 +83,7 @@ in
     cocoapods
     comma
     gitleaks
+    miroir
     monocle
     nix-output-monitor
     nixvim

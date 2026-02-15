@@ -457,6 +457,32 @@
         "type": "github"
       }
     },
+    "miroir": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "parts": [
+          "parts"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771176306,
+        "narHash": "sha256-KpHhzh6Qf6S4lTlNE0FodKCCaOIcml2reKyKAZfSYic=",
+        "owner": "stepbrobd",
+        "repo": "miroir",
+        "rev": "225051f4531541e4f7ed3010817d2b2e0f988035",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stepbrobd",
+        "repo": "miroir",
+        "type": "github"
+      }
+    },
     "nixos-images": {
       "inputs": {
         "nixos-stable": [
@@ -568,6 +594,7 @@
         "index": "index",
         "lanzaboote": "lanzaboote",
         "mac-style-plymouth": "mac-style-plymouth",
+        "miroir": "miroir",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "parts": "parts",
