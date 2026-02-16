@@ -5,6 +5,7 @@
     minimal
     nix
 
+    agents
     alacritty
     ani
     attic
@@ -29,7 +30,6 @@
     neovide
     # nh
     # nushell # imported in minimal
-    opencode
     openconnect
     openvpn
     ssh
