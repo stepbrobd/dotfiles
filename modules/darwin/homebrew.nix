@@ -52,8 +52,6 @@
 
       # "lulu" # removed cause too annoying
 
-      "airbuddy"
-      "aldente"
       "beeper"
       "betterdisplay"
       "container"
@@ -62,7 +60,6 @@
       "hey-desktop"
       "kindavim"
       "loop"
-      "mullvad-vpn"
       "notchnook"
       "obs"
       "orion"
