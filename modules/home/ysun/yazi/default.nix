@@ -3,6 +3,7 @@
 {
   programs.yazi = {
     enable = true;
+    shellWrapperName = "yy";
 
     plugins = with pkgs.yaziPlugins; {
       inherit full-border git nord yatline;
