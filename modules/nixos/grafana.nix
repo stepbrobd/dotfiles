@@ -94,6 +94,10 @@ in
           csrf_trusted_origins = [ "https://ysun.co" "https://*.ysun.co" ];
           disable_initial_admin_creation = true;
           hide_version = true;
+          # for whatever reason smth else is accessing this field
+          # https://search.nixos.org/options?channel=unstable&query=services.grafana.settings.security.secret_key
+          # grafana#115676 nixpkgs#484374
+          secret_key = "ae6ca9701d1ee89b6c17973f88357704ba161e2e76d70fd34b652d2e47329db7";
         };
 
         users = {
