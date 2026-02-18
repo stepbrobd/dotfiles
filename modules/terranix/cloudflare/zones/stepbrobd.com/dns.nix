@@ -29,7 +29,7 @@ in
         type = "TXT";
         proxied = false;
         name = "@";
-        content = ''"openai-domain-verification=dv-DYE0c3pKC8HodeEvjkCjBrUK"'';
+        content = ''"openai-domain-verification=dv-JvUlthuUbYFfiymxstPINpHg"'';
         comment = "OpenAI - Domain Verification";
       };
 
