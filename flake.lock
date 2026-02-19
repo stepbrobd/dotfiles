@@ -700,16 +700,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1771473745,
+        "lastModified": 1771501715,
         "narHash": "sha256-U0P7KvlJZ3XLB8DhwnISmc5xEQWj9p9shRmCWAgT94k=",
         "owner": "nix-community",
         "repo": "srvos",
-        "rev": "0301e232997d85a1dd43bc1a5cbdf6d4e088cfb0",
+        "rev": "4744487ba359133ac2b04ea49aa0eb90841b8c67",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "pull/765/merge",
         "repo": "srvos",
         "type": "github"
       }
@@ -783,11 +782,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762472226,
-        "narHash": "sha256-iVS4sxVgGn+T74rGJjEJbzx+kjsuaP3wdQVXBNJ79A0=",
+        "lastModified": 1771504637,
+        "narHash": "sha256-qPYBCcvws0cqVf4blYyxQ6JNxOdvUPK41s2sfqk6wL0=",
         "owner": "terranix",
         "repo": "terranix",
-        "rev": "3b5947a48da5694094b301a3b1ef7b22ec8b19fc",
+        "rev": "f3d77064bd135823a30916a1e63b90b7fe4453ac",
         "type": "github"
       },
       "original": {
