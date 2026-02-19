@@ -281,6 +281,11 @@ description = "forked from torvalds/linux"
 visibility = "public"
 archived = false
 
+[repo."monocle"]
+description = "forked from bgpkit/monocle"
+visibility = "public"
+archived = false
+
 [repo."ngipkgs"]
 description = "forked from ngi-nix/ngipkgs"
 visibility = "public"
