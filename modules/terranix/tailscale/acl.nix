@@ -116,7 +116,7 @@ in
 
       nodeAttrs = [
         # test https://github.com/tailscale/tailscale/issues/18758
-        { target = [ "*" ]; app."tailscale.com/cap/fw-drop" = [ "100.64.0.0/10" ]; }
+        # { target = [ "*" ]; app."tailscale.com/cap/fw-drop" = [ "100.64.0.0/10" ]; }
         # see above
         # in tailscale/tailcfg/tailcfg.go:
         # NodeAttrOneCGNATEnable NodeCapability = "one-cgnat?v=false"
