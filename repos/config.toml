@@ -370,3 +370,8 @@ archived = false
 description = "forked from verus-lang/verus"
 visibility = "public"
 archived = false
+
+[repo."vmlinux.h"]
+description = "forked from libbpf/vmlinux.h"
+visibility = "public"
+archived = false
