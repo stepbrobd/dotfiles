@@ -15,10 +15,12 @@
 
     extraConfig = "\n" + ''
       Host g5k
+        WarnWeakCrypto no
         User yisun
         Hostname access.grid5000.fr
 
       Host *.g5k
+        WarnWeakCrypto no
         User yisun
         ProxyCommand sh -c 'ssh g5k -W "$(basename %h .g5k):%p"'
     ''
