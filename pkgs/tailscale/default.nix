@@ -19,8 +19,8 @@
   src = fetchFromGitHub {
     owner = "stepbrobd";
     repo = "tailscale";
-    rev = "10190106b083efd12e411484bdd8d1d48da36422";
-    hash = "sha256-MCsI1EZxg/5pSi+PjBPdIPooaFYjjbnW6nOrMbc1ePM=";
+    rev = "ce2ef6937fea38860917b3d42f7fd9293c9aff63";
+    hash = "sha256-CeCxizOzddUJJqZMzcMF5gtaRGkS9o+/Mh+wvbGPtOk=";
   };
 
   vendorHash = "sha256-4orp8iQekVbhCFpt7DXLvj6dediKxo1qkWr1oe7+RaE=";

@@ -27,4 +27,4 @@ jobs:
         with:
           pr-reviewers: stepbrobd
           packages: "check-if-email-exists,migrate-matrix,nu_plugin_dns,verus"
-          blacklist: "alacritty,caddy,hydra,jitsi-meet,mac-app-util,miroir,neovide,nixvim,pixelmplus,ripe-atlas-software-probe,san-francisco,spotify,stepbrobd,treesitter-coq-grammar"
+          blacklist: "alacritty,caddy,hydra,jitsi-meet,mac-app-util,miroir,neovide,nixvim,pixelmplus,ripe-atlas-software-probe,san-francisco,spotify,stepbrobd,tailscale,treesitter-coq-grammar"
