@@ -50,6 +50,8 @@ in
       keep-failed = true;
       keep-going = true;
       keep-outputs = true;
+      narinfo-cache-negative-ttl = 3600;
+      narinfo-cache-positive-ttl = 3600;
       use-xdg-base-directories = true;
       warn-dirty = false;
 
