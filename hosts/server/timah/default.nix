@@ -23,8 +23,8 @@
 
   # temporary workaround for
   # https://github.com/tailscale/tailscale/issues/1381
-  services.tailscale.package = pkgs.tailscale.overrideAttrs (prev: {
-    patches = (prev.patches or [ ]) ++ [ ./tailscale-cgnat.patch ];
-    doCheck = false;
-  });
+  # services.tailscale.package = pkgs.tailscale.overrideAttrs (prev: {
+  #   patches = (prev.patches or [ ]) ++ [ ./tailscale-cgnat.patch ];
+  #   doCheck = false;
+  # });
 }

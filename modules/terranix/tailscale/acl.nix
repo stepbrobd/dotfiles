@@ -116,6 +116,10 @@ in
 
       nodeAttrs = [
         # test https://github.com/tailscale/tailscale/issues/18758
+        # and  https://github.com/tailscale/tailscale/pull/18781
+        # on timah, allow upstream router packets and drop cgnat range o.w.
+        { target = [ "100.100.20.5" ]; app."ysun.co/tscgnat" = [{ cidr = "100.100.0.0/32"; chain = "both"; verdict = "accept"; } { cidr = "100.64.0.0/10"; chain = "both"; verdict = "drop"; }]; }
+        # for other nodes just drop all cgnat range
         { target = [ "*" ]; app."ysun.co/tscgnat" = [{ cidr = "100.64.0.0/10"; chain = "both"; verdict = "drop"; }]; }
         # see above
         # in tailscale/tailcfg/tailcfg.go:
