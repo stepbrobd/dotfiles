@@ -116,7 +116,7 @@ in
 
       nodeAttrs = [
         # test https://github.com/tailscale/tailscale/issues/18758
-        { target = [ "*" ]; app."cgnat-rules" = [{ cidr = "100.64.0.0/10"; chain = "both"; verdict = "drop"; }]; }
+        { target = [ "*" ]; app."ysun.co/tscgnat" = [{ cidr = "100.64.0.0/10"; chain = "both"; verdict = "drop"; }]; }
         # see above
         # in tailscale/tailcfg/tailcfg.go:
         # NodeAttrOneCGNATEnable NodeCapability = "one-cgnat?v=false"
