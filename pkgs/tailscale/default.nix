@@ -19,7 +19,7 @@
   src = fetchFromGitHub {
     owner = "stepbrobd";
     repo = "tailscale";
-    rev = "ce2ef6937fea38860917b3d42f7fd9293c9aff63";
+    rev = "a6aa6c4bf10f24ef731c1ed3998ca8390684e361";
     hash = "sha256-CeCxizOzddUJJqZMzcMF5gtaRGkS9o+/Mh+wvbGPtOk=";
   };
 
