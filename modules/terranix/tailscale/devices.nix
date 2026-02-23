@@ -22,6 +22,8 @@ in
     "lagern"
     "odake"
     "walberla"
+    # aperture
+    "aperture"
     # golink
     "go"
     # untagged

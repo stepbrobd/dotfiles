@@ -8,6 +8,8 @@ let
     routee = "tag:routee";
     router = "tag:router";
     server = "tag:server";
+    # alpha: https://aperture.tailscale.com
+    aperture = "tag:aperture";
   };
 
   autogroup = {
@@ -31,6 +33,7 @@ in
 
     acl = lib.toJSON {
       tagOwners = {
+        ${tag.aperture} = [ autogroup.admin ];
         ${tag.golink} = [ autogroup.admin ];
         ${tag.routee} = [ autogroup.admin ];
         ${tag.router} = [ autogroup.admin ];
@@ -54,7 +57,7 @@ in
         # their own devices, golink, and exit nodes
         {
           src = [ autogroup.member ];
-          dst = [ autogroup.self tag.golink autogroup.internet ];
+          dst = [ autogroup.self tag.aperture tag.golink autogroup.internet ];
           ip = [ "*" ];
         }
         # devices shared outside with other ppl
@@ -129,7 +132,7 @@ in
         # 100.100.20.0/24 reserved for devices that are shared into my tailnet
         { target = with tag; [ routee router ]; ipPool = [ "100.100.20.0/24" ]; }
         { target = [ tag.server ]; ipPool = [ "100.100.30.0/24" ]; }
-        { target = [ tag.golink ]; ipPool = [ "100.100.40.0/24" ]; }
+        { target = [ tag.aperture tag.golink ]; ipPool = [ "100.100.40.0/24" ]; }
         { target = [ autogroup.admin self.email ]; ipPool = [ "100.100.50.0/24" ]; }
       ];
 
