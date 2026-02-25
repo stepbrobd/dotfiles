@@ -2,12 +2,11 @@
 
 let
   inherit (config.security.acme.certs."sso.ysun.co") directory;
-  kanidm = pkgs.kanidmWithSecretProvisioning_1_8;
 in
 {
   networking.firewall.allowedTCPPorts = [ 636 ];
 
-  environment.systemPackages = [ kanidm ];
+  environment.systemPackages = [ pkgs.kanidm ];
 
   services.caddy = {
     enable = true;
@@ -38,17 +37,11 @@ in
   sops.secrets."kanidm/oauth/vaultwarden".mode = "440";
 
   services.kanidm = {
-    package = kanidm.overrideAttrs (prev: {
-      # the patch probably only need to inject plausible script now
-      # but lets just leave private cache and csp as is in there
-      patches = prev.patches ++ [ ./custom-deployment.patch ];
-    });
+    client.enable = true;
+    client.settings.uri = config.services.kanidm.server.settings.origin;
 
-    enableClient = true;
-    clientSettings.uri = config.services.kanidm.serverSettings.origin;
-
-    enableServer = true;
-    serverSettings = {
+    server.enable = true;
+    server.settings = {
       domain = "ysun.co";
       origin = "https://sso.ysun.co";
       http_client_address_info.x-forward-for = [ "::1" "127.0.0.1" ];
