@@ -31,6 +31,7 @@
             overlays = with inputs; [
               self.overlays.default
               golink.overlays.default
+              llm.overlays.default
               mac-style-plymouth.overlays.default
               rust-overlay.overlays.default
             ];
@@ -113,6 +114,10 @@
     lanzaboote.inputs.crane.follows = "crane";
     lanzaboote.inputs.rust-overlay.follows = "rust-overlay";
     lanzaboote.inputs.pre-commit.follows = "";
+    llm.url = "github:numtide/llm-agents.nix";
+    llm.inputs.nixpkgs.follows = "nixpkgs";
+    llm.inputs.blueprint.follows = "blueprint";
+    llm.inputs.treefmt-nix.follows = "treefmt";
     # m
     mac-style-plymouth.url = "github:sergioribera/s4rchiso-plymouth-theme";
     mac-style-plymouth.inputs.nixpkgs.follows = "nixpkgs";

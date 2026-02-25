@@ -434,6 +434,32 @@
         "type": "github"
       }
     },
+    "llm": {
+      "inputs": {
+        "blueprint": [
+          "blueprint"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "treefmt-nix": [
+          "treefmt"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772018984,
+        "narHash": "sha256-zEBBywm3jejYx2qdaqyKrEUsDWJ1/A2MOYj+1B369HM=",
+        "owner": "numtide",
+        "repo": "llm-agents.nix",
+        "rev": "63e1401b46fb1e4de8bf3a4fb6ef371e4dace96c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "llm-agents.nix",
+        "type": "github"
+      }
+    },
     "mac-style-plymouth": {
       "inputs": {
         "flake-utils": [
@@ -593,6 +619,7 @@
         "hm": "hm",
         "index": "index",
         "lanzaboote": "lanzaboote",
+        "llm": "llm",
         "mac-style-plymouth": "mac-style-plymouth",
         "miroir": "miroir",
         "nixpkgs": "nixpkgs",

@@ -5,7 +5,6 @@
     minimal
     nix
 
-    agents
     alacritty
     ani
     attic
@@ -24,6 +23,7 @@
     # hyprland # linux only
     jujutsu
     lazygit
+    llm
     lsd
     man
     # mpd # linux only
