@@ -7,13 +7,12 @@
     enable = true;
     lspServersToEnable = "all";
   };
-  # plugins.none-ls = {
-  #   enable = true;
-  #   enableLspFormat = true;
-  # };
 
   # C/C++
-  plugins.lsp.servers.clangd.enable = true;
+  plugins.lsp.servers.clangd = {
+    enable = true;
+    package = null;
+  };
 
   # Coq
   plugins.lsp.servers.coq_lsp = {
@@ -22,18 +21,32 @@
   };
 
   # Go
-  plugins.lsp.servers.gopls.enable = true;
+  plugins.lsp.servers.gopls = {
+    enable = true;
+    package = null;
+  };
 
   # HTML/JS/TS/CSS
-  plugins.lsp.servers.cssls.enable = true;
+  plugins.lsp.servers.cssls = {
+    enable = true;
+    package = null;
+  };
   plugins.lsp.servers.denols = {
     enable = true;
+    package = null;
     extraOptions.root_dir = "require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')";
   };
-  plugins.lsp.servers.html.enable = true;
-  plugins.lsp.servers.tailwindcss.enable = true;
+  plugins.lsp.servers.html = {
+    enable = true;
+    package = null;
+  };
+  plugins.lsp.servers.tailwindcss = {
+    enable = true;
+    package = null;
+  };
   plugins.lsp.servers.ts_ls = {
     enable = true;
+    package = null;
     extraOptions.root_dir = "require('lspconfig').util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')";
   };
 
@@ -41,27 +54,36 @@
   plugins.lsp.servers.markdown_oxide.enable = true;
 
   # Nix
+  plugins.nix.enable = true;
+  plugins.nix-develop.enable = true;
   plugins.lsp.servers.nil_ls.enable = true;
   plugins.lsp.servers.nixd = {
     enable = true;
     extraOptions.offset_encoding = "utf-8"; # nixvim#2390
   };
-  plugins.nix.enable = true;
-  plugins.nix-develop.enable = true;
 
   # OCaml
-  plugins.lsp.servers.ocamllsp.enable = true;
+  plugins.lsp.servers.ocamllsp = {
+    package = null;
+    enable = true;
+  };
 
   # Python
-  plugins.lsp.servers.pyright.enable = true;
   plugins.lsp.servers.ruff.enable = true;
+  plugins.lsp.servers.pyright = {
+    enable = true;
+    package = null;
+  };
 
   # Shell
   plugins.lsp.servers.bashls.enable = true;
   plugins.lsp.servers.nushell.enable = true;
 
   # SMT2
-  plugins.lsp.servers.dolmenls.enable = true;
+  plugins.lsp.servers.dolmenls = {
+    enable = true;
+    package = null;
+  };
 
   # Spelling
   plugins.lsp.servers.typos_lsp = {
@@ -70,11 +92,11 @@
   };
 
   # TeX
-  plugins.lsp.servers.ltex.enable = true;
+  plugins.lsp.servers.ltex = {
+    enable = true;
+    package = null;
+  };
 
   # Typst
   plugins.lsp.servers.tinymist.enable = true;
-
-  # YAML
-  plugins.lsp.servers.yamlls.enable = true;
 }
