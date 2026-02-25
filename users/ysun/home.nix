@@ -73,9 +73,9 @@ in
     slack
     stepbrobd
     wl-clipboard
-    yt-dlp
     zoom-us
     zotero
+    # yt-dlp
   ])
     # darwin only
     ++ (lib.optionals pkgs.stdenv.isDarwin [
@@ -90,7 +90,7 @@ in
     pinentry_mac
     ripgrep
     stepbrobd
-    yt-dlp
+    # yt-dlp
   ]);
 
   home.activation.hushlogin = lib.hm.dag.entryAnywhere ''
