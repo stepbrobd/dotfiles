@@ -13,7 +13,8 @@
 
   programs.claude-code = {
     enable = true;
-    package = pkgs.llm-agents.claude-code;
+    # __noChroot is set causing garnix build failure
+    # package = pkgs.llm-agents.claude-code;
   };
 
   programs.codex = {
