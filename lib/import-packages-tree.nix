@@ -13,6 +13,7 @@ let
     childDirsWithDefault
     fix
     hasAttrByPath
+    isAttrs
     importPackagesTree
     isDerivation
     isFunction
@@ -33,32 +34,49 @@ mkDynamicAttrs (
         pkgs: pkg: args:
         let
           scopeName = baseNameOf pkg;
-          hasScopeAttr = hasAttrByPath [ scopeName ] currentPrev;
-          scopeValue = if hasScopeAttr then currentPrev.${scopeName} else null;
-          hasOverrideScope = hasScopeAttr && hasAttrByPath [ scopeName "overrideScope" ] currentPrev;
-          hasExtend = hasScopeAttr && hasAttrByPath [ scopeName "extend" ] currentPrev;
-
           hasDefaultNix = pathExists (pkg + "/default.nix");
           childScopeNames = if !hasDefaultNix then childDirsWithDefault pkg else [ ];
           hasChildScopes = length childScopeNames > 0;
 
+          # lazy eval, only touch currentPrev when the local package path has no default.nix and guard alias throws with tryEval
+          hasScopeAttr = !hasDefaultNix && hasAttrByPath [ scopeName ] currentPrev;
+          scopeEval =
+            if hasScopeAttr then
+              builtins.tryEval currentPrev.${scopeName}
+            else
+              {
+                success = false;
+                value = null;
+              };
+          hasScopeValue = scopeEval.success;
+          scopeValue = if hasScopeValue then scopeEval.value else null;
+          hasOverrideScope = hasScopeValue && isAttrs scopeValue && scopeValue ? overrideScope;
+          hasExtend = hasScopeValue && isAttrs scopeValue && scopeValue ? extend;
+
           # note that some scopes expose extend rather than overrideScope, e.g. haskellPackages
-          isScope = hasScopeAttr && !isDerivation scopeValue && (hasOverrideScope || hasExtend);
+          isScope = hasScopeValue && isAttrs scopeValue && !isDerivation scopeValue && (hasOverrideScope || hasExtend);
           scopeOverride =
             if hasOverrideScope then
               scopeValue.overrideScope
             else
               scopeValue.extend;
         in
-        # case 1: the imported dir is an existing scope in currentPrev
-          # i've decided that having a entry point for scoped pkgs to override arguments used
-          # is a antipattern, injecting root level pkgsPrev and pkgsFinal with scope level
-          # fixedpoints is a better idea
-        if isScope then
-          if hasDefaultNix then
-            throw "scope ${scopeName} must not define default.nix"
+        if hasDefaultNix then
+          let
+            imported = import pkg;
+          in
+          # case 1: local package/default.nix always wins over currentPrev attrs
+          if !isFunction imported then
+            imported
           else
-            scopeOverride (
+            (pkgs.lib.callPackageWith pkgs) pkg args
+        # case 2: the imported dir is an existing scope in currentPrev
+        # i've decided that having a entry point for scoped pkgs to override arguments used
+        # is a antipattern, injecting root level pkgsPrev and pkgsFinal with scope level
+        # fixedpoints is a better idea
+        else if isScope then
+          scopeOverride
+            (
               scopeFinal: scopePrev:
               let
                 inheritedScopeArgs = inheritedArgs // {
@@ -74,8 +92,8 @@ mkDynamicAttrs (
                 inheritedArgs = inheritedScopeArgs;
               }
             )
-        # case 2: local scope (no default.nix, but has child dirs with default.nix)
-        else if !hasDefaultNix && hasChildScopes then
+        # case 3: local scope (no default.nix, but has child dirs with default.nix)
+        else if hasChildScopes then
           makeScope callPackageWith
             (
               localScopeFinal:
@@ -94,19 +112,9 @@ mkDynamicAttrs (
               }
             )
         # bail if not scope and does not have default.nix
-        else if !hasDefaultNix then
+        else
           throw
             "path ${toString pkg} has no default.nix and is not a scope"
-        else
-          let
-            imported = import pkg;
-          in
-          # case 3: the imported dir default.nix file is a flat attrset
-          if !isFunction imported then
-            imported
-          # case 4: the imported dir default.nix is a derivation/function
-          else
-            (pkgs.lib.callPackageWith pkgs) pkg args
       )
         (
           # always expose top-level package args (e.g. fetchgit) and then scope args
