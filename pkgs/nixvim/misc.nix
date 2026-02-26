@@ -1,11 +1,12 @@
-{ pkgs, ... }:
-
 {
   viAlias = false;
   vimAlias = false;
   wrapRc = true;
-  withRuby = true;
-  withNodeJs = true;
+
+  withNodeJs = false;
+  withPerl = false;
+  withPython3 = false;
+  withRuby = false;
 
   luaLoader.enable = true;
   performance.byteCompileLua = {
