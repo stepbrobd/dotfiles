@@ -1,12 +1,14 @@
 { lib, ... }:
 
-let
-  inherit (lib) attrNames genAttrs pipe readDir;
-in
 {
-  perSystem = { pkgs, ... }: {
-    packages = genAttrs
-      (pipe ../../pkgs [ readDir attrNames ])
-      (name: pkgs.${name});
-  };
+  perSystem =
+    { pkgs, ... }:
+    rec {
+      legacyPackages = lib.localPackagesFrom {
+        dir = ../../pkgs;
+        scope = pkgs;
+      };
+
+      packages = legacyPackages;
+    };
 }

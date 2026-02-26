@@ -1,30 +1,19 @@
 { inputs, lib, ... }:
 
-let
-  inherit (lib) fix importPackagesWith mkDynamicAttrs;
-in
 {
-  flake.overlays.default =
-    pkgsFinal: pkgsPrev:
-    mkDynamicAttrs (
-      fix (self: {
-        dir = ../../pkgs;
-        fun =
-          name:
-          importPackagesWith
-            (
-              pkgsFinal
-              // {
-                inherit
-                  inputs
-                  lib
-                  pkgsFinal
-                  pkgsPrev
-                  ;
-              }
-            )
-            (self.dir + "/${name}")
-            { };
-      })
-    );
+  flake.overlays.default = pkgsFinal: pkgsPrev: lib.importPackagesTree {
+    dir = ../../pkgs;
+
+    currentFinal = pkgsFinal;
+    currentPrev = pkgsPrev;
+
+    inheritedArgs = {
+      inherit
+        inputs
+        lib
+        pkgsFinal
+        pkgsPrev
+        ;
+    };
+  };
 }
