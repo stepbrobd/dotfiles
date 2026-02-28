@@ -64,13 +64,19 @@
 
   # OCaml
   plugins.lsp.servers.ocamllsp = {
-    package = null;
     enable = true;
+    package = null;
   };
 
   # Python
   plugins.lsp.servers.ruff.enable = true;
   plugins.lsp.servers.pyright = {
+    enable = true;
+    package = null;
+  };
+
+  # Rust
+  plugins.lsp.servers.rust_analyzer = {
     enable = true;
     package = null;
   };
