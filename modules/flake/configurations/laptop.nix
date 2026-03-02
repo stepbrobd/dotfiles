@@ -70,7 +70,6 @@ in
         modules = with inputs; common ++ [
           (unification platform)
           hardware.nixosModules.framework-13th-gen-intel
-          uad2.nixosModules.default # https://github.com/stepbrobd/uad2
         ];
       };
 
