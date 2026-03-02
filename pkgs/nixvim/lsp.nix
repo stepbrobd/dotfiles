@@ -79,6 +79,8 @@
   plugins.lsp.servers.rust_analyzer = {
     enable = true;
     package = null;
+    installCargo = false;
+    installRustc = false;
   };
 
   # Shell
