@@ -25,7 +25,6 @@
     luasnip.enable = true;
     noice.enable = true;
     notify.enable = true;
-    presence.enable = true;
     rainbow-delimiters.enable = true;
     sniprun.enable = true;
     spider.enable = true;
