@@ -32,7 +32,7 @@ in
           enable = true;
           theme = "mac-style";
           themePackages = [ pkgs.mac-style-plymouth ];
-          font = "${pkgs.noto-fonts}/share/fonts/noto/NotoSans[wdth,wght].ttf";
+          font = "${pkgs.noto-fonts}/share/fonts/noto/NotoSans.ttf";
         };
       };
     }
