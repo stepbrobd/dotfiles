@@ -636,6 +636,7 @@
         "terranix": "terranix",
         "treefmt": "treefmt",
         "tsnsrv": "tsnsrv",
+        "uad2": "uad2",
         "utils": "utils",
         "ysun": "ysun"
       }
@@ -862,6 +863,32 @@
       "original": {
         "owner": "boinkor-net",
         "repo": "tsnsrv",
+        "type": "github"
+      }
+    },
+    "uad2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "parts": [
+          "parts"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772457195,
+        "narHash": "sha256-vA0hDzHY6mTzKoY+J4uXwAcl7T1SHZN+3Gf+yQpQCyo=",
+        "owner": "stepbrobd",
+        "repo": "uad2",
+        "rev": "62389d1382908456e2e855ec176df7b7577d30bc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "stepbrobd",
+        "repo": "uad2",
         "type": "github"
       }
     },

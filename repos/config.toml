@@ -165,6 +165,11 @@ description = "teeebot..."
 visibility = "private"
 archived = false
 
+[repo."uad2"]
+description = "ua thunderbolt alsa driver"
+visibility = "public"
+archived = false
+
 [repo."x"]
 description = "all the weird stuff goes here"
 visibility = "public"

@@ -167,6 +167,10 @@
     tsnsrv.inputs.nixpkgs.follows = "nixpkgs";
     tsnsrv.inputs.flake-parts.follows = "parts";
     # u
+    uad2.url = "github:stepbrobd/uad2";
+    uad2.inputs.nixpkgs.follows = "nixpkgs";
+    uad2.inputs.parts.follows = "parts";
+    uad2.inputs.systems.follows = "systems";
     utils.url = "github:numtide/flake-utils";
     utils.inputs.systems.follows = "systems";
     # y
