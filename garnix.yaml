@@ -7,6 +7,7 @@ builds:
     - darwinConfigurations.*
     - nixosConfigurations.*
     - packages.*.*
+    - legacyPackages.*.*
     - devShells.*.*
   exclude:
     - packages.aarch64-darwin.hydra # not supported
@@ -15,6 +16,7 @@ builds:
     - packages.aarch64-linux.verus # z3 incorrect binary release
     - packages.*.calibre # temporary patch
     - packages.*.jitsi-meet # insecure
+    - packages.*.ocamlPackages # scope
     - packages.*.ripe-atlas-software-probe # broken
     - packages.*.spotify # unfree
     - "*.x86_64-darwin.*" # useless :(
