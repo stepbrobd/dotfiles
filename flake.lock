@@ -373,11 +373,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772569491,
-        "narHash": "sha256-bdr6ueeXO1Xg91sFkuvaysYF0mVdwHBpdyhTjBEWv+s=",
+        "lastModified": 1772633327,
+        "narHash": "sha256-jl+DJB2DUx7EbWLRng+6HNWW/1/VQOnf0NsQB4PlA7I=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "924e61f5c2aeab38504028078d7091077744ab17",
+        "rev": "5a75730e6f21ee624cbf86f4915c6e7489c74acc",
         "type": "github"
       },
       "original": {
@@ -447,11 +447,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772605697,
-        "narHash": "sha256-VOvCw5I28nIcy3mFs88M/Unzj4uKiUrIJK6S69kHOCU=",
+        "lastModified": 1772634885,
+        "narHash": "sha256-sizdR/xi8eq12PMPJ3BlGeLZ0lZ38NOra5zgNZVAG1g=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "705bb4900230a4e7bdd42bd8f34cb3a4558e593b",
+        "rev": "40dc5f264af66355fb609e3b444dcb8e57f6239f",
         "type": "github"
       },
       "original": {
@@ -485,6 +485,9 @@
     },
     "miroir": {
       "inputs": {
+        "gomod2nix": [
+          "gomod2nix"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -493,14 +496,17 @@
         ],
         "systems": [
           "systems"
+        ],
+        "utils": [
+          "utils"
         ]
       },
       "locked": {
-        "lastModified": 1772102536,
-        "narHash": "sha256-+aPRDee+WDkAjPAUxOrRj3S5C9HuSgCIkdDsFLGVYkY=",
+        "lastModified": 1772655831,
+        "narHash": "sha256-1SZtA5omFomjRo3boxVESsevRgCyImSFxR+7aQaP8co=",
         "owner": "stepbrobd",
         "repo": "miroir",
-        "rev": "cabbdc468d421abd25f9869ef36967039903c38f",
+        "rev": "120d5341c64bc2e6139b3e7c0947e17a486dbb9c",
         "type": "github"
       },
       "original": {

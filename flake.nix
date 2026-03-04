@@ -124,8 +124,10 @@
     mac-style-plymouth.inputs.flake-utils.follows = "utils";
     miroir.url = "github:stepbrobd/miroir";
     miroir.inputs.nixpkgs.follows = "nixpkgs";
-    miroir.inputs.parts.follows = "parts";
     miroir.inputs.systems.follows = "systems";
+    miroir.inputs.parts.follows = "parts";
+    miroir.inputs.utils.follows = "utils";
+    miroir.inputs.gomod2nix.follows = "gomod2nix";
     # n
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
