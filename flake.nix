@@ -61,6 +61,11 @@
     blueprint.url = "github:numtide/blueprint";
     blueprint.inputs.nixpkgs.follows = "nixpkgs";
     blueprint.inputs.systems.follows = "systems";
+    bun2nix.url = "github:nix-community/bun2nix";
+    bun2nix.inputs.nixpkgs.follows = "nixpkgs";
+    bun2nix.inputs.systems.follows = "systems";
+    bun2nix.inputs.flake-parts.follows = "parts";
+    bun2nix.inputs.treefmt-nix.follows = "";
     # c
     colmena.url = "github:zhaofengli/colmena";
     colmena.inputs.nixpkgs.follows = "nixpkgs";
@@ -117,6 +122,7 @@
     llm.url = "github:numtide/llm-agents.nix";
     llm.inputs.nixpkgs.follows = "nixpkgs";
     llm.inputs.blueprint.follows = "blueprint";
+    llm.inputs.bun2nix.follows = "bun2nix";
     llm.inputs.treefmt-nix.follows = "treefmt";
     # m
     mac-style-plymouth.url = "github:sergioribera/s4rchiso-plymouth-theme";
