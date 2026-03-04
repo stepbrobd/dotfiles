@@ -4,6 +4,10 @@ home = "~/Workspace"
 [general.env]
 "GIT_SSH_COMMAND" = "ssh -o TcpKeepAlive=no -o ServerAliveInterval=10"
 
+[general.concurrency]
+repo = 5
+remote = 0
+
 [platform.codeberg]
 origin = false
 domain = "codeberg.org"
