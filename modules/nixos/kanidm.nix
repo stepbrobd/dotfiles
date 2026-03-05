@@ -27,8 +27,6 @@ in
 
   sops.secrets."kanidm/passwd".group = "kanidm";
   sops.secrets."kanidm/passwd".mode = "440";
-  sops.secrets."kanidm/oauth/caddy".group = "kanidm";
-  sops.secrets."kanidm/oauth/caddy".mode = "440";
   sops.secrets."kanidm/oauth/cloudflare".group = "kanidm";
   sops.secrets."kanidm/oauth/cloudflare".mode = "440";
   sops.secrets."kanidm/oauth/grafana".group = "kanidm";
@@ -168,10 +166,9 @@ in
 
         caddy = {
           displayName = "Caddy";
-          allowInsecureClientDisablePkce = true;
-          originUrl = "https://proxy.ysun.co/oauth2/kanidm/authorization-code-callback";
-          originLanding = "https://proxy.ysun.co/";
-          basicSecretFile = config.sops.secrets."kanidm/oauth/caddy".path;
+          public = true;
+          originUrl = [ "https://grep.ysun.co/oauth2/callback" ];
+          originLanding = "https://grep.ysun.co/";
           preferShortUsername = true;
           scopeMaps."caddy.users" = [
             "openid"
