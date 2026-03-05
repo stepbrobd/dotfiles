@@ -164,6 +164,9 @@ in
           };
         };
 
+        # public oidc client for caddy-oidc (github.com/relvacode/caddy-oidc)
+        # to add a protected site: append https://<domain>/oauth2/callback to originUrl
+        # and `import auth` in its caddy virtualHost extraConfig
         caddy = {
           displayName = "Caddy";
           public = true;
