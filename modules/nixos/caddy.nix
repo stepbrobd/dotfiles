@@ -103,7 +103,6 @@ in
         }
 
         (auth) {
-          authenticate with oidc
           authorize with oidc
         }
 
