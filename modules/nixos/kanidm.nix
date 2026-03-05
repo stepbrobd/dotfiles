@@ -168,6 +168,7 @@ in
 
         caddy = {
           displayName = "Caddy";
+          allowInsecureClientDisablePkce = true;
           originUrl = "https://proxy.ysun.co/oauth2/kanidm/authorization-code-callback";
           originLanding = "https://proxy.ysun.co/";
           basicSecretFile = config.sops.secrets."kanidm/oauth/caddy".path;
