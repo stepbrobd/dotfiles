@@ -121,6 +121,8 @@
     lanzaboote.inputs.pre-commit.follows = "";
     llm.url = "github:numtide/llm-agents.nix";
     llm.inputs.nixpkgs.follows = "nixpkgs";
+    llm.inputs.systems.follows = "systems";
+    llm.inputs.flake-parts.follows = "parts";
     llm.inputs.blueprint.follows = "blueprint";
     llm.inputs.bun2nix.follows = "bun2nix";
     llm.inputs.treefmt-nix.follows = "treefmt";
