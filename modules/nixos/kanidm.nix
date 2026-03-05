@@ -27,12 +27,14 @@ in
 
   sops.secrets."kanidm/passwd".group = "kanidm";
   sops.secrets."kanidm/passwd".mode = "440";
+  sops.secrets."kanidm/oauth/caddy".group = "kanidm";
+  sops.secrets."kanidm/oauth/caddy".mode = "440";
   sops.secrets."kanidm/oauth/cloudflare".group = "kanidm";
   sops.secrets."kanidm/oauth/cloudflare".mode = "440";
-  sops.secrets."kanidm/oauth/hydra".group = "kanidm";
-  sops.secrets."kanidm/oauth/hydra".mode = "440";
   sops.secrets."kanidm/oauth/grafana".group = "kanidm";
   sops.secrets."kanidm/oauth/grafana".mode = "440";
+  sops.secrets."kanidm/oauth/hydra".group = "kanidm";
+  sops.secrets."kanidm/oauth/hydra".mode = "440";
   sops.secrets."kanidm/oauth/vaultwarden".group = "kanidm";
   sops.secrets."kanidm/oauth/vaultwarden".mode = "440";
 
@@ -80,6 +82,8 @@ in
         "grafana.users" = { };
 
         "vaultwarden.users" = { };
+
+        "caddy.users" = { };
       };
 
       persons = {
@@ -106,6 +110,8 @@ in
             "grafana.users"
 
             "vaultwarden.users"
+
+            "caddy.users"
           ];
         };
       };
@@ -158,6 +164,19 @@ in
               "grafana.editors" = [ "editor" ];
             };
           };
+        };
+
+        caddy = {
+          displayName = "Caddy";
+          originUrl = "https://proxy.ysun.co/oauth2/kanidm";
+          originLanding = "https://proxy.ysun.co/";
+          basicSecretFile = config.sops.secrets."kanidm/oauth/caddy".path;
+          preferShortUsername = true;
+          scopeMaps."caddy.users" = [
+            "openid"
+            "email"
+            "profile"
+          ];
         };
 
         vaultwarden = {

@@ -97,6 +97,14 @@ in
         comment = "V.PS - Tallinn, Estonia - Calibre";
       };
 
+      co_ysun_proxy = {
+        type = "CNAME";
+        proxied = true;
+        name = "proxy";
+        content = "walberla.as10779.net";
+        comment = "Hetzner - Caddy Security OAuth2 Proxy";
+      };
+
       co_ysun_sso = {
         type = "CNAME";
         proxied = true;
