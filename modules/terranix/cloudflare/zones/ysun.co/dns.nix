@@ -81,6 +81,14 @@ in
         comment = "AWS - EU Central 2 - Jitsi Meet";
       };
 
+      co_ysun_grep = {
+        type = "CNAME";
+        proxied = true;
+        name = "grep";
+        content = "lagern.as10779.net";
+        comment = "AWS - EU Central 2 - Neogrok";
+      };
+
       co_ysun_otel = {
         type = "CNAME";
         proxied = true;

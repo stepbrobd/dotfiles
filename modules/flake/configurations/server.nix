@@ -27,6 +27,7 @@ let
         self.nixosModules.jitsi
         self.nixosModules.maxmind
         self.nixosModules.minimal
+        self.nixosModules.neogrok
         self.nixosModules.passwordless
         self.nixosModules.plausible
         self.nixosModules.prometheus
