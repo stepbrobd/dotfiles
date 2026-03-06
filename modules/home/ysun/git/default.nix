@@ -35,7 +35,6 @@
       core.fsmonitor = true;
       core.sshCommand = "ssh -o TCPKeepAlive=yes -o ServerAliveInterval=60";
       core.untrackedCache = true;
-      core.untrackedcache = true;
       diff.algorithm = "histogram";
       diff.colorMoved = "plain";
       diff.mnemonicPrefix = true;
