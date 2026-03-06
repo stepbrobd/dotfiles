@@ -1,9 +1,10 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 { config, pkgs, ... }:
 
 let
   inherit (lib) mkIf mkOption types;
+
   cfg = config.services.neogrok;
 in
 {
@@ -26,12 +27,6 @@ in
       type = types.port;
     };
 
-    zoektUrl = mkOption {
-      default = "http://localhost:6070";
-      description = "URL of the zoekt indexing server";
-      type = types.str;
-    };
-
     domain = mkOption {
       default = "grep.ysun.co";
       description = "Domain to serve neogrok on";
@@ -49,6 +44,21 @@ in
       '';
     };
 
+    systemd.services.miroir = {
+      description = "Miroir - code search index daemon";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+
+      path = with pkgs; [ git openssh ];
+
+      serviceConfig = {
+        ExecStart = "${pkgs.miroir}/bin/miroir index -c ${(pkgs.formats.toml {}).generate "miroir.toml" ((lib.importTOML "${inputs.self}/repos/config.toml") // { index.listen = "[::1]:6070"; })}";
+        Restart = "on-failure";
+        DynamicUser = true;
+        StateDirectory = "miroir";
+      };
+    };
+
     systemd.services.neogrok = {
       description = "Neogrok - code search UI for zoekt";
       after = [ "network.target" ];
@@ -57,7 +67,7 @@ in
       environment = {
         HOST = cfg.host;
         PORT = lib.toString cfg.port;
-        ZOEKT_URL = cfg.zoektUrl;
+        ZOEKT_URL = "http://localhost:6070"; # default set from miroir
       };
 
       serviceConfig = {
