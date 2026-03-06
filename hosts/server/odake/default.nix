@@ -4,6 +4,7 @@
 
     ./attic.nix
     ./hydra.nix
+    ./neogrok.nix
   ];
 
   services.tailscale = {

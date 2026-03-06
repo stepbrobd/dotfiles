@@ -85,8 +85,8 @@ in
         type = "CNAME";
         proxied = true;
         name = "grep";
-        content = "lagern.as10779.net";
-        comment = "AWS - EU Central 2 - Neogrok";
+        content = "odake.as10779.net";
+        comment = "SSDNodes - Tokyo 2 - Neogrok";
       };
 
       co_ysun_otel = {

@@ -3,7 +3,6 @@
     ./hardware.nix
 
     ./jitsi.nix
-    ./neogrok.nix
   ];
 
   services.tailscale = {
