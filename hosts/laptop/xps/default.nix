@@ -13,8 +13,6 @@
   # osu!
   hardware.opentabletdriver.enable = true;
 
-  services.tailscale.useRoutingFeatures = "client";
-
   networking = {
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "a39d07b7";
