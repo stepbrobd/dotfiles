@@ -48,9 +48,8 @@ in
       description = "Miroir - code search index daemon";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
-
+      environment.HOME = "/var/lib/miroir";
       path = with pkgs; [ git openssh ];
-
       serviceConfig = {
         ExecStart = "${pkgs.miroir}/bin/miroir index -c ${(pkgs.formats.toml {}).generate "miroir.toml" ((lib.importTOML "${inputs.self}/repos/config.toml") // { index.listen = "[::1]:6070"; })}";
         Restart = "on-failure";
@@ -63,13 +62,11 @@ in
       description = "Neogrok - code search UI for zoekt";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
-
       environment = {
         HOST = cfg.host;
         PORT = lib.toString cfg.port;
         ZOEKT_URL = "http://localhost:6070"; # default set from miroir
       };
-
       serviceConfig = {
         ExecStart = "${pkgs.neogrok}/bin/neogrok";
         Restart = "on-failure";
