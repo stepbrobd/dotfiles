@@ -195,11 +195,6 @@ in
     };
   };
 
-  systemd.services.caddy = {
-    after = [ "kanidm.service" ];
-    wants = [ "kanidm.service" ];
-  };
-
   users.groups.sso.members = [ "caddy" "kanidm" ];
   security.acme.certs."sso.ysun.co" = {
     domain = "sso.ysun.co";
