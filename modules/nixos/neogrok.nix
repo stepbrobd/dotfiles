@@ -35,6 +35,20 @@ in
   };
 
   config = mkIf cfg.enable {
+    users.groups.miroir = { };
+    users.users.miroir = {
+      group = "miroir";
+      description = "Miroir operator";
+      createHome = false;
+      isSystemUser = true;
+    };
+
+    sops.secrets.miroir = {
+      owner = "miroir";
+      group = "miroir";
+      mode = "440";
+    };
+
     services.caddy = {
       enable = true;
       virtualHosts.${cfg.domain}.extraConfig = ''
@@ -51,9 +65,17 @@ in
       environment.HOME = "/var/lib/miroir";
       path = with pkgs; [ git openssh ];
       serviceConfig = {
-        ExecStart = "${pkgs.miroir}/bin/miroir index -c ${(pkgs.formats.toml {}).generate "miroir.toml" ((lib.importTOML "${inputs.self}/repos/config.toml") // { index.listen = "[::1]:6070"; })}";
+        User = "miroir";
+        Group = "miroir";
+        ExecStart = "${pkgs.miroir}/bin/miroir index -c ${
+          (pkgs.formats.toml {}).generate
+          "miroir.toml"
+          ((lib.importTOML "${inputs.self}/repos/config.toml") // {
+            index.listen = "[::1]:6070";
+            general.env.GIT_SSH_COMMAND = "ssh -i ${config.sops.secrets.miroir.path} -o StrictHostKeyChecking=accept-new -o TcpKeepAlive=no -o ServerAliveInterval=10";
+          })
+        }";
         Restart = "on-failure";
-        DynamicUser = true;
         StateDirectory = "miroir";
       };
     };
