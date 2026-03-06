@@ -87,6 +87,7 @@ in
         # to protect a site: `import auth` in its virtualHost extraConfig
         # and add https://<domain>/oauth2/callback to kanidm caddy originUrl
         (auth) {
+          header Cache-Control "private, no-store"
           oidc kanidm {
             allow {
               user *
