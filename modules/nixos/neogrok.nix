@@ -70,7 +70,7 @@ in
         ExecStart = "${pkgs.miroir}/bin/miroir index -c ${
           (pkgs.formats.toml {}).generate
           "miroir.toml"
-          ((lib.importTOML "${inputs.self}/repos/config.toml") // {
+          (lib.recursiveUpdate (lib.importTOML "${inputs.self}/repos/config.toml") {
             index.listen = "[::1]:6070";
             general.env.GIT_SSH_COMMAND = "ssh -i ${config.sops.secrets.miroir.path} -o StrictHostKeyChecking=accept-new -o TcpKeepAlive=no -o ServerAliveInterval=10";
           })
