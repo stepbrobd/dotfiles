@@ -46,7 +46,7 @@ in
     sops.secrets.miroir = {
       owner = "miroir";
       group = "miroir";
-      mode = "440";
+      mode = "0400";
     };
 
     services.caddy = {
