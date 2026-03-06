@@ -57,12 +57,12 @@ in
 
         oidc kanidm {
           issuer https://sso.ysun.co/oauth2/openid/caddy
-          client_id {env.CADDY_KANIDM_CLIENT_ID}
+          client_id caddy
           scope openid email profile
           username preferred_username
           authenticate cookie {
-            name _oidc_session
-            secret {env.CADDY_KANIDM_JWT_SECRET}
+            name caddy
+            secret "{env.CADDY_KANIDM_JWT_SECRET}"
             domain ysun.co
             same_site lax
             claim email
