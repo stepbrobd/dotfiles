@@ -30,17 +30,31 @@
   services.openssh = {
     enable = true;
     hostKeys = lib.mkForce [{ type = "ed25519"; path = "/etc/ssh/ssh_host_ed25519_key"; }];
-    settings.PermitRootLogin = lib.mkForce "no";
-    settings.KexAlgorithms = lib.mkForce [
-      "mlkem768x25519-sha256"
-      "sntrup761x25519-sha512"
-      "sntrup761x25519-sha512@openssh.com"
-    ];
-    settings.Ciphers = lib.mkForce [ "chacha20-poly1305@openssh.com" ];
-    settings.Macs = lib.mkForce [
-      "hmac-sha2-256-etm@openssh.com"
-      "hmac-sha2-512-etm@openssh.com"
-    ];
+    # mostly pq but have fallback for legacy clients
+    settings = {
+      PermitRootLogin = lib.mkForce "no";
+      PasswordAuthentication = lib.mkForce false;
+      LoginGraceTime = 30;
+      MaxAuthTries = 5;
+      MaxStartups = "10:30:60";
+      PerSourceMaxStartups = 1;
+      AllowAgentForwarding = false;
+      KexAlgorithms = lib.mkForce [
+        "mlkem768x25519-sha256"
+        "sntrup761x25519-sha512"
+        "sntrup761x25519-sha512@openssh.com"
+        "curve25519-sha256" # fallback
+      ];
+      Ciphers = lib.mkForce [
+        "chacha20-poly1305@openssh.com"
+        "aes256-ctr" # fallback
+      ];
+      Macs = lib.mkForce [
+        "hmac-sha2-512-etm@openssh.com"
+        "hmac-sha2-256-etm@openssh.com"
+        "hmac-sha2-512" # fallback
+      ];
+    };
   };
 
   systemd.services.network-local-commands = {

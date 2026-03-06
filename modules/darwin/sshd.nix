@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
   system.activationScripts.extraActivation.text = ''
     if [[ "$(systemsetup -getremotelogin | sed 's/Remote Login: //')" == "Off" ]]; then
@@ -17,8 +19,38 @@
     StrictModes                     yes
     UsePAM                          yes
 
-    Ciphers       chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
-    KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,sntrup761x25519-sha512@openssh.com
-    Macs          hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
-  '';
+    HostKeyAlgorithms               ssh-ed25519
+    HostKey                         /etc/ssh/ssh_host_ed25519_key
+
+    LoginGraceTime                  30
+    MaxAuthTries                    5
+    MaxStartups                     10:30:60
+    PerSourceMaxStartups            1
+    AllowAgentForwarding            no
+
+  '' + (
+    let
+      # mostly pq but have fallback for legacy clients
+      kex = lib.concatStringsSep "," [
+        "mlkem768x25519-sha256"
+        "sntrup761x25519-sha512"
+        "sntrup761x25519-sha512@openssh.com"
+        "curve25519-sha256" # fallback
+      ];
+      cipher = lib.concatStringsSep "," [
+        "chacha20-poly1305@openssh.com"
+        "aes256-ctr" # fallback
+      ];
+      mac = lib.concatStringsSep "," [
+        "hmac-sha2-512-etm@openssh.com"
+        "hmac-sha2-256-etm@openssh.com"
+        "hmac-sha2-512" # fallback
+      ];
+    in
+    ''
+      KexAlgorithms ${kex}
+      Ciphers       ${cipher}
+      Macs          ${mac}
+    ''
+  );
 }
