@@ -5,7 +5,7 @@ home = "~/Workspace"
 "GIT_SSH_COMMAND" = "ssh -o TcpKeepAlive=no -o ServerAliveInterval=10"
 
 [general.concurrency]
-repo = 1
+repo = 5
 remote = 0
 
 [platform.codeberg]
