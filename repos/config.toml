@@ -47,7 +47,7 @@ archived = false
 [repo."churn"]
 description = "churn, baby, churn!"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."consistency-coq"]
 description = "consistency semantics with coq"
@@ -72,7 +72,7 @@ archived = false
 [repo."finch"]
 description = "hackzurich 2023: finch - a simple neural net framework and visualizer that uses genetic networks to train"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."fosdem"]
 description = "fosdem '26 stuff"
@@ -92,7 +92,7 @@ archived = true
 [repo."metaprocessor"]
 description = "metaprocessor, all-in-one data pipeline for mbientlab metawear series sensors"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."miroir"]
 description = "repo manager wannabe?"
@@ -112,7 +112,7 @@ archived = false
 [repo."nixology"]
 description = "all about nix"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."nord.yazi"]
 description = "nordic yazi"
@@ -132,7 +132,7 @@ archived = false
 [repo."ruga"]
 description = "ruby meets genetic algorithm"
 visibility = "private"
-archived = false
+archived = true
 
 [repo."sentik"]
 description = "hackmit 2022: sentik - live tweet sentiment analysis for traders"
@@ -142,7 +142,7 @@ archived = true
 [repo."srd"]
 description = "srd: (go) static race detector"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."stepbrobd"]
 description = "just another profile readme"
@@ -167,7 +167,7 @@ archived = false
 [repo."tbot"]
 description = "teeebot..."
 visibility = "private"
-archived = false
+archived = true
 
 [repo."uad2"]
 description = "ua thunderbolt alsa driver"
@@ -213,7 +213,7 @@ archived = true
 [repo."deno2nix"]
 description = "forked from sno2wman/deno2nix"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."disko"]
 description = "forked from nix-community/disko"
@@ -258,7 +258,7 @@ archived = false
 [repo."hopper"]
 description = "forked from cybergenik/hopper"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."kanidm"]
 description = "forked from kanidm/kanidm"
@@ -343,7 +343,7 @@ archived = false
 [repo."shiki"]
 description = "forked from furiouzz/lume_shiki"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."soft-serve"]
 description = "forked from charmbracelet/soft-serve"
@@ -368,7 +368,7 @@ archived = false
 [repo."sora"]
 description = "forked from cranci1/sora"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."tailscale"]
 description = "forked from tailscale/tailscale"
