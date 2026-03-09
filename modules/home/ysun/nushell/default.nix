@@ -25,6 +25,7 @@ in
   imports = with inputs.self.homeManagerModules.ysun; [ starship ];
 
   programs.carapace.enable = true;
+  home.packages = [ pkgs.carapace-bridge ];
 
   programs.nushell = {
     enable = true;
