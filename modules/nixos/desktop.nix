@@ -52,7 +52,7 @@ in
 
     # basic stuff
     {
-      networking.networkmanager.wifi.powersave = lib.mkForce 2;
+      networking.networkmanager.wifi.powersave = lib.mkForce false;
       boot.extraModprobeConfig = ''
         options iwlwifi power_save=0
         options iwlmvm power_scheme=1
