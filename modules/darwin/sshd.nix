@@ -7,27 +7,32 @@
     fi
   '';
 
+  services.openssh = {
+    hostKeys = [{
+      type = "ed25519";
+      path = "/etc/ssh/ssh_host_ed25519_key";
+    }];
+
+    extraConfig = ''
+      AuthorizedPrincipalsFile        none
+      ChallengeResponseAuthentication no
+      KbdInteractiveAuthentication    no
+      PasswordAuthentication          no
+      PermitRootLogin                 no
+      StrictModes                     yes
+      UsePAM                          yes
+
+      LoginGraceTime                  30
+      MaxAuthTries                    5
+      MaxStartups                     10:30:60
+      PerSourceMaxStartups            1
+      AllowAgentForwarding            no
+    '';
+  };
+
   environment.etc."ssh/sshd_config".text = ''
     Include            /etc/ssh/sshd_config.d/*
     AuthorizedKeysFile .ssh/authorized_keys
-
-    AuthorizedPrincipalsFile        none
-    ChallengeResponseAuthentication no
-    KbdInteractiveAuthentication    no
-    PasswordAuthentication          no
-    PermitRootLogin                 no
-    StrictModes                     yes
-    UsePAM                          yes
-
-    HostKeyAlgorithms               ssh-ed25519
-    HostKey                         /etc/ssh/ssh_host_ed25519_key
-
-    LoginGraceTime                  30
-    MaxAuthTries                    5
-    MaxStartups                     10:30:60
-    PerSourceMaxStartups            1
-    AllowAgentForwarding            no
-
   '' + (
     let
       # mostly pq but have fallback for legacy clients
