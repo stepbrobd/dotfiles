@@ -52,6 +52,12 @@ in
 
     # basic stuff
     {
+      networking.networkmanager.wifi.powersave = lib.mkForce 2;
+      boot.extraModprobeConfig = ''
+        options iwlwifi power_save=0
+        options iwlmvm power_scheme=1
+      '';
+
       security.pam.services.login.enableGnomeKeyring = true;
 
       services = {
