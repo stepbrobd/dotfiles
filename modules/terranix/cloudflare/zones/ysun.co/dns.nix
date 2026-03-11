@@ -25,8 +25,8 @@ in
           target = ".";
           value = lib.concatStringsSep " " [
             ''alpn="h3,h2"''
-            ("ipv4hint=" + tfRef "cloudflare_dns_record.net_as10779_anycast_v4.content")
-            ("ipv6hint=" + tfRef "cloudflare_dns_record.net_as10779_anycast_v6.content")
+            (''ipv4hint="'' + tfRef "cloudflare_dns_record.net_as10779_anycast_v4.content" + ''"'')
+            (''ipv6hint="'' + tfRef "cloudflare_dns_record.net_as10779_anycast_v6.content" + ''"'')
           ];
         };
         comment = "HTTPS Service Binding - Personal Site";
