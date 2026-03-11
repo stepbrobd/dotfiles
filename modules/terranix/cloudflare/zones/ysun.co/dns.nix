@@ -2,17 +2,31 @@
 
 let
   inherit (lib.terranix) forZone mkPersonalSiteRebind mkPurelyMailRecord tfRef;
+
+  bp = lib.blueprint.hosts;
+
+  # resolve the public-facing IP for a host:
+  # prefer ipam (anycast tunnel) over provider IP
+  ip4 = host: host.ipam.ipv4 or host.ipv4;
+  ip6 = host: host.ipam.ipv6 or host.ipv6;
 in
 {
   resource.cloudflare_dns_record = forZone "ysun.co"
     {
       # dependency: all sites using `lib.terranix.mkPersonalSiteRebind`
-      co_ysun_apex = {
-        type = "CNAME";
+      co_ysun_apex_v4 = {
+        type = "A";
         proxied = false;
         name = "@";
-        content = "anycast.as10779.net";
-        comment = "CNAME Rebind - Personal Site";
+        content = "23.161.104.17";
+        comment = "AS10779 - Anycast - Personal Site";
+      };
+      co_ysun_apex_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "@";
+        content = "2602:f590::23:161:104:17";
+        comment = "AS10779 - Anycast - Personal Site";
       };
       co_ysun_wildcard = mkPersonalSiteRebind { name = "*"; };
 
@@ -25,18 +39,170 @@ in
           target = ".";
           value = lib.concatStringsSep " " [
             ''alpn="h3,h2"''
-            (''ipv4hint="'' + tfRef "cloudflare_dns_record.net_as10779_anycast_v4.content" + ''"'')
-            (''ipv6hint="'' + tfRef "cloudflare_dns_record.net_as10779_anycast_v6.content" + ''"'')
+            (''ipv4hint="'' + tfRef "cloudflare_dns_record.co_ysun_apex_v4.content" + ''"'')
+            (''ipv6hint="'' + tfRef "cloudflare_dns_record.co_ysun_apex_v6.content" + ''"'')
           ];
         };
         comment = "HTTPS Service Binding - Personal Site";
       };
 
+      # sd.ysun.co - server DNS records
+      co_ysun_sd_butte_v4 = {
+        type = "A";
+        proxied = false;
+        name = "butte.sd";
+        content = ip4 bp.butte;
+        comment = "Virtua - Paris";
+      };
+      co_ysun_sd_butte_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "butte.sd";
+        content = ip6 bp.butte;
+        comment = "Virtua - Paris";
+      };
+
+      co_ysun_sd_halti_v4 = {
+        type = "A";
+        proxied = false;
+        name = "halti.sd";
+        content = ip4 bp.halti;
+        comment = "Garnix - Hosting";
+      };
+      co_ysun_sd_halti_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "halti.sd";
+        content = ip6 bp.halti;
+        comment = "Garnix - Hosting";
+      };
+
+      co_ysun_sd_highline_v4 = {
+        type = "A";
+        proxied = false;
+        name = "highline.sd";
+        content = ip4 bp.highline;
+        comment = "Neptune - New York";
+      };
+      co_ysun_sd_highline_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "highline.sd";
+        content = ip6 bp.highline;
+        comment = "Neptune - New York";
+      };
+
+      co_ysun_sd_isere_v4 = {
+        type = "A";
+        proxied = false;
+        name = "isere.sd";
+        content = ip4 bp.isere;
+        comment = "Raspberry Pi 5B - Grenoble";
+      };
+      co_ysun_sd_isere_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "isere.sd";
+        content = ip6 bp.isere;
+        comment = "Raspberry Pi 5B - Grenoble";
+      };
+
+      co_ysun_sd_kongo_v4 = {
+        type = "A";
+        proxied = false;
+        name = "kongo.sd";
+        content = ip4 bp.kongo;
+        comment = "Vultr - Osaka";
+      };
+      co_ysun_sd_kongo_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "kongo.sd";
+        content = ip6 bp.kongo;
+        comment = "Vultr - Osaka";
+      };
+
+      co_ysun_sd_lagern_v4 = {
+        type = "A";
+        proxied = false;
+        name = "lagern.sd";
+        content = ip4 bp.lagern;
+        comment = "AWS - EU Central 2";
+      };
+      co_ysun_sd_lagern_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "lagern.sd";
+        content = ip6 bp.lagern;
+        comment = "AWS - EU Central 2";
+      };
+
+      co_ysun_sd_odake_v4 = {
+        type = "A";
+        proxied = false;
+        name = "odake.sd";
+        content = ip4 bp.odake;
+        comment = "SSDNodes - Tokyo 2";
+      };
+      co_ysun_sd_odake_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "odake.sd";
+        content = ip6 bp.odake;
+        comment = "SSDNodes - Tokyo 2";
+      };
+
+      co_ysun_sd_timah_v4 = {
+        type = "A";
+        proxied = false;
+        name = "timah.sd";
+        content = ip4 bp.timah;
+        comment = "Misaka - Singapore";
+      };
+      co_ysun_sd_timah_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "timah.sd";
+        content = ip6 bp.timah;
+        comment = "Misaka - Singapore";
+      };
+
+      co_ysun_sd_toompea_v4 = {
+        type = "A";
+        proxied = false;
+        name = "toompea.sd";
+        content = ip4 bp.toompea;
+        comment = "xTom - Tallinn, Estonia";
+      };
+      co_ysun_sd_toompea_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "toompea.sd";
+        content = ip6 bp.toompea;
+        comment = "xTom - Tallinn, Estonia";
+      };
+
+      co_ysun_sd_walberla_v4 = {
+        type = "A";
+        proxied = false;
+        name = "walberla.sd";
+        content = ip4 bp.walberla;
+        comment = "Hetzner - Falkenstein";
+      };
+      co_ysun_sd_walberla_v6 = {
+        type = "AAAA";
+        proxied = false;
+        name = "walberla.sd";
+        content = ip6 bp.walberla;
+        comment = "Hetzner - Falkenstein";
+      };
+
+      # service CNAME records
       co_ysun_cache = {
         type = "CNAME";
         proxied = true;
         name = "cache";
-        content = "odake.as10779.net";
+        content = "odake.sd.ysun.co";
         comment = "SSDNodes - Tokyo 2 - Hydra";
       };
 
@@ -44,7 +210,7 @@ in
         type = "CNAME";
         proxied = false;
         name = "ha";
-        content = "isere.internal.center";
+        content = "isere.ts.ysun.co";
         comment = "Tailscale Internal - Raspberry Pi - Home Assistant";
       };
 
@@ -52,7 +218,7 @@ in
         type = "CNAME";
         proxied = true;
         name = "home";
-        content = "walberla.as10779.net";
+        content = "walberla.sd.ysun.co";
         comment = "Hetzner - Glance";
       };
 
@@ -60,7 +226,7 @@ in
         type = "CNAME";
         proxied = true;
         name = "hydra";
-        content = "odake.as10779.net";
+        content = "odake.sd.ysun.co";
         comment = "SSDNodes - Tokyo 2 - Hydra";
       };
 
@@ -68,7 +234,7 @@ in
         type = "CNAME";
         proxied = false;
         name = "ldap";
-        content = "walberla.internal.center";
+        content = "walberla.ts.ysun.co";
         comment = "Hetzner - Kanidm";
       };
 
@@ -77,7 +243,7 @@ in
         type = "CNAME";
         proxied = false;
         name = "meet";
-        content = "lagern.as10779.net";
+        content = "lagern.sd.ysun.co";
         comment = "AWS - EU Central 2 - Jitsi Meet";
       };
 
@@ -85,7 +251,7 @@ in
         type = "CNAME";
         proxied = true;
         name = "grep";
-        content = "odake.as10779.net";
+        content = "odake.sd.ysun.co";
         comment = "SSDNodes - Tokyo 2 - Neogrok";
       };
 
@@ -93,7 +259,7 @@ in
         type = "CNAME";
         proxied = true;
         name = "otel";
-        content = "halti.as10779.net";
+        content = "halti.sd.ysun.co";
         comment = "Garnix - Grafana";
       };
 
@@ -101,7 +267,7 @@ in
         type = "CNAME";
         proxied = true;
         name = "read";
-        content = "toompea.as10779.net";
+        content = "toompea.sd.ysun.co";
         comment = "V.PS - Tallinn, Estonia - Calibre";
       };
 
@@ -109,7 +275,7 @@ in
         type = "CNAME";
         proxied = true;
         name = "sso";
-        content = "walberla.as10779.net";
+        content = "walberla.sd.ysun.co";
         comment = "Hetzner - Kanidm";
       };
 
@@ -118,7 +284,7 @@ in
         type = "CNAME";
         proxied = true;
         name = "stats";
-        content = "toompea.as10779.net";
+        content = "toompea.sd.ysun.co";
         comment = "V.PS - Tallinn, Estonia - Plausible Analytics";
       };
 
@@ -134,7 +300,7 @@ in
         type = "CNAME";
         proxied = false;
         name = "time";
-        content = "isere.as10779.net";
+        content = "isere.sd.ysun.co";
         comment = "Raspberry Pi - Time Server";
       };
 
@@ -142,7 +308,7 @@ in
         type = "CNAME";
         proxied = false;
         name = "vault";
-        content = "isere.internal.center";
+        content = "isere.ts.ysun.co";
         comment = "Tailscale Internal - Raspberry Pi - Vaultwarden";
       };
 

@@ -11,8 +11,8 @@
         local = "dummy0";
         primary = "end0";
       };
-      ipv4.addresses = [ "23.161.104.133/32" ];
-      ipv6.addresses = [ "2602:f590::23:161:104:133/128" ];
+      ipv4.addresses = [ "${lib.blueprint.hosts.isere.ipam.ipv4}/32" ];
+      ipv6.addresses = [ "${lib.blueprint.hosts.isere.ipam.ipv6}/128" ];
     };
 
     router.static = {

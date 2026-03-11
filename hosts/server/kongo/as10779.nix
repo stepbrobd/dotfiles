@@ -25,12 +25,12 @@ in
         primary = "enp1s0";
       };
       ipv4.addresses = [
-        "23.161.104.130/32" # unicast
+        "${lib.blueprint.hosts.kongo.ipam.ipv4}/32" # unicast
         "23.161.104.17/32" # personal site anycast
         # "44.32.189.0/24" # 44net anycast test
       ];
       ipv6.addresses = [
-        "2602:f590::23:161:104:130/128" # unicast
+        "${lib.blueprint.hosts.kongo.ipam.ipv6}/128" # unicast
         "2602:f590::23:161:104:17/128" # personal site anycast
       ];
     };

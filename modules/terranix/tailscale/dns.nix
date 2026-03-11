@@ -5,6 +5,7 @@ let
   inherit (lib.blueprint) tailscale;
   inherit (lib.terranix) forZone tfRef;
 
+  subdomain = lib.removeSuffix ".${tailscale.zone}" tailscale.domain;
   get_node_name = name: ''trimsuffix(${name}, ".${tailscale.tailnet}")'';
   for_each = tfRef "{ for d in data.tailscale_devices.all.devices : ${get_node_name "d.name"} => d }";
   name = pipe "each.value.name" [ get_node_name tfRef ];
@@ -32,15 +33,17 @@ in
   ];
 
   # cloudflare interop
-  resource.cloudflare_dns_record = forZone tailscale.domain {
+  resource.cloudflare_dns_record = forZone tailscale.zone {
     "${tailscale.prefix}_v4" = {
-      inherit for_each name proxied;
+      inherit for_each proxied;
+      name = name + ".${subdomain}";
       type = "A";
       content = ipv4;
       comment = "Tailscale IPv4 - `tailscale whois ${ipv4}`";
     };
     "${tailscale.prefix}_v6" = {
-      inherit for_each name proxied;
+      inherit for_each proxied;
+      name = name + ".${subdomain}";
       type = "AAAA";
       content = ipv6;
       comment = "Tailscale IPv6 - `tailscale whois ${ipv6}`";

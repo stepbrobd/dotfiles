@@ -17,7 +17,7 @@
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "a39d07b7";
     hostName = "xps";
-    domain = "ysun.co";
+    domain = "sd.ysun.co";
     networkmanager.enable = true;
   };
 

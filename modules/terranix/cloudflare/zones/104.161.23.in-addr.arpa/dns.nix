@@ -12,7 +12,7 @@ in
         type = "PTR";
         proxied = false;
         name = "17";
-        content = "anycast.as10779.net";
+        content = "ysun.co";
         comment = "AS10779 - Anycast";
       };
 
@@ -20,7 +20,7 @@ in
         type = "PTR";
         proxied = false;
         name = "128";
-        content = "toompea.as10779.net";
+        content = "toompea.sd.ysun.co";
         comment = "xTom - Tallinn, Estonia";
       };
 
@@ -28,7 +28,7 @@ in
         type = "PTR";
         proxied = false;
         name = "129";
-        content = "highline.as10779.net";
+        content = "highline.sd.ysun.co";
         comment = "Neptune - New York";
       };
 
@@ -36,7 +36,7 @@ in
         type = "PTR";
         proxied = false;
         name = "130";
-        content = "kongo.as10779.net";
+        content = "kongo.sd.ysun.co";
         comment = "Vultr - Osaka";
       };
 
@@ -44,7 +44,7 @@ in
         type = "PTR";
         proxied = false;
         name = "131";
-        content = "timah.as10779.net";
+        content = "timah.sd.ysun.co";
         comment = "Misaka - Singapore";
       };
 
@@ -52,7 +52,7 @@ in
         type = "PTR";
         proxied = false;
         name = "132";
-        content = "butte.as10779.net";
+        content = "butte.sd.ysun.co";
         comment = "Virtua - Paris";
       };
 
@@ -60,7 +60,7 @@ in
         type = "PTR";
         proxied = false;
         name = "133";
-        content = "isere.as10779.net";
+        content = "isere.sd.ysun.co";
         comment = "Raspberry Pi 5B - Grenoble";
       };
     } // mkPurelyMailRecord

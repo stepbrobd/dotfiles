@@ -109,12 +109,11 @@ rec {
       ttl = 1;
     } // record;
   mkPersonalSiteRebind =
-    let target = "co_ysun_apex"; in
     overrides: {
       type = "CNAME";
-      proxied = tfRef "cloudflare_dns_record.${target}.proxied";
-      content = tfRef "cloudflare_dns_record.${target}.content";
-      comment = tfRef "cloudflare_dns_record.${target}.comment";
+      proxied = false;
+      content = "ysun.co";
+      comment = "CNAME Rebind - Personal Site";
     } // overrides;
 
   # cf helpers for adding purelymail records

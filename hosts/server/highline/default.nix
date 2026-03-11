@@ -12,6 +12,6 @@
     # head -c4 /dev/urandom | od -A none -t x4
     hostId = "a9df2efe";
     hostName = "highline"; # https://en.wikipedia.org/wiki/High_Line
-    domain = "as10779.net";
+    domain = "sd.ysun.co";
   };
 }

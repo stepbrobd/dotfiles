@@ -14,26 +14,30 @@ let
 
   newHost =
     { hostName # e.g. "bachtel"
-    , domain # e.g. "as10779.net"
     , platform # e.g. "x86_64-linux"
     , os # e.g. "darwin" or "nixos"
     , provider # e.g. "aws", "garnix", "hetzner", "owned", "ssdnodes", "vultr", "xtom"
     , type # e.g. "laptop", "desktop", "server", "rpi"
+    , domain ? "sd.ysun.co"
+    , tags ? [ ]
     , ipv4 ? null
     , ipv6 ? null
+    , ipam ? { }
     , services ? { }
     }: {
       inherit platform os provider type; # metadata
-      inherit hostName domain ipv4 ipv6; # networking
+      inherit hostName domain ipv4 ipv6 ipam; # networking
       inherit services;
       fqdn = "${hostName}.${domain}";
+      tags = [ "server" ] ++ tags;
     };
 in
 {
   tailscale = {
     tailnet = "tail650e82.ts.net";
-    domain = "internal.center";
-    prefix = "center_internal_tailscale";
+    domain = "ts.ysun.co";
+    zone = "ysun.co";
+    prefix = "co_ysun_ts";
   };
 
   users.ysun = newUser {
@@ -54,110 +58,132 @@ in
   # servers
   hosts.butte = newHost {
     hostName = "butte";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "virtua";
     type = "server";
+    tags = [ "anycast" "router" ];
     ipv4 = "185.234.100.120";
     ipv6 = "2a07:8dc0:1c:0:48:f1ff:febe:1c6";
+    ipam = {
+      ipv4 = "23.161.104.132";
+      ipv6 = "2602:f590::23:161:104:132";
+    };
   };
 
   hosts.halti = newHost {
     hostName = "halti";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "garnix";
     type = "server";
+    tags = [ "grafana" ];
     ipv4 = "37.27.181.83";
-    ipv6 = null;
+    ipv6 = "2a01:4f9:c012:7b3a::1";
   };
 
   hosts.isere = newHost {
     hostName = "isere";
-    domain = "as10779.net";
     platform = "aarch64-linux";
     os = "nixos";
     provider = "owned";
     type = "rpi";
-    ipv4 = null;
-    ipv6 = null;
+    tags = [ "routee" "home-assistant" "vaultwarden" "ntpd-rs" ];
+    ipam = {
+      ipv4 = "23.161.104.133";
+      ipv6 = "2602:f590::23:161:104:133";
+    };
   };
 
   hosts.highline = newHost {
     hostName = "highline";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "neptune";
     type = "server";
+    tags = [ "anycast" "router" ];
     ipv4 = "172.82.22.183";
     ipv6 = "2602:fe2e:4:b2:fd:87ff:fe11:53cb";
+    ipam = {
+      ipv4 = "23.161.104.129";
+      ipv6 = "2602:f590::23:161:104:129";
+    };
   };
 
   hosts.kongo = newHost {
     hostName = "kongo";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "vultr";
     type = "server";
+    tags = [ "anycast" "router" ];
     ipv4 = "45.32.59.137";
     ipv6 = "2001:19f0:7002:0327:5400:05ff:febb:599b";
+    ipam = {
+      ipv4 = "23.161.104.130";
+      ipv6 = "2602:f590::23:161:104:130";
+    };
   };
 
   hosts.lagern = newHost {
     hostName = "lagern";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "aws";
     type = "server";
+    tags = [ "jitsi" ];
     ipv4 = "16.62.113.214";
     ipv6 = "2a05:d019:b00:b6f0:6981:b7c5:ff97:9eea";
   };
 
   hosts.odake = newHost {
     hostName = "odake";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "ssdnodes";
     type = "server";
+    tags = [ "attic" "hydra" "neogrok" ];
     ipv4 = "209.182.234.194";
     ipv6 = "2602:ff16:14:0:1:56:0:1";
   };
 
   hosts.timah = newHost {
     hostName = "timah";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "misaka";
     type = "server";
+    tags = [ "anycast" "router" ];
     ipv4 = "194.114.138.187";
     ipv6 = "2407:b9c0:e002:25c:26a3:f0ff:fe45:a7b7";
+    ipam = {
+      ipv4 = "23.161.104.131";
+      ipv6 = "2602:f590::23:161:104:131";
+    };
   };
 
   hosts.toompea = newHost {
     hostName = "toompea";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "xtom";
     type = "server";
+    tags = [ "anycast" "router" "calibre" "plausible" ];
     ipv4 = "185.194.53.29";
     ipv6 = "2a04:6f00:4::a5";
+    ipam = {
+      ipv4 = "23.161.104.128";
+      ipv6 = "2602:f590::23:161:104:128";
+    };
   };
 
   hosts.walberla = newHost {
     hostName = "walberla";
-    domain = "as10779.net";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "hetzner";
     type = "server";
+    tags = [ "glance" "golink" "kanidm" ];
     ipv4 = "23.88.126.45";
     ipv6 = "2a01:4f8:c17:4b75::1";
   };
