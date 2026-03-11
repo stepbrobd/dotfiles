@@ -8,19 +8,19 @@
       src = fetchFromGitHub {
         owner = "tailscale";
         repo = "go";
-        rev = "0f1a3326f30508521e7b8322f4e0f084560c1404";
-        hash = "sha256-zyo1dIQnrwq8TVxwKCjJ3PfiShjAXO4wMQb/F7ze/mU=";
+        rev = "5cce30e20c1fc6d8463b0a99acdd9777c4ad124b";
+        hash = "sha256-nYXUQfKPoHgKCvK5BCh0BKOgPh6n90XX+iUNETLETBA=";
       };
     };
   };
 }).overrideAttrs {
-  version = "1.95.161+18781";
+  version = "1.97.8+18781";
 
   src = fetchFromGitHub {
     owner = "stepbrobd";
     repo = "tailscale";
-    rev = "e0cdacd4060cdd62a1f986fc5e6f577b9cfbf29f";
-    hash = "sha256-IzekKxsRqjCzc+XIGQvV0qWperIe9p86kVQIq+RzwA4=";
+    rev = "f63409efd18ade1310f36472337e17da8aaba48d";
+    hash = "sha256-EtcfInOnRGwvI3Ka3caY9juxj2YsFYUNSNnOlMitHW0=";
   };
 
   vendorHash = "sha256-dx+SJyDx+eZptFaMatoyM6w1E3nJKY+hKs7nuR997bE=";
