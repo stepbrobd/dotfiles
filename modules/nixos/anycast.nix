@@ -39,10 +39,6 @@ in
           common = ''
             import common
             import csp
-            cache {
-              ttl 1s
-              default_cache_control "public, max-age=1, must-revalidate"
-            }
             header X-Served-By "${config.networking.fqdn}"
           '';
 
