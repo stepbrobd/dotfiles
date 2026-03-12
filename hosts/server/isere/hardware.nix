@@ -13,6 +13,12 @@
     raspberry-pi-5.display-vc4
   ];
 
+  # they added this weird ass requirement but i dont wanna
+  # https://github.com/nvmd/nixos-raspberrypi/pull/156
+  # that means i need to either dont change rpi in inputs
+  # or remember to change it here as well...
+  _module.args.nixos-raspberrypi = inputs.rpi;
+
   boot.loader.raspberry-pi.bootloader = "kernel";
 
   # bluetooth
