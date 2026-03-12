@@ -28,13 +28,6 @@ in
         # dns cloudflare {env.CF_API_TOKEN}
         # ech ech.ysun.co
 
-        cache {
-          log_level ERROR
-          badger
-          allowed_http_verbs GET HEAD
-          default_cache_control no-store
-        }
-
         cert_issuer acme {
           profile shortlived
         }
