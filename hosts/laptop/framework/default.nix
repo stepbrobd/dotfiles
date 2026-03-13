@@ -8,7 +8,7 @@
 
   services.openssh.enable = true;
 
-  services.desktopManager.enabled = "niri";
+  services.desktopManager.enabled = "hyprland";
 
   # osu!
   hardware.opentabletdriver.enable = true;
