@@ -10,14 +10,14 @@ in
 {
   options.services.desktopManager = {
     enabled = mkOption {
-      type = with types; nullOr (enum [ "hyprland" "niri" "plasma" ]);
+      type = with types; nullOr (enum [ "hyprland" "niri" ]);
       default = null;
-      example = "hyprland";
+      example = "niri";
       description = ''
         Choose:
         - null (or nothing) -> no desktop manager
         - hyprland
-        - plasma -> plasma6
+        - niri
       '';
     };
   };
@@ -178,26 +178,5 @@ in
       security.pam.services.greetd.enableGnomeKeyring = true;
     })
 
-    (mkIf (cfg.enabled == "plasma") {
-      services = {
-        desktopManager.plasma6.enable = true;
-        # can't use with plasma
-        power-profiles-daemon.enable = false;
-      };
-
-      # login manager
-      services.xserver.enable = true;
-      services.displayManager = {
-        defaultSession = "plasma";
-        sddm.enable = true;
-        sddm.wayland.enable = true;
-      };
-
-      # kwallet
-      security.pam.services.kdewallet.kwallet.enable = true;
-
-      # IME
-      i18n.inputMethod.fcitx5.plasma6Support = true;
-    })
   ]);
 }
