@@ -16,6 +16,7 @@
     # git # imported in graphical
     # gpg # imported in graphical
     hyprland # linux only
+    niri # linux only
     # lsd # imported in graphical
     mpd # linux only
     # nushell # imported in graphical
