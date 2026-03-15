@@ -39,6 +39,7 @@ in
         "ssdp"
         "switchbot"
         "switchbot_cloud"
+        "vesync"
         "zeroconf"
       ];
 
