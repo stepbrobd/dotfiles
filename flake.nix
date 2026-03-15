@@ -27,6 +27,7 @@
           nixpkgs = {
             config = {
               allowUnfree = true;
+              allowDeprecatedx86_64Darwin = true;
             };
             overlays = with inputs; [
               self.overlays.default
