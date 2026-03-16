@@ -10,7 +10,7 @@
       AccountID = 953733;
       LicenseKey._secret = config.sops.secrets."maxmind/license".path;
 
-      EditionIDs = [ "GeoLite2-City" ];
+      EditionIDs = [ "GeoLite2-ASN" "GeoLite2-City" ];
     };
   };
 }
