@@ -112,7 +112,7 @@ in
           name = "Kanidm";
           icon = "signin";
           allow_sign_up = true;
-          auto_login = true;
+          auto_login = false;
           client_id = "grafana";
           client_secret = "$__file{${config.sops.secrets."grafana/oauth".path}}";
           scopes = "openid email profile";
