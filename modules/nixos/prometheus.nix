@@ -9,6 +9,21 @@ let
 in
 {
   config = /* mkIf cfg.enable */ {
+    services.rfm = {
+      enable = true;
+      settings.agent = {
+        interfaces = [ "*" ];
+        bpf.sample_rate = 10;
+        prometheus.host = "127.0.0.1";
+        prometheus.port = 9669;
+        enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
+        enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
+        # only enable rib on routers
+        # enrich.rib.bmp.host = "127.0.0.1";
+        # enrich.rib.bmp.port = 11019;
+      };
+    };
+
     services.prometheus = {
       enable = true;
       globalConfig.scrape_interval = "30s";
@@ -27,6 +42,12 @@ in
           job_name = "prometheus-node-exporter";
           static_configs = [
             { targets = [ "${with cfg.exporters.node; toString listenAddress + ":" + toString port}" ]; }
+          ];
+        }
+        {
+          job_name = "prometheus-rfm-exporter";
+          static_configs = [
+            { targets = [ "${with config.services.rfm.settings.agent.prometheus; lib.toString host + ":" + lib.toString port}" ]; }
           ];
         }
       ];

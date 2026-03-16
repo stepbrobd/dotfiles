@@ -633,21 +633,6 @@ in
         '');
     }
     {
-      services.rfm = {
-        enable = true;
-        settings.agent = {
-          interfaces = [ "*" ];
-          bpf.sample_rate = 10;
-          prometheus.host = "127.0.0.1";
-          prometheus.port = 9669;
-          enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
-          enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
-          # enrich.rib.bmp.host = "127.0.0.1";
-          # enrich.rib.bmp.port = 11019;
-        };
-      };
-    }
-    {
       services.prometheus = {
         exporters.bird = {
           enable = with config.services; bird.enable && prometheus.enable;
@@ -666,12 +651,6 @@ in
             scheme = "https";
             static_configs = [{ targets = [ "prometheus.bgp.tools:443" ]; }];
             metrics_path = "/prom/1dafeced-2b12-40c0-a173-e9296ddb6df4";
-          }
-          {
-            job_name = "prometheus-rfm-exporter";
-            static_configs = [
-              { targets = [ "${with config.services.rfm.settings.agent.prometheus; lib.toString host + ":" + lib.toString port}" ]; }
-            ];
           }
         ];
       };
