@@ -257,7 +257,7 @@ in
 
       co_ysun_otel = {
         type = "CNAME";
-        proxied = false;
+        proxied = true;
         name = "otel";
         content = "halti.sd.ysun.co";
         comment = "Garnix - Grafana";
