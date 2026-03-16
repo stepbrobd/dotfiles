@@ -34,6 +34,7 @@ let
         self.nixosModules.server
         self.nixosModules.tsnsrv
         self.nixosModules.vaultwarden
+        rfm.nixosModules.default
         srvos.nixosModules.common
         srvos.nixosModules.server
       ];
