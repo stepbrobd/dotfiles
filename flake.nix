@@ -146,6 +146,12 @@
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
     # r
+    rfm.url = "github:stepbrobd/rfm";
+    rfm.inputs.nixpkgs.follows = "nixpkgs";
+    rfm.inputs.parts.follows = "parts";
+    rfm.inputs.utils.follows = "utils";
+    rfm.inputs.systems.follows = "systems";
+    rfm.inputs.gomod2nix.follows = "gomod2nix";
     rpi.url = "github:nvmd/nixos-raspberrypi";
     rpi.inputs.nixpkgs.follows = "nixpkgs";
     rpi.inputs.flake-compat.follows = "compat";
