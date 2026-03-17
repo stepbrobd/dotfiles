@@ -31,7 +31,7 @@ in
     services.bird.config = lib.mkOrder 2000 ''
       protocol bmp rfm0 {
         station address ip 127.0.0.1 port 11019;
-        monitoring rib in post_policy;
+        monitoring rib in pre_policy;
       }
     '';
 
