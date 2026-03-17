@@ -11,29 +11,29 @@ in
   config = /* mkIf cfg.enable */ {
     services.rfm = {
       enable = true;
-      settings.agent = lib.recursiveUpdate
-        {
-          interfaces = [ "*" ];
-          bpf.sample_rate = 10;
-          prometheus.host = "127.0.0.1";
-          prometheus.port = 9669;
-          enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
-          enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
-        }
-        (lib.optionalAttrs config.services.bird.enable {
-          # only enable rib on routers
-          enrich.rib.bmp.host = "127.0.0.1";
-          enrich.rib.bmp.port = 11019;
-        });
+      settings.agent = {
+        interfaces = [ "*" ];
+        bpf.sample_rate = 10;
+        prometheus.host = "127.0.0.1";
+        prometheus.port = 9669;
+        enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
+        enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
+      };
+      # (lib.optionalAttrs config.services.bird.enable {
+      #   # only enable rib on routers
+      #   enrich.rib.bmp.host = "127.0.0.1";
+      #   enrich.rib.bmp.port = 11019;
+      # });
     };
 
-    # see above
-    services.bird.config = lib.mkOrder 2000 ''
-      protocol bmp rfm0 {
-        station address ip 127.0.0.1 port 11019;
-        monitoring rib in pre_policy;
-      }
-    '';
+    # disabled because require setting `import table on`
+    # which fucks the memory usage on small nodes
+    # services.bird.config = lib.mkOrder 2000 ''
+    #   protocol bmp rfm0 {
+    #     station address ip 127.0.0.1 port 11019;
+    #     monitoring rib in post_policy;
+    #   }
+    # '';
 
     services.prometheus = {
       enable = true;
