@@ -3,12 +3,6 @@
 { pkgs, ... }:
 
 {
-  system.configurationRevision =
-    with inputs.self;
-    if sourceInfo ? dirtyShortRev
-    then sourceInfo.dirtyShortRev
-    else sourceInfo.shortRev;
-
   # lower  than option default (1500)
   # higher than        default (1000)
   # need to do this since nixos for raspberry pi module set mkDefault
