@@ -47,7 +47,7 @@ jobs:
             trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
             substituters = https://cache.garnix.io https://cache.nixos.org/
 
-      - name: "Helpers"
+      - name: "Install Dependencies"
         run: nix profile install nixpkgs#nix-update
 
       - name: "Bump"
@@ -59,7 +59,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          SYSTEM=$(nix eval --raw --expr 'builtins.currentSystem')
+          SYSTEM=$(nix eval --raw --impure --expr 'builtins.currentSystem')
           BRANCH="bump/$(date +%Y-%m-%d)"
           git checkout -b "$BRANCH"
 
