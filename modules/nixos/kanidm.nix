@@ -4,7 +4,8 @@ let
   inherit (config.security.acme.certs."sso.ysun.co") directory;
 in
 {
-  networking.firewall.allowedTCPPorts = [ 636 ];
+  # exposed thru tailscale
+  # networking.firewall.allowedTCPPorts = [ 636 ];
 
   environment.systemPackages = [ pkgs.kanidm ];
 
@@ -46,8 +47,8 @@ in
       origin = "https://sso.ysun.co";
       http_client_address_info.x-forward-for = [ "::1" "127.0.0.1" ];
 
-      ldapbindaddress = "[::]:636";
-      bindaddress = "[::]:8443";
+      ldapbindaddress = "[::1]:636";
+      bindaddress = "[::1]:8443";
 
       tls_key = "${directory}/key.pem";
       tls_chain = "${directory}/fullchain.pem";
