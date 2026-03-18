@@ -17,11 +17,11 @@
 
 buildDunePackage (finalAttrs: {
   pname = "httpcats";
-  version = "0.1.0";
+  version = "0.2.0";
 
   src = fetchzip {
     url = "https://github.com/robur-coop/httpcats/releases/download/v${finalAttrs.version}/httpcats-${finalAttrs.version}.tbz";
-    hash = "sha256-DqnG6oEOqvkl+Z30KvHyRYyo3mXEDFs7sNtde4rwLbg=";
+    hash = "sha256-1opVDWlgW52xli52+rPCUZUe5gSOzQ9clLXJf7INTfs=";
   };
 
   env.DUNE_CACHE = "disabled";
