@@ -80,7 +80,7 @@ in
     os = "nixos";
     provider = "garnix";
     type = "server";
-    tags = [ "grafana" ];
+    tags = [ "routee" "grafana" ];
     interface = "enp1s0";
     ipv4 = "37.27.181.83";
     ipv6 = "2a01:4f9:c012:7b3a::1";
@@ -146,7 +146,7 @@ in
     os = "nixos";
     provider = "aws";
     type = "server";
-    tags = [ "jitsi" ];
+    tags = [ "routee" "jitsi" ];
     interface = "ens5";
     ipv4 = "16.62.113.214";
     ipv6 = "2a05:d019:b00:b6f0:6981:b7c5:ff97:9eea";
@@ -163,7 +163,7 @@ in
     os = "nixos";
     provider = "ssdnodes";
     type = "server";
-    tags = [ "attic" "hydra" "neogrok" ];
+    tags = [ "routee" "attic" "hydra" "neogrok" ];
     interface = "enp3s0";
     ipv4 = "209.182.234.194";
     ipv6 = "2602:ff16:14:0:1:56:0:1";
@@ -214,7 +214,7 @@ in
     os = "nixos";
     provider = "hetzner";
     type = "server";
-    tags = [ "glance" "golink" "kanidm" ];
+    tags = [ "routee" "glance" "golink" "kanidm" ];
     interface = "eth0";
     ipv4 = "23.88.126.45";
     ipv6 = "2a01:4f8:c17:4b75::1";
