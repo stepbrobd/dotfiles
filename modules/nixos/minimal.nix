@@ -18,7 +18,6 @@
 
   imports = with inputs.self.nixosModules; [
     fail2ban
-    mglru
     nftables
     tailscale
     time
@@ -68,5 +67,52 @@
     after = lib.mkForce [ "network-online.target" "systemd-networkd.service" ];
     wants = lib.mkForce [ "network-online.target" ];
     wantedBy = lib.mkForce [ "multi-user.target" ];
+  };
+
+  boot.kernelPatches = lib.singleton {
+    name = "kconfig-optimizations";
+    patch = null;
+    structuredExtraConfig = lib.genAttrs [
+      # https://github.com/iovisor/bcc/blob/master/docs/kernel_config.md
+      "BPF"
+      "BPF_JIT"
+      "BPF_JIT_ALWAYS_ON"
+      # https://docs.kernel.org/admin-guide/mm/multigen_lru.html
+      "LRU_GEN"
+      "LRU_GEN_ENABLED"
+    ]
+      (_: lib.mkForce lib.kernel.yes);
+  };
+
+  # network optimizations
+  boot.kernelModules = [ "tcp_bbr" ];
+  boot.kernel.sysctl = {
+    # bbr congestion control with fq qdisc for pacing
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+    # tcp fast open for both client and server
+    "net.ipv4.tcp_fastopen" = 3;
+    # path mtu discovery (important for vps with non-standard mtu)
+    "net.ipv4.tcp_mtu_probing" = 1;
+    # keep connections performant after idle
+    "net.ipv4.tcp_slow_start_after_idle" = 0;
+    # reuse time_wait sockets for outbound connections
+    "net.ipv4.tcp_tw_reuse" = 1;
+    # listen backlog for busy servers (caddy, bird, etc.)
+    "net.core.somaxconn" = 4096;
+    "net.ipv4.tcp_max_syn_backlog" = 8192;
+    # raise buffer ceiling so bpftune has room to auto-tune
+    "net.core.rmem_max" = 16777216;
+    "net.core.wmem_max" = 16777216;
+    # tcp auto-tuning range: min default max
+    "net.ipv4.tcp_rmem" = "4096 131072 16777216";
+    "net.ipv4.tcp_wmem" = "4096 16384 16777216";
+    # udp buffer minimums for wireguard/tailscale
+    "net.ipv4.udp_rmem_min" = 8192;
+    "net.ipv4.udp_wmem_min" = 8192;
+    "net.ipv6.udp_rmem_min" = 8192;
+    "net.ipv6.udp_wmem_min" = 8192;
+    # nic backlog for handling packet bursts
+    "net.core.netdev_max_backlog" = 16384;
   };
 }
