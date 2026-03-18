@@ -8,11 +8,11 @@
     local = {
       hostname = config.networking.hostName;
       interface = {
-        local = lib.blueprint.hosts.isere.ipam.interface;
-        primary = lib.blueprint.hosts.isere.interface;
+        local = lib.blueprint.hosts.lagern.ipam.interface;
+        primary = lib.blueprint.hosts.lagern.interface;
       };
-      ipv4.addresses = [ "${lib.blueprint.hosts.isere.ipam.ipv4}/32" ];
-      ipv6.addresses = [ "${lib.blueprint.hosts.isere.ipam.ipv6}/128" ];
+      ipv4.addresses = [ "${lib.blueprint.hosts.lagern.ipam.ipv4}/32" ];
+      ipv6.addresses = [ "${lib.blueprint.hosts.lagern.ipam.ipv6}/128" ];
     };
 
     router.static = {

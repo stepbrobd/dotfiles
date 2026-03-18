@@ -63,6 +63,38 @@ in
         content = "isere.sd.ysun.co";
         comment = "Raspberry Pi 5B - Grenoble";
       };
+
+      arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_1_3_4 = {
+        type = "PTR";
+        proxied = false;
+        name = "4.3.1.0.4.0.1.0.1.6.1.0.3.2.0.0.0.0.0.0.0.0.0";
+        content = "halti.sd.ysun.co";
+        comment = "Garnix - Hosting";
+      };
+
+      arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_1_3_5 = {
+        type = "PTR";
+        proxied = false;
+        name = "5.3.1.0.4.0.1.0.1.6.1.0.3.2.0.0.0.0.0.0.0.0.0";
+        content = "lagern.sd.ysun.co";
+        comment = "AWS - EU Central 2";
+      };
+
+      arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_1_3_6 = {
+        type = "PTR";
+        proxied = false;
+        name = "6.3.1.0.4.0.1.0.1.6.1.0.3.2.0.0.0.0.0.0.0.0.0";
+        content = "odake.sd.ysun.co";
+        comment = "SSDNodes - Tokyo 2";
+      };
+
+      arpa_ip6_2_6_0_2_f_5_9_0_0_0_0_0_0_2_3_1_6_1_0_1_4_0_1_3_7 = {
+        type = "PTR";
+        proxied = false;
+        name = "7.3.1.0.4.0.1.0.1.6.1.0.3.2.0.0.0.0.0.0.0.0.0";
+        content = "walberla.sd.ysun.co";
+        comment = "Hetzner - Falkenstein";
+      };
     } // mkPurelyMailRecord
     "0.0.9.5.f.2.0.6.2.ip6.arpa"
     "arpa_ip6_2_6_0_2_f_5_9_0_0"

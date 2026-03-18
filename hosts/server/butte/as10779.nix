@@ -18,8 +18,8 @@ in
     local = {
       hostname = config.networking.hostName;
       interface = {
-        local = "dummy0";
-        primary = "eth0";
+        local = lib.blueprint.hosts.butte.ipam.interface;
+        primary = lib.blueprint.hosts.butte.interface;
       };
       ipv4.addresses = [
         "${lib.blueprint.hosts.butte.ipam.ipv4}/32" # unicast

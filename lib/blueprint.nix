@@ -20,13 +20,14 @@ let
     , type # e.g. "laptop", "desktop", "server", "rpi"
     , domain ? "sd.ysun.co"
     , tags ? [ ]
+    , interface ? null # e.g. "eth0", "enp1s0" — primary outbound network interface
     , ipv4 ? null
     , ipv6 ? null
     , ipam ? { }
     , services ? { }
     }: {
       inherit platform os provider type; # metadata
-      inherit hostName domain ipv4 ipv6 ipam; # networking
+      inherit hostName domain interface ipv4 ipv6 ipam; # networking
       inherit services;
       fqdn = "${hostName}.${domain}";
       tags = [ "server" ] ++ tags;
@@ -63,9 +64,11 @@ in
     provider = "virtua";
     type = "server";
     tags = [ "anycast" "router" ];
+    interface = "eth0";
     ipv4 = "185.234.100.120";
     ipv6 = "2a07:8dc0:1c:0:48:f1ff:febe:1c6";
     ipam = {
+      interface = "dummy0";
       ipv4 = "23.161.104.132";
       ipv6 = "2602:f590::23:161:104:132";
     };
@@ -78,8 +81,14 @@ in
     provider = "garnix";
     type = "server";
     tags = [ "grafana" ];
+    interface = "enp1s0";
     ipv4 = "37.27.181.83";
     ipv6 = "2a01:4f9:c012:7b3a::1";
+    ipam = {
+      interface = "dummy0";
+      ipv4 = "23.161.104.134";
+      ipv6 = "2602:f590::23:161:104:134";
+    };
   };
 
   hosts.isere = newHost {
@@ -89,7 +98,9 @@ in
     provider = "owned";
     type = "rpi";
     tags = [ "routee" "home-assistant" "vaultwarden" "ntpd-rs" ];
+    interface = "end0";
     ipam = {
+      interface = "dummy0";
       ipv4 = "23.161.104.133";
       ipv6 = "2602:f590::23:161:104:133";
     };
@@ -102,9 +113,11 @@ in
     provider = "neptune";
     type = "server";
     tags = [ "anycast" "router" ];
+    interface = "ens3";
     ipv4 = "172.82.22.183";
     ipv6 = "2602:fe2e:4:b2:fd:87ff:fe11:53cb";
     ipam = {
+      interface = "dummy0";
       ipv4 = "23.161.104.129";
       ipv6 = "2602:f590::23:161:104:129";
     };
@@ -117,9 +130,11 @@ in
     provider = "vultr";
     type = "server";
     tags = [ "anycast" "router" ];
+    interface = "enp1s0";
     ipv4 = "45.32.59.137";
     ipv6 = "2001:19f0:7002:0327:5400:05ff:febb:599b";
     ipam = {
+      interface = "dummy0";
       ipv4 = "23.161.104.130";
       ipv6 = "2602:f590::23:161:104:130";
     };
@@ -132,8 +147,14 @@ in
     provider = "aws";
     type = "server";
     tags = [ "jitsi" ];
+    interface = "ens5";
     ipv4 = "16.62.113.214";
     ipv6 = "2a05:d019:b00:b6f0:6981:b7c5:ff97:9eea";
+    ipam = {
+      interface = "dummy0";
+      ipv4 = "23.161.104.135";
+      ipv6 = "2602:f590::23:161:104:135";
+    };
   };
 
   hosts.odake = newHost {
@@ -143,8 +164,14 @@ in
     provider = "ssdnodes";
     type = "server";
     tags = [ "attic" "hydra" "neogrok" ];
+    interface = "enp3s0";
     ipv4 = "209.182.234.194";
     ipv6 = "2602:ff16:14:0:1:56:0:1";
+    ipam = {
+      interface = "dummy0";
+      ipv4 = "23.161.104.136";
+      ipv6 = "2602:f590::23:161:104:136";
+    };
   };
 
   hosts.timah = newHost {
@@ -154,9 +181,11 @@ in
     provider = "misaka";
     type = "server";
     tags = [ "anycast" "router" ];
+    interface = "enp3s0";
     ipv4 = "194.114.138.187";
     ipv6 = "2407:b9c0:e002:25c:26a3:f0ff:fe45:a7b7";
     ipam = {
+      interface = "dummy0";
       ipv4 = "23.161.104.131";
       ipv6 = "2602:f590::23:161:104:131";
     };
@@ -169,9 +198,11 @@ in
     provider = "xtom";
     type = "server";
     tags = [ "anycast" "router" "calibre" "plausible" ];
+    interface = "enp6s18";
     ipv4 = "185.194.53.29";
     ipv6 = "2a04:6f00:4::a5";
     ipam = {
+      interface = "dummy0";
       ipv4 = "23.161.104.128";
       ipv6 = "2602:f590::23:161:104:128";
     };
@@ -184,8 +215,14 @@ in
     provider = "hetzner";
     type = "server";
     tags = [ "glance" "golink" "kanidm" ];
+    interface = "eth0";
     ipv4 = "23.88.126.45";
     ipv6 = "2a01:4f8:c17:4b75::1";
+    ipam = {
+      interface = "dummy0";
+      ipv4 = "23.161.104.137";
+      ipv6 = "2602:f590::23:161:104:137";
+    };
   };
 
   prefixes = {

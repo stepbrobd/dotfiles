@@ -18,8 +18,8 @@ in
     local = {
       hostname = config.networking.hostName;
       interface = {
-        local = "dummy0";
-        primary = "enp6s18";
+        local = lib.blueprint.hosts.toompea.ipam.interface;
+        primary = lib.blueprint.hosts.toompea.interface;
       };
       ipv4.addresses = [
         "${lib.blueprint.hosts.toompea.ipam.ipv4}/32" # unicast

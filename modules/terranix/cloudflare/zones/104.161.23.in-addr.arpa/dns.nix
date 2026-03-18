@@ -63,6 +63,38 @@ in
         content = "isere.sd.ysun.co";
         comment = "Raspberry Pi 5B - Grenoble";
       };
+
+      arpa_in_addr_23_161_104_134 = {
+        type = "PTR";
+        proxied = false;
+        name = "134";
+        content = "halti.sd.ysun.co";
+        comment = "Garnix - Hosting";
+      };
+
+      arpa_in_addr_23_161_104_135 = {
+        type = "PTR";
+        proxied = false;
+        name = "135";
+        content = "lagern.sd.ysun.co";
+        comment = "AWS - EU Central 2";
+      };
+
+      arpa_in_addr_23_161_104_136 = {
+        type = "PTR";
+        proxied = false;
+        name = "136";
+        content = "odake.sd.ysun.co";
+        comment = "SSDNodes - Tokyo 2";
+      };
+
+      arpa_in_addr_23_161_104_137 = {
+        type = "PTR";
+        proxied = false;
+        name = "137";
+        content = "walberla.sd.ysun.co";
+        comment = "Hetzner - Falkenstein";
+      };
     } // mkPurelyMailRecord
     "104.161.23.in-addr.arpa"
     "arpa_in_addr_23_161_104"

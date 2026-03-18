@@ -21,8 +21,8 @@ in
     local = {
       hostname = config.networking.hostName;
       interface = {
-        local = "dummy0";
-        primary = "enp1s0";
+        local = lib.blueprint.hosts.kongo.ipam.interface;
+        primary = lib.blueprint.hosts.kongo.interface;
       };
       ipv4.addresses = [
         "${lib.blueprint.hosts.kongo.ipam.ipv4}/32" # unicast

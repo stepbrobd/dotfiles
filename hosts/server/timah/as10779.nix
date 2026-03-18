@@ -18,8 +18,8 @@ in
     local = {
       hostname = config.networking.hostName;
       interface = {
-        local = "dummy0";
-        primary = "enp3s0";
+        local = lib.blueprint.hosts.timah.ipam.interface;
+        primary = lib.blueprint.hosts.timah.interface;
       };
       ipv4.addresses = [
         "${lib.blueprint.hosts.timah.ipam.ipv4}/32" # unicast

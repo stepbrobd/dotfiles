@@ -18,8 +18,8 @@ in
     local = {
       hostname = config.networking.hostName;
       interface = {
-        local = "dummy0";
-        primary = "ens3";
+        local = lib.blueprint.hosts.highline.ipam.interface;
+        primary = lib.blueprint.hosts.highline.interface;
       };
       ipv4.addresses = [
         "${lib.blueprint.hosts.highline.ipam.ipv4}/32" # unicast
