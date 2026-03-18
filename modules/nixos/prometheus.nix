@@ -6,30 +6,32 @@ let
   inherit (lib) /* mkIf */ toString;
 
   cfg = config.services.prometheus;
-
-  host = lib.blueprint.hosts.${config.networking.hostName};
 in
 {
   config = /* mkIf cfg.enable */ {
-    services.rfm = {
-      enable = true;
-      settings.agent = {
-        interfaces = [ host.interface ];
-        bpf.sample_rate = 10;
-        prometheus.host = "127.0.0.1";
-        prometheus.port = 9669;
-        enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
-        enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
-        ipfix.bind.host = host.ipam.ipv4 or host.ipv4;
-        ipfix.host = "162.159.65.1";
-        ipfix.port = 2055;
+    services.rfm =
+      let
+        host = lib.blueprint.hosts.${config.networking.hostName};
+      in
+      {
+        enable = true;
+        settings.agent = {
+          interfaces = [ host.interface ];
+          bpf.sample_rate = 10;
+          prometheus.host = "127.0.0.1";
+          prometheus.port = 9669;
+          enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
+          enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
+          ipfix.bind.host = host.ipam.ipv4 or host.ipv4;
+          ipfix.host = "162.159.65.1";
+          ipfix.port = 2055;
+        };
+        # (lib.optionalAttrs config.services.bird.enable {
+        #   # only enable rib on routers
+        #   enrich.rib.bmp.host = "127.0.0.1";
+        #   enrich.rib.bmp.port = 11019;
+        # });
       };
-      # (lib.optionalAttrs config.services.bird.enable {
-      #   # only enable rib on routers
-      #   enrich.rib.bmp.host = "127.0.0.1";
-      #   enrich.rib.bmp.port = 11019;
-      # });
-    };
 
     # disabled because require setting `import table on`
     # which fucks the memory usage on small nodes
