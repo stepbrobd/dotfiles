@@ -18,6 +18,8 @@ in
         prometheus.port = 9669;
         enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
         enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
+        ipfix.host = "162.159.65.1";
+        ipfix.port = 2055;
       };
       # (lib.optionalAttrs config.services.bird.enable {
       #   # only enable rib on routers
