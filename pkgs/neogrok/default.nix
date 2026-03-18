@@ -7,13 +7,13 @@
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "neogrok";
-  version = "1.2.0";
+  version = "1.2.1";
 
   src = fetchFromGitHub {
     owner = "isker";
     repo = "neogrok";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-FbjdiN3VlC/oOcfxy8Yb+qtiV2lALcAL9DW51TnX4vE=";
+    hash = "sha256-xAfXT2QioNKHL25lEAlryeaO3JUfOAIMW2+jaobvukY=";
   };
 
   missingHashes = ./missing-hashes.json;
