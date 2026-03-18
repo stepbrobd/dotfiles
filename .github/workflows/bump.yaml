@@ -66,8 +66,9 @@ jobs:
 
           is_blacklisted() {
             local pkg="$1"
+            local pkg_dot="${pkg//\//.}"
             for b in "${blacklist[@]}"; do
-              [[ -n "$b" && "$pkg" == "$b" ]] && return 0
+              [[ -n "$b" && ("$pkg" == "$b" || "$pkg_dot" == "$b") ]] && return 0
             done
             return 1
           }
