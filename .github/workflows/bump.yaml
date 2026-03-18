@@ -25,14 +25,12 @@ jobs:
         miroir
         neovide
         nixvim
+        ocamlPackages.omd
         pixelmplus
         ripe-atlas-software-probe
         san-francisco
         spotify
         stepbrobd
-        tailscale
-        treesitter-coq-grammar
-        verus
 
     steps:
       - name: "Checkout"
@@ -48,7 +46,7 @@ jobs:
             substituters = https://cache.garnix.io https://cache.nixos.org/
 
       - name: "Install Dependencies"
-        run: nix profile install nixpkgs#nix-update
+        run: nix profile add nixpkgs#nix-update
 
       - name: "Bump"
         env:
