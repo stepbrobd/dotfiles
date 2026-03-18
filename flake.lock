@@ -673,11 +673,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773846436,
-        "narHash": "sha256-1rDrnWib6FqmaolmiDsqQtVFyITFmuoF3H6MXDwXlFE=",
+        "lastModified": 1773855284,
+        "narHash": "sha256-E/54rmCEO4ZRU6Ov2wDBGxTb6hbemhdQDWfTHhd1qKc=",
         "owner": "stepbrobd",
         "repo": "rfm",
-        "rev": "11c305e78c4e33240ce227a482005496d36ca54c",
+        "rev": "87fa337044ae98effbef7088e00cd8c390aca7c5",
         "type": "github"
       },
       "original": {
@@ -779,11 +779,11 @@
     },
     "schemas": {
       "locked": {
-        "lastModified": 1773770223,
-        "narHash": "sha256-ncGXLsh87OYfoF5zmtIY9GK217VaE6nwaNYPGZMrL8c=",
+        "lastModified": 1773853635,
+        "narHash": "sha256-4VHWij4EWNqy1iZr6OxNB6cuv5tDjMwAL/J1SBLFU2Q=",
         "owner": "determinatesystems",
         "repo": "flake-schemas",
-        "rev": "c4e68a971a04375d4bf0e1a2cfb216c2f934d781",
+        "rev": "19686d6f3da8d4db959523f32eb1b50de9f18301",
         "type": "github"
       },
       "original": {
