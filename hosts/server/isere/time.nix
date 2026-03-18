@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 
 {
   systemd.services."serial-getty@ttyAMA0".enable = false;
@@ -76,18 +76,54 @@
     domain = "time.ysun.co";
   };
 
-  services.ntpd-rs.settings.source = [
+  # bind NTP and NTS-KE to addresses in my own block so reply packets have the correct
+  # source (dummy0 address) rather than the tailscale0 address the kernel
+  # would otherwise select for the outgoing interface
+  # e.g.
+  # In  IP 100.100.20.2.35421 > 23.161.104.133.123  <- correct dst
+  # Out IP 100.100.20.1.123   > 100.100.20.2.35421  <- src should be 23.161.104.133, not 100.100.20.1
+  # other non exit servers dont seem to be affected as their requests are termintated with caddy
+  # and caddy subsequantly generates traffic internal to kernel
+  # so the src address of the proxy backend's reply doesnt matter to the original client
+  services.ntpd-rs.settings =
+    let
+      serverConfig = config.services.ntpd-rs.server;
+      ipam = lib.blueprint.hosts.isere.ipam;
+    in
     {
-      mode = "sock";
-      path = "/run/ntpd-rs/chrony.ttyAMA0.sock";
-      precision = 0.005;
-    }
-    {
-      mode = "pps";
-      path = "/dev/pps0";
-      precision = 0.0000001;
-    }
-  ];
+      server = lib.mkForce [
+        { listen = "${ipam.ipv4}:123"; accept-ntp-versions = serverConfig.acceptedVersions; }
+        { listen = "[${ipam.ipv6}]:123"; accept-ntp-versions = serverConfig.acceptedVersions; }
+      ];
+
+      nts-ke-server = lib.mkForce [
+        {
+          listen = "${ipam.ipv4}:4460";
+          accept-ntp-versions = serverConfig.acceptedVersions;
+          private-key-path = serverConfig.cert.key;
+          certificate-chain-path = serverConfig.cert.fullchain;
+        }
+        {
+          listen = "[${ipam.ipv6}]:4460";
+          accept-ntp-versions = serverConfig.acceptedVersions;
+          private-key-path = serverConfig.cert.key;
+          certificate-chain-path = serverConfig.cert.fullchain;
+        }
+      ];
+
+      source = [
+        {
+          mode = "sock";
+          path = "/run/ntpd-rs/chrony.ttyAMA0.sock";
+          precision = 0.005;
+        }
+        {
+          mode = "pps";
+          path = "/dev/pps0";
+          precision = 0.0000001;
+        }
+      ];
+    };
 
   # https://docs.ntpd-rs.pendulum-project.org/guide/gps-pps/
   systemd.services.gpsd-socket-shim = {
