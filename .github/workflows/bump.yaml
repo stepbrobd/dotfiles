@@ -12,18 +12,125 @@ permissions:
 jobs:
   Bump:
     runs-on: ubuntu-latest
+    env:
+      BLACKLIST: |-
+        alacritty
+        caddy
+        calibre
+        calibre-web
+        hydra
+        jitsi-meet
+        kanidm
+        mac-app-util
+        miroir
+        neovide
+        nixvim
+        pixelmplus
+        ripe-atlas-software-probe
+        san-francisco
+        spotify
+        stepbrobd
+        tailscale
+        treesitter-coq-grammar
+        verus
+
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v6"
+
       - name: "Install Nix"
         uses: "cachix/install-nix-action@v31"
         with:
           nix_path: "nixpkgs=https://github.com/nixos/nixpkgs/archive/refs/heads/nixos-unstable.tar.gz"
           extra_nix_config: |
+            accept-flake-config = true
             trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
             substituters = https://cache.garnix.io https://cache.nixos.org/
+
+      - name: "Helpers"
+        run: nix profile install nixpkgs#nix-update
+
       - name: "Bump"
-        uses: "gepbird/nix-update-action@v2"
-        with:
-          pr-reviewers: stepbrobd
-          blacklist: "alacritty,caddy,calibre,calibre-web,hydra,jitsi-meet,kanidm,mac-app-util,miroir,neovide,nixvim,pixelmplus,ripe-atlas-software-probe,san-francisco,spotify,stepbrobd,tailscale,treesitter-coq-grammar,verus"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          SYSTEM=$(nix eval --raw --expr 'builtins.currentSystem')
+          BRANCH="bump/$(date +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+
+          # parse blacklist
+          mapfile -t blacklist <<< "$BLACKLIST"
+
+          is_blacklisted() {
+            local pkg="$1"
+            for b in "${blacklist[@]}"; do
+              [[ -n "$b" && "$pkg" == "$b" ]] && return 0
+            done
+            return 1
+          }
+
+          update_package() {
+            local pkg="$1"
+            local nix_attr="${pkg//\//.}"
+            local legacy_path="legacyPackages.${SYSTEM}.${nix_attr}"
+
+            local old_version
+            old_version=$(nix eval --raw ".#${legacy_path}.version" 2>/dev/null) || {
+              echo "::warning::Could not evaluate version for ${pkg}, skipping."
+              return 0
+            }
+
+            echo "::group::Updating ${pkg} (current: ${old_version})"
+            if ! nix-update --flake --use-update-script "$legacy_path"; then
+              echo "::warning::nix-update failed for ${pkg}"
+              git checkout -- .
+              echo "::endgroup::"
+              return 0
+            fi
+            echo "::endgroup::"
+
+            if git diff --quiet; then
+              echo "${pkg} is up to date."
+              return 0
+            fi
+
+            local new_version
+            new_version=$(nix eval --raw ".#${legacy_path}.version" 2>/dev/null) || new_version="unknown"
+
+            git add -A
+            git commit -m "pkgs/${pkg}: ${old_version} -> ${new_version}"
+          }
+
+          # discover and update packages from pkgs/ directory
+          for dir in pkgs/*/; do
+            name=$(basename "$dir")
+            if [[ -f "${dir}default.nix" ]]; then
+              is_blacklisted "$name" || update_package "$name"
+            else
+              for subdir in "${dir}"*/; do
+                [[ -d "$subdir" && -f "${subdir}default.nix" ]] || continue
+                subname=$(basename "$subdir")
+                is_blacklisted "${name}/${subname}" || update_package "${name}/${subname}"
+              done
+            fi
+          done
+
+          # create PR if there are updates
+          if [[ $(git log origin/master..HEAD --oneline | wc -l) -eq 0 ]]; then
+            echo "No packages updated."
+            exit 0
+          fi
+
+          git push -f -u origin HEAD
+
+          body=$(git log origin/master..HEAD --format="- %s" | sort)
+          gh pr create \
+            --title "pkgs: bump $(date +%Y-%m-%d)" \
+            --body "$body" \
+            --reviewer stepbrobd \
+            || true
