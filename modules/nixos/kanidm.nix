@@ -58,6 +58,7 @@ in
       enable = true;
       autoRemove = true;
       acceptInvalidCerts = true;
+      instanceUrl = "https://[::1]:8443";
 
       adminPasswordFile = config.sops.secrets."kanidm/passwd".path;
       idmAdminPasswordFile = config.sops.secrets."kanidm/passwd".path;
