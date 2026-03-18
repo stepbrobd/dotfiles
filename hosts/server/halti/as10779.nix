@@ -2,7 +2,7 @@
 
 {
   services.as10779 = {
-    enable = true;
+    enable = false; # TODO: garnix requires useNetworkd = false
     router.exit = false;
 
     local = {
