@@ -10,13 +10,13 @@
 
 buildDunePackage (finalAttrs: {
   pname = "omd";
-  version = "2.0.0.alpha4";
+  version = "1.3.2";
 
   src = fetchFromGitHub {
     owner = "ocaml-community";
     repo = "omd";
     tag = finalAttrs.version;
-    hash = "sha256-5eZitDaNKSkLOsyPf5g5v9wdZZ3iVQGu8Ot4FHZZ3AI=";
+    hash = "sha256-PeEWqHgdajSxoi5G4TfyV1S3RRfilYlcttTxQ0xhyE4=";
   };
 
   patches = [
