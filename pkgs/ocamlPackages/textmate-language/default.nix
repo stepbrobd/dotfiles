@@ -9,11 +9,11 @@
 
 buildDunePackage (finalAttrs: {
   pname = "textmate-language";
-  version = "0.4.0";
+  version = "0.5.0";
 
   src = fetchzip {
     url = "https://github.com/alan-j-hu/ocaml-textmate-language/releases/download/${finalAttrs.version}/textmate-language-${finalAttrs.version}.tbz";
-    hash = "sha256-w3GjB9/RUvXAJgchYFlws623ijwk/L7xFuYYZq8kzMo=";
+    hash = "sha256-RZiCdZzTrdNNPZODC2GoMQYT1vH9oHFE9STLPHsxZd8=";
   };
 
   env.DUNE_CACHE = "disabled";
