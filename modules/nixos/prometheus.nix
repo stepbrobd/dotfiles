@@ -17,6 +17,8 @@ in
         enable = true;
         settings.agent = {
           interfaces = [ host.interface ];
+          # should match cloudflare magic network monitoring default_sampling
+          # see cloudflare terranix module
           bpf.sample_rate = 10;
           prometheus.host = "127.0.0.1";
           prometheus.port = 9669;
