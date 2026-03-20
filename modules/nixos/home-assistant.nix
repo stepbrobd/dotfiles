@@ -45,6 +45,7 @@ in
 
       customComponents = with pkgs.home-assistant-custom-components; [
         auth_oidc
+        gtfs-realtime
         midea_ac_lan
         spook
       ];
