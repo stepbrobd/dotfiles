@@ -635,14 +635,14 @@ in
       services.prometheus = {
         exporters.bird = {
           enable = with config.services; bird.enable && prometheus.enable;
-          listenAddress = "::1";
+          listenAddress = "[::1]";
           port = 9324;
         };
         scrapeConfigs = [
           {
             job_name = "prometheus-bird-exporter";
             static_configs = [
-              { targets = [ "[${config.services.prometheus.exporters.bird.listenAddress}]:${lib.toString config.services.prometheus.exporters.bird.port}" ]; }
+              { targets = [ "${config.services.prometheus.exporters.bird.listenAddress}:${lib.toString config.services.prometheus.exporters.bird.port}" ]; }
             ];
           }
           {

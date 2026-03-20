@@ -47,13 +47,13 @@ in
     services.prometheus = {
       enable = true;
       globalConfig.scrape_interval = "30s";
-      listenAddress = "::1";
+      listenAddress = "[::1]";
       port = 9090;
 
       exporters.node = {
         enable = true;
         enabledCollectors = [ "systemd" ];
-        listenAddress = "::1";
+        listenAddress = "[::1]";
         port = 9100;
       };
 
@@ -61,7 +61,7 @@ in
         {
           job_name = "prometheus-node-exporter";
           static_configs = [
-            { targets = [ "[${cfg.exporters.node.listenAddress}]:${toString cfg.exporters.node.port}" ]; }
+            { targets = [ "${cfg.exporters.node.listenAddress}:${toString cfg.exporters.node.port}" ]; }
           ];
         }
         {
@@ -214,7 +214,7 @@ in
         logFormat = lib.mkForce "output discard";
         extraConfig = ''
           handle_path /prometheus/* {
-            reverse_proxy  [${cfg.listenAddress}]:${toString cfg.port}
+            reverse_proxy  ${cfg.listenAddress}:${toString cfg.port}
           }
 
           handle_path /loki/* {
