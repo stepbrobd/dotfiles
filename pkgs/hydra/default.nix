@@ -106,9 +106,25 @@ hydra.overrideAttrs (final: prev: {
   };
 
   patches = [
+    # bring oidc fork forward to nix 2.33
     (fetchpatch2 {
       url = "https://github.com/ners/hydra/compare/a9c16a19518a238d74fce789e27dd166ef7058b1...8bc95a96f787eb36f29ceec773f5bf48bd121097.patch";
       hash = "sha256-WG5ddG3lgHz426knXCcMvk/Rl/IeOhnwS+luQpWZ9XU=";
+    })
+    # nix 2.34 cpp api compat squashed diff
+    (fetchpatch2 {
+      url = "https://github.com/NixOS/hydra/compare/8bc95a96f787eb36f29ceec773f5bf48bd121097...54b770f235507648267634858673ff8577aedf19.diff";
+      hash = "sha256-xTNB5HyHbQUIrxwmaQSrzJNWzFOjEAjQSaxAipV8b7I=";
+      includes = [
+        "src/hydra-queue-runner/build-remote.cc"
+        "src/hydra-queue-runner/build-result.cc"
+        "src/hydra-queue-runner/hydra-build-result.hh"
+        "src/hydra-queue-runner/hydra-queue-runner.cc"
+        "src/hydra-queue-runner/nar-extractor.cc"
+        "src/hydra-queue-runner/nar-extractor.hh"
+        "src/hydra-queue-runner/queue-monitor.cc"
+        "src/hydra-queue-runner/state.hh"
+      ];
     })
   ];
 
