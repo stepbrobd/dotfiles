@@ -20,7 +20,7 @@ in
           # should match cloudflare magic network monitoring default_sampling
           # see cloudflare terranix module
           bpf.sample_rate = 10;
-          prometheus.host = "127.0.0.1";
+          prometheus.host = "::1";
           prometheus.port = 9669;
           enrich.mmdb.asn_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-ASN.mmdb";
           enrich.mmdb.city_db = "${config.services.geoipupdate.settings.DatabaseDirectory}/GeoLite2-City.mmdb";
@@ -47,13 +47,13 @@ in
     services.prometheus = {
       enable = true;
       globalConfig.scrape_interval = "30s";
-      listenAddress = "127.0.0.1";
+      listenAddress = "::1";
       port = 9090;
 
       exporters.node = {
         enable = true;
         enabledCollectors = [ "systemd" ];
-        listenAddress = "127.0.0.1";
+        listenAddress = "::1";
         port = 9100;
       };
 
@@ -61,13 +61,13 @@ in
         {
           job_name = "prometheus-node-exporter";
           static_configs = [
-            { targets = [ "${with cfg.exporters.node; toString listenAddress + ":" + toString port}" ]; }
+            { targets = [ "[${cfg.exporters.node.listenAddress}]:${toString cfg.exporters.node.port}" ]; }
           ];
         }
         {
           job_name = "prometheus-rfm-exporter";
           static_configs = [
-            { targets = [ "${with config.services.rfm.settings.agent.prometheus; lib.toString host + ":" + lib.toString port}" ]; }
+            { targets = [ "[${config.services.rfm.settings.agent.prometheus.host}]:${lib.toString config.services.rfm.settings.agent.prometheus.port}" ]; }
           ];
         }
       ];
@@ -102,14 +102,14 @@ in
         # ruler.alertmanager_url = with cfg.alertmanager; "http://${listenAddress}:${toString port}";
 
         server = {
-          http_listen_address = "127.0.0.1";
+          http_listen_address = "::1";
           http_listen_port = 3100;
           grpc_listen_port = 0;
         };
 
         ingester = {
           lifecycler = {
-            address = "127.0.0.1";
+            address = "::1";
             ring = {
               kvstore.store = "inmemory";
               replication_factor = 1;
@@ -165,7 +165,7 @@ in
 
       configuration = {
         server = {
-          http_listen_address = "127.0.0.1";
+          http_listen_address = "::1";
           http_listen_port = 3180;
           grpc_listen_port = 0;
         };
@@ -174,7 +174,7 @@ in
           filename = "/tmp/positions.yaml";
         };
 
-        clients = [{ url = with config.services.loki.configuration.server; "http://${http_listen_address}:${toString http_listen_port}/loki/api/v1/push"; }];
+        clients = [{ url = with config.services.loki.configuration.server; "http://[${http_listen_address}]:${toString http_listen_port}/loki/api/v1/push"; }];
 
         scrape_configs = [{
           job_name = "journal";
@@ -214,11 +214,11 @@ in
         logFormat = lib.mkForce "output discard";
         extraConfig = ''
           handle_path /prometheus/* {
-            reverse_proxy  ${with cfg; toString listenAddress + ":" + toString port}
+            reverse_proxy  [${cfg.listenAddress}]:${toString cfg.port}
           }
 
           handle_path /loki/* {
-            reverse_proxy  ${with config.services.loki.configuration.server; http_listen_address + ":" + toString http_listen_port}
+            reverse_proxy  [${config.services.loki.configuration.server.http_listen_address}]:${toString config.services.loki.configuration.server.http_listen_port}
           }
         '';
       };

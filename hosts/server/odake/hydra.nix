@@ -6,7 +6,7 @@
 
     virtualHosts."hydra.ysun.co".extraConfig = ''
       import common
-      reverse_proxy ${toString config.services.hydra.listenHost}:${toString config.services.hydra.port}
+      reverse_proxy [${toString config.services.hydra.listenHost}]:${toString config.services.hydra.port}
     '';
   };
 
@@ -25,7 +25,7 @@
     minimumDiskFreeEvaluator = 5;
 
     hydraURL = "https://hydra.ysun.co";
-    listenHost = "127.0.0.1";
+    listenHost = "::1";
     port = 10069;
     notificationSender = "hydra@localhost";
 

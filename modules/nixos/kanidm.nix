@@ -4,7 +4,12 @@ let
   inherit (config.security.acme.certs."sso.ysun.co") directory;
 in
 {
-  networking.firewall.interfaces.${config.services.tailscale.interfaceName}.allowedTCPPorts = [ 636 ];
+  # since this host bind kanidm to ip addresses advertised by tailscale subnet router
+  # we need to limit this to only allow requests from the actual cgnat range and tailscale v6 block
+  networking.firewall.extraInputRules = ''
+    iifname "${config.services.tailscale.interfaceName}" ip daddr 100.64.0.0/10 tcp dport 636 accept
+    iifname "${config.services.tailscale.interfaceName}" ip6 daddr fd7a:115c:a1e0::/48 tcp dport 636 accept
+  '';
 
   environment.systemPackages = [ pkgs.kanidm ];
 
@@ -44,7 +49,7 @@ in
     server.settings = {
       domain = "ysun.co";
       origin = "https://sso.ysun.co";
-      http_client_address_info.x-forward-for = [ "::1" "127.0.0.1" ];
+      http_client_address_info.x-forward-for = [ "::1" ];
 
       ldapbindaddress = "[::]:636";
       bindaddress = "[::1]:8443";

@@ -31,7 +31,7 @@ in
         serverAliases = cfg.extraDomains;
         extraConfig = with config.services.grafana.settings.server; ''
           import common
-          reverse_proxy ${toString http_addr}:${toString http_port} {
+          reverse_proxy [${toString http_addr}]:${toString http_port} {
             header_up X-Real-IP {http.request.header.CF-Connecting-IP}
           }
         '';
@@ -65,7 +65,7 @@ in
 
       settings = {
         server = {
-          http_addr = "127.0.0.1";
+          http_addr = "::1";
           http_port = 25000;
           domain = cfg.mainDomain;
           root_url = "https://${cfg.mainDomain}/";

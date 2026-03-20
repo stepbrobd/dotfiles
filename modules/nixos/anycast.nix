@@ -22,7 +22,7 @@ in
         config.services.as10779.local.ipv6.addresses
     )
     {
-      # https://nixpkgs-tracker.ocfox.me/?pr=455610
+      # TODO: bind to ::1 when 0.0.17 bump is merged
       services.go-csp-collector = {
         enable = true;
         settings = {

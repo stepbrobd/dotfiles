@@ -17,7 +17,7 @@ in
       config = {
         DOMAIN = "https://${domain}";
         ROCKET_LOG = "critical";
-        ROCKET_ADDRESS = "::";
+        ROCKET_ADDRESS = "::1";
         ROCKET_PORT = 9999;
         SIGNUPS_ALLOWED = false;
         PASSWORD_HINTS_ALLOWED = false;

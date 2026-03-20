@@ -94,7 +94,7 @@ in
       server = {
         baseUrl = "https://${cfg.mainDomain}";
         disableRegistration = "invite_only";
-        listenAddress = "127.0.0.1";
+        listenAddress = "::1";
         port = 20069;
         secretKeybaseFile = config.sops.secrets."plausible/keybase".path;
       };
@@ -105,7 +105,7 @@ in
         serverAliases = cfg.extraDomains;
         extraConfig = with config.services.plausible.server; ''
           import common
-          reverse_proxy ${toString listenAddress}:${toString port} {
+          reverse_proxy [${toString listenAddress}]:${toString port} {
             header_up X-Real-IP {http.request.header.CF-Connecting-IP}
           }
         '';

@@ -3,7 +3,7 @@
 { config, ... }:
 
 let
-  bind = "127.0.0.1";
+  bind = "::1";
   port = 9975;
 
   serverConfig = config.services.ntpd-rs.server;
@@ -77,12 +77,12 @@ in
         );
 
         metrics.enable = config.services.prometheus.enable;
-        settings.observability.metrics-exporter-listen = "${bind}:${lib.toString port}";
+        settings.observability.metrics-exporter-listen = "[${bind}]:${lib.toString port}";
       };
 
       services.prometheus.scrapeConfigs = lib.mkIf config.services.prometheus.enable [{
         job_name = "prometheus-ntpdrs-exporter";
-        static_configs = [{ targets = [ "${bind}:${lib.toString port}" ]; }];
+        static_configs = [{ targets = [ "[${bind}]:${lib.toString port}" ]; }];
       }];
     }
     (lib.mkIf serverConfig.enable {

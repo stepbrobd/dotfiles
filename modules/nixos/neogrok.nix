@@ -16,7 +16,7 @@ in
     };
 
     host = mkOption {
-      default = "127.0.0.1";
+      default = "::1";
       description = "Host to bind to";
       type = types.str;
     };
@@ -54,7 +54,7 @@ in
       virtualHosts.${cfg.domain}.extraConfig = ''
         import common
         import auth
-        reverse_proxy ${cfg.host}:${lib.toString cfg.port}
+        reverse_proxy [${cfg.host}]:${lib.toString cfg.port}
       '';
     };
 
@@ -87,7 +87,7 @@ in
       environment = {
         HOST = cfg.host;
         PORT = lib.toString cfg.port;
-        ZOEKT_URL = "http://localhost:6070"; # default set from miroir
+        ZOEKT_URL = "http://[::1]:6070"; # default set from miroir
       };
       serviceConfig = {
         ExecStart = "${pkgs.neogrok}/bin/neogrok";

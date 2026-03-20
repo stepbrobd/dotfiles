@@ -3,7 +3,7 @@
 {
   services.attic = {
     enable = true;
-    settings.listen = "127.0.0.1:10070";
+    settings.listen = "[::1]:10070";
   };
 
   services.caddy = {

@@ -5,7 +5,7 @@
 {
   config = lib.mkIf config.services.calibre-web.enable {
     services.calibre-web = {
-      listen.ip = "127.0.0.1";
+      listen.ip = "::1";
       listen.port = 8083;
 
       options = {
@@ -22,7 +22,7 @@
         ''
           import common
           import csp
-          reverse_proxy ${ip}:${lib.toString port}
+          reverse_proxy [${ip}]:${lib.toString port}
         '';
     };
   };

@@ -3,7 +3,7 @@
 { config, ... }:
 
 let
-  metricsTarget = "127.0.0.1:9019";
+  metricsTarget = "[::1]:9019";
   metricsPath = "/metrics";
 in
 {

@@ -22,7 +22,7 @@
           --log-file="${config.services.caddy.logDir}/*" \
           --real-time-html \
           --html-refresh=60 \
-          --addr=127.0.0.1 \
+          --addr=::1 \
           --port=7890 \
           --ws-url=wss://${config.networking.hostName}.${lib.blueprint.tailscale.tailnet}:443/access/ws \
           --origin="https://${config.networking.hostName}.${lib.blueprint.tailscale.tailnet}" \

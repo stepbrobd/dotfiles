@@ -18,7 +18,7 @@ in
       config.http = {
         server_port = 8123;
         use_x_forwarded_for = true;
-        trusted_proxies = [ "127.0.0.1" "::1" ];
+        trusted_proxies = [ "::1" ];
       };
 
       extraComponents = [
@@ -57,7 +57,7 @@ in
 
     services.caddy.virtualHosts."ha.ysun.co".extraConfig = ''
       import common
-      reverse_proxy localhost:${lib.toString cfg.config.http.server_port} 
+      reverse_proxy [::1]:${lib.toString cfg.config.http.server_port}
     '';
   };
 }
