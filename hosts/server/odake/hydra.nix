@@ -25,7 +25,7 @@
     minimumDiskFreeEvaluator = 5;
 
     hydraURL = "https://hydra.ysun.co";
-    listenHost = "[::1]";
+    listenHost = "127.0.0.1"; # starman/net::server cannot parse ipv6 in -h flag
     port = 10069;
     notificationSender = "hydra@localhost";
 
