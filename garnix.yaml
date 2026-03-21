@@ -15,6 +15,7 @@ builds:
     - packages.x86_64-linux.mac-app-util # not available
     - packages.*.calibre # temporary patch
     - packages.*.jitsi-meet # insecure
+    - packages.*.ntpd-rs # temporary patch
     - packages.*.ocamlPackages # scope
     - packages.*.ripe-atlas-probe-measurements # weird shit
     - packages.*.ripe-atlas-software-probe # weird shit
