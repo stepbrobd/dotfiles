@@ -16,7 +16,6 @@ builds:
     - packages.*.calibre # temporary patch
     - packages.*.jitsi-meet # insecure
     - packages.*.ocamlPackages # scope
-    - packages.*.ripe-atlas-software-probe # broken
     - packages.*.spotify # unfree
     - packages.*.verus # no one uses this shit anyways
     - "*.x86_64-darwin.*" # useless :(
