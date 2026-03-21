@@ -8,8 +8,8 @@
 
 if stdenv.isDarwin
 then
-  pkgsPrev.alacritty.overrideAttrs
+  pkgsPrev.ntpd-rs.overrideAttrs
   {
     __darwinAllowLocalNetworking = true;
   }
-else pkgsPrev.alacritty
+else pkgsPrev.ntpd-rs
