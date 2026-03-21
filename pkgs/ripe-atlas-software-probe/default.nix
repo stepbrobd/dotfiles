@@ -40,25 +40,32 @@ stdenv.mkDerivation (finalAttrs: {
     sed -i '/^BUILT_SOURCES/,/atlas_path\.h/d' config/Makefile.am
     sed -i '/probe-busybox/d' config/Makefile.am
     sed -i 's/common\/measurement\.conf \\/common\/measurement.conf/' config/Makefile.am
+
+    # fix hardcoded paths for NixOS PATH-based resolution.
+    # "command ssh" bypasses the ssh() shell function to call the real binary
+    substituteInPlace bin/arch/linux/linux-functions.sh \
+      --replace-fail '/usr/bin/ssh' 'command ssh' \
+      --replace-fail "grep 'link\/ether'" "grep 'link/ether'" \
+      --replace-fail '$ATLAS_LIBEXECDIR/ping' '$ATLAS_MEASUREMENT/ping' \
+      --replace-fail '$ATLAS_LIBEXECDIR/ooqd' '$ATLAS_MEASUREMENT/ooqd'
+    substituteInPlace bin/ripe-atlas.in \
+      --replace-fail '/sbin/ifconfig' 'ifconfig' \
+      --replace-fail 'cp $KNOWN_HOSTS_REG $ATLAS_STATUS/known_hosts' \
+        'install -m 644 $KNOWN_HOSTS_REG $ATLAS_STATUS/known_hosts'
+
+    # default to ed25519 instead of rsa for new probe keys
+    substituteInPlace bin/arch/generic/generic-ATLAS.sh.in \
+      --replace-fail 'ssh-keygen -t rsa' 'ssh-keygen -t ed25519'
   '';
 
+  # make ATLAS_MEASUREMENT and ATLAS_SYSCONFDIR overridable via env so the
+  # module can point them at the correct runtime locations
   postInstall = ''
-    # make ATLAS_MEASUREMENT and ATLAS_SYSCONFDIR overridable via env so the
-    # module can point them at the correct runtime locations
-    sed -i 's|^ATLAS_MEASUREMENT=\(.*\)|ATLAS_MEASUREMENT=''${ATLAS_MEASUREMENT:-\1}|' \
-      $out/libexec/ripe-atlas/scripts/paths.lib.sh
-    sed -i 's|^ATLAS_SYSCONFDIR=\(.*\)|ATLAS_SYSCONFDIR=''${ATLAS_SYSCONFDIR:-\1}|' \
-      $out/libexec/ripe-atlas/scripts/paths.lib.sh
-
-    # fix hardcoded paths for NixOS PATH-based resolution
-    sed -i 's|/usr/bin/ssh|ssh|g' $out/libexec/ripe-atlas/scripts/linux-functions.sh
-    sed -i 's|/sbin/ifconfig|ifconfig|g' $out/sbin/ripe-atlas
-
-    # fix grep warning: stray \ before / (newer grep doesn't need escaped /)
-    sed -i "s|link\\\\\/ether|link/ether|g" $out/libexec/ripe-atlas/scripts/linux-functions.sh
-
-    # default to ed25519 instead of rsa
-    sed -i 's|ssh-keygen -t rsa|ssh-keygen -t ed25519|g' $out/libexec/ripe-atlas/scripts/generic-ATLAS.sh
+    substituteInPlace $out/libexec/ripe-atlas/scripts/paths.lib.sh \
+      --replace-fail 'ATLAS_MEASUREMENT=' 'ATLAS_MEASUREMENT=''${ATLAS_MEASUREMENT:-' \
+      --replace-fail 'ATLAS_SYSCONFDIR=' 'ATLAS_SYSCONFDIR=''${ATLAS_SYSCONFDIR:-'
+    sed -i '/^ATLAS_MEASUREMENT=/ s/$/ }/' $out/libexec/ripe-atlas/scripts/paths.lib.sh
+    sed -i '/^ATLAS_SYSCONFDIR=/ s/$/ }/' $out/libexec/ripe-atlas/scripts/paths.lib.sh
   '';
 
   configureFlags = [
