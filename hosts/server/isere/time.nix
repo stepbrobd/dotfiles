@@ -76,11 +76,6 @@
     domain = "time.ysun.co";
   };
 
-  # nts experiment pool
-  # https://experimental.ntspooltest.org/join
-  # https://docs.ntpd-rs.pendulum-project.org/guide/nts-pool/
-  sops.secrets.ntpd-rs = { };
-
   # bind NTP and NTS-KE to addresses in my own block so reply packets have the correct
   # source (dummy0 address) rather than the tailscale0 address the kernel
   # would otherwise select for the outgoing interface
@@ -101,20 +96,25 @@
         { listen = "[${ipam.ipv6}]:123"; accept-ntp-versions = serverConfig.acceptedVersions; }
       ];
 
+      # nts experiment pool
+      # https://experimental.ntspooltest.org/join
+      # https://docs.ntpd-rs.pendulum-project.org/guide/nts-pool/
       nts-ke-server = lib.mkForce [
         {
           listen = "${ipam.ipv4}:4460";
           accept-ntp-versions = serverConfig.acceptedVersions;
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
-          accepted-pool-authentication-tokens = config.sops.secrets.ntpd-rs.path;
+          # i consider non sensitive
+          accepted-pool-authentication-tokens = [ "5ea84788c444c03a83c69e27fcf57074dc9adb5244e7ed4467f9207153260ab2" ];
         }
         {
           listen = "[${ipam.ipv6}]:4460";
           accept-ntp-versions = serverConfig.acceptedVersions;
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
-          accepted-pool-authentication-tokens = config.sops.secrets.ntpd-rs.path;
+          # i consider non sensitive
+          accepted-pool-authentication-tokens = [ "5ea84788c444c03a83c69e27fcf57074dc9adb5244e7ed4467f9207153260ab2" ];
         }
       ];
 
