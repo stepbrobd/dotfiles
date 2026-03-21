@@ -153,4 +153,26 @@
     after = [ "gpsd-socket-shim.service" ];
     wants = [ "gpsd-socket-shim.service" ];
   };
+
+  # proxy the public grafana to time.ysun.co
+  services.caddy = {
+    enable = true;
+    virtualHosts."time.ysun.co" = {
+      extraConfig = ''
+        import common
+        @passthrough path /public/* /api/*
+        handle @passthrough {
+          reverse_proxy https://otel.ysun.co {
+            header_up Host otel.ysun.co
+          }
+        }
+        handle {
+          rewrite * /public-dashboards/ab5eeb9da69842ebaaf75819d8a62b15
+          reverse_proxy https://otel.ysun.co {
+            header_up Host otel.ysun.co
+          }
+        }
+      '';
+    };
+  };
 }
