@@ -160,17 +160,10 @@
     virtualHosts."time.ysun.co" = {
       extraConfig = ''
         import common
-        @passthrough path /public/* /api/*
-        handle @passthrough {
-          reverse_proxy https://otel.ysun.co {
-            header_up Host otel.ysun.co
-          }
-        }
-        handle {
-          rewrite * /public-dashboards/ab5eeb9da69842ebaaf75819d8a62b15
-          reverse_proxy https://otel.ysun.co {
-            header_up Host otel.ysun.co
-          }
+        @notgrafana not path /public-dashboards/* /public/* /api/*
+        redir @notgrafana /public-dashboards/ab5eeb9da69842ebaaf75819d8a62b15 temporary
+        reverse_proxy https://otel.ysun.co {
+          header_up Host otel.ysun.co
         }
       '';
     };
