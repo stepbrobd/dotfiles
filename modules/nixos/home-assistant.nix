@@ -45,9 +45,17 @@ in
 
       customComponents = with pkgs.home-assistant-custom-components; [
         auth_oidc
-        gtfs-realtime
         midea_ac_lan
         spook
+        (gtfs-realtime.overrideAttrs {
+          version = "0.4.4";
+          src = fetchFromGitHub {
+            owner = "bcpearce";
+            repo = "homeassistant-gtfs-realtime";
+            tag = "0.4.4";
+            hash = "sha256-iT32ADgDHwBnX6v4UnGkUNtGL9/ukA3EMCLquCBcaKo=";
+          };
+        })
       ];
     };
 
