@@ -14,14 +14,14 @@
     };
   };
 }).overrideAttrs {
-  version = "1.97.8+18781";
+  version = "1.97.58+18781";
 
   src = fetchFromGitHub {
     owner = "stepbrobd";
     repo = "tailscale";
-    rev = "f63409efd18ade1310f36472337e17da8aaba48d";
-    hash = "sha256-EtcfInOnRGwvI3Ka3caY9juxj2YsFYUNSNnOlMitHW0=";
+    rev = "7114ae93ca6f02232efa783a54eb390efdb7cdc4";
+    hash = "sha256-t8Ix0TtY/Bo51/8UDVRzgBpr4rt23Sz4OK74XijKxP0=";
   };
 
-  vendorHash = "sha256-dx+SJyDx+eZptFaMatoyM6w1E3nJKY+hKs7nuR997bE=";
+  vendorHash = "sha256-39axT5Q0+fNTcMgZCMLMNfJEJN46wMaaKDgfI+Uj+Ps=";
 }
