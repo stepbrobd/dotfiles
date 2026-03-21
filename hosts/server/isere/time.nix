@@ -154,17 +154,14 @@
     wants = [ "gpsd-socket-shim.service" ];
   };
 
-  # proxy the public grafana to time.ysun.co
+  # embed the public grafana dashboard on time.ysun.co
   services.caddy = {
     enable = true;
     virtualHosts."time.ysun.co" = {
       extraConfig = ''
         import common
-        @notgrafana not path /public-dashboards/* /public/* /api/*
-        redir @notgrafana /public-dashboards/ab5eeb9da69842ebaaf75819d8a62b15 temporary
-        reverse_proxy https://otel.ysun.co {
-          header_up Host otel.ysun.co
-        }
+        header Content-Type "text/html; charset=utf-8"
+        respond `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>time.ysun.co</title><style>*{margin:0;padding:0}html,body,iframe{width:100%;height:100%;border:none;overflow:hidden}</style></head><body><iframe src="https://otel.ysun.co/public-dashboards/ab5eeb9da69842ebaaf75819d8a62b15"></iframe></body></html>` 200
       '';
     };
   };
