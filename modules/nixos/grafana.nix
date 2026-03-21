@@ -31,6 +31,7 @@ in
         serverAliases = cfg.extraDomains;
         extraConfig = with config.services.grafana.settings.server; ''
           import common
+          import csp
           reverse_proxy [${toString http_addr}]:${toString http_port} {
             header_up X-Real-IP {http.request.header.CF-Connecting-IP}
           }
@@ -90,6 +91,7 @@ in
         };
 
         security = {
+          allow_embedding = true;
           cookie_secure = true;
           csrf_trusted_origins = [ "https://ysun.co" "https://*.ysun.co" ];
           disable_initial_admin_creation = true;
