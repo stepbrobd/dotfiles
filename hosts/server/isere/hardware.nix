@@ -112,5 +112,31 @@
       };
     };
   };
+
+  # HE tunnel broker (6in4) for public IPv6
+  networking.ranet.interfaces = [ "he0" ];
+
+  systemd.services.strongswan-swanctl.after = [ "sys-subsystem-net-devices-he0.device" ];
+  systemd.services.strongswan-swanctl.wants = [ "sys-subsystem-net-devices-he0.device" ];
+
+  systemd.network.netdevs."30-he0" = {
+    netdevConfig = {
+      Kind = "sit";
+      Name = "he0";
+    };
+    tunnelConfig = {
+      Local = "192.168.0.12";
+      Remote = "216.66.84.42";
+      TTL = 255;
+    };
+  };
+
+  systemd.network.networks."30-he0" = {
+    name = "he0";
+    address = [ "2001:470:1f12:441::2/64" ];
+    routes = [{ Gateway = "2001:470:1f12:441::1"; }];
+    linkConfig.RequiredForOnline = false;
+  };
+
   system.stateVersion = "25.05";
 }
