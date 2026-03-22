@@ -40,7 +40,7 @@ let
 
   ranetConfig = (pkgs.formats.json { }).generate "ranet-config.json" (
     cfg.settings // {
-      endpoints = lib.map (ep: ep // { inherit updown; fwmark = ep.fwmark or "0/0x00000000"; }) cfg.settings.endpoints;
+      endpoints = lib.map (ep: ep // { inherit updown; }) cfg.settings.endpoints;
     }
   );
 
@@ -159,8 +159,7 @@ in
           }
           charon-systemd {
             journal {
-              default = 1
-              cfg = 2
+              default = -1
             }
           }
         '';
