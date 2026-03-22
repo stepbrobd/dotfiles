@@ -19,7 +19,7 @@ let
       nodes = lib.mapAttrsToList
         (name: h: {
           common_name = name;
-          endpoints = lib.map (ep: ep // { port = bp.ranet.port; }) h.ranet.endpoints;
+          endpoints = h.ranet.endpoints;
         })
         registryHosts;
     }
@@ -40,9 +40,11 @@ let
 
   ranetConfig = (pkgs.formats.json { }).generate "ranet-config.json" (
     cfg.settings // {
-      endpoints = lib.map (ep: ep // { inherit updown; port = cfg.settings.port; }) cfg.settings.endpoints;
+      endpoints = lib.map (ep: ep // { inherit updown; }) cfg.settings.endpoints;
     }
   );
+
+  port = (lib.head cfg.settings.endpoints).port;
 in
 {
   options.networking.ranet = {
@@ -81,19 +83,13 @@ in
             description = "node name within the organization";
           };
 
-          port = lib.mkOption {
-            type = lib.types.port;
-            default = bp.ranet.port;
-            description = "UDP port for IKE NAT-T encapsulation";
-          };
-
           endpoints = lib.mkOption {
             type = lib.types.listOf (lib.types.attrsOf (pkgs.formats.json { }).type);
             default =
               if host != null && host ? ranet && host.ranet ? endpoints
               then host.ranet.endpoints
               else [ ];
-            description = "local endpoints (serial_number, address_family, address)";
+            description = "local endpoints (serial_number, address_family, address, port)";
           };
         };
       };
@@ -143,7 +139,7 @@ in
             reuse_ikesa = no
             interfaces_use = ${lib.concatStringsSep "," cfg.interfaces}
             port = 0
-            port_nat_t = ${toString cfg.settings.port}
+            port_nat_t = ${lib.toString port}
             retransmit_timeout = 30
             retransmit_base = 1
             plugins {
@@ -164,7 +160,7 @@ in
         '';
       };
 
-      networking.firewall.allowedUDPPorts = [ cfg.settings.port ];
+      networking.firewall.allowedUDPPorts = [ port ];
     })
   ];
 }

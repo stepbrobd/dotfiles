@@ -80,8 +80,8 @@ in
       ipv6 = "2602:f590::23:161:104:132";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
@@ -133,8 +133,8 @@ in
       ipv6 = "2602:f590::23:161:104:129";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
@@ -154,8 +154,8 @@ in
       ipv6 = "2602:f590::23:161:104:130";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
@@ -175,8 +175,8 @@ in
       ipv6 = "2602:f590::23:161:104:135";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
@@ -196,8 +196,8 @@ in
       ipv6 = "2602:f590::23:161:104:136";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
@@ -217,8 +217,8 @@ in
       ipv6 = "2602:f590::23:161:104:131";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
@@ -238,8 +238,8 @@ in
       ipv6 = "2602:f590::23:161:104:128";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
@@ -259,8 +259,8 @@ in
       ipv6 = "2602:f590::23:161:104:137";
     };
     ranet.endpoints = [
-      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
-      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; port = 13000; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; port = 13000; }
     ];
   }));
 
