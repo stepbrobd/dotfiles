@@ -116,8 +116,8 @@
   # HE tunnel broker (6in4) for public IPv6
   networking.ranet.interfaces = [ "he0" ];
 
-  systemd.services.strongswan-swanctl.after = [ "sys-subsystem-net-devices-he0.device" ];
-  systemd.services.strongswan-swanctl.wants = [ "sys-subsystem-net-devices-he0.device" ];
+  systemd.services.strongswan-swanctl.after = [ "systemd-networkd.service" ];
+  systemd.services.strongswan-swanctl.wants = [ "systemd-networkd.service" ];
 
   systemd.network.netdevs."30-he0" = {
     netdevConfig = {
@@ -127,6 +127,7 @@
     tunnelConfig = {
       Remote = "216.66.84.42";
       TTL = 255;
+      Independent = true;
     };
   };
 
