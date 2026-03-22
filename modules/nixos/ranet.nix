@@ -103,6 +103,11 @@ in
     })
 
     (lib.mkIf cfg.enable {
+      environment.systemPackages = [
+        config.services.strongswan-swanctl.package
+        pkgs.ranet
+      ];
+
       environment.etc."ranet/config.json".source = ranetConfig;
 
       systemd.services.ranet =
@@ -154,7 +159,8 @@ in
           }
           charon-systemd {
             journal {
-              default = -1
+              default = 1
+              cfg = 2
             }
           }
         '';
