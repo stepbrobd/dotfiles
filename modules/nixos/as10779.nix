@@ -618,7 +618,6 @@ in
           "--accept-routes"
           "--advertise-exit-node"
           "--advertise-routes=${addresses}"
-          "--ssh"
         ] ++ lib.optional cfg.router.exit "--snat-subnet-routes=false";
 
       # switch to networkd dispatcher?

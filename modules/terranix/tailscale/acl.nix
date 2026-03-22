@@ -86,20 +86,18 @@ in
           ];
           ip = [ "1-21" "23-65535" ];
         }
-      ];
-
-      ssh = [
+        # allow ssh transit on own prefixes so that traffic arriving
+        # at a bgp router can be forwarded to the target server's
+        # ipam address through tailscale subnet routing
         {
-          action = "accept";
-          src = [ autogroup.admin ];
-          dst = [ autogroup.self tag.routee tag.router tag.server ];
-          users = [ autogroup.nonroot "root" ];
-        }
-        {
-          action = "accept";
-          src = [ autogroup.member ];
-          dst = [ autogroup.self ];
-          users = [ autogroup.nonroot "root" ];
+          src = with tag; [ routee router server ];
+          dst = [
+            "23.161.104.0/24"
+            "44.32.189.0/24"
+            "192.104.136.0/24"
+            "2602:f590::/36"
+          ];
+          ip = [ "22" ];
         }
       ];
 
@@ -161,11 +159,9 @@ in
           { src = tag.server; proto = "tcp"; deny = ssh; }
         ];
 
-      sshTests = [{
-        src = self.email;
-        dst = [ tag.server ];
-        accept = [ self.username ];
-      }];
+      # removed as tailscale ssh does not allow algorithm configuration
+      # ssh = [ ];
+      # sshTests = [ ];
     };
   };
 }
