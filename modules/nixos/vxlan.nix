@@ -61,12 +61,8 @@ in
       )
     );
 
-    networking.firewall.allowedUDPPorts = lib.optionals
-      (cfg != { })
-      (lib.map (vxlan: vxlan.port) (lib.attrValues cfg));
-
     networking.firewall.extraInputRules = lib.concatStringsSep "\n  " (lib.map
-      (vxlan: "${if (lib.hasInfix ":" vxlan.local) then "ip6" else "ip"} saddr ${vxlan.local} udp dport ${lib.toString vxlan.port} accept")
+      (vxlan: "${if (lib.hasInfix ":" vxlan.remote) then "ip6" else "ip"} saddr ${vxlan.remote} udp dport ${lib.toString vxlan.port} accept")
       (lib.attrValues cfg));
 
     networking.firewall.extraReversePathFilterRules = lib.concatStringsSep "\n  " (lib.map
