@@ -24,16 +24,23 @@ let
     , ipv4 ? null
     , ipv6 ? null
     , ipam ? { }
+    , ranet ? { }
     , services ? { }
     }: {
       inherit platform os provider type; # metadata
-      inherit hostName domain interface ipv4 ipv6 ipam; # networking
+      inherit hostName domain interface ipv4 ipv6 ipam ranet; # networking
       inherit services;
       fqdn = "${hostName}.${domain}";
       tags = [ "server" ] ++ tags;
     };
 in
 {
+  ranet = {
+    organization = "ysun";
+    publicKey = "MCowBQYDK2VwAyEADThQqitYOEGZgDk+S2Y9ZcLJVozx3hEOdyjpdK7NOY0=";
+    port = 13000;
+  };
+
   tailscale = {
     tailnet = "tail650e82.ts.net";
     domain = "ts.ysun.co";
@@ -57,13 +64,13 @@ in
   hosts.macbook = { };
 
   # servers
-  hosts.butte = newHost {
+  hosts.butte = newHost (lib.fix (self: {
     hostName = "butte";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "virtua";
     type = "server";
-    tags = [ "anycast" "router" ];
+    tags = [ "anycast" "router" "ranet" ];
     interface = "eth0";
     ipv4 = "185.234.100.120";
     ipv6 = "2a07:8dc0:1c:0:48:f1ff:febe:1c6";
@@ -72,7 +79,11 @@ in
       ipv4 = "23.161.104.132";
       ipv6 = "2602:f590::23:161:104:132";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
   hosts.halti = newHost {
     hostName = "halti";
@@ -106,13 +117,13 @@ in
     };
   };
 
-  hosts.highline = newHost {
+  hosts.highline = newHost (lib.fix (self: {
     hostName = "highline";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "neptune";
     type = "server";
-    tags = [ "anycast" "router" ];
+    tags = [ "anycast" "router" "ranet" ];
     interface = "ens3";
     ipv4 = "172.82.22.183";
     ipv6 = "2602:fe2e:4:b2:fd:87ff:fe11:53cb";
@@ -121,15 +132,19 @@ in
       ipv4 = "23.161.104.129";
       ipv6 = "2602:f590::23:161:104:129";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
-  hosts.kongo = newHost {
+  hosts.kongo = newHost (lib.fix (self: {
     hostName = "kongo";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "vultr";
     type = "server";
-    tags = [ "anycast" "router" ];
+    tags = [ "anycast" "router" "ranet" ];
     interface = "enp1s0";
     ipv4 = "45.32.59.137";
     ipv6 = "2001:19f0:7002:0327:5400:05ff:febb:599b";
@@ -138,15 +153,19 @@ in
       ipv4 = "23.161.104.130";
       ipv6 = "2602:f590::23:161:104:130";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
-  hosts.lagern = newHost {
+  hosts.lagern = newHost (lib.fix (self: {
     hostName = "lagern";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "aws";
     type = "server";
-    tags = [ "routee" "jitsi" ];
+    tags = [ "routee" "jitsi" "ranet" ];
     interface = "ens5";
     ipv4 = "16.62.113.214";
     ipv6 = "2a05:d019:b00:b6f0:6981:b7c5:ff97:9eea";
@@ -155,15 +174,19 @@ in
       ipv4 = "23.161.104.135";
       ipv6 = "2602:f590::23:161:104:135";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
-  hosts.odake = newHost {
+  hosts.odake = newHost (lib.fix (self: {
     hostName = "odake";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "ssdnodes";
     type = "server";
-    tags = [ "routee" "attic" "hydra" "neogrok" ];
+    tags = [ "routee" "attic" "hydra" "neogrok" "ranet" ];
     interface = "enp3s0";
     ipv4 = "209.182.234.194";
     ipv6 = "2602:ff16:14:0:1:56:0:1";
@@ -172,15 +195,19 @@ in
       ipv4 = "23.161.104.136";
       ipv6 = "2602:f590::23:161:104:136";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
-  hosts.timah = newHost {
+  hosts.timah = newHost (lib.fix (self: {
     hostName = "timah";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "misaka";
     type = "server";
-    tags = [ "anycast" "router" ];
+    tags = [ "anycast" "router" "ranet" ];
     interface = "enp3s0";
     ipv4 = "194.114.138.187";
     ipv6 = "2407:b9c0:e002:25c:26a3:f0ff:fe45:a7b7";
@@ -189,15 +216,19 @@ in
       ipv4 = "23.161.104.131";
       ipv6 = "2602:f590::23:161:104:131";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
-  hosts.toompea = newHost {
+  hosts.toompea = newHost (lib.fix (self: {
     hostName = "toompea";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "xtom";
     type = "server";
-    tags = [ "anycast" "router" "calibre" "plausible" ];
+    tags = [ "anycast" "router" "calibre" "plausible" "ranet" ];
     interface = "enp6s18";
     ipv4 = "185.194.53.29";
     ipv6 = "2a04:6f00:4::a5";
@@ -206,15 +237,19 @@ in
       ipv4 = "23.161.104.128";
       ipv6 = "2602:f590::23:161:104:128";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
-  hosts.walberla = newHost {
+  hosts.walberla = newHost (lib.fix (self: {
     hostName = "walberla";
     platform = "x86_64-linux";
     os = "nixos";
     provider = "hetzner";
     type = "server";
-    tags = [ "routee" "glance" "golink" "kanidm" ];
+    tags = [ "routee" "glance" "golink" "kanidm" "ranet" ];
     interface = "eth0";
     ipv4 = "23.88.126.45";
     ipv6 = "2a01:4f8:c17:4b75::1";
@@ -223,7 +258,11 @@ in
       ipv4 = "23.161.104.137";
       ipv6 = "2602:f590::23:161:104:137";
     };
-  };
+    ranet.endpoints = [
+      { serial_number = "0"; address_family = "ip4"; address = self.ipv4; }
+      { serial_number = "1"; address_family = "ip6"; address = self.ipv6; }
+    ];
+  }));
 
   prefixes = {
     experimental = {

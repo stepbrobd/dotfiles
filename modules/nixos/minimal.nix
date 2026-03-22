@@ -13,6 +13,7 @@
   imports = with inputs.self.nixosModules; [
     fail2ban
     nftables
+    ranet
     tailscale
     time
     vxlan
