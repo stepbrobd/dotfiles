@@ -38,6 +38,8 @@
       MaxStartups = "10:30:60";
       PerSourceMaxStartups = 1;
       AllowAgentForwarding = false;
+      ClientAliveInterval = 60;
+      ClientAliveCountMax = 5;
       KexAlgorithms = lib.mkForce [
         "mlkem768x25519-sha256"
         "sntrup761x25519-sha512"
