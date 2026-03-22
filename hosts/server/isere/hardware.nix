@@ -125,7 +125,6 @@
       Name = "he0";
     };
     tunnelConfig = {
-      Local = "192.168.0.12";
       Remote = "216.66.84.42";
       TTL = 255;
     };
