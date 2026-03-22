@@ -37,7 +37,11 @@ in
 {
   ranet = {
     organization = "ysun";
-    publicKey = "MCowBQYDK2VwAyEADThQqitYOEGZgDk+S2Y9ZcLJVozx3hEOdyjpdK7NOY0=";
+    publicKey = ''
+      -----BEGIN PUBLIC KEY-----
+      MCowBQYDK2VwAyEADThQqitYOEGZgDk+S2Y9ZcLJVozx3hEOdyjpdK7NOY0=
+      -----END PUBLIC KEY-----
+    '';
     port = 13000;
   };
 

@@ -14,7 +14,7 @@ let
 
   registry = (pkgs.formats.json { }).generate "registry.json" [
     {
-      public_key = bp.ranet.publicKey;
+      public_key = lib.trim bp.ranet.publicKey;
       organization = bp.ranet.organization;
       nodes = lib.mapAttrsToList
         (name: h: {
