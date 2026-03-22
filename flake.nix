@@ -34,6 +34,7 @@
               golink.overlays.default
               llm.overlays.default
               mac-style-plymouth.overlays.default
+              ranet.overlays.default
               rust-overlay.overlays.default
             ];
             instances = {
@@ -169,6 +170,10 @@
     sweep.inputs.cf.follows = "cornflake";
     sweep.inputs.crane.follows = "crane";
     systems.url = "github:nix-systems/default";
+    # r
+    ranet.url = "github:nickcao/ranet";
+    ranet.inputs.nixpkgs.follows = "nixpkgs";
+    ranet.inputs.flake-utils.follows = "utils";
     # t
     # tangled.url = "git+https://tangled.sh/@tangled.sh/core";
     # tangled.inputs.nixpkgs.follows = "nixpkgs";

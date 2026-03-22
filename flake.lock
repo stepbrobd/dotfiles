@@ -654,6 +654,29 @@
         "type": "github"
       }
     },
+    "ranet": {
+      "inputs": {
+        "flake-utils": [
+          "utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771293368,
+        "narHash": "sha256-Uimdyw1xj9Y4xK7Y40bUv/JnngvmdRI3t46Zm/hKh1Y=",
+        "owner": "nickcao",
+        "repo": "ranet",
+        "rev": "542e7d55f17a16e92d392d940fdc7b76289ce3ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nickcao",
+        "repo": "ranet",
+        "type": "github"
+      }
+    },
     "rfm": {
       "inputs": {
         "gomod2nix": [
@@ -715,6 +738,7 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "parts": "parts",
+        "ranet": "ranet",
         "rfm": "rfm",
         "rpi": "rpi",
         "rust-overlay": "rust-overlay",
