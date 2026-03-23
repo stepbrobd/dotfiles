@@ -5,7 +5,6 @@
         self'.packages.stepbrobd
 
         inputs'.colmena.packages.colmena
-        inputs'.sops.packages.default
 
         direnv
         git
