@@ -34,7 +34,6 @@ in
         "kegtron"
         "met"
         "nextdns"
-        "radio_browser"
         "shopping_list"
         "ssdp"
         "switchbot"
