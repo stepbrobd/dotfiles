@@ -10,13 +10,13 @@
 }:
 
 pkgsPrev.tailscale.overrideAttrs (prev: {
-  version = "1.103.3";
+  version = "1.103.9";
 
   src = fetchFromGitHub {
     owner = "tailscale";
     repo = "tailscale";
-    rev = "f6fa29463537e027813fb99680f09b0119a9b8ff";
-    hash = "sha256-zUcKEJmsi6qWUdiuqPMBhdQ6X46ZdODCl8g5AKuh2/4=";
+    rev = "cd34d441be2f277221e81672125f73ec3e8cb16d";
+    hash = "sha256-KWDuY7P/hoHs7J0n/toh2Kx0vmnEPupmyqvUDWnUZPQ=";
   };
 
   vendorHash = "sha256-5ClQ5fSyEHUlhPtZI0ir8ddQRXSnqOG5VIJ3KjWtXmw=";
