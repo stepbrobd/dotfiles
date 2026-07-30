@@ -6,7 +6,6 @@
     nix
 
     alacritty
-    ani
     atuin
     bat
     btop
@@ -22,6 +21,7 @@
     llm
     lsd
     man
+    media
     # mpd # linux only
     neovide
     neovim

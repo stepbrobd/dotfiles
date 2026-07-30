@@ -31,19 +31,16 @@ in
     # imported to graphical linux machines
     beeper
     cider-2
-    mpv
     obs-studio
     (osu-lazer-bin.override { nativeWayland = true; })
     pinentry-all
     remmina
     zoom-us
     zotero
-    # yt-dlp
   ])
   ++ (lib.optionals isDarwin [
     # imported only to macos machines
     cocoapods
     pinentry_mac
-    # yt-dlp
   ]);
 }
