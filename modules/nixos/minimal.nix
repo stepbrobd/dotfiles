@@ -59,7 +59,7 @@
       ];
       Ciphers = lib.mkForce [
         "chacha20-poly1305@openssh.com"
-        "aes256-ctr" # fallback
+        "aes256-gcm@openssh.com" # fallback
       ];
       Macs = lib.mkForce [
         "hmac-sha2-512-etm@openssh.com"
