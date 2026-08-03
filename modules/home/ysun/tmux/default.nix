@@ -7,7 +7,7 @@
     keyMode = "vi";
     mouse = true;
     clock24 = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
 
     plugins = with pkgs.tmuxPlugins; [
       nord
