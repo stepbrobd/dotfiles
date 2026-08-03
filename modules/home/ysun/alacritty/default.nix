@@ -5,13 +5,14 @@
 {
   home.sessionVariables = {
     COLORTERM = "truecolor";
-    TERM = "alacritty";
   };
 
   programs.alacritty = {
     enable = true;
 
     settings = {
+      env.TERM = "alacritty";
+
       window = {
         startup_mode = "Windowed";
         padding = {
