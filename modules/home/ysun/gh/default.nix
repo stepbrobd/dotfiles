@@ -8,6 +8,7 @@
       gh-dash
       gh-eco
       gh-f
+      gh-stack
     ];
   };
 }
