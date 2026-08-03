@@ -12,7 +12,8 @@
   stylix.polarity = "dark";
 
   stylix.fonts = {
-    sizes.terminal = 14;
+    sizes.terminal = 15;
+
     monospace = {
       package = pkgs.nerd-fonts.intone-mono;
       name = "IntoneMono Nerd Font";
