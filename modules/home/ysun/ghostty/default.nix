@@ -1,6 +1,6 @@
 { lib, ... }:
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.ghostty = {
@@ -13,10 +13,7 @@
       if pkgs.stdenv.isLinux then
         { window-decoration = lib.mkDefault "none"; }
       else if pkgs.stdenv.isDarwin then
-        {
-          macos-titlebar-style = lib.mkDefault "hidden";
-          font-size = lib.mkForce (lib.ceil (config.stylix.fonts.sizes.terminal * 4.0 / 3.0));
-        }
+        { macos-titlebar-style = lib.mkDefault "hidden"; }
       else
         abort "Unsupported OS"
     );
