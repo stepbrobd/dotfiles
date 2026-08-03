@@ -111,6 +111,8 @@ in
 
   environment.systemPackages = with pkgs; [
     alacritty.terminfo
+    ghostty.terminfo
+
     file
     inputs.sweep.packages.${pkgs.stdenv.hostPlatform.system}.default
     nix-eval-jobs
