@@ -1,17 +1,17 @@
-From 5d11bcceae6b77e22bbd6e3fdc5f8a554f4733f2 Mon Sep 17 00:00:00 2001
+From 7fe7ef0c6766f58ec26fdbab8635d5b530c2a2e6 Mon Sep 17 00:00:00 2001
 From: Yifei Sun <ysun@hey.com>
 Date: Fri, 28 Nov 2025 14:04:17 +0100
 Subject: [PATCH] stepbrobd: custom deployment patch
 
 ---
  server/core/src/https/middleware/caching.rs |  2 +-
- server/core/src/https/mod.rs                | 39 ++++++++++++++-------
- server/core/templates/base.html             |  1 +
- server/core/templates/base_htmx.html        |  1 +
- 4 files changed, 29 insertions(+), 14 deletions(-)
+ server/core/src/https/mod.rs                | 16 ++++++++--------
+ server/core/templates/base.html             |  3 ++-
+ server/core/templates/base_htmx.html        |  3 ++-
+ 4 files changed, 13 insertions(+), 11 deletions(-)
 
 diff --git a/server/core/src/https/middleware/caching.rs b/server/core/src/https/middleware/caching.rs
-index c1718704..bd2e46ef 100644
+index c171870..bd2e46e 100644
 --- a/server/core/src/https/middleware/caching.rs
 +++ b/server/core/src/https/middleware/caching.rs
 @@ -10,7 +10,7 @@ pub async fn dont_cache_me(request: Request<Body>, next: Next) -> Response {
@@ -24,68 +24,58 @@ index c1718704..bd2e46ef 100644
      response
          .headers_mut()
 diff --git a/server/core/src/https/mod.rs b/server/core/src/https/mod.rs
-index 0dc05571..762fa889 100644
+index daa2c5d..7514687 100644
 --- a/server/core/src/https/mod.rs
 +++ b/server/core/src/https/mod.rs
-@@ -200,13 +200,19 @@ pub async fn create_https_server(
- 
-     let csp_header = format!(
-         concat!(
--            "default-src 'self'; ",
--            "base-uri 'self' https:; ",
--            "form-action 'self'; ",
+@@ -218,12 +218,12 @@ pub async fn create_https_server(
+             "default-src 'self'; ",
+             "base-uri 'self' https:; ",
+             "form-action 'self'; ",
 -            "frame-ancestors 'none'; ",
--            "img-src 'self' data:; ",
--            "worker-src 'none'; ",
--            "script-src 'self' 'unsafe-eval'{};",
-+            "default-src 'self' https://ysun.co https://*.ysun.co; ",
-+            "base-uri 'self' https://ysun.co https://*.ysun.co https:; ",
-+            "form-action 'self' https://ysun.co https://*.ysun.co https:; ",
 +            "frame-ancestors 'self' https://ysun.co https://*.ysun.co; ",
-+            "img-src 'self' https://ysun.co https://*.ysun.co data:; ",
-+            "worker-src 'self' https://ysun.co https://*.ysun.co; ",
-+            "font-src 'self' https://ysun.co https://*.ysun.co data:; ",
-+            "script-src 'self' 'unsafe-inline' 'unsafe-eval'{} https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com; ",
-+            "connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com; ",
-+            "style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co; ",
-+            "frame-src 'self' https://ysun.co https://*.ysun.co; ",
-+            "media-src 'self' https://ysun.co https://*.ysun.co; ",
+             "img-src 'self' data:; ",
+             "worker-src 'none'; ",
+-            "script-src 'self' 'unsafe-eval'{};",
+-            // https://datatracker.ietf.org/doc/html/rfc9700#name-clickjacking
+-            "frame-ancestors 'none'; ",
++            "script-src 'self' 'unsafe-eval'{} https://stats.ysun.co; ",
++            "connect-src 'self' https://stats.ysun.co; ",
 +            "report-uri https://ysun.co/csp;"
          ),
          js_checksums
      );
-@@ -224,12 +230,19 @@ pub async fn create_https_server(
-     // redirectors, we are safe to remove the form-action directive.
-     let csp_header_no_form_action = format!(
+@@ -243,12 +243,12 @@ pub async fn create_https_server(
          concat!(
--            "default-src 'self'; ",
--            "base-uri 'self' https:; ",
+             "default-src 'self'; ",
+             "base-uri 'self' https:; ",
 -            "frame-ancestors 'none'; ",
--            "img-src 'self' data:; ",
--            "worker-src 'none'; ",
--            "script-src 'self' 'unsafe-eval'{};",
-+            "default-src 'self' https://ysun.co https://*.ysun.co; ",
-+            "base-uri 'self' https://ysun.co https://*.ysun.co https:; ",
-+            "form-action 'self' https://ysun.co https://*.ysun.co https:; ",
 +            "frame-ancestors 'self' https://ysun.co https://*.ysun.co; ",
-+            "img-src 'self' https://ysun.co https://*.ysun.co data:; ",
-+            "worker-src 'self' https://ysun.co https://*.ysun.co; ",
-+            "font-src 'self' https://ysun.co https://*.ysun.co data:; ",
-+            "script-src 'self' 'unsafe-inline' 'unsafe-eval'{} https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com; ",
-+            "connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com; ",
-+            "style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co; ",
-+            "frame-src 'self' https://ysun.co https://*.ysun.co; ",
-+            "media-src 'self' https://ysun.co https://*.ysun.co; ",
+             "img-src 'self' data:; ",
+             "worker-src 'none'; ",
+-            "script-src 'self' 'unsafe-eval'{};",
+-            // https://datatracker.ietf.org/doc/html/rfc9700#name-clickjacking
+-            "frame-ancestors 'none'; ",
++            "script-src 'self' 'unsafe-eval'{} https://stats.ysun.co; ",
++            "connect-src 'self' https://stats.ysun.co; ",
 +            "report-uri https://ysun.co/csp;"
          ),
          js_checksums
      );
 diff --git a/server/core/templates/base.html b/server/core/templates/base.html
-index 4455c680..bcc12b34 100644
+index 3f2e5b7..ad4cf75 100644
 --- a/server/core/templates/base.html
 +++ b/server/core/templates/base.html
-@@ -22,6 +22,7 @@
- 			href="/pkg/style.css?v=((crate::https::cache_buster::get_cache_buster_key()))" />
+@@ -2,7 +2,7 @@
+ <html lang="en">
+ 	<head>
+ 		<meta charset="utf-8" />
+-		<meta name="theme-color" content="white" />
++		<meta name="theme-color" content="#2e3440" />
+ 		<meta name="viewport" content="width=device-width" />
+ 
+ 		<title>(% block title %)(( title )) - Kanidm(% endblock %)</title>
+@@ -24,6 +24,7 @@
+ 			href="/pkg/override.css?v=((crate::https::cache_buster::get_cache_buster_key()))" />
  
  		(% block head %)(% endblock %)
 +                <script defer data-domain="sso.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>
@@ -93,17 +83,26 @@ index 4455c680..bcc12b34 100644
  	<body class="flex-column d-flex h-100">
  		(% block body %)(% endblock %)
 diff --git a/server/core/templates/base_htmx.html b/server/core/templates/base_htmx.html
-index a749fcf7..cb5923e0 100644
+index 20d00a7..aba2206 100644
 --- a/server/core/templates/base_htmx.html
 +++ b/server/core/templates/base_htmx.html
-@@ -26,6 +26,7 @@
- 			href="/pkg/style.css?v=((crate::https::cache_buster::get_cache_buster_key()))" />
+@@ -2,7 +2,7 @@
+ <html lang="en">
+ 	<head>
+ 		<meta charset="utf-8" />
+-		<meta name="theme-color" content="white" />
++		<meta name="theme-color" content="#2e3440" />
+ 		<meta name="viewport" content="width=device-width" />
+ 		<!-- https://htmx.org/docs/#response-handling -->
+ 		<meta name="htmx-config" content='{
+@@ -35,6 +35,7 @@
+ 			href="/pkg/override.css?v=((crate::https::cache_buster::get_cache_buster_key()))" />
  
  		(% block head %)(% endblock %)
 +                <script defer data-domain="sso.ysun.co" src="https://stats.ysun.co/js/script.file-downloads.hash.outbound-links.js"></script>
  	</head>
- 	<body hx-boost="true" class="flex-column d-flex h-100">
- 		(% block nav %)(% endblock %)
+ 	<body hx-boost="false" class="flex-column d-flex h-100">
+ 		(% block body %)(% endblock %)
 -- 
-2.51.2
+2.55.0
 
