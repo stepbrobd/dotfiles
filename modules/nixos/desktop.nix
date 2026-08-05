@@ -8,14 +8,21 @@ let
   cfg = config.services.desktopManager;
 
   # gtkgreet style
-  style = pkgs.writeText "gtk.css" ''
-    @import url("${pkgs.nordic}/share/themes/Nordic/gtk-3.0/gtk.css");
-    window {
-      background-image: url("${lib.blueprint.users.ysun.meta.wallpapersDir}/nord.jpg");
-      background-size: cover;
-      background-position: center;
-    }
-  '';
+  style =
+    let
+      colloid = pkgs.colloid-gtk-theme.override {
+        colorVariants = [ "dark" ];
+        tweaks = [ "nord" ];
+      };
+    in
+    pkgs.writeText "gtk.css" ''
+      @import url("${colloid}/share/themes/Colloid-Dark-Nord/gtk-3.0/gtk.css");
+      window {
+        background-image: url("${lib.blueprint.users.ysun.meta.wallpapersDir}/nord.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+    '';
 in
 {
   options.services.desktopManager = {
