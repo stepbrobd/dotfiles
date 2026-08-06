@@ -405,6 +405,11 @@ description = "forked from lenianiva/lean4-nix"
 visibility = "public"
 archived = false
 
+[repo."libreqos"]
+description = "forked from libreqoe/libreqos"
+visibility = "public"
+archived = false
+
 [repo."linux"]
 description = "forked from torvalds/linux"
 visibility = "public"
