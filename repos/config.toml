@@ -62,7 +62,7 @@ archived = true
 [repo."consistency-coq"]
 description = "consistency semantics with coq"
 visibility = "private"
-archived = false
+archived = true
 
 [repo."consistency-z3"]
 description = "consistency semantics with z3"
@@ -157,7 +157,7 @@ archived = true
 [repo."nix-cache-hash-mismatch-mre"]
 description = "see https://github.com/nixos/nix/pull/16061"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."nord.yazi"]
 description = "nordic yazi"
@@ -172,7 +172,7 @@ archived = false
 [repo."oxide"]
 description = "nixos image for oxide silo"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."rfm"]
 description = "router flow monitor"
@@ -207,7 +207,7 @@ archived = true
 [repo."slices"]
 description = "slices-fr summer school tutorial"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."srd"]
 description = "srd: (go) static race detector"
@@ -348,7 +348,7 @@ archived = false
 [repo."garnix-lib"]
 description = "forked from garnix-io/garnix-lib"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."go"]
 description = "forked from golang/go"
@@ -423,7 +423,7 @@ archived = false
 [repo."ngipkgs"]
 description = "forked from ngi-nix/ngipkgs"
 visibility = "public"
-archived = false
+archived = true
 
 [repo."niks3"]
 description = "forked from mic92/niks3"
