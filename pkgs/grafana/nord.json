@@ -1,0 +1,59 @@
+{
+  "name": "Nord",
+  "id": "nord",
+  "colors": {
+    "mode": "dark",
+    "border": {
+      "weak": "rgba(216, 222, 233, 0.12)",
+      "medium": "rgba(216, 222, 233, 0.20)",
+      "strong": "rgba(216, 222, 233, 0.32)"
+    },
+    "text": {
+      "primary": "#ECEFF4",
+      "secondary": "rgba(216, 222, 233, 0.75)",
+      "disabled": "rgba(216, 222, 233, 0.50)",
+      "link": "#88C0D0",
+      "maxContrast": "#ECEFF4"
+    },
+    "primary": {
+      "main": "#5E81AC",
+      "text": "#88C0D0",
+      "border": "#81A1C1",
+      "name": "primary"
+    },
+    "accent": {
+      "main": "#88C0D0",
+      "text": "#8FBCBB",
+      "border": "#88C0D0",
+      "name": "accent"
+    },
+    "secondary": {
+      "main": "rgba(76, 86, 106, 0.35)",
+      "shade": "rgba(76, 86, 106, 0.50)",
+      "transparent": "rgba(76, 86, 106, 0.25)",
+      "text": "#D8DEE9",
+      "contrastText": "#ECEFF4",
+      "border": "rgba(76, 86, 106, 0.40)"
+    },
+    "background": {
+      "canvas": "#2E3440",
+      "page": "#2E3440",
+      "primary": "#3B4252",
+      "secondary": "#434C5E",
+      "elevated": "#434C5E"
+    },
+    "action": {
+      "hover": "rgba(216, 222, 233, 0.09)",
+      "selected": "rgba(94, 129, 172, 0.35)",
+      "selectedBorder": "#88C0D0",
+      "focus": "rgba(136, 192, 208, 0.20)",
+      "hoverOpacity": 0.08,
+      "disabledText": "rgba(216, 222, 233, 0.50)",
+      "disabledBackground": "rgba(216, 222, 233, 0.07)",
+      "disabledOpacity": 0.38
+    },
+    "contrastThreshold": 3,
+    "hoverFactor": 0.03,
+    "tonalOffset": 0.15
+  }
+}
