@@ -1,6 +1,6 @@
 { lib, ... } @ args:
 
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   inherit (lib) mkIf mkDefault mkMerge blueprint;
@@ -40,25 +40,6 @@ in
       sops.secrets."grafana/smtp".mode = "440";
 
       services.grafana = {
-        package = pkgs.grafana.overrideAttrs (_: {
-          preFixup = ''
-            substituteInPlace $out/share/grafana/public/views/index.html \
-              --replace-fail '</head>' '<script defer data-domain="${domain}" src="https://${blueprint.services.plausible.domain}/js/script.file-downloads.hash.outbound-links.js"></script></head>'
-          '';
-        });
-
-        declarativePlugins = with pkgs.grafanaPlugins; [
-          (grafana-oncall-app.overrideAttrs (_: {
-            version = "1.14.3";
-            src = pkgs.fetchurl {
-              name = "grafana-oncall-app-1.14.3.zip";
-              url = "https://grafana.com/api/plugins/grafana-oncall-app/versions/1.14.3/download";
-              hash = "sha256-Mmo+cbNyXps1akhB6F6slmpfINHUD2B0EAmawkwjLGE=";
-            };
-          }))
-          yesoreyeram-infinity-datasource
-        ];
-
         settings = {
           server = {
             http_addr = "::1";
