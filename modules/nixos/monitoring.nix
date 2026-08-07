@@ -84,8 +84,10 @@ in
       services.caddy = {
         enable = true;
         virtualHosts.${tsDomain}.extraConfig = mkAfter ''
-          handle_path /prometheus/* {
-            reverse_proxy [::1]:8428
+          handle @tailnet {
+            handle_path /prometheus/* {
+              reverse_proxy [::1]:8428
+            }
           }
         '';
       };
@@ -270,8 +272,10 @@ in
       services.caddy = {
         enable = true;
         virtualHosts.${tsDomain}.extraConfig = mkAfter ''
-          handle_path /loki/* {
-            reverse_proxy [${config.services.loki.configuration.server.http_listen_address}]:${toString config.services.loki.configuration.server.http_listen_port}
+          handle @tailnet {
+            handle_path /loki/* {
+              reverse_proxy [${config.services.loki.configuration.server.http_listen_address}]:${toString config.services.loki.configuration.server.http_listen_port}
+            }
           }
         '';
       };
@@ -287,6 +291,9 @@ in
           tls {
             get_certificate tailscale
           }
+
+          import tailscale
+          respond 404
         '';
       };
     })
