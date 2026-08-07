@@ -37,11 +37,16 @@ in
       services.caddy = {
         enable = true;
 
-        # direct-exposure / behind tailscale: trust the proxy-aware client IP
+        # tailnet only
         virtualHosts.${domain}.extraConfig = ''
           import common
-          reverse_proxy [${lib.toString cfg.config.ROCKET_ADDRESS}]:${lib.toString cfg.config.ROCKET_PORT} {
-            header_up X-Real-IP {client_ip}
+          import tailscale
+          respond 404
+
+          handle @tailnet {
+            reverse_proxy [${lib.toString cfg.config.ROCKET_ADDRESS}]:${lib.toString cfg.config.ROCKET_PORT} {
+              header_up X-Real-IP {client_ip}
+            }
           }
         '';
       };
