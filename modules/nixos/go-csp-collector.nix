@@ -18,10 +18,18 @@ in
         query-params-metadata = true;
         truncate-query-fragment = false;
         debug = false;
+        # ipv6 bind wont parse
+        metrics-bind-addr = "127.0.0.1";
+        metrics-port = "9090";
       };
     };
 
-    # TODO: add prometheus metrics exporting and scraping after 0.0.18 release
+    services.victoriametrics.prometheusConfig.scrape_configs = lib.mkIf config.services.victoriametrics.enable [{
+      job_name = "go-csp-collector";
+      static_configs = [{
+        targets = [ "${config.services.go-csp-collector.settings.metrics-bind-addr}:${config.services.go-csp-collector.settings.metrics-port}" ];
+      }];
+    }];
 
     services.caddy = {
       enable = true;
