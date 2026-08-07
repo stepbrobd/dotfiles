@@ -12,6 +12,11 @@ pkgsPrev.grafana.overrideAttrs (prev: {
         "  zen," \
         "  nord, zen,"
 
+    substituteInPlace pkg/services/preference/themes_generated.go \
+      --replace-fail \
+        '{ID: "zen", Type: "light", IsExtra: true},' \
+        '{ID: "nord", Type: "dark", IsExtra: true}, {ID: "zen", Type: "light", IsExtra: true},'
+
     substituteInPlace public/app/core/components/ThemeSelector/getSelectableThemes.ts \
       --replace-fail \
         "    'gloom'," \
