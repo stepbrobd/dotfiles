@@ -249,6 +249,11 @@ description = "ua thunderbolt alsa driver"
 visibility = "public"
 archived = false
 
+[repo."vaultdupe"]
+description = "vaultwarden deduplication (seem to work but this is vibe coded and not carefully reviewed)"
+visibility = "public"
+archived = false
+
 [repo."x"]
 description = "all the weird stuff goes here"
 visibility = "public"
