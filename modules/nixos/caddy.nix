@@ -95,6 +95,12 @@ in
           }
         }
 
+        # restrict a site to the tailnet: `import tailscale` in its virtualHost
+        # extraConfig, wrap routes in `handle @tailnet`, and add `respond 404`
+        (tailscale) {
+          @tailnet remote_ip 100.64.0.0/10 fd7a:115c:a1e0::/48
+        }
+
         (reporting) {
           header  Reporting-Endpoints      `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
           header >Reporting-Endpoints (.*) `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
