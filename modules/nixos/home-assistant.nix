@@ -5,6 +5,7 @@
 let
   cfg = config.services.home-assistant;
   hasTag = lib.hasTag config.networking.hostName;
+  host = lib.blueprint.hosts.${config.networking.hostName};
   inherit (lib.blueprint.services.home-assistant) domain;
 in
 {
@@ -54,14 +55,22 @@ in
         ];
       };
 
-      networking.firewall = {
+      # homekit bridge (21064) and mdns (5353) are lan only
+      # but hass binds 0.0.0.0/[::]
+      # have to restrict to local interface
+      networking.firewall.interfaces.${host.interface} = {
         allowedTCPPorts = [ 21064 ];
         allowedUDPPorts = [ 5353 ];
       };
 
       services.caddy.virtualHosts.${domain}.extraConfig = ''
         import common
-        reverse_proxy [::1]:${lib.toString cfg.config.http.server_port}
+        import tailscale
+        respond 404
+
+        handle @tailnet {
+          reverse_proxy [::1]:${lib.toString cfg.config.http.server_port}
+        }
       '';
     })
   ];
