@@ -1,29 +1,18 @@
 { pkgsPrev
-, fetchFromGitLab
 , fetchpatch2
 }:
 
-pkgsPrev.bird3.overrideAttrs (final: prev: {
-  version = "3.3.1";
-
-  src = fetchFromGitLab {
-    domain = "gitlab.nic.cz";
-    owner = "labs";
-    repo = "bird";
-    tag = "v${final.version}";
-    hash = "sha256-aJo6Ut/ULBDGoekSXgN1WvmFmonTzNA3TES1FHqCiOM=";
-  };
-
+pkgsPrev.bird3.overrideAttrs (prev: {
   patches = (prev.patches or [ ]) ++ [
     # link quality algo selection
     (fetchpatch2 {
-      url = "https://github.com/nickcao/bird/commit/0b21028f41c00097b3232a83258a0c574300f1fc.patch";
-      hash = "sha256-KcAG03qGAaxb/1MGAnWHNzxVrIE5csqBc9+jqxD4ID4=";
+      url = "https://github.com/nickcao/bird/commit/5358b983f8ad6d47df626f1f0a84702133bdd0d6.patch";
+      hash = "sha256-inifd1YSR3OW0V4++HcM6JszWx9QMyRvM8JDlaAvkmM=";
     })
     # iface deletion race
     (fetchpatch2 {
-      url = "https://github.com/nickcao/bird/commit/18175de3cc75b4e662b5f43d8a93a1c062a8b3ab.patch";
-      hash = "sha256-N11bkhn67fPXPSfrJ32v+t6Gwyh0qIOuisJ7uk1WGPA=";
+      url = "https://github.com/nickcao/bird/commit/b8629f57c1180661704129d13b4c6a388b262c39.patch";
+      hash = "sha256-JtB/WFO3WNlCCnccFYB4selgAfQsKr6l+YBob0KSHlQ=";
     })
   ];
 })
