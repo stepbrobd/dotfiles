@@ -40,6 +40,7 @@ in
           "isal"
           "kegtron"
           "met"
+          "midea"
           "shopping_list"
           "ssdp"
           "switchbot"
@@ -50,7 +51,6 @@ in
 
         customComponents = with pkgs.home-assistant-custom-components; [
           auth_oidc
-          midea_ac_lan
           spook
         ];
       };
