@@ -1,4 +1,9 @@
+{ config, ... }:
+
 {
+  # massive hack, use hm user age key to decrypt system keys
+  sops.age.keyFile = config.home-manager.users.ysun.sops.age.keyFile;
+
   time.timeZone = "Europe/Paris";
 
   networking = {
