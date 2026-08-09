@@ -461,11 +461,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785650611,
-        "narHash": "sha256-q4kR7g+pCcz6NASvoVPYu+CWWUurX03wogtBqGmR4h0=",
+        "lastModified": 1786249295,
+        "narHash": "sha256-Y2mSr+HLKYoOsjiackgilxkHXe8gkJ3z4hFFekjQX3I=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "dbc756c9d7287de19b3e0e38c928c47510d42c3e",
+        "rev": "14d55b8069119e3b88da7aa2f6c97f86a2cd3cd6",
         "type": "github"
       },
       "original": {
@@ -520,11 +520,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786166533,
-        "narHash": "sha256-cDbBQvFQJcu3RNO7duTSrA2MMXm9JTPJ+T1sGt1cx8g=",
+        "lastModified": 1786252007,
+        "narHash": "sha256-B43/S2NVWQ3CJslyQPkvKQzkEgZLzYpyZr3iGiQZHEo=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "df0664e9fdc0f06099ffeb1fe4878fcf58e13905",
+        "rev": "2c27c5fcb51edf0ac740e944c2c357016d9ea2d9",
         "type": "github"
       },
       "original": {
@@ -663,11 +663,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786199678,
-        "narHash": "sha256-26TIdjwjih5rtwzaW2BgRqsoWde34k/C3zy2k+9VfDY=",
+        "lastModified": 1786239779,
+        "narHash": "sha256-JxVEUqGZH1PzNh4w6p0UjJRycm33uUxX1ryotRErf3A=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "b7cbb0d0349eff7c10813bccd310d6786b402255",
+        "rev": "ad647ae1bc1a119eaafb849ccce5391e9fdb0918",
         "type": "github"
       },
       "original": {
@@ -683,11 +683,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786057790,
-        "narHash": "sha256-k/qCnifAoBqpHkRPYn6nUfEoRV1HXac01+Fh4aouWIE=",
+        "lastModified": 1786236850,
+        "narHash": "sha256-K1AkQg+pZyI/vuIrz7s8sGxqTsCrVJwOOK/ttOwh+q0=",
         "owner": "noctalia-dev",
         "repo": "noctalia-greeter",
-        "rev": "bf5feefee3d90922952c1850eebdf93d1c0c7f01",
+        "rev": "763411f5ebd864adba27db9354a1d5724c15704c",
         "type": "github"
       },
       "original": {
@@ -849,11 +849,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786160316,
-        "narHash": "sha256-oLoc3ZLg1LX/S5Jb3v6MrF415AzDyC4vgeWy9UcYTQk=",
+        "lastModified": 1786247265,
+        "narHash": "sha256-cVTcTqAhzSNMOVddtBhFpuv+Vx6/SgrhgZWJiI61H24=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "4e1c940c96560ceab7c547f89642231371a66646",
+        "rev": "6df7076ea0f5697e3242719a4c71211f00411cf5",
         "type": "github"
       },
       "original": {
@@ -956,11 +956,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1786210201,
-        "narHash": "sha256-t8wcnQix5HQnZw7L0FEkGBGm+xhld+7GUPsX562/ui0=",
+        "lastModified": 1786216702,
+        "narHash": "sha256-fOOmw9tUYeqWVnK2w2NiuMTmGIbluj8xiBFTTFDCcEE=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "3206c81ae99d48001b1046535106b903649db907",
+        "rev": "b67debfd2db1eb1f0fd8740b950f598bbaf74b8f",
         "type": "github"
       },
       "original": {
@@ -1017,11 +1017,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786150674,
-        "narHash": "sha256-1reiGOUFoppoPko/l/IhD899LhDUv7DhrexS+Noylgw=",
+        "lastModified": 1786237199,
+        "narHash": "sha256-GWwnNFi8u2EoU115Vd3ZbwVHEhvm7Yz4w4dJk9/eQ3s=",
         "owner": "nix-community",
         "repo": "nixpkgs-terraform-providers-bin",
-        "rev": "26cd682963c8165419b851900a194540ec853ff8",
+        "rev": "f9f9eb7e6514464c07c1aae5df23e7a9d5d4a5d8",
         "type": "github"
       },
       "original": {
@@ -1221,11 +1221,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786171986,
-        "narHash": "sha256-kvmCZLYbByuE+zskqtf5+UPGrFI8e8KspB8jVey0nj0=",
+        "lastModified": 1786239946,
+        "narHash": "sha256-V5WOJhCGsuSRkz60K8TcALKMiMVCNubfJquMJqoCow0=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "f3a721857afb4c34f687390213e0bc034d8e4999",
+        "rev": "cf55fc2a2d26819d0dfb4f5e21fad13d70a612e9",
         "type": "github"
       },
       "original": {
