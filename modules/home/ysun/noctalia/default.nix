@@ -130,8 +130,8 @@ in
           password_style = "random";
           launcher = {
             categories = true;
-            session_search = true;
             sort_by_usage = true;
+            providers.session.global = true;
           };
           screenshot.directory = "${config.home.homeDirectory}/Pictures/Screenshots";
         };
@@ -174,22 +174,22 @@ in
           cpu = {
             type = "sysmon";
             stat = "cpu_usage";
-            show_label = false;
+            show_value = false;
           };
           ram = {
             type = "sysmon";
             stat = "ram_used";
-            show_label = false;
+            show_value = false;
           };
           network_rx = {
             type = "sysmon";
             stat = "net_rx";
-            show_label = false;
+            show_value = false;
           };
           network_tx = {
             type = "sysmon";
             stat = "net_tx";
-            show_label = false;
+            show_value = false;
           };
         };
       };
