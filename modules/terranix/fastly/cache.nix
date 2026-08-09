@@ -17,9 +17,7 @@ in
 {
   resource.fastly_service_vcl.cache = {
     name = domain;
-    # fallback ttl
-    # b2 should set immutable cache-control on nix objects
-    default_ttl = 86400;
+    default_ttl = 3600;
 
     http3 = true;
 
@@ -134,21 +132,20 @@ in
           set beresp.stale_if_error = 168h;
         '';
       }
-      # not needed any more feat. mic92
-      # https://github.com/nixos/nix/pull/14350
-      # {
-      #   name = "nix"; # convert 403 to 404 for nix
-      #   type = "fetch";
-      #   # run after the boilerplate
-      #   # so the rewritten 404 inherits the 403 "uncacheable" decision
-      #   # i.e. a missing path stays a fresh miss instead of 24h cached 404
-      #   priority = 115;
-      #   content = ''
-      #     if (beresp.status == 403 && req.url.path != "/nix-cache-info") {
-      #       set beresp.status = 404;
-      #     }
-      #   '';
-      # }
+      {
+        name = "negative";
+        type = "fetch";
+        # run after stream to override ttl/cacheable decisions
+        # force cache 403 for a short period on narinfo and realizations
+        priority = 115;
+        content = ''
+          if (beresp.status == 403 && (req.url.path ~ "\.narinfo$" || req.url.path ~ "^/realisations/")) {
+            set beresp.cacheable = true;
+            set beresp.ttl = 60s;
+            set beresp.http.Cache-Control = "public, max-age=60";
+          }
+        '';
+      }
       {
         name = "b2";
         type = "miss";
