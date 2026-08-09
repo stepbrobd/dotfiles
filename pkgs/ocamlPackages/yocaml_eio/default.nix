@@ -10,6 +10,9 @@
 }:
 
 buildDunePackage {
+  # temporiry
+  meta.broken = true;
+
   pname = "yocaml_eio";
 
   inherit (yocaml) version src;
