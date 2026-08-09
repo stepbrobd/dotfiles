@@ -29,7 +29,9 @@ in
     backend = [{
       name = "s3";
       address = s3Host;
-      override_host = s3Host;
+
+      shield = "iad-va-us";
+
       ssl_cert_hostname = s3Host;
       ssl_sni_hostname = s3Host;
       port = 443;
@@ -40,13 +42,23 @@ in
       between_bytes_timeout = 10000;
       connect_timeout = 5000;
       first_byte_timeout = 15000;
-      max_conn = 200;
+      max_conn = 250;
       error_threshold = 0;
     }];
 
     request_setting = [{
       name = "force-ssl";
       force_ssl = true;
+    }];
+
+    # see modules/nixos/caddy.nix
+    header = [{
+      name = "hsts";
+      action = "set";
+      type = "response";
+      destination = "http.Strict-Transport-Security";
+      source = ''"max-age=31536000; includeSubDomains; preload"'';
+      ignore_if_set = false;
     }];
 
     # https://git.clan.lol/clan/clan-infra/src/branch/main/modules/terranix/cache-new.nix
@@ -108,12 +120,26 @@ in
       {
         name = "scrub";
         type = "fetch";
-        # run after the boilerplate
+        # run after encoding (105) to make sure Content-Encoding header is not dropped
         priority = 108;
-        # strip b2/s3 origin request tracking headers
+        # use allow list for headers
         content = ''
-          unset beresp.http.x-amz-request-id;
-          unset beresp.http.x-amz-id-2;
+          header.filter_except(beresp,
+            "Accept-Ranges",
+            "Age",
+            "Cache-Control",
+            "Content-Encoding",
+            "Content-Length",
+            "Content-Range",
+            "Content-Type",
+            "Date",
+            "ETag",
+            "Last-Modified",
+            "Via",
+            "X-Cache",
+            "X-Cache-Hits",
+            "X-Served-By"
+          );
         '';
       }
       {
