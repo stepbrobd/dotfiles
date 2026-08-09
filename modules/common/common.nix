@@ -86,8 +86,8 @@ in
       ];
 
       substituters = lib.mkForce [
-        "https://cache.ysun.co?priority=10"
-        "https://cache.nixos.org?priority=15"
+        "https://cache.nixos.org?priority=10"
+        "https://cache.ysun.co?priority=20"
         # "https://nix-community.cachix.org?priority=30"
         # "https://temp-cache.nix-community.org?priority=30"
         # "https://nixpkgs-update.cachix.org?priority=30"
