@@ -17,19 +17,7 @@
       brewfile = true;
     };
 
-    brews = [
-      # apple music discord rich presence
-      # requires deno readline sqlite
-      {
-        name = "nextfire/tap/apple-music-discord-rpc";
-        start_service = true;
-        restart_service = "changed";
-      }
-      "deno"
-      "mole"
-      "readline"
-      "sqlite"
-    ];
+    brews = [ "mole" ];
 
     caskArgs.no_quarantine = null;
 
