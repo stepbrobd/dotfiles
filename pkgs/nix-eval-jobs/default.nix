@@ -1,13 +1,14 @@
 { pkgsPrev
 , fetchFromGitHub
+, nixVersions
 }:
 
-pkgsPrev.nix-eval-jobs.overrideAttrs (final: _: {
-  version = "2.35.1";
+let version = "2.34.3"; in (pkgsPrev.nix-eval-jobs.override { nixComponents = nixVersions.nixComponents_2_34; }).overrideAttrs {
+  inherit version;
   src = fetchFromGitHub {
     owner = "NixOS";
     repo = "nix-eval-jobs";
-    tag = "v${final.version}";
-    hash = "sha256-EFJnN35L7UieL8zV8qPrpqfdfzztWksY8JYuXF+mr9o=";
+    tag = "v${version}";
+    hash = "sha256-YaVQAgBxWbUBFHXLBLzdUyVvuA/DDw80SEnn9iq0Veo=";
   };
-})
+}
