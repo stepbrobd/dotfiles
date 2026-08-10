@@ -3,7 +3,6 @@
 { config, pkgs, ... }:
 
 let
-  cfg = config.services.home-assistant;
   hasTag = lib.hasTag config.networking.hostName;
   host = lib.blueprint.hosts.${config.networking.hostName};
   inherit (lib.blueprint.services.home-assistant) domain;
@@ -17,16 +16,8 @@ in
       services.caddy.enable = true;
 
       services.home-assistant = {
-        openFirewall = false;
-
         config.default_config = { };
         config.homeassistant.time_zone = null;
-
-        config.http = {
-          server_port = 8123;
-          use_x_forwarded_for = true;
-          trusted_proxies = [ "::1" ];
-        };
 
         extraComponents = [
           "analytics"
@@ -69,7 +60,7 @@ in
         respond 404
 
         handle @tailnet {
-          reverse_proxy [::1]:${lib.toString cfg.config.http.server_port}
+          reverse_proxy [::1]:8123
         }
       '';
     })
