@@ -64,7 +64,7 @@ let
         fonts
         # hammerspoon
         homebrew
-        # linux-builder
+        linux-builder
         nix-community
         nixbuild
         ntpd-rs
