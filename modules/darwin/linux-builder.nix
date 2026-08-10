@@ -2,7 +2,8 @@
 
 {
   nix.linux-builder = {
-    enable = true;
+    enable = false;
+
     ephemeral = true;
     maxJobs = 8;
     speedFactor = 2;
