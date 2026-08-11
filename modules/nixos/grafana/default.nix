@@ -39,6 +39,10 @@ in
       sops.secrets."grafana/smtp".group = "grafana";
       sops.secrets."grafana/smtp".mode = "440";
 
+      # settings.users.default_theme limits to [ dark light system ]
+      # env override to injected nord theme
+      systemd.services.grafana.environment.GF_USERS_DEFAULT_THEME = "nord";
+
       services.grafana = {
         settings = {
           server = {
