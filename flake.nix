@@ -72,7 +72,7 @@
     colmena.inputs.flake-compat.follows = "compat";
     colmena.inputs.flake-utils.follows = "utils";
     colmena.inputs.nix-github-actions.follows = "";
-    compat.url = "github:edolstra/flake-compat";
+    compat.url = "github:nixos/flake-compat";
     compat.flake = false;
     cornflake.url = "github:jzbor/cornflakes";
     crane.url = "github:ipetkov/crane";
