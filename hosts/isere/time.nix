@@ -164,7 +164,7 @@ in
       extraConfig = ''
         import common
         header Content-Type "text/html; charset=utf-8"
-        respond `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111217"><title>${domain}</title><style>*{margin:0;padding:0}html,body{background:#111217}html,body,iframe{width:100%;height:100%;border:none;overflow:hidden}</style><script defer data-domain="${domain}" src="https://${lib.blueprint.services.plausible.domain}/js/script.file-downloads.hash.outbound-links.js"></script></head><body><iframe src="https://${lib.blueprint.services.grafana.domain}/public-dashboards/ab5eeb9da69842ebaaf75819d8a62b15"></iframe></body></html>` 200
+        respond `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#2e3440"><title>${domain}</title><style>*{margin:0;padding:0}html,body{background:#2e3440}html,body,iframe{width:100%;height:100%;border:none;overflow:hidden}</style><script defer data-domain="${domain}" src="https://${lib.blueprint.services.plausible.domain}/js/script.file-downloads.hash.outbound-links.js"></script></head><body><iframe src="https://${lib.blueprint.services.grafana.domain}/public-dashboards/ab5eeb9da69842ebaaf75819d8a62b15?theme=nord"></iframe></body></html>` 200
       '';
     };
   };
