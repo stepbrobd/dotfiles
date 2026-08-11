@@ -285,6 +285,11 @@ description = "forked from homebrew/brew"
 visibility = "public"
 archived = false
 
+[repo."certirocq"]
+description = "forked from certirocq/certirocq"
+visibility = "public"
+archived = false
+
 [repo."cfspeedtest"]
 description = "forked from code-inflation/cfspeedtest"
 visibility = "public"
