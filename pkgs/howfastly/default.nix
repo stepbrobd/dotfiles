@@ -20,7 +20,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   nativeBuildInputs = [ pkg-config ];
 
-  cargoBuildFlags = [ "--package" "cli" ];
+  cargoBuildFlags = [ "--package" "howfastly" ];
 
   doCheck = false;
 
