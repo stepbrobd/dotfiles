@@ -109,7 +109,7 @@ in
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
           # i consider non sensitive
-          accepted-pool-authentication-tokens = [ "5ea84788c444c03a83c69e27fcf57074dc9adb5244e7ed4467f9207153260ab2" ];
+          accepted-pool-authentication-tokens = [ "a674e68eb88502b59ee54f0952570b4b57bc3fabb15a7cc68e9b3eda3c5605af" ];
         }
         {
           listen = "[${ipam.ipv6}]:4460";
@@ -117,7 +117,7 @@ in
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
           # i consider non sensitive
-          accepted-pool-authentication-tokens = [ "5ea84788c444c03a83c69e27fcf57074dc9adb5244e7ed4467f9207153260ab2" ];
+          accepted-pool-authentication-tokens = [ "a674e68eb88502b59ee54f0952570b4b57bc3fabb15a7cc68e9b3eda3c5605af" ];
         }
       ];
 
