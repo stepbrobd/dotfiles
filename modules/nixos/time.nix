@@ -74,7 +74,7 @@ in
         ) ++ [{
           enable-srv-resolution = true;
           mode = "nts-pool";
-          address = "srv.experimental.ntspooltest.org";
+          address = "srv.sectime.org";
           ntp-version = "auto";
         }];
 
