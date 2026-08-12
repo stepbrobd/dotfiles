@@ -51,11 +51,6 @@ in
         "ntppool2.time.nl"
         "nts.teambelgium.net"
         "nts.netnod.se"
-        # https://experimental.ntspooltest.org/use
-        "0.ke.experimental.ntspooltest.org"
-        "1.ke.experimental.ntspooltest.org"
-        "2.ke.experimental.ntspooltest.org"
-        "3.ke.experimental.ntspooltest.org"
       ];
 
       services.ntpd-rs = {
@@ -76,7 +71,12 @@ in
               ntp-version = "auto";
             })
             config.networking.timeServers
-        );
+        ) ++ [{
+          enable-srv-resolution = true;
+          mode = "nts-pool";
+          address = "srv.experimental.ntspooltest.org";
+          ntp-version = "auto";
+        }];
 
         metrics.enable = config.services.victoriametrics.enable;
         settings.observability = {
