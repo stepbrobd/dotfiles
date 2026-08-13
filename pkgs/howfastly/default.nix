@@ -1,12 +1,13 @@
 { lib
 , rustPlatform
 , fetchFromGitHub
-, pkg-config
+, versionCheckHook
 }:
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "howfastly";
   version = "2026.813.0";
+
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
@@ -18,11 +19,14 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   cargoHash = "sha256-frgRoYxMMCVre7ACxc6wUgkdqPyutkfTemwV2Yv8jko=";
 
-  nativeBuildInputs = [ pkg-config ];
-
   cargoBuildFlags = [ "--package" "howfastly" ];
 
-  doCheck = false;
+  useNextest = true;
+  cargoTestFlags = [ "--package" "howfastly" ];
+
+  doInstallCheck = true;
+  nativeInstallCheckInputs = [ versionCheckHook ];
+  versionCheckProgramArg = "--help";
 
   passthru.autobump = true;
 
