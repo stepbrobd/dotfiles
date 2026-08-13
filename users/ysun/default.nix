@@ -8,15 +8,15 @@
 
     description = "Yifei Sun";
     home =
-      if pkgs.stdenv.isLinux then
+      if pkgs.stdenv.hostPlatform.isLinux then
         lib.mkDefault "/home/ysun"
-      else if pkgs.stdenv.isDarwin then
+      else if pkgs.stdenv.hostPlatform.isDarwin then
         lib.mkDefault "/Users/ysun"
       else
         abort "Unsupported OS";
 
     openssh.authorizedKeys = { inherit (lib.blueprint.users.ysun.openssh.authorizedKeys) keys; };
-  } // lib.optionalAttrs pkgs.stdenv.isLinux {
+  } // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
     isNormalUser = true;
     extraGroups = [
       "audio"

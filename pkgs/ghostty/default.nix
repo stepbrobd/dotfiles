@@ -1,3 +1,3 @@
 { stdenv, pkgsPrev }:
 
-if stdenv.isDarwin then pkgsPrev.ghostty-bin else pkgsPrev.ghostty
+if stdenv.hostPlatform.isDarwin then pkgsPrev.ghostty-bin else pkgsPrev.ghostty

@@ -34,8 +34,8 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
           home = {
             username = u;
             homeDirectory =
-              if pkgs.stdenv.isLinux then lib.mkDefault "/home/${u}"
-              else if pkgs.stdenv.isDarwin then lib.mkDefault "/Users/${u}"
+              if pkgs.stdenv.hostPlatform.isLinux then lib.mkDefault "/home/${u}"
+              else if pkgs.stdenv.hostPlatform.isDarwin then lib.mkDefault "/Users/${u}"
               else abort "Unsupported OS";
           };
 

@@ -61,8 +61,8 @@ in
       use-xdg-base-directories = true;
       warn-dirty = false;
 
-      sandbox = if pkgs.stdenv.isDarwin then "relaxed" else true;
-      extra-sandbox-paths = optionals pkgs.stdenv.isDarwin [
+      sandbox = if pkgs.stdenv.hostPlatform.isDarwin then "relaxed" else true;
+      extra-sandbox-paths = optionals pkgs.stdenv.hostPlatform.isDarwin [
         "/System/Library/Frameworks"
         "/System/Library/PrivateFrameworks"
         "/private/tmp"
@@ -72,8 +72,8 @@ in
       ];
 
       trusted-users = [ "root" ]
-        ++ (optional pkgs.stdenv.isLinux "@wheel")
-        ++ (optional pkgs.stdenv.isDarwin "@admin");
+        ++ (optional pkgs.stdenv.hostPlatform.isLinux "@wheel")
+        ++ (optional pkgs.stdenv.hostPlatform.isDarwin "@admin");
 
       experimental-features = [
         "auto-allocate-uids"

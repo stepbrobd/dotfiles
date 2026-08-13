@@ -1,6 +1,6 @@
 { stdenv, pkgsPrev }:
 
-if stdenv.isDarwin
+if stdenv.hostPlatform.isDarwin
 then
   pkgsPrev.alacritty.overrideAttrs
     (oldAttrs: {

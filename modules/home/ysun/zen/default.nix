@@ -68,10 +68,10 @@ in
       { })
   ];
 
-  home.sessionVariables = lib.optionalAttrs pkgs.stdenv.isLinux { BROWSER = "zen-twilight"; };
+  home.sessionVariables = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux { BROWSER = "zen-twilight"; };
 
-  xdg.mimeApps.enable = pkgs.stdenv.isLinux;
-  xdg.mimeApps.defaultApplications = lib.optionalAttrs pkgs.stdenv.isLinux (
+  xdg.mimeApps.enable = pkgs.stdenv.hostPlatform.isLinux;
+  xdg.mimeApps.defaultApplications = lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux (
     lib.genAttrs [
       "text/html"
       "text/xml"

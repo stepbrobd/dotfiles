@@ -29,8 +29,8 @@ stdenv.mkDerivation (finalAttrs: {
   dontStrip = true;
 
   nativeBuildInputs = [ ]
-    ++ lib.optional stdenv.isDarwin fixDarwinDylibNames
-    ++ lib.optionals stdenv.isLinux [ autoPatchelfHook stdenv.cc.cc.lib ];
+    ++ lib.optional stdenv.hostPlatform.isDarwin fixDarwinDylibNames
+    ++ lib.optionals stdenv.hostPlatform.isLinux [ autoPatchelfHook stdenv.cc.cc.lib ];
 
   installPhase = ''
     runHook preInstall

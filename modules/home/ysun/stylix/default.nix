@@ -32,22 +32,22 @@
     };
   };
 
-  home.pointerCursor.enable = pkgs.stdenv.isLinux;
-  stylix.cursor = lib.mkIf pkgs.stdenv.isLinux {
+  home.pointerCursor.enable = pkgs.stdenv.hostPlatform.isLinux;
+  stylix.cursor = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     package = pkgs.nordzy-cursor-theme;
     name = "Nordzy-cursors";
     size = 24;
   };
 
-  stylix.icons = lib.mkIf pkgs.stdenv.isLinux {
+  stylix.icons = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     enable = true;
     package = pkgs.nordzy-icon-theme;
     dark = "Nordzy-dark";
   };
 
   stylix.targets = {
-    gtk.enable = pkgs.stdenv.isLinux;
-    qt.enable = pkgs.stdenv.isLinux;
+    gtk.enable = pkgs.stdenv.hostPlatform.isLinux;
+    qt.enable = pkgs.stdenv.hostPlatform.isLinux;
 
     # these weird ass shit theme files gets written even if the app is not enabled
     blender.enable = false;

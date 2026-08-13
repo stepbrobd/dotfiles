@@ -56,7 +56,7 @@ in
         nvimcv = "neovide --server '/tmp/nvim.'$(pwd | sha256sum | cut -c1-8)";
       }
       # tailscale
-      (lib.mkIf pkgs.stdenv.isDarwin {
+      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
         tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
       })
       # other aliases

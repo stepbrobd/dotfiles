@@ -43,7 +43,7 @@
         nvimcv = "neovide --server '/tmp/nvim.'$(pwd | sha256sum | cut -c1-8)";
       }
       # tailscale
-      (lib.mkIf pkgs.stdenv.isDarwin {
+      (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
         tailscale = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
       })
       # other aliases
@@ -54,7 +54,7 @@
       export SHELL=$(which zsh)
     '';
 
-    profileExtra = lib.optionalString pkgs.stdenv.isDarwin ''
+    profileExtra = lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
       eval $(${
         if pkgs.stdenv.hostPlatform.isx86_64 then
           "/usr/local/bin"

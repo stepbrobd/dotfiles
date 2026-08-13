@@ -8,7 +8,7 @@
 let
   hasTag = lib.hasTag osConfig.networking.hostName;
   isGraphical = hasTag "graphical";
-  isDarwin = pkgs.stdenv.isDarwin;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 in
 {
   home.packages = with pkgs; [

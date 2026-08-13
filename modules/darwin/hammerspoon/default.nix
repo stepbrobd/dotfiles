@@ -2,7 +2,7 @@
 
 let inherit (pkgs) lib; in
 {
-  config = lib.mkIf pkgs.stdenv.isDarwin {
+  config = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     homebrew.casks = [ "hammerspoon" ];
 
     # https://github.com/nmasur/dotfiles/blob/4883532c65383c2615047bd1bb3ed5cf606f996e/modules/darwin/hammerspoon.nix
