@@ -6,17 +6,17 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "howfastly";
-  version = "2026.810.1";
+  version = "2026.813.0";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "stepbrobd";
     repo = "howfastly";
     tag = finalAttrs.version;
-    hash = "sha256-qLYns63RLE5Tozua4F/qvOE1qtrkc0psHfgZIvNr1rA=";
+    hash = "sha256-q9xg++7S80AgHvpZalyb7VU7Ns66dgbkKQzbzjj0zSo=";
   };
 
-  cargoHash = "sha256-Cq3e3KmtfTt2KUS+TKg5LR3JXVw/6DGtaK8ucyPxdYU=";
+  cargoHash = "sha256-frgRoYxMMCVre7ACxc6wUgkdqPyutkfTemwV2Yv8jko=";
 
   nativeBuildInputs = [ pkg-config ];
 
