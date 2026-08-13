@@ -25,7 +25,7 @@
       # my own casks
       "stepbrobd/tap/opentabletdriver"
       # universal audio
-      "resonative/proaudio/ua-connect"
+      "stepbrobd/tap/ua-connect"
       # sonarworks soundid
       "lyraphase/av-casks/soundid-reference"
 
