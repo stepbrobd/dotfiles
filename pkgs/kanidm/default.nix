@@ -2,7 +2,6 @@
 
 kanidmWithSecretProvisioning_1_11.overrideAttrs (prev: {
   patches = prev.patches ++ [
-    ./passkey.patch
     ./custom-deployment.patch
   ];
 
