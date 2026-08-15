@@ -32,7 +32,7 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
         # so we are directly injecting defaults here based on passed username
         ({ pkgs, ... }: {
           home = {
-            username = u;
+            username = lib.mkDefault u;
             homeDirectory =
               if pkgs.stdenv.hostPlatform.isLinux then lib.mkDefault "/home/${u}"
               else if pkgs.stdenv.hostPlatform.isDarwin then lib.mkDefault "/Users/${u}"
