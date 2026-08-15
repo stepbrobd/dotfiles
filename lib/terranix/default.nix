@@ -83,7 +83,7 @@ rec {
     sops = {
       terraform.required_providers.sops.source = "carlpett/sops";
       provider.sops = { };
-      data.sops_file.secrets.source_file = lib.toString ./secrets.yaml;
+      data.sops_file.secrets.source_file = "${./secrets.yaml}";
     };
 
     tailscale = {
