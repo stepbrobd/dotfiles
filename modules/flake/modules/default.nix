@@ -11,8 +11,6 @@ let
   modulesFor = name: loadAll {
     dir = "${modulePath}/${name}";
     importer = importApplyWithArgs;
-    transformer = x: x;
-    excludes = [ ];
     args = moduleArgs;
   };
 
