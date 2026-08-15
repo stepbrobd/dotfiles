@@ -28,7 +28,7 @@ let
     , interface ? null # e.g. "eth0", "enp1s0" primary outbound network interface
     , ipv4 ? null
     , ipv6 ? null
-    , name ? null # e.g. "Butte" display name
+    , name ? hostName # e.g. "Butte" display name, falls back to hostName
     , meta ? { } # e.g. { country, region, city, postal, continent }
     , ipam ? { }
     , ranet ? { }
