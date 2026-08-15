@@ -78,11 +78,7 @@ in
                 ];
 
                 # inherit all the tags so its easier to filter
-                tags =
-                  let
-                    bp = lib.blueprint.hosts.${config.networking.hostName} or null;
-                  in
-                  if bp != null then bp.tags else [ ];
+                tags = lib.blueprint.hosts.${config.networking.hostName}.tags or [ ];
               };
           }
         )

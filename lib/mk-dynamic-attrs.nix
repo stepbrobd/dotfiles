@@ -4,8 +4,7 @@
 { dir, fun }:
 
 let
-  inherit (lib) filter genAttrs;
-  inherit (builtins) attrNames readDir;
+  inherit (lib) attrNames filter genAttrs readDir;
 
   entries = readDir dir;
 

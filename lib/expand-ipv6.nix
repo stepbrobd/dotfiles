@@ -15,10 +15,7 @@ let
   missing = 8 - lib.length left - lib.length right;
   zeros = lib.genList (_: "0000") missing;
 
-  padGroup = g: lib.substring
-    0
-    (4 - (lib.stringLength g)) "0000"
-  + g;
+  padGroup = lib.fixedWidthString 4 "0";
 
   groups =
     if hasDoubleColon
