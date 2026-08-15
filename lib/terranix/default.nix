@@ -113,7 +113,7 @@ rec {
   acnsSettings = {
     account_id = ''''${data.sops_file.secrets.data["cloudflare.account_id"]}'';
   } // { zone_defaults = acns; };
-  mkZoneSettings = zone: {
+  mkZoneDnsSettings = zone: {
     zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
   } // acns;
 
