@@ -6,50 +6,33 @@
 
 let
   inherit (lib)
-    attrNames
     childDirsWithDefault
-    filter
-    genAttrs
-    hasAttrByPath
+    concatMapAttrs
     isAttrs
-    length
     localPackagesFrom
     pathExists
     readDir
     ;
-
-  entries = readDir dir;
-
-  names =
-    filter
-      (
-        name:
-        let
-          path = dir + "/${name}";
-          isDir = entries.${name} == "directory";
-          hasDefaultNix = isDir && pathExists (path + "/default.nix");
-          childScopeNames = if isDir && !hasDefaultNix then childDirsWithDefault path else [ ];
-          isNestedScope = isDir && !hasDefaultNix && length childScopeNames > 0;
-        in
-        isDir
-        && hasAttrByPath [ name ] scope
-        && (
-          hasDefaultNix
-          || (isNestedScope && isAttrs scope.${name})
-        )
-      )
-      (attrNames entries);
 in
-genAttrs names (
-  name:
+concatMapAttrs
+  (name: type:
   let
     path = dir + "/${name}";
+    hasDefaultNix = pathExists (path + "/default.nix");
   in
-  if pathExists (path + "/default.nix") then
-    scope.${name}
-  else
-    localPackagesFrom {
-      dir = path;
-      scope = scope.${name};
+  if type != "directory" || !(scope ? ${name}) then
+    { }
+  else if hasDefaultNix then
+    { ${name} = scope.${name}; }
+  # nested scope, no default.nix of its own but child dirs with one
+  else if childDirsWithDefault path != [ ] && isAttrs scope.${name} then
+    {
+      ${name} = localPackagesFrom {
+        dir = path;
+        scope = scope.${name};
+      };
     }
-)
+  else
+    { }
+  )
+  (readDir dir)
