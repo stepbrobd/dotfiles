@@ -6,7 +6,9 @@
 # "2602:f590:0000:0000:0023:0161:0104:0128"
 addr:
 let
-  parts = lib.splitString "::" addr;
+  lower = lib.toLower addr;
+
+  parts = lib.splitString "::" lower;
   hasDoubleColon = lib.length parts == 2;
 
   left = lib.splitString ":" (lib.head parts);
@@ -20,6 +22,9 @@ let
   groups =
     if hasDoubleColon
     then lib.map padGroup (left ++ zeros ++ right)
-    else lib.map padGroup (lib.splitString ":" addr);
+    else lib.map padGroup (lib.splitString ":" lower);
 in
+assert lib.assertMsg
+  ((!hasDoubleColon || missing >= 0) && lib.length groups == 8)
+  "expandIpv6: malformed ipv6 address ${addr}";
 lib.concatStringsSep ":" groups
