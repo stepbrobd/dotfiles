@@ -244,6 +244,11 @@ description = "teeebot..."
 visibility = "private"
 archived = true
 
+[repo."terraform-provider-arin"]
+description = "arin terraform provider"
+visibility = "public"
+archived = false
+
 [repo."uad2"]
 description = "ua thunderbolt alsa driver"
 visibility = "public"
