@@ -1,7 +1,7 @@
 { lib }:
 
 let
-  inherit (lib) attrNames genAttrs genHostModules map mapAttrs mergeAttrsList;
+  inherit (lib) assertMsg attrNames concatMap concatStringsSep count filter genAttrs genHostModules length map mapAttrs mergeAttrsList unique;
 in
 { inputs
 , hosts ? [ ] # [ { os, platform, modules, users, names } ]
@@ -12,12 +12,18 @@ in
 }:
 
 let
+  allNames = concatMap (group: group.names) hosts;
+
   # flatten groups into { host -> { os, platform, modules, users } }
-  hostConfigs = mergeAttrsList (map
-    (group: genAttrs group.names (_: {
-      inherit (group) os platform modules users;
-    }))
-    hosts);
+  # a name in two groups would silently resolve last-group-wins, so reject it
+  hostConfigs =
+    assert assertMsg (length allNames == length (unique allNames))
+      "mkColmena: duplicate host names across groups: ${concatStringsSep ", " (filter (n: count (x: x == n) allNames > 1) (unique allNames))}";
+    mergeAttrsList (map
+      (group: genAttrs group.names (_: {
+        inherit (group) os platform modules users;
+      }))
+      hosts);
 
   allHostNames = attrNames hostConfigs;
 in
@@ -67,8 +73,6 @@ in
                 sshOptions = [
                   "-o"
                   "ConnectTimeout=10"
-                  "-o"
-                  "ControlMaster=auto"
                   "-o"
                   "ServerAliveCountMax=3"
                   "-o"
