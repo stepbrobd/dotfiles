@@ -1,9 +1,11 @@
-{ pkgsPrev, terraform-providers-bin }:
+{ pkgsPrev, terraform-providers-bin, terraform-provider-arin }:
 
-(pkgsPrev.opentofu.withPlugins (_: with terraform-providers-bin.providers; [
+pkgsPrev.opentofu.withPlugins (_: (with terraform-providers-bin.providers; [
   Backblaze.b2
   carlpett.sops
   cloudflare.cloudflare
   fastly.fastly
   tailscale.tailscale
-]))
+]) ++ [
+  terraform-provider-arin
+])
