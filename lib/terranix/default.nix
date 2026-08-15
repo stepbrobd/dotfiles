@@ -51,6 +51,14 @@ rec {
 
   # default settings for provider block
   provider = {
+    arin = {
+      terraform.required_providers.arin.source = "stepbrobd/arin";
+      provider.arin = {
+        org_handle = "STEPB";
+        api_key = ''''${data.sops_file.secrets.data["arin.api_key"]}'';
+      };
+    };
+
     b2 = {
       terraform.required_providers.b2.source = "Backblaze/b2";
       provider.b2 = {
