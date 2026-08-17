@@ -43,6 +43,8 @@ in
     sops.secrets."kanidm/oauth/grafana".mode = "440";
     sops.secrets."kanidm/oauth/kavita".group = "kanidm";
     sops.secrets."kanidm/oauth/kavita".mode = "440";
+    sops.secrets."kanidm/oauth/paperless".group = "kanidm";
+    sops.secrets."kanidm/oauth/paperless".mode = "440";
     sops.secrets."kanidm/oauth/vaultwarden".group = "kanidm";
     sops.secrets."kanidm/oauth/vaultwarden".mode = "440";
 
@@ -79,6 +81,8 @@ in
           "kavita.admins" = { };
           "kavita.users" = { };
 
+          "paperless.users" = { };
+
           "cloudflare.admins" = { };
           "cloudflare.users" = { };
 
@@ -103,6 +107,8 @@ in
 
               "kavita.admins"
               "kavita.users"
+
+              "paperless.users"
 
               "cloudflare.admins"
               "cloudflare.users"
@@ -176,6 +182,19 @@ in
                 ];
               };
             };
+          };
+
+          paperless = {
+            displayName = "Paperless";
+            originUrl = "https://${lib.blueprint.services.paperless.domain}/accounts/oidc/kanidm/login/callback/";
+            originLanding = "https://${lib.blueprint.services.paperless.domain}/";
+            basicSecretFile = config.sops.secrets."kanidm/oauth/paperless".path;
+            preferShortUsername = true;
+            scopeMaps."paperless.users" = [
+              "openid"
+              "email"
+              "profile"
+            ];
           };
 
           # public oidc client for caddy-oidc (github.com/relvacode/caddy-oidc)
