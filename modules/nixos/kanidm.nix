@@ -171,7 +171,6 @@ in
                 "kavita.admins" = [ "Admin" ];
                 "kavita.users" = [
                   "Login"
-                  "Change Password"
                   "Download"
                   "Bookmark"
                 ];
