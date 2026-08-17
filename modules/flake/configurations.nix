@@ -30,6 +30,7 @@ let
         self.nixosModules.niks3
         self.nixosModules.nix-community
         self.nixosModules.nixbuild
+        self.nixosModules.paperless
         self.nixosModules.passwordless
         self.nixosModules.plausible
         self.nixosModules.server
