@@ -115,7 +115,7 @@ in
                     type = "monitor";
                     title = "Monitor";
                     sites = [
-                      { title = "Kavita"; url = "https://read.ysun.co"; icon = "sh:kavita"; same-tab = true; }
+                      { title = "Kavita"; url = "https://read.ysun.co"; icon = "si:bookstack"; same-tab = true; }
                       { title = "Glance"; url = "https://home.ysun.co"; icon = "si:homepage"; same-tab = true; }
                       { title = "Time"; url = "https://time.ysun.co"; icon = "si:clockify"; same-tab = true; }
                       { title = "Grafana"; url = "https://otel.ysun.co"; icon = "si:grafana"; same-tab = true; }
@@ -123,6 +123,7 @@ in
                       { title = "Home Assistant"; url = "https://ha.ysun.co"; icon = "si:homeassistant"; same-tab = true; }
                       { title = "Jitsi"; url = "https://meet.ysun.co"; icon = "si:jitsi"; same-tab = true; }
                       { title = "Kanidm"; url = "https://sso.ysun.co"; icon = "si:adblock"; same-tab = true; }
+                      { title = "Paperless"; url = "https://dms.ysun.co"; icon = "si:paperlessngx"; same-tab = true; }
                       { title = "Plausible"; url = "https://stats.ysun.co"; icon = "si:plausibleanalytics"; same-tab = true; }
                       { title = "Tailscale"; url = "https://login.tailscale.com"; icon = "si:tailscale"; same-tab = true; }
                     ];
