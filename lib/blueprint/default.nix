@@ -77,13 +77,13 @@ in
 
   services = {
     cache.domain = "cache.ysun.co";
-    calibre-web.domain = "read.ysun.co";
     glance.domain = "home.ysun.co";
     go-csp-collector.domain = "report.ysun.co";
     grafana.domain = "otel.ysun.co";
     home-assistant.domain = "ha.ysun.co";
     jitsi.domain = "meet.ysun.co";
     kanidm.domain = "sso.ysun.co";
+    kavita.domain = "read.ysun.co";
     neogrok.domain = "grep.ysun.co";
     niks3.domain = "api.cache.ysun.co";
     ntpd-rs.domain = "time.ysun.co";
