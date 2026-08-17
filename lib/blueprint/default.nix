@@ -87,6 +87,7 @@ in
     neogrok.domain = "grep.ysun.co";
     niks3.domain = "api.cache.ysun.co";
     ntpd-rs.domain = "time.ysun.co";
+    paperless.domain = "dms.ysun.co";
     plausible.domain = "stats.ysun.co";
     vaultwarden.domain = "vault.ysun.co";
   };
