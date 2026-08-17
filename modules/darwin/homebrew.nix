@@ -32,6 +32,7 @@
       # "antinote" # i dont really keep note that much
       # "dockdoor" # dont seem to work that well with aerospace
       # "hey-desktop" # fuck this shit
+      # "kindavim" # not using as much
       # "lulu" # removed cause too annoying
       # "orion" # too unstable
 
@@ -42,7 +43,6 @@
       "discord"
       "google-chrome"
       "imazing-profile-editor"
-      "kindavim"
       "loop"
       "obs"
       "osu"
