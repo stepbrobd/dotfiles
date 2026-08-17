@@ -22,6 +22,8 @@ in
         tokenKeyFile = config.sops.secrets."kavita/token".path;
         settings = {
           IpAddresses = "::1";
+          BaseUrl = "/";
+          AllowIFraming = false;
           OpenIdConnectSettings = {
             Authority = "https://${lib.blueprint.services.kanidm.domain}/oauth2/openid/kavita";
             ClientId = "kavita";
