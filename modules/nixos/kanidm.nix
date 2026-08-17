@@ -41,6 +41,8 @@ in
     sops.secrets."kanidm/oauth/cloudflare".mode = "440";
     sops.secrets."kanidm/oauth/grafana".group = "kanidm";
     sops.secrets."kanidm/oauth/grafana".mode = "440";
+    sops.secrets."kanidm/oauth/kavita".group = "kanidm";
+    sops.secrets."kanidm/oauth/kavita".mode = "440";
     sops.secrets."kanidm/oauth/vaultwarden".group = "kanidm";
     sops.secrets."kanidm/oauth/vaultwarden".mode = "440";
 
@@ -74,8 +76,8 @@ in
           "sso.admins" = { };
           "sso.users" = { };
 
-          "calibre.admins" = { };
-          "calibre.users" = { };
+          "kavita.admins" = { };
+          "kavita.users" = { };
 
           "cloudflare.admins" = { };
           "cloudflare.users" = { };
@@ -99,8 +101,8 @@ in
               "sso.admins"
               "sso.users"
 
-              "calibre.admins"
-              "calibre.users"
+              "kavita.admins"
+              "kavita.users"
 
               "cloudflare.admins"
               "cloudflare.users"
@@ -148,6 +150,31 @@ in
                 "grafana.server-admins" = [ "server_admin" ];
                 "grafana.admins" = [ "admin" ];
                 "grafana.editors" = [ "editor" ];
+              };
+            };
+          };
+
+          kavita = {
+            displayName = "Kavita";
+            originUrl = "https://${lib.blueprint.services.kavita.domain}/signin-oidc";
+            originLanding = "https://${lib.blueprint.services.kavita.domain}/";
+            basicSecretFile = config.sops.secrets."kanidm/oauth/kavita".path;
+            preferShortUsername = true;
+            scopeMaps."kavita.users" = [
+              "openid"
+              "email"
+              "profile"
+            ];
+            claimMaps.groups = {
+              joinType = "array";
+              valuesByGroup = {
+                "kavita.admins" = [ "Admin" ];
+                "kavita.users" = [
+                  "Login"
+                  "Change Password"
+                  "Download"
+                  "Bookmark"
+                ];
               };
             };
           };
