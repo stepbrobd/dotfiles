@@ -115,7 +115,7 @@ in
                     type = "monitor";
                     title = "Monitor";
                     sites = [
-                      { title = "Calibre"; url = "https://read.ysun.co"; icon = "si:calibreweb"; same-tab = true; }
+                      { title = "Kavita"; url = "https://read.ysun.co"; icon = "sh:kavita"; same-tab = true; }
                       { title = "Glance"; url = "https://home.ysun.co"; icon = "si:homepage"; same-tab = true; }
                       { title = "Time"; url = "https://time.ysun.co"; icon = "si:clockify"; same-tab = true; }
                       { title = "Grafana"; url = "https://otel.ysun.co"; icon = "si:grafana"; same-tab = true; }
