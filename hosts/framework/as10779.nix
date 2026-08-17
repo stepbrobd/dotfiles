@@ -3,7 +3,7 @@
 {
   # add this to allow strongswan bind to wireless and wired interfaces
   # to ensure tunnes dont break if switch from wired to wireless
-  # networking.ranet.interfaces = [ "wlp170s0" "eth0" ];
+  networking.ranet.interfaces = [ "wlp170s0" "eth0" "enp133s0" ];
 
   services.as10779 = {
     enable = true;
