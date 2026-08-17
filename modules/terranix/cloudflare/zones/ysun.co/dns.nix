@@ -106,6 +106,14 @@ in
         comment = "NetActuate - Los Angeles - Cache API (niks3)";
       };
 
+      co_ysun_dms = {
+        type = "CNAME";
+        proxied = false;
+        name = "dms";
+        content = "isere.ts.ysun.co";
+        comment = "Tailscale Internal - Raspberry Pi - Paperless";
+      };
+
       co_ysun_ha = {
         type = "CNAME";
         proxied = false;
@@ -160,7 +168,7 @@ in
         proxied = false;
         name = "read";
         content = "toompea.sd.ysun.co";
-        comment = "V.PS - Tallinn, Estonia - Calibre";
+        comment = "V.PS - Tallinn, Estonia - Kavita";
       };
 
       co_ysun_report = {
