@@ -65,7 +65,7 @@ in
             };
             settings = {
               backend = "systemd";
-              port = "80,443";
+              port = "443";
               filter = "vaultwarden-web[journalmatch='_SYSTEMD_UNIT=vaultwarden.service']";
               banaction = "%(banaction_allports)s";
               maxretry = 3;
@@ -83,7 +83,7 @@ in
             };
             settings = {
               backend = "systemd";
-              port = "80,443";
+              port = "443";
               filter = "vaultwarden-admin[journalmatch='_SYSTEMD_UNIT=vaultwarden.service']";
               banaction = "%(banaction_allports)s";
               maxretry = 3;
