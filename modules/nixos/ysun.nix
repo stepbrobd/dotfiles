@@ -38,10 +38,6 @@ in
           "ysun.fr"
           "ysun.jp"
           "ysun.us"
-          # browser ca forum forbids rdns certs now fuckkkkkkkk
-          "http://0.0.9.5.f.2.0.6.2.ip6.arpa"
-          "http://104.161.23.in-addr.arpa"
-          "http://136.104.192.in-addr.arpa"
         ];
       };
     };
