@@ -8,7 +8,7 @@ let
 in
 {
   config = lib.mkIf config.services.caddy.enable {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [ 443 ];
     networking.firewall.allowedUDPPorts = [ 443 ];
 
     services.victoriametrics.prometheusConfig.scrape_configs = lib.mkIf config.services.victoriametrics.enable [{
@@ -24,6 +24,8 @@ in
 
       globalConfig = ''
         admin unix/${config.services.caddy.dataDir}/admin.sock
+
+        auto_https disable_redirects
 
         metrics { per_host }
 
