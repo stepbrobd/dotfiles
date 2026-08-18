@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  inherit (lib.terranix) forZone mkPersonalSiteRebind mkPurelyMailRecord;
+  inherit (lib.terranix) forZone mkPurelyMailRecord;
 
   bp = lib.blueprint.hosts;
 
@@ -36,8 +36,6 @@ in
 {
   resource.cloudflare_dns_record = forZone zone
     ({
-      "${zonePrefix}_apex" = mkPersonalSiteRebind { name = "@"; proxied = false; };
-
       "${ipamAttrName "23.161.104.17"}" = {
         type = "PTR";
         proxied = false;
