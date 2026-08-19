@@ -98,7 +98,7 @@
             Theme = "Nord-Dark";
             DarkTheme = "Nord-Dark";
             UseDarkTheme = "False";
-            UseAccentColor = "True";
+            UseAccentColor = "False";
             PerScreenDPI = "False";
             ForceWaylandDPI = 0;
             EnableFractionalScale = "True";
