@@ -8,7 +8,7 @@ newHost {
   provider = "owned";
   providerName = "Framework";
   type = "laptop";
-  tags = [ "graphical" "niri" "noctalia" "ranet" ];
+  tags = [ "graphical" "mango" "niri" "noctalia" "ranet" ];
   meta = { city = "Grenoble"; region = "FR-ARA"; country = "FR"; continent = "Europe"; postal = "38000"; };
   interface = "wlp170s0";
   ipam = {
