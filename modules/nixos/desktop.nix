@@ -3,27 +3,32 @@
 { config, pkgs, ... }:
 
 let
-  inherit (lib) mkIf mkMerge mkOption types;
+  inherit (lib) elem head mkIf mkMerge mkOption types;
 
   cfg = config.services.desktopManager;
 in
 {
-  imports = [ inputs.noctalia-greeter.nixosModules.default ];
+  imports = [
+    inputs.mango.nixosModules.mango
+    inputs.noctalia-greeter.nixosModules.default
+  ];
 
   options.services.desktopManager = {
     enabled = mkOption {
-      type = with types; nullOr (enum [ "niri" ]);
-      default = null;
-      example = "niri";
+      type = with types; listOf (enum [ "niri" "mango" ]);
+      default = [ ];
+      example = [ "niri" "mango" ];
       description = ''
-        Choose:
-        - null (or nothing) -> no desktop manager
+        Desktop sessions to enable:
+        - [ ] (or nothing) -> no desktop manager
         - niri
+        - mango
+        All listed sessions show up in the greeter menu, the first one is the default session.
       '';
     };
   };
 
-  config = mkIf (cfg.enabled != null) (mkMerge [
+  config = mkIf (cfg.enabled != [ ]) (mkMerge [
     {
       boot.initrd.systemd.enable = true;
 
@@ -94,9 +99,8 @@ in
       };
     }
 
-    (mkIf (cfg.enabled == "niri") {
-      programs.niri.enable = true;
-
+    # greeter
+    {
       # session discovery
       # /run/current-system/sw/share/wayland-sessions
       environment.pathsToLink = [ "/share/wayland-sessions" ];
@@ -105,7 +109,7 @@ in
         enable = true;
         package = pkgs.noctalia-greeter;
         settings = {
-          session.default = "niri";
+          session.default = head cfg.enabled;
           user.default = "ysun";
           keyboard.layout = "us";
           cursor = {
@@ -115,6 +119,12 @@ in
           };
         };
       };
-    })
+    }
+
+    # wm
+    {
+      programs.niri.enable = elem "niri" cfg.enabled;
+      programs.mango.enable = elem "mango" cfg.enabled;
+    }
   ]);
 }
