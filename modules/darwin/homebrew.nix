@@ -24,10 +24,10 @@
     casks = [
       # my own casks
       "stepbrobd/tap/opentabletdriver"
+      # sonarworks soundid
+      "stepbrobd/tap/soundid-reference"
       # universal audio
       "stepbrobd/tap/ua-connect"
-      # sonarworks soundid
-      "lyraphase/av-casks/soundid-reference"
 
       # "antinote" # i dont really keep note that much
       # "dockdoor" # dont seem to work that well with aerospace
