@@ -8,6 +8,7 @@
       waylandFrontend = true;
       addons = with pkgs; [
         qt6Packages.fcitx5-configtool
+        qt6Packages.fcitx5-chinese-addons
         fcitx5-gtk
         fcitx5-mozc
         (fcitx5-rime.override { rimeDataPkgs = [ rime-data ]; })
@@ -25,11 +26,13 @@
           "Groups/0/Items/0".Name = "keyboard-us";
           "Groups/0/Items/1".Name = "mozc";
           "Groups/0/Items/2".Name = "rime";
+          "Groups/0/Items/3".Name = "pinyin";
         };
 
         globalOptions = {
           Hotkey = {
             EnumerateWithTriggerKeys = "True";
+            TriggerKeys = "";
             AltTriggerKeys = "";
             EnumerateBackwardKeys = "";
             EnumerateSkipFirst = "False";
@@ -37,6 +40,11 @@
             EnumerateGroupBackwardKeys = "";
             TogglePreedit = "";
             ModifierOnlyKeyTimeout = 250;
+          };
+
+          # keyd caps tap emits F13 = XF86Tools (fcitx5 names "Tools")
+          "Hotkey/EnumerateForwardKeys" = {
+            "0" = "Tools";
           };
 
           "Hotkey/PrevPage" = {
@@ -58,8 +66,8 @@
           Behavior = {
             ActiveByDefault = "False";
             resetStateWhenFocusIn = "No";
-            ShareInputState = "All";
-            PreeditEnabledByDefault = "False";
+            ShareInputState = "No";
+            PreeditEnabledByDefault = "True";
             ShowInputMethodInformation = "True";
             showInputMethodInformationWhenFocusIn = "True";
             CompactInputMethodInformation = "True";
@@ -78,20 +86,20 @@
         addons = {
           classicui.globalSection = {
             "Vertical Candidate List" = "True";
-            WheelForPaging = "False";
-            Font = "Sans Serif 12";
-            MenuFont = "Sans Serif 12";
-            TrayFont = "Sans Serif 12";
+            WheelForPaging = "True";
+            Font = "Sans 10";
+            MenuFont = "Sans 10";
+            TrayFont = "Sans Bold 10";
             TrayOutlineColor = "#000000";
             TrayTextColor = "#ffffff";
             PreferTextIcon = "False";
             ShowLayoutNameInIcon = "True";
-            UseInputMethodLanguageToDisplayText = "False";
+            UseInputMethodLanguageToDisplayText = "True";
             Theme = "Nord-Dark";
             DarkTheme = "Nord-Dark";
-            UseDarkTheme = "True";
+            UseDarkTheme = "False";
             UseAccentColor = "True";
-            PerScreenDPI = "True";
+            PerScreenDPI = "False";
             ForceWaylandDPI = 0;
             EnableFractionalScale = "True";
           };
@@ -118,6 +126,20 @@
             };
           };
         };
+      };
+    };
+  };
+
+  # caps lock:
+  # <75ms graze = nothing (HID brush guard)
+  # tap = f13 (fcitx5 trigger)
+  # >=500ms hold = caps lock
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings.main = {
+        capslock = "timeout(noop, 75, timeout(f13, 425, capslock))";
       };
     };
   };
