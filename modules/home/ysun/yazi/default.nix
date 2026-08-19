@@ -27,22 +27,7 @@
         -- pkgs.yaziPlugins.nord
         theme = require("nord"):setup(),
 
-        header_line = {
-          left = {
-            section_a = {
-              { type = "line", custom = false, name = "tabs", params = { "left" }, },
-            },
-            section_b = { },
-            section_c = { },
-          },
-          right = {
-            section_a = { },
-            section_b = { },
-            section_c = {
-              { type = "coloreds", custom = false, name = "count", params = "true" },
-            },
-          }
-        },
+        display_header_line = false,
 
         status_line = {
           left = {
