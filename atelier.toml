@@ -21,6 +21,12 @@ exclude = [
   "legacyPackages.aarch64-darwin.cider-2", # unsupported
   "legacyPackages.aarch64-linux.cider-2",  # unsupported
 
+  "legacyPackages.aarch64-darwin.kavita", # unsupported
+
+  "legacyPackages.aarch64-darwin.ocamlPackages.yocaml_unix", # broken
+  "legacyPackages.aarch64-linux.ocamlPackages.yocaml_unix",  # broken
+  "legacyPackages.x86_64-linux.ocamlPackages.yocaml_unix",   # broken
+
   "legacyPackages.aarch64-darwin.plausible", # unsupported
 
   "legacyPackages.aarch64-linux.mac-app-util", # unsupported
