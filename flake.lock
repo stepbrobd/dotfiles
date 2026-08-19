@@ -533,6 +533,30 @@
         "type": "github"
       }
     },
+    "mango": {
+      "inputs": {
+        "flake-parts": [
+          "parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "scenefx": "scenefx"
+      },
+      "locked": {
+        "lastModified": 1787068233,
+        "narHash": "sha256-G9+V1VYVDp99Cjuimwy+SPeRboxaPofN6rKLbZUDoeI=",
+        "owner": "mangowm",
+        "repo": "mango",
+        "rev": "813acaf41a921d9a417ea039635b4bda78473c7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mangowm",
+        "repo": "mango",
+        "type": "github"
+      }
+    },
     "miroir": {
       "inputs": {
         "gomod2nix": [
@@ -790,6 +814,7 @@
         "index": "index",
         "lanzaboote": "lanzaboote",
         "llm": "llm",
+        "mango": "mango",
         "miroir": "miroir",
         "niks3": "niks3",
         "nixpkgs": "nixpkgs",
@@ -859,6 +884,32 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "scenefx": {
+      "inputs": {
+        "flake-utils": [
+          "utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782624992,
+        "narHash": "sha256-vUjLG6eubEhJJVa9LPygIcVmNoHwYbSUTJcWEcbxnU4=",
+        "owner": "wlrfx",
+        "repo": "scenefx",
+        "rev": "37ccd723bef49e6891156ffafce8f549f01446cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wlrfx",
+        "repo": "scenefx",
         "type": "github"
       }
     },

@@ -108,6 +108,12 @@
     llm.inputs.bun2nix.follows = "bun2nix";
     llm.inputs.treefmt-nix.follows = "treefmt";
     # m
+    mango.url = "github:mangowm/mango";
+    mango.inputs.nixpkgs.follows = "nixpkgs";
+    mango.inputs.flake-parts.follows = "parts";
+    mango.inputs.scenefx.inputs.nixpkgs.follows = "nixpkgs";
+    mango.inputs.scenefx.inputs.systems.follows = "systems";
+    mango.inputs.scenefx.inputs.flake-utils.follows = "utils";
     miroir.url = "github:stepbrobd/miroir";
     miroir.inputs.nixpkgs.follows = "nixpkgs";
     miroir.inputs.systems.follows = "systems";
