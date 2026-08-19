@@ -15,9 +15,6 @@ in
   ];
 
   config = lib.mkIf (hasTag "graphical") {
-    services.desktopManager.enabled = lib.mkDefault (
-      if hasTag "niri" then "niri"
-      else null
-    );
+    services.desktopManager.enabled = lib.mkDefault (lib.filter hasTag [ "niri" "mango" ]);
   };
 }
