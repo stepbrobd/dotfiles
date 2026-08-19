@@ -126,5 +126,18 @@ in
       programs.niri.enable = elem "niri" cfg.enabled;
       programs.mango.enable = elem "mango" cfg.enabled;
     }
+
+    # vm test?
+    {
+      virtualisation.vmVariant.virtualisation = {
+        cores = 4;
+        memorySize = 4096;
+        qemu.options = [
+          "-vga none"
+          "-device virtio-gpu-gl-pci"
+          "-display gtk,gl=on"
+        ];
+      };
+    }
   ]);
 }
