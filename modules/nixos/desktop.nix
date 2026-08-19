@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 { config, pkgs, ... }:
 
@@ -6,25 +6,10 @@ let
   inherit (lib) mkIf mkMerge mkOption types;
 
   cfg = config.services.desktopManager;
-
-  # gtkgreet style
-  style =
-    let
-      colloid = pkgs.colloid-gtk-theme.override {
-        colorVariants = [ "dark" ];
-        tweaks = [ "nord" ];
-      };
-    in
-    pkgs.writeText "gtk.css" ''
-      @import url("${colloid}/share/themes/Colloid-Dark-Nord/gtk-3.0/gtk.css");
-      window {
-        background-image: url("${lib.blueprint.users.ysun.meta.wallpapersDir}/nord.jpg");
-        background-size: cover;
-        background-position: center;
-      }
-    '';
 in
 {
+  imports = [ inputs.noctalia-greeter.nixosModules.default ];
+
   options.services.desktopManager = {
     enabled = mkOption {
       type = with types; nullOr (enum [ "niri" ]);
@@ -99,6 +84,7 @@ in
       security.pam.services.greetd.enableGnomeKeyring = true;
       security.pam.services.greetd.fprintAuth = false;
       security.pam.services.login.fprintAuth = false;
+      # security.pam.services.polkit-1.fprintAuth = false;
 
       # gnome polkit and keyring
       security.polkit.enable = true;
@@ -111,24 +97,22 @@ in
     (mkIf (cfg.enabled == "niri") {
       programs.niri.enable = true;
 
-      # login manager gtkgreet
-      services.greetd = {
+      # session discovery
+      # /run/current-system/sw/share/wayland-sessions
+      environment.pathsToLink = [ "/share/wayland-sessions" ];
+
+      programs.noctalia-greeter = {
         enable = true;
-        settings.default_session = {
-          user = "greeter";
-          command = lib.concatStringsSep " " [
-            "${pkgs.cage}/bin/cage"
-            "-s"
-            "-d"
-            "-m"
-            "last"
-            "--"
-            "${pkgs.gtkgreet}/bin/gtkgreet"
-            "-s"
-            "${style}"
-            "-c"
-            "niri-session"
-          ];
+        package = pkgs.noctalia-greeter;
+        settings = {
+          session.default = "niri";
+          user.default = "ysun";
+          keyboard.layout = "us";
+          cursor = {
+            theme = "Nordzy-cursors";
+            path = "${pkgs.nordzy-cursor-theme}/share/icons";
+            size = 24;
+          };
         };
       };
     })
