@@ -14,6 +14,7 @@
     # git # imported in graphical
     # gpg # imported in graphical
     libreoffice
+    mango # linux only
     nemo
     niri # linux only
     noctalia # linux only
