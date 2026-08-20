@@ -108,6 +108,8 @@ in
             type = "clock";
             cx = 960.0;
             cy = 256.0;
+            placement_width = 1920.0;
+            placement_height = 1280.0;
             box_width = 512.0;
             box_height = 256.0;
             settings = {
