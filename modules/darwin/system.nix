@@ -17,7 +17,6 @@
       (s: {
         mode = "nts";
         address = s;
-        ntp-version = "auto";
       })
       [
         lib.blueprint.services.ntpd-rs.domain
@@ -35,7 +34,6 @@
       enable-srv-resolution = true;
       mode = "nts-pool";
       address = "srv.sectime.org";
-      ntp-version = "auto";
     }];
   };
 

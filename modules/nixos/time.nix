@@ -68,14 +68,12 @@ in
             (s: {
               mode = "nts";
               address = s;
-              ntp-version = "auto";
             })
             config.networking.timeServers
         ) ++ [{
           enable-srv-resolution = true;
           mode = "nts-pool";
           address = "srv.sectime.org";
-          ntp-version = "auto";
         }];
 
         metrics.enable = config.services.victoriametrics.enable;
