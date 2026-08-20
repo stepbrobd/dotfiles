@@ -17,6 +17,7 @@ in
 {
   services.tailscale = {
     openFirewall = true;
+    disableUpstreamLogging = true;
 
     useRoutingFeatures = "both";
 
