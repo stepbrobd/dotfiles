@@ -20,6 +20,7 @@ in
     home.packages = with pkgs; [
       gnome-keyring
       grim
+      mangomon
       slurp
     ];
 
