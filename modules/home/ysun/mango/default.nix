@@ -62,6 +62,9 @@ in
         # layout
         tagrule = [ "id:*,layout_name:scroller" ];
         scroller_default_proportion = 0.95;
+        scroller_proportion_preset = lib.concatStringsSep "," [ "0.25" "0.33" "0.50" "0.67" "0.75" "0.95" "1.00" ];
+        scroller_structs = 0; # no reserved edge margin left/right of the strip
+        tag_animation_direction = 0; # 0 = vertical (matches 3-finger up/down)
 
         env = [
           "GDK_SCALE,1"
@@ -76,6 +79,8 @@ in
 
           # overview
           "SUPER,o,toggleoverview"
+          # MRU window switch across monitors
+          "SUPER,Tab,focuslast"
 
           # noctalia shell IPC
           "SUPER,s,${ipc "panel-toggle control-center audio"}"
@@ -88,6 +93,8 @@ in
           "SUPER,f,togglefullscreen"
           "SUPER,backslash,togglefloating"
           "SUPER,a,centerwin"
+          "SUPER,bracketleft,scroller_stack,left"
+          "SUPER,bracketright,scroller_stack,right"
           "SUPER,e,switch_layout"
           "SUPER+SHIFT,r,reload_config"
 
@@ -115,9 +122,9 @@ in
           "SUPER+CTRL+SHIFT,k,tagmon,up"
           "SUPER+CTRL+SHIFT,j,tagmon,down"
 
-          # resize master area
-          "SUPER+CTRL,Left,setmfact,-0.05"
-          "SUPER+CTRL,Right,setmfact,+0.05"
+          # cycle column width presets
+          "SUPER+CTRL,Left,switch_proportion_preset,prev"
+          "SUPER+CTRL,Right,switch_proportion_preset,next"
 
           # tags
           "SUPER,1,view,1"
@@ -158,11 +165,11 @@ in
 
         gesturebind = [
           # 3 finger horizontal
-          "none,left,3,focusdir,left"
-          "none,right,3,focusdir,right"
+          "none,left,3,focusdir,right"
+          "none,right,3,focusdir,left"
           # 3 finger vertical
-          "none,up,3,viewtoright_have_client"
-          "none,down,3,viewtoleft_have_client"
+          "none,up,3,viewtoright"
+          "none,down,3,viewtoleft"
           # 4 finger up
           "none,up,4,toggleoverview"
         ];
