@@ -165,6 +165,8 @@ in
         };
 
         widget = {
+          workspaces.hide_when_empty = true;
+
           clock = {
             type = "clock";
             format = "{:%a %b %-d %H:%M:%S}";
