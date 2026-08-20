@@ -435,6 +435,11 @@ description = "forked from torvalds/linux"
 visibility = "public"
 archived = false
 
+[repo."mango"]
+description = "forked from mangowm/mango"
+visibility = "public"
+archived = false
+
 [repo."mas"]
 description = "forked from mac-cli/mas"
 visibility = "public"
