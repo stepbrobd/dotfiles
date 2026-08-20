@@ -86,8 +86,10 @@ in
 
           # overview
           "SUPER,o,toggleoverview"
-          # MRU window switch across monitors
-          "SUPER,Tab,focuslast"
+
+          # thumbnail switcher
+          "SUPER,Tab,switcher"
+          "SUPER+SHIFT,Tab,switcher,-1"
 
           # noctalia shell IPC
           "SUPER,s,${ipc "panel-toggle control-center audio"}"
