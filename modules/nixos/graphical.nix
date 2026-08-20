@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 
-{ config, ... }:
+{ config, options, ... }:
 
 let
   hasTag = lib.hasTag config.networking.hostName;
@@ -15,6 +15,10 @@ in
   ];
 
   config = lib.mkIf (hasTag "graphical") {
-    services.desktopManager.enabled = lib.mkDefault (lib.filter hasTag [ "niri" "mango" ]);
+    services.desktopManager.enabled =
+      lib.mkDefault
+        (lib.filter
+          hasTag
+          options.services.desktopManager.enabled.type.nestedTypes.elemType.functor.payload.values);
   };
 }

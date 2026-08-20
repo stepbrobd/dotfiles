@@ -15,14 +15,16 @@ in
 
   options.services.desktopManager = {
     enabled = mkOption {
-      type = with types; listOf (enum [ "niri" "mango" ]);
       default = [ ];
-      example = [ "niri" "mango" ];
+      type = with types; listOf (enum [
+        "mango"
+        "niri"
+      ]);
       description = ''
         Desktop sessions to enable:
         - [ ] (or nothing) -> no desktop manager
-        - niri
         - mango
+        - niri
         All listed sessions show up in the greeter menu, the first one is the default session.
       '';
     };
