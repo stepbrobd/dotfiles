@@ -163,6 +163,13 @@ in
           ''SUPER+SHIFT,5,spawn_shell,slurp | grim -g - "${screenshot}"''
         ];
 
+        # drag to move/resize floating windows
+        # dragging a tiled window swaps it
+        mousebind = [
+          "SUPER,btn_left,moveresize,curmove"
+          "SUPER,btn_right,moveresize,curresize"
+        ];
+
         gesturebind = [
           # 3 finger horizontal
           "none,left,3,focusdir,right"
