@@ -52,6 +52,13 @@ in
         focuscolor = "0x${config.lib.stylix.colors.base03}ff";
         bordercolor = "0x${config.lib.stylix.colors.base00}ff";
         rootcolor = "0x${config.lib.stylix.colors.base00}ff";
+        dropcolor = "0x${config.lib.stylix.colors.base0D}80";
+        urgentcolor = "0x${config.lib.stylix.colors.base08}ff";
+        splitcolor = "0x${config.lib.stylix.colors.base09}ff";
+        maximizescreencolor = "0x${config.lib.stylix.colors.base0B}ff";
+        scratchpadcolor = "0x${config.lib.stylix.colors.base0F}ff";
+        globalcolor = "0x${config.lib.stylix.colors.base0E}ff";
+        overlaycolor = "0x${config.lib.stylix.colors.base0C}ff";
         cursor_theme = config.stylix.cursor.name;
         cursor_size = config.stylix.cursor.size;
 
