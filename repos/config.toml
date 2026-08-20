@@ -119,6 +119,11 @@ description = "the second largest nix monorepo"
 visibility = "public"
 archived = false
 
+[repo."mangomon"]
+description = "tui monitor configuration tool for mango wm with visual layout, drag-and-drop, and profile management"
+visibility = "public"
+archived = false
+
 [repo."metaprocessor"]
 description = "metaprocessor, all-in-one data pipeline for mbientlab metawear series sensors"
 visibility = "public"
