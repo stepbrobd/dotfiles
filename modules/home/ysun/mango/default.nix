@@ -39,7 +39,7 @@ in
         trackpad_click_method = 2; # clickfinger
         trackpad_disable_while_typing = 1;
         mouse_natural_scrolling = 1;
-        sloppyfocus = 1; # focus follows mouse
+        sloppyfocus = 0;
         warpcursor = 0;
 
         # look
@@ -131,10 +131,6 @@ in
           "SUPER+CTRL+SHIFT,k,tagmon,up"
           "SUPER+CTRL+SHIFT,j,tagmon,down"
 
-          # cycle column width presets
-          "SUPER+CTRL,Left,switch_proportion_preset,prev"
-          "SUPER+CTRL,Right,switch_proportion_preset,next"
-
           # tags
           "SUPER,1,view,1"
           "SUPER,2,view,2"
@@ -170,6 +166,14 @@ in
           ''SUPER+SHIFT,3,spawn_shell,grim "${screenshot}"''
           ''SUPER+SHIFT,4,spawn_shell,slurp | grim -g - "${screenshot}"''
           ''SUPER+SHIFT,5,spawn_shell,slurp | grim -g - "${screenshot}"''
+        ];
+
+        # resize
+        bindc = [
+          "SUPER+CTRL,Left,switch_proportion_preset,prev"
+          "SUPER+CTRL,Left,setmfact,-0.05"
+          "SUPER+CTRL,Right,switch_proportion_preset,next"
+          "SUPER+CTRL,Right,setmfact,+0.05"
         ];
 
         # drag to move/resize floating windows
