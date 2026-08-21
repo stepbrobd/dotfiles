@@ -68,6 +68,22 @@ in
 
         # layout
         tagrule = [ "id:*,layout_name:scroller" ];
+        circle_layout = lib.concatStringsSep "," [
+          "scroller"
+          "tile"
+          "center_tile"
+          # "right_tile"
+          # "grid"
+          # "monocle"
+          # "deck"
+          "vertical_scroller"
+          # "vertical_tile"
+          # "vertical_grid"
+          # "vertical_deck"
+          "dwindle"
+          "fair"
+          "vertical_fair"
+        ];
         scroller_default_proportion = 0.95;
         scroller_ignore_proportion_single = 0; # a single window should fills the screen
         scroller_proportion_preset = lib.concatStringsSep "," [ "0.25" "0.33" "0.50" "0.67" "0.75" "0.95" "1.00" ];
@@ -172,10 +188,14 @@ in
 
         # resize
         bindc = [
-          "SUPER+CTRL,Left,switch_proportion_preset,prev"
           "SUPER+CTRL,Left,setmfact,-0.05"
-          "SUPER+CTRL,Right,switch_proportion_preset,next"
           "SUPER+CTRL,Right,setmfact,+0.05"
+
+          "SUPER+CTRL,Left,switch_proportion_preset,prev"
+          "SUPER+CTRL,Right,switch_proportion_preset,next"
+
+          "SUPER+CTRL,Up,switch_proportion_preset,prev"
+          "SUPER+CTRL,Down,switch_proportion_preset,next"
         ];
 
         # drag to move/resize floating windows
