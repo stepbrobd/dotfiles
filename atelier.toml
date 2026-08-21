@@ -29,6 +29,8 @@ exclude = [
 
   "legacyPackages.aarch64-darwin.plausible", # unsupported
 
+  "legacyPackages.aarch64-darwin.mangomon", # unsupported
+
   "legacyPackages.aarch64-linux.mac-app-util", # unsupported
   "legacyPackages.x86_64-linux.mac-app-util",  # unsupported
 
