@@ -69,8 +69,9 @@ in
         # layout
         tagrule = [ "id:*,layout_name:scroller" ];
         scroller_default_proportion = 0.95;
+        scroller_ignore_proportion_single = 0; # a single window should fills the screen
         scroller_proportion_preset = lib.concatStringsSep "," [ "0.25" "0.33" "0.50" "0.67" "0.75" "0.95" "1.00" ];
-        scroller_structs = 0; # no reserved edge margin left/right of the strip
+        scroller_structs = 4;
         edge_scroller_pointer_focus = 0;
         tag_animation_direction = 0; # 0 = vertical (matches 3-finger up/down)
 
