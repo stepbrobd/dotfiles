@@ -39,7 +39,7 @@ in
         trackpad_click_method = 2; # clickfinger
         trackpad_disable_while_typing = 1;
         mouse_natural_scrolling = 1;
-        sloppyfocus = 0;
+        sloppyfocus = 1;
         warpcursor = 0;
 
         # look
@@ -71,6 +71,7 @@ in
         scroller_default_proportion = 0.95;
         scroller_proportion_preset = lib.concatStringsSep "," [ "0.25" "0.33" "0.50" "0.67" "0.75" "0.95" "1.00" ];
         scroller_structs = 0; # no reserved edge margin left/right of the strip
+        edge_scroller_pointer_focus = 0;
         tag_animation_direction = 0; # 0 = vertical (matches 3-finger up/down)
 
         env = [
