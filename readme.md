@@ -2,6 +2,8 @@
 
 [![Atelier](https://github.com/stepbrobd/inc/actions/workflows/ci.yaml/badge.svg)](https://github.com/stepbrobd/atelier)
 
+[![Deploy](https://github.com/stepbrobd/inc/actions/workflows/deploy.yaml/badge.svg)](https://github.com/stepbrobd/inc/actions/workflows/deploy.yaml)
+
 [![Terranix](https://github.com/stepbrobd/inc/actions/workflows/terranix.yaml/badge.svg)](https://github.com/stepbrobd/inc/actions/workflows/terranix.yaml)
 
 Binary Cache:
