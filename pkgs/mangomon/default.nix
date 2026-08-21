@@ -39,7 +39,10 @@ buildGoModule (finalAttrs: {
   nativeInstallCheckInputs = [ versionCheckHook ];
   versionCheckProgramArg = "-version";
 
-  passthru.updateScript = nix-update-script { };
+  passthru = {
+    autobump = true;
+    updateScript = nix-update-script { };
+  };
 
   meta = {
     description = "TUI monitor configuration tool for mango wm with visual layout, drag-and-drop, and profile management";
