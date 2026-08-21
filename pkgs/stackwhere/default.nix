@@ -5,7 +5,7 @@
 
 buildGoModule (finalAttrs: {
   pname = "stackwhere";
-  version = "0.3.1";
+  version = "0.3.2";
 
   passthru.autobump = true;
 
@@ -13,7 +13,7 @@ buildGoModule (finalAttrs: {
     owner = "cilium";
     repo = "stackwhere";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-d+HZYB/iWGsvan3XIfAvUqMWRlFMG4B+G8beklI3Tr8=";
+    hash = "sha256-g1CnWA8WNRHaGXMm+Ksi3AnkFJCy9/bjQbhYjrOlu1M=";
   };
 
   vendorHash = "sha256-J2X1uTkRtmdmo8Fxxql6Nu84F6MarWHFTopavUPL+RU=";
