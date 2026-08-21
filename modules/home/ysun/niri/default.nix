@@ -167,7 +167,6 @@ in
         Mod+7 { focus-workspace 7; }
         Mod+8 { focus-workspace 8; }
         Mod+9 { focus-workspace 9; }
-        Mod+0 { focus-workspace 10; }
 
         Mod+Ctrl+1 { move-window-to-workspace 1; }
         Mod+Ctrl+2 { move-window-to-workspace 2; }
@@ -178,7 +177,6 @@ in
         Mod+Ctrl+7 { move-window-to-workspace 7; }
         Mod+Ctrl+8 { move-window-to-workspace 8; }
         Mod+Ctrl+9 { move-window-to-workspace 9; }
-        Mod+Ctrl+0 { move-window-to-workspace 10; }
 
         // media keys via noctalia IPC
         XF86AudioMute         { ${ipc ''"volume-mute"''}; }
