@@ -104,22 +104,28 @@ in
 
         lockscreen_widgets = {
           enabled = true;
-          widget.clock = {
-            type = "clock";
-            cx = 960.0;
-            cy = 256.0;
-            placement_width = 1920.0;
-            placement_height = 1280.0;
-            box_width = 512.0;
-            box_height = 256.0;
-            settings = {
-              clock_style = "digital";
-              format = "{:%H:%M}";
-              color = "error";
-              shadow = false;
-              background = false;
-            };
-          };
+          # spam config so that all monitor outputs have a clock widget
+          widget = lib.listToAttrs (lib.map
+            (output: lib.nameValuePair "clock@${output}" {
+              type = "clock";
+              inherit output;
+              cx = 960.0;
+              cy = 256.0;
+              placement_width = 1920.0;
+              placement_height = 1280.0;
+              box_width = 512.0;
+              box_height = 256.0;
+              settings = {
+                clock_style = "digital";
+                format = "{:%H:%M}";
+                color = "error";
+                shadow = false;
+                background = false;
+              };
+            })
+            ([ "eDP-1" ]
+              ++ lib.map (i: "DP-${lib.toString i}") (lib.range 1 8) # bc DP can be multiplexed
+              /* ++ lib.map (i: "HDMI-A-${lib.toString i}") (lib.range 1 4) */));
         };
 
         notification.position = "top_right";
