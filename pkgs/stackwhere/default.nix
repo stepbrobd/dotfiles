@@ -7,6 +7,8 @@ buildGoModule (finalAttrs: {
   pname = "stackwhere";
   version = "0.3.2";
 
+  __darwinAllowLocalNetworking = true;
+
   passthru.autobump = true;
 
   src = fetchFromGitHub {
