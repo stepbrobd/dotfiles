@@ -4,6 +4,8 @@ on:
   workflow_run: # zizmor: ignore[dangerous-triggers]
     workflows: [CI]
     types: [completed]
+  schedule:
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,6 +19,7 @@ jobs:
   Guard: # make sure we are only applying the latest change
     if: >-
       github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'schedule' ||
       (github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.event == 'push' &&
        github.event.workflow_run.head_branch == 'master')
