@@ -40,6 +40,9 @@
       set -g status on
       set -g status-position top
 
+      set -g extended-keys on
+      set -g extended-keys-format csi-u
+
       set -g base-index 1
       setw -g pane-base-index 1
 
