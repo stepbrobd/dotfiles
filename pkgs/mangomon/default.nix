@@ -10,7 +10,7 @@
 
 buildGoModule (finalAttrs: {
   pname = "mangomon";
-  version = "2026.820.0";
+  version = "2026.821.0";
 
   __structuredAttrs = true;
 
@@ -18,7 +18,7 @@ buildGoModule (finalAttrs: {
     owner = "stepbrobd";
     repo = "mangomon";
     tag = finalAttrs.version;
-    hash = "sha256-YX3CjHvrzBWIBIysmnCFRiBs1FEajXLjVAdDmyRLZJI=";
+    hash = "sha256-XQWmR2CxaXajwIUQfxfsXKSkh7cA6Fxl8zA9RfXlYA8=";
   };
 
   vendorHash = "sha256-eSKuDWtzRxwrRvBKA6z85P/+Lqf7djgqMVu3xv7ttDM=";
