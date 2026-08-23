@@ -8,6 +8,8 @@
 
   programs.codex.enable = false;
 
+
+  home.sessionVariables.PI_CACHE_RETENTION = "long";
   home.sessionVariables.PI_SKIP_VERSION_CHECK = "1";
   programs.pi-coding-agent = {
     enable = true;
