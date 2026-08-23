@@ -49,7 +49,7 @@ in
     as10779_upstream = {
       name = "AS10779:AS-UPSTREAM";
       inherit descriptions mbrs_by_ref;
-      members = [ "AS3204" "AS20473" "AS21700" "AS23961" "AS35661" "AS36236" ];
+      members = [ "AS3204" "AS20473" "AS21700" "AS23961" "AS35661" "AS36236" "AS59105" ];
     };
 
     as18932_stepbrobd = {

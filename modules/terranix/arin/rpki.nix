@@ -33,7 +33,7 @@ in
   resource.arin_aspa = {
     as10779 = {
       customer_as = 10779;
-      provider_as_ids = [ 3204 20473 21700 23961 35661 36236 ];
+      provider_as_ids = [ 3204 20473 21700 23961 35661 36236 59105 ];
     };
 
     as18932 = {
