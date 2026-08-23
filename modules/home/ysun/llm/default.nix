@@ -13,8 +13,25 @@
     enable = true;
     configDir = "${config.xdg.configHome}/pi/agent";
 
+    context = ./context.md;
+
     settings = {
       defaultProjectTrust = "always";
+
+      defaultProvider = "openai-codex";
+      defaultModel = "gpt-5.6-sol";
+      defaultThinkingLevel = "max";
+
+      enabledModels = [
+        "openai-codex/gpt-5.6-sol:max"
+        "openai-codex/gpt-5.6-terra:max"
+        "openai-codex/gpt-5.6-luna:max"
+        "openrouter/z-ai/glm-5.2:free:high"
+        "openrouter/nvidia/nemotron-3-super-120b-a12b:free:medium"
+        "openrouter/thinkingmachines/inkling:free"
+        "openrouter/cohere/north-mini-code:free:high"
+        "openrouter/nvidia/nemotron-3.5-lightning:free:high"
+      ];
 
       theme = "dark";
       tuiMode = "regular";
