@@ -280,6 +280,11 @@ visibility = "public"
 archived = false
 
 ## Forks
+[repo."amzn-drivers"]
+description = "forked from amzn/amzn-drivers"
+visibility = "public"
+archived = false
+
 [repo."awesome-niri"]
 description = "forked from niri-wm/awesome-niri"
 visibility = "public"
