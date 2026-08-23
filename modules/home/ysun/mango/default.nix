@@ -70,19 +70,23 @@ in
         tagrule = [ "id:*,layout_name:scroller" ];
         circle_layout = lib.concatStringsSep "," [
           "scroller"
+          "vertical_scroller"
+
+          "dwindle"
+
           "tile"
           "center_tile"
-          # "right_tile"
-          # "grid"
-          # "monocle"
-          # "deck"
-          "vertical_scroller"
-          # "vertical_tile"
-          # "vertical_grid"
-          # "vertical_deck"
-          "dwindle"
+
           "fair"
           "vertical_fair"
+
+          # "deck"
+          # "grid"
+          # "monocle"
+          # "right_tile"
+          # "vertical_deck"
+          # "vertical_grid"
+          # "vertical_tile"
         ];
         scroller_default_proportion = 0.95;
         scroller_ignore_proportion_single = 0; # a single window should fills the screen
