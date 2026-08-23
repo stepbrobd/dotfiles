@@ -2,11 +2,10 @@
 
 let
   cfg = config.services.as10779;
-
-  vultrPeerV4 = "169.254.169.254";
-  vultrPeerV6 = "2001:19f0:ffff::1";
 in
 {
+  imports = [ ./homenoc.nix ];
+
   sops.secrets.bgp = {
     sopsFile = ./secrets.yaml;
     mode = "440";
@@ -66,23 +65,26 @@ in
             # { inherit option; prefix = "44.32.189.0/24"; } # stop announcing 44net for now
             { inherit option; prefix = "192.104.136.0/24"; }
             # https://skym.fi/blog/2020/07/vultr-trouble/
-            # { prefix = "${vultrPeerV4}/32"; option = "via ${lib.blueprint.hosts.kongo.ipv4}"; }
+            # { prefix = "169.254.169.254/32"; option = "via ${lib.blueprint.hosts.kongo.ipv4}"; }
           ];
           ipv6.routes = [
             { inherit option; prefix = "2602:f590::/36"; }
             # https://skym.fi/blog/2020/07/vultr-trouble/
-            # { prefix = "${vultrPeerV6}/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
+            # { prefix = "2001:19f0:ffff::1/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
       kernel = {
-        # ipv4.export = ''export filter {
-        #   if net = ${vultrPeerV4}/32 then reject;
-        #   accept;
-        # };'';
-        # ipv6.export = ''export filter {
-        #   if net = ${vultrPeerV6}/128 then reject;
-        #   accept;
-        # };'';
+        # only the homenoc learned routes belong in the FIB
+        # the statics are reject routes for our own prefixes
+        # vultr is import none so its default keeps coming from RA/DHCP gateway
+        ipv4.export = ''export filter {
+          if proto != "homenoc4" then reject;
+          accept;
+        };'';
+        ipv6.export = ''export filter {
+          if proto != "homenoc6" then reject;
+          accept;
+        };'';
       };
       sessions = [
         {
@@ -91,8 +93,8 @@ in
           type = { ipv4 = "multihop"; ipv6 = "multihop"; };
           neighbor = {
             asn = 64515;
-            ipv4 = vultrPeerV4;
-            ipv6 = vultrPeerV6;
+            ipv4 = "169.254.169.254";
+            ipv6 = "2001:19f0:ffff::1";
           };
           import = {
             ipv4 = "import none;";
@@ -101,14 +103,49 @@ in
           export = {
             ipv4 = ''export filter {
               if proto != "${cfg.router.static.ipv4.name}" then reject;
-              if net = ${vultrPeerV4}/32 then reject;
+              if net = 169.254.169.254/32 then reject;
               accept;
             };'';
             ipv6 = ''export filter {
               if proto != "${cfg.router.static.ipv6.name}" then reject;
-              if net = ${vultrPeerV6}/128 then reject;
+              if net = 2001:19f0:ffff::1/128 then reject;
               accept;
             };'';
+          };
+        }
+        {
+          # see ./homenoc.nix
+          name = "homenoc";
+          password = null;
+          type = { ipv4 = "direct"; ipv6 = "direct"; };
+          source = { ipv4 = "103.247.181.67"; ipv6 = "2403:bd80:bbc0:5308::2"; };
+          neighbor = {
+            asn = 59105;
+            ipv4 = "103.247.181.66";
+            ipv6 = "2403:bd80:bbc0:5308::1";
+          };
+          import = {
+            ipv4 = ''
+              import limit 50000 action block;
+              import filter {
+                if net = 0.0.0.0/0 then reject;
+                if bgp_path.len > 2 then reject;
+                accept;
+              };'';
+            ipv6 = ''
+              import limit 20000 action block;
+              import filter {
+                if net = ::/0 then reject;
+                # never learn a route covering the far end of the tunnel or
+                # the outer packets recurse back into homenoc
+                if 2405:6580:3f00:ca01::1112 ~ net then reject;
+                if bgp_path.len > 2 then reject;
+                accept;
+              };'';
+          };
+          export = {
+            ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
+            ipv6 = ''export where proto = "${cfg.router.static.ipv6.name}";'';
           };
         }
       ];
