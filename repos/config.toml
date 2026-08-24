@@ -305,6 +305,11 @@ description = "forked from certirocq/certirocq"
 visibility = "public"
 archived = false
 
+[repo."certmagic-s3"]
+description = "forked from ss098/certmagic-s3"
+visibility = "public"
+archived = false
+
 [repo."cfspeedtest"]
 description = "forked from code-inflation/cfspeedtest"
 visibility = "public"
