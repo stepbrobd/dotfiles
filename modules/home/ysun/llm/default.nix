@@ -1,4 +1,6 @@
-{ config, ... }:
+{ lib, ... }:
+
+{ config, pkgs, ... }:
 
 {
   programs.claude-code = {
@@ -6,85 +8,102 @@
     configDir = "${config.xdg.configHome}/claude";
   };
 
-  home.sessionVariables.PI_CACHE_RETENTION = "long";
-  home.sessionVariables.PI_SKIP_VERSION_CHECK = "1";
-  programs.pi-coding-agent = {
-    enable = true;
-    configDir = "${config.xdg.configHome}/pi/agent";
+  home.packages = [ pkgs.omp ];
+  home.sessionVariables.PI_CONFIG_DIR = lib.removePrefix "${config.home.homeDirectory}/" "${config.xdg.configHome}/omp";
+  xdg.configFile = {
+    "omp/agent/AGENTS.md".source = ./context.md;
+    "omp/agent/config.yaml" = {
+      force = true;
+      source = (pkgs.formats.yaml { }).generate "omp.yaml" {
+        dev.autoqa = false;
 
-    context = ./context.md;
+        modelRoles.default = "openai-codex/gpt-5.6-sol";
+        defaultThinkingLevel = "max";
+        enabledModels = [
+          "openai-codex/gpt-5.6-sol:max"
+          "openai-codex/gpt-5.6-terra:max"
+          "openai-codex/gpt-5.6-luna:max"
+          "openrouter/z-ai/glm-5.2:free:high"
+          "openrouter/nvidia/nemotron-3-super-120b-a12b:free:medium"
+          "openrouter/thinkingmachines/inkling:free"
+          "openrouter/cohere/north-mini-code:free:high"
+          "openrouter/nvidia/nemotron-3.5-lightning:free:high"
+        ];
 
-    settings = {
-      defaultProjectTrust = "always";
+        marketplace.autoUpdate = "notify";
+        startup = {
+          quiet = false;
+          changelogMode = "summary";
+          checkUpdate = false;
+          setupWizard = false;
+        };
 
-      defaultProvider = "openai-codex";
-      defaultModel = "gpt-5.6-sol";
-      defaultThinkingLevel = "max";
+        theme = {
+          dark = "dark-nord";
+          light = "dark-nord";
+        };
+        symbolPreset = "ascii";
+        composer.shape = "pi";
 
-      enabledModels = [
-        "openai-codex/gpt-5.6-sol:max"
-        "openai-codex/gpt-5.6-terra:max"
-        "openai-codex/gpt-5.6-luna:max"
-        "openrouter/z-ai/glm-5.2:free:high"
-        "openrouter/nvidia/nemotron-3-super-120b-a12b:free:medium"
-        "openrouter/thinkingmachines/inkling:free"
-        "openrouter/cohere/north-mini-code:free:high"
-        "openrouter/nvidia/nemotron-3.5-lightning:free:high"
-      ];
+        statusLine = {
+          preset = "ascii";
+          separator = "ascii";
+          contextLine = "annotated";
+          sessionAccent = true;
+          transparent = true;
+          compactThinkingLevel = true;
+          showHookStatus = true;
+        };
 
-      theme = "dark";
-      tuiMode = "regular";
-      quietStartup = true;
-      collapseChangelog = true;
-      enableInstallTelemetry = false;
-      warnings.anthropicExtraUsage = true;
+        tui = {
+          tight = false;
+          resizeScrollback = "rebuild";
+          imeSafeCursor = false;
+        };
 
-      outputPad = 1;
-      editorPaddingX = 1;
-      autocompleteMaxVisible = 10;
+        display = {
+          shimmer = "classic";
+          hideToolActivity = false;
+          showTokenUsage = true;
+          cacheMissMarker = true;
+        };
 
-      showHardwareCursor = true;
-      showCacheMissNotices = true;
+        autocompleteMaxVisible = 10;
+        showHardwareCursor = true;
 
-      doubleEscapeAction = "tree";
-      treeFilterMode = "user-only";
+        doubleEscapeAction = "tree";
+        treeFilterMode = "user-only";
+        steeringMode = "one-at-a-time";
+        tools.approvalMode = "yolo";
 
-      defaultTools = [
-        "bash"
-        "edit"
-        "find"
-        "grep"
-        "ls"
-        "read"
-        "write"
-      ];
+        compaction = {
+          enabled = true;
+          reserveTokens = 32768;
+          keepRecentTokens = 65536;
+        };
 
-      compaction = {
-        enabled = true;
-        reserveTokens = 32768;
-        keepRecentTokens = 65536;
-      };
+        providers = {
+          cacheRetention = "long";
+          streamIdleTimeoutSeconds = 250;
+        };
+        retry = {
+          enabled = true;
+          maxRetries = 5;
+          baseDelayMs = 5000;
+        };
 
-      steeringMode = "one-at-a-time";
-      transport = "auto";
-      httpIdleTimeoutMs = 250000;
-      retry = {
-        enabled = true;
-        maxRetries = 5;
-        baseDelayMs = 5000;
-      };
+        github.enabled = true;
+        lsp.diagnosticsOnEdit = true;
 
-      terminal = {
-        showImages = true;
-        showTerminalProgress = true;
-        clearOnShrink = true;
-      };
+        terminal = {
+          showImages = true;
+          showProgress = true;
+        };
 
-      markdown.mermaid = "streaming";
-
-      images = {
-        autoResize = true;
-        blockImages = false;
+        images = {
+          autoResize = true;
+          blockImages = false;
+        };
       };
     };
   };
