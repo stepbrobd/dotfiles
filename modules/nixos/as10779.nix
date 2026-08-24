@@ -404,7 +404,21 @@ in
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
-      networking.firewall.allowedTCPPorts = lib.optional cfg.router.exit 179;
+      # bgp is only ever spoken to configured peers
+      # while bird rejects unknown peers on its own
+      # keeping 179 open would allow scanner connects in its log
+      networking.firewall.extraInputRules = lib.optionalString cfg.router.exit (
+        let
+          peers = family: lib.filter (a: a != null) (lib.map
+            (session: if session.type.${family} == "disabled" then null else session.neighbor.${family})
+            cfg.router.sessions);
+
+          rule = keyword: family: lib.optionalString (peers family != [ ]) ''
+            ${keyword} saddr { ${lib.concatStringsSep ", " (peers family)} } tcp dport 179 accept
+          '';
+        in
+        rule "ip" "ipv4" + rule "ip6" "ipv6"
+      );
 
       # router and ranet nodes all need to have bird
       services.bird.enable = cfg.router.exit || babelEnabled;
