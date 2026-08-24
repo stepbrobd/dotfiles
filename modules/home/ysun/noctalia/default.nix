@@ -12,6 +12,8 @@ let
   hasTag = lib.hasTag osConfig.networking.hostName;
 in
 {
+  # home-manager added programs.noctalia since 2026-08
+  disabledModules = [ "programs/noctalia.nix" ];
   imports = [ inputs.noctalia.homeModules.default ];
 
   config = lib.mkMerge [
