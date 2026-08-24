@@ -48,6 +48,24 @@ in
   # provider interface ip addr @ <hostname>.if.ysun.co
   provider.domain = "if.ysun.co";
 
+  # address space we own or occupy (everything under here is trusted)
+  net = {
+    ipam = {
+      ipv4 = [ "23.161.104.0/24" "192.104.136.0/24" ];
+      ipv6 = [ "2602:f590::/36" ];
+    };
+
+    gravity = {
+      ipv4 = [ ];
+      ipv6 = [ "2a0c:b641:69c::/48" ];
+    };
+
+    tailscale = {
+      ipv4 = [ "100.64.0.0/10" ];
+      ipv6 = [ "fd7a:115c:a1e0::/48" ];
+    };
+  };
+
   ranet = {
     organization = "ysun";
     publicKey = ''
