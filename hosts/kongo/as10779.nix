@@ -73,18 +73,11 @@ in
             # { prefix = "2001:19f0:ffff::1/128"; option = "via ${lib.blueprint.hosts.kongo.ipv6}"; }
           ] ++ lib.blueprint.prefixes.experimental.ipv6;
         };
+      # nothing bird learns belongs in the FIB
+      # both sessions are import none and the default arrives via RA/DHCP
       kernel = {
-        # only the homenoc learned routes belong in the FIB
-        # the statics are reject routes for our own prefixes
-        # vultr is import none so its default keeps coming from RA/DHCP gateway
-        ipv4.export = ''export filter {
-          if proto != "homenoc4" then reject;
-          accept;
-        };'';
-        ipv6.export = ''export filter {
-          if proto != "homenoc6" then reject;
-          accept;
-        };'';
+        ipv4.export = "export none;";
+        ipv6.export = "export none;";
       };
       sessions = [
         {
@@ -124,24 +117,10 @@ in
             ipv4 = "103.247.181.66";
             ipv6 = "2403:bd80:bbc0:5308::1";
           };
+          # ingress only
           import = {
-            ipv4 = ''
-              import limit 50000 action block;
-              import filter {
-                if net = 0.0.0.0/0 then reject;
-                if bgp_path.len > 2 then reject;
-                accept;
-              };'';
-            ipv6 = ''
-              import limit 20000 action block;
-              import filter {
-                if net = ::/0 then reject;
-                # never learn a route covering the far end of the tunnel or
-                # the outer packets recurse back into homenoc
-                if 2405:6580:3f00:ca01::1112 ~ net then reject;
-                if bgp_path.len > 2 then reject;
-                accept;
-              };'';
+            ipv4 = "import none;";
+            ipv6 = "import none;";
           };
           export = {
             ipv4 = ''export where proto = "${cfg.router.static.ipv4.name}";'';
