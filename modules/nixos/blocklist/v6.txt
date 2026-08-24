@@ -1,0 +1,64 @@
+# AS139341 ACE, SG
+240d:c010:c0::/48
+240d:c010:d9::/48
+240d:c010:dc::/48
+240d:c010:150::/48
+240d:c010:15b::/48
+240d:c010:181::/48
+240d:c010:184::/48
+240d:c010:1ae::/48
+
+# AS51396 Pfcloud UG (haftungsbeschrankt), DE
+2a14:7c1::/48
+2a14:7c1:400::/48
+2a14:7c1:40d1::/48
+2a14:7c1:498a::/48
+
+# AS22295 Advin Services LLC, US
+2602:fb54:1400::/48
+2a04:c300:400::/48
+
+# AS24940 Hetzner Online GmbH, DE
+2a01:4f8:c014::/48
+2a01:4f9:6b::/48
+
+# AS9009 M247 Europe SRL, RO
+2a06:a880:5::/48
+2a13:9500:16b::/48
+
+# AS32934 Facebook, Inc., US
+2620:0:1c00::/40
+2a03:2880::/32
+
+# AS14956 RouterHosting LLC, US
+2602:fa59:10::/48
+
+# AS14061 DigitalOcean, LLC, US
+2400:6180::/48
+
+# AS41608 NextGenWebs-NL - NextGenWebs, S.L., ES
+2a0b:8bc0:2::/48
+
+# AS132892 Cloudflare, Inc., US
+2a06:98c0:3600::/48
+
+# AS201814 Mevspace - MEVSPACE sp. z o.o., PL
+2a03:cfc0:8040::/48
+
+# AS2637 Georgia Institute of Technology, US
+2001:550:9005::/48
+
+# AS399804 Hostodo, US
+2606:65c0:20::/48
+
+# AS47583 Hostinger International Limited, CY
+2a02:4780:d::/48
+
+# AS21859 Zenlayer Inc, US
+240d:c010:14c::/48
+
+# AS4818 DiGi Telecommunications Sdn. Bhd., MY
+2001:4458:c00f::/48
+
+# AS56047 CMNET-Hunan-AP - China Mobile communications corporation, CN
+2409:8a50:ba01::/48
