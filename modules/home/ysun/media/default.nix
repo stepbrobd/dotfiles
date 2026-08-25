@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.mpv = {
@@ -13,4 +13,12 @@
     miruro
     yt-dlp
   ];
+
+  xdg.configFile."miruro/config.toml".source = (pkgs.formats.toml { }).generate "miruro.toml" {
+    lang = "en";
+    dub = false;
+    quality = "best";
+    provider = "pewe:hard";
+    download = "${config.home.homeDirectory}/Videos";
+  };
 }
