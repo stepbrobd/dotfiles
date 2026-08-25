@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   plugins.lsp.enable = true;
   plugins.lsp.inlayHints = true;
@@ -82,6 +84,16 @@
   plugins.lsp.servers.nixd = {
     enable = true;
     extraOptions.offset_encoding = "utf-8"; # nixvim#2390
+  };
+  filetype.pattern.".*%.nix%.d%.ts" = "nixts";
+  lsp.servers.typenix = {
+    enable = true;
+    package = pkgs.typenix;
+    config = {
+      cmd = [ "typenix" "--lsp" "--stdio" ];
+      filetypes = [ "nix" "nixts" ];
+      root_markers = [ "flake.nix" ".git" ];
+    };
   };
 
   # OCaml

@@ -11,13 +11,14 @@
 
   extraPlugins = with pkgs.vimPlugins; [
     # nvim-treesitter-sexp
-    pkgs.treesitter-coq-grammar
+    pkgs.tree-sitter-grammars.tree-sitter-rocq
   ];
 
   plugins.treesitter.grammarPackages =
     pkgs.vimPlugins.nvim-treesitter.allGrammars
     ++
-    [ pkgs.treesitter-coq-grammar ];
+    [ pkgs.tree-sitter-grammars.tree-sitter-rocq ];
 
-  plugins.treesitter.languageRegister.coq = "v";
+  plugins.treesitter.languageRegister.rocq = [ "coq" "v" ];
+  plugins.treesitter.languageRegister.typescript = "nixts";
 }
