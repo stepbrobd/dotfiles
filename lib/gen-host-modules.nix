@@ -1,8 +1,11 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
 let
   inherit (lib) genUserModules mkDefault;
 in
+# @ts: { inputs: any; os: string; platform: string; entrypoint: any; users: Record<string, any[]>; modules: any[]; specialArgs: Record<string, any> }
 { inputs
 , os
 , platform

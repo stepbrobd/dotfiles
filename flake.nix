@@ -11,7 +11,7 @@
           lib = {
             path = ./lib;
             extender = inputs.nixpkgs.lib;
-            excludes = [ "secrets.yaml" ];
+            excludes = [ "secrets.yaml" "type.nix.d.ts" ];
             extensions = with inputs; [
               autopilot.lib
               colmena.lib

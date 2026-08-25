@@ -1,5 +1,8 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
+# @ts: { inputs: any; os: string; specialArgs: Record<string, any>; users: Record<string, any[]> }
 { inputs
 , os
 , specialArgs ? { }

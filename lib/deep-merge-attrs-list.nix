@@ -1,3 +1,5 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
 # https://stackoverflow.com/a/54505212/17129151

@@ -1,9 +1,12 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
 # expand abbv v6 addr to 8 groups and 4 digit per group
 # "2602:f590::23:161:104:128"
 # ->
 # "2602:f590:0000:0000:0023:0161:0104:0128"
+# @ts: (addr: string) => string
 addr:
 let
   lower = lib.toLower addr;

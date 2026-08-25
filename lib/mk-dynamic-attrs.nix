@@ -1,6 +1,9 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
 # mkDynamicAttrs args
+# @ts: { dir: string | Path; fun: (name: string) => any }
 { dir, fun }:
 
 let

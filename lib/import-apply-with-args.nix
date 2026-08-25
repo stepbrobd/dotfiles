@@ -1,5 +1,8 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
+# @ts: (modulePath: Path) => (staticArgs: Record<string, any>) => any
 modulePath: staticArgs:
 
 # check the implementation of `importApply` in flake-parts and nixpkgs #230588 for details

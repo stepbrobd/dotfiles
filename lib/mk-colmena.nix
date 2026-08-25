@@ -1,8 +1,11 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
 let
   inherit (lib) assertMsg attrNames concatMap concatStringsSep count filter genAttrs genHostModules length map mapAttrs mergeAttrsList unique;
 in
+# @ts: { inputs: any; hosts: any[]; nixpkgs: any; nix_darwin: any; getSystem: (platform: string) => any; specialArgs: Record<string, any> }
 { inputs
 , hosts ? [ ] # [ { os, platform, modules, users, names } ]
 , nixpkgs # raw nixpkgs flake input

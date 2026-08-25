@@ -1,5 +1,8 @@
+/* @ts: import type { Lib } from "./type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
+# @ts: { dir: string | Path; currentFinal: any; currentPrev: any; inheritedArgs: Record<string, any> }
 { dir
 , currentFinal
 , currentPrev

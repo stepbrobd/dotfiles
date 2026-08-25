@@ -1,3 +1,5 @@
+/* @ts: import type { Lib } from "../type.nix.d.ts"; */
+# @ts: { lib: Lib }
 { lib }:
 
 let
