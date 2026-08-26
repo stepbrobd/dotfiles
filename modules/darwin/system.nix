@@ -55,6 +55,8 @@
       minimize-to-application = true;
       show-recents = true;
       mru-spaces = false;
+      showAppExposeGestureEnabled = true;
+      showMissionControlGestureEnabled = true;
       wvous-bl-corner = 1;
       wvous-br-corner = 1;
       wvous-tl-corner = 1;
@@ -85,6 +87,33 @@
     NSGlobalDomain = {
       AppleICUForce24HourTime = true;
       AppleInterfaceStyle = "Dark";
+      # two finger swipe between pages
+      AppleEnableSwipeNavigateWithScrolls = true;
+      # natural scrolling
+      "com.apple.swipescrolldirection" = true;
+      # tracking speed
+      "com.apple.trackpad.scaling" = 3.0;
+    };
+
+    trackpad = {
+      Clicking = true; # tap to click
+      Dragging = true; # tap and drag
+      TrackpadRightClick = true; # two finger secondary click
+      TrackpadThreeFingerTapGesture = 0; # look up disabled
+      TrackpadThreeFingerDrag = false;
+
+      # two finger
+      TrackpadTwoFingerDoubleTapGesture = true; # smart zoom
+      TrackpadTwoFingerFromRightEdgeSwipeGesture = 3; # notification center
+
+      # three finger
+      TrackpadThreeFingerHorizSwipeGesture = 0; # disabled (four finger handles spaces)
+      TrackpadThreeFingerVertSwipeGesture = 2; # mission control and app expose
+
+      # four finger
+      TrackpadFourFingerHorizSwipeGesture = 2; # swipe between spaces
+      TrackpadFourFingerVertSwipeGesture = 2; # mission control and app expose
+      TrackpadFourFingerPinchGesture = 2; # pinch launchpad and spread desktop
     };
 
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
