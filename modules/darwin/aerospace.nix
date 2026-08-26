@@ -29,17 +29,45 @@
         "10" = "secondary";
       };
 
+      on-focus-changed = [ "move-mouse window-lazy-center" ];
+
       mode.main.binding = {
+        "cmd-shift-r" = "reload-config";
+
+        # window management
+        "cmd-backslash" = "layout floating tiling";
+        "cmd-leftSquareBracket" = "join-with left";
+        "cmd-rightSquareBracket" = "join-with right";
+
+        # focus
         "cmd-h" = "focus left";
         "cmd-j" = "focus down";
         "cmd-k" = "focus up";
         "cmd-l" = "focus right";
 
+        # move window
         "cmd-ctrl-h" = "move left";
         "cmd-ctrl-j" = "move down";
         "cmd-ctrl-k" = "move up";
         "cmd-ctrl-l" = "move right";
 
+        # focus monitor
+        "cmd-shift-h" = "focus-monitor left";
+        "cmd-shift-j" = "focus-monitor down";
+        "cmd-shift-k" = "focus-monitor up";
+        "cmd-shift-l" = "focus-monitor right";
+
+        # move window to monitor
+        "cmd-ctrl-shift-h" = "move-node-to-monitor left";
+        "cmd-ctrl-shift-j" = "move-node-to-monitor down";
+        "cmd-ctrl-shift-k" = "move-node-to-monitor up";
+        "cmd-ctrl-shift-l" = "move-node-to-monitor right";
+
+        # resize
+        "cmd-ctrl-left" = "resize smart -50";
+        "cmd-ctrl-right" = "resize smart +50";
+
+        # workspaces
         "cmd-1" = "workspace 1";
         "cmd-2" = "workspace 2";
         "cmd-3" = "workspace 3";
