@@ -1,1 +1,1 @@
-{ pkgsPrev  }: pkgsPrev.nixVersions.git
+{ pkgsPrev }: pkgsPrev.nixVersions.git
