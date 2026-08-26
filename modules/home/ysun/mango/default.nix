@@ -40,7 +40,7 @@ in
         trackpad_disable_while_typing = 1;
         mouse_natural_scrolling = 1;
         sloppyfocus = 1;
-        warpcursor = 0;
+        warpcursor = 1;
 
         # look
         borderpx = 2;
