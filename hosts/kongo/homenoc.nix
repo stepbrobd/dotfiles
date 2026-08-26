@@ -5,11 +5,8 @@ let
 
   interface = "homenoc";
 
-  # AS59105 POP03 transit (over IPIP tunnel)
-  # dashboard lists ::1113 as the HomeNOC side tunnel address
-  # but their router both sources from and decapsulates on ::1112
-  # so ::1113 blackholes both directions
-  remote = "2405:6580:3f00:ca01::1112";
+  # AS59105 POP03 ER04transit (over IPIP tunnel)
+  remote = "2405:6580:9fc0:9700::face";
 
   # see dashboard
   mtu = 1452;
