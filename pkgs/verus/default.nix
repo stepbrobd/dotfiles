@@ -12,13 +12,13 @@
 
 let
   pname = "verus";
-  version = "release/rolling/0.2026.08.25.21d7bb4";
+  version = "release/rolling/0.2026.08.26.011a83d";
   src = fetchFromGitHub {
     leaveDotGit = true;
     owner = "verus-lang";
     repo = "verus";
     tag = version;
-    hash = "sha256-PY1PGT40KNc2mMWfbJIXNc2lbPcyy5V3502tBiVNxe0=";
+    hash = "sha256-xuntVLdDNwTg7wZYB7ORp2lpehvySvbblGrW3dJP3TE=";
   };
 
   rustToolchain = rust-bin.fromRustupToolchainFile "${src}/rust-toolchain.toml";
