@@ -49,7 +49,10 @@ in
         oidc.providers.github = {
           issuer = "https://token.actions.githubusercontent.com";
           audience = "https://${domain}";
-          boundClaims.repository_owner = [ "stepbrobd" ];
+          boundClaims.repository = [
+            "stepbrobd/*"
+            "Filippo-Galli/Dotfiles"
+          ];
         };
       };
 
