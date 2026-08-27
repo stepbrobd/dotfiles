@@ -14,6 +14,6 @@
     fontconfig.enable = lib.mkForce false;
     gtk.enable = lib.mkForce false;
     qt.enable = lib.mkForce false;
-    xresources.enable = lib.mkForce false;
+    x11.enable = lib.mkForce false;
   };
 }
