@@ -198,8 +198,8 @@ in
       co_ysun_tailscale = {
         type = "TXT";
         proxied = false;
-        name = "@";
-        content = ''"TAILSCALE-aF1t4amerhfObdf0vkPl"'';
+        name = "_tailscale-challenge";
+        content = ''"v2=jdU5T9beTj1LZUA3aLzsKbwTNp9zc7F6VRs3SZfCwmdD"'';
         comment = "Tailscale - Verification";
       };
 
