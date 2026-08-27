@@ -31,7 +31,6 @@ exclude = [
   "legacyPackages.x86_64-linux.mas",  # unsupported
 
   "legacyPackages.*.gravity", # registry
-  "legacyPackages.*.spotify", # unused
   "legacyPackages.*.verus",   # unused
 
   "packages.*.*", # not exported
