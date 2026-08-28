@@ -150,6 +150,18 @@ in
       systemd.services.jibri = {
         partOf = [ "prosody.service" ];
         after = [ "jicofo.service" ];
+        # jibri requires java 17 and an explicit chromedriver path on nixos
+        serviceConfig.ExecStart = lib.mkForce (
+          pkgs.writeShellScript "jibri-start" (
+            lib.replaceStrings
+              [ "${pkgs.jdk11_headless}" "-Djava.util.logging.config.file=" ]
+              [
+                "${pkgs.jdk17_headless}"
+                "-Dwebdriver.chrome.driver=${pkgs.chromedriver}/bin/chromedriver -Djava.util.logging.config.file="
+              ]
+              config.systemd.services.jibri.script
+          )
+        );
       };
 
       services.jitsi-videobridge.openFirewall = true;

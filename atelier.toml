@@ -18,8 +18,20 @@ include = [
 exclude = [
   "legacyPackages.aarch64-darwin.bird3", # unsupported
 
+  "legacyPackages.aarch64-darwin.jibri", # unused
+  "legacyPackages.aarch64-linux.jibri",  # unused
+
+  "legacyPackages.aarch64-darwin.jicofo", # unused
+  "legacyPackages.aarch64-linux.jicofo",  # unused
+
+  "legacyPackages.aarch64-darwin.jitsi-meet-prosody", # unused
+  "legacyPackages.aarch64-linux.jitsi-meet-prosody",  # unused
+
   "legacyPackages.aarch64-darwin.jitsi-openid", # unused
   "legacyPackages.aarch64-linux.jitsi-openid",  # unused
+
+  "legacyPackages.aarch64-darwin.jitsi-videobridge", # unused
+  "legacyPackages.aarch64-linux.jitsi-videobridge",  # unused
 
   "legacyPackages.aarch64-darwin.kavita", # unsupported
 
