@@ -23,7 +23,6 @@ in
         '';
       };
 
-      services.prosody.checkConfig = false;
       services.jitsi-videobridge.openFirewall = true;
 
       services.jitsi-meet = {
@@ -39,12 +38,13 @@ in
           defaultLang = "en";
           analytics.disabled = true;
           enableWelcomePage = false;
-          prejoinPageEnabled = true;
+          prejoinConfig.enabled = true;
           requireDisplayName = true;
           maxFullResolutionParticipants = 1;
-          stunServers = [
-            { urls = "turn:turn.matrix.org:3478?transport=udp"; }
-            { urls = "turn:turn.matrix.org:3478?transport=tcp"; }
+          p2p.stunServers = [
+            { urls = "stun:stun.cloudflare.com:3478"; }
+            { urls = "stun:meet-jit-si-turnrelay.jitsi.net:443"; }
+            { urls = "stun:stun.l.google.com:19302"; }
           ];
           constraints.video.height = {
             ideal = 720;
