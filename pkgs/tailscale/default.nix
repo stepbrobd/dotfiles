@@ -23,7 +23,7 @@ in
 
 (pkgsPrev.tailscale.override {
   buildGoModule = pkgsPrev.buildGoModule.override {
-    go = pkgsPrev.go.overrideAttrs (prev: {
+    go = pkgsPrev."go_1_${lib.versions.minor goVersion}".overrideAttrs (prev: {
       version = goVersion;
 
       src = fetchFromGitHub {
