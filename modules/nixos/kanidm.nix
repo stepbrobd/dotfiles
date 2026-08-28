@@ -41,6 +41,8 @@ in
     sops.secrets."kanidm/oauth/cloudflare".mode = "440";
     sops.secrets."kanidm/oauth/grafana".group = "kanidm";
     sops.secrets."kanidm/oauth/grafana".mode = "440";
+    sops.secrets."kanidm/oauth/jitsi".group = "kanidm";
+    sops.secrets."kanidm/oauth/jitsi".mode = "440";
     sops.secrets."kanidm/oauth/kavita".group = "kanidm";
     sops.secrets."kanidm/oauth/kavita".mode = "440";
     sops.secrets."kanidm/oauth/paperless".group = "kanidm";
@@ -83,6 +85,8 @@ in
 
           "paperless.users" = { };
 
+          "jitsi.users" = { };
+
           "cloudflare.admins" = { };
           "cloudflare.users" = { };
 
@@ -109,6 +113,8 @@ in
               "kavita.users"
 
               "paperless.users"
+
+              "jitsi.users"
 
               "cloudflare.admins"
               "cloudflare.users"
@@ -158,6 +164,19 @@ in
                 "grafana.editors" = [ "editor" ];
               };
             };
+          };
+
+          jitsi = {
+            displayName = "Jitsi Meet";
+            originUrl = "https://${lib.blueprint.services.jitsi.domain}/_oidc/callback";
+            originLanding = "https://${lib.blueprint.services.jitsi.domain}/";
+            basicSecretFile = config.sops.secrets."kanidm/oauth/jitsi".path;
+            preferShortUsername = true;
+            scopeMaps."jitsi.users" = [
+              "openid"
+              "email"
+              "profile"
+            ];
           };
 
           kavita = {
