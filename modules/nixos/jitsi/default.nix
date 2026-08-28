@@ -89,6 +89,7 @@ in
         caddy.enable = true;
         nginx.enable = false;
         prosody.lockdown = true;
+        jibri.enable = true;
 
         secureDomain = {
           enable = true;
@@ -99,6 +100,16 @@ in
           defaultLang = "en";
           analytics.disabled = true;
           enableWelcomePage = false;
+          # streaming only
+          fileRecordingsEnabled = false;
+          localRecording = {
+            disable = false;
+            disableSelfRecording = false;
+          };
+          liveStreaming = {
+            enabled = true;
+            validatorRegExpString = "^rtmps?://.*|^(?:[a-zA-Z0-9]{4}(?:-(?!$)|$)){4}";
+          };
           prejoinConfig.enabled = true;
           requireDisplayName = true;
           maxFullResolutionParticipants = 1;
