@@ -157,7 +157,7 @@ in
               [ "${pkgs.jdk11_headless}" "-Djava.util.logging.config.file=" ]
               [
                 "${pkgs.jdk17_headless}"
-                "-Dwebdriver.chrome.driver=${pkgs.chromedriver}/bin/chromedriver -Djava.util.logging.config.file="
+                "-Dwebdriver.chrome.driver=${lib.getExe pkgs.chromedriver} -Djava.util.logging.config.file="
               ]
               config.systemd.services.jibri.script
           )
