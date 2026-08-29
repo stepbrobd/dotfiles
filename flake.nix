@@ -108,8 +108,7 @@
     llm.inputs.bun2nix.follows = "bun2nix";
     llm.inputs.treefmt-nix.follows = "treefmt";
     # m
-    # mango.url = "github:mangowm/mango";
-    mango.url = "github:stepbrobd/mango/switcher";
+    mango.url = "github:mangowm/mango";
     mango.inputs.nixpkgs.follows = "nixpkgs";
     mango.inputs.flake-parts.follows = "parts";
     mango.inputs.scenefx.inputs.nixpkgs.follows = "nixpkgs";

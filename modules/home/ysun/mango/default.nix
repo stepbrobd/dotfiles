@@ -110,8 +110,8 @@ in
           "SUPER,o,toggleoverview"
 
           # thumbnail switcher
-          "SUPER,Tab,switcher,next"
-          "SUPER+SHIFT,Tab,switcher,prev"
+          "SUPER,Tab,switcher,all_next"
+          "SUPER+SHIFT,Tab,switcher,all_prev"
 
           # noctalia shell IPC
           "SUPER,s,${ipc "panel-toggle control-center audio"}"
