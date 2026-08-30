@@ -3,11 +3,9 @@
 if stdenv.hostPlatform.isDarwin
 then
   pkgsPrev.neovide.overrideAttrs
-    (oldAttrs: {
-      postInstall = oldAttrs.postInstall
-        + ''
-        rm -f $out/Applications/Neovide.app/Contents/Resources/Neovide.icns
-        cp ${./neovide.icns} $out/Applications/Neovide.app/Contents/Resources/Neovide.icns
+    (prev: {
+      postPatch = (prev.postPatch or "") + ''
+        install -m644 ${./neovide.icns} extra/osx/Neovide.app/Contents/Resources/Neovide.icns
       '';
     })
 else pkgsPrev.neovide
