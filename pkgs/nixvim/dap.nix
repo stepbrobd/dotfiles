@@ -8,6 +8,7 @@
 
   plugins.dap-go.enable = true;
   plugins.dap-python.enable = true;
+  plugins.dap-python.adapterPythonPath = "python3";
   plugins.dap-virtual-text.enable = true;
 
   plugins.lualine.settings.extensions = [ "nvim-dap-ui" ];

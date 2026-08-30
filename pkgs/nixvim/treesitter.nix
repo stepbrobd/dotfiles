@@ -10,16 +10,10 @@
     # treesitter-textobjects.enable = true;
   };
 
-  extraPlugins = with pkgs.vimPlugins; [
-    # nvim-treesitter-sexp
+  plugins.treesitter.grammarPackages = [
     pkgs.tree-sitter-grammars.tree-sitter-rocq
-  ];
+  ] ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
 
-  plugins.treesitter.grammarPackages =
-    pkgs.vimPlugins.nvim-treesitter.allGrammars
-    ++
-    [ pkgs.tree-sitter-grammars.tree-sitter-rocq ];
-
-  plugins.treesitter.languageRegister.rocq = [ "coq" "v" ];
+  plugins.treesitter.languageRegister.rocq = [ "coq" ];
   plugins.treesitter.languageRegister.typescript = "nixts";
 }

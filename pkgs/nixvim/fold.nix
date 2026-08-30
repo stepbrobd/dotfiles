@@ -1,6 +1,6 @@
 {
   # https://neovim.io/doc/user/lsp.html#vim.lsp.foldexpr%28%29
-  extraFiles."fold.lua".text = ''
+  extraFiles."plugin/fold.lua".text = ''
     -- Default to treesitter folding
     vim.o.foldmethod = 'expr'
     vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

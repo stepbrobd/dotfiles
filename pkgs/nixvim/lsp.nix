@@ -56,6 +56,7 @@
   }];
 
   # Go
+  dependencies.go.enable = false;
   plugins.lsp.servers.gopls = {
     enable = true;
     package = null;
@@ -69,7 +70,11 @@
   plugins.lsp.servers.denols = {
     enable = true;
     package = null;
-    extraOptions.root_dir = "require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')";
+    extraOptions.root_dir.__raw = ''
+      function(bufnr, on_dir)
+        on_dir(vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }))
+      end
+    '';
   };
   plugins.lsp.servers.html = {
     enable = true;
@@ -82,7 +87,14 @@
   plugins.lsp.servers.ts_ls = {
     enable = true;
     package = null;
-    extraOptions.root_dir = "require('lspconfig').util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json')";
+    extraOptions.root_dir.__raw = ''
+      function(bufnr, on_dir)
+        if vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }) then
+          return
+        end
+        on_dir(vim.fs.root(bufnr, { "tsconfig.json", "jsconfig.json", "package.json" }))
+      end
+    '';
   };
 
   # Markdown
@@ -91,10 +103,10 @@
   # Nix
   plugins.nix.enable = true;
   plugins.nix-develop.enable = true;
-  plugins.lsp.servers.nil_ls.enable = true;
   plugins.lsp.servers.nixd = {
     enable = true;
-    extraOptions.offset_encoding = "utf-8"; # nixvim#2390
+    cmd = [ "nixd" "--log=error" ];
+    settings.formatting.command = [ "nixfmt" ];
   };
   filetype.pattern.".*%.nix%.d%.ts" = "nixts";
   lsp.servers.typenix = {
@@ -198,12 +210,6 @@
       key = "<leader>rn";
       action = "<cmd>lua vim.lsp.buf.rename()<CR>";
       options = { silent = true; desc = "Rename symbol"; };
-    }
-    {
-      mode = "n";
-      key = "<leader>ca";
-      action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
-      options = { silent = true; desc = "Code action"; };
     }
     {
       mode = [ "i" "s" ];
