@@ -100,7 +100,9 @@ writeShellApplication {
         jq --argjson keys "$copyable_app_props" \
           'to_entries | [.[] | select(.key as $item | $keys | index($item) >= 0)] | from_entries' \
           < "$tmp/orig" > "$tmp/filtered"
-        cat "$tmp/bare-wrapper" "$tmp/filtered" | jq -s add > "$tmp/final"
+        # drop CFBundleIconName, it points at the applet asset catalog
+        # removed in mktrampoline_app and would shadow CFBundleIconFile
+        cat "$tmp/bare-wrapper" "$tmp/filtered" | jq -s 'add | del(.CFBundleIconName)' > "$tmp/final"
         "$plutil" -convert xml1 -- "$tmp/final"
         cp "$tmp/final" "$2/Contents/Info.plist"
       ) || rc=$?
@@ -124,6 +126,10 @@ writeShellApplication {
     mktrampoline_app() {
       local app="$1" trampoline="$2"
       "$osacompile" -o "$trampoline" -e "do shell script \"open '$app'\""
+      # recent osacompile ships the applet icon as an asset catalog, which
+      # macos prefers over any .icns, so every trampoline would show the
+      # generic script icon
+      rm -f "$trampoline/Contents/Resources/Assets.car"
       sync_icons "$app" "$trampoline"
       copy_paths "$app" "$trampoline"
       # The OS sometimes shows blank/stock icons for freshly generated apps;
