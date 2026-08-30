@@ -25,12 +25,16 @@
     luasnip.enable = true;
     noice.enable = true;
     nvim-autopairs.enable = true;
+    octo.enable = true;
     rainbow-delimiters.enable = true;
     sniprun.enable = true;
     spider.enable = true;
     todo-comments.enable = true;
     vim-surround.enable = true;
   };
+
+  # use gh from PATH instead of bundling it
+  dependencies.gh.enable = false;
 
   plugins.snacks.settings.notifier.enabled = true;
   plugins.snacks.settings.image.enabled = false;
