@@ -38,11 +38,22 @@
     package = null;
   };
 
-  # Coq
-  plugins.lsp.servers.coq_lsp = {
-    enable = true;
-    package = null; # pkgs.coqPackages.coq-lsp;
-  };
+  # Coq/Rocq
+  extraPlugins = [ pkgs.vimPlugins.coq-lsp-nvim ];
+  extraConfigLua = ''
+    require("coq-lsp").setup()
+  '';
+  autoCmd = [{
+    desc = "Comment options for rocq buffers";
+    event = "FileType";
+    pattern = "coq";
+    callback.__raw = ''
+      function()
+        vim.bo.commentstring = "(* %s *)"
+        vim.bo.comments = "srn:(*,mb:*,ex:*)"
+      end
+    '';
+  }];
 
   # Go
   plugins.lsp.servers.gopls = {
