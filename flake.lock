@@ -1251,11 +1251,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788017820,
-        "narHash": "sha256-DWR7IV3fphZDnlDk0+ywWKFbyfR3k0i6Nd8b7KZzq3c=",
+        "lastModified": 1788086243,
+        "narHash": "sha256-TYD9nyjgxKmjtUaZGhigP/w3HiTtG1FB3R8Qhvv+vDg=",
         "owner": "stepbrobd",
         "repo": "ysun",
-        "rev": "c0646b5c1a719e2d9e12ccc741cfa3903afadb35",
+        "rev": "98c49bef8b0ebff64fad24585ad4342395b5e493",
         "type": "github"
       },
       "original": {
