@@ -10,6 +10,7 @@
     btop
     email
     direnv
+    fd
     fzf
     gh
     ghostty
