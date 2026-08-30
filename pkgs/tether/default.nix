@@ -1,3 +1,4 @@
+# TODO: drop after https://github.com/NixOS/nixpkgs/pull/558037
 { lib
 , stdenv
 , fetchFromGitHub
