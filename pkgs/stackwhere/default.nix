@@ -1,12 +1,15 @@
+# TODO: drop after https://github.com/NixOS/nixpkgs/pull/558030
 { lib
 , buildGoModule
 , fetchFromGitHub
+, versionCheckHook
 }:
 
 buildGoModule (finalAttrs: {
   pname = "stackwhere";
   version = "0.3.2";
 
+  __structuredAttrs = true;
   __darwinAllowLocalNetworking = true;
 
   passthru.autobump = true;
@@ -22,15 +25,21 @@ buildGoModule (finalAttrs: {
 
   ldflags = [
     "-s"
-    "-w"
     "-X=main.version=${finalAttrs.version}"
     "-X=main.commit=${finalAttrs.version}"
     "-X=main.date=1970-01-01T00:00:00Z"
   ];
 
+  nativeInstallCheckInputs = [ versionCheckHook ];
+
+  doInstallCheck = true;
+
+  versionCheckProgramArg = "version";
+
   meta = {
-    description = "A tool for exploring where BPF stack usage comes from";
+    description = "Tool for exploring where BPF stack usage comes from";
     homepage = "https://github.com/cilium/stackwhere";
+    changelog = "https://github.com/cilium/stackwhere/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [ stepbrobd ];
     mainProgram = "stackwhere";
