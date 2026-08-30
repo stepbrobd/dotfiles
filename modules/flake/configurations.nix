@@ -63,7 +63,6 @@ let
         aerospace
         common
         fonts
-        # hammerspoon
         homebrew
         linux-builder
         nix-community

@@ -6,7 +6,6 @@
     trampoline
 
     # alacritty # imported in graphical
-    # atuin # imported in graphical
     # bat # imported in graphical
     # btop # imported in graphical
     # direnv # imported in graphical

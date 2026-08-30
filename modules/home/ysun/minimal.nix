@@ -13,7 +13,6 @@
     nushell
     tmux
     xdg
-    # zellij
     zsh
   ];
 }

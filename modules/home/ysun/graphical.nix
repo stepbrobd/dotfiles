@@ -6,7 +6,6 @@
     nix
 
     alacritty
-    atuin
     bat
     btop
     email

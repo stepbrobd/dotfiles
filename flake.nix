@@ -57,9 +57,6 @@
     autopilot.inputs.parts.follows = "parts";
     autopilot.inputs.systems.follows = "systems";
     # b
-    blueprint.url = "github:numtide/blueprint";
-    blueprint.inputs.nixpkgs.follows = "nixpkgs";
-    blueprint.inputs.systems.follows = "systems";
     bun2nix.url = "github:nix-community/bun2nix";
     bun2nix.inputs.nixpkgs.follows = "nixpkgs";
     bun2nix.inputs.systems.follows = "systems";
