@@ -1,4 +1,6 @@
-{ tree-sitter
+# TODO: drop after https://github.com/NixOS/nixpkgs/pull/558036
+{ lib
+, tree-sitter
 , fetchFromGitHub
 }:
 
@@ -14,7 +16,11 @@ in
     rev = "v${version}";
     hash = "sha256-RZ7BGoBrHi+2Sn727L/6LEt/jh4+WphFIh1DP4Ul1Jo=";
   };
-  meta.description = "Tree-sitter grammar for Rocq";
+  meta = {
+    description = "Tree-sitter grammar for Rocq";
+    license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [ stepbrobd ];
+  };
 }).overrideAttrs {
   passthru.autobump = true;
   fixupPhase = ''
