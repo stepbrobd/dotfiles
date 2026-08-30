@@ -27,6 +27,7 @@
     nvim-autopairs.enable = true;
     octo.enable = true;
     rainbow-delimiters.enable = true;
+    sleuth.enable = true;
     sniprun.enable = true;
     spider.enable = true;
     todo-comments.enable = true;
@@ -35,6 +36,16 @@
 
   # use gh from PATH instead of bundling it
   dependencies.gh.enable = false;
+
+  plugins.spider.keymaps = {
+    silent = true;
+    motions = {
+      w = "w";
+      e = "e";
+      b = "b";
+      ge = "ge";
+    };
+  };
 
   plugins.snacks.settings.notifier.enabled = true;
   plugins.snacks.settings.image.enabled = false;
