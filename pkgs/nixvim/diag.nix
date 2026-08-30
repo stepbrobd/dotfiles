@@ -1,4 +1,6 @@
 {
+  diagnostic.settings.virtual_text = true;
+
   plugins.trouble = {
     enable = true;
     settings = {
