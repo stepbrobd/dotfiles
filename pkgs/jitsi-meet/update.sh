@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if (( $# != 1 )); then
-  echo "usage: $0 <jibri|jicofo|jitsi-meet|jitsi-meet-prosody|jitsi-videobridge>" >&2
+  echo "usage: $0 <jitsi-meet>" >&2
   exit 2
 fi
 
@@ -42,27 +42,9 @@ pin() {
 }
 
 case $component in
-  jibri)
-    version=$(latest jibri)
-    version=${version%-1}
-    url="https://download.jitsi.org/stable/jibri_${version}-1_all.deb"
-    ;;
-  jicofo)
-    version=$(pin jicofo)
-    url="https://download.jitsi.org/stable/jicofo_${version}-1_all.deb"
-    ;;
   jitsi-meet)
     version=$(pin jitsi-meet-web)
     url="https://download.jitsi.org/jitsi-meet/src/jitsi-meet-${version}.tar.bz2"
-    ;;
-  jitsi-meet-prosody)
-    version=$(pin jitsi-meet-prosody)
-    url="https://download.jitsi.org/stable/jitsi-meet-prosody_${version}-1_all.deb"
-    ;;
-  jitsi-videobridge)
-    version=$(latest jitsi-videobridge2)
-    version=${version%-1}
-    url="https://download.jitsi.org/stable/jitsi-videobridge2_${version}-1_all.deb"
     ;;
   *)
     echo "unknown component: $component" >&2

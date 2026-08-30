@@ -30,11 +30,6 @@ in
       sops.secrets."jitsi/jwt".owner = "prosody";
       sops.secrets."jitsi/oidc" = { };
 
-      # FIXME:
-      # jibri module unconditionally warns about its chromium no-security-warnings policy
-      # but this will also hides any future warnings on jitsi tagged hosts
-      warnings = lib.mkForce [ ];
-
       # FileLine() below reads sops path that doesnt exist in build sandbox
       services.prosody.checkConfig = false;
       # keep cjson from the module default
@@ -56,66 +51,6 @@ in
       # secureDomain sets type = "XMPP"
       # JWT keeps login-url = ${domain} as authenticated domain marker
       services.jicofo.config.jicofo.authentication.type = lib.mkForce "JWT";
-
-      # nixpkgs puts jitsi muc modules only in global modules_enabled (which prosody components never load)
-      # muc_meeting_id (which pulls in jitsi_permissions) must run on conference component
-      # or the web client hides livestream/moderator
-      # feature list copied from nixos/modules/services/web-apps/jitsi-meet.nix
-      # with modules_enabled appended (prosody keeps the last duplicate option)
-      services.prosody.muc = lib.mkForce [
-        {
-          domain = "conference.${domain}";
-          name = "Jitsi Meet MUC";
-          allowners_muc = config.services.jitsi-meet.prosody.allowners_muc;
-          roomLocking = false;
-          roomDefaultPublicJids = true;
-          extraConfig = ''
-            restrict_room_creation = true
-            storage = "memory"
-            admins = { "focus@auth.${domain}" }
-            modules_enabled = {
-              "muc_mam";
-              "muc_meeting_id";
-            }
-          '';
-        }
-        {
-          domain = "breakout.${domain}";
-          name = "Jitsi Meet Breakout MUC";
-          roomLocking = false;
-          roomDefaultPublicJids = true;
-          extraConfig = ''
-            restrict_room_creation = true
-            storage = "memory"
-            admins = { "focus@auth.${domain}", "jvb@auth.${domain}" }
-            modules_enabled = {
-              "muc_mam";
-              "muc_meeting_id";
-            }
-          '';
-        }
-        {
-          domain = "internal.auth.${domain}";
-          name = "Jitsi Meet Videobridge MUC";
-          roomLocking = false;
-          roomDefaultPublicJids = true;
-          extraConfig = ''
-            storage = "memory"
-            admins = { "focus@auth.${domain}", "jvb@auth.${domain}", "jigasi@auth.${domain}" }
-            component_admins_as_room_owners = true
-          '';
-        }
-        {
-          domain = "lobby.${domain}";
-          name = "Jitsi Meet Lobby MUC";
-          roomLocking = false;
-          roomDefaultPublicJids = true;
-          extraConfig = ''
-            restrict_room_creation = true
-            storage = "memory"
-          '';
-        }
-      ];
 
       systemd.services.jitsi-openid = {
         wantedBy = [ "multi-user.target" ];
@@ -143,25 +78,6 @@ in
           Restart = "on-failure";
           RestartSec = 5;
         };
-      };
-
-      # jicofo/jibri dont reliably resurrect xmpp sessions after prosody restart
-      systemd.services.jicofo.partOf = [ "prosody.service" ];
-      systemd.services.jibri = {
-        partOf = [ "prosody.service" ];
-        after = [ "jicofo.service" ];
-        # jibri requires java 17 and an explicit chromedriver path on nixos
-        serviceConfig.ExecStart = lib.mkForce (
-          pkgs.writeShellScript "jibri-start" (
-            lib.replaceStrings
-              [ "${pkgs.jdk11_headless}" "-Djava.util.logging.config.file=" ]
-              [
-                "${pkgs.jdk17_headless}"
-                "-Dwebdriver.chrome.driver=${lib.getExe pkgs.chromedriver} -Djava.util.logging.config.file="
-              ]
-              config.systemd.services.jibri.script
-          )
-        );
       };
 
       services.jitsi-videobridge.openFirewall = true;
