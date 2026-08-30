@@ -53,7 +53,7 @@ in
       keep-env-derivations = true;
       keep-failed = true;
       keep-going = true;
-      keep-outputs = true;
+      keep-outputs = false;
       max-free = lib.mkDefault (3000 * 1024 * 1024);
       min-free = lib.mkDefault (512 * 1024 * 1024);
       narinfo-cache-negative-ttl = 3600;
