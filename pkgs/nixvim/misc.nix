@@ -28,7 +28,6 @@
     octo.enable = true;
     rainbow-delimiters.enable = true;
     sleuth.enable = true;
-    sniprun.enable = true;
     spider.enable = true;
     todo-comments.enable = true;
     vim-surround.enable = true;
