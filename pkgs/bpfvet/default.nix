@@ -1,3 +1,4 @@
+# TODO: drop after https://github.com/NixOS/nixpkgs/pull/558031
 { lib
 , buildGoModule
 , fetchFromGitHub
@@ -6,6 +7,8 @@
 buildGoModule (finalAttrs: {
   pname = "bpfvet";
   version = "0.2.1";
+
+  __structuredAttrs = true;
 
   passthru.autobump = true;
 
@@ -21,8 +24,11 @@ buildGoModule (finalAttrs: {
   ldflags = [ "-s" ];
 
   meta = {
+    description = "BPF portability analyzer for compiled eBPF object files";
     homepage = "https://github.com/boratanrikulu/bpfvet";
+    changelog = "https://github.com/boratanrikulu/bpfvet/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [ stepbrobd ];
     mainProgram = "bpfvet";
   };
 })
