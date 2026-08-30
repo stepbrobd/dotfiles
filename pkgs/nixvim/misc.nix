@@ -22,7 +22,6 @@
     direnv.enable = true;
     gitblame.enable = true;
     gitsigns.enable = true;
-    luasnip.enable = true;
     noice.enable = true;
     nvim-autopairs.enable = true;
     octo.enable = true;
@@ -33,8 +32,9 @@
     vim-surround.enable = true;
   };
 
-  # use gh from PATH instead of bundling it
+  # use gh and git from PATH
   dependencies.gh.enable = false;
+  dependencies.git.enable = false;
 
   plugins.spider.keymaps = {
     silent = true;

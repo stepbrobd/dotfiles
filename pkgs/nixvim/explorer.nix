@@ -19,6 +19,8 @@
 
   plugins.lualine.settings.extensions = [ "nvim-tree" "oil" ];
 
+  # use yazi from PATH
+  dependencies.yazi.enable = false;
   plugins.yazi.enable = true;
 
   keymaps = [

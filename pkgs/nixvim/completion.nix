@@ -40,8 +40,6 @@
         "<CR>" = [ "accept" "fallback" ];
       };
 
-      snippets.preset = "luasnip";
-
       completion = {
         ghost_text.enabled = true;
 

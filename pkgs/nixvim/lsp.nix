@@ -3,7 +3,6 @@
 {
   plugins.lsp.enable = true;
   plugins.lsp.inlayHints = true;
-  plugins.lspkind.enable = true;
 
   plugins.conform-nvim = {
     enable = true;
@@ -167,7 +166,10 @@
   plugins.lsp.servers.taplo.enable = true;
 
   # Typst
-  plugins.lsp.servers.tinymist.enable = true;
+  plugins.lsp.servers.tinymist = {
+    enable = true;
+    package = null;
+  };
 
   keymaps = [
     {
