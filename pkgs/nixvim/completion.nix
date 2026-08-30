@@ -23,7 +23,7 @@
 
       keymap = {
         "<Down>" = [ "select_next" "fallback" ];
-        "<Tab>" = [ "select_next" "fallback" ];
+        "<Tab>" = [ "snippet_forward" "select_next" "fallback" ];
         "<C-n>" = [ "select_next" "fallback" ];
         "<C-j>" = [ "select_next" "fallback" ];
 
@@ -35,7 +35,7 @@
         "<C-f>" = [ "scroll_documentation_down" "fallback" ];
 
         "<C-Space>" = [ "show" "show_documentation" "hide_documentation" "fallback" ];
-        "<S-Tab>" = [ "hide" "fallback" ];
+        "<S-Tab>" = [ "snippet_backward" "select_prev" "fallback" ];
 
         "<CR>" = [ "accept" "fallback" ];
       };
