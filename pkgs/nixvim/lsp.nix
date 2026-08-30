@@ -103,6 +103,7 @@
   # Nix
   plugins.nix.enable = true;
   plugins.nix-develop.enable = true;
+  extraPackages = [ pkgs.nixfmt ];
   plugins.lsp.servers.nixd = {
     enable = true;
     cmd = [ "nixd" "--log=error" ];
