@@ -1,17 +1,9 @@
 {
   perSystem = { lib, pkgs, ... }: {
     formatter = pkgs.writeShellScriptBin "formatter" ''
-      shopt -s globstar
+      pushd "$(${lib.getExe pkgs.git} rev-parse --show-toplevel)" > /dev/null
       set -eoux pipefail
-
-      root="$PWD"
-      while [[ ! -f "$root/.git/index" ]]; do
-        if [[ "$root" == "/" ]]; then
-          exit 1
-        fi
-        root="$(dirname "$root")"
-      done
-      pushd "$root" > /dev/null
+      shopt -s globstar
 
       ${lib.getExe pkgs.actionlint} -color
       ${lib.getExe pkgs.deno} fmt .
