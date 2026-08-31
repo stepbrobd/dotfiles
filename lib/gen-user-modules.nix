@@ -14,7 +14,7 @@ let
 
   usernames = attrNames users;
 in
-map (u: "${inputs.self}/users/${u}") usernames ++ [
+map (u: inputs.self.userModules.${u}) usernames ++ [
   inputs.hm."${os}Modules".home-manager
   {
     home-manager.extraSpecialArgs = specialArgs;
@@ -29,8 +29,7 @@ map (u: "${inputs.self}/users/${u}") usernames ++ [
         { sops.defaultSopsFile = ./secrets.yaml; }
         ({ config, ... }: { sops.age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt"; })
         # actual user module
-        # so this was defined under
-        # "${inputs.self}/users/${u}/home.nix"
+        # system wide normal user settings are now in `userModules.${u}` (modules/users/${u}.nix)
         # but i feel like user level hm modules are better fully modulized
         # so we are directly injecting defaults here based on passed username
         ({ pkgs, ... }: {
