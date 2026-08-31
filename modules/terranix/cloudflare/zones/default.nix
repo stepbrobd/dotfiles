@@ -29,4 +29,36 @@ in
       };
     })
     zones);
+
+  # disable ai bot blocking and cloudflare managed robots.txt
+  resource.cloudflare_bot_management = deepMergeAttrsList (map
+    (zone: {
+      "${lib.zoneSlug zone}_bot_management" = {
+        zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
+        ai_bots_protection = "disabled";
+        crawler_protection = "disabled";
+        is_robots_txt_managed = false;
+      };
+    })
+    zones);
+
+  # pin dnssec enabled
+  resource.cloudflare_zone_dnssec = deepMergeAttrsList (map
+    (zone: {
+      "${lib.zoneSlug zone}_dnssec" = {
+        zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
+        status = "active";
+      };
+    })
+    zones);
+
+  # smart tiered cache
+  resource.cloudflare_tiered_cache = deepMergeAttrsList (map
+    (zone: {
+      "${lib.zoneSlug zone}_tiered_cache" = {
+        zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
+        value = "on";
+      };
+    })
+    zones);
 }
