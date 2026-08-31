@@ -18,4 +18,15 @@ in
 
   # common zone settings applied unconditionally
   resource.cloudflare_zone_setting = deepMergeAttrsList (map mkZoneSettingResources zones);
+
+  # uniform url normalization on all zones (incoming and to origin)
+  resource.cloudflare_url_normalization_settings = deepMergeAttrsList (map
+    (zone: {
+      "${lib.zoneSlug zone}_url_normalization" = {
+        zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
+        type = "cloudflare";
+        scope = "both";
+      };
+    })
+    zones);
 }
