@@ -37,8 +37,6 @@ in
 
     sops.secrets."kanidm/passwd".group = "kanidm";
     sops.secrets."kanidm/passwd".mode = "440";
-    sops.secrets."kanidm/oauth/cloudflare".group = "kanidm";
-    sops.secrets."kanidm/oauth/cloudflare".mode = "440";
     sops.secrets."kanidm/oauth/grafana".group = "kanidm";
     sops.secrets."kanidm/oauth/grafana".mode = "440";
     sops.secrets."kanidm/oauth/jitsi".group = "kanidm";
@@ -87,9 +85,6 @@ in
 
           "jitsi.users" = { };
 
-          "cloudflare.admins" = { };
-          "cloudflare.users" = { };
-
           "grafana.server-admins" = { };
           "grafana.admins" = { };
           "grafana.editors" = { };
@@ -116,9 +111,6 @@ in
 
               "jitsi.users"
 
-              "cloudflare.admins"
-              "cloudflare.users"
-
               "grafana.server-admins"
               "grafana.admins"
               "grafana.editors"
@@ -132,19 +124,6 @@ in
         };
 
         systems.oauth2 = {
-          cloudflare = {
-            displayName = "Cloudflare";
-            originUrl = "https://stepbrobd.cloudflareaccess.com/cdn-cgi/access/callback";
-            originLanding = "https://stepbrobd.cloudflareaccess.com/";
-            basicSecretFile = config.sops.secrets."kanidm/oauth/cloudflare".path;
-            preferShortUsername = true;
-            scopeMaps."cloudflare.users" = [
-              "openid"
-              "email"
-              "profile"
-            ];
-          };
-
           grafana = {
             displayName = "Grafana";
             originUrl = "https://${lib.blueprint.services.grafana.domain}/login/generic_oauth";
