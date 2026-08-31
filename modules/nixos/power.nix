@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
   services.upower.enable = true;
 
@@ -31,7 +33,10 @@
 
   powerManagement = {
     enable = true;
-    powertop.enable = true;
+    # keep this disabled
+    # it will enable USB HID device auto suspend
+    # fucks up touchpad
+    powertop.enable = lib.mkForce false;
   };
 
   # keep awake with lid closed on ac
