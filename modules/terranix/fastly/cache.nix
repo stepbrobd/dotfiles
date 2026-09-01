@@ -21,11 +21,6 @@ in
 
     http3 = true;
 
-    domain = [{
-      name = domain;
-      comment = "Nix Binary Cache";
-    }];
-
     backend = [{
       name = "s3";
       address = s3Host;
@@ -250,6 +245,12 @@ in
         '';
       }
     ];
+  };
+
+  resource.fastly_domain.cache = {
+    fqdn = domain;
+    service_id = tfRef "fastly_service_vcl.cache.id";
+    description = "Nix Binary Cache";
   };
 
   resource.fastly_tls_subscription.cache = {
