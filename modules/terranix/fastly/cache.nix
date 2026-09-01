@@ -21,6 +21,17 @@ in
 
     http3 = true;
 
+    product_enablement = [{
+      name = "cache";
+      origin_inspector = true;
+      domain_inspector = true;
+      log_explorer_insights = true;
+      # ddos_protection = [{
+      #   enabled = true;
+      #   mode = "log";
+      # }];
+    }];
+
     backend = [{
       name = "s3";
       address = s3Host;

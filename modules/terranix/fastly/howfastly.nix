@@ -14,6 +14,16 @@ in
 
     activate = false;
 
+    product_enablement = [{
+      name = "howfastly";
+      domain_inspector = true;
+      log_explorer_insights = true;
+      # ddos_protection = [{
+      #   enabled = true;
+      #   mode = "log";
+      # }];
+    }];
+
     domain = [
       { name = "speed.edgecompute.app"; }
       { name = "howfastly.edgecompute.app"; }
