@@ -16,7 +16,7 @@ let
 in
 {
   resource.fastly_service_vcl.cache = {
-    name = domain;
+    name = "Cache";
     default_ttl = 3600;
 
     http3 = true;
