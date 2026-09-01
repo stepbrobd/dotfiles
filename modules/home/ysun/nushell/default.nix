@@ -132,6 +132,7 @@ in
       $env.PROMPT_INDICATOR_VI_INSERT = ""
       $env.PROMPT_INDICATOR_VI_NORMAL = ""
       $env.PROMPT_MULTILINE_INDICATOR = ""
+      $env.CARAPACE_MATCH = "CASE_INSENSITIVE"
     '';
   };
 }
