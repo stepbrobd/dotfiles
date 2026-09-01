@@ -52,6 +52,16 @@ in
     })
     zones);
 
+  # tiered cache
+  resource.cloudflare_argo_tiered_caching = deepMergeAttrsList (map
+    (zone: {
+      "${lib.zoneSlug zone}_argo_tiered_caching" = {
+        zone_id = ''''${data.sops_file.secrets.data["cloudflare.zone_id.${zone}"]}'';
+        value = "on";
+      };
+    })
+    zones);
+
   # smart tiered cache
   resource.cloudflare_tiered_cache = deepMergeAttrsList (map
     (zone: {
