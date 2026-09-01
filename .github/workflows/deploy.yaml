@@ -59,10 +59,10 @@ jobs:
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - name: Setup
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/setup # zizmor: ignore[self-repository]
 
       - name: SSH
-        uses: ./.github/actions/ssh
+        uses: ./.github/actions/ssh # zizmor: ignore[self-repository]
         with:
           ssh: ${{ secrets.SSH }}
 
