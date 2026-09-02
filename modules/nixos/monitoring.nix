@@ -15,13 +15,24 @@ in
   # "loki" tag: Loki + Fluent Bit (promtail replacement) + geoip enrichment
   config = mkMerge [
     (mkIf hasProm {
-      # rfm binds to my own prefix address for ipfix export
-      # which requires ranet tunnels to be established
-      # space out retries on slow boots
-      systemd.services.rfm.serviceConfig = {
-        RestartSec = 5;
-        StartLimitBurst = 20;
-      };
+      networking.nftables.tables.rfm =
+        let
+          ipfix = config.services.rfm.settings.agent.ipfix;
+        in
+        {
+          name = "rfm";
+          family = "inet";
+          content = ''
+            chain output {
+              type filter hook output priority raw; policy accept;
+              ip daddr ${ipfix.host} udp dport ${toString ipfix.port} notrack
+            }
+            chain prerouting {
+              type filter hook prerouting priority raw; policy accept;
+              ip saddr ${ipfix.host} udp sport ${toString ipfix.port} notrack
+            }
+          '';
+        };
 
       services.rfm =
         let
