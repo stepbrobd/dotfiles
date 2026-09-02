@@ -553,11 +553,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788349535,
-        "narHash": "sha256-9gqgVn8rkZmpEIPWzaEi4C/de/PQdaAwENDQdDvGMzY=",
+        "lastModified": 1788355045,
+        "narHash": "sha256-YnoV9H2JDp5d3OQsgHsdvldRn96qvHb75VkQVk1SlJ8=",
         "owner": "stepbrobd",
         "repo": "miroir",
-        "rev": "fb86d2718f1cfe34d90015716b7bcb4034567017",
+        "rev": "d69bfa659a6361f13908287a674b750bacaafa6b",
         "type": "github"
       },
       "original": {
