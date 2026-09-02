@@ -10,13 +10,13 @@
 }:
 
 let
-  goVersion = "1.27.0";
-  goRev = "7f1bd87de70d92fc612426e787e7dfb8275c07d6";
-  goHash = "sha256-mn1snbErBYXkxaR/IQnmGVDOdfTaP+tBgHZB4UFaHW8=";
+  goVersion = "1.27.1";
+  goRev = "c46f95b7f7c2ebe520044ef131d6ce730d7e4a82";
+  goHash = "sha256-+cTlDLusJthxTayVx6yGoqZHRN4ylvs/9Qpy4P2dlDI=";
 
-  tsVersion = "1.103.175";
-  tsRev = "b25459ab1f3f94f81620e4298d420af3c436a898";
-  tsHash = "sha256-x4HXF+ZD8QgCs6RjFJxWNi7f/T9NWNePkM+oL9YDYqU=";
+  tsVersion = "1.103.183";
+  tsRev = "91d10d38ae58b8aa88db9e951342a00b76cbb625";
+  tsHash = "sha256-uvkJ/+Gp36Mt6levo0g/zZMTAkt7nlIt0+bMKhAfNwk=";
 
   vendorHash = "sha256-h3KPqXE1Wvl1nfUmus0zWowaiqBIxz6eJT/+dIBEkOM=";
 in
