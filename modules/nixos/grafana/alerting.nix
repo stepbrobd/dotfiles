@@ -74,6 +74,54 @@ let
         ];
       }
       {
+        uid = "alert-${name}-rfm-ring-drops";
+        title = "${host.name} - RFM Ring Buffer Drops";
+        condition = "B";
+        noDataState = "OK";
+        "for" = "0s";
+        annotations.summary = "rfm on ${host.name} dropped sampled events from the ring buffer in the last 10 minutes, the collector could not keep up";
+        data = [
+          (mkPromQuery { refId = "A"; inherit uid; expr = "increase(rfm_collector_dropped_events_total[10m])"; })
+          (mkThreshold { refId = "B"; expression = "A"; })
+        ];
+      }
+      {
+        uid = "alert-${name}-rfm-forced-evictions";
+        title = "${host.name} - RFM Flow Table Full";
+        condition = "B";
+        noDataState = "OK";
+        "for" = "0s";
+        annotations.summary = "rfm on ${host.name} forced flows out of a full table in the last 10 minutes, likely a scan";
+        data = [
+          (mkPromQuery { refId = "A"; inherit uid; expr = "increase(rfm_collector_forced_evictions_total[10m])"; })
+          (mkThreshold { refId = "B"; expression = "A"; })
+        ];
+      }
+      {
+        uid = "alert-${name}-rfm-ipfix-errors";
+        title = "${host.name} - RFM IPFIX Export Errors";
+        condition = "B";
+        noDataState = "OK";
+        "for" = "0s";
+        annotations.summary = "rfm on ${host.name} lost IPFIX records in the last 10 minutes, check rfm_ipfix_send_errors_total by errno";
+        data = [
+          (mkPromQuery { refId = "A"; inherit uid; expr = ''increase(rfm_errors_total{subsystem="ipfix"}[10m])''; })
+          (mkThreshold { refId = "B"; expression = "A"; })
+        ];
+      }
+      {
+        uid = "alert-${name}-conntrack-full";
+        title = "${host.name} - Conntrack Table Nearly Full";
+        condition = "B";
+        noDataState = "OK";
+        "for" = "5m";
+        annotations.summary = "conntrack on ${host.name} is above 90 percent of nf_conntrack_max, new connections and exports will be dropped";
+        data = [
+          (mkPromQuery { refId = "A"; inherit uid; expr = "node_nf_conntrack_entries / node_nf_conntrack_entries_limit * 100"; })
+          (mkThreshold { refId = "B"; expression = "A"; params = [ 90 ]; })
+        ];
+      }
+      {
         uid = "alert-${name}-disk-low";
         title = "${host.name} - Disk Space Low";
         condition = "B";
@@ -147,6 +195,20 @@ in
               folder = "Alerts";
               interval = "5m";
               rules = filter (r: r.uid == "alert-${name}-disk-low") (mkPromAlerts name host);
+            }
+            {
+              orgId = 1;
+              name = "${host.name} - Flow Monitor";
+              folder = "Alerts";
+              interval = "1m";
+              rules = filter
+                (r: elem r.uid [
+                  "alert-${name}-rfm-ring-drops"
+                  "alert-${name}-rfm-forced-evictions"
+                  "alert-${name}-rfm-ipfix-errors"
+                  "alert-${name}-conntrack-full"
+                ])
+                (mkPromAlerts name host);
             }
           ]) [ ]
           promHosts)
