@@ -9,6 +9,11 @@ in
     name = "HowFastly";
   };
 
+  resource.fastly_kvstore.howfastly = {
+    name = "HowFastly";
+    location = "EU";
+  };
+
   resource.fastly_service_compute.howfastly = {
     name = "HowFastly";
 
@@ -55,10 +60,16 @@ in
       }
     ];
 
-    resource_link = [{
-      name = "howfastly";
-      resource_id = tfRef "fastly_secretstore.howfastly.id";
-    }];
+    resource_link = [
+      {
+        name = "secretstore";
+        resource_id = tfRef "fastly_secretstore.howfastly.id";
+      }
+      {
+        name = "kvstore";
+        resource_id = tfRef "fastly_kvstore.howfastly.id";
+      }
+    ];
 
     lifecycle.ignore_changes = [ "package" ];
   };
