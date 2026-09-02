@@ -37,7 +37,16 @@ in
       source = { inherit (lib.blueprint.hosts.timah) ipv4 ipv6; };
       static =
         let
-          option = "reject";
+          # option = "reject";
+          # https://docs.misaka.io/network/communities
+          # (rt, 65009, ASN) dont announce, (rt, 65001-65003, ASN) prepend Nx
+          # GSL is the transit and hauls its whole footprint to a customer route
+          # if needed (rt, 65009, 13335) cloudflare returns non EU traffic via here
+          option = lib.trim ''
+            reject {
+                bgp_ext_community.add((rt, 65009, 137409)); # dont announce to GSL
+              }
+          '';
         in
         {
           ipv4.routes = [

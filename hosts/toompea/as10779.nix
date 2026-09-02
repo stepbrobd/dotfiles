@@ -37,15 +37,17 @@ in
       source = { inherit (lib.blueprint.hosts.toompea) ipv4 ipv6; };
       static =
         let
-          option = "reject";
-          # lib.trim ''
-          #   reject {
-          #       # prepend 1x
-          #       bgp_community.add((3204, 1101)); # xTom
-          #       # dont announce
-          #       bgp_community.add((3204, 1700)); # Liberty Global
-          #     }
-          # '';
+          # option = "reject";
+          # 3204:XXXx per whois AS3204 remarks, x = 1-3 prepend Nx, x = 0 dont announce
+          # 100x Telia, 110x xTom, 170x Liberty Global, 190x Tata, others are IXes
+          # telia and tata haul their whole footprint to a customer route
+          # if needed (3204, 1101) prepend 1x toward xTom to shrink the IX pull
+          option = lib.trim ''
+            reject {
+                bgp_community.add((3204, 1000)); # dont announce to Telia
+                bgp_community.add((3204, 1900)); # dont announce to Tata
+              }
+          '';
         in
         {
           ipv4.routes = [

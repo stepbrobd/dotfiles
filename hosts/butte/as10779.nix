@@ -41,11 +41,14 @@ in
           # https://github.com/virtuasys/as35661: 35661:<action><loc>:<target>
           # action 1-3 = prepend Nx, 9 = dont export, loc 999 = all PoPs
           # target: ASN, 1 = all transit, 2 = all IX peers
-          # prepend 1x toward all transit (Cogent/Arelion/GTT/aurologic/Eranium/HOPUS)
-          # if needed: (35661, 9999, 6939) + (35661, 9999, 174) dont export HE/Cogent
+          # tier-1 transits haul their whole footprint to a customer route
+          # no target 1 since HE is a transit and HE europe belongs here
+          # (35661, 1999, 1) was never applied by virtua
           option = lib.trim ''
             reject {
-                bgp_large_community.add((35661, 1999, 1));
+                bgp_large_community.add((35661, 9999, 1299)); # Arelion
+                bgp_large_community.add((35661, 9999, 3257)); # GTT
+                bgp_large_community.add((35661, 9999, 174));  # Cogent
               }
           '';
         in

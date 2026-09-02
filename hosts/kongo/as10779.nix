@@ -56,6 +56,10 @@ in
                 bgp_large_community.add((20473, 6003, 1221)); # Telstra
                 bgp_large_community.add((20473, 6003, 3356)); # Level3
                 bgp_large_community.add((20473, 6003, 4826)); # Vocus
+                # https://www.homenoc.ad.jp/tech/community/
+                # BIGLOBE hauls singapore to osaka on this customer route
+                # prepend 1x
+                bgp_large_community.add((59105, 1021, 2518)); # BIGLOBE
               }
           '';
         in
