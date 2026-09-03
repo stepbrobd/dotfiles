@@ -46,8 +46,6 @@ in
         ];
       };
 
-      hardware.bluetooth.settings.General.Experimental = true;
-
       # homekit bridge (21064) and mdns (5353) are lan only
       # but hass binds 0.0.0.0/[::]
       # have to restrict to local interface
