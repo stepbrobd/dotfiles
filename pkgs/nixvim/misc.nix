@@ -25,7 +25,6 @@
     noice.enable = true;
     nvim-autopairs.enable = true;
     octo.enable = true;
-    rainbow-delimiters.enable = true;
     sleuth.enable = true;
     spider.enable = true;
     todo-comments.enable = true;
