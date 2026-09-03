@@ -28,9 +28,7 @@
   programs.zsh.enableCompletion = pkgs.lib.mkForce false;
   programs.bash.completion.enable = pkgs.lib.mkForce false;
 
-  services.journald.extraConfig = ''
-    SystemMaxUse=64M
-  '';
+  services.journald.settings.Journal.SystemMaxUse = "64M";
   services.logrotate.settings =
     let
       inherit (pkgs.lib) mkDefault mapAttrs;
