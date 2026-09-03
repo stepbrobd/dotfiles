@@ -1,3 +1,5 @@
+# https://github.com/stepbrobd/ysun
+
 { inputs, lib, ... }:
 
 { config, pkgs, ... }:
@@ -5,6 +7,7 @@
 let
   hasTag = lib.hasTag config.networking.hostName;
   ysun = inputs.ysun.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  etag = lib.head (lib.splitString "-" (baseNameOf ysun));
 in
 {
   config = lib.mkIf (hasTag "ysun") {
@@ -16,12 +19,22 @@ in
           import common
           import reporting
 
+          @static path /assets/static/*
+          @style  path /assets/style/*
+          @pages   not path /assets/*
+
+          header ETag `"${etag}"`
+          header @static Cache-Control "public, max-age=604800"
+          header @style  Cache-Control "public, max-age=300"
+          header @pages   Cache-Control "public, no-cache"
+
           header X-Served-By "${config.networking.fqdn}"
 
           root * ${ysun}/var/www/html
           file_server
 
           handle_errors {
+            header Cache-Control "public, no-cache"
             rewrite * /error
             file_server
           }
