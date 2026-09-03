@@ -59,6 +59,11 @@ description = "wat...?"
 visibility = "private"
 archived = false
 
+[repo."camlmath"]
+description = "tex math to mathml core converter"
+visibility = "public"
+archived = false
+
 [repo."churn"]
 description = "churn, baby, churn!"
 visibility = "public"
