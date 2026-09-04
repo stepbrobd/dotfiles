@@ -43,6 +43,9 @@ in
         ssl_cert_hostname = "api.fastly.com";
         ssl_sni_hostname = "api.fastly.com";
         override_host = "api.fastly.com";
+        connect_timeout = 1000;
+        first_byte_timeout = 3000;
+        between_bytes_timeout = 3000;
       }
       {
         name = "plausible";
