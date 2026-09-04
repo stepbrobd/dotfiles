@@ -3,6 +3,12 @@
 { config, pkgs, ... }:
 
 {
+  programs.claude-code = {
+    enable = true;
+    configDir = "${config.xdg.configHome}/claude";
+    context = ./context.md;
+  };
+
   home.packages = [ pkgs.omp ];
   home.sessionVariables.PI_CONFIG_DIR = lib.removePrefix "${config.home.homeDirectory}/" "${config.xdg.configHome}/omp";
   xdg.configFile = {
