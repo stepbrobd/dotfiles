@@ -7,13 +7,13 @@
 stdenvNoCC.mkDerivation (finalAttrs: {
   meta.mainProgram = "cf";
   pname = "cf";
-  version = "0.8.0";
+  version = "0.9.0";
 
   passthru.autobump = true;
 
   src = fetchzip {
     url = "https://registry.npmjs.org/cf/-/cf-${finalAttrs.version}.tgz";
-    hash = "sha256-uPVfH6T6vYmT44mKXMIjb373dV8NzA19C01EgrxKEKM=";
+    hash = "sha256-2RWiQYb7xdfIWg6m+dqkxEBUXBQslOaWSnUQICzAVro=";
   };
 
   nativeBuildInputs = [ makeBinaryWrapper ];
