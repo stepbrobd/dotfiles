@@ -29,9 +29,7 @@ let
   endpoints = lib.concatStringsSep ", " (lib.mapAttrsToList (name: path: "${name}=\"${report}${path}\"") { csp = "/reporting-api/csp"; nel = "/nel"; });
 in
 {
-  imports = [
-    (import ./sigsci.nix args)
-  ];
+  imports = [ (import ./sigsci.nix args) ];
 
   config = lib.mkIf config.services.caddy.enable {
     networking.firewall.allowedTCPPorts = [ 443 ];
