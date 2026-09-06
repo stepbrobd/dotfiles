@@ -35,6 +35,7 @@ in
     services.sigsci-agent.settings = lib.mapAttrs (_: lib.mkDefault) {
       local-networks = "none";
       rpc-address = "unix:${cfg.socket}";
+      server-hostname = config.networking.fqdn;
       shared-cache-dir = "/var/cache/sigsci-agent";
     };
 
@@ -68,7 +69,6 @@ in
         NoNewPrivileges = true;
         PrivateDevices = true;
         PrivateTmp = true;
-        ProcSubset = "pid";
         ProtectClock = true;
         ProtectControlGroups = true;
         ProtectHome = true;
