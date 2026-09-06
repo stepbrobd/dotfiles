@@ -23,8 +23,8 @@ in
       virtualHosts.${domain}.extraConfig = ''
         import common
         import reporting
-        header  Cache-Control      "private, must-revalidate, max-age=0;"
-        header >Cache-Control (.*) "private, must-revalidate, max-age=0;"
+        header >Cache-Control "private, must-revalidate, max-age=0"
+        header -X-Kanidm-Version
         tls "${directory}/fullchain.pem" "${directory}/key.pem"
         reverse_proxy ${config.services.kanidm.provision.instanceUrl} {
           header_up X-Real-IP {client_ip}
