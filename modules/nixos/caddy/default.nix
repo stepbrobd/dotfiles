@@ -15,121 +15,113 @@ in
     networking.firewall.allowedTCPPorts = [ 443 ];
     networking.firewall.allowedUDPPorts = [ 443 ];
 
+    services.caddy = {
+      email = "ysun@hey.com";
+      enableReload = config.services.caddy.enable;
+    };
+
+    services.caddy.globalConfig = ''
+      admin unix/${config.services.caddy.dataDir}/admin.sock
+
+      auto_https disable_redirects
+
+      metrics { per_host }
+
+      # dns cloudflare {env.CF_API_TOKEN}
+      # ech ech.ysun.co
+
+      storage s3 {
+        host       {env.S3_HOST}
+        bucket     {env.S3_BUCKET}
+        access_id  {env.S3_ACCESS_ID}
+        secret_key {env.S3_SECRET_KEY}
+        prefix     {env.S3_PREFIX}
+        insecure   false
+      }
+
+      oidc kanidm {
+        issuer https://sso.ysun.co/oauth2/openid/caddy
+        client_id caddy
+        scope openid email profile
+        username preferred_username
+        authenticate cookie {
+          name caddy
+          secret "{env.CADDY_KANIDM_JWT_SECRET}"
+          domain ysun.co
+          same_site lax
+          claim email
+        }
+      }
+    '';
+
+    services.caddy.extraConfig = ''
+      (sigsci) {
+        ${lib.optionalString config.services.sigsci-agent.enable "sigsci unix ${config.services.sigsci-agent.socket}"}
+      }
+
+      (common) {
+        import sigsci
+
+        tls {
+          issuer acme {
+            profile shortlived
+
+            dns cloudflare {env.CF_API_TOKEN}
+            resolvers 2606:4700:4700::1111 1.1.1.1
+          }
+        }
+
+        encode br zstd gzip
+
+        header {
+          Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+          X-Content-Type-Options "nosniff"
+          X-XSS-Protection "1; mode=block"
+          -Last-Modified
+          -Server
+          -X-Powered-By
+        }
+      }
+
+      # to protect a site: `import auth` in its virtualHost extraConfig
+      # and add https://<domain>/oauth2/callback to kanidm caddy originUrl
+      (auth) {
+        header Cache-Control "private, no-store"
+        oidc kanidm {
+          allow {
+            user *
+          }
+        }
+      }
+
+      # restrict a site to the tailnet: `import tailscale` in its virtualHost
+      # extraConfig, wrap routes in `handle @tailnet`, and add `respond 404`
+      (tailscale) {
+        @tailnet remote_ip 100.64.0.0/10 fd7a:115c:a1e0::/48
+      }
+
+      (reporting) {
+        header  Reporting-Endpoints      `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
+        header >Reporting-Endpoints (.*) `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
+        header  NEL      `{"report_to":"nel","max_age":31536000,"include_subdomains":true,"failure_fraction":1.0}`
+        header >NEL (.*) `{"report_to":"nel","max_age":31536000,"include_subdomains":true,"failure_fraction":1.0}`
+        header  Content-Security-Policy      "default-src 'self' https://ysun.co https://*.ysun.co; base-uri 'self' https://ysun.co https://*.ysun.co; form-action 'self' https://ysun.co https://*.ysun.co https://stepbrobd.cloudflareaccess.com; frame-ancestors 'self' https://ysun.co https://*.ysun.co https://gskr.ing; img-src 'self' https://ysun.co https://*.ysun.co https://*.mzstatic.com https://*.basemaps.cartocdn.com data:; worker-src 'self' https://ysun.co https://*.ysun.co blob:; font-src 'self' https://ysun.co https://*.ysun.co https://www.apple.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com https://js-cdn.music.apple.com https://embed.music.apple.com; connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com https://api.github.com https://amp-api.music.apple.com https://xp.apple.com; style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co https://www.apple.com; frame-src 'self' https://ysun.co https://*.ysun.co https://embed.music.apple.com; media-src 'self' https://ysun.co https://*.ysun.co; report-uri https://report.ysun.co/csp; report-to csp;"
+        header >Content-Security-Policy (.*) "default-src 'self' https://ysun.co https://*.ysun.co; base-uri 'self' https://ysun.co https://*.ysun.co; form-action 'self' https://ysun.co https://*.ysun.co https://stepbrobd.cloudflareaccess.com; frame-ancestors 'self' https://ysun.co https://*.ysun.co https://gskr.ing; img-src 'self' https://ysun.co https://*.ysun.co https://*.mzstatic.com https://*.basemaps.cartocdn.com data:; worker-src 'self' https://ysun.co https://*.ysun.co blob:; font-src 'self' https://ysun.co https://*.ysun.co https://www.apple.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com https://js-cdn.music.apple.com https://embed.music.apple.com; connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com https://api.github.com https://amp-api.music.apple.com https://xp.apple.com; style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co https://www.apple.com; frame-src 'self' https://ysun.co https://*.ysun.co https://embed.music.apple.com; media-src 'self' https://ysun.co https://*.ysun.co; report-uri https://report.ysun.co/csp; report-to csp;"
+      }
+    '';
+
+    services.caddy.virtualHosts."http://${metricsTarget}" = {
+      logFormat = lib.mkForce "output discard";
+      extraConfig = ''
+        metrics ${metricsPath}
+      '';
+    };
+
     services.victoriametrics.prometheusConfig.scrape_configs = lib.mkIf config.services.victoriametrics.enable [{
       job_name = "caddy";
       static_configs = [{ targets = [ metricsTarget ]; }];
       metrics_path = metricsPath;
     }];
-
-    services.caddy = {
-      enableReload = config.services.caddy.enable;
-
-      email = "ysun@hey.com";
-
-      globalConfig = ''
-        admin unix/${config.services.caddy.dataDir}/admin.sock
-
-        auto_https disable_redirects
-
-        metrics { per_host }
-
-        # dns cloudflare {env.CF_API_TOKEN}
-        # ech ech.ysun.co
-
-        servers {
-          trusted_proxies cloudflare {
-            interval 24h
-            timeout 60s
-          }
-        }
-
-        storage s3 {
-          host       {env.S3_HOST}
-          bucket     {env.S3_BUCKET}
-          access_id  {env.S3_ACCESS_ID}
-          secret_key {env.S3_SECRET_KEY}
-          prefix     {env.S3_PREFIX}
-          insecure   false
-        }
-
-        oidc kanidm {
-          issuer https://sso.ysun.co/oauth2/openid/caddy
-          client_id caddy
-          scope openid email profile
-          username preferred_username
-          authenticate cookie {
-            name caddy
-            secret "{env.CADDY_KANIDM_JWT_SECRET}"
-            domain ysun.co
-            same_site lax
-            claim email
-          }
-        }
-      '';
-
-      extraConfig = ''
-        (sigsci) {
-          ${lib.optionalString config.services.sigsci-agent.enable "sigsci unix ${config.services.sigsci-agent.socket}"}
-        }
-
-        (common) {
-          import sigsci
-
-          tls {
-            issuer acme {
-              profile shortlived
-
-              dns cloudflare {env.CF_API_TOKEN}
-              resolvers 2606:4700:4700::1111 1.1.1.1
-            }
-          }
-
-          encode br zstd gzip
-
-          header {
-            Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-            X-Content-Type-Options "nosniff"
-            X-XSS-Protection "1; mode=block"
-            -Last-Modified
-            -Server
-            -X-Powered-By
-          }
-        }
-
-        # to protect a site: `import auth` in its virtualHost extraConfig
-        # and add https://<domain>/oauth2/callback to kanidm caddy originUrl
-        (auth) {
-          header Cache-Control "private, no-store"
-          oidc kanidm {
-            allow {
-              user *
-            }
-          }
-        }
-
-        # restrict a site to the tailnet: `import tailscale` in its virtualHost
-        # extraConfig, wrap routes in `handle @tailnet`, and add `respond 404`
-        (tailscale) {
-          @tailnet remote_ip 100.64.0.0/10 fd7a:115c:a1e0::/48
-        }
-
-        (reporting) {
-          header  Reporting-Endpoints      `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
-          header >Reporting-Endpoints (.*) `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
-          header  NEL      `{"report_to":"nel","max_age":31536000,"include_subdomains":true,"failure_fraction":1.0}`
-          header >NEL (.*) `{"report_to":"nel","max_age":31536000,"include_subdomains":true,"failure_fraction":1.0}`
-          header  Content-Security-Policy      "default-src 'self' https://ysun.co https://*.ysun.co; base-uri 'self' https://ysun.co https://*.ysun.co; form-action 'self' https://ysun.co https://*.ysun.co https://stepbrobd.cloudflareaccess.com; frame-ancestors 'self' https://ysun.co https://*.ysun.co https://gskr.ing; img-src 'self' https://ysun.co https://*.ysun.co https://*.mzstatic.com https://*.basemaps.cartocdn.com data:; worker-src 'self' https://ysun.co https://*.ysun.co blob:; font-src 'self' https://ysun.co https://*.ysun.co https://www.apple.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com https://js-cdn.music.apple.com https://embed.music.apple.com; connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com https://api.github.com https://amp-api.music.apple.com https://xp.apple.com; style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co https://www.apple.com; frame-src 'self' https://ysun.co https://*.ysun.co https://embed.music.apple.com; media-src 'self' https://ysun.co https://*.ysun.co; report-uri https://report.ysun.co/csp; report-to csp;"
-          header >Content-Security-Policy (.*) "default-src 'self' https://ysun.co https://*.ysun.co; base-uri 'self' https://ysun.co https://*.ysun.co; form-action 'self' https://ysun.co https://*.ysun.co https://stepbrobd.cloudflareaccess.com; frame-ancestors 'self' https://ysun.co https://*.ysun.co https://gskr.ing; img-src 'self' https://ysun.co https://*.ysun.co https://*.mzstatic.com https://*.basemaps.cartocdn.com data:; worker-src 'self' https://ysun.co https://*.ysun.co blob:; font-src 'self' https://ysun.co https://*.ysun.co https://www.apple.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com https://js-cdn.music.apple.com https://embed.music.apple.com; connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com https://api.github.com https://amp-api.music.apple.com https://xp.apple.com; style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co https://www.apple.com; frame-src 'self' https://ysun.co https://*.ysun.co https://embed.music.apple.com; media-src 'self' https://ysun.co https://*.ysun.co; report-uri https://report.ysun.co/csp; report-to csp;"
-        }
-      '';
-
-      virtualHosts."http://${metricsTarget}" = {
-        logFormat = lib.mkForce "output discard";
-        extraConfig = ''
-          metrics ${metricsPath}
-        '';
-      };
-    };
 
     sops.secrets.caddy = {
       owner = config.services.caddy.user;
