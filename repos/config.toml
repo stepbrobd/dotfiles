@@ -530,6 +530,11 @@ description = "forked from ppy/osu"
 visibility = "public"
 archived = false
 
+[repo."gopsutil"]
+description = "forked from shirou/gopsutil"
+visibility = "public"
+archived = false
+
 [repo."shiki"]
 description = "forked from furiouzz/lume_shiki"
 visibility = "public"
