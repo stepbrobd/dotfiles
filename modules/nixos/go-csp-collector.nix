@@ -49,6 +49,9 @@ in
 
         @reports method POST
         handle @reports {
+          request_body {
+            max_size 1MB
+          }
           reverse_proxy [::1]:${lib.toString config.services.go-csp-collector.settings.port}
         }
 
