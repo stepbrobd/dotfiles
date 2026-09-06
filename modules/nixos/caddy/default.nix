@@ -142,17 +142,12 @@ in
         header ?NEL `${nel}`
         header ?Reporting-Endpoints `${endpoints}`
       }
-
-      # valid SNI with a host no site claims used to get empty 200
-      https:// {
-        header -Server
-        respond 421
-      }
     '';
 
     services.caddy.virtualHosts."http://${metricsTarget}" = {
       logFormat = lib.mkForce "output discard";
       extraConfig = ''
+        bind ::1
         metrics ${metricsPath}
       '';
     };
