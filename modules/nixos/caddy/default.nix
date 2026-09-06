@@ -5,6 +5,28 @@
 let
   metricsTarget = "[::1]:9019";
   metricsPath = "/metrics";
+
+  report = "https://${lib.blueprint.services.go-csp-collector.domain}";
+  site = [ "'self'" "https://ysun.co" "https://*.ysun.co" ];
+  frameAncestors = site ++ [ "https://gskr.ing" ];
+  csp = lib.concatMapStringsSep "; " (lib.concatStringsSep " ") [
+    ([ "default-src" ] ++ site)
+    ([ "base-uri" ] ++ site)
+    ([ "form-action" ] ++ site ++ [ "https://stepbrobd.cloudflareaccess.com" ])
+    ([ "frame-ancestors" ] ++ frameAncestors)
+    ([ "img-src" ] ++ site ++ [ "https://*.mzstatic.com" "https://*.basemaps.cartocdn.com" "data:" ])
+    ([ "worker-src" ] ++ site ++ [ "blob:" ])
+    ([ "font-src" ] ++ site ++ [ "https://www.apple.com" "data:" ])
+    ([ "script-src" ] ++ site ++ [ "'unsafe-inline'" "'unsafe-eval'" "https://static.cloudflareinsights.com" "https://js-cdn.music.apple.com" "https://embed.music.apple.com" ])
+    ([ "connect-src" ] ++ site ++ [ "https://cloudflareinsights.com" "https://api.github.com" "https://amp-api.music.apple.com" "https://xp.apple.com" ])
+    ([ "style-src" ] ++ site ++ [ "'unsafe-inline'" "https://www.apple.com" ])
+    ([ "frame-src" ] ++ site ++ [ "https://embed.music.apple.com" ])
+    ([ "media-src" ] ++ site)
+    [ "report-uri" "${report}/csp" ]
+    [ "report-to" "csp" ]
+  ] + ";";
+  nel = lib.toJSON { report_to = "nel"; max_age = 31536000; include_subdomains = true; failure_fraction = 1.0; };
+  endpoints = lib.concatStringsSep ", " (lib.mapAttrsToList (name: path: "${name}=\"${report}${path}\"") { csp = "/reporting-api/csp"; nel = "/nel"; });
 in
 {
   imports = [
@@ -17,6 +39,7 @@ in
 
     services.caddy = {
       email = "ysun@hey.com";
+      logFormat = "level WARN";
       enableReload = config.services.caddy.enable;
     };
 
@@ -24,6 +47,15 @@ in
       admin unix/${config.services.caddy.dataDir}/admin.sock
 
       auto_https disable_redirects
+
+      grace_period 10s
+
+      servers {
+        strict_sni_host on
+        timeouts {
+          read_header 10s
+        }
+      }
 
       metrics { per_host }
 
@@ -45,7 +77,7 @@ in
         scope openid email profile
         username preferred_username
         authenticate cookie {
-          name caddy
+          name session
           secret "{env.CADDY_KANIDM_JWT_SECRET}"
           domain ysun.co
           same_site lax
@@ -71,22 +103,25 @@ in
           }
         }
 
-        encode br zstd gzip
+        encode zstd br gzip
 
         header {
-          Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-          X-Content-Type-Options "nosniff"
-          X-XSS-Protection "1; mode=block"
+          >Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+          >X-Content-Type-Options "nosniff"
           -Last-Modified
           -Server
+          -Via
           -X-Powered-By
         }
+        header ?Content-Security-Policy "frame-ancestors ${lib.concatStringsSep " " frameAncestors}"
+        header ?Referrer-Policy "strict-origin-when-cross-origin"
       }
 
-      # to protect a site: `import auth` in its virtualHost extraConfig
-      # and add https://<domain>/oauth2/callback to kanidm caddy originUrl
+      # to protect a site:
+      # `import auth` in its virtualHost extraConfig
+      # add https://<domain>/oauth2/callback to kanidm caddy originUrl
       (auth) {
-        header Cache-Control "private, no-store"
+        header >Cache-Control "private, no-store"
         oidc kanidm {
           allow {
             user *
@@ -94,19 +129,24 @@ in
         }
       }
 
-      # restrict a site to the tailnet: `import tailscale` in its virtualHost
-      # extraConfig, wrap routes in `handle @tailnet`, and add `respond 404`
+      # restrict a site to tailnet:
+      # `import tailscale` in its virtualHost.extraConfig
+      # wrap routes in `handle @tailnet` and add `respond 404`
       (tailscale) {
         @tailnet remote_ip 100.64.0.0/10 fd7a:115c:a1e0::/48
       }
 
+      # import after common (later default wins where both apply)
       (reporting) {
-        header  Reporting-Endpoints      `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
-        header >Reporting-Endpoints (.*) `csp="https://report.ysun.co/reporting-api/csp", nel="https://report.ysun.co/nel"`
-        header  NEL      `{"report_to":"nel","max_age":31536000,"include_subdomains":true,"failure_fraction":1.0}`
-        header >NEL (.*) `{"report_to":"nel","max_age":31536000,"include_subdomains":true,"failure_fraction":1.0}`
-        header  Content-Security-Policy      "default-src 'self' https://ysun.co https://*.ysun.co; base-uri 'self' https://ysun.co https://*.ysun.co; form-action 'self' https://ysun.co https://*.ysun.co https://stepbrobd.cloudflareaccess.com; frame-ancestors 'self' https://ysun.co https://*.ysun.co https://gskr.ing; img-src 'self' https://ysun.co https://*.ysun.co https://*.mzstatic.com https://*.basemaps.cartocdn.com data:; worker-src 'self' https://ysun.co https://*.ysun.co blob:; font-src 'self' https://ysun.co https://*.ysun.co https://www.apple.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com https://js-cdn.music.apple.com https://embed.music.apple.com; connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com https://api.github.com https://amp-api.music.apple.com https://xp.apple.com; style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co https://www.apple.com; frame-src 'self' https://ysun.co https://*.ysun.co https://embed.music.apple.com; media-src 'self' https://ysun.co https://*.ysun.co; report-uri https://report.ysun.co/csp; report-to csp;"
-        header >Content-Security-Policy (.*) "default-src 'self' https://ysun.co https://*.ysun.co; base-uri 'self' https://ysun.co https://*.ysun.co; form-action 'self' https://ysun.co https://*.ysun.co https://stepbrobd.cloudflareaccess.com; frame-ancestors 'self' https://ysun.co https://*.ysun.co https://gskr.ing; img-src 'self' https://ysun.co https://*.ysun.co https://*.mzstatic.com https://*.basemaps.cartocdn.com data:; worker-src 'self' https://ysun.co https://*.ysun.co blob:; font-src 'self' https://ysun.co https://*.ysun.co https://www.apple.com data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ysun.co https://*.ysun.co https://static.cloudflareinsights.com https://js-cdn.music.apple.com https://embed.music.apple.com; connect-src 'self' https://ysun.co https://*.ysun.co https://cloudflareinsights.com https://api.github.com https://amp-api.music.apple.com https://xp.apple.com; style-src 'self' 'unsafe-inline' https://ysun.co https://*.ysun.co https://www.apple.com; frame-src 'self' https://ysun.co https://*.ysun.co https://embed.music.apple.com; media-src 'self' https://ysun.co https://*.ysun.co; report-uri https://report.ysun.co/csp; report-to csp;"
+        header ?Content-Security-Policy `${csp}`
+        header ?NEL `${nel}`
+        header ?Reporting-Endpoints `${endpoints}`
+      }
+
+      # valid SNI with a host no site claims used to get empty 200
+      https:// {
+        header -Server
+        respond 421
       }
     '';
 
