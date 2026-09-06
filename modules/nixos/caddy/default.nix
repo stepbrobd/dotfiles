@@ -12,7 +12,7 @@ let
   csp = lib.concatMapStringsSep "; " (lib.concatStringsSep " ") [
     ([ "default-src" ] ++ site)
     ([ "base-uri" ] ++ site)
-    ([ "form-action" ] ++ site ++ [ "https://stepbrobd.cloudflareaccess.com" ])
+    ([ "form-action" ] ++ site)
     ([ "frame-ancestors" ] ++ frameAncestors)
     ([ "img-src" ] ++ site ++ [ "https://*.mzstatic.com" "https://*.basemaps.cartocdn.com" "data:" ])
     ([ "worker-src" ] ++ site ++ [ "blob:" ])
