@@ -18,6 +18,7 @@ in
         extraConfig = ''
           import common
           import reporting
+          import webring
 
           @static path /assets/static/*
           @style  path /assets/style/*

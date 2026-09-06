@@ -8,19 +8,18 @@ let
 
   report = "https://${lib.blueprint.services.go-csp-collector.domain}";
   site = [ "'self'" "https://ysun.co" "https://*.ysun.co" ];
-  frameAncestors = site ++ [ "https://gskr.ing" ];
-  csp = lib.concatMapStringsSep "; " (lib.concatStringsSep " ") [
+  csp = frameAncestors: lib.concatMapStringsSep "; " (lib.concatStringsSep " ") [
     ([ "default-src" ] ++ site)
     ([ "base-uri" ] ++ site)
     ([ "form-action" ] ++ site)
-    ([ "frame-ancestors" ] ++ frameAncestors)
-    ([ "img-src" ] ++ site ++ [ "https://*.mzstatic.com" "https://*.basemaps.cartocdn.com" "data:" ])
+    ([ "frame-ancestors" ] ++ site ++ frameAncestors)
+    ([ "img-src" ] ++ site ++ [ "https://*.basemaps.cartocdn.com" "data:" ]) # grafana geomap basemap tiles
     ([ "worker-src" ] ++ site ++ [ "blob:" ])
-    ([ "font-src" ] ++ site ++ [ "https://www.apple.com" "data:" ])
-    ([ "script-src" ] ++ site ++ [ "'unsafe-inline'" "'unsafe-eval'" "https://js-cdn.music.apple.com" "https://embed.music.apple.com" ])
-    ([ "connect-src" ] ++ site ++ [ "https://api.github.com" "https://amp-api.music.apple.com" "https://xp.apple.com" ])
-    ([ "style-src" ] ++ site ++ [ "'unsafe-inline'" "https://www.apple.com" ])
-    ([ "frame-src" ] ++ site ++ [ "https://embed.music.apple.com" ])
+    ([ "font-src" ] ++ site ++ [ "data:" ])
+    ([ "script-src" ] ++ site ++ [ "'unsafe-inline'" "'unsafe-eval'" ])
+    ([ "connect-src" ] ++ site ++ [ "https://api.github.com" ]) # ysun.co/cv release lookup
+    ([ "style-src" ] ++ site ++ [ "'unsafe-inline'" ])
+    ([ "frame-src" ] ++ site ++ [ "https://embed.music.apple.com" ]) # ysun.co/music playlist embeds
     ([ "media-src" ] ++ site)
     [ "report-uri" "${report}/csp" ]
     [ "report-to" "csp" ]
@@ -111,7 +110,7 @@ in
           -Via
           -X-Powered-By
         }
-        header ?Content-Security-Policy "frame-ancestors ${lib.concatStringsSep " " frameAncestors}"
+        header ?Content-Security-Policy "frame-ancestors ${lib.concatStringsSep " " site}"
         header ?Referrer-Policy "strict-origin-when-cross-origin"
       }
 
@@ -136,9 +135,15 @@ in
 
       # import after common (later default wins where both apply)
       (reporting) {
-        header ?Content-Security-Policy `${csp}`
+        header ?Content-Security-Policy `${csp [ ]}`
         header ?NEL `${nel}`
         header ?Reporting-Endpoints `${endpoints}`
+      }
+
+      # allow the gskr.ing webring reader to frame a site
+      # import after reporting (later default wins)
+      (webring) {
+        header ?Content-Security-Policy `${csp [ "https://gskr.ing" ]}`
       }
     '';
 
