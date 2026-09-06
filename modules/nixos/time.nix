@@ -12,8 +12,13 @@ in
   options.services.ntpd-rs.server = {
     enable = lib.mkEnableOption "enable NTP server with NTS support using ntpd-rs";
     acceptedVersions = lib.mkOption {
-      type = lib.types.listOf lib.types.int;
-      description = "NTP versions accepted by NTP and NTS-KE server";
+      type = lib.types.listOf (lib.types.enum [ 3 4 5 ]);
+      description = "NTP versions accepted by the NTP server";
+      default = [ 3 4 5 ];
+    };
+    ntsAcceptedVersions = lib.mkOption {
+      type = lib.types.listOf (lib.types.enum [ 4 5 ]);
+      description = "NTP versions accepted by the NTS-KE server (ntpd-rs allows 4 and 5)";
       default = [ 4 5 ];
     };
     domain = lib.mkOption {
@@ -111,7 +116,7 @@ in
         }];
         nts-ke-server = [{
           listen = "[::]:4460";
-          accept-ntp-versions = serverConfig.acceptedVersions;
+          accept-ntp-versions = serverConfig.ntsAcceptedVersions;
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
         }];

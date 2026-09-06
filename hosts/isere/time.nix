@@ -105,7 +105,7 @@ in
       nts-ke-server = lib.mkForce [
         {
           listen = "${ipam.ipv4}:4460";
-          accept-ntp-versions = serverConfig.acceptedVersions;
+          accept-ntp-versions = serverConfig.ntsAcceptedVersions;
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
           # i consider non sensitive
@@ -113,7 +113,7 @@ in
         }
         {
           listen = "[${ipam.ipv6}]:4460";
-          accept-ntp-versions = serverConfig.acceptedVersions;
+          accept-ntp-versions = serverConfig.ntsAcceptedVersions;
           private-key-path = serverConfig.cert.key;
           certificate-chain-path = serverConfig.cert.fullchain;
           # i consider non sensitive
