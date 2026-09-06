@@ -41,9 +41,6 @@ in
         '';
 
         serverAliases = [
-          "as10779.net"
-          "as18932.net"
-          "churn.cards"
           "deeznuts.phd"
           "internal.center"
           "stepbrobd.com"
