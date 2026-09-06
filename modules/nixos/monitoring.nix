@@ -116,6 +116,7 @@ in
           server = {
             http_listen_address = "::1";
             http_listen_port = 3100;
+            grpc_listen_address = "::1";
             grpc_listen_port = 0;
           };
 
