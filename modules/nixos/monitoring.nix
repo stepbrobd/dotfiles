@@ -303,6 +303,8 @@ in
             get_certificate tailscale
           }
 
+          header -Server
+
           import tailscale
           respond 404
         '';
