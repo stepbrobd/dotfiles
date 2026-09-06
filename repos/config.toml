@@ -54,6 +54,11 @@ description = "flake parts with autoloading"
 visibility = "public"
 archived = false
 
+[repo."caddy-sigsci"]
+description = "caddy plugin for fastly signal sciences ngwaf"
+visibility = "public"
+archived = false
+
 [repo."cahier"]
 description = "wat...?"
 visibility = "private"
