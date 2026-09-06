@@ -33,6 +33,8 @@ exclude = [
   "legacyPackages.aarch64-linux.mas", # unsupported
   "legacyPackages.x86_64-linux.mas",  # unsupported
 
+  "legacyPackages.aarch64-darwin.sigsci-agent", # unsupported
+
   "legacyPackages.*.gravity", # registry
   "legacyPackages.*.verus",   # unused
 
