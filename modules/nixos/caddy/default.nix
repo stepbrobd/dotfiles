@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, ... } @ args:
 
 { config, ... }:
 
@@ -7,6 +7,10 @@ let
   metricsPath = "/metrics";
 in
 {
+  imports = [
+    (import ./sigsci.nix args)
+  ];
+
   config = lib.mkIf config.services.caddy.enable {
     networking.firewall.allowedTCPPorts = [ 443 ];
     networking.firewall.allowedUDPPorts = [ 443 ];
@@ -64,7 +68,13 @@ in
       '';
 
       extraConfig = ''
+        (sigsci) {
+          ${lib.optionalString config.services.sigsci-agent.enable "sigsci unix ${config.services.sigsci-agent.socket}"}
+        }
+
         (common) {
+          import sigsci
+
           tls {
             issuer acme {
               profile shortlived
