@@ -24,7 +24,7 @@ in
       account_id = ''''${data.sops_file.secrets.data["cloudflare.account_id"]}'';
       inherit identifier;
       state = "customized";
-      url = "https://stepbrobd.com/error/${page}";
+      url = "https://ysun.co/error/${page}";
     })
     pages;
 }
