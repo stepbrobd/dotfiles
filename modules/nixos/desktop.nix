@@ -116,6 +116,7 @@ in
       programs.noctalia-greeter = {
         enable = true;
         package = pkgs.noctalia-greeter;
+        passwordless-sync-users = [ "ysun" ];
         settings = {
           session.default = head cfg.enabled;
           user.default = "ysun";

@@ -137,10 +137,7 @@ in
         shell = {
           avatar_path = lib.blueprint.users.ysun.meta.profilePicture;
           clipboard_auto_paste = "off";
-          greeter_sync = {
-            auto_sync = true;
-            privilege_command = "sudo";
-          };
+          greeter_sync.auto_sync = true;
           password_style = "random";
           launcher = {
             categories = true;
