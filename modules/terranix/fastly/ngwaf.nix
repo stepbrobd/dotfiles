@@ -8,7 +8,7 @@ let
 
   is = field: value: { inherit field value; operator = "equals"; };
 
-  like = field: value: { inherit field value; operator = "like"; };
+  # like = field: value: { inherit field value; operator = "like"; };
 
   any = condition: { group_operator = "any"; inherit condition; };
 
@@ -30,12 +30,12 @@ let
   has = field: name: { inherit field; operator = "exists"; group_operator = "all"; condition = [ (is "name" name) ]; };
   header = has "request_header";
   cookie = has "request_cookie";
-  contentType = value: {
-    field = "request_header";
-    operator = "exists";
-    group_operator = "all";
-    condition = [ (is "name" "Content-Type") { field = "value_string"; operator = "contains"; inherit value; } ];
-  };
+  # contentType = value: {
+  #   field = "request_header";
+  #   operator = "exists";
+  #   group_operator = "all";
+  #   condition = [ (is "name" "Content-Type") { field = "value_string"; operator = "contains"; inherit value; } ];
+  # };
 
   # see tailscale snippet in modules/nixos/caddy/default.nix
   tailnet = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
@@ -67,64 +67,72 @@ in
       reports = { name = "CSP Report"; description = "CSP and NEL reports posted by browsers to the collector."; };
       tailnet = { name = "Tailnet Client"; description = "Requests from tailnet addresses to the sites that only answer the tailnet."; };
       kanidm = { name = "Kanidm Credential"; description = "Passwords and codes posted to the Kanidm login forms and auth API."; };
-      grafana = { name = "Grafana Session"; description = "Grafana API calls from a signed in browser session."; };
+      grafana = { name = "Grafana Session"; description = "Requests from a signed in Grafana browser session."; };
       neogrok = { name = "Neogrok Search"; description = "Code searches from a session that passed the Caddy OIDC gate."; };
     };
 
   resource.fastly_ngwaf_workspace_rule = {
-    # all mutating niks3 route needs a bearer token
-    # uploads go to storage backend through presigned urls
+    # niks3 client call carries bearer token
+    # uploads go to s3 through presigned urls
     niks3 = allow {
       description = "Allow authenticated niks3 API calls on ${services.niks3.domain}.";
       signal = "niks3";
-      condition = [ (is "domain" services.niks3.domain) (like "path" "/api/*") ];
+      condition = [ (is "domain" services.niks3.domain) ];
       multival_condition = [ (header "Authorization") ];
     };
 
-    # tracker posts text/plain (sigsci agent dont parse this thus only url and header signals remain)
+    # browsers only post beacon events here
+    # dashboard login is the other post but plausible checks it itself
     plausible = allow {
-      description = "Allow the plausible beacon on ${services.plausible.domain}.";
+      description = "Allow posts to the plausible beacon on ${services.plausible.domain}.";
       signal = "plausible";
-      condition = [ (is "domain" services.plausible.domain) (is "method" "POST") (is "path" "/api/event") ];
-      multival_condition = [ (contentType "text/plain") ];
+      condition = [ (is "domain" services.plausible.domain) (is "method" "POST") ];
     };
 
-    # see modules/nixos/caddy/default.nix and modules/nixos/go-csp-collector.nix
+    # modules/nixos/go-csp-collector.nix proxies posts only and redirects everything else
     reports = allow {
-      description = "Allow browser CSP and NEL reports on ${services.go-csp-collector.domain}.";
+      description = "Allow browser CSP and NEL reports posted to ${services.go-csp-collector.domain}.";
       signal = "reports";
       condition = [ (is "domain" services.go-csp-collector.domain) (is "method" "POST") ];
-      group_condition = [ (any [ (is "path" "/csp") (is "path" "/reporting-api/csp") (is "path" "/nel") ]) ];
-      multival_condition = [ (contentType "report") ];
     };
 
-    # caddy will 404 to everything else go check caddy `(tailscale)` snippet
+    # tailnet srcaddr only reach sites resolve to tailnet
+    # caddy will 404 to everything else
     tailnet = allow {
       description = "Allow tailnet clients on the sites that only answer the tailnet.";
       signal = "tailnet";
-      group_condition = [
-        (any (map (is "domain") [ services.home-assistant.domain services.paperless.domain services.vaultwarden.domain ]))
-        (any (map (is "ip") tailnet))
-      ];
+      group_condition = [ (any (map (is "ip") tailnet)) ];
     };
 
-    # password and 2fa code posted to login forms and auth api
+    # passwords and 2fc code will be in POST
+    # kanidm has no injectable backend
     kanidm = allow {
-      description = "Allow credential posts to the Kanidm login forms and auth API on ${services.kanidm.domain}.";
+      description = "Allow posts to the Kanidm login forms and auth API on ${services.kanidm.domain}.";
       signal = "kanidm";
       condition = [ (is "domain" services.kanidm.domain) (is "method" "POST") ];
-      group_condition = [ (any [ (like "path" "/ui/login/*") (like "path" "/v1/auth*") (is "path" "/v1/reauth") ]) ];
     };
 
-    # queries from signed in sessions (anonymous public dashboard traffic are enforced)
+    # explore puts LogQL in query string
+    # grafana_session is the documented login cookie
+    # shared dashboards and embeds are fetched anonymously
+    # e.g. (grafana 13.1.4)
+    #   /public-dashboards/<token>
+    #   /api/public/dashboards/<token>
+    # other anonymous traffic stays enforced
     grafana = allow {
-      description = "Allow API calls from a signed in Grafana session on ${services.grafana.domain}.";
+      description = "Allow requests from a signed in Grafana session or to a shared dashboard on ${services.grafana.domain}.";
       signal = "grafana";
-      condition = [ (is "domain" services.grafana.domain) (like "path" "/api/*") ];
-      multival_condition = [ (cookie "grafana_session") ];
+      condition = [ (is "domain" services.grafana.domain) ];
+      group_condition = [{
+        group_operator = "any";
+        condition = map (value: { field = "path"; operator = "like"; inherit value; }) [ "/public-dashboards/*" "/api/public/dashboards/*" ];
+        multival_condition = [ (cookie "grafana_session") ];
+      }];
     };
 
-    # code search look like attacks but caddy validates the oidc session before proxying
+    # code search look like attacks
+    # `session` is the cookie `(auth)` snippet configures
+    # caddy validates it before proxying
     neogrok = allow {
       description = "Allow code searches from a session that passed the Caddy OIDC gate on ${services.neogrok.domain}.";
       signal = "neogrok";
