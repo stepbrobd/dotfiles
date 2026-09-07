@@ -117,7 +117,18 @@ in
             http_listen_address = "::1";
             http_listen_port = 3100;
             grpc_listen_address = "::1";
-            grpc_listen_port = 0;
+            grpc_listen_port = 9095;
+          };
+
+          frontend = {
+            address = "::1";
+            instance_enable_ipv6 = true;
+          };
+
+          query_scheduler.scheduler_ring = {
+            instance_addr = "::1";
+            instance_port = 9095;
+            instance_enable_ipv6 = true;
           };
 
           ingester = {
@@ -163,7 +174,12 @@ in
 
           compactor = {
             working_directory = config.services.loki.dataDir;
-            compactor_ring.kvstore.store = "inmemory";
+            compactor_ring = {
+              kvstore.store = "inmemory";
+              instance_addr = "::1";
+              instance_port = 9095;
+              instance_enable_ipv6 = true;
+            };
             retention_enabled = true;
             delete_request_store = "filesystem";
           };
