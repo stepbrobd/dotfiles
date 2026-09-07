@@ -91,7 +91,7 @@ let
           users = serverUsers;
           names = [
             "baldy" # NetActuate Los Angeles, 2 vCPU, 8GB RAM, 100GB Storage
-            "butte" # Virtua Cloud, 1 vCPU, 2GB RAM, 20GB Storage
+            "butte" # Virtua Cloud, 2 vCPU, 2GB RAM, 60GB Storage
             "cradle" # NetActuate Sydney, 2 vCPU, 8GB RAM, 100GB Storage
             "highline" # Neptune Networks, 2 vCPU, 2GB RAM, 80GB Storage
             "kongo" # Vultr, 1 vCPU, 2GB RAM, 64GB Storage

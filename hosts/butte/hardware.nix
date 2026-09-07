@@ -4,6 +4,7 @@
   imports = [ "${modulesPath}/profiles/qemu-guest.nix" ];
   services.qemuGuest.enable = true;
 
+  boot.growPartition = true;
   boot.loader.grub.device = "/dev/vda";
   boot.initrd.kernelModules = [ "nvme" ];
   boot.initrd.availableKernelModules = [
@@ -13,7 +14,7 @@
     "xen_blkfront"
   ];
 
-  fileSystems."/" = { device = "/dev/vda1"; fsType = "ext4"; };
+  fileSystems."/" = { device = "/dev/vda1"; fsType = "ext4"; autoResize = true; };
 
   networking = {
     defaultGateway = {
