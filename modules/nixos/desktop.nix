@@ -101,10 +101,7 @@ in
 
       # gnome polkit and keyring
       security.polkit.enable = true;
-      services = {
-        dbus.packages = with pkgs; [ gcr ];
-        gnome.gnome-keyring.enable = true;
-      };
+      services.gnome.gnome-keyring.enable = true;
     }
 
     # greeter
