@@ -26,6 +26,10 @@ in
       origin_inspector = true;
       domain_inspector = true;
       log_explorer_insights = true;
+      ngwaf = [{
+        enabled = false;
+        workspace_id = tfRef "fastly_ngwaf_workspace.ngwaf.id";
+      }];
       # ddos_protection = [{
       #   enabled = true;
       #   mode = "log";

@@ -4,14 +4,14 @@
   resource.fastly_ngwaf_workspace.ngwaf = {
     name = "NGWAF";
     description = "Next-Gen WAF";
-    mode = "log";
+    mode = "block";
 
     # this block is required
     attack_signal_thresholds = [{
-      immediate = false;
-      one_minute = 1;
-      ten_minutes = 60;
-      one_hour = 100;
+      immediate = true;
+      one_minute = 50;
+      ten_minutes = 350;
+      one_hour = 1800;
     }];
   };
 }
