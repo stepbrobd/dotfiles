@@ -34,7 +34,7 @@ in
       prune = true;
 
       apiVersion = 1;
-      datasources = mkDatasources "Prometheus" { httpMethod = "POST"; } ++ mkDatasources "Loki" { manageAlerts = false; maxLines = 1000000; };
+      datasources = mkDatasources "Prometheus" { httpMethod = "POST"; } ++ mkDatasources "Loki" { manageAlerts = false; maxLines = 10000; };
     };
   };
 }
