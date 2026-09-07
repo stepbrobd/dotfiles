@@ -126,6 +126,7 @@ in
           };
 
           query_scheduler.scheduler_ring = {
+            kvstore.store = "inmemory";
             instance_addr = "::1";
             instance_port = 9095;
             instance_enable_ipv6 = true;
