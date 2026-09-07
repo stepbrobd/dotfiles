@@ -16,8 +16,6 @@ in
 
       virtualHosts."ysun.co" = {
         extraConfig = ''
-          import common
-          import reporting
           import webring
 
           @static path /assets/static/*

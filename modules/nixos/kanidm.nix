@@ -21,7 +21,6 @@ in
     services.caddy = {
       enable = true;
       virtualHosts.${domain}.extraConfig = ''
-        import common
         import reporting
         header >Cache-Control "private, must-revalidate, max-age=0"
         header -X-Kanidm-Version

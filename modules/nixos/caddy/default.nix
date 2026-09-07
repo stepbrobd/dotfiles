@@ -8,22 +8,23 @@ let
 
   report = "https://${lib.blueprint.services.go-csp-collector.domain}";
   site = [ "'self'" "https://ysun.co" "https://*.ysun.co" ];
-  csp = frameAncestors: lib.concatMapStringsSep "; " (lib.concatStringsSep " ") [
-    ([ "default-src" ] ++ site)
-    ([ "base-uri" ] ++ site)
-    ([ "form-action" ] ++ site)
-    ([ "frame-ancestors" ] ++ site ++ frameAncestors)
-    ([ "img-src" ] ++ site ++ [ "https://*.basemaps.cartocdn.com" "data:" ]) # grafana geomap basemap tiles
-    ([ "worker-src" ] ++ site ++ [ "blob:" ])
-    ([ "font-src" ] ++ site ++ [ "data:" ])
-    ([ "script-src" ] ++ site ++ [ "'unsafe-inline'" "'unsafe-eval'" ])
-    ([ "connect-src" ] ++ site ++ [ "https://api.github.com" ]) # ysun.co/cv release lookup
-    ([ "style-src" ] ++ site ++ [ "'unsafe-inline'" ])
-    ([ "frame-src" ] ++ site ++ [ "https://embed.music.apple.com" ]) # ysun.co/music playlist embeds
-    ([ "media-src" ] ++ site)
-    [ "report-uri" "${report}/csp" ]
-    [ "report-to" "csp" ]
-  ] + ";";
+  csp = frameAncestors: lib.concatStringsSep "; "
+    (lib.mapAttrsToList (directive: extra: lib.concatStringsSep " " ([ directive ] ++ site ++ extra))
+      {
+        base-uri = [ ];
+        connect-src = [ "https://api.github.com" ];
+        default-src = [ ];
+        font-src = [ "data:" ];
+        form-action = [ ];
+        frame-ancestors = frameAncestors;
+        frame-src = [ "https://embed.music.apple.com" ];
+        img-src = [ "https://*.basemaps.cartocdn.com" "data:" ];
+        script-src = [ "'unsafe-inline'" "'unsafe-eval'" ];
+        style-src = [ "'unsafe-inline'" ];
+        worker-src = [ "blob:" ];
+      }
+    ++ [ "report-uri ${report}/csp" "report-to csp" ]) + ";";
+  ancestors = lib.concatStringsSep " " ([ "frame-ancestors" ] ++ site) + ";";
   nel = lib.toJSON { report_to = "nel"; max_age = 31536000; include_subdomains = true; failure_fraction = 1.0; };
   endpoints = lib.concatStringsSep ", " (lib.mapAttrsToList (name: path: "${name}=\"${report}${path}\"") { csp = "/reporting-api/csp"; nel = "/nel"; });
 in
@@ -88,7 +89,7 @@ in
         ${lib.optionalString config.services.sigsci-agent.enable "sigsci unix ${config.services.sigsci-agent.socket}"}
       }
 
-      (common) {
+      (base) {
         import sigsci
 
         tls {
@@ -110,8 +111,29 @@ in
           -Via
           -X-Powered-By
         }
-        header ?Content-Security-Policy "frame-ancestors ${lib.concatStringsSep " " site}"
         header ?Referrer-Policy "strict-origin-when-cross-origin"
+      }
+
+      (common) {
+        import base
+        header ?Content-Security-Policy `${ancestors}`
+      }
+
+      (reports) {
+        header ?NEL `${nel}`
+        header ?Reporting-Endpoints `${endpoints}`
+      }
+
+      (reporting) {
+        import base
+        import reports
+        header ?Content-Security-Policy `${csp [ ]}`
+      }
+
+      (webring) {
+        import base
+        import reports
+        header ?Content-Security-Policy `${csp [ "https://gskr.ing" ]}`
       }
 
       # to protect a site:
@@ -131,19 +153,6 @@ in
       # wrap routes in `handle @tailnet` and add `respond 404`
       (tailscale) {
         @tailnet remote_ip 100.64.0.0/10 fd7a:115c:a1e0::/48
-      }
-
-      # import after common (later default wins where both apply)
-      (reporting) {
-        header ?Content-Security-Policy `${csp [ ]}`
-        header ?NEL `${nel}`
-        header ?Reporting-Endpoints `${endpoints}`
-      }
-
-      # allow the gskr.ing webring reader to frame a site
-      # import after reporting (later default wins)
-      (webring) {
-        header ?Content-Security-Policy `${csp [ "https://gskr.ing" ]}`
       }
     '';
 

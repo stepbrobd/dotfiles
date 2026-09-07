@@ -48,7 +48,6 @@ in
       services.caddy = {
         enable = true;
         virtualHosts.${domain}.extraConfig = with cfg.settings; ''
-          import common
           import reporting
           reverse_proxy [${IpAddresses}]:${lib.toString Port}
         '';
