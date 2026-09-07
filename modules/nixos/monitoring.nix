@@ -169,7 +169,8 @@ in
           limits_config = {
             reject_old_samples = true;
             reject_old_samples_max_age = "168h";
-            retention_period = "168h";
+            retention_period = "2160h";
+            max_query_length = "2161h";
             max_entries_limit_per_query = 1000000;
           };
 
@@ -250,7 +251,7 @@ in
               labels = "job=systemd-journal, host=${config.networking.hostName}";
               label_keys = "$unit";
               line_format = "json";
-              remove_keys = "$discard_before, $discard_after";
+              remove_keys = "$discard_before, $discard_after, $CMDLINE, $EXE";
             }];
           };
 
