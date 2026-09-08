@@ -11,6 +11,8 @@
         nixpkgs-fmt
         sops
 
+        fastly
+
         inputs'.terranix.packages.default
         opentofu
       ];
