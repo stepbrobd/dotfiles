@@ -262,6 +262,15 @@ in
     ];
   };
 
+  # fastly object storage bucket
+  resource.aws_s3_bucket.cache.bucket = "cache";
+  # RO key for vcl read path (bucket scoping only applies to *-objects)
+  resource.fastly_object_storage_access_keys.cache = {
+    description = "RO key for Nix Binary Cache storage backend used by Cache VCL service.";
+    permission = "read-only-objects";
+    buckets = [ (tfRef "aws_s3_bucket.cache.bucket") ];
+  };
+
   resource.fastly_domain.cache = {
     fqdn = domain;
     service_id = tfRef "fastly_service_vcl.cache.id";

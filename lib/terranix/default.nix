@@ -61,6 +61,29 @@ rec {
       };
     };
 
+    # currently only used for fastly object storage
+    # https://github.com/fastly/terraform-provider-fastly/blob/main/docs/guides/fastly_object_storage.md
+    aws = {
+      terraform.required_providers.aws.source = "hashicorp/aws";
+      # this provider authenticates with keys that terranix creates
+      # `tofu apply -target=fastly_object_storage_access_keys.admin`
+      resource.fastly_object_storage_access_keys.admin = {
+        description = "Admin key for Terranix AWS provider.";
+        permission = "read-write-admin";
+      };
+      provider.aws = {
+        region = "us-east-1";
+        access_key = tfRef "fastly_object_storage_access_keys.admin.access_key_id";
+        secret_key = tfRef "fastly_object_storage_access_keys.admin.secret_key";
+        s3_use_path_style = true;
+        skip_credentials_validation = true;
+        skip_metadata_api_check = true;
+        skip_region_validation = true;
+        skip_requesting_account_id = true;
+        endpoints = [{ s3 = "https://us-east-1.object.fastlystorage.app"; }];
+      };
+    };
+
     b2 = {
       terraform.required_providers.b2.source = "Backblaze/b2";
       provider.b2 = {
