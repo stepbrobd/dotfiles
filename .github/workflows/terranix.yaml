@@ -17,6 +17,7 @@ on:
       # terranix
       - "modules/flake/modules/terranix.nix"
       - "modules/terranix/**"
+      - "pkgs/opentofu/**"
       - "pkgs/terranix/**"
   workflow_dispatch:
 
