@@ -157,12 +157,15 @@ in
         type = "fetch";
         # must run AFTER the boilerplate to override ttl
         priority = 110;
-        # stream miss and serve stale
+        # stream miss and serve stale with 1yr ttl on immutable paths
         content = ''
           set beresp.do_stream = true;
 
           if (req.url.path == "/nix-cache-info") {
             set beresp.ttl = 1h;
+          } else if ((beresp.status == 200 || beresp.status == 206) && (req.url.path ~ "^/nar/" || req.url.path ~ "\.(narinfo|ls)$" || req.url.path ~ "^/(log|realisations)/")) {
+            set beresp.ttl = 365d;
+            set beresp.http.Cache-Control = "public, max-age=31536000, immutable";
           }
 
           set beresp.stale_if_error = 168h;
