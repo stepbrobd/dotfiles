@@ -26,7 +26,9 @@ let
 
       cp ${config} config.tf.json
 
-      eval "$(sops decrypt --extract '["cloudflare"]["backend"]["export"]' ${inputs.self}/lib/terranix/secrets.yaml)"
+      AWS_ACCESS_KEY_ID="$(sops decrypt --extract '["cloudflare"]["backend"]["access_key"]' ${inputs.self}/lib/terranix/secrets.yaml)"
+      AWS_SECRET_ACCESS_KEY="$(sops decrypt --extract '["cloudflare"]["backend"]["secret_key"]' ${inputs.self}/lib/terranix/secrets.yaml)"
+      export AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY
 
       tofu init
 
